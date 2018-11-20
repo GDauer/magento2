@@ -1,0 +1,17 @@
+{
+    "name": "digitalhub/theme-itatiaia-mobile",
+    "description": "Tema base mobile para Loja Modelo Digital Hub",
+    "require": {
+        "php": "7.0.2|7.0.4|~7.0.6|~7.1.0",
+        "digitalhub/theme-base": "*",
+        "magento/theme-frontend-blank": "*",
+        "magento/framework": "*"
+    },
+    "type": "magento2-theme",
+    "version": "1.0.0",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ]
+    }
+}

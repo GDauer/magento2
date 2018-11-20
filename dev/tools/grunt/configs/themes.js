@@ -41,6 +41,26 @@ module.exports = {
         ],
         dsl: 'less'
     },
+    theme_itatiaia: {
+        area: 'frontend',
+        name: 'DigitalHub/theme-itatiaia',
+        locale: 'pt_BR',
+        files: [
+            'css/styles-m',
+            'css/styles-l'
+        ],
+        dsl: 'less'
+    },
+    theme_itatiaia_mobile: {
+        area: 'frontend',
+        name: 'DigitalHub/theme-itatiaia-mobile',
+        locale: 'pt_BR',
+        files: [
+            'css/styles-m',
+            'css/styles-l'
+        ],
+        dsl: 'less'
+    },
     backend: {
         area: 'adminhtml',
         name: 'Magento/backend',

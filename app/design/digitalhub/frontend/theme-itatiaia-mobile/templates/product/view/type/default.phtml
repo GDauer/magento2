@@ -1,0 +1,26 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php /* @var $block \Magento\Catalog\Block\Product\View\AbstractView */?>
+<?php $_product = $block->getProduct() ?>
+
+<?php
+  $objectManager  = \Magento\Framework\App\ObjectManager::getInstance();
+  $product        = $objectManager->get('Magento\Framework\Registry')->registry('current_product'); //get current product
+  $title 	= $product->getName();
+?>
+
+<?php if ($block->displayProductStockStatus()): ?>
+    <?php if ($_product->isAvailable()): ?>
+    <?php else: ?>
+        <div class="stock unavailable" title="<?= /* @escapeNotVerified */ __('Availability') ?>">
+            <span><?= /* @escapeNotVerified */ __('Out of stock') ?></span>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

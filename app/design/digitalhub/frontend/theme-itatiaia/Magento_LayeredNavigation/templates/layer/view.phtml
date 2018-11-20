@@ -1,0 +1,63 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Category layered navigation
+ *
+ * @var $block \Magento\LayeredNavigation\Block\Navigation
+ */
+?>
+
+<?php if ($block->canShowBlock()): ?>
+  <script>
+    function myFunction() {
+       var element = document.getElementById("myDIV");
+       element.classList.toggle("mystyle");
+    }
+  </script>
+  <div class="block filter">
+      <div class="block-content filter-content">
+          <?= $block->getChildHtml('state') ?>
+          <?php if ($block->getLayer()->getState()->getFilters()): ?>
+              <div class="block-actions filter-actions">
+                  <a href="<?= /* @escapeNotVerified */ $block->getClearUrl() ?>" class="action clear filter-clear"><span><?= /* @escapeNotVerified */ __('Clear All') ?></span></a>
+              </div>
+          <?php endif; ?>
+          <?php $wrapOptions = false; ?>
+          <?php foreach ($block->getFilters() as $filter): ?>
+              <?php if (!$wrapOptions): ?>
+                  <dl class="filter-options" id="narrow-by-list">
+              <?php $wrapOptions = true; endif; ?>
+                  <?php if ($filter->getItemsCount()): ?>
+                      <div class="wrp-filter-options">
+                        <dt role="heading" aria-level="3" class="filter-options-title accordion"><?= $block->escapeHtml(__($filter->getName())) ?><i class="fas fa-sort-down"></i><i class="fas fa-caret-right"></i></dt>
+                        <div class="panel">
+                          <dd class="filter-options-content"><?= /* @escapeNotVerified */ $block->getChildBlock('renderer')->render($filter) ?></dd>
+                        </div>
+                      </div>
+                  <?php endif; ?>
+          <?php endforeach; ?>
+          <?php if ($wrapOptions): ?>
+              </dl>
+          <?php endif; ?>
+      </div>
+  </div>
+<?php endif; ?>
+
+<script>
+  require(['jquery'],function($){
+    jQuery(document).ready(function() {
+      jQuery('.accordion').click(function(){
+        jQuery(this).toggleClass("close");
+        jQuery(this).next('.panel').toggle();
+      });
+    });
+  });
+</script>

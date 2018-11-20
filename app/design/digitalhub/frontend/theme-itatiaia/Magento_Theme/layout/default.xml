@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <body>
+
+    <!-- HEADER -->
+    <referenceContainer name="header.container">
+      <block class="Magento\Framework\View\Element\Template" name="custom_header" as="custom_header" template="Magento_Theme::html/header.phtml"  before="-">
+        <block class="Magento\Framework\View\Element\Template" name="customer_data" as="customerData" template="Magento_Customer::html/header-mini.phtml" />
+      </block>
+    </referenceContainer>
+    <move element="logo" as="logo" destination="custom_header" />
+    <move element="catalog.topnav" as="topMenu" destination="custom_header" />
+    <move element="top.search" as="topSearch" destination="custom_header" />
+    <move element="minicart" destination="custom_header" />
+    <!-- END HEADER -->
+
+    <referenceContainer name="footer">
+      <block class="Magento\Newsletter\Block\Subscribe" name="form.subscribe" as="subscribe" before="-" template="Magento_Newsletter::subscribe.phtml"/>
+    </referenceContainer>
+
+    <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+    <referenceBlock name="view.addto.compare" remove="true" />
+    <referenceContainer name="sidebar.additional" remove="true" />
+    <referenceBlock name="view.addto.compare" remove="true" />
+    <referenceBlock name="footer_links" remove="true"/>
+    <referenceBlock name="report.bugs" remove="true"/>
+    <referenceBlock name="form.subscribe" remove="true" />
+
+    <move element="copyright" destination="before.body.end"/>
+  </body>
+</page>

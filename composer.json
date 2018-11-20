@@ -33,7 +33,17 @@
         "magento/module-target-rule-sample-data": "100.2.*",
         "magento/module-multiple-wishlist-sample-data": "100.2.*",
         "magento/sample-data-media": "100.2.*",
-        "magento/module-swatches-sample-data": "100.2.*"
+        "magento/module-swatches-sample-data": "100.2.*",
+        "digitalhub/theme-base": "dev-master",
+        "digitalhub/theme-base-mobile": "dev-master",
+        "digitalhub/menu-manager": "dev-master",
+        "digitalhub/additional-prices": "dev-master",
+        "digitalhub/estimate-shipping": "dev-master",
+        "digitalhub/customer-attributes": "dev-master",
+        "digitalhub/language-pt_br": "dev-master",
+        "mundipagg/mundipagg-magento2-module": "^1.2",
+        "digitalhub/banners": "dev-master",
+        "magepal/magento2-gmailsmtpapp": "^2.5"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.2.0",
@@ -80,6 +90,38 @@
         {
             "type": "composer",
             "url": "https://repo.magento.com/"
+        },
+        {
+            "type": "vcs",
+            "url": "https://gitlab.com/digitalhub/m2/themes/base.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://gitlab.com/digitalhub/m2/themes/base-mobile.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://gitlab.com/digitalhub/m2/modules/additional-prices.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://gitlab.com/digitalhub/m2/modules/menu-manager.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://gitlab.com/digitalhub/m2/modules/estimate-shipping.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://gitlab.com/digitalhub/m2/modules/customer-attributes.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://gitlab.com/digitalhub/m2/modules/language-pt_br.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://gitlab.com/digitalhub/m2/modules/banners.git"
         }
     ],
     "extra": {

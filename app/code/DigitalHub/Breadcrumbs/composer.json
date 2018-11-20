@@ -1,0 +1,22 @@
+{
+    "name": "digitalhub/module-breadcrumbs",
+    "description": "",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "email": "suporte@digitalhub.com.br",
+            "name": "Digital Hub"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "DigitalHub\\Breadcrumb\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

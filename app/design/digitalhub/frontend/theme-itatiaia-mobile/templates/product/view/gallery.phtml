@@ -1,0 +1,163 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product media data template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Gallery
+ */
+?>
+<?php
+  $_product = $block->getProduct(); // GET THE PRODUCT
+?>
+
+<h1 class="product-name"><?php echo $_product->getName(); ?></h1>
+
+<div class="gallery-placeholder _block-content-loading" data-gallery-role="gallery-placeholder">
+    <div data-role="loader" class="loading-mask">
+        <div class="loader">
+            <img src="<?= /* @escapeNotVerified */ $block->getViewFileUrl('images/loader-1.gif') ?>"
+                 alt="<?= /* @escapeNotVerified */ __('Loading...') ?>">
+        </div>
+    </div>
+</div>
+<!--Fix for jumping content. Loader must be the same size as gallery.-->
+<script>
+    var config = {
+            "width": <?= /* @escapeNotVerified */ $block->getImageAttribute('product_page_image_medium', 'width') ?>,
+            "thumbheight": <?php /* @escapeNotVerified */ echo $block->getImageAttribute('product_page_image_small', 'height')
+                        ?: $block->getImageAttribute('product_page_image_small', 'width'); ?>,
+            "navtype": "<?= /* @escapeNotVerified */ $block->getVar("gallery/navtype") ?>",
+            "height": <?= /* @escapeNotVerified */ $block->getImageAttribute('product_page_image_medium', 'height') ?>
+        },
+        thumbBarHeight = 0,
+        loader = document.querySelectorAll('[data-gallery-role="gallery-placeholder"] [data-role="loader"]')[0];
+
+    if (config.navtype === 'horizontal') {
+        thumbBarHeight = config.thumbheight;
+    }
+
+    loader.style.paddingBottom = ( config.height / config.width * 100) + "%";
+</script>
+<script type="text/x-magento-init">
+    {
+        "[data-gallery-role=gallery-placeholder]": {
+            "mage/gallery/gallery": {
+                "mixins":["magnifier/magnify"],
+                "magnifierOpts": <?= /* @escapeNotVerified */ $block->getMagnifier() ?>,
+                "data": <?= /* @escapeNotVerified */ $block->getGalleryImagesJson() ?>,
+                "options": {
+                    "nav": "<?= /* @escapeNotVerified */ $block->getVar("gallery/nav") ?>",
+                    <?php if (($block->getVar("gallery/loop"))): ?>
+                        "loop": <?= /* @escapeNotVerified */ $block->getVar("gallery/loop") ?>,
+                    <?php endif; ?>
+                    <?php if (($block->getVar("gallery/keyboard"))): ?>
+                        "keyboard": <?= /* @escapeNotVerified */ $block->getVar("gallery/keyboard") ?>,
+                    <?php endif; ?>
+                    <?php if (($block->getVar("gallery/arrows"))): ?>
+                        "arrows": <?= /* @escapeNotVerified */ $block->getVar("gallery/arrows") ?>,
+                    <?php endif; ?>
+                    <?php if (($block->getVar("gallery/allowfullscreen"))): ?>
+                        "allowfullscreen": <?= /* @escapeNotVerified */ $block->getVar("gallery/allowfullscreen") ?>,
+                    <?php endif; ?>
+                    <?php if (($block->getVar("gallery/caption"))): ?>
+                        "showCaption": <?= /* @escapeNotVerified */ $block->getVar("gallery/caption") ?>,
+                    <?php endif; ?>
+                    "width": "<?= /* @escapeNotVerified */ $block->getImageAttribute('product_page_image_medium', 'width') ?>",
+                    "thumbwidth": "<?= /* @escapeNotVerified */ $block->getImageAttribute('product_page_image_small', 'width') ?>",
+                    <?php if ($block->getImageAttribute('product_page_image_small', 'height') || $block->getImageAttribute('product_page_image_small', 'width')): ?>
+                        "thumbheight": <?php /* @escapeNotVerified */ echo $block->getImageAttribute('product_page_image_small', 'height')
+                        ?: $block->getImageAttribute('product_page_image_small', 'width'); ?>,
+                    <?php endif; ?>
+                    <?php if ($block->getImageAttribute('product_page_image_medium', 'height') || $block->getImageAttribute('product_page_image_medium', 'width')): ?>
+                        "height": <?php /* @escapeNotVerified */ echo $block->getImageAttribute('product_page_image_medium', 'height')
+                        ?: $block->getImageAttribute('product_page_image_medium', 'width'); ?>,
+                    <?php endif; ?>
+                    <?php if ($block->getVar("gallery/transition/duration")): ?>
+                        "transitionduration": <?= /* @escapeNotVerified */ $block->getVar("gallery/transition/duration") ?>,
+                    <?php endif; ?>
+                    "transition": "<?= /* @escapeNotVerified */ $block->getVar("gallery/transition/effect") ?>",
+                    <?php if (($block->getVar("gallery/navarrows"))): ?>
+                        "navarrows": <?= /* @escapeNotVerified */ $block->getVar("gallery/navarrows") ?>,
+                    <?php endif; ?>
+                    "navtype": "<?= /* @escapeNotVerified */ $block->getVar("gallery/navtype") ?>",
+                    "navdir": "<?= /* @escapeNotVerified */ $block->getVar("gallery/navdir") ?>"
+                },
+                "fullscreen": {
+                    "nav": "<?= /* @escapeNotVerified */ $block->getVar("gallery/fullscreen/nav") ?>",
+                    <?php if ($block->getVar("gallery/fullscreen/loop")): ?>
+                        "loop": <?= /* @escapeNotVerified */ $block->getVar("gallery/fullscreen/loop") ?>,
+                    <?php endif; ?>
+                    "navdir": "<?= /* @escapeNotVerified */ $block->getVar("gallery/fullscreen/navdir") ?>",
+                    <?php if ($block->getVar("gallery/transition/navarrows")): ?>
+                        "navarrows": <?= /* @escapeNotVerified */ $block->getVar("gallery/fullscreen/navarrows") ?>,
+                    <?php endif; ?>
+                    "navtype": "<?= /* @escapeNotVerified */ $block->getVar("gallery/fullscreen/navtype") ?>",
+                    <?php if ($block->getVar("gallery/fullscreen/arrows")): ?>
+                        "arrows": <?= /* @escapeNotVerified */ $block->getVar("gallery/fullscreen/arrows") ?>,
+                    <?php endif; ?>
+                    <?php if ($block->getVar("gallery/fullscreen/caption")): ?>
+                        "showCaption": <?= /* @escapeNotVerified */ $block->getVar("gallery/fullscreen/caption") ?>,
+                    <?php endif; ?>
+                    <?php if ($block->getVar("gallery/fullscreen/transition/duration")): ?>
+                        "transitionduration": <?= /* @escapeNotVerified */ $block->getVar("gallery/fullscreen/transition/duration") ?>,
+                    <?php endif; ?>
+                    "transition": "<?= /* @escapeNotVerified */ $block->getVar("gallery/fullscreen/transition/effect") ?>"
+                },
+                "breakpoints": <?= /* @escapeNotVerified */ $block->getBreakpoints() ?>
+            }
+        }
+    }
+</script>
+
+<script>
+  require([
+    'jquery'
+    ], function () {
+    // Simple click event for optional humongous Pin It button.
+    jQuery('#pin1click').click(function() {
+      jQuery('#pin1click').hide();
+
+      // Send a click event to the actual image to invoke the Pinterest process.
+      jQuery('#pin1 a i').click();
+
+      // Quick and dirty method to show/hide humongous logo during Pinterest pinning using default method in HTML Anchor.
+      setTimeout(function(){
+          jQuery('#pin1click').show();
+      }, 1000);
+    })
+
+    // As above, quick and dirty method to show/hide humongous Pin-It Logo during Pinterest pinning.
+    jQuery("#pin1 a i").click(function() {
+      jQuery('#pin1click').hide();
+      // This is the dirty part. A better method should be used to hide the logo.
+      setTimeout(function(){
+          jQuery('#pin1click').show();
+      }, 1000);
+    });
+  });
+</script>
+
+<div class="wrp-social-share">
+  <ul>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($_product->getProductUrl());?>&t=<?php echo urlencode($_product->getName())?>" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false' title="Share on FaceBook"><i class="fab fa-facebook-f"></i></a>
+    </li>
+
+    <li>
+      <a href="http://twitter.com/home/?status=<?php echo urlencode($_product->getProductUrl());?>(<?php echo urlencode($_product->getName())?>)" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false' title="Share on Twitter"><i class="fab fa-twitter"></i></a>
+    </li>
+
+    <li>
+      <a class="share-pinterest" id="pin1" href="javascript:void((function()%7Bvar%20e=document.createElement(&apos;script&apos;);e.setAttribute(&apos;type&apos;,&apos;text/javascript&apos;);e.setAttribute(&apos;charset&apos;,&apos;UTF-8&apos;);e.setAttribute(&apos;src&apos;,&apos;http://assets.pinterest.com/js/pinmarklet.js?r=&apos;+Math.random()*99999999);document.body.appendChild(e)%7D)());" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+    </li>
+    <li>
+      <a href="https://api.whatsapp.com/send?text=<?php echo $_product->getName(); ?> - <?php echo $_product->getProductUrl(); ?>" target="_blank"><i class="fab fa-whatsapp" style="font-size: 22px;"></i></a>
+    </li>
+  </ul>
+</div>

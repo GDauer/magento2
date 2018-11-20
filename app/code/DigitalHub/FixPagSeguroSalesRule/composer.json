@@ -1,0 +1,22 @@
+{
+    "name": "DigitalHub/module-fixpagsegurosalesrule",
+    "description": "",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "email": "suporte@digitalhub.com.br",
+            "name": "Digital Hub"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "SoCameras\\FixPagSeguroSalesRule\\": ""
+        }
+    }
+}

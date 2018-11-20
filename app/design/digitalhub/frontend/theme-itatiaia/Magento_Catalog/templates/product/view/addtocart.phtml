@@ -1,0 +1,89 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Comprar'); ?>
+<?php if ($_product->isSaleable()): ?>
+<div class="box-tocart">
+    <div class="fieldset">
+        <?php if ($block->shouldRenderQuantity()): ?>
+        <div class="field qty">
+            <label class="label" for="qty"><span><?= /* @escapeNotVerified */ __('Quantidade') ?></span></label>
+            <div class="control">
+              <a href="javascript:void(0)" class="qty-dec">-</a>
+              <input type="number"
+                     name="qty"
+                     id="qty"
+                     value="<?php /* @escapeNotVerified */ echo $block->getProductDefaultQty() * 1 ?>"
+                     title="<?php /* @escapeNotVerified */ echo __('Quantidade') ?>"
+                     class="input-text qty"
+                     data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                     />
+              <a href="javascript:void(0)" class="qty-inc">+</a>
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <div class="actions">
+            <button type="submit"
+                    title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+                    class="action primary tocart"
+                    id="product-addtocart-button">
+                <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
+            </button>
+            <?= $block->getChildHtml('', true) ?>
+        </div>
+
+        <?php
+            echo $this->getLayout()
+                ->createBlock('\DigitalHub\EstimateShipping\Block\Estimate')
+                ->setTemplate('DigitalHub_EstimateShipping::product/estimate-shipping.phtml')
+                ->toHtml()
+        ?>
+    </div>
+</div>
+<?php endif; ?>
+<?php if ($block->isRedirectToCartEnabled()) : ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/product/view/validation": {
+                "radioCheckboxClosest": ".nested"
+            }
+        }
+    }
+</script>
+<?php else : ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/js/validate-product": {}
+        }
+    }
+</script>
+<?php endif; ?>
+
+<script>
+    require(['jquery'], function($) {
+      var $currentQTY=parseInt($('#qty').val());
+      jQuery(".qty-inc").click(function(){
+        $currentQTY=$currentQTY+1;
+        jQuery('#qty').val($currentQTY);
+      });
+
+      jQuery(".qty-dec").click(function(){
+        $currentQTY=$currentQTY-1;
+        if ($currentQTY<1){
+          $currentQTY=0;
+        }
+        jQuery('#qty').val($currentQTY);
+      });
+    });
+</script>

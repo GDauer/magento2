@@ -1,0 +1,50 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Product list toolbar
+ *
+ * @var $block \Magento\Catalog\Block\Product\ProductList\Toolbar
+ */
+use Magento\Catalog\Model\Product\ProductList\Toolbar;
+?>
+
+<?php
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');
+?>
+
+<?php if ($block->getCollection()->getSize()): ?>
+  <div class="toolbar toolbar-products" data-mage-init='<?= /* @escapeNotVerified */ $block->getWidgetOptionsJson() ?>'>
+
+    <?php if ($this->getRequest()->getFullActionName() == 'catalog_category_view'): ?>
+      <h1 class="category-name"><?php echo $category->getName(); ?></h1>
+
+      <div class="category-image">
+        <img src="<?php echo $category->getImageUrl(); ?>" />
+      </div>
+    <?php endif; ?>
+
+    <?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/amount.phtml')) ?>
+
+    <?php if ($block->isExpanded()): ?>
+        <?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/viewmode.phtml')) ?>
+    <?php endif; ?>
+
+    <?= $block->getPagerHtml() ?>
+
+    <?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/limiter.phtml')) ?>
+
+    <?php if ($block->isExpanded()): ?>
+        <?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/sorter.phtml')) ?>
+    <?php endif; ?>
+
+  </div>
+<?php endif ?>

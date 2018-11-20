@@ -1,0 +1,56 @@
+<div class="wrp-login-wishlist">
+  <span data-bind="scope: 'wishlistData'">
+    <span data-bind="template: {name: 'wishlist-data-template'}"></span>
+  </span>
+    <span data-bind="scope: 'customerData'">
+        <span data-bind="template: {name: 'customer-data-template'}"></span>
+    </span>
+</div>
+
+<script type="text/html" id="wishlist-data-template">
+    <div class="wrp-wishlist">
+        <a href="<?php echo $this->getUrl('wishlist') ?>">
+            <!-- ko if: wishlist().counter -->
+            <span class="counter" data-bind="text: wishlist().items.length"></span>
+            <!-- /ko -->
+        </a>
+    </div>
+</script>
+
+<script type="text/html" id="customer-data-template">
+    <div class="wrp-login">
+        <div class="top-login">
+            <!-- ko if: customer().firstname  -->
+            <div class="logged">
+              <p>Olá, <span data-bind="text: customer().firstname"></span></p>
+              <p><a href="<?php echo $this->getUrl('customer/account') ?>">Minha conta</a> (<a href="<?php echo $this->getUrl('customer/account/logout') ?>">Sair</a>)</p>
+            </div>
+            <!-- /ko -->
+            <!-- ko ifnot: customer().firstname -->
+            <div class="logged not-logged">
+              <p>Olá, visitante!</p>
+              <p><a href="<?php echo $this->getUrl('customer/account/create') ?>">Cadastre-se</a> | <a href="<?php echo $this->getUrl('customer/account/login') ?>">Login</a></p>
+            </div>
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+
+
+
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "customerData": {
+                    "component": "Magento_Customer/js/view/customer"
+                },
+                "wishlistData": {
+                    "component": "Magento_Wishlist/js/view/wishlist"
+                }
+            }
+        }
+    }
+}
+</script>

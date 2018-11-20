@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../vendor/magento/framework/Module/etc/module.xsd">
+  <head>
+    <!-- Add local resources -->
+    <!-- <css src="css/loja.css"/> -->
+
+    <!-- The following two ways to add local JavaScript files are equal -->
+    <!--<script src="Magento_Catalog::js/sample1.js"/> -->
+    <!-- <link src="js/sample.js"/> -->
+
+    <!-- Add external resources -->
+    <!-- <css src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" src_type="url" /> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js" src_type="url" /> -->
+    <!--<link rel="stylesheet" type="text/css" src="http://fonts.googleapis.com/css?family=Montserrat" src_type="url" /> -->
+
+    <!-- The following two ways to add local JavaScript files are equal -->
+    <!--<script src="Magento_Cms::js/owl.carousel.min.js"/>-->
+    <!--<link src="js/owl.carousel.min.js"/>-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" src="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" src_type="url" />
+    <link rel="stylesheet" type="text/css" src="https://use.fontawesome.com/releases/v5.0.10/css/all.css" src_type="url" />
+  </head>
+</page>
