@@ -116,6 +116,7 @@ require([
               </a>
             </strong>
 
+            <?= /* @escapeNotVerified */ $block->getProductPrice($_product) ?>
             <div class="preco-a-vista">
               <?php
               echo $this->getLayout()
@@ -126,7 +127,6 @@ require([
               ?>
             </div>
 
-            <?= /* @escapeNotVerified */ $block->getProductPrice($_product) ?>
             <?php /* $block->getProductDetailsHtml($_product) */ ?>
 
             <div class="preco-parcelado">
@@ -138,6 +138,11 @@ require([
               ->toHtml();
               ?>
             </div>
+            <?php if ($_product->getShortDescription()): ?>
+              <div class="wrp-short">
+                <?php /* @escapeNotVerified */ echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description'); ?>
+              </div>
+            <?php endif; ?>
 
             <div class="product-item-inner">
               <div class="product actions product-item-actions"<?= strpos($pos, $viewMode . '-actions') ? $position : '' ?>>

@@ -33,7 +33,7 @@ require([
             nav: true,
             dots: true,
             lazyLoad: true,
-            margin: 20,
+            margin: 0,
             responsive:{
                 '0': {
                     items: 2

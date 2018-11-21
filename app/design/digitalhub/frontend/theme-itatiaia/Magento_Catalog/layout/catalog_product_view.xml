@@ -9,10 +9,12 @@
     <!-- end -->
     <move element="product.info.upsell" destination="page.wrapper" after="main.content"/>
     <move element="catalog.product.related" destination="page.wrapper" after="main.content"/>
-    <referenceBlock name="product.info.main">
-      <!-- <container name="custom.container" before="product.info.details">
-          <block class="Magento\Framework\View\Element\Template" name="blockname" template="Magento_Catalog::templates/product/view/min-prod.phtml"/>
-      </container> -->
-    </referenceBlock>
+  <!-- <referenceBlock name="product.info.details">
+    <block class="Magento\Catalog\Block\Product\View" name="demo.tab" template="Magento_Catalog::templates/product/min-prod.phtml" group="detailed_info" >
+        <arguments>
+            <argument translate="true" name="title" xsi:type="string">Demo Tab</argument>
+        </arguments>
+    </block>
+  </referenceBlock> -->
   </body>
 </page>
