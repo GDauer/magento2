@@ -185,6 +185,10 @@
   <width>240</width>
   <height>300</height>
   </image>
+  <image id="imagem_miniatura" type="thumbnail">
+  <width>270</width>
+  <height>210</height>
+  </image>
   </images>
   </media>
   <vars module="Magento_Catalog">

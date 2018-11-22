@@ -43,7 +43,8 @@
         "digitalhub/language-pt_br": "dev-master",
         "mundipagg/mundipagg-magento2-module": "^1.2",
         "digitalhub/banners": "dev-master",
-        "magepal/magento2-gmailsmtpapp": "^2.5"
+        "magepal/magento2-gmailsmtpapp": "^2.5",
+        "smile/elasticsuite": "^2.6"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.2.0",

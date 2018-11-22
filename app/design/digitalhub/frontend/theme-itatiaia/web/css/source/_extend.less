@@ -80,7 +80,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
 .page-wrapper {
   .page-header {
     position: relative;
-    z-index: 99 !important;
+    z-index: 999 !important;
     height: 113px;
     .panel.wrapper {
       display: none;
@@ -111,7 +111,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
         max-width: 100%;
         padding: 0;
         background: #454444;
-        overflow: hidden;
+        overflow: unset;
         height: 69px;
       }
     }
@@ -170,7 +170,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
             background: none;
             height: 39px;
             padding: 2px 50px 0 19px;
-            color: #fff;
+            color: #242424;
             font-size: 12px;
             &:focus {
               outline: none;
@@ -301,7 +301,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
       float: right;
       height: auto;
       margin: 0;
-      padding: 0 20px;
+      padding: 0 0px;
       .action.showcart {
         margin-top: 8px;
         &:before {
@@ -342,6 +342,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
         }
       }
       .block-minicart {
+        top: 50px;
         right: -1px;
         margin: 0;
         border-top: 0;
@@ -894,7 +895,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
   border-bottom: 7px solid #1aa3ff;
   color:#fff;
   .footer.content {
-    padding: 0;
+    padding: 0 10px;
     margin: 0 auto;
     border: 0;
     max-width: 1390px;
@@ -1036,7 +1037,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
   width: 100%;
   margin: 0 auto;
   border-top: 2px solid #f5f2f0;
-  padding: 20px 0;
+  padding: 20px 10px;
   .copyright {
     float: left;
     display: inline-block;
@@ -1695,6 +1696,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
 
     .wrp-homepage-blocks {
       text-align: center;
+      padding: 0 10px;
       .wrp-vantagens {
         margin-bottom: 21px;
         margin-top: 28px;
@@ -2325,6 +2327,7 @@ select:not([disabled]) {
   }
   .column.main {
     position: relative;
+    padding-bottom: 17px;
   }
   .product.media {
     position: relative;
@@ -2587,11 +2590,11 @@ select:not([disabled]) {
             border-radius:100%;
             &.selected{
               outline:0;
-              box-shadow: 0 0 0 2pt red;
+              box-shadow: 0 0 0 2pt #28a6fb;
             }
             &:hover{
               outline:0;
-              box-shadow: 0 0 0 2pt red;
+              box-shadow: 0 0 0 2pt #28a6fb;
             }
           }
         }
@@ -2774,6 +2777,8 @@ select:not([disabled]) {
   .product.info.detailed {
     width: calc(~'100% - 270px');
     margin-top: 80px;
+    margin-bottom: 0;
+    min-height: 450px;
     position: relative;
     &:after {
       content: '';
@@ -2799,7 +2804,7 @@ select:not([disabled]) {
     .product.data.items {
       &::before {
         content: '';
-        border-bottom: 2px solid #f7f7f7;
+        border-bottom: 2px solid #f2f2f2;
         height: 35px;
         width: 100%;
         position: absolute;
@@ -2811,7 +2816,7 @@ select:not([disabled]) {
           border: 0;
           height: 37px;
           background: #fff;
-          border-bottom: 2px solid #f7f7f7;
+          border-bottom: 2px solid #f2f2f2;
           font-size: 18px;
           font-weight: 700;
           text-transform: uppercase;
@@ -3159,16 +3164,86 @@ select:not([disabled]) {
     }
   }
 }
-.box-left{
+.float-min{
   width: 270px;
-  height: 35px;
+  min-height: 35px;
   background: #000;
   position: absolute;
-  right: 0;
-  top: 0;
-  .in{
-    background: #000;
+  right: -270px;
+  top: 55px;
+  z-index: 99;
+  background: #fff;
+  padding: 10px 0;
+  .min-in{
+    background: #fff;
+    h1.product-name{
+      font-size: 16px;
+      font-family: 'MullerBold';
+      color: #242424;
+      width: 90%;
+      margin: 0 auto;
+      text-transform: uppercase;
+    }
+    .box-tocart{
+      .btn{
+        text-align: center;
+        .action.primary{
+          background: #1aa3ff;
+          font-family: 'MullerBlack';
+          width: 90%;
+          margin: 10px auto 0;
+          font-size: 13px;
+        }
+      }
+    }
+    .wrp-price{
+      width: 90%;
+      display: block;
+      margin: 15px auto 0;
+      .price-box{
+        .price{
+          color:#707070;
+          font-family: 'MullerRegular';
+          font-size: 14px;
+        }
+        .wrp-oldprice{
+          .old-price{
+            float: left;
+          }
+        }
+        .special-price, .regular-price{
+          .price{
+            color: #242424;
+            font-family: 'MullerBold';
+            font-size: 21px;
+          }
+        }
+      }
+      p.price-with-discount, p.installments-price{
+        color:#707070;
+        font-family: 'MullerRegular';
+        font-size: 14px;
+        margin: 0 0 0;
+      }
+    }
   }
+  .tag-desc {
+    width: 43px;
+    height: 21px;
+    padding: 3px 3px;
+    color: #fff;
+    font-family: 'MullerRegularItalic';
+    font-size: 11px;
+    border-radius: 2px;
+    position: relative;
+    margin: 0px 0 0 7px;
+    float: left;
+    line-height: normal;
+    font-weight: 600;
+    display: block;
+    top: unset;
+    left: unset;
+}
 }
 .page-main > .page-title-wrapper {
   .page-title {
@@ -3754,5 +3829,66 @@ form.form-create-account .field-ruc { display: none }
         z-index: 9;
       }
     }
+  }
+}
+
+/* Media Quereis */
+@media screen {
+  @media (max-width: 1500px) {
+    .page-wrapper{
+      .page-header{
+        .container-menumanager-menu{
+          nav{
+            max-width: 100%;
+          }
+        }
+      }
+    }
+    .tag-desc{
+      left: -12px;
+    }
+    .catalog-category-view{
+      .page-main{
+        padding: 0 10px;
+      }
+    }
+    .catalog-product-view{
+      .column.main{
+        padding: 0 10px 17px;
+      }
+      .block.related, .block.upsell{
+        padding: 0 10px;
+      }
+    }
+  }
+  @media (max-width: 1200px) {
+    body{
+      min-width: 100%;
+    }
+    .cms-index-index{
+      .page-main{
+        .wrp-homepage-blocks{
+          .block-tbs{
+            .home-products-list{
+              .wrp-tabs-out{
+                .wrp-tabs-in{
+                  .products-grid.grid{
+                    .owl-nav button{
+                      &.owl-prev{
+                        left: -17px;
+                      }
+                      &.owl-next{
+                        right: -17px;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
   }
 }
