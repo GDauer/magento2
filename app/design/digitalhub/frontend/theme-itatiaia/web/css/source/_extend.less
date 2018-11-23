@@ -43,9 +43,9 @@ body {
   text-transform: uppercase;
   font-family: 'Montserrat', sans-serif;
   border: 0;
-  background: #3ab63a;
+  background: #1aa3ff;
   &:hover, &:focus {
-    background: #3ab63a;
+    background: #1aa3ff;
     opacity: 0.8;
     border: 0;
   }
@@ -374,7 +374,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
             .product-item {
               .product {
                 .product-item-photo {
-                  border: 1px solid #e1e1e1;
+                  border: 0px solid #e1e1e1;
                 }
                 .product-item-details {
                   padding-left: 96px;
@@ -459,7 +459,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
             line-height: 1.6rem;
             width: 270px;
             margin: 0 auto;
-            background: #3ab63a;
+            background: #1aa3ff;
           }
           .viewcart {
             color: #3b3b3b;
@@ -602,6 +602,32 @@ a, a:hover, .alink, a:visited, .alink:visited {
             background: #000;
             padding: 0;
             margin: 0 5px;
+          }
+        }
+      }
+    }
+  }
+  .container-menumanager-submenus{
+    .container{
+      .menumanager-submenu{
+        .children-items{
+          ul{
+            li{
+              a{
+                font-size: 14px;
+                color: #242424;
+                border-bottom: 2px solid #f2f2f2;
+              }
+              ul{
+                li{
+                  a{
+                    font-size: 14px;
+                    color: #3c3c3c;
+                    border-bottom: 0;
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -3011,9 +3037,16 @@ select:not([disabled]) {
           display: block;
           width:100%;
           margin-bottom: 39px;
-
+          padding-left: 7px;
           font-size: 14px;
+          &:nth-child(even){
+            td, th{
+              background: #fafafa;
+
+            }
+          }
           th{
+            padding: 8px 10px;
             &.col.label{
               display: block;
               width: 50%;
@@ -3022,6 +3055,7 @@ select:not([disabled]) {
             }
           }
           td{
+            padding: 8px 10px;
             display: block;
             width: 50%;
             float: left;
