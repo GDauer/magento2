@@ -1,0 +1,36 @@
+<?php
+/**
+* Copyright © Magento, Inc. All rights reserved.
+* See COPYING.txt for license details.
+*/
+
+// @codingStandardsIgnoreFile
+
+/**
+* Grouped product data template
+*
+* @var $block \Magento\Catalog\Block\Product\View\BaseImage
+* @var $block \Magento\GroupedProduct\Block\Product\View\Type\Grouped
+*/
+?>
+
+<?php
+$product = $block->getProduct();
+?>
+
+<div id="grouped-details">
+  <div id="tabs-list">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#tab1">Descrição</a></li>
+      <li><a href="#tab2">Dimensões</a></li>
+    </ul>
+  </div>
+  <div class="wrp-desc">
+    <section id="tab1" class="tab-content active">
+      <?php echo $product->getDescription() ?>
+    </section>
+    <section id="tab2" class="tab-content hide">
+      <?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getDimensoes(), 'dimensoes') ?>
+    </section>
+  </div>
+</div>

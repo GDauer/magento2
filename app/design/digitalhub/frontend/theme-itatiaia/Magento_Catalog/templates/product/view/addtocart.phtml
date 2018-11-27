@@ -40,6 +40,9 @@
             </button>
             <?= $block->getChildHtml('', true) ?>
         </div>
+        <?php if($_product->getTypeId()== "grouped"): ?>
+            <a class="btn-rev" href="#">Revisar itens do conjunto</a>
+        <?php endif; ?>
 
         <?php
             echo $this->getLayout()

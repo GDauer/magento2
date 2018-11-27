@@ -82,4 +82,19 @@ require([
     //         }
     //     });
     // }
+
+    jQuery(document).ready(function() {
+      jQuery('#grouped-details .nav-tabs > li > a').click(function(event){
+      event.preventDefault();
+      var active_tab_selector = jQuery('#grouped-details .nav-tabs > li.active > a').attr('href');
+      var actived_nav = jQuery('#grouped-details .nav-tabs > li.active');
+      actived_nav.removeClass('active');
+      jQuery(this).parents('li').addClass('active');
+      jQuery(active_tab_selector).removeClass('active');
+      jQuery(active_tab_selector).addClass('hide');
+      var target_tab_selector = jQuery(this).attr('href');
+      jQuery(target_tab_selector).removeClass('hide');
+      jQuery(target_tab_selector).addClass('active');
+         });
+    });
 });

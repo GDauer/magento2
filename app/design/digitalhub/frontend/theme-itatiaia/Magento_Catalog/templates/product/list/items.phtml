@@ -97,7 +97,7 @@ switch ($type = $block->getType()) {
             $class = $type;
 
             $image = 'cart_cross_sell_products';
-            $title = __('More Choices:');
+            $title = __('Adicione também estes produtos');
             $items = $block->getItemCollection();
             $limit = $block->getPositionLimit();
             $shuffle = (int) $block->isShuffled();
@@ -117,9 +117,9 @@ switch ($type = $block->getType()) {
             $class = $type;
 
             $image = 'cart_cross_sell_products';
-            $title = __('More Choices:');
+            $title = __('Adicione também estes produtos');
             $items = $block->getItems();
-            $limit = $block->getItemLimit('upsell');
+            $limit = $block->getItemLimit();
             $shuffle = 0;
 
             $showAddTo = true;
@@ -218,6 +218,28 @@ switch ($type = $block->getType()) {
                         </strong>
 
                         <?= /* @escapeNotVerified */ $block->getProductPrice($_item) ?>
+
+                        <div class="preco-a-vista">
+                          <?php
+                            echo $this->getLayout()
+                              ->createBlock('\DigitalHub\AdditionalPrices\Block\Product\Additional')
+                              ->setTemplate('DigitalHub_AdditionalPrices::product/additional_prices.phtml')
+                              ->setProduct($_item)
+                              ->toHtml();
+                          ?>
+                        </div>
+
+                        <?php /* $block->getProductDetailsHtml($_item) */ ?>
+
+                        <div class="preco-parcelado">
+                          <?php
+                            echo $this->getLayout()
+                              ->createBlock('\DigitalHub\AdditionalPrices\Block\Product\Additional')
+                              ->setTemplate('DigitalHub_AdditionalPrices::product/additional_prices.phtml')
+                              ->setProduct($_item)
+                              ->toHtml();
+                          ?>
+                        </div>
 
                             <?php if ($templateType): ?>
                                 <?= $block->getReviewsSummaryHtml($_item, $templateType) ?>
