@@ -85,16 +85,58 @@ require([
 
     jQuery(document).ready(function() {
       jQuery('#grouped-details .nav-tabs > li > a').click(function(event){
-      event.preventDefault();
-      var active_tab_selector = jQuery('#grouped-details .nav-tabs > li.active > a').attr('href');
-      var actived_nav = jQuery('#grouped-details .nav-tabs > li.active');
-      actived_nav.removeClass('active');
-      jQuery(this).parents('li').addClass('active');
-      jQuery(active_tab_selector).removeClass('active');
-      jQuery(active_tab_selector).addClass('hide');
-      var target_tab_selector = jQuery(this).attr('href');
-      jQuery(target_tab_selector).removeClass('hide');
-      jQuery(target_tab_selector).addClass('active');
-         });
+        event.preventDefault();
+        var active_tab_selector = jQuery('#grouped-details .nav-tabs > li.active > a').attr('href');
+        var actived_nav = jQuery('#grouped-details .nav-tabs > li.active');
+        actived_nav.removeClass('active');
+        jQuery(this).parents('li').addClass('active');
+        jQuery(active_tab_selector).removeClass('active');
+        jQuery(active_tab_selector).addClass('hide');
+        var target_tab_selector = jQuery(this).attr('href');
+        jQuery(target_tab_selector).removeClass('hide');
+        jQuery(target_tab_selector).addClass('active');
+     });
+
+
+
+      jQuery('#tabs-details .nav-tabs > li > a').click(function(event){
+          event.preventDefault();
+          var active_tab_selector = jQuery('#tabs-details .nav-tabs > li.active > a').attr('href');
+          var actived_nav = jQuery('#tabs-details .nav-tabs > li.active');
+          actived_nav.removeClass('active');
+          jQuery(this).parents('li').addClass('active');
+          jQuery(active_tab_selector).removeClass('active');
+          jQuery(active_tab_selector).addClass('hide');
+          var target_tab_selector = jQuery(this).attr('href');
+          jQuery(target_tab_selector).removeClass('hide');
+          jQuery(target_tab_selector).addClass('active');
+       });
+
+       jQuery('.min-dtls .nav-tabs-2 > li > a').click(function(event){
+           event.preventDefault();
+           var active_tab_selector = jQuery('.min-dtls .nav-tabs-2 > li.active > a').attr('href');
+           var actived_nav = jQuery('.min-dtls .nav-tabs-2 > li.active');
+           actived_nav.removeClass('active');
+           jQuery(this).parents('.min-dtls .nav-tabs-2 > li').addClass('active');
+           jQuery(active_tab_selector).removeClass('active');
+           jQuery(active_tab_selector).addClass('hide');
+           var target_tab_selector = jQuery(this).attr('href');
+           jQuery(target_tab_selector).removeClass('hide');
+           jQuery(target_tab_selector).addClass('active');
+        });
+
+
+
+
+
+
+      jQuery('.wrp-dtls a').on('click', function(e) {
+        jQuery(this).toggleClass('active');
+        jQuery(this).parents('#tabs-details section .item-out').toggleClass('active');
+        e.preventDefault();
+      });
     });
+
+
+
 });

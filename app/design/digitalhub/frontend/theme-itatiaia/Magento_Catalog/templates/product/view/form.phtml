@@ -55,3 +55,26 @@
         priceBoxes.priceBox({'priceConfig': <?= /* @escapeNotVerified */ $block->getJsonConfig() ?>});
     });
 </script>
+<?php if($_product->getTypeId()== "grouped"): ?>
+<div class="wpr-montagem">
+  <div class="wrp-left">
+    <label class="container-check">
+      <input type="checkbox" checked="checked">
+      <span class="checkmark"></span>
+    </label>
+    <div class="check-montagem">
+      <strong>
+        Montagem de móveis
+        <span class="icon-doubt">
+          <span class="tooltiptext">Lorem ipsum dolor sit amet.</span>
+        </span>
+      </strong>
+      <span>Conte com equipe especializada</span>
+    </div>
+  </div>
+  <div class="wrp-right">
+    <div class="price">R$ 31,80</div>
+    <div class="parcelamento">ou 2x de R$15,90 sem juros</div>
+  </div>
+</div>
+<?php endif; ?>

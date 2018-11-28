@@ -12,35 +12,226 @@
 <?php if($product->getTypeId()== "grouped"): ?>
   <div class="product info detailed">
 
-  <?php if ($detailedInfoGroup = $block->getGroupChildNames('detailed_info', 'getChildHtml')):?>
-          <?php $layout = $block->getLayout(); ?>
-          <div class="product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
-              <?php foreach ($detailedInfoGroup as $name):?>
-                  <?php
-                      $html = $layout->renderElement($name);
-                      if (!trim($html)) {
-                          continue;
-                      }
-                      $alias = $layout->getElementAlias($name);
-                      $label = $block->getChildData($alias, 'title');
-                  ?>
-                  <div class="data item title"
-                       aria-labeledby="tab-label-<?= /* @escapeNotVerified */ $alias ?>-title"
-                       data-role="collapsible" id="tab-label-<?= /* @escapeNotVerified */ $alias ?>">
-                      <a class="data switch"
-                         tabindex="-1"
-                         data-toggle="switch"
-                         href="#<?= /* @escapeNotVerified */ $alias ?>"
-                         id="tab-label-<?= /* @escapeNotVerified */ $alias ?>-title">
-                          <?= /* @escapeNotVerified */ $label ?>
-                      </a>
+    <div id="tabs-details">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#detail1">MÓDULOS INCLUSOS</a></li>
+        <li><a href="#detail2">Avaliações</a></li>
+      </ul>
+      <div class="wrp-tabs-in">
+        <section id="detail1" class="tab-content active">
+          <div class="item-out">
+            <div class="item-in">
+              <div class="wrp-input">
+                <label class="container-check">
+                  <input type="checkbox" checked="checked">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+              <div class="wrp-img">
+                <img src="<?php echo $block->getViewFileUrl('images/prod-min.png'); ?>" />
+              </div>
+              <div class="wrp-infos">
+                <div class="in-infos">
+                  <h1 class="product-name"><?php echo $product->getName(); ?></h1>
+                  <div class="field qty">
+                    <div class="control">
+                      <a href="javascript:void(0)" class="qty-dec">-</a>
+                      <input type="number"
+                      name="qty"
+                      id="qty"
+                      value="<?php /* @escapeNotVerified */ echo $block->getProductDefaultQty() * 1 ?>"
+                      title="<?php /* @escapeNotVerified */ echo __('Quantidade') ?>"
+                      class="input-text qty"
+                      data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                      />
+                      <a href="javascript:void(0)" class="qty-inc">+</a>
+                    </div>
                   </div>
-                  <div class="data item content" id="<?= /* @escapeNotVerified */ $alias ?>" data-role="content">
-                      <?= /* @escapeNotVerified */ $html ?>
+                  <div class="wrp-price">
+                    <div class="price-box">
+                      <div class="wrp-oldprice">
+                        <span class="old-price">
+                          <span class="price">R$59,00</span>
+                        </span>
+                        <div class="wrp-desc">
+                          <span class="tag-desc">16%</span>
+                        </div>
+                        <div class="clear"></div>
+                        <span class="special-price">
+                          <span class="price">
+                            R$49,00
+                          </span>
+                        </span>
+                      </div>
+                    </div>
                   </div>
-              <?php endforeach;?>
+
+                </div>
+              </div>
+              <div class="wrp-dimensoes">
+                <?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getDimensoes(), 'dimensoes') ?>
+              </div>
+              <div class="wrp-dtls">
+                <a href="javascript:void(0)">Detalhes</a>
+              </div>
+            </div>
+            <div class="min-dtls">
+              <ul class="nav nav-tabs-2">
+                <li class="active"><a href="#min-detail1">Descrição</a></li>
+                <li><a href="#min-detail2">Especificações técnicas</a></li>
+              </ul>
+              <section id="min-detail1" class="tab-content active">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vel est vitae nisi rhoncus hendrerit non in urna. Nunc euismod ante sit amet venenatis fermentum. Duis ultricies nisl ac diam porttitor, at lobortis magna commodo. Integer commodo mauris tempus erat fermentum semper. Duis scelerisque consequat magna id pretium. Praesent ultrices sem sit amet ex sagittis, sed rhoncus neque aliquam. Nulla eu consectetur lectus. Sed quis suscipit nulla. Curabitur placerat id erat in pretium. In scelerisque est at lectus efficitur bibendum.</p>
+              </section>
+              <section id="min-detail2" class="tab-content hide">
+                <p>2 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vel est vitae nisi rhoncus hendrerit non in urna. Nunc euismod ante sit amet venenatis fermentum. Duis ultricies nisl ac diam porttitor, at lobortis magna commodo. Integer commodo mauris tempus erat fermentum semper. Duis scelerisque consequat magna id pretium. Praesent ultrices sem sit amet ex sagittis, sed rhoncus neque aliquam. Nulla eu consectetur lectus. Sed quis suscipit nulla. Curabitur placerat id erat in pretium. In scelerisque est at lectus efficitur bibendum.</p>
+              </section>
+            </div>
           </div>
-  <?php endif; ?>
+          <div class="item-out">
+            <div class="item-in">
+              <div class="wrp-input">
+                <label class="container-check">
+                  <input type="checkbox" checked="checked">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+              <div class="wrp-img">
+                <img src="<?php echo $block->getViewFileUrl('images/prod-min.png'); ?>" />
+              </div>
+              <div class="wrp-infos">
+                <div class="in-infos">
+                  <h1 class="product-name"><?php echo $product->getName(); ?></h1>
+                  <div class="field qty">
+                    <div class="control">
+                      <a href="javascript:void(0)" class="qty-dec">-</a>
+                      <input type="number"
+                      name="qty"
+                      id="qty"
+                      value="<?php /* @escapeNotVerified */ echo $block->getProductDefaultQty() * 1 ?>"
+                      title="<?php /* @escapeNotVerified */ echo __('Quantidade') ?>"
+                      class="input-text qty"
+                      data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                      />
+                      <a href="javascript:void(0)" class="qty-inc">+</a>
+                    </div>
+                  </div>
+                  <div class="wrp-price">
+                    <div class="price-box">
+                      <div class="wrp-oldprice">
+                        <span class="old-price">
+                          <span class="price">R$59,00</span>
+                        </span>
+                        <div class="wrp-desc">
+                          <span class="tag-desc">16%</span>
+                        </div>
+                        <div class="clear"></div>
+                        <span class="special-price">
+                          <span class="price">
+                            R$49,00
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="wrp-dimensoes">
+                <?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getDimensoes(), 'dimensoes') ?>
+              </div>
+              <div class="wrp-dtls">
+                <a href="javascript:void(0)">Detalhes</a>
+              </div>
+            </div>
+            <div class="min-dtls">
+              <ul class="nav nav-tabs-2">
+                <li class="active"><a href="#min-detail1">Descrição</a></li>
+                <li><a href="#min-detail2">Especificações técnicas</a></li>
+              </ul>
+              <section id="min-detail1" class="tab-content active">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vel est vitae nisi rhoncus hendrerit non in urna. Nunc euismod ante sit amet venenatis fermentum. Duis ultricies nisl ac diam porttitor, at lobortis magna commodo. Integer commodo mauris tempus erat fermentum semper. Duis scelerisque consequat magna id pretium. Praesent ultrices sem sit amet ex sagittis, sed rhoncus neque aliquam. Nulla eu consectetur lectus. Sed quis suscipit nulla. Curabitur placerat id erat in pretium. In scelerisque est at lectus efficitur bibendum.</p>
+              </section>
+              <section id="min-detail2" class="tab-content hide">
+                <p>2 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vel est vitae nisi rhoncus hendrerit non in urna. Nunc euismod ante sit amet venenatis fermentum. Duis ultricies nisl ac diam porttitor, at lobortis magna commodo. Integer commodo mauris tempus erat fermentum semper. Duis scelerisque consequat magna id pretium. Praesent ultrices sem sit amet ex sagittis, sed rhoncus neque aliquam. Nulla eu consectetur lectus. Sed quis suscipit nulla. Curabitur placerat id erat in pretium. In scelerisque est at lectus efficitur bibendum.</p>
+              </section>
+            </div>
+          </div>
+          <div class="item-out">
+            <div class="item-in">
+              <div class="wrp-input">
+                <label class="container-check">
+                  <input type="checkbox" checked="checked">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+              <div class="wrp-img">
+                <img src="<?php echo $block->getViewFileUrl('images/prod-min.png'); ?>" />
+              </div>
+              <div class="wrp-infos">
+                <div class="in-infos">
+                  <h1 class="product-name"><?php echo $product->getName(); ?></h1>
+                  <div class="field qty">
+                    <div class="control">
+                      <a href="javascript:void(0)" class="qty-dec">-</a>
+                      <input type="number"
+                      name="qty"
+                      id="qty"
+                      value="<?php /* @escapeNotVerified */ echo $block->getProductDefaultQty() * 1 ?>"
+                      title="<?php /* @escapeNotVerified */ echo __('Quantidade') ?>"
+                      class="input-text qty"
+                      data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                      />
+                      <a href="javascript:void(0)" class="qty-inc">+</a>
+                    </div>
+                  </div>
+                  <div class="wrp-price">
+                    <div class="price-box">
+                      <div class="wrp-oldprice">
+                        <span class="old-price">
+                          <span class="price">R$59,00</span>
+                        </span>
+                        <div class="wrp-desc">
+                          <span class="tag-desc">16%</span>
+                        </div>
+                        <div class="clear"></div>
+                        <span class="special-price">
+                          <span class="price">
+                            R$49,00
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="wrp-dimensoes">
+                <?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getDimensoes(), 'dimensoes') ?>
+              </div>
+              <div class="wrp-dtls">
+                <a href="javascript:void(0)">Detalhes</a>
+              </div>
+            </div>
+            <div class="min-dtls">
+              <ul class="nav nav-tabs-2">
+                <li class="active"><a href="#min-detail1">Descrição</a></li>
+                <li><a href="#min-detail2">Especificações técnicas</a></li>
+              </ul>
+              <section id="min-detail1" class="tab-content active">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vel est vitae nisi rhoncus hendrerit non in urna. Nunc euismod ante sit amet venenatis fermentum. Duis ultricies nisl ac diam porttitor, at lobortis magna commodo. Integer commodo mauris tempus erat fermentum semper. Duis scelerisque consequat magna id pretium. Praesent ultrices sem sit amet ex sagittis, sed rhoncus neque aliquam. Nulla eu consectetur lectus. Sed quis suscipit nulla. Curabitur placerat id erat in pretium. In scelerisque est at lectus efficitur bibendum.</p>
+              </section>
+              <section id="min-detail2" class="tab-content hide">
+                <p>2 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vel est vitae nisi rhoncus hendrerit non in urna. Nunc euismod ante sit amet venenatis fermentum. Duis ultricies nisl ac diam porttitor, at lobortis magna commodo. Integer commodo mauris tempus erat fermentum semper. Duis scelerisque consequat magna id pretium. Praesent ultrices sem sit amet ex sagittis, sed rhoncus neque aliquam. Nulla eu consectetur lectus. Sed quis suscipit nulla. Curabitur placerat id erat in pretium. In scelerisque est at lectus efficitur bibendum.</p>
+              </section>
+            </div>
+          </div>
+        </section>
+        <section id="detail2" class="tab-content hide">
+
+        </section>
+      </div>
+    </div>
 
   <div class="float-min">
     <div class="min-in">
@@ -140,7 +331,7 @@
       </div>
     </div>
   </div>
-  </div>
+</div>
 
 
 <?php else: ?>
