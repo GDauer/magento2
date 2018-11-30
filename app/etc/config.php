@@ -48,7 +48,7 @@ return [
         'Magento_MediaStorage' => 1,
         'Magento_CatalogImportExport' => 1,
         'Magento_CatalogImportExportStaging' => 1,
-        'Amazon_Login' => 1,
+        'Amazon_Login' => 0,
         'Magento_Ui' => 1,
         'Magento_WebsiteRestriction' => 1,
         'Magento_Cron' => 1,

@@ -3145,7 +3145,7 @@ select:not([disabled]) {
       .container-check{
         display: block;
         position: relative;
-        padding-left: 35px;
+        padding-left: 30px;
         margin-bottom: 12px;
         cursor: pointer;
         font-size: 22px;
@@ -4407,35 +4407,78 @@ select:not([disabled]) {
   }
 }
 .checkout-index-index {
-  .page-main {
-    padding-top: 0;
-  }
-  .logo {
-    background: #e5102a;
-    margin: 0 auto;
-    width: auto;
-    display: inline-block;
-    padding: 20px;
-    img {
-      max-width: 100%;
-      width: auto;
+  .page-wrapper{
+    .page-main {
+      padding-top: 0;
     }
-  }
-  .actions-toolbar {
-    .primary {
-      padding: 0 30px !important;
-      line-height: 1.6rem !important;
-      font-size: 14px !important;
-      button{
-        background: #1aa3ff !important;
-        border: 0 !important;
-        font-family: 'MullerBlack' !important;
-        color:#fff !important;
+    .logo {
+      background: #e5102a;
+      margin: 0 auto;
+      width: auto;
+      display: inline-block;
+      padding: 20px;
+      img {
+        max-width: 100%;
+        width: auto;
       }
     }
-  }
-  .page-bottom {
-    display: none;
+    .actions-toolbar {
+      .primary {
+        padding: 0 30px !important;
+        line-height: 1.6rem !important;
+        font-size: 14px !important;
+        button{
+          background: #1aa3ff !important;
+          border: 0 !important;
+          font-family: 'MullerBlack' !important;
+          color:#fff !important;
+        }
+      }
+      .secondary{
+        margin: 0 6px;
+      }
+    }
+    .page-bottom {
+      display: none;
+    }
+    .wrp-header{
+      #header-checkout{
+        background-color: #454444;
+        .content-header{
+          padding: 0;
+          .infos{
+            &:before{
+              background-color: #1aa3ff;
+            }
+          }
+        }
+      }
+      .wrp-checkout-steps{
+        .checkout-steps{
+          ul{
+            li{
+              .marker{
+                background: #242424;
+              }
+              &.complete{
+                color: #1aa3ff;
+                .marker{
+                  background: #1aa3ff;
+                  color: #1aa3ff;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    #checkout{
+      .action.primary, .button, .action.checkout{
+        background-color: #28a6fb;
+        font-size: 14px;
+        font-family: 'MullerBlack';
+      }
+    }
   }
 }
 
@@ -4519,6 +4562,16 @@ select:not([disabled]) {
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
 
 }
+
+.wishlist-index-index{
+  .actions-primary{
+    display: inline;
+    .action.primary{
+      padding: 0 5px;
+    }
+  }
+}
+
 /* Customer Fields */
 form.form-create-account { }
 form.form-create-account .show-empresa { margin-bottom: 5px }
@@ -4636,6 +4689,22 @@ form.form-create-account .field-ruc { display: none }
         }
       }
     }
+    .catalog-product-view{
+      .wpr-montagem{
+        .check-montagem{
 
+          span{
+            &.icon-doubt{
+              margin-left: 3px;
+            }
+          }
+        }
+        .wrp-left{
+          .container-check{
+            padding-left: 19px;
+          }
+        }
+      }
+    }
   }
 }

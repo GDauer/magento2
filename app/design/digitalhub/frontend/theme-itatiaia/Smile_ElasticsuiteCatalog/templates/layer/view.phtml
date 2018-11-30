@@ -29,9 +29,11 @@
     <?php $activeFilters = $block->getActiveFilters(); ?>
     <div class="block filter" id="layered-filter-block" data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false, "collateral": { "openedState": "filter-active", "element": "body" } }}'>
         <?php $filtered = count($block->getLayer()->getState()->getFilters()) ?>
+        <?php if ($this->getRequest()->getFullActionName() == 'catalog_category_view'): ?>
         <div class="block-title filter-title" data-count="<?= /* @escapeNotVerified */ $filtered ?>">
             <strong data-role="title"><?php echo $category->getName(); ?></strong>
         </div>
+        <?php endif; ?>
 
         <div class="block-content filter-content">
             <?php echo $block->getChildHtml('state') ?>
