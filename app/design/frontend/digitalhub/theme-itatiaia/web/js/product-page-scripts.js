@@ -126,10 +126,6 @@ require([
         });
 
 
-
-
-
-
       jQuery('.wrp-dtls a').on('click', function(e) {
         jQuery(this).toggleClass('active');
         jQuery(this).parents('#tabs-details section .item-out').toggleClass('active');
