@@ -13,339 +13,121 @@ $priceHelper = $this->helper('Magento\Framework\Pricing\Helper\Data');
 $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
 ?>
 
-<?php if($product->getTypeId()== "grouped"): ?>
-    <div class="product info detailed">
-        <div id="tabs-details">
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="#detail1">MÓDULOS INCLUSOS</a></li>
-                <li><a href="#detail2">Avaliações</a></li>
-            </ul>
-            <div class="wrp-tabs-in">
-                <section id="detail1" class="tab-content active">
-                    <?php foreach($product->getTypeInstance(true)->getAssociatedProducts($product) as $_item): ?>
-                        <?php $_childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\Product')->load($_item->getEntityId()) ?>
-                        <?php if($_item->getStatus()): ?>
-                            <div class="item-out" id="super-group-item-<?= $_item->getId() ?>">
-                                <div class="item-in">
-                                    <div class="wrp-input">
-                                        <label class="container-check">
-                                            <input type="checkbox" checked="checked" id="check_super_<?= $_item->getId() ?>" rel="<?= $_item->getId() ?>" class="check-super-group">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                    <div class="wrp-img">
-                                        <?php $productImage = $_imagehelper->init($_item, 'category_page_list') ?>
-                                        <img class="default_image" src="<?= $productImage->getUrl() ?>" alt="<?= $productImage->getLabel() ?>"/>
-                                    </div>
-                                    <div class="wrp-infos">
-                                        <div class="in-infos">
-                                            <h1 class="product-name"><?= $_childProduct->getName(); ?></h1>
-                                            <div class="field qty">
-                                                <div class="control">
-                                                    <a href="javascript:void(0)" class="qty-dec">-</a>
-                                                    <input type="number" name="qty" readonly rel="<?= $_item->getId() ?>" id="super_group_qty_<?= $_item->getId() ?>" value="<?= (int)$_item->getQty() ?>" title="<?= __('Quantidade') ?>" class="input-text qty super-group-qty" />
-                                                    <a href="javascript:void(0)" class="qty-inc">+</a>
-                                                </div>
-                                            </div>
-                                            <div class="wrp-price">
-                                                <div class="price-box">
-                                                    <div class="wrp-oldprice">
+<?php $buttonTitle = __('Comprar'); ?>
 
-                                                        <?php if($_childProduct->getFinalPrice() < $_childProduct->getPrice()): ?>
-                                                            <span class="old-price">
-                                                                <span class="price">
-                                                                        <?= $priceHelper->currency($_childProduct->getPrice(), true, false); ?>
-                                                                </span>
-                                                            </span>
-                                                            <?php $percent = abs((($_childProduct->getFinalPrice() * 100) / $_childProduct->getPrice()) - 100) ?>
-                                                            <div class="wrp-desc">
-                                                                <span class="tag-desc"><?= (int)$percent ?>%</span>
-                                                            </div>
-                                                        <?php endif; ?>
+<?php $block->setPreconfiguredValue(); ?>
+<?php $_associatedProducts = $block->getAssociatedProducts(); ?>
+<?php $_hasAssociatedProducts = count($_associatedProducts) > 0; ?>
 
-                                                        <div class="clear"></div>
+<?php if ($detailedInfoGroup = $block->getGroupChildNames('detailed_info', 'getChildHtml')):?>
+<div class="product info detailed">
+    <?php $layout = $block->getLayout(); ?>
+    <div class="product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
 
-                                                        <span class="special-price">
-                                                            <span class="price">
-                                                                <?= $priceHelper->currency($_childProduct->getFinalPrice(), true, false); ?>
-                                                            </span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="wrp-dimensoes">
-                                        <?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getDimensoes(), 'dimensoes') ?>
-                                    </div>
-                                    <div class="wrp-dtls">
-                                        <a href="javascript:void(0)">Detalhes</a>
-                                    </div>
-                                </div>
-                                <div class="min-dtls">
-                                    <ul class="nav nav-tabs-2">
-                                        <li class="active"><a href="#min-detail1">Descrição</a></li>
-                                        <li><a href="#min-detail2">Especificações técnicas</a></li>
-                                    </ul>
-                                    <section id="min-detail1" class="tab-content active">
-                                        <?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($_childProduct, $_childProduct->getDescription(), 'description') ?>
-                                    </section>
-                                    <section id="min-detail2" class="tab-content hide">
-                                        <p>2 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vel est vitae nisi rhoncus hendrerit non in urna. Nunc euismod ante sit amet venenatis fermentum. Duis ultricies nisl ac diam porttitor, at lobortis magna commodo. Integer commodo mauris tempus erat fermentum semper. Duis scelerisque consequat magna id pretium. Praesent ultrices sem sit amet ex sagittis, sed rhoncus neque aliquam. Nulla eu consectetur lectus. Sed quis suscipit nulla. Curabitur placerat id erat in pretium. In scelerisque est at lectus efficitur bibendum.</p>
-                                    </section>
-                                </div>
-                            </div>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-
-                </section>
-                <section id="detail2" class="tab-content hide">
-
-                </section>
+        <?php if($block->getProduct()->getTypeId() == 'grouped'): ?>
+            <?php $html = $layout->renderElement('grouped.items'); ?>
+            <div class="data item title"
+                aria-labeledby="tab-label-grouped_items-title"
+                data-role="collapsible" id="tab-label-grouped_items">
+                <a class="data switch"
+                    tabindex="-1"
+                    data-toggle="switch"
+                    href="#grouped_items"
+                    id="tab-label-grouped_items-title">
+                    Módulos inclusos
+                </a>
             </div>
-        </div>
-
-        <div class="float-min">
-            <div class="min-in">
-                <h1 class="product-name"><?= $product->getName(); ?></h1>
-
-                <!-- Início Listagem de produtos agrupados -->
-
-                <div class="products-included">
-                    <ul>
-                        <p>Estão inclusos:</p>
-                        <li>
-                            <span class="qty">01x Cooktop Vitrum</span>
-                        </li>
-                        <li>
-                            <span class="qty">01x Fogão Dream</span>
-                        </li>
-                        <li>
-                            <span class="qty">02x Prateçeoras Lara Class</span>
-                        </li>
-                        <li>
-                            <span class="qty">01x Armário de pia</span>
-                        </li>
-                        <li>
-                            <span class="qty">01x Cooktop Vitrum</span>
-                        </li>
-                        <li>
-                            <span class="qty">01x Fogão Dream</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Fim Listagem de produtos agrupados -->
-
-                <?php if ($product->isSaleable()): ?>
-                    <div class="wrp-price">
-                        <p>Leve o conjunto selecionado por apenas:</p>
-                        <div class="price-box">
-                            <div class="wrp-oldprice">
-                                <span class="old-price">
-                                    <span class="price">R$59,00</span>
-                                </span>
-                                <div class="wrp-desc">
-                                    <span class="tag-desc">16%</span>
-                                </div>
-                                <div class="clear"></div>
-                                <span class="special-price">
-                                    <span class="price">
-                                        R$49,00
-                                    </span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="preco-a-vista">
-                            <p class="price-with-discount"><span>R$41,65</span> à vista no boleto</p>
-                            <p class="installments-price"> ou <span>4x</span> de <span>R$12,25</span> sem juros</p>
-                        </div>
-                    </div>
-                    <div class="box-tocart">
-                        <?php
-                        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-                        $listBlock = $objectManager->get('\Magento\Catalog\Block\Product\ListProduct');
-                        $addToCartUrl =    $listBlock->getAddToCartUrl($product);
-                        ?>
-
-                        <form data-role="tocart-form" action="<?= $addToCartUrl; ?>" method="post">
-                            <?= $block->getBlockHtml('formkey')?>
-                            <div class="btn">
-                                <button type="submit" title="Add to Cart" class="action tocart primary">
-                                    <span>COMPRE AGORA</span>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                <?php endif; ?>
-
+            <div class="data item content" id="grouped_items" data-role="content">
+                <?= /* @escapeNotVerified */ $html ?>
             </div>
+        <?php endif; ?>
 
-            <?php /*<div class="wpr-montagem">
-                <div class="wrp-left">
-                    <label class="container-check">
-                        <input type="checkbox" checked="checked">
-                        <span class="checkmark"></span>
-                    </label>
-                    <div class="check-montagem">
-                        <strong>
-                            Montagem de móveis
-                            <span class="icon-doubt">
-                                <span class="tooltiptext">Lorem ipsum dolor sit amet.</span>
-                            </span>
-                        </strong>
-                        <span>Conte com equipe especializada</span>
-                    </div>
-                </div>
-                <div class="wrp-right">
-                    <div class="price">R$ 31,80</div>
-                    <div class="parcelamento">ou 2x de R$15,90 sem juros</div>
-                </div>
-            </div>*/ ?>
-        </div>
+        <?php foreach ($detailedInfoGroup as $name): ?>
+
+            <?php if($name == 'grouped.items') continue; ?>
+            <?php if($block->getProduct()->getTypeId() == 'grouped' && $name == 'product.info.description') continue; ?>
+            <?php if($block->getProduct()->getTypeId() == 'grouped' && $name == 'product.attributes') continue; ?>
+
+            <?php
+            $html = $layout->renderElement($name);
+            if (!trim($html)) {
+                continue;
+            }
+            $alias = $layout->getElementAlias($name);
+            $label = $block->getChildData($alias, 'title');
+            ?>
+            <div class="data item title"
+                aria-labeledby="tab-label-<?= /* @escapeNotVerified */ $alias ?>-title"
+                data-role="collapsible" id="tab-label-<?= /* @escapeNotVerified */ $alias ?>">
+                <a class="data switch"
+                    tabindex="-1"
+                    data-toggle="switch"
+                    href="#<?= /* @escapeNotVerified */ $alias ?>"
+                    id="tab-label-<?= /* @escapeNotVerified */ $alias ?>-title">
+                    <?= /* @escapeNotVerified */ $label ?>
+                </a>
+            </div>
+            <div class="data item content" id="<?= /* @escapeNotVerified */ $alias ?>" data-role="content">
+                <?= /* @escapeNotVerified */ $html ?>
+            </div>
+        <?php endforeach;?>
     </div>
+<?php endif; ?>
 
-    <script>
-        require(['jquery'], function($) {
-            $('.super-group-qty').change(function(){
-                var itemId = $(this).attr('rel');
-                var superInput = $('input#super_group_'+itemId);
-                var checkSuper = $('#check_super_'+itemId);
-                var qty = $(this).val();
-                if(checkSuper.attr('checked')){
-                    superInput.val(qty).trigger('change');
-                }
-            })
+<!-- Início - Min Demais Produto    -->
 
-            $('.super-group-qty').each(function(){
-                var input = $(this);
-                var decButton = input.parents('.field.qty:first').find('a.qty-dec');
-                var incButton = input.parents('.field.qty:first').find('a.qty-inc');
-                decButton.click(function(){
-                    var qty = parseInt(input.val());
-                    input.val(qty > 1 ? qty - 1 : 1).trigger('change');
-                    return false;
-                })
-                incButton.click(function(){
-                    var qty = parseInt(input.val());
-                    input.val(qty + 1).trigger('change');
-                    return false;
-                })
-            })
-
-            $('.check-super-group').change(function(){
-                var itemId = $(this).attr('rel');
-                var superInput = $('input#super_group_'+itemId);
-                if($(this).attr('checked')){
-                    var qty = $('input#super_group_qty_'+itemId).val()
-                    superInput.val(qty)
-                } else {
-                    superInput.val(0)
-                }
-            })
-        });
-    </script>
-
-    <?php else: ?>
-
-        <?php $buttonTitle = __('Comprar'); ?>
-
-        <?php $block->setPreconfiguredValue(); ?>
-        <?php $_associatedProducts = $block->getAssociatedProducts(); ?>
-        <?php $_hasAssociatedProducts = count($_associatedProducts) > 0; ?>
-
-        <div class="product info detailed">
-
-            <?php if ($detailedInfoGroup = $block->getGroupChildNames('detailed_info', 'getChildHtml')):?>
-                <?php $layout = $block->getLayout(); ?>
-                <div class="product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
-                    <?php foreach ($detailedInfoGroup as $name):?>
-                                <?php
-                                $html = $layout->renderElement($name);
-                                if (!trim($html)) {
-                                    continue;
-                                }
-                                $alias = $layout->getElementAlias($name);
-                                $label = $block->getChildData($alias, 'title');
-                                ?>
-                                <div class="data item title"
-                                aria-labeledby="tab-label-<?= /* @escapeNotVerified */ $alias ?>-title"
-                                data-role="collapsible" id="tab-label-<?= /* @escapeNotVerified */ $alias ?>">
-                                <a class="data switch"
-                                tabindex="-1"
-                                data-toggle="switch"
-                                href="#<?= /* @escapeNotVerified */ $alias ?>"
-                                id="tab-label-<?= /* @escapeNotVerified */ $alias ?>-title">
-                                <?= /* @escapeNotVerified */ $label ?>
-                            </a>
+<div class="float-min">
+    <div class="min-in">
+        <?php if ($product->getCustomAttribute( 'imagem_miniatura' )): ?>
+            <?php
+            $productImageAttr = $product->getCustomAttribute( 'imagem_miniatura' );
+            $productImage = $this->helper('Magento\Catalog\Helper\Image')
+            ->init($product, 'imagem_miniatura')
+            ->setImageFile($productImageAttr->getValue());
+            ?>
+            <img src="<?= $productImage->getUrl() ?>" alt="<?= $block->escapeHtml($product->getTitle()) ?>" />
+        <?php endif; ?>
+        <h1 class="product-name"><?= $product->getName(); ?></h1>
+        <?php if ($product->isSaleable()): ?>
+            <div class="wrp-price">
+                <div class="price-box">
+                    <div class="wrp-oldprice">
+                        <span class="old-price">
+                            <span class="price">R$59,00</span>
+                        </span>
+                        <div class="wrp-desc">
+                            <span class="tag-desc">16%</span>
                         </div>
-                        <div class="data item content" id="<?= /* @escapeNotVerified */ $alias ?>" data-role="content">
-                            <?= /* @escapeNotVerified */ $html ?>
-                        </div>
-                    <?php endforeach;?>
+                        <div class="clear"></div>
+                        <span class="special-price">
+                            <span class="price">
+                                R$49,00
+                            </span>
+                        </span>
+                    </div>
                 </div>
-            <?php endif; ?>
-
-
-            <!-- Início - Min Demais Produto    -->
-
-            <div class="float-min">
-                <div class="min-in">
-                    <?php if ($product->getCustomAttribute( 'imagem_miniatura' )): ?>
-                        <?php
-                        $productImageAttr = $product->getCustomAttribute( 'imagem_miniatura' );
-                        $productImage = $this->helper('Magento\Catalog\Helper\Image')
-                        ->init($product, 'imagem_miniatura')
-                        ->setImageFile($productImageAttr->getValue());
-                        ?>
-                        <img src="<?= $productImage->getUrl() ?>" alt="<?= $block->escapeHtml($product->getTitle()) ?>" />
-                    <?php endif; ?>
-                    <h1 class="product-name"><?= $product->getName(); ?></h1>
-                    <?php if ($product->isSaleable()): ?>
-                        <div class="wrp-price">
-                            <div class="price-box">
-                                <div class="wrp-oldprice">
-                                    <span class="old-price">
-                                        <span class="price">R$59,00</span>
-                                    </span>
-                                    <div class="wrp-desc">
-                                        <span class="tag-desc">16%</span>
-                                    </div>
-                                    <div class="clear"></div>
-                                    <span class="special-price">
-                                        <span class="price">
-                                            R$49,00
-                                        </span>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="preco-a-vista">
-                                <p class="price-with-discount"><span>R$41,65</span> à vista no boleto</p>
-                                <p class="installments-price"> ou <span>4x</span> de <span>R$12,25</span> sem juros</p>
-                            </div>
-                        </div>
-
-                        <div class="box-tocart">
-                            <?php
-                            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-                            $listBlock = $objectManager->get('\Magento\Catalog\Block\Product\ListProduct');
-                            $addToCartUrl =    $listBlock->getAddToCartUrl($product);
-                            ?>
-
-                            <form data-role="tocart-form" action="<?= $addToCartUrl; ?>" method="post">
-                                <?= $block->getBlockHtml('formkey')?>
-                                <div class="btn">
-                                    <button type="submit" title="Add to Cart" class="action tocart primary">
-                                        <span>COMPRE AGORA</span>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    <?php endif; ?>
+                <div class="preco-a-vista">
+                    <p class="price-with-discount"><span>R$41,65</span> à vista no boleto</p>
+                    <p class="installments-price"> ou <span>4x</span> de <span>R$12,25</span> sem juros</p>
                 </div>
             </div>
 
-            <!-- Fim - Min Demais Produto    -->
+            <div class="box-tocart">
+                <?php
+                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                $listBlock = $objectManager->get('\Magento\Catalog\Block\Product\ListProduct');
+                $addToCartUrl =    $listBlock->getAddToCartUrl($product);
+                ?>
+
+                <form data-role="tocart-form" action="<?= $addToCartUrl; ?>" method="post">
+                    <?= $block->getBlockHtml('formkey')?>
+                    <div class="btn">
+                        <button type="submit" title="Add to Cart" class="action tocart primary">
+                            <span>COMPRE AGORA</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        <?php endif; ?>
+    </div>
 </div>
-<?php endif; ?>
