@@ -3,7 +3,7 @@ $groupedProduct = $block->getParentBlock()->getProduct();
 $priceHelper = $this->helper('Magento\Framework\Pricing\Helper\Data');
 $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
 ?>
-
+<a name="grouped-items"></a>
 <div id="tab-grouped-items">
     <section>
         <?php foreach($groupedProduct->getTypeInstance(true)->getAssociatedProducts($groupedProduct) as $_item): ?>
@@ -18,7 +18,7 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
                             </label>
                         </div>
                         <div class="wrp-img">
-                            <?php $productImage = $_imagehelper->init($_item, 'category_page_list') ?>
+                            <?php $productImage = $_imagehelper->init($_childProduct, 'category_page_list') ?>
                             <img class="default_image" src="<?= $productImage->getUrl() ?>" alt="<?= $productImage->getLabel() ?>"/>
                         </div>
                         <div class="wrp-infos">
@@ -91,59 +91,3 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
         <?php endforeach; ?>
     </section>
 </div>
-
-<script>
-    require(['jquery'], function($) {
-        $('.super-group-qty').change(function(){
-            var itemId = $(this).attr('rel');
-            var superInput = $('input#super_group_'+itemId);
-            var checkSuper = $('#check_super_'+itemId);
-            var qty = $(this).val();
-            if(checkSuper.attr('checked')){
-                superInput.val(qty).trigger('change');
-            }
-        })
-
-        $('.super-group-qty').each(function(){
-            var input = $(this);
-            var decButton = input.parents('.field.qty:first').find('a.qty-dec');
-            var incButton = input.parents('.field.qty:first').find('a.qty-inc');
-            decButton.click(function(){
-                var qty = parseInt(input.val());
-                input.val(qty > 1 ? qty - 1 : 1).trigger('change');
-                return false;
-            })
-            incButton.click(function(){
-                var qty = parseInt(input.val());
-                input.val(qty + 1).trigger('change');
-                return false;
-            })
-        })
-
-        $('.check-super-group').change(function(){
-            var itemId = $(this).attr('rel');
-            var superInput = $('input#super_group_'+itemId);
-            if($(this).attr('checked')){
-                var qty = $('input#super_group_qty_'+itemId).val()
-                superInput.val(qty)
-            } else {
-                superInput.val(0)
-            }
-        })
-
-        $('.wrp-dtls a').click(function(){
-            $(this).toggleClass('active')
-            $(this).parents('.item-out:first').find('.min-dtls').toggle()
-            return false;
-        })
-
-        $('.min-dtls .nav-tabs li a').click(function(){
-            $(this).parents('.nav-tabs:first').find('li').removeClass('active')
-            $(this).parents('.nav-tabs:first').find('li').removeClass('active')
-            $(this).parents('li:first').addClass('active')
-            $(this).parents('.min-dtls:first').find('section').removeClass('active').addClass('hide')
-            $($(this).attr('href')).removeClass('hide').addClass('active')
-            return false;
-        })
-    });
-</script>

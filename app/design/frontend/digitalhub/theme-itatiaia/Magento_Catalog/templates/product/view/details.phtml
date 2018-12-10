@@ -16,8 +16,6 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
 <?php $buttonTitle = __('Comprar'); ?>
 
 <?php $block->setPreconfiguredValue(); ?>
-<?php $_associatedProducts = $block->getAssociatedProducts(); ?>
-<?php $_hasAssociatedProducts = count($_associatedProducts) > 0; ?>
 
 <?php if ($detailedInfoGroup = $block->getGroupChildNames('detailed_info', 'getChildHtml')):?>
 <div class="product info detailed">
@@ -74,51 +72,52 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
     </div>
 <?php endif; ?>
 
-<!-- Início - Min Demais Produto    -->
-
+<?php if($product->getTypeId() == 'simple'): ?>
+<!-- Início - Min Demais Produto -->
 <div class="float-min">
     <div class="min-in">
-        <?php if ($product->getCustomAttribute( 'imagem_miniatura' )): ?>
-            <?php
-            $productImageAttr = $product->getCustomAttribute( 'imagem_miniatura' );
-            $productImage = $this->helper('Magento\Catalog\Helper\Image')
-            ->init($product, 'imagem_miniatura')
-            ->setImageFile($productImageAttr->getValue());
-            ?>
-            <img src="<?= $productImage->getUrl() ?>" alt="<?= $block->escapeHtml($product->getTitle()) ?>" />
-        <?php endif; ?>
+        <?php $productImage = $this->helper('Magento\Catalog\Helper\Image')->init($product, 'imagem_miniatura'); ?>
+        <img src="<?= $productImage->getUrl() ?>" alt="<?= $block->escapeHtml($product->getTitle()) ?>" />
         <h1 class="product-name"><?= $product->getName(); ?></h1>
         <?php if ($product->isSaleable()): ?>
             <div class="wrp-price">
                 <div class="price-box">
                     <div class="wrp-oldprice">
-                        <span class="old-price">
-                            <span class="price">R$59,00</span>
-                        </span>
-                        <div class="wrp-desc">
-                            <span class="tag-desc">16%</span>
-                        </div>
+                        <?php if($product->getFinalPrice() != $product->getPrice()): ?>
+                            <span class="old-price">
+                                <span class="price">
+                                    <?= $priceHelper->currency($product->getPrice(), true, false); ?>
+                                </span>
+                            </span>
+                            <?php $percent = abs((($product->getFinalPrice() * 100) / $product->getPrice()) - 100) ?>
+                            <div class="wrp-desc">
+                                <span class="tag-desc"><?= (int)$percent ?>%</span>
+                            </div>
+                        <?php endif; ?>
                         <div class="clear"></div>
                         <span class="special-price">
                             <span class="price">
-                                R$49,00
+                                <?= $priceHelper->currency($product->getFinalPrice(), true, false); ?>
                             </span>
                         </span>
                     </div>
                 </div>
                 <div class="preco-a-vista">
-                    <p class="price-with-discount"><span>R$41,65</span> à vista no boleto</p>
-                    <p class="installments-price"> ou <span>4x</span> de <span>R$12,25</span> sem juros</p>
+                    <?php
+                        echo $this->getLayout()
+                            ->createBlock('\DigitalHub\AdditionalPrices\Block\Product\Additional')
+                            ->setTemplate('DigitalHub_AdditionalPrices::product/additional_prices.phtml')
+                            ->setProduct($product)
+                            ->toHtml();
+                    ?>
                 </div>
             </div>
-
             <div class="box-tocart">
                 <?php
                 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
                 $listBlock = $objectManager->get('\Magento\Catalog\Block\Product\ListProduct');
                 $addToCartUrl =    $listBlock->getAddToCartUrl($product);
                 ?>
-
                 <form data-role="tocart-form" action="<?= $addToCartUrl; ?>" method="post">
                     <?= $block->getBlockHtml('formkey')?>
                     <div class="btn">
@@ -131,3 +130,197 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
         <?php endif; ?>
     </div>
 </div>
+<?php endif; ?>
+
+<?php if($product->getTypeId() == 'grouped'): ?>
+    <div class="float-min">
+        <div class="min-in">
+            <h1 class="product-name"><?= $product->getName(); ?></h1>
+
+            <!-- Início Listagem de produtos agrupados -->
+
+            <div class="products-included">
+                <ul>
+                    <p>Estão inclusos:</p>
+                </ul>
+                <ul id="selected-grouped"></ul>
+            </div>
+
+            <!-- Fim Listagem de produtos agrupados -->
+            <?php if ($product->isSaleable()): ?>
+                <div class="wrp-price">
+                    <p>Leve o conjunto selecionado por apenas:</p>
+                    <div class="price-box">
+                        <div class="wrp-oldprice">
+                            <span class="old-price">
+                                <span class="price old-price-grouped"></span>
+                            </span>
+                            <div class="wrp-desc">
+                                <span class="tag-desc discount-grouped"></span>
+                            </div>
+                            <div class="clear"></div>
+                            <span class="special-price">
+                                <span class="price final-price-grouped"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- <div class="preco-a-vista">
+                        <p class="price-with-discount"><span>R$41,65</span> à vista no boleto</p>
+                        <p class="installments-price"> ou <span>4x</span> de <span>R$12,25</span> sem juros</p>
+                    </div> -->
+                </div>
+                <div class="box-tocart">
+                    <div class="btn">
+                        <button title="Add to Cart" onclick="jQuery('#product-addtocart-button').trigger('click'); return false;" class="action tocart primary">
+                            <span>COMPRE AGORA</span>
+                        </button>
+                    </div>
+                </div>
+            <?php endif; ?>
+
+        </div>
+
+        <?php /*<div class="wpr-montagem">
+            <div class="wrp-left">
+                <label class="container-check">
+                    <input type="checkbox" checked="checked">
+                    <span class="checkmark"></span>
+                </label>
+                <div class="check-montagem">
+                    <strong>
+                        Montagem de móveis
+                        <span class="icon-doubt">
+                            <span class="tooltiptext">Lorem ipsum dolor sit amet.</span>
+                        </span>
+                    </strong>
+                    <span>Conte com equipe especializada</span>
+                </div>
+            </div>
+            <div class="wrp-right">
+                <div class="price">R$ 31,80</div>
+                <div class="parcelamento">ou 2x de R$15,90 sem juros</div>
+            </div>
+        </div>*/ ?>
+    </div>
+
+    <script>
+        <?php
+        $associatedProducts = $product->getTypeInstance(true)->getAssociatedProducts($product);
+        $associatedConfig = [];
+        foreach ($associatedProducts as $item) {
+            $childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\Product')->load($item->getId());
+            $associatedConfig[] = [
+                'name' => $item->getName(),
+                'qty' => (int)$item->getQty(),
+                'id' => $item->getId(),
+                'price' => $childProduct->getPrice(),
+                'final_price' => $childProduct->getFinalPrice()
+            ];
+        }
+        ?>
+        var associatedConfig = <?php echo json_encode($associatedConfig) ?>;
+        function scrollToGroupedItems(){
+            window.scrollTo(0, jQuery('a[name=grouped-items]').offset().top - 150)
+        }
+        require([
+            'jquery',
+            'Magento_Catalog/js/price-utils'
+        ],function($, priceUtils){
+
+            // Configurações de checkbox e qty dos itens do agrupado
+            $('.super-group-qty').change(function(){
+                var itemId = $(this).attr('rel');
+                var superInput = $('input#super_group_'+itemId);
+                var checkSuper = $('#check_super_'+itemId);
+                var qty = $(this).val();
+                if(checkSuper.attr('checked')){
+                    superInput.val(qty).trigger('change');
+                    updateSidebar()
+                }
+            })
+
+            $('.super-group-qty').each(function(){
+                var input = $(this);
+                var decButton = input.parents('.field.qty:first').find('a.qty-dec');
+                var incButton = input.parents('.field.qty:first').find('a.qty-inc');
+                decButton.click(function(){
+                    var qty = parseInt(input.val());
+                    input.val(qty > 1 ? qty - 1 : 1).trigger('change');
+                    return false;
+                })
+                incButton.click(function(){
+                    var qty = parseInt(input.val());
+                    input.val(qty + 1).trigger('change');
+                    return false;
+                })
+            })
+
+            $('.check-super-group').change(function(){
+                var itemId = $(this).attr('rel');
+                var superInput = $('input#super_group_'+itemId);
+                if($(this).attr('checked')){
+                    var qty = $('input#super_group_qty_'+itemId).val()
+                    superInput.val(qty)
+                } else {
+                    superInput.val(0)
+                }
+            })
+
+            $('.wrp-dtls a').click(function(){
+                $(this).toggleClass('active')
+                $(this).parents('.item-out:first').find('.min-dtls').toggle()
+                return false;
+            })
+
+            $('.min-dtls .nav-tabs li a').click(function(){
+                $(this).parents('.nav-tabs:first').find('li').removeClass('active')
+                $(this).parents('.nav-tabs:first').find('li').removeClass('active')
+                $(this).parents('li:first').addClass('active')
+                $(this).parents('.min-dtls:first').find('section').removeClass('active').addClass('hide')
+                $($(this).attr('href')).removeClass('hide').addClass('active')
+                return false;
+            })
+
+            // Configurações do float lateral
+            function updateSidebar(){
+                // selected-grouped
+                // old-price-grouped
+                // final-price-grouped
+                // discount-grouped
+                var oldPrice = 0
+                var finalPrice = 0
+                var discount = 0
+
+                var checkedIds = [];
+                $('.check-super-group').each(function(){
+                    var itemId = $(this).attr('rel');
+                    checkedIds.push(itemId)
+                })
+
+                $('#selected-grouped').html('');
+                $(associatedConfig).each(function(i, item){
+                    if(checkedIds.indexOf(item.id) !== -1){
+                        var qty = $('.super-group-qty[rel="'+item.id+'"]').val()
+                        var li = '<li id="selected-grouped-item-'+item.id+'">'+qty+'x '+item.name+'</li>';
+                        $('#selected-grouped').append(li);
+
+                        oldPrice = oldPrice + (parseFloat(item.price) * qty)
+                        finalPrice = finalPrice + (parseFloat(item.final_price) * qty)
+                    }
+                })
+
+                discount = (parseInt((oldPrice * 100) / finalPrice) - 100)
+
+                // console.log(oldPrice)
+                // console.log(finalPrice)
+                // console.log(discount)
+
+                $('.old-price-grouped').html('R$' + priceUtils.formatPrice(oldPrice));
+                $('.final-price-grouped').html('R$' + priceUtils.formatPrice(finalPrice));
+                $('.discount-grouped').html('-' + discount + '%');
+            }
+
+            updateSidebar();
+        })
+    </script>
+<?php endif; ?>
