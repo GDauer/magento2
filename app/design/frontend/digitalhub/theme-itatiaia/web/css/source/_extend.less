@@ -108,7 +108,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
       background: #454444;
       height: auto;
       .header.content {
-        max-width: 100%;
+        max-width: 1400px;
         padding: 0;
         background: #454444;
         overflow: unset;
@@ -482,7 +482,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
       font-family: 'Ubuntu', sans-serif;
       nav {
         margin: 0 auto;
-        max-width: 1500px;
+        max-width: 1400px;
         > ul {
           margin-left: 0;
           width: 100%;
@@ -490,8 +490,8 @@ a, a:hover, .alink, a:visited, .alink:visited {
             height: 43px;
             a {
               padding: 0;
-              line-height: 34px;
-              padding: 0 20px;
+              line-height: 40px;
+              padding: 0 17px;
               font-size: 13px;
               height: 43px;
               font-weight: 400;
@@ -566,8 +566,8 @@ a, a:hover, .alink, a:visited, .alink:visited {
     margin-bottom: 0;
   }
   .page-main {
-    padding: 40px 0 0 0;
-    max-width: 1390px;
+    padding: 40px 15px 0 15px;
+    max-width: 1400px;
     margin:  0 auto;
   }
   .breadcrumbs {
@@ -576,14 +576,15 @@ a, a:hover, .alink, a:visited, .alink:visited {
     height: 50px;
     text-align: left;
     max-width: 1390px;
-    padding: 0;
+    padding: 0 15px;
     .items {
       .item {
         &:not(:last-child):after {
-          vertical-align: middle;
+          vertical-align: top;
           content: '›';
           font-size: 1.4rem;
           padding: 0 4px;
+          line-height: 48px;
           a {
             color: #000;
           }
@@ -601,7 +602,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
             width: 1px;
             background: #000;
             padding: 0;
-            margin: 0 5px;
+            margin: 15px 5px 0 5px;
           }
         }
       }
@@ -769,7 +770,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
       .home-products-list{
         max-width: 100%;
         .wrp-tabs-out{
-          padding-bottom: 190px;
+          padding-bottom: 0;
           width: 100%;
           background: url('@{baseDir}images/bg-list.png') repeat;
           display: inline-block;
@@ -1425,6 +1426,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
            font-family: 'MullerBlack';
            font-size: 32px;
            color:#242424;
+           text-transform: uppercase;
          }
        }
        strong.block-subtitle.filter-subtitle{
@@ -1481,6 +1483,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
                 color: #000000;
                 font-family: 'MullerRegular';
                 font-size: 14px;
+                cursor: pointer;
                 span.count{
                   color: #9b9b9b;
                 }
@@ -1518,7 +1521,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
       padding: 0 0 15px;
       box-sizing: border-box;
       border-radius: 2px;
-      border: 1px solid #ccc;
+      border: 1px solid #f0f0f0;
       position: relative;
       background: #fff;
       &:before {
@@ -1669,7 +1672,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
             color: #707070;
             margin-bottom: 4px;
             font-weight: 500;
-            height: 44px;
+            height: auto;
             span {
               display: inline-block;
 
@@ -2119,8 +2122,8 @@ a, a:hover, .alink, a:visited, .alink:visited {
             }
             .owl-carousel{
               .owl-stage-outer{
-                padding: 15px 0px 0px;
-                min-height: 740px;
+                padding: 25px 0px 0px;
+                min-height: inherit;
               }
             }
           }
@@ -2630,16 +2633,17 @@ a, a:hover, .alink, a:visited, .alink:visited {
 .catalog-category-view {
   .products-grid {
     .product-item {
-      width: 23% !important;
+      width: 25% !important;
+      padding: 10px;
       margin-left: 0;
-      margin-right: 2%;
-      min-height: 615px;
+      box-sizing: border-box;
+      min-height: inherit;
       &:nth-child(4n+4) {
         margin-right: 0;
       }
       .product-item-info {
         width: 100%;
-        border:1px solid #ccc;
+        border:1px solid #f0f0f0;
       }
     }
   }
@@ -2932,9 +2936,13 @@ select:not([disabled]) {
         margin: 10px 0;
         .swatch-attribute{
           .swatch-option{
-            width: 28px;
+            width: auto;
             height: 28px;
-            border-radius:100%;
+            &.color {
+                width: 34px;
+                height: 34px;
+                border-radius:100%;
+            }
             &.selected{
               outline:0;
               box-shadow: 0 0 0 2pt #28a6fb;
@@ -3107,6 +3115,7 @@ select:not([disabled]) {
           color: #a1aeb7;
           background: none;
           text-align: center;
+          border: none;
           &:before {
             font-family: "Font Awesome 5 Free";
             content: "\f004";
@@ -3317,6 +3326,16 @@ select:not([disabled]) {
           color:#a1aeb7;
           padding: 0;
           margin: 0 20px 0px 0px;
+          span.counter {
+              &::before {
+                  content: '(';
+              }
+              color: #aaa;
+              font-size: 14px;
+              &::after {
+                  content: ')';
+              }
+          }
         }
         &:first-child {
           .switch {
@@ -3331,7 +3350,7 @@ select:not([disabled]) {
         }
       }
       .item.content {
-        padding: 35px 20px 0;
+        padding: 30px 30px 0 0;
         border: 0;
         .description {
           color: #3c3c3c;
@@ -3590,7 +3609,7 @@ select:not([disabled]) {
         }
       }
       .owl-stage-outer{
-        height: 660px;
+        height: auto;
       }
       .owl-nav{
         button{
@@ -4709,4 +4728,27 @@ form.form-create-account .field-ruc { display: none }
       }
     }
   }
+}
+/* Search */
+.search-autocomplete {
+    margin-top: 2px;
+    border-radius: 12px;
+    .smile-elasticsuite-autocomplete-result {
+        border-radius: 12px;
+    }
+    .search-autocomplete dl dt:not(:empty) {
+        border: none
+    }
+    .search-autocomplete dl dd:not(:empty) {
+        border: 1px solid #f0f0f0
+    }
+}
+.estimate-shipping-result-container {
+    margin-top: 10px;
+}
+.gift-item-block {
+    display: none
+}
+.multicheckout {
+    display: none
 }
