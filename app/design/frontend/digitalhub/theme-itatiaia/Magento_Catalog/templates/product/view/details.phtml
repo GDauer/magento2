@@ -264,6 +264,7 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
                 } else {
                     superInput.val(0)
                 }
+                updateSidebar();
             })
 
             $('.wrp-dtls a').click(function(){
@@ -293,9 +294,13 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
 
                 var checkedIds = [];
                 $('.check-super-group').each(function(){
-                    var itemId = $(this).attr('rel');
-                    checkedIds.push(itemId)
+                    if($(this).attr('checked')){
+                        var itemId = $(this).attr('rel');
+                        checkedIds.push(itemId)
+                    }
                 })
+
+                console.log(checkedIds)
 
                 $('#selected-grouped').html('');
                 $(associatedConfig).each(function(i, item){
@@ -318,9 +323,20 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
                 $('.old-price-grouped').html('R$' + priceUtils.formatPrice(oldPrice));
                 $('.final-price-grouped').html('R$' + priceUtils.formatPrice(finalPrice));
                 $('.discount-grouped').html('-' + discount + '%');
+
+                if(oldPrice > finalPrice){
+                    $('.old-price-grouped').show()
+                } else {
+                    $('.old-price-grouped').hide()
+                }
+                if(discount){
+                    $('.discount-grouped').show()
+                } else {
+                    $('.discount-grouped').hide()
+                }
             }
 
-            updateSidebar();
+            updateSidebar()
         })
     </script>
 <?php endif; ?>
