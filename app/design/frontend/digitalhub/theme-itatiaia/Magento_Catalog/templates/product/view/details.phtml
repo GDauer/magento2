@@ -300,8 +300,6 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
                     }
                 })
 
-                console.log(checkedIds)
-
                 $('#selected-grouped').html('');
                 $(associatedConfig).each(function(i, item){
                     if(checkedIds.indexOf(item.id) !== -1){
@@ -333,6 +331,14 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
                     $('.discount-grouped').show()
                 } else {
                     $('.discount-grouped').hide()
+                }
+
+                if(checkedIds.length){
+                    $('.final-price-grouped').show()
+                    $('#product-addtocart-button, .box-tocart .action.tocart').removeAttr('disabled')
+                } else {
+                    $('.final-price-grouped').hide()
+                    $('#product-addtocart-button, .box-tocart .action.tocart').attr('disabled', 'disabled')
                 }
             }
 

@@ -43,7 +43,7 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
                                                 </span>
                                                 <?php $percent = abs((($_childProduct->getFinalPrice() * 100) / $_childProduct->getPrice()) - 100) ?>
                                                 <div class="wrp-desc">
-                                                    <span class="tag-desc"><?= (int)$percent ?>%</span>
+                                                    <span class="tag-desc">-<?= (int)$percent ?>%</span>
                                                 </div>
                                             <?php endif; ?>
 
