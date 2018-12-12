@@ -45,7 +45,7 @@ $description = false;
           <?php if ($iterator++ != 1): ?></li><?php endif ?>
           <li class="product-item">
             <div class="product-item-info">
-              
+
               <?php if(date('Y-m-d H:i:s') >= $_item->getData('news_from_date') && date('Y-m-d H:i:s') <= $_item->getData('news_to_date')) :?>
                 <span class="tag-new">Novo</span>
               <?php endif ;?>
@@ -72,6 +72,8 @@ $description = false;
                 </a>
               </strong>
 
+              <?php echo $block->getProductPriceHtml($_item, $type); ?>
+
               <div class="preco-a-vista">
                 <?php
                 echo $this->getLayout()
@@ -82,7 +84,6 @@ $description = false;
                 ?>
               </div>
 
-              <?php echo $block->getProductPriceHtml($_item, $type); ?>
 
               <div class="preco-parcelado">
                 <?php
@@ -112,8 +113,8 @@ $description = false;
                           $postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
                           $postData = $postDataHelper->getPostData($block->getAddToCartUrl($_item), ['product' => $_item->getEntityId()])
                           ?>
-                          <button class="action tocart primary" data-post='<?= /* @noEscape */ $postData ?>' type="button" title="<?= $block->escapeHtmlAttr(__('Ver Detalles')) ?>">
-                            <span><?= $block->escapeHtml(__('Ver Detalles')) ?></span>
+                          <button class="action tocart primary" data-post='<?= /* @noEscape */ $postData ?>' type="button" title="<?= $block->escapeHtmlAttr(__('Comprar')) ?>">
+                            <span><?= $block->escapeHtml(__('Comprar')) ?></span>
                           </button>
                         <?php endif; ?>
                       <?php else: ?>
@@ -160,7 +161,7 @@ require([
   jQuery.noConflict();
   jQuery(".home-products-list .owl-carousel").owlCarousel({
     loop: true,
-    nav: false,
+    nav: true,
     dots: true,
     lazyLoad: true,
     dotsEach: 1,
