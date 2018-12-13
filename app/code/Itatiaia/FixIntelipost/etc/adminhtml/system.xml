@@ -8,7 +8,6 @@
                     <label>Active</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field> -->
-
                 <field id="warehouse_attribute" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Código do atributo de seleção do CD</label>
                 </field>
