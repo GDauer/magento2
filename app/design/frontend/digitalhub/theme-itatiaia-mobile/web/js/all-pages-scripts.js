@@ -34,4 +34,14 @@ require(['jquery','owlcarousel'],function(){
     jQuery(target_tab_selector).addClass('active');
        });
   });
+  jQuery(document).ready(function() {
+    jQuery('a.show-filters').on('click', function(e) {
+      jQuery('.block-content.filter-content').toggleClass("active");
+      e.preventDefault();
+    });
+    jQuery('.cls-filters a.cls-btn').on('click', function(e) {
+      jQuery('.block-content.filter-content').removeClass("active");
+      e.preventDefault();
+    });
+  });
 });

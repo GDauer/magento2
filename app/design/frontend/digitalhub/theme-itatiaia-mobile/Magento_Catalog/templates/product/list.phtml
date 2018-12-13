@@ -86,6 +86,8 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
               </a>
             </strong>
 
+            <?= /* @escapeNotVerified */ $block->getProductPrice($_product) ?>
+            
             <div class="preco-a-vista">
               <?php
               echo $this->getLayout()
@@ -96,7 +98,6 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
               ?>
             </div>
 
-            <?= /* @escapeNotVerified */ $block->getProductPrice($_product) ?>
             <?php /* $block->getProductDetailsHtml($_product) */ ?>
 
             <div class="preco-parcelado">
