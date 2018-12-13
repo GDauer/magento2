@@ -1,0 +1,38 @@
+<?php
+$product = $block->getSaleableItem();
+$oldPrice = 0;
+$finalPrice = 0;
+$discount = 0;
+$associatedProducts = $product->getTypeInstance(true)->getAssociatedProducts($product);
+foreach ($associatedProducts as $item) {
+    $qty = $item->getQty() ? $item->getQty() : 1;
+    $childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\Product')->load($item->getId());
+    $oldPrice = $oldPrice + (float)$childProduct->getPrice();
+    $finalPrice = $finalPrice + ((float)$childProduct->getFinalPrice() * (int)$qty);
+}
+$discount = (int)(($oldPrice * 100) / $finalPrice) - 100;
+?>
+<div class="price-box price-final_price">
+    <?php if($oldPrice > $finalPrice): ?>
+        <div class="wrp-oldprice">
+            <span class="old-price">
+                <span class="price-container price-final_price tax weee">
+                    <span id="old-price-<?= $product->getId() ?>" class="price-wrapper">
+                        <span class="price old-price-grouped"><?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($oldPrice,true,false); ?></span>
+                    </span>
+                </span>
+            </span>
+            <div class="wrp-desc">
+                <span class="tag-desc discount-grouped"><?= $discount ?>%</span>
+            </div>
+        </div>
+    <?php endif; ?>
+    <div class="clear"></div>
+    <span class="special-price">
+        <span class="price-container price-final_price tax weee">
+            <span id="product-price-<?= $product->getId() ?>" class="price-wrapper">
+                <span class="price final-price-grouped"><?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($finalPrice,true,false); ?></span>
+            </span>
+        </span>
+    </span>
+</div>
