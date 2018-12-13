@@ -18,6 +18,7 @@ return [
         'Magento_AdminNotification' => 1,
         'Magento_Indexer' => 1,
         'Magento_Cms' => 1,
+        'Itatiaia_FixIntelipost' => 1,
         'Magento_Catalog' => 1,
         'Magento_Payment' => 1,
         'Magento_Quote' => 1,
