@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c99b854dcfa3875df5f0c2c2c369eaa7",
+    "content-hash": "51274161760d2371c99c8c3b3adfa651",
     "packages": [
         {
             "name": "amzn/amazon-pay-and-login-with-amazon-core-module",
@@ -1354,6 +1354,180 @@
                 "stream"
             ],
             "time": "2014-10-12T19:18:40+00:00"
+        },
+        {
+            "name": "intelipost/magento2-basic",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/intelipost/magento2-basic.git",
+                "reference": "75fddf2ba493ac40903b1c51c6dd834aa9956067"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/intelipost/magento2-basic/zipball/75fddf2ba493ac40903b1c51c6dd834aa9956067",
+                "reference": "75fddf2ba493ac40903b1c51c6dd834aa9956067",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.5.0|~5.6.0|~7.0.0|~7.1.0"
+            },
+            "type": "magento2-basic",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Intelipost\\Basic\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Intelipost",
+                    "email": "integracoes@intelipost.com.br",
+                    "homepage": "http://www.intelipost.com.br/"
+                },
+                {
+                    "name": "Eneias Ramos de Melo",
+                    "email": "eneias@gamuza.com.br",
+                    "homepage": "http://www.gamuza.com.br/"
+                }
+            ],
+            "description": "Intelipost Basic",
+            "time": "2018-12-12T17:28:58+00:00"
+        },
+        {
+            "name": "intelipost/magento2-push",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/intelipost/magento2-push.git",
+                "reference": "592ce70bfb982e1d623ddc48b9f08037afc0f4a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/intelipost/magento2-push/zipball/592ce70bfb982e1d623ddc48b9f08037afc0f4a1",
+                "reference": "592ce70bfb982e1d623ddc48b9f08037afc0f4a1",
+                "shasum": ""
+            },
+            "require": {
+                "intelipost/magento2-basic": "1.*",
+                "intelipost/magento2-quote": "1.*",
+                "php": "~5.5.0|~5.6.0|~7.0.0|~7.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Intelipost\\Push\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alex Restani",
+                    "email": "integracoes@intelipost.com.br",
+                    "homepage": "http://www.intelipost.com.br/"
+                }
+            ],
+            "description": "Intelipost Push",
+            "time": "2018-12-06T14:15:14+00:00"
+        },
+        {
+            "name": "intelipost/magento2-quote",
+            "version": "1.3.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/intelipost/magento2-quote.git",
+                "reference": "20eb1d9f70595802a71d7c24d19ffc8e387c5a3a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/intelipost/magento2-quote/zipball/20eb1d9f70595802a71d7c24d19ffc8e387c5a3a",
+                "reference": "20eb1d9f70595802a71d7c24d19ffc8e387c5a3a",
+                "shasum": ""
+            },
+            "require": {
+                "intelipost/magento2-basic": "1.*",
+                "php": "~5.5.0|~5.6.0|~7.0.0|~7.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Intelipost\\Quote\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Intelipost",
+                    "email": "integracoes@intelipost.com.br",
+                    "homepage": "http://www.intelipost.com.br/"
+                },
+                {
+                    "name": "Eneias Ramos de Melo",
+                    "email": "eneias@gamuza.com.br",
+                    "homepage": "http://www.gamuza.com.br/"
+                }
+            ],
+            "description": "Intelipost Quote",
+            "time": "2018-11-27T19:30:16+00:00"
+        },
+        {
+            "name": "intelipost/magento2-tracking",
+            "version": "1.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/intelipost/magento2-tracking.git",
+                "reference": "f87ce6116f79615688085f7d7ccceef9693703e3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/intelipost/magento2-tracking/zipball/f87ce6116f79615688085f7d7ccceef9693703e3",
+                "reference": "f87ce6116f79615688085f7d7ccceef9693703e3",
+                "shasum": ""
+            },
+            "require": {
+                "intelipost/magento2-basic": "1.*",
+                "php": "~5.5.0|~5.6.0|~7.0.0|~7.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Intelipost\\Tracking\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Intelipost",
+                    "email": "integracoes@intelipost.com.br",
+                    "homepage": "http://www.intelipost.com.br/"
+                }
+            ],
+            "description": "Intelipost Tracking",
+            "time": "2018-11-27T00:00:19+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
