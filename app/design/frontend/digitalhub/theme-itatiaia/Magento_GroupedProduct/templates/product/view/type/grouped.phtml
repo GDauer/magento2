@@ -10,7 +10,7 @@
     </div>
     <div class="wrp-desc">
         <section id="tab1" class="tab-content active">
-            <?php echo $product->getDescription() ?>
+            <?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getShortDescription(), 'short_description') ?>
         </section>
         <section id="tab2" class="tab-content hide">
             <?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getDimensoes(), 'dimensoes') ?>

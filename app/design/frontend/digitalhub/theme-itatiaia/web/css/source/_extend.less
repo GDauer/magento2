@@ -928,7 +928,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
   }
   section{
     height: auto;
-    padding: 0 15px;
+    padding: 0;
   }
 }
 
@@ -4741,6 +4741,17 @@ form.form-create-account .field-ruc { display: none }
     }
     .search-autocomplete dl dd:not(:empty) {
         border: 1px solid #f0f0f0
+    }
+    dl dd.selected {
+        background-color: #dde6ec
+    }
+    .price-box {
+        .price-label {
+            display: none
+        }
+        .tag-desc {
+            display: none
+        }
     }
 }
 .estimate-shipping-result-container {
