@@ -15,11 +15,11 @@
                 Olá, <span data-bind="text: customer().firstname"></span>.
                 <a href="<?php echo $this->getUrl('customer/account/logout') ?>">Sair</a>
             </p>
-            <p><a href="<?php echo $this->getUrl('customer/account') ?>">Mi cuenta</a></p>
+            <p><a href="<?php echo $this->getUrl('customer/account') ?>">Minha Conta</a></p>
             <!-- /ko -->
             <!-- ko ifnot: customer().firstname -->
-            <p>¡Hola, <a href="<?php echo $this->getUrl('customer/account/login') ?>">Iniciar sesión</a></p>
-            <p>o <a href="<?php echo $this->getUrl('customer/account/create') ?>">Crear una cuenta</a></p>
+            <p>Olá! <a href="<?php echo $this->getUrl('customer/account/login') ?>">Acesse sua conta</a></p>
+            <p><a href="<?php echo $this->getUrl('customer/account/create') ?>">Criar uma conta</a></p>
             <!-- /ko -->
         </div>
     </div>
@@ -28,7 +28,7 @@
 <script type="text/html" id="wishlist-data-template">
     <div class="wrp-wishlist">
         <a href="<?php echo $this->getUrl('wishlist') ?>">
-            Lista de deseos
+            Lista de desejos
             <!-- ko if: wishlist().counter -->
             <span class="counter" data-bind="text: wishlist().items.length"></span>
             <!-- /ko -->
