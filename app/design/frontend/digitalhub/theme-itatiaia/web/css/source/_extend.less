@@ -928,7 +928,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
   }
   section{
     height: auto;
-    padding: 0 15px;
+    padding: 0;
   }
 }
 
@@ -4745,6 +4745,17 @@ form.form-create-account .field-ruc { display: none }
     .search-autocomplete dl dd:not(:empty) {
         border: 1px solid #f0f0f0
     }
+    dl dd.selected {
+        background-color: #dde6ec
+    }
+    .price-box {
+        .price-label {
+            display: none
+        }
+        .tag-desc {
+            display: none
+        }
+    }
 }
 .estimate-shipping-result-container {
     margin-top: 10px;
@@ -4756,8 +4767,21 @@ form.form-create-account .field-ruc { display: none }
     display: none
 }
 
+
 .smile-es-range-slider{
   .ui-slider-handle{
     background: #1aa3ff;
   }
+}
+
+/* Banner Rotator */
+.block.block-banners[data-display-mode=fixed] {
+    ul.banner-items {
+        min-width: 100%;
+        width: 100vw;
+        margin-left: ~"calc(50% - 50vw)";
+        margin-right: ~"calc(50% - 50vw)";
+    }
+    margin-bottom: 0;
+
 }
