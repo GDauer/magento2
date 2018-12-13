@@ -11,7 +11,7 @@
  */
 ?>
 <div class="widget block block-banners" data-bind="scope: 'banner'" <?= /* @noEscape */  $block->getWidgetAttributes() ?>>
-    <ul class="banner-items">
+    <ul class="banner-items owl-carousel">
         <!-- ko foreach: getItems<?= $block->escapeHtml($block->getUniqueId()) ?>() -->
         <li class="banner-item" data-bind="attr: {'data-banner-id': $data.bannerId}">
             <div class="banner-item-content" data-bind="html: $data.html"></div>

@@ -4752,3 +4752,14 @@ form.form-create-account .field-ruc { display: none }
 .multicheckout {
     display: none
 }
+
+/* Banner Rotator */
+.block.block-banners[data-display-mode=fixed] {
+    ul.banner-items {
+        min-width: 100%;
+        width: 100vw;
+        margin-left: ~"calc(50% - 50vw)";
+        margin-right: ~"calc(50% - 50vw)";
+    }
+    margin-bottom: 0;
+}
