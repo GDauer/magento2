@@ -17,7 +17,7 @@
     <!--<script src="Magento_Cms::js/owl.carousel.min.js"/>-->
     <!--<link src="js/owl.carousel.min.js"/>-->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
-    <link rel="stylesheet" type="text/css" src="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" src_type="url" />
+    <link rel="stylesheet" type="text/css" src="https://fonts.googleapis.com/css?family=Kaushan+Script|Montserrat:400,600|Open+Sans|Ubuntu:400,500,700" src_type="url" />
     <link rel="stylesheet" type="text/css" src="https://use.fontawesome.com/releases/v5.0.10/css/all.css" src_type="url" />
   </head>
 </page>

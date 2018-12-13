@@ -1,7 +1,57 @@
-<?php
-echo $this->getLayout()
-    ->createBlock('DigitalHub\MenuManager\Block\Menu')
-    ->setTemplate('DigitalHub_MenuManager::menu/render_mobile.phtml')
-    ->setIdentifier('topmenu')
-    ->toHtml();
-?>
+<div class="menu-mbl">
+  <span data-bind="scope: 'customerData'">
+    <span data-bind="template: {name: 'customer-data-template'}"></span>
+  </span>
+  <script type="text/html" id="customer-data-template">
+    <div class="wrp-login">
+      <div class="top-login">
+        <div class="min-count-loggin">
+          <!-- ko if: customer().firstname  -->
+          <div class="logged">
+            <p>Olá, <span data-bind="text: customer().firstname"></span></p>
+            <p><a href="<?php echo $this->getUrl('customer/account') ?>">Acessar conta</a> (<a href="<?php echo $this->getUrl('customer/account/logout') ?>">Sair</a>)</p>
+          </div>
+          <!-- /ko -->
+          <!-- ko ifnot: customer().firstname -->
+          <div class="logged not-logged">
+            <p>Olá, seja bem-vindo!</p>
+            <p><a href="<?php echo $this->getUrl('customer/account/create') ?>">Cadastre-se</a> | <a href="<?php echo $this->getUrl('customer/account/login') ?>">Login</a></p>
+          </div>
+          <!-- /ko -->
+        </div>
+      </div>
+    </div>
+  </script>
+  <?php
+  echo $this->getLayout()
+  ->createBlock('DigitalHub\MenuManager\Block\Menu')
+  ->setTemplate('DigitalHub_MenuManager::menu/render_mobile.phtml')
+  ->setIdentifier('topmenu')
+  ->toHtml();
+  ?>
+  <div class="post-mnu">
+    <ul>
+      <li><a href="<?php echo $this->getUrl('wishlist'); ?>">Lista de Desejos</a></li>
+      <li><a href="<?php echo $this->getUrl('checkout/cart'); ?>">Carrinho de compras</a></li>
+    </ul>
+    <ul>
+      <li><a href="<?php echo $this->getUrl('contact'); ?>">Central de Atendimento</a></li>
+    </ul>
+
+  </div>
+
+
+    <script type="text/x-magento-init">
+    {
+      "*": {
+        "Magento_Ui/js/core/app": {
+          "components": {
+            "customerData": {
+              "component": "Magento_Customer/js/view/customer"
+            }
+          }
+        }
+      }
+    }
+  </script>
+</div>
