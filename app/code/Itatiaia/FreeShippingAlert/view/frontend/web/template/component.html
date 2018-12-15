@@ -1,0 +1,10 @@
+<!-- ko if: active() -->
+<div class="wrp-mdl-frete">
+    <div class="text">
+        <p>Faltam <span data-bind="text: difference()"></span> para ganhar <span class="stl">Frete Grátis</span></p>
+    </div>
+    <div class="calc-line">
+        <div class="calc" data-bind="style: {width: percentTotal() + '%'}"></div>
+    </div>
+</div>
+<!-- /ko -->
