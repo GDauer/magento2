@@ -706,12 +706,12 @@
             "source": {
                 "type": "git",
                 "url": "git@gitlab.com:digitalhub/m2/modules/additional-prices.git",
-                "reference": "9f3ef32924f545ab64e2c3f11a499b8c939e0d37"
+                "reference": "45100e5992758c97a5e9cb2068e5b425a458006d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/digitalhub%2Fm2%2Fmodules%2Fadditional-prices/repository/archive.zip?sha=9f3ef32924f545ab64e2c3f11a499b8c939e0d37",
-                "reference": "9f3ef32924f545ab64e2c3f11a499b8c939e0d37",
+                "url": "https://gitlab.com/api/v4/projects/digitalhub%2Fm2%2Fmodules%2Fadditional-prices/repository/archive.zip?sha=45100e5992758c97a5e9cb2068e5b425a458006d",
+                "reference": "45100e5992758c97a5e9cb2068e5b425a458006d",
                 "shasum": ""
             },
             "require": {
@@ -732,7 +732,7 @@
                 }
             },
             "description": "Módulo para exibição de preços adicionais do produto, como parcelamento e à vista no storefront",
-            "time": "2018-07-20T18:29:40+00:00"
+            "time": "2018-12-13T21:03:01+00:00"
         },
         {
             "name": "digitalhub/banners",
