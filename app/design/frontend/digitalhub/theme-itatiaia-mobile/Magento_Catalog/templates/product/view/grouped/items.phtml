@@ -1,0 +1,93 @@
+<?php
+$groupedProduct = $block->getParentBlock()->getProduct();
+$priceHelper = $this->helper('Magento\Framework\Pricing\Helper\Data');
+$_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+?>
+<a name="grouped-items"></a>
+<div id="tab-grouped-items">
+    <section>
+        <?php foreach($groupedProduct->getTypeInstance(true)->getAssociatedProducts($groupedProduct) as $_item): ?>
+            <?php $_childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\Product')->load($_item->getEntityId()) ?>
+            <?php if($_item->getStatus()): ?>
+                <div class="item-out" id="super-group-item-<?= $_item->getId() ?>">
+                    <div class="item-in">
+                        <div class="wrp-input">
+                            <label class="container-check">
+                                <input type="checkbox" checked="checked" id="check_super_<?= $_item->getId() ?>" rel="<?= $_item->getId() ?>" class="check-super-group">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="wrp-img">
+                            <?php $productImage = $_imagehelper->init($_childProduct, 'category_page_list') ?>
+                            <img class="default_image" src="<?= $productImage->getUrl() ?>" alt="<?= $productImage->getLabel() ?>"/>
+                        </div>
+                        <div class="wrp-infos">
+                            <div class="in-infos">
+                                <h1 class="product-name"><?= $_childProduct->getName(); ?></h1>
+                                <div class="field qty">
+                                    <div class="control">
+                                        <a href="javascript:void(0)" class="qty-dec">-</a>
+                                        <input type="number" name="qty" readonly rel="<?= $_item->getId() ?>" id="super_group_qty_<?= $_item->getId() ?>" value="<?= (int)$_item->getQty() ?>" title="<?= __('Quantidade') ?>" class="input-text qty super-group-qty" />
+                                        <a href="javascript:void(0)" class="qty-inc">+</a>
+                                    </div>
+                                </div>
+                                <div class="wrp-price">
+                                    <div class="price-box">
+                                        <div class="wrp-oldprice">
+
+                                            <?php if($_childProduct->getFinalPrice() < $_childProduct->getPrice()): ?>
+                                                <span class="old-price">
+                                                    <span class="price">
+                                                            <?= $priceHelper->currency($_childProduct->getPrice(), true, false); ?>
+                                                    </span>
+                                                </span>
+                                                <?php $percent = abs((($_childProduct->getFinalPrice() * 100) / $_childProduct->getPrice()) - 100) ?>
+                                                <div class="wrp-desc">
+                                                    <span class="tag-desc">-<?= (int)$percent ?>%</span>
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <div class="clear"></div>
+
+                                            <span class="special-price">
+                                                <span class="price">
+                                                    <?= $priceHelper->currency($_childProduct->getFinalPrice(), true, false); ?>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="wrp-dimensoes">
+                            <?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($groupedProduct, $groupedProduct->getDimensoes(), 'dimensoes') ?>
+                        </div>
+                        <div class="wrp-dtls">
+                            <a href="javascript:void(0)">Detalhes</a>
+                        </div>
+                    </div>
+                    <div class="min-dtls">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#tab-desc-<?php echo $_item->getId() ?>">Descrição</a>
+                            </li>
+                            <li>
+                                <a href="#tab-attr-<?php echo $_item->getId() ?>">Especificações técnicas</a>
+                            </li>
+                        </ul>
+                        <section id="tab-desc-<?php echo $_item->getId() ?>" class="tab-content active">
+                            <?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($_childProduct, $_childProduct->getDescription(), 'description') ?>
+                        </section>
+                        <section id="tab-attr-<?php echo $_item->getId() ?>" class="tab-content hide">
+                            <?php echo $this->getLayout()->createBlock('Magento\Catalog\Block\Product\View\Attributes')
+                                    ->setProduct($_childProduct)
+                                    ->setTemplate('Magento_Catalog::product/view/attributes.phtml')
+                                    ->toHtml() ?>
+                        </section>
+                    </div>
+                </div>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </section>
+</div>
