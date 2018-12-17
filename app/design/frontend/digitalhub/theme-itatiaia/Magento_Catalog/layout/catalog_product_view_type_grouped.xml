@@ -7,7 +7,7 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceBlock name="product.info.price.additionals" remove="true" />
+        <!-- <referenceBlock name="product.info.price.additionals" remove="true" /> -->
         <referenceBlock name="product.info.details">
             <block class="Magento\Framework\View\Element\Template" name="grouped.items" as="grouped_items" template="Magento_Catalog::product/view/grouped/items.phtml" group="detailed_info" before="product.info.description">
                 <arguments>
