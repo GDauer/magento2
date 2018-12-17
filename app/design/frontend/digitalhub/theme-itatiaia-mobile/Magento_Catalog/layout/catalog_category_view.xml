@@ -6,5 +6,6 @@
       <referenceContainer name="content">
          <block class="Magento\Catalog\Block\Category\View" name="category.description" template="Magento_Catalog::category/description.phtml" after="category.products" />
       </referenceContainer>
+      <referenceBlock name="breadcrumbs" remove="true" />
     </body>
 </page>

@@ -7,44 +7,214 @@
 // @codingStandardsIgnoreFile
 
 ?>
+<?php
+$product = $block->getProduct();
+$priceHelper = $this->helper('Magento\Framework\Pricing\Helper\Data');
+$_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+?>
+
+<?php $buttonTitle = __('Comprar'); ?>
+
+<?php $block->setPreconfiguredValue(); ?>
 
 <?php if ($detailedInfoGroup = $block->getGroupChildNames('detailed_info', 'getChildHtml')):?>
-    <div class="product info detailed">
-        <?php if ($_description = $block->getProduct()->getDescription()): ?>
-          <div class="wrp-description">
-            <div class="wrp-title">
-              <span class="title">Descrição</span>
+<div class="product info detailed">
+    <?php $layout = $block->getLayout(); ?>
+    <div class="product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
+
+        <?php if($block->getProduct()->getTypeId() == 'grouped'): ?>
+            <?php $html = $layout->renderElement('grouped.items'); ?>
+            <div class="data item title"
+                aria-labeledby="tab-label-grouped_items-title"
+                data-role="collapsible" id="tab-label-grouped_items">
+                <a class="data switch"
+                    tabindex="-1"
+                    data-toggle="switch"
+                    href="#grouped_items"
+                    id="tab-label-grouped_items-title">
+                    Módulos inclusos
+                </a>
             </div>
-            <?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getDescription(), 'description') ?>
-          </div>
+            <div class="data item content" id="grouped_items" data-role="content">
+                <?= /* @escapeNotVerified */ $html ?>
+            </div>
         <?php endif; ?>
 
-        <?php $layout = $block->getLayout(); ?>
-        <div class="product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
-            <?php foreach ($detailedInfoGroup as $name):?>
-                <?php
-                    $html = $layout->renderElement($name);
-                    if (!trim($html)) {
-                        continue;
-                    }
-                    $alias = $layout->getElementAlias($name);
-                    $label = $block->getChildData($alias, 'title');
-                ?>
-                <div class="data item title"
-                     aria-labeledby="tab-label-<?= /* @escapeNotVerified */ $alias ?>-title"
-                     data-role="collapsible" id="tab-label-<?= /* @escapeNotVerified */ $alias ?>">
-                    <a class="data switch"
-                       tabindex="-1"
-                       data-toggle="switch"
-                       href="#<?= /* @escapeNotVerified */ $alias ?>"
-                       id="tab-label-<?= /* @escapeNotVerified */ $alias ?>-title">
-                        <?= /* @escapeNotVerified */ $label ?>
-                    </a>
-                </div>
-                <div class="data item content" id="<?= /* @escapeNotVerified */ $alias ?>" data-role="content">
-                    <?= /* @escapeNotVerified */ $html ?>
-                </div>
-            <?php endforeach;?>
-        </div>
+        <?php foreach ($detailedInfoGroup as $name): ?>
+
+            <?php if($name == 'grouped.items') continue; ?>
+            <?php if($block->getProduct()->getTypeId() == 'grouped' && $name == 'product.info.description') continue; ?>
+            <?php if($block->getProduct()->getTypeId() == 'grouped' && $name == 'product.attributes') continue; ?>
+
+            <?php
+            $html = $layout->renderElement($name);
+            if (!trim($html)) {
+                continue;
+            }
+            $alias = $layout->getElementAlias($name);
+            $label = $block->getChildData($alias, 'title');
+            ?>
+            <div class="data item title"
+                aria-labeledby="tab-label-<?= /* @escapeNotVerified */ $alias ?>-title"
+                data-role="collapsible" id="tab-label-<?= /* @escapeNotVerified */ $alias ?>">
+                <a class="data switch"
+                    tabindex="-1"
+                    data-toggle="switch"
+                    href="#<?= /* @escapeNotVerified */ $alias ?>"
+                    id="tab-label-<?= /* @escapeNotVerified */ $alias ?>-title">
+                    <?= /* @escapeNotVerified */ $label ?>
+                </a>
+            </div>
+            <div class="data item content" id="<?= /* @escapeNotVerified */ $alias ?>" data-role="content">
+                <?= /* @escapeNotVerified */ $html ?>
+            </div>
+        <?php endforeach;?>
     </div>
+<?php endif; ?>
+
+
+
+<?php if($product->getTypeId() == 'grouped'): ?>
+    <script>
+        <?php
+        $associatedProducts = $product->getTypeInstance(true)->getAssociatedProducts($product);
+        $associatedConfig = [];
+        foreach ($associatedProducts as $item) {
+            $childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\Product')->load($item->getId());
+            $associatedConfig[] = [
+                'name' => $item->getName(),
+                'qty' => (int)$item->getQty(),
+                'id' => $item->getId(),
+                'price' => $childProduct->getPrice(),
+                'final_price' => $childProduct->getFinalPrice()
+            ];
+        }
+        ?>
+        var associatedConfig = <?php echo json_encode($associatedConfig) ?>;
+        function scrollToGroupedItems(){
+            window.scrollTo(0, jQuery('a[name=grouped-items]').offset().top - 150)
+        }
+        require([
+            'jquery',
+            'Magento_Catalog/js/price-utils'
+        ],function($, priceUtils){
+
+            // Configurações de checkbox e qty dos itens do agrupado
+            $('.super-group-qty').change(function(){
+                var itemId = $(this).attr('rel');
+                var superInput = $('input#super_group_'+itemId);
+                var checkSuper = $('#check_super_'+itemId);
+                var qty = $(this).val();
+                if(checkSuper.attr('checked')){
+                    superInput.val(qty).trigger('change');
+                    updateSidebar()
+                }
+            })
+
+            $('.super-group-qty').each(function(){
+                var input = $(this);
+                var decButton = input.parents('.field.qty:first').find('a.qty-dec');
+                var incButton = input.parents('.field.qty:first').find('a.qty-inc');
+                decButton.click(function(){
+                    var qty = parseInt(input.val());
+                    input.val(qty > 1 ? qty - 1 : 1).trigger('change');
+                    return false;
+                })
+                incButton.click(function(){
+                    var qty = parseInt(input.val());
+                    input.val(qty + 1).trigger('change');
+                    return false;
+                })
+            })
+
+            $('.check-super-group').change(function(){
+                var itemId = $(this).attr('rel');
+                var superInput = $('input#super_group_'+itemId);
+                if($(this).attr('checked')){
+                    var qty = $('input#super_group_qty_'+itemId).val()
+                    superInput.val(qty)
+                } else {
+                    superInput.val(0)
+                }
+                updateSidebar();
+            })
+
+            $('.wrp-dtls a').click(function(){
+                $(this).toggleClass('active')
+                $(this).parents('.item-out:first').find('.min-dtls').toggle()
+                return false;
+            })
+
+            $('.min-dtls .nav-tabs li a').click(function(){
+                $(this).parents('.nav-tabs:first').find('li').removeClass('active')
+                $(this).parents('.nav-tabs:first').find('li').removeClass('active')
+                $(this).parents('li:first').addClass('active')
+                $(this).parents('.min-dtls:first').find('section').removeClass('active').addClass('hide')
+                $($(this).attr('href')).removeClass('hide').addClass('active')
+                return false;
+            })
+
+            // Configurações do float lateral
+            function updateSidebar(){
+                // selected-grouped
+                // old-price-grouped
+                // final-price-grouped
+                // discount-grouped
+                var oldPrice = 0
+                var finalPrice = 0
+                var discount = 0
+
+                var checkedIds = [];
+                $('.check-super-group').each(function(){
+                    if($(this).attr('checked')){
+                        var itemId = $(this).attr('rel');
+                        checkedIds.push(itemId)
+                    }
+                })
+
+                $('#selected-grouped').html('');
+                $(associatedConfig).each(function(i, item){
+                    if(checkedIds.indexOf(item.id) !== -1){
+                        var qty = $('.super-group-qty[rel="'+item.id+'"]').val()
+                        var li = '<li id="selected-grouped-item-'+item.id+'">'+qty+'x '+item.name+'</li>';
+                        $('#selected-grouped').append(li);
+
+                        oldPrice = oldPrice + (parseFloat(item.price) * qty)
+                        finalPrice = finalPrice + (parseFloat(item.final_price) * qty)
+                    }
+                })
+
+                discount = (parseInt((oldPrice * 100) / finalPrice) - 100)
+
+                // console.log(oldPrice)
+                // console.log(finalPrice)
+                // console.log(discount)
+
+                $('.old-price-grouped').html('R$' + priceUtils.formatPrice(oldPrice));
+                $('.final-price-grouped').html('R$' + priceUtils.formatPrice(finalPrice));
+                $('.discount-grouped').html('-' + discount + '%');
+
+                if(oldPrice > finalPrice){
+                    $('.old-price-grouped').show()
+                } else {
+                    $('.old-price-grouped').hide()
+                }
+                if(discount){
+                    $('.discount-grouped').show()
+                } else {
+                    $('.discount-grouped').hide()
+                }
+
+                if(checkedIds.length){
+                    $('.final-price-grouped').show()
+                    $('#product-addtocart-button, .box-tocart .action.tocart').removeAttr('disabled')
+                } else {
+                    $('.final-price-grouped').hide()
+                    $('#product-addtocart-button, .box-tocart .action.tocart').attr('disabled', 'disabled')
+                }
+            }
+
+            updateSidebar()
+        })
+    </script>
 <?php endif; ?>

@@ -1,0 +1,34 @@
+<?php $product = $block->getProduct(); ?>
+<?php $_associatedProducts = $block->getAssociatedProducts(); ?>
+<?php $_hasAssociatedProducts = count($_associatedProducts) > 0; ?>
+<div id="grouped-details">
+    <div id="tabs-list">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab1">Descrição</a></li>
+            <li><a href="#tab2">Dimensões</a></li>
+        </ul>
+    </div>
+    <div class="wrp-desc">
+        <section id="tab1" class="tab-content active">
+            <?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getShortDescription(), 'short_description') ?>
+        </section>
+        <section id="tab2" class="tab-content hide">
+            <?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getDimensoes(), 'dimensoes') ?>
+        </section>
+    </div>
+</div>
+
+<div id="validation-message-box"></div>
+
+<?php if($_hasAssociatedProducts): ?>
+    <div id="super-product-table">
+        <?php foreach($_associatedProducts as $_item): ?>
+        <input type="hidden"
+               id="super_group_<?= /* @escapeNotVerified */ $_item->getId() ?>"
+               name="super_group[<?= /* @escapeNotVerified */ $_item->getId() ?>]"
+               value="<?= /* @escapeNotVerified */ $_item->getQty() * 1 ?>"
+               data-validate="{'validate-grouped-qty':'#super-product-table'}"
+               data-errors-message-box="#validation-message-box"/>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>

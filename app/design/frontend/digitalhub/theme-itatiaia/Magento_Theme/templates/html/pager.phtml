@@ -38,7 +38,22 @@
         <div class="pages">
             <strong class="label pages-label" id="paging-label"><?= /* @escapeNotVerified */ __('Page') ?></strong>
             <ul class="items pages-items" aria-labelledby="paging-label">
-
+            <?php if ($block->canShowPreviousJump()): ?>
+                <li class="item">
+                    <a class="page previous jump" title="" href="<?= /* @escapeNotVerified */ $block->getPreviousJumpUrl() ?>">
+                        <span>...</span>
+                    </a>
+                </li>
+            <?php endif;?>
+            <?php if (!$block->isFirstPage()): ?>
+                <li class="item pages-item-previous">
+                    <?php $text = $block->getAnchorTextForPrevious() ? $block->getAnchorTextForPrevious() : '';?>
+                    <a class="<?= /* @escapeNotVerified */ $text ? 'link ' : 'action ' ?> previous" href="<?= /* @escapeNotVerified */ $block->getPreviousPageUrl() ?>" title="<?= /* @escapeNotVerified */ $text ? $text : __('Previous') ?>">
+                        <span class="label"><?= /* @escapeNotVerified */ __('Page') ?></span>
+                        <span><?= /* @escapeNotVerified */ $text ? $text : __('Previous') ?></span>
+                    </a>
+                </li>
+            <?php endif;?>
 
             <?php if ($block->canShowFirst()): ?>
                 <li class="item">
@@ -49,13 +64,7 @@
                 </li>
             <?php endif;?>
 
-            <?php if ($block->canShowPreviousJump()): ?>
-                <li class="item">
-                    <a class="page previous jump" title="" href="<?= /* @escapeNotVerified */ $block->getPreviousJumpUrl() ?>">
-                        <span>...</span>
-                    </a>
-                </li>
-            <?php endif;?>
+
 
             <?php foreach ($block->getFramePages() as $_page): ?>
                 <?php if ($block->isPageCurrent($_page)): ?>
@@ -91,15 +100,7 @@
                   </a>
               </li>
             <?php endif;?>
-            <?php if (!$block->isFirstPage()): ?>
-                <li class="item pages-item-previous">
-                    <?php $text = $block->getAnchorTextForPrevious() ? $block->getAnchorTextForPrevious() : '';?>
-                    <a class="<?= /* @escapeNotVerified */ $text ? 'link ' : 'action ' ?> previous" href="<?= /* @escapeNotVerified */ $block->getPreviousPageUrl() ?>" title="<?= /* @escapeNotVerified */ $text ? $text : __('Previous') ?>">
-                        <span class="label"><?= /* @escapeNotVerified */ __('Page') ?></span>
-                        <span><?= /* @escapeNotVerified */ $text ? $text : __('Previous') ?></span>
-                    </a>
-                </li>
-            <?php endif;?>
+
 
             <?php if (!$block->isLastPage()): ?>
                 <li class="item pages-item-next">

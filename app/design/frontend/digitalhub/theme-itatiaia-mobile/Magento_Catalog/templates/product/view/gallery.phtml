@@ -16,7 +16,7 @@
 $_product = $block->getProduct(); // GET THE PRODUCT
 ?>
 
-<h1 class="product-name"><?php echo $_product->getName(); ?></h1>
+
 
 <div class="gallery-placeholder _block-content-loading" data-gallery-role="gallery-placeholder">
 
@@ -116,56 +116,5 @@ loader.style.paddingBottom = ( config.height / config.width * 100) + "%";
 }
 </script>
 
-<script>
-require([
-  'jquery'
-], function () {
-  // Simple click event for optional humongous Pin It button.
-  jQuery('#pin1click').click(function() {
-    jQuery('#pin1click').hide();
 
-    // Send a click event to the actual image to invoke the Pinterest process.
-    jQuery('#pin1 a i').click();
-
-    // Quick and dirty method to show/hide humongous logo during Pinterest pinning using default method in HTML Anchor.
-    setTimeout(function(){
-      jQuery('#pin1click').show();
-    }, 1000);
-  })
-
-  // As above, quick and dirty method to show/hide humongous Pin-It Logo during Pinterest pinning.
-  jQuery("#pin1 a i").click(function() {
-    jQuery('#pin1click').hide();
-    // This is the dirty part. A better method should be used to hide the logo.
-    setTimeout(function(){
-      jQuery('#pin1click').show();
-    }, 1000);
-  });
-});
-</script>
-
-<div class="wrp-social-share">
-  <?php if(date('Y-m-d H:i:s') >= $_product->getData('news_from_date') && date('Y-m-d H:i:s') <= $_product->getData('news_to_date')) :?>
-    <span class="tag-new">Novo</span>
-  <?php endif ;?>
-
-  <?php if($_product->getFinalPrice() < $_product->getPrice()) : ?>
-    <span class="tag-desc">-<?= (int)(100 - ($_product->getFinalPrice() * 100 / $_product->getPrice()))?>%</span>
-  <?php endif; ?>
-  <ul>
-    <li>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($_product->getProductUrl());?>&t=<?php echo urlencode($_product->getName())?>" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false' title="Share on FaceBook"><i class="fab fa-facebook-f"></i></a>
-    </li>
-
-    <li>
-      <a href="http://twitter.com/home/?status=<?php echo urlencode($_product->getProductUrl());?>(<?php echo urlencode($_product->getName())?>)" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false' title="Share on Twitter"><i class="fab fa-twitter"></i></a>
-    </li>
-
-    <li>
-      <a class="share-pinterest" id="pin1" href="javascript:void((function()%7Bvar%20e=document.createElement(&apos;script&apos;);e.setAttribute(&apos;type&apos;,&apos;text/javascript&apos;);e.setAttribute(&apos;charset&apos;,&apos;UTF-8&apos;);e.setAttribute(&apos;src&apos;,&apos;http://assets.pinterest.com/js/pinmarklet.js?r=&apos;+Math.random()*99999999);document.body.appendChild(e)%7D)());" target="_blank"><i class="fab fa-pinterest-p"></i></a>
-    </li>
-    <li>
-      <a href="https://api.whatsapp.com/send?text=<?php echo $_product->getName(); ?> - <?php echo $_product->getProductUrl(); ?>" target="_blank"><i class="fab fa-whatsapp" style="font-size: 22px;"></i></a>
-    </li>
-  </ul>
-</div>
+<h1 class="product-name"><?php echo $_product->getName(); ?></h1>
