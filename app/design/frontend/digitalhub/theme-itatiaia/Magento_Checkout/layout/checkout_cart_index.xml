@@ -11,7 +11,7 @@
     <link src="js/cart-page-scripts.js"/>
   </head>-->
   <body>
-    <move element="checkout.cart.coupon" destination="cart.summary" after="checkout.cart.shipping" />
+    <move element="checkout.cart.coupon" destination="checkout.cart.totals.container" after="checkout.cart.totals" />
     <!--<referenceBlock name="checkout.cart.shipping">
       <!<arguments>
         <argument name="jsLayout" xsi:type="array">

@@ -1,7 +1,7 @@
 <?php
-$groupedProduct = $block->getParentBlock()->getProduct();
-$priceHelper = $this->helper('Magento\Framework\Pricing\Helper\Data');
-$_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+  $groupedProduct = $block->getParentBlock()->getProduct();
+  $priceHelper = $this->helper('Magento\Framework\Pricing\Helper\Data');
+  $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
 ?>
 <a name="grouped-items"></a>
 <div id="tab-grouped-items">
@@ -61,7 +61,28 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
                             </div>
                         </div>
                         <div class="wrp-dimensoes">
-                            <?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($groupedProduct, $groupedProduct->getDimensoes(), 'dimensoes') ?>
+                          <ul>
+                            <?php if ($_childProduct->getIntelipostProductHeight()): ?>
+                              <li class="product-height">
+                                Altura <?php echo $_childProduct->getIntelipostProductHeight(); ?> cm
+                              </li>
+                            <?php endif; ?>
+                            <?php if ($_childProduct->getIntelipostProductWidth()): ?>
+                              <li class="product-width">
+                                Largura <?php echo $_childProduct->getIntelipostProductWidth(); ?> cm
+                              </li>
+                            <?php endif; ?>
+                            <?php if ($_childProduct->getIntelipostProductLength()): ?>
+                              <li class="product-lenght">
+                                Profundidade <?php echo $_childProduct->getIntelipostProductLength(); ?>cm
+                              </li>
+                            <?php endif; ?>
+                            <?php if ($_childProduct->getWeight()): ?>
+                              <li class="product-weight">
+                                Peso <?php echo round($_childProduct->getWeight(),4); ?>kg
+                              </li>
+                            <?php endif; ?>
+                          </ul>
                         </div>
                         <div class="wrp-dtls">
                             <a href="javascript:void(0)">Detalhes</a>
