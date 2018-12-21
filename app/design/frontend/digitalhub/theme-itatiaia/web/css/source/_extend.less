@@ -785,10 +785,10 @@ a, a:hover, .alink, a:visited, .alink:visited {
             margin: 0 auto;
             max-width: 1390px;
             overflow: hidden;
-            padding-bottom: 15px;
-            .products-grid.grid{
-              .owl-nav{
-                button{
+            padding: 0 15px 15px 15px;
+            .products-grid.grid {
+              .owl-nav {
+                button {
                   top: 35%;
                   width: 40px;
                   height: 40px;
@@ -804,21 +804,21 @@ a, a:hover, .alink, a:visited, .alink:visited {
                       font-family: 'Open Sans', sans-serif;
                     }
                   }
-                  &.owl-next{
+                  &.owl-next {
                     right: -7px;
-                    span{
+                    span {
                       height: 34px;
                       font-size: 30px;
                       font-family: 'Open Sans', sans-serif;
                     }
                   }
-                  span{
+                  span {
                     height: 32px;
                   }
                 }
               }
-              .product-item{
-                .product-item-info{
+              .product-item {
+                .product-item-info {
                   border:1px solid #fff;
                 }
               }
@@ -1723,14 +1723,13 @@ a, a:hover, .alink, a:visited, .alink:visited {
         }
         .preco-a-vista {
           .price-with-discount {
-            font-size: 16px;
+            font-size: 14px;
             color: #707070;
-            margin-bottom: 4px;
+            margin-bottom: 0;
             font-weight: 500;
             height: auto;
             span {
               display: inline-block;
-
             }
           }
           .wrp-divisor {
@@ -2710,13 +2709,13 @@ a, a:hover, .alink, a:visited, .alink:visited {
       .product-item-info {
         width: 100%;
         border: 1px solid #f0f0f0;
-        height: 418px;
+        height: 438px;
       }
       &:hover {
         .product-item-info {
           .product-item-details {
             .product-item-actions {
-              top: 173px;
+              top: 193px;
             }
           }
         }
@@ -4790,10 +4789,34 @@ body.checkout-index-index {
 }
 
 .wishlist-index-index{
-  .actions-primary{
+  .actions-primary {
     display: inline;
-    .action.primary{
+    .action.primary {
       padding: 0 5px;
+    }
+  }
+  .wishlist-toolbar {
+    .wishlist-toolbar-actions {
+      display: none;
+    }
+  }
+  .products-grid.wishlist {
+    .product-item {
+      .product-item-info {
+        padding: 10px;
+        .product-item-actions {
+          .actions-primary {
+            width: 100%;
+            display: block;
+            .tocart {
+              width: 100%;
+            }
+          }
+          .wishlist-dropdown {
+            display: none;
+          }
+        }
+      }
     }
   }
 }
