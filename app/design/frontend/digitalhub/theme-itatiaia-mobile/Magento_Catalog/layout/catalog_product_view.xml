@@ -7,7 +7,8 @@
     <!-- add this code -->
     <!--<move element="reviews.tab" destination="content" after="product.info.details" />-->
     <!-- end -->
-    <referenceBlock name="product.info.description" remove="true" />
+    <!-- <referenceBlock name="product.info.description" remove="true" /> -->
+    <referenceBlock name="product.info.overview" remove="true" />
     <referenceBlock name="product.attributes" remove="true" />
   </body>
 </page>

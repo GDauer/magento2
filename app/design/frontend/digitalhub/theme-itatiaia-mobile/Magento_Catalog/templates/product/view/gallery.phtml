@@ -33,7 +33,8 @@ var config = {
   "width": <?= /* @escapeNotVerified */ $block->getImageAttribute('product_page_image_medium', 'width') ?>,
   "thumbheight": <?php /* @escapeNotVerified */ echo $block->getImageAttribute('product_page_image_small', 'height')
   ?: $block->getImageAttribute('product_page_image_small', 'width'); ?>,
-  "navtype": "<?= /* @escapeNotVerified */ $block->getVar("gallery/navtype") ?>",
+  // "navtype": "<?= /* @escapeNotVerified */ $block->getVar("gallery/navtype") ?>",
+  "navtype": false,
   "height": <?= /* @escapeNotVerified */ $block->getImageAttribute('product_page_image_medium', 'height') ?>
 },
 thumbBarHeight = 0,
