@@ -47,41 +47,32 @@ require([
             }
         })
 
-        // initBuyBoxScroll();
+        initBuyBoxScroll();
     });
 
-    // function initBuyBoxScroll(){
-    //     var topThreshold = jQuery('.column.main').offset().top;
-    //     var fixedTopPosition = 80;
-    //     jQuery('.column.main').css({position: 'relative'});
-    //     jQuery('.product-info-main').css({transition: 'top 0.1s'})
-    //
-    //     jQuery(window).on("scroll", function() {
-    //         var maxBottom = jQuery('.column.main .product.info.detailed').offset().top + jQuery('.column.main .product.info.detailed').height()
-    //         maxBottom = maxBottom - jQuery('.product-info-main').height() - fixedTopPosition;
-    //
-    //         var fromTop = jQuery(window).scrollTop();
-    //         if(fromTop > topThreshold){
-    //             if(fromTop >= maxBottom){
-    //                 jQuery('.product-info-main').css({position: '', top: '', bottom: ''})
-    //             } else {
-    //                 jQuery('.product-info-main').css({position: 'sticky', top: fixedTopPosition, transition: 0})
-    //             }
-    //             jQuery('.product-options-bottom .field.qty, .product-reviews-summary').hide();
-    //
-    //             // só esconde o frete se não tiver sido calculado ainda
-    //             if(!jQuery('.estimate-shipping-result-container').find('*').length){
-    //                 jQuery('#digitalhub-estimateshipping').hide();
-    //             } else {
-    //                 jQuery('#digitalhub-estimateshipping').show();
-    //             }
-    //         } else {
-    //             jQuery('.product-info-main').css({position: '', top: '', bottom: ''})
-    //             jQuery('.product-options-bottom .field.qty, .product-reviews-summary').show();
-    //             jQuery('#digitalhub-estimateshipping').show();
-    //         }
-    //     });
-    // }
+    function initBuyBoxScroll(){
+        if(jQuery('#grouped_items').length){
+            var topThreshold = jQuery('#grouped_items').offset().top;
+            // jQuery('.float-min').css({transition: 'top 0.1s'})
+
+            jQuery(window).on("scroll", function() {
+                var fromTop = jQuery(window).scrollTop();
+                var newTopPosition = Math.abs(topThreshold - jQuery(window).scrollTop()) + jQuery('.wrp-header-content').height();
+                var maxBottom = jQuery('#grouped_items').height() + jQuery('#grouped_items').offset().top - 50
+                maxBottom = maxBottom - jQuery('.float-min').height();
+
+                if(fromTop > topThreshold){
+                    if(fromTop >= maxBottom){
+                        // jQuery('.float-min').css({top: ''})
+                    } else {
+                        jQuery('.float-min').css({top: newTopPosition, transition: 0})
+                    }
+                } else {
+                    jQuery('.float-min').css({top: ''})
+                }
+            });
+        }
+    }
 
     // jQuery(document).ready(function() {
     //    jQuery('.min-dtls .nav-tabs > li > a').click(function(event){
