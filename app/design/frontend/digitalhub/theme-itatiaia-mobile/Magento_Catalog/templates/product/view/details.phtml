@@ -17,11 +17,9 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
 
 <?php $block->setPreconfiguredValue(); ?>
 
-<?php if ($detailedInfoGroup = $block->getGroupChildNames('detailed_info', 'getChildHtml')):?>
 <div class="product info detailed">
     <?php $layout = $block->getLayout(); ?>
     <div class="product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
-
         <?php if($block->getProduct()->getTypeId() == 'grouped'): ?>
             <?php $html = $layout->renderElement('grouped.items'); ?>
             <div class="data item title"
@@ -39,39 +37,7 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
                 <?= /* @escapeNotVerified */ $html ?>
             </div>
         <?php endif; ?>
-
-        <?php foreach ($detailedInfoGroup as $name): ?>
-
-            <?php if($name == 'grouped.items') continue; ?>
-            <?php if($block->getProduct()->getTypeId() == 'grouped' && $name == 'product.info.description') continue; ?>
-            <?php if($block->getProduct()->getTypeId() == 'grouped' && $name == 'product.attributes') continue; ?>
-
-            <?php
-            $html = $layout->renderElement($name);
-            if (!trim($html)) {
-                continue;
-            }
-            $alias = $layout->getElementAlias($name);
-            $label = $block->getChildData($alias, 'title');
-            ?>
-            <div class="data item title"
-                aria-labeledby="tab-label-<?= /* @escapeNotVerified */ $alias ?>-title"
-                data-role="collapsible" id="tab-label-<?= /* @escapeNotVerified */ $alias ?>">
-                <a class="data switch"
-                    tabindex="-1"
-                    data-toggle="switch"
-                    href="#<?= /* @escapeNotVerified */ $alias ?>"
-                    id="tab-label-<?= /* @escapeNotVerified */ $alias ?>-title">
-                    <?= /* @escapeNotVerified */ $label ?>
-                </a>
-            </div>
-            <div class="data item content" id="<?= /* @escapeNotVerified */ $alias ?>" data-role="content">
-                <?= /* @escapeNotVerified */ $html ?>
-            </div>
-        <?php endforeach;?>
     </div>
-<?php endif; ?>
-
 
 
 <?php if($product->getTypeId() == 'grouped'): ?>
@@ -91,6 +57,8 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
         }
         ?>
         var associatedConfig = <?php echo json_encode($associatedConfig) ?>;
+        var priceFormat ={"pattern":"R$ %s","precision":2,"requiredPrecision":2,"decimalSymbol":",","groupSymbol":".","groupLength":3,"integerRequired":false};
+
         function scrollToGroupedItems(){
             window.scrollTo(0, jQuery('a[name=grouped-items]').offset().top - 150)
         }
@@ -190,8 +158,8 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
                 // console.log(finalPrice)
                 // console.log(discount)
 
-                $('.old-price-grouped').html('R$' + priceUtils.formatPrice(oldPrice));
-                $('.final-price-grouped').html('R$' + priceUtils.formatPrice(finalPrice));
+                $('.old-price-grouped').html(priceUtils.formatPrice(oldPrice, priceFormat));
+                $('.final-price-grouped').html(priceUtils.formatPrice(finalPrice, priceFormat));
                 $('.discount-grouped').html('-' + discount + '%');
 
                 if(oldPrice > finalPrice){

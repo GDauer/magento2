@@ -1825,10 +1825,11 @@ a, a:hover, .alink, a:visited, .alink:visited {
         }
         .wrp-short {
           display: none;
-          background: #fff;
           font-family: 'MullerRegularItalic';
           font-size: 13px;
           color: #707070;
+          background: #fff;
+          overflow: hidden;
           #grouped-details {
             margin-top: 0;
           }
@@ -1874,11 +1875,11 @@ a, a:hover, .alink, a:visited, .alink:visited {
           }
           .wrp-short {
             display: block;
-            padding: 10px;
             background: #fff;
-            border: 1px solid #ddd;
-            padding: 10px;
+            border: none;
+            padding: 0 0 20px 0;
             overflow: hidden;
+            text-align: left;
           }
         }
       }
@@ -2708,14 +2709,14 @@ a, a:hover, .alink, a:visited, .alink:visited {
       }
       .product-item-info {
         width: 100%;
-        border: 1px solid #f0f0f0;
+        border: none;
         height: 438px;
       }
       &:hover {
         .product-item-info {
           .product-item-details {
             .product-item-actions {
-              top: 193px;
+              top: 173px;
             }
           }
         }

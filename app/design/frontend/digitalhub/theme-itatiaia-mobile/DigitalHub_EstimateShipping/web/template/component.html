@@ -1,0 +1,45 @@
+<div class="estimate-shipping-box">
+    <div class="wrp-block-title">
+      <div class="block-title">
+        <p class="title">Calcule o frete e prazo de entrega</p>
+
+      </div>
+    </div>
+    <div class="field">
+        <input type="text" id="estimate-shipping-postcode" placeholder="Insira seu CEP" data-bind="value: postcode, afterRender: afterRender">
+        <a data-bind="click: estimateShipping" class="button"><span>Consultar</span></a>
+    </div>
+    <a class="busca-cep" href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blanck">Não sei o meu CEP</a>
+</div>
+
+<div class="estimate-shipping-result-container">
+    <!-- ko if: showLoader -->
+    <span class="loader">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        <span class="text">Calculando seu frete...</span>
+    </span>
+    <!-- /ko -->
+
+    <!-- ko if: showSelectionAlert -->
+    <div class="message notice">
+        <span>Por favor, selecione as opções do produto para continuar com o cálculo do seu frete.</span>
+    </div>
+    <!-- /ko -->
+
+    <!-- ko if: errorMessage -->
+    <div class="message error">
+        <span data-bind="text: errorMessage"></span>
+    </div>
+    <!-- /ko -->
+
+    <!-- ko if: estimateResult -->
+    <div class="estimate-shipping-result">
+        <p class="title">Opções entrega:</p>
+        <ul data-bind="foreach: estimateResult">
+            <li>
+                <span data-bind="text: title"></span> - <strong data-bind="text: price_formatted"></strong>
+            </li>
+        </ul>
+    </div>
+    <!-- /ko -->
+</div>
