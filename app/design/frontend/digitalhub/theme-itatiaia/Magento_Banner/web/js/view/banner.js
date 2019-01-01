@@ -148,7 +148,7 @@ define([
                         }
                     }
                 })
-            }, 250)
+            }, 50)
         }
 
         return initializedItems[blockId];
