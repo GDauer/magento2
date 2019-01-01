@@ -4,12 +4,8 @@
         <section id="carriers">
             <group id="itatiaia_fixintelipost" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Configuração customizadas Itatiaia / Intelipost</label>
-                <!-- <field id="active" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
-                    <label>Active</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                </field> -->
-                <field id="warehouse_attribute" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Código do atributo de seleção do CD</label>
+                <field id="zipcode_warehouse_aco" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>CEP origem de CD para material aço</label>
                 </field>
             </group>
         </section>
