@@ -877,12 +877,12 @@
             "source": {
                 "type": "git",
                 "url": "git@gitlab.com:digitalhub/m2/modules/estimate-shipping.git",
-                "reference": "da9f5efb277e959d4d090f144b8e31c07588f079"
+                "reference": "629cf90cdf15abbe4a63cf8562eaf15448ca1f69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/digitalhub%2Fm2%2Fmodules%2Festimate-shipping/repository/archive.zip?sha=da9f5efb277e959d4d090f144b8e31c07588f079",
-                "reference": "da9f5efb277e959d4d090f144b8e31c07588f079",
+                "url": "https://gitlab.com/api/v4/projects/digitalhub%2Fm2%2Fmodules%2Festimate-shipping/repository/archive.zip?sha=629cf90cdf15abbe4a63cf8562eaf15448ca1f69",
+                "reference": "629cf90cdf15abbe4a63cf8562eaf15448ca1f69",
                 "shasum": ""
             },
             "require": {
@@ -903,7 +903,7 @@
                 }
             },
             "description": "Módulo para consulta do valor do frete diretamente na página do produto",
-            "time": "2018-11-12T16:24:42+00:00"
+            "time": "2019-01-01T20:02:39+00:00"
         },
         {
             "name": "digitalhub/language-pt_br",
