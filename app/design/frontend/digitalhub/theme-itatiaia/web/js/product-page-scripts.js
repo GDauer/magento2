@@ -52,10 +52,10 @@ require([
 
     function initBuyBoxScroll(){
         if(jQuery('#grouped_items').length){
-            var topThreshold = jQuery('#grouped_items').offset().top;
             // jQuery('.float-min').css({transition: 'top 0.1s'})
 
             jQuery(window).on("scroll", function() {
+                var topThreshold = jQuery('#grouped_items').offset().top - jQuery('.wrp-header-content').height();
                 var fromTop = jQuery(window).scrollTop();
                 var newTopPosition = Math.abs(topThreshold - jQuery(window).scrollTop()) + jQuery('.wrp-header-content').height();
                 var maxBottom = jQuery('#grouped_items').height() + jQuery('#grouped_items').offset().top - 50

@@ -4,8 +4,86 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "51274161760d2371c99c8c3b3adfa651",
+    "content-hash": "e6d9846120b653bc001b4ff5fd200b8d",
     "packages": [
+        {
+            "name": "adyen/module-payment",
+            "version": "2.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Adyen/adyen-magento2.git",
+                "reference": "1545004a9be7e37bdd06976d9342822555d63eb2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Adyen/adyen-magento2/zipball/1545004a9be7e37bdd06976d9342822555d63eb2",
+                "reference": "1545004a9be7e37bdd06976d9342822555d63eb2",
+                "shasum": ""
+            },
+            "require": {
+                "adyen/php-api-library": ">=1.5.3",
+                "magento/framework": ">=100.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Adyen\\Payment\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Official Magento2 Plugin to connect to Payment Service Provider Adyen.",
+            "time": "2018-12-21T08:37:03+00:00"
+        },
+        {
+            "name": "adyen/php-api-library",
+            "version": "1.5.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Adyen/adyen-php-api-library.git",
+                "reference": "8272f52a26e87233cfae598460cc88d23a509a51"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Adyen/adyen-php-api-library/zipball/8272f52a26e87233cfae598460cc88d23a509a51",
+                "reference": "8272f52a26e87233cfae598460cc88d23a509a51",
+                "shasum": ""
+            },
+            "require": {
+                "monolog/monolog": "~1.16",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4",
+                "satooshi/php-coveralls": "~1.0.1",
+                "squizlabs/php_codesniffer": "~2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Adyen\\": "src/Adyen/"
+                },
+                "classmap": [
+                    "src/Adyen/Service/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "A PHP client library for accessing Adyen APIs",
+            "homepage": "https://github.com/Adyen/adyen-php-api-library",
+            "keywords": [
+                "adyen"
+            ],
+            "time": "2018-11-29T10:15:17+00:00"
+        },
         {
             "name": "amzn/amazon-pay-and-login-with-amazon-core-module",
             "version": "2.1.0",
