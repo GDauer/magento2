@@ -256,14 +256,14 @@ switch ($type = $block->getType()) {
 
                             <?php $_helper = $this->helper('Magento\Catalog\Helper\Output'); ?>
 
-                            <?php if ($_item->getShortDescription()): ?>
-                              <div class="wrp-short">
-                                <?php /* @escapeNotVerified */ echo $_helper->productAttribute($_item, $_item->getShortDescription(), 'short_description'); ?>
-                              </div>
-                            <?php endif; ?>
 
                             <?php if ($showAddTo || $showCart): ?>
                                 <div class="product actions product-item-actions">
+                                  <div class="wrp-short">
+                                  <?php if ($_item->getShortDescription()): ?>
+                                      <?php /* @escapeNotVerified */ echo $_helper->productAttribute($_item, $_item->getShortDescription(), 'short_description'); ?>
+                                  <?php endif; ?>
+                                  </div>
                                     <?php if ($showCart): ?>
                                         <div class="actions-primary">
                                             <?php if ($_item->isSaleable()): ?>

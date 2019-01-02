@@ -15,6 +15,10 @@
 <?php $_helper = $this->helper('Magento\Catalog\Helper\Output'); ?>
 <?php $_product = $block->getProduct(); ?>
 
+<div class="parc-link">
+  <a href="<?php echo $this->getUrl('parcelamento') ?>">Opções de parcelamento</a>
+</div>
+
 <div class="product-add-form">
     <form data-product-sku="<?= $block->escapeHtml($_product->getSku()) ?>"
           action="<?= /* @NoEscape */ $block->getSubmitUrl($_product) ?>" method="post"

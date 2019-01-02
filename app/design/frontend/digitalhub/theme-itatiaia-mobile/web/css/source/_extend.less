@@ -19,7 +19,7 @@
 
 body {
   overflow-x: hidden;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MullerRegular', sans-serif;
 }
 * {
   box-sizing: border-box;
@@ -33,7 +33,7 @@ body {
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MullerRegular', sans-serif;
   border: 0;
   background: #1aa3ff;
   &:hover, &:focus {
@@ -52,7 +52,7 @@ body {
 a.action.primary {
   display: inline-block;
   line-height: 44px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MullerRegular', sans-serif;
 }
 a, a:hover, .alink, a:visited, .alink:visited {
   color: #e5102a;
@@ -74,7 +74,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
     font-size: 1.4rem;
     padding: 0 30px;
     font-size: 14px;
-    line-height: 44px;
+    line-height: 43px;
 }
 
 .page-wrapper {
@@ -1848,7 +1848,18 @@ select:not([disabled]) {
   .product-info-main{
     padding: 0 15px;
     .product-info-stock-sku{
-      display: none;
+      display: block;
+      h1.product-name, .product.attribute.sku{
+        display: none;
+      }
+      .stock.unavailable{
+        background: #ff6600;
+        font-family: 'MullerBold';
+        padding: 0 7px;
+        color: #fff;
+        font-size: 18px;
+        border-radius: 3px;
+      }
     }
     .product-reviews-summary{
       margin: 0;
@@ -1870,6 +1881,16 @@ select:not([disabled]) {
         text-align: center;
         display: block;
         margin: 0;
+      }
+    }
+    .parc-link{
+      a{
+        color: #28a6fb;
+        font-family: 'MullerMedium';
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 21px;
+        text-decoration: underline;
       }
     }
   }
@@ -3678,4 +3699,80 @@ select:not([disabled]) {
     margin-bottom: 10px;
     padding-right: 10px;
     padding-left: 10px;
+}
+
+.wishlist-index-index{
+  .actions-primary {
+    display: inline;
+    .action.primary {
+      padding: 0 5px;
+    }
+  }
+  .wishlist-toolbar {
+    .wishlist-toolbar-actions {
+      display: none;
+    }
+  }
+  .products-grid.wishlist {
+    .product-item {
+      .product-item-info {
+        padding: 10px;
+        .product-item-actions {
+          .actions-primary {
+            width: 100%;
+            display: block;
+            .tocart {
+              width: 100%;
+            }
+          }
+          .wishlist-dropdown {
+            display: none;
+          }
+        }
+        strong.product-item-name{
+          a{
+            font-size: 14px;
+            font-weight: 400;
+            color: #242424;
+            text-transform: uppercase;
+            font-family: 'MullerBold';
+          }
+        }
+        .price-box{
+          .price{
+            color:#707070;
+            font-family: 'MullerRegular';
+            font-size: 14px;
+          }
+          .wrp-oldprice{
+            .old-price{
+              float: left;
+            }
+          }
+          .special-price, .regular-price{
+            .price{
+              color: #242424;
+              font-family: 'MullerBold';
+              font-size: 21px;
+            }
+          }
+        }
+        span.special-price, span.old-price{
+          span.price-label{
+            display: none;
+          }
+        }
+        p.unavailable.stock{
+          background: #ff6600;
+          padding: 0 7px;
+          color: #fff;
+          font-size: 16px;
+          text-transform: uppercase;
+          border-radius: 3px;
+          font-family: 'MullerBold';
+          display: inline-block;
+        }
+      }
+    }
+  }
 }

@@ -141,11 +141,11 @@ $hoverimg = 'category_page_list_hover';
               <?php endif; ?>
               <?php if ($showWishlist || $showCompare || $showCart): ?>
                 <div class="product-item-actions">
+                  <div class="wrp-short">
                   <?php if ($_item->getShortDescription()): ?>
-                    <div class="wrp-short">
                       <?php /* @escapeNotVerified */ echo $_helper->productAttribute($_item, $_item->getShortDescription(), 'short_description'); ?>
-                    </div>
                   <?php endif; ?>
+                  </div>
                   <?php if ($showCart): ?>
                     <div class="actions-primary">
                       <?php if ($_item->isSaleable()): ?>
