@@ -11,13 +11,41 @@
 $product = $block->getProduct();
 $priceHelper = $this->helper('Magento\Framework\Pricing\Helper\Data');
 $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
 ?>
 
 <?php $buttonTitle = __('Comprar'); ?>
 
 <?php $block->setPreconfiguredValue(); ?>
 
-<div class="product info detailed">
+  <div class="product info detailed">
+  <div class="product-info-info">
+    <?php if( $product->getTypeId() == 'simple' ): ?>
+      <?php if ($_description = $block->getProduct()->getDescription()): ?>
+        <div class="wrp-description">
+          <div class="wrp-title">
+            <span class="title">Descrição</span>
+          </div>
+          <?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getDescription(), 'description') ?>
+        </div>
+        <?php echo $this->getLayout()->createBlock('Magento\Catalog\Block\Product\View\Attributes')
+                ->setTemplate('Magento_Catalog::product/view/attributes.phtml')
+                ->toHtml() ?>
+      <?php endif; ?>
+    <?php elseif( $product->getTypeId() == 'configurable' ): ?>
+      <?php if ($_description = $block->getProduct()->getDescription()): ?>
+        <div class="wrp-description">
+          <div class="wrp-title">
+            <span class="title">Descrição</span>
+          </div>
+          <?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getDescription(), 'description') ?>
+        </div>
+      <?php endif; ?>
+      <?php echo $this->getLayout()->createBlock('Magento\Catalog\Block\Product\View\Attributes')
+              ->setTemplate('Magento_Catalog::product/view/attributes.phtml')
+              ->toHtml() ?>
+    <?php endif; ?>
+  </div>
     <?php $layout = $block->getLayout(); ?>
     <div class="product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
         <?php if($block->getProduct()->getTypeId() == 'grouped'): ?>

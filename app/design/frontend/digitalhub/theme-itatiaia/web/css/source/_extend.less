@@ -323,7 +323,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           font-size: 18px;
           padding: 0;
           line-height: 42px;
-          margin: -10px 0 0 12px;
+          margin: -8px 0 0 12px;
           font-weight: 600;
           position: relative;
           overflow: visible;
@@ -345,9 +345,16 @@ a, a:hover, .alink, a:visited, .alink:visited {
         top: 50px;
         right: -1px;
         margin: 0;
-        border-top: 0;
         &:before {
           right: 24px;
+          border: 0;
+          top: -5px;
+          width: 8px;
+          height: 8px;
+          background: #fff;
+          border-left: 1px solid #ccc;
+          border-top: 1px solid #ccc;
+          transform: rotate(45deg);
         }
         &:after {
           display: none;
@@ -506,12 +513,12 @@ a, a:hover, .alink, a:visited, .alink:visited {
                 }
               }
             }
-            &:last-child{
-              float: right;
-            }
-            &:nth-last-child(2){
-              float: right;
-            }
+            // &:last-child{
+            //   float: right;
+            // }
+            // &:nth-last-child(2){
+            //   float: right;
+            // }
           }
         }
       }
@@ -535,7 +542,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
         top: 0;
         left: 0;
         width: 100%;
-        height: 69px;
+        height: 70px;
         box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.1);
         min-width: 1250px;
         .header.content {
@@ -783,9 +790,9 @@ a, a:hover, .alink, a:visited, .alink:visited {
           background-size: 30px;
           .wrp-tabs-in{
             margin: 0 auto;
-            max-width: 1390px;
+            max-width: 1420px;
             overflow: hidden;
-            padding: 0 15px 15px 15px;
+            padding: 0 0 15px 0;
             .products-grid.grid {
               .owl-nav {
                 button {
@@ -1019,7 +1026,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           width: 150px;
           .in-infos{
             h1.product-name{
-              font-family: 'MullerBlack';
+              font-family: 'MullerBold';
               font-size: 16px;
               font-weight: 700;
               text-transform: uppercase;
@@ -1694,6 +1701,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           margin-bottom: 8px;
           position: relative;
           font-family: 'MullerRegular';
+          letter-spacing: 0.6px;
           .price-label {
             display: none;
           }
@@ -1781,7 +1789,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           margin: 0;
           .actions-primary {
             display: block;
-            margin: 0 auto;
+            margin: 10px auto 0;
             .action.primary {
               font-family: 'MullerBlack';
               border-radius: 2px;
@@ -1865,7 +1873,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
         .product-item-details {
           .product-item-actions {
             position: absolute;
-            top: 161px;
+            top: 163px;
             margin: 0;
             width: 100%;
             .action.primary {
@@ -1877,7 +1885,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
             display: block;
             background: #fff;
             border: none;
-            padding: 0 0 20px 0;
+            padding: 0 0 0px 0;
             overflow: hidden;
             text-align: left;
           }
@@ -2224,7 +2232,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
       }
       .wrp-mini-banners {
         position: relative;
-        margin: 0 auto 80px auto;
+        margin: 0 auto 35px auto;
         max-width: 1390px;
         ul {
           margin: 0 auto;
@@ -2503,6 +2511,9 @@ a, a:hover, .alink, a:visited, .alink:visited {
 
 /*-- Category page --*/
 .catalog-category-view {
+  ul.banner-items{
+    margin-top: 20px;
+  }
   .page-main {
     padding-top: 0;
     overflow: hidden;
@@ -2921,10 +2932,10 @@ select:not([disabled]) {
     z-index: 98;
     .product-name {
       color:#242424;
-      font-size: 26px;
+      font-size: 28px;
       text-transform: uppercase;
       margin: 0 0 10px 0;
-      font-family: 'MullerMedium';
+      font-family: 'MullerBlack';
       font-weight: 500;
     }
     .stock.unavailable{
@@ -3193,7 +3204,7 @@ select:not([disabled]) {
           height: 40px;
           width: 300px;
           border-radius: 2px;
-          border: 2px solid #f2f5f7;
+          border: 2px solid #eee;
           float: left;
           margin: 12px 0 0 0;
           position: relative;
@@ -3214,7 +3225,7 @@ select:not([disabled]) {
             width: 90px;
             float: none;
             padding: 0;
-            background: #f2f5f7;
+            background: #eee;
             text-align: center;
             padding-top: 4px;
             &:before {
@@ -4037,10 +4048,12 @@ select:not([disabled]) {
   .page-title-wrapper {
     .page-title {
       span {
-        font-size: 32px;
-        text-transform: uppercase;
         color: #242424;
-        font-weight: 700;
+        font-family: 'MullerBlack';
+        font-size: 32px;
+        font-weight: 900;
+        line-height: 38px;
+        text-transform: uppercase;
       }
     }
   }
@@ -4134,6 +4147,29 @@ select:not([disabled]) {
       margin-bottom: 15px;
       .fieldset {
         margin: 20px 0 0 0;
+      }
+      .wrp-parcl{
+        width: 100%;
+        font-size: 12px;
+        font-family: 'MullerRegular';
+        color: #3c3c3c;
+        text-align: left;
+        text-align: center;
+        display: inline-block;
+        .ttl-parc{
+          width:50%;
+          display: block;
+          float: left;
+          text-align: left;
+        }
+        .opc-parc{
+          display: block;
+          float: right;
+          width:50%;
+          text-align: right;
+          font-family: 'MullerMedium';
+          font-size: 12px;
+        }
       }
     }
     .shipping {

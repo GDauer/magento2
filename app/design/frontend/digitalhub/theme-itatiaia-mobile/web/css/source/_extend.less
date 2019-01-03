@@ -43,6 +43,10 @@ body {
   }
 }
 
+.clear{
+  clear: both;
+}
+
 .smile-es-range-slider{
   .ui-slider-handle{
     background: #1aa3ff;
@@ -1884,6 +1888,7 @@ select:not([disabled]) {
       }
     }
     .parc-link{
+      margin-bottom: 11px;
       a{
         color: #28a6fb;
         font-family: 'MullerMedium';
@@ -2119,11 +2124,15 @@ select:not([disabled]) {
                   font-weight: 600;
                   display: block;
                   top: unset;
+                  text-align: center;
                   left: unset;
                 }
               }
             }
           }
+        }
+        .min-dtls{
+          margin-top: 14px;
         }
       }
     }
@@ -2133,10 +2142,10 @@ select:not([disabled]) {
         margin: 0 20px 0px 0px;
         a{
           border: 0;
-          height: 37px;
+          height: 30px;
           background: #fff;
           border-bottom: 2px solid #f2f2f2;
-          font-size: 18px;
+          font-size: 14px;
           font-weight: 700;
           text-transform: uppercase;
           color: #a1aeb7;
@@ -2452,11 +2461,11 @@ select:not([disabled]) {
     border-top: 2px solid #f2f5f7;
     padding: 20px 15px 0;
     .wrp-title {
-      margin-bottom: 30px;
+      margin-bottom: 16px;
       .title {
         color: #242424;
         font-family: 'MullerBlack';
-        font-size: 14px;
+        font-size: 18px;
         font-weight: 900;
         text-transform: uppercase;
       }
@@ -2573,6 +2582,39 @@ select:not([disabled]) {
       .item.content {
         padding: 0;
         border: 0;
+      }
+    }
+    .product-info-info{
+      .additional-attributes{
+        caption.table-caption{
+          display: block;
+          width: auto;
+          height: auto;
+          margin: 0 auto 16px;
+          position: relative;
+          text-align: left;
+          color: #242424;
+          font-family: 'MullerBlack';
+          font-size: 18px;
+          font-weight: 900;
+          text-transform: uppercase;
+
+        }
+        tr{
+          display: block;
+          width: 100%;
+          margin-bottom: 0;
+          padding-left: 0px;
+          font-size: 14px;
+          td, th{
+            padding: 5px 6px !important;
+          }
+          &:nth-child(even){
+            th, td{
+              background: #fafafa;
+            }
+          }
+        }
       }
     }
   }
@@ -3321,7 +3363,7 @@ select:not([disabled]) {
   }
   section{
     position: relative;
-    height: 380px ;
+    min-height: 100px ;
     width: 100%;
     iframe {
       position: absolute;

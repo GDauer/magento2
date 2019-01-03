@@ -66,6 +66,26 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
                         </div>
 
                     </div>
+                    <div class="clear"></div>
+                    <div class="min-dtls">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#tab-desc-<?php echo $_item->getId() ?>">Descrição</a>
+                            </li>
+                            <li>
+                                <a href="#tab-attr-<?php echo $_item->getId() ?>">Especificações técnicas</a>
+                            </li>
+                        </ul>
+                        <section id="tab-desc-<?php echo $_item->getId() ?>" class="tab-content active">
+                            <?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($_childProduct, $_childProduct->getDescription(), 'description') ?>
+                        </section>
+                        <section id="tab-attr-<?php echo $_item->getId() ?>" class="tab-content hide">
+                            <?php echo $this->getLayout()->createBlock('Magento\Catalog\Block\Product\View\Attributes')
+                                    ->setProduct($_childProduct)
+                                    ->setTemplate('Magento_Catalog::product/view/attributes.phtml')
+                                    ->toHtml() ?>
+                        </section>
+                    </div>
 
                 </div>
             <?php endif; ?>
