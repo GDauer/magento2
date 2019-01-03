@@ -848,12 +848,12 @@
             "source": {
                 "type": "git",
                 "url": "git@gitlab.com:digitalhub/m2/modules/customer-attributes.git",
-                "reference": "33d287618a662e45c4667dd029eee8076d7d4f4a"
+                "reference": "6d66744981507d61609bb1c241cac7d816432396"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/digitalhub%2Fm2%2Fmodules%2Fcustomer-attributes/repository/archive.zip?sha=33d287618a662e45c4667dd029eee8076d7d4f4a",
-                "reference": "33d287618a662e45c4667dd029eee8076d7d4f4a",
+                "url": "https://gitlab.com/api/v4/projects/digitalhub%2Fm2%2Fmodules%2Fcustomer-attributes/repository/archive.zip?sha=6d66744981507d61609bb1c241cac7d816432396",
+                "reference": "6d66744981507d61609bb1c241cac7d816432396",
                 "shasum": ""
             },
             "type": "magento2-module",
@@ -869,7 +869,7 @@
                 "proprietary"
             ],
             "description": "Módulo para inserção de atributos de clientes no padrão brasileiro (Tipo de cliente, CPF/CNPJ, RG/IE, Nome Fantasia, Razão Social)",
-            "time": "2018-12-20T18:45:38+00:00"
+            "time": "2019-01-03T17:26:32+00:00"
         },
         {
             "name": "digitalhub/estimate-shipping",
@@ -877,12 +877,12 @@
             "source": {
                 "type": "git",
                 "url": "git@gitlab.com:digitalhub/m2/modules/estimate-shipping.git",
-                "reference": "629cf90cdf15abbe4a63cf8562eaf15448ca1f69"
+                "reference": "4edd24c99c61ea404865bfd70448aa884cc8cea4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/digitalhub%2Fm2%2Fmodules%2Festimate-shipping/repository/archive.zip?sha=629cf90cdf15abbe4a63cf8562eaf15448ca1f69",
-                "reference": "629cf90cdf15abbe4a63cf8562eaf15448ca1f69",
+                "url": "https://gitlab.com/api/v4/projects/digitalhub%2Fm2%2Fmodules%2Festimate-shipping/repository/archive.zip?sha=4edd24c99c61ea404865bfd70448aa884cc8cea4",
+                "reference": "4edd24c99c61ea404865bfd70448aa884cc8cea4",
                 "shasum": ""
             },
             "require": {
@@ -903,7 +903,7 @@
                 }
             },
             "description": "Módulo para consulta do valor do frete diretamente na página do produto",
-            "time": "2019-01-01T20:02:39+00:00"
+            "time": "2019-01-03T15:41:46+00:00"
         },
         {
             "name": "digitalhub/language-pt_br",
