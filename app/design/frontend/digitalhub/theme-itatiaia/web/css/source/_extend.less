@@ -2991,12 +2991,21 @@ select:not([disabled]) {
     }
     .price-box {
       margin-bottom: 0;
+      display: inline-block;
+      margin-top: 18px;
+      position: relative;
       .price-label {
         display: none;
       }
       .old-price {
         display: block;
         float: left;
+        position: absolute;
+        top: -29px;
+        &.old-grouped{
+          position: relative;
+          top: 0;
+        }
         .price {
           color: #a1aeb7;
           font-size: 22px;
@@ -4857,7 +4866,7 @@ body.checkout-index-index {
     button.action.primary.checkout {
       background: #1aa3ff;
       border: 0;
-      font-family: 'MullerRegular';
+      font-family: 'MullerBlack';
       color:#fff;
     }
   }

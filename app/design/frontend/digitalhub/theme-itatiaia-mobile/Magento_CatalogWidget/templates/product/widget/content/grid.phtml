@@ -49,6 +49,9 @@ $description = false;
               <?php if(date('Y-m-d H:i:s') >= $_item->getData('news_from_date') && date('Y-m-d H:i:s') <= $_item->getData('news_to_date')) :?>
                 <span class="tag-new">Novo</span>
               <?php endif ;?>
+              <?php if($_item->getFinalPrice() < $_item->getPrice()) : ?>
+                <span class="tag-desc">-<?= (int)(100 - ($_item->getFinalPrice() * 100 / $_item->getPrice()))?>%</span>
+              <?php endif; ?>
 
             <a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>" class="product-item-photo">
               <?= $block->getImage($_item, $image)->toHtml() ?>
@@ -96,7 +99,7 @@ $description = false;
                       <?php endif; ?>
                     </div>
                   <?php endif; ?>
-                  
+
               </div>
             <?php endif; ?>
           </div>

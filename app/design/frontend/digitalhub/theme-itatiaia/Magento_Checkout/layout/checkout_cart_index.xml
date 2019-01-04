@@ -58,5 +58,6 @@
           </argument>
       </action>
     </referenceBlock>
+    <referenceBlock name="checkout-methods-items" remove="true"/>
   </body>
 </page>

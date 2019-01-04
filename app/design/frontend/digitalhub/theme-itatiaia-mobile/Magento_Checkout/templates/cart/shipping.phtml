@@ -9,14 +9,29 @@
 ?>
 <?php /** @var $block \Magento\Checkout\Block\Cart\Shipping */ ?>
 
-<div class="wrp-mdl-frete">
-  <div class="text">
-    <p>Falta <span>R$101,99</span> para ganha <span class="stl">Frete Grátis</span></p>
-  </div>
-  <div class="calc-line">
-    <div class="calc"></div>
-  </div>
+<script type="text/javascript">
+    window.freeshippingalertConfig = {
+        queryUrl: '<?php echo $this->getUrl('freeshippingalert/config') ?>'
+    }
+</script>
+
+<div id="itatiaia-freeshippingalert" data-bind="scope: 'freeshippingalert'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
 </div>
+<script type="text/x-magento-init">
+{
+    "#itatiaia-freeshippingalert": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "freeshippingalert": {
+                    "component": "Itatiaia_FreeShippingAlert/js/view/component",
+                    "template" : "Itatiaia_FreeShippingAlert/component"
+                }
+            }
+        }
+    }
+}
+</script>
 
 <div id="block-shipping" class="block shipping" data-mage-init='{"collapsible":{"openedState": "active", "saveState": false}}'>
     <div class="title" data-role="title">
