@@ -56,7 +56,7 @@ body {
 a.action.primary {
   display: inline-block;
   line-height: 44px;
-  font-family: 'MullerRegular', sans-serif;
+  font-family: 'MullerBlack', sans-serif;
 }
 a, a:hover, .alink, a:visited, .alink:visited {
   color: #e5102a;
@@ -3273,6 +3273,7 @@ body.checkout-index-index {
               color: #fff;
               font-weight: 500;
               font-size: 15px;
+              width: 100%;
               margin: 4px 0 0 0;
             }
             &:before {
@@ -3311,10 +3312,13 @@ body.checkout-index-index {
           font-size: 14px;
           font-family: 'MullerBlack';
           text-transform: uppercase;
+          color: #fff;
+          border:0;
           &.action.back{
             background-color: #fafafa;
             float: none;
             text-decoration: none;
+            color: #000;
           }
         }
         .opc-estimated-wrapper{
@@ -3328,6 +3332,28 @@ body.checkout-index-index {
               &:before{
                 color:#fff;
               }
+            }
+          }
+        }
+        .giftcardaccount{
+          border-radius: 3px;
+          border: 1px solid #ccc;
+          margin: 40px 0 0 0;
+          padding: 0 0 10px;
+          .payment-option-title{
+            border-top: 0;
+            padding-bottom: 0;
+            margin-bottom: 0;
+            .action-toggle:hover:after{
+              float: right;
+            }
+            span#block-giftcard-heading{
+              color: #000;
+              font-size: 14px;
+              font-weight: 600;
+              display: block;
+              width: 100%;
+              position: relative;
             }
           }
         }
@@ -4033,6 +4059,8 @@ body.checkout-index-index {
          width: 90%;
          min-height: 492px;
          margin: 0 auto;
+         display: block;
+         float: none;
        }
      }
 
