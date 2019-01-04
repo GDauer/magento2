@@ -935,7 +935,8 @@ a, a:hover, .alink, a:visited, .alink:visited {
           display: block;
           .actions-primary {
             display: block;
-            margin: 0 auto;
+            margin: 7px auto 0;
+            text-align: center;
             .action.primary {
               font-family: 'MullerBlack';
               border-radius: 2px;
@@ -946,6 +947,9 @@ a, a:hover, .alink, a:visited, .alink:visited {
               font-weight: 600;
               font-size: 14px;
               background: #1aa3ff;
+              display: inline-block;
+              position: relative;
+              left: unset;
               span {
                 display: inline-block;
                 line-height: 38px;
@@ -1560,6 +1564,10 @@ a, a:hover, .alink, a:visited, .alink:visited {
       margin: 0;
     }
   }
+  .category-description{
+    width: 95%;
+    margin: 0 auto;
+  }
 }
 .products-grid{
   .product-item{
@@ -1667,6 +1675,11 @@ a, a:hover, .alink, a:visited, .alink:visited {
             left: 0
           }
         }
+      }
+    }
+    &.products-crosssell{
+      .product-item{
+        height: auto;
       }
     }
   }
@@ -2196,10 +2209,14 @@ select:not([disabled]) {
       }
     }
     .price-box {
+      position: relative;
       margin-bottom: 0;
+      margin-top: 20px;
       .wrp-oldprice{
         width: 100%;
         display: inline-block;
+        position: absolute;
+        top: -10px;
         .old-price{
           float: left;
         }
@@ -2217,6 +2234,11 @@ select:not([disabled]) {
       }
       .old-price {
         display: inline-block;
+        &.sly-old-price{
+          position: absolute;
+          top: -8px;
+          left: 0px;
+        }
         .price {
           color: #7d7d7d;
           font-size: 1.5rem;
