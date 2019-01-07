@@ -327,6 +327,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           font-weight: 600;
           position: relative;
           overflow: visible;
+          float: right;
           &:before {
             content: '';
             width: 0;
@@ -2254,7 +2255,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
               display: block;
             }
             img {
-              height: 100%;
+              height: auto;
               &:hover {
                 opacity: 0.9;
               }
@@ -3129,6 +3130,7 @@ select:not([disabled]) {
             border-radius: 2px;
             width: 104px;
             display: inline-block;
+            text-align: center;
             .input-text.qty {
               border: 0;
               font-size: 18px;
@@ -5027,6 +5029,12 @@ form.form-create-account .field-ruc { display: none }
   }
 }
 
+.checkout-onepage-success{
+  a.order-number{
+    color: #1aa3ff;
+  }
+}
+
 /*-- Media query for iPad --*/
 @media only screen and (max-device-width: 1200px) and (orientation: portrait) {
   body {
@@ -5055,6 +5063,7 @@ form.form-create-account .field-ruc { display: none }
     }
   }
 }
+
 
 /* Media Quereis */
 @media screen {
@@ -5237,12 +5246,91 @@ form.form-create-account .field-ruc { display: none }
          }
        }
      }
+     .checkout-cart-index{
+       .cart-summary{
+         .block.shipping, .block.discount, .cart-totals{
+           .data.table.totals tr{
+             display: inline-table;
+             width: 100%;
+           }
+         }
+       }
+     }
   }
   @media (max-width: 878px) {
     .page-wrapper{
       .page-header, .page-header.down{
         .header-content-right{
           width: 70%;
+        }
+        .wrp-header-content{
+            position: relative;
+        }
+      }
+    }
+    .catalogsearch-result-index, .products-grid{
+      .product-item{
+        .product-item-info .product-item-details{
+          .product-item-name{
+            height: 55px;
+          }
+        }
+      }
+    }
+    .catalog-product-view{
+      .product.media .fotorama{
+        .fotorama__nav-wrap{
+          margin-left: 0;
+        }
+      }
+      .product.info.detailed{
+        .product.data.items{
+          .item.title{
+            .switch{
+              font-size: 15px;
+            }
+          }
+        }
+      }
+      .product-info-main{
+        .box-tocart{
+          .fieldset{
+            .field.qty{
+              .control{
+                a{
+                  font-size: 14px;
+                }
+              }
+            }
+          }
+          .btn-rev{
+            margin-left: 0;
+            height: auto;
+            display: inline-block;
+            margin-top: 17px;
+          }
+        }
+      }
+      #tab-grouped-items{
+        section{
+          .item-out{
+            .item-in{
+              .wrp-infos{
+                margin: 16px 0;
+              }
+              .wrp-dimensoes{
+                width: auto;
+                margin: 20px 0px 0;
+              }
+            }
+          }
+        }
+        .nav-tabs{
+          li{
+            a{
+              font-size: 14px;
+            }
+          }
         }
       }
     }
