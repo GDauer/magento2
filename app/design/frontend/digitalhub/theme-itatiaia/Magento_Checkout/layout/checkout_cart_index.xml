@@ -12,8 +12,8 @@
   </head>-->
   <body>
     <move element="checkout.cart.coupon" destination="checkout.cart.totals.container" after="checkout.cart.totals" />
-    <!--<referenceBlock name="checkout.cart.shipping">
-      <!<arguments>
+    <referenceBlock name="checkout.cart.shipping">
+      <arguments>
         <argument name="jsLayout" xsi:type="array">
           <item name="components" xsi:type="array">
             <item name="block-summary" xsi:type="array">
@@ -22,14 +22,11 @@
                   <item name="children" xsi:type="array">
                     <item name="address-fieldsets" xsi:type="array">
                       <item name="children" xsi:type="array">
-                        <item name="country_id" xsi:type="array">
+                        <!-- <item name="country_id" xsi:type="array">
                           <item name="visible" xsi:type="boolean">false</item>
-                        </item>
+                        </item> -->
                         <item name="region_id" xsi:type="array">
                           <item name="visible" xsi:type="boolean">false</item>
-                          <item name="config" xsi:type="array">
-                            <item name="componentDisabled" xsi:type="boolean">true</item>
-                          </item>
                         </item>
                       </item>
                     </item>
@@ -40,7 +37,7 @@
           </item>
         </argument>
       </arguments>
-    </referenceBlock>-->
+    </referenceBlock>
     <referenceBlock name="breadcrumbs">
       <action method="addCrumb">
           <argument name="crumbName" xsi:type="string">Home</argument>

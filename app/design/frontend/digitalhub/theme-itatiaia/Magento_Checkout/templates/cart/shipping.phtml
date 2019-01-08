@@ -62,3 +62,19 @@
         </script>
     </div>
 </div>
+
+<script>
+    require([
+        'jquery',
+        'DigitalHub_CustomerAttributes/js/jquery.mask.min'
+    ], function($, mask){
+        var searchElPostcode = setInterval(function(){
+            if($('#shipping-zip-form input[name=postcode]').length){
+                clearInterval(searchElPostcode);
+                $('#shipping-zip-form input[name=postcode]').mask('99999-999', {
+                    placeholder: '_____-___'
+                })
+            }
+        }, 100);
+    })
+</script>
