@@ -1,6 +1,11 @@
 <?php $product = $block->getProduct(); ?>
 <?php $_associatedProducts = $block->getAssociatedProducts(); ?>
 <?php $_hasAssociatedProducts = count($_associatedProducts) > 0; ?>
+
+<?php if($product->getTypeId()== "grouped"): ?>
+    <a class="btn-rev" href="#" onclick="scrollToGroupedItems(); return false;">Revisar itens do conjunto</a>
+<?php endif; ?>
+
 <div id="grouped-details">
     <div id="tabs-list">
         <ul class="nav nav-tabs">

@@ -179,7 +179,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
   }
   .minicart-wrapper {
     margin-top: 13px;
-    margin-right: 5px;
+    margin-right: 10pxpx;
     .action.showcart {
       &:before, &.active:hover:before {
         color: #fff;
@@ -188,6 +188,23 @@ a, a:hover, .alink, a:visited, .alink:visited {
       .counter.qty {
         background: #1aa3ff;
         font-weight: 600;
+        height: 14px;
+        line-height: 14px;
+        border-radius: 100px;
+        display: inline-block;
+        margin: 3px 0 0;
+        min-width: 14px;
+        overflow: hidden;
+        padding: 0;
+        text-align: center;
+        white-space: normal;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        font-size: 12px;
+        &.empty {
+            display: none
+        }
       }
     }
     .block-minicart {
@@ -2153,7 +2170,7 @@ select:not([disabled]) {
           height: 30px;
           background: #fff;
           border-bottom: 2px solid #f2f2f2;
-          font-size: 14px;
+          font-size: 12px;
           font-weight: 700;
           text-transform: uppercase;
           color: #a1aeb7;
@@ -2468,6 +2485,20 @@ select:not([disabled]) {
           display: inline-block;
         }
       }
+    }
+    .btn-rev{
+       padding: 9px 15px;
+       border: 1px solid #242424;
+       border-radius: 2px;
+       background: #fff;
+       font-size: 13px;
+       font-family: 'Mullerbold';
+       color: #242424;
+       text-transform: uppercase;
+       text-align: center;
+       margin: 15px 0 15px 0;
+       text-decoration: none;
+       display: block;
     }
     #simularFrete {
       display: none;
@@ -2878,6 +2909,17 @@ select:not([disabled]) {
       .table {
         th, td {
           padding: 8px 0;
+        }
+      }
+      .grand.totals{
+        th.mark{
+          font-family: 'MullerBold';
+          font-size: 16px;
+        }
+        span.price{
+          font-family: 'MullerMedium';
+          font-size: 18px;
+          color: #3eaffc;
         }
       }
     }
@@ -3328,6 +3370,7 @@ body.checkout-index-index {
               border:0;
               .counter.qty{
                 background: #1aa3ff;
+                color: #fff;
               }
               &:before{
                 color:#fff;

@@ -62,3 +62,16 @@
         </script>
     </div>
 </div>
+
+<script>
+    require(['jquery'], function($){
+        var intervalElSearch = setInterval(function(){
+            if($('.checkout-methods-items').length && $('.cart-totals .table-wrapper').length){
+                clearInterval(intervalElSearch);
+                var checkoutMethods = $('.checkout-methods-items')
+                $('.cart-totals .table-wrapper').after(checkoutMethods)
+                checkoutMethods.css({display: 'block'})
+            }
+        })
+    })
+</script>
