@@ -12,6 +12,7 @@
   </head>-->
   <body>
     <move element="checkout.cart.coupon" destination="checkout.cart.totals.container" after="checkout.cart.totals" />
+    <referenceBlock name="giftregistry.cart.link" remove="true" />
     <referenceBlock name="checkout.cart.shipping">
       <arguments>
         <argument name="jsLayout" xsi:type="array">

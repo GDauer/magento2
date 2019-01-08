@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright © Magento, Inc. All rights reserved.
+* See COPYING.txt for license details.
+*/
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <update handle="checkout_cart_item_renderers"/>
+  <!--<head>
+    <link src="js/cart-page-scripts.js"/>
+  </head>-->
+  <body>
+    <move element="checkout.cart.coupon" destination="checkout.cart.totals.container" after="checkout.cart.totals" />
+    <referenceBlock name="giftregistry.cart.link" remove="true" />
+    <referenceBlock name="checkout.cart.shipping">
+      <arguments>
+        <argument name="jsLayout" xsi:type="array">
+          <item name="components" xsi:type="array">
+            <item name="block-summary" xsi:type="array">
+              <item name="children" xsi:type="array">
+                <item name="block-shipping" xsi:type="array">
+                  <item name="children" xsi:type="array">
+                    <item name="address-fieldsets" xsi:type="array">
+                      <item name="children" xsi:type="array">
+                        <!-- <item name="country_id" xsi:type="array">
+                          <item name="visible" xsi:type="boolean">false</item>
+                        </item> -->
+                        <item name="region_id" xsi:type="array">
+                          <item name="visible" xsi:type="boolean">false</item>
+                        </item>
+                      </item>
+                    </item>
+                  </item>
+                </item>
+              </item>
+            </item>
+          </item>
+        </argument>
+      </arguments>
+    </referenceBlock>
+    <referenceBlock name="breadcrumbs">
+      <action method="addCrumb">
+          <argument name="crumbName" xsi:type="string">Home</argument>
+          <argument name="crumbInfo" xsi:type="array">
+              <item name="title" xsi:type="string">Home</item>
+              <item name="label" xsi:type="string">Home</item>
+              <item name="link" xsi:type="string">/</item>
+          </argument>
+      </action>
+      <action method="addCrumb">
+          <argument name="crumbName" xsi:type="string">Shopping Cart</argument>
+          <argument name="crumbInfo" xsi:type="array">
+              <item name="title" xsi:type="string">Shopping Cart</item>
+              <item name="label" xsi:type="string">Shopping Cart</item>
+          </argument>
+      </action>
+    </referenceBlock>
+  </body>
+</page>
