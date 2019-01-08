@@ -220,8 +220,10 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
         ?>
         var associatedConfig = <?php echo json_encode($associatedConfig) ?>;
         var priceFormat ={"pattern":"R$ %s","precision":2,"requiredPrecision":2,"decimalSymbol":",","groupSymbol":".","groupLength":3,"integerRequired":false};
-        function scrollToGroupedItems(){
-            window.scrollTo(0, jQuery('a[name=grouped-items]').offset().top - 150)
+        window.scrollToGroupedItems = function(){
+            // window.scrollTo(0, jQuery('a[name=grouped-items]').offset().top - 150);
+            jQuery("html, body").stop().animate({scrollTop: jQuery('a[name=grouped-items]').offset().top - 150}, 500, 'swing')
+            return false;
         }
         require([
             'jquery',

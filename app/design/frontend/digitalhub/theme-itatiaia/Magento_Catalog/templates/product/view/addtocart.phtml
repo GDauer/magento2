@@ -41,7 +41,7 @@
             <?= $block->getChildHtml('', true) ?>
         </div>
         <?php if($_product->getTypeId()== "grouped"): ?>
-            <a class="btn-rev" href="#tab-label-grouped_items" onclick="scrollToGroupedItems()">Revisar itens do conjunto</a>
+            <a class="btn-rev" href="#" onclick="scrollToGroupedItems(); return false;">Revisar itens do conjunto</a>
         <?php endif; ?>
 
         <?php

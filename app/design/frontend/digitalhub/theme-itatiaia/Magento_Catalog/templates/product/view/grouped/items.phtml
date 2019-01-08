@@ -62,19 +62,19 @@
                         </div>
                         <div class="wrp-dimensoes">
                           <ul>
-                            <?php if ($_childProduct->getIntelipostProductHeight()): ?>
+                            <?php if ($_childProduct->getAlturaMontado()): ?>
                               <li class="product-height">
-                                Altura <?php echo $_childProduct->getIntelipostProductHeight(); ?> cm
+                                Altura <?php echo $_childProduct->getAlturaMontado(); ?> cm
                               </li>
                             <?php endif; ?>
-                            <?php if ($_childProduct->getIntelipostProductWidth()): ?>
+                            <?php if ($_childProduct->getLarguraMontado()): ?>
                               <li class="product-width">
-                                Largura <?php echo $_childProduct->getIntelipostProductWidth(); ?> cm
+                                Largura <?php echo $_childProduct->getLarguraMontado(); ?> cm
                               </li>
                             <?php endif; ?>
-                            <?php if ($_childProduct->getIntelipostProductLength()): ?>
+                            <?php if ($_childProduct->getComprimentoMontado()): ?>
                               <li class="product-lenght">
-                                Profundidade <?php echo $_childProduct->getIntelipostProductLength(); ?>cm
+                                Profundidade <?php echo $_childProduct->getComprimentoMontado(); ?>cm
                               </li>
                             <?php endif; ?>
                             <?php if ($_childProduct->getWeight()): ?>
