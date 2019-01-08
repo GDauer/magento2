@@ -26,7 +26,7 @@ define([
 
             $.when(validate()).then(function(result){
                 if(result){
-                    self.active(result.active)
+                    self.active(parseInt(result.active))
 
                     if(result.trigger_subtotal){
                         self.updateTotal(result.trigger_subtotal,result.cart_subtotal)
