@@ -19,6 +19,7 @@ return [
         'Magento_Cms' => 1,
         'Magento_Catalog' => 1,
         'Magento_CatalogInventory' => 1,
+        'Itatiaia_CustomElasticSuite' => 1,
         'Magento_Ui' => 1,
         'Itatiaia_FreeShippingAlert' => 1,
         'Magento_Payment' => 1,
