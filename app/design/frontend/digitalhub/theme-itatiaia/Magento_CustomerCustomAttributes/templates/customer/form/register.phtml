@@ -221,3 +221,19 @@
         }
     }
 </script>
+
+<script>
+    require([
+        'jquery',
+        'DigitalHub_CustomerAttributes/js/jquery.mask.min'
+    ], function($, mask){
+        var searchElPostcode = setInterval(function(){
+            if($('input[name=taxvat]').length){
+                clearInterval(searchElPostcode);
+                $('input[name=taxvat]').mask('999.999.999-99', {
+                    placeholder: '___.___.___-__'
+                })
+            }
+        }, 100);
+    })
+</script>
