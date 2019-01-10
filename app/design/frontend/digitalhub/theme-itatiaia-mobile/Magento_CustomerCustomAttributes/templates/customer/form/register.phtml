@@ -235,5 +235,10 @@
                 })
             }
         }, 100);
+
+        if(document.location.href.indexOf('redirectCheckout') != -1){
+            $('input[name=success_url]').val(BASE_URL + 'checkout');
+            $('input[name=error_url]').val(document.location.href);
+        }
     })
 </script>
