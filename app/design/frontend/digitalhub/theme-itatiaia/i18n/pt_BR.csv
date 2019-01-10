@@ -115,3 +115,5 @@
 "You saved the address.","Você salvou o endereço."
 "%s - days to deliver: %s","%s - dias para entrega: %s"
 "%s - deliver same day","%s - entrega no mesmo dia"
+"It's a default billing address.","Este é seu endereço de cobrança padrão"
+"It's a default shipping address.","Este é seu endereço de entrega padrão"
