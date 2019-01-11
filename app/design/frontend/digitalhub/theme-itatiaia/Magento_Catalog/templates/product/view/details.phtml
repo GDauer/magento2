@@ -11,6 +11,7 @@
 $product = $block->getProduct();
 $priceHelper = $this->helper('Magento\Framework\Pricing\Helper\Data');
 $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+$groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Data');
 ?>
 
 <?php $buttonTitle = __('Comprar'); ?>
@@ -213,8 +214,8 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
                 'name' => $item->getName(),
                 'qty' => (int)$item->getQty(),
                 'id' => $item->getId(),
-                'price' => $childProduct->getPrice(),
-                'final_price' => $childProduct->getFinalPrice()
+                'price' => $groupedCatalogRuleHelper->getRegularPrice($childProduct, $product),
+                'final_price' => $groupedCatalogRuleHelper->getFinalPrice($childProduct, $product)
             ];
         }
         ?>
@@ -291,6 +292,7 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
                 // old-price-grouped
                 // final-price-grouped
                 // discount-grouped
+
                 var oldPrice = 0
                 var finalPrice = 0
                 var discount = 0
@@ -307,7 +309,7 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
                 $(associatedConfig).each(function(i, item){
                     if(checkedIds.indexOf(item.id) !== -1){
                         var qty = $('.super-group-qty[rel="'+item.id+'"]').val()
-                        var li = '<li id="selected-grouped-item-'+item.id+'">'+qty+'x '+item.name+'</li>';
+                        var li = '<li id="selected-grouped-item-'+item.id+'">'+qty+'x '+item.name+'</li>'
                         $('#selected-grouped').append(li);
 
                         oldPrice = oldPrice + (parseFloat(item.price) * qty)
@@ -315,7 +317,7 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
                     }
                 })
 
-                discount = (parseInt((oldPrice * 100) / finalPrice) - 100)
+                discount = Math.abs(parseInt((finalPrice * 100) / oldPrice) - 100)
 
                 // console.log(oldPrice)
                 // console.log(finalPrice)
