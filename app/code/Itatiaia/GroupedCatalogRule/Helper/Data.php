@@ -12,27 +12,31 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         // comparar sobreposição de regras (!!)
 
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-        $logger = $objectManager->get('\Psr\Log\LoggerInterface');
-        $customerSession = $objectManager->get('\Magento\Customer\Model\SessionFactory')->create();
+        $config = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Framework\App\Config\ScopeConfigInterface');
 
-        $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
-        $connection = $resource->getConnection();
+        if($config->getValue('sales/itatiaia_groupedcatalogrule/active')){
+            $logger = $objectManager->get('\Psr\Log\LoggerInterface');
+            $customerSession = $objectManager->get('\Magento\Customer\Model\SessionFactory')->create();
 
-        $catalogrule_table = $resource->getTableName('catalogrule');
-        $catalogrule_product_table = $resource->getTableName('catalogrule_product');
+            $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+            $connection = $resource->getConnection();
 
-        $customer_group_id = $customerSession->getCustomerGroupId();
+            $catalogrule_table = $resource->getTableName('catalogrule');
+            $catalogrule_product_table = $resource->getTableName('catalogrule_product');
 
-        //Select Data from table
-        $sql = "select rule_product.*, rule.is_active as is_active from " . $catalogrule_product_table . " as rule_product, ".$catalogrule_table." as rule where rule.rule_id = rule_product.rule_id and rule.is_active = 1 and customer_group_id = ".$customer_group_id." and product_id = " . $product->getId() . " and from_time <= " . time() . " and (to_time = 0 OR to_time >= " . time() . ") group by rule_id order by sort_order ASC";
-        // $logger->info('SQL Rules', [$sql]);
+            $customer_group_id = $customerSession->getCustomerGroupId();
 
-        $result = $connection->fetchAll($sql); // gives associated array, table fields as key in array.
-        // $logger->info('SQL Rules Result', $result);
-        if(count($result)){
-            return $result;
+            //Select Data from table
+            $sql = "select rule_product.*, rule.is_active as is_active from " . $catalogrule_product_table . " as rule_product, ".$catalogrule_table." as rule where rule.rule_id = rule_product.rule_id and rule.is_active = 1 and customer_group_id = ".$customer_group_id." and product_id = " . $product->getId() . " and from_time <= " . time() . " and (to_time = 0 OR to_time >= " . time() . ") group by rule_id order by sort_order ASC";
+            // $logger->info('SQL Rules', [$sql]);
+
+            $result = $connection->fetchAll($sql); // gives associated array, table fields as key in array.
+            // $logger->info('SQL Rules Result', $result);
+            if(count($result)){
+                return $result;
+            }
+            return null;
         }
-        return null;
     }
 
     //
