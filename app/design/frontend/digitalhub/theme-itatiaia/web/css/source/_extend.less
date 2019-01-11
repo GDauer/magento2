@@ -942,6 +942,54 @@ a, a:hover, .alink, a:visited, .alink:visited {
     height: auto;
     padding: 0;
   }
+  .wrp-dimensoes {
+    margin: 25px 0;
+    ul {
+      margin: 0 0 20px 0;
+      padding: 0;
+      li {
+        list-style: none;
+        line-height: 20px;
+        margin-bottom: 10px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+        &:before {
+          content: '';
+          float: left;
+          width: 20px;
+          display: inline-block;
+          background: url('@{baseDir}images/icon-dimensions.png') no-repeat;
+          margin-right: 20px;
+        }
+        &.product-height {
+          &:before {
+            background-position: 0 0;
+            height: 19px;
+          }
+        }
+        &.product-width {
+          &:before {
+            background-position: 0 -42px;
+            height: 9px;
+            margin-top: 5px;
+          }
+        }
+        &.product-lenght {
+          &:before {
+            background-position: 0 -74px;
+            height: 19px;
+          }
+        }
+        &.product-weight {
+          &:before {
+            background-position: 0 -116px;
+            height: 19px;
+          }
+        }
+      }
+    }
+  }
 }
 
 #tab-grouped-items{

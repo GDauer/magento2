@@ -18,7 +18,25 @@
             <?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getShortDescription(), 'short_description') ?>
         </section>
         <section id="tab2" class="tab-content hide">
-            <?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getDimensoes(), 'dimensoes') ?>
+            <div class="wrp-dimensoes">
+              <ul>
+                <?php if ($product->getAlturaMontado()): ?>
+                  <li class="product-height">
+                    Altura <?php echo $product->getAlturaMontado() ?>cm
+                  </li>
+                <?php endif; ?>
+                <?php if ($product->getLarguraMontado()): ?>
+                  <li class="product-width">
+                    Largura <?php echo $product->getLarguraMontado() ?>cm
+                  </li>
+                <?php endif; ?>
+                <?php if ($product->getComprimentoMontado()): ?>
+                  <li class="product-lenght">
+                    Profundidade <?php echo $product->getComprimentoMontado() ?>cm
+                  </li>
+                <?php endif; ?>
+              </ul>
+            </div>
         </section>
     </div>
 </div>
