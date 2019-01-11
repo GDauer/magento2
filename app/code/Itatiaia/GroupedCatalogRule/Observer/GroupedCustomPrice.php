@@ -13,24 +13,35 @@ class GroupedCustomPrice implements \Magento\Framework\Event\ObserverInterface
         \Magento\Framework\Event\Observer $observer
     ) {
         $logger = \Magento\Framework\App\ObjectManager::getInstance()->get('\Psr\Log\LoggerInterface');
-        $logger->info('GROUPED SET CUSTOM PRICE');
-        $logger->info('PARAMS', [$observer->getProduct()->getTypeId()]);
 
-        // $quoteItem = $observer->getQuoteItem();
-        // if($quoteItem->getParentItemId()){
-        //     // $product = $quoteItem->getProduct();
-        //     // if($quoteItem->getParentItem()->getProduct())
-        //     $logger->info('QUOTE ITEM PARENT DATA', $quoteItem->getParentItem()->getProduct()->getData());
-        // }
+        $quoteItem = $observer->getQuoteItem();
+        $isGroupedItem = false;
+        $groupedProductId = false;
+        foreach($quoteItem->getOptions() as $option){
+            if($option['code'] == 'product_type' && $option['value'] == 'grouped'){
+                $groupedProductId = $option['product_id'];
+                $isGroupedItem = true;
+                break;
+            }
+        }
 
-        // $logger->info('QUOTE ITEM DATA', [$quoteItem->getProductType()]);
-        // $logger->info('QUOTE ITEM DATA', [$quoteItem->getProduct()->getData()]);
-        // $logger->info('QUOTE ITEM DATA', [get_class_methods($quoteItem)]);
+        if($isGroupedItem){
+            $logger->info('GROUPED ID', [$groupedProductId]);
+            $productFactory = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\ProductFactory');
+            $groupedCatalogRuleHelper = \Magento\Framework\App\ObjectManager::getInstance()->get('\Itatiaia\GroupedCatalogRule\Helper\Data');
 
-        // $quote = $quoteItem->getQuote();
-        // $logger->info('QUOTE DATA', [$quoteItem->getProductType()]);
+            $parentProduct = $productFactory->create()->load($groupedProductId);
+            $childProduct = $productFactory->create()->load($quoteItem->getProduct()->getId());
 
-        // $quoteItem->setCustomPrice(100);
-        // $quoteItem->setOriginalCustomPrice(100);
+            $logger->info('GROUPED ID', [
+                'grouped' => $parentProduct->getId(),
+                'item' => $childProduct->getId()
+            ]);
+
+            $newPrice = $groupedCatalogRuleHelper->getFinalPrice($childProduct, $parentProduct);
+            $quoteItem->setCustomPrice($newPrice);
+            $quoteItem->setOriginalCustomPrice($newPrice);
+        }
+
     }
 }
