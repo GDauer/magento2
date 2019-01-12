@@ -2,6 +2,7 @@
 $groupedProduct = $block->getParentBlock()->getProduct();
 $priceHelper = $this->helper('Magento\Framework\Pricing\Helper\Data');
 $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+$groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Data');
 ?>
 <a name="grouped-items"></a>
 <div id="tab-grouped-items">
@@ -39,13 +40,13 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
                                     <div class="price-box">
                                         <div class="wrp-oldprice">
 
-                                            <?php if($_childProduct->getFinalPrice() < $_childProduct->getPrice()): ?>
+                                            <?php if($groupedCatalogRuleHelper->getFinalPrice($_childProduct, $groupedProduct) < $groupedCatalogRuleHelper->getRegularPrice($_childProduct, $groupedProduct)): ?>
                                                 <span class="old-price">
                                                     <span class="price">
-                                                            <?= $priceHelper->currency($_childProduct->getPrice(), true, false); ?>
+                                                            <?= $priceHelper->currency($groupedCatalogRuleHelper->getRegularPrice($_childProduct, $groupedProduct), true, false); ?>
                                                     </span>
                                                 </span>
-                                                <?php $percent = abs((($_childProduct->getFinalPrice() * 100) / $_childProduct->getPrice()) - 100) ?>
+                                                <?php $percent = abs((($groupedCatalogRuleHelper->getFinalPrice($_childProduct, $groupedProduct) * 100) / $groupedCatalogRuleHelper->getRegularPrice($_childProduct, $groupedProduct)) - 100) ?>
                                                 <div class="wrp-desc">
                                                     <span class="tag-desc">-<?= (int)$percent ?>%</span>
                                                 </div>
@@ -55,7 +56,7 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
 
                                             <span class="special-price">
                                                 <span class="price">
-                                                    <?= $priceHelper->currency($_childProduct->getFinalPrice(), true, false); ?>
+                                                    <?= $priceHelper->currency($groupedCatalogRuleHelper->getFinalPrice($_childProduct, $groupedProduct), true, false); ?>
                                                 </span>
                                             </span>
                                         </div>

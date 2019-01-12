@@ -12,6 +12,7 @@ $product = $block->getProduct();
 $priceHelper = $this->helper('Magento\Framework\Pricing\Helper\Data');
 $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
 $_helper = $this->helper('Magento\Catalog\Helper\Output');
+$groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Data');
 ?>
 
 <?php $buttonTitle = __('Comprar'); ?>
@@ -79,8 +80,8 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                 'name' => $item->getName(),
                 'qty' => (int)$item->getQty(),
                 'id' => $item->getId(),
-                'price' => $childProduct->getPrice(),
-                'final_price' => $childProduct->getFinalPrice()
+                'price' => $groupedCatalogRuleHelper->getRegularPrice($childProduct, $product),
+                'final_price' => $groupedCatalogRuleHelper->getFinalPrice($childProduct, $product)
             ];
         }
         ?>
@@ -182,7 +183,7 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                     }
                 })
 
-                discount = (parseInt((oldPrice * 100) / finalPrice) - 100)
+                discount = Math.abs(parseInt((finalPrice * 100) / oldPrice) - 100)
 
                 // console.log(oldPrice)
                 // console.log(finalPrice)
