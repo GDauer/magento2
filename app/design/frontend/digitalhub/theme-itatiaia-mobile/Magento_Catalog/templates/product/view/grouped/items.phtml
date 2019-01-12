@@ -15,10 +15,16 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
                     <div class="item-in">
                       <div class="wrp-init">
                           <div class="wrp-input">
+                              <?php if(!$groupedProduct->getLockItems()): ?>
                               <label class="container-check">
                                   <input type="checkbox" checked="checked" id="check_super_<?= $_item->getId() ?>" rel="<?= $_item->getId() ?>" class="check-super-group">
                                   <span class="checkmark"></span>
                               </label>
+                              <?php else: ?>
+                                  <div style="display: none">
+                                      <input type="checkbox" checked="checked" id="check_super_<?= $_item->getId() ?>" rel="<?= $_item->getId() ?>" class="check-super-group">
+                                  </div>
+                              <?php endif; ?>
                           </div>
                           <div class="wrp-img">
                               <?php $productImage = $_imagehelper->init($_childProduct, 'category_page_list') ?>
@@ -28,13 +34,20 @@ $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
                         <div class="wrp-infos">
                             <div class="in-infos">
                                 <h1 class="product-name"><?= $_childProduct->getName(); ?></h1>
-                                <div class="field qty">
-                                    <div class="control">
-                                        <a href="javascript:void(0)" class="qty-dec">-</a>
-                                        <input type="number" name="qty" readonly rel="<?= $_item->getId() ?>" id="super_group_qty_<?= $_item->getId() ?>" value="<?= (int)$_item->getQty() ?>" title="<?= __('Quantidade') ?>" class="input-text qty super-group-qty" />
-                                        <a href="javascript:void(0)" class="qty-inc">+</a>
+                                
+                                <?php if(!$groupedProduct->getLockItems()): ?>
+                                    <div class="field qty">
+                                        <div class="control">
+                                            <a href="javascript:void(0)" class="qty-dec">-</a>
+                                            <input type="number" name="qty" readonly rel="<?= $_item->getId() ?>" id="super_group_qty_<?= $_item->getId() ?>" value="<?= (int)$_item->getQty() ?>" title="<?= __('Quantidade') ?>" class="input-text qty super-group-qty" />
+                                            <a href="javascript:void(0)" class="qty-inc">+</a>
+                                        </div>
                                     </div>
-                                </div>
+                                <?php else: ?>
+                                    <input type="hidden" name="qty" readonly rel="<?= $_item->getId() ?>" id="super_group_qty_<?= $_item->getId() ?>" value="<?= (int)$_item->getQty() ?>" title="<?= __('Quantidade') ?>" class="input-text qty super-group-qty" />
+                                    <span>Qtde: <?= (int)$_item->getQty() ?><strong></strong></span>
+                                <?php endif; ?>
+
                                 <div class="wrp-price">
                                     <div class="price-box">
                                         <div class="wrp-oldprice">
