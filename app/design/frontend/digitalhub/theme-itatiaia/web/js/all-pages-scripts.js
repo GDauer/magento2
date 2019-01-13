@@ -32,3 +32,12 @@ require([
          });
     });
 });
+
+function confirmRemoveLockItem(target){
+    if(!confirm('Este item só pode ser vendido com todo o conjunto. Se você removê-lo do seu carrinho, irá remover todos os itens deste conjunto. Deseja mesmo prosseguir?')){
+        return false;
+    }
+    var removePostJson = jQuery(target).attr('data-post_locked');
+    jQuery(target).attr('data-post', removePostJson);
+    return true;
+}

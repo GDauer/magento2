@@ -1,0 +1,32 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Checkout\Block\Cart\Item\Renderer\Actions\Remove */
+?>
+<?php if($this->helper('\Itatiaia\Custom\Helper\Data')->verifyIsGroupedLockedItems($block->getItem())): ?>
+    <a href="#"
+       title="<?= $block->escapeHtml(__('Remove item')) ?>"
+       class="action action-delete"
+       onclick="return confirmRemoveLockItem(this)"
+       data-post_locked='<?= /* @escapeNotVerified */ $block->getDeletePostJson() ?>'
+       >
+        <span>
+            <?= /* @escapeNotVerified */ __('Remove item') ?>
+        </span>
+    </a>
+<?php else: ?>
+    <a href="#"
+       title="<?= $block->escapeHtml(__('Remove item')) ?>"
+       class="action action-delete"
+       data-post='<?= /* @escapeNotVerified */ $block->getDeletePostJson() ?>'
+       >
+        <span>
+            <?= /* @escapeNotVerified */ __('Remove item') ?>
+        </span>
+    </a>
+<?php endif; ?>
