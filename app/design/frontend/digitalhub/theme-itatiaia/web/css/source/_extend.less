@@ -3047,7 +3047,7 @@ select:not([disabled]) {
     }
     .price-box {
       margin-bottom: 0;
-      display: inline-block;
+      display: block;
       margin-top: 18px;
       position: relative;
       .price-label {
@@ -5496,6 +5496,20 @@ form.form-create-account .field-ruc { display: none }
         .secondary {
             float: none;
             margin-left: 10px
+        }
+    }
+}
+
+.modal-parcelamento {
+    .modal-inner-wrap {
+        max-width: 600px;
+        .modal-header {
+            paddig-top: 2rem;
+            .modal-title {
+                border: none !important;
+                font-size: 20px !important;
+                font-weight: bold !important;
+            }
         }
     }
 }

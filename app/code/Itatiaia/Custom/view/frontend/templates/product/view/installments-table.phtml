@@ -1,0 +1,20 @@
+<script>
+    window.installmentsConfig = <?php echo json_encode($this->helper('Itatiaia\Custom\Helper\Data')->getInstallmentsConfig()) ?>;
+</script>
+<div id="itatiaia-installments-table" data-bind="scope: 'installments_table'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+<script type="text/x-magento-init">
+{
+    "#itatiaia-installments-table": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "installments_table": {
+                    "component": "Itatiaia_Custom/js/view/installments-table",
+                    "template" : "Itatiaia_Custom/installments-table"
+                }
+            }
+        }
+    }
+}
+</script>
