@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
-    <preference for="Intelipost\Quote\Helper\Api" type="Itatiaia\FixIntelipost\Helper\Intelipost\Basic\Api" />
+    <preference for="Intelipost\Quote\Helper\Api" type="Itatiaia\FixIntelipost\Helper\Intelipost\Quote\Api" />
+    <preference for="Intelipost\Basic\Helper\Api" type="Itatiaia\FixIntelipost\Helper\Intelipost\Basic\Api" />
     <preference for="Intelipost\Quote\Model\Carrier\Intelipost" type="Itatiaia\FixIntelipost\Model\Carrier\Intelipost" />
 </config>
