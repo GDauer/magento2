@@ -102,7 +102,7 @@ define([
         calcInstallmentValue: function(number, maxValueForNumber){
             var self = this;
             // console.log(number, maxValueForNumber)
-            if(self.finalPrice() >= maxValueForNumber){
+            if(self.finalPrice() >= maxValueForNumber || number == 1){
                 return self.finalPrice() / number;
             }
             return false;
