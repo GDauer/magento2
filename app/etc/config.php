@@ -31,6 +31,7 @@ return [
         'Magento_SalesSequence' => 1,
         'Magento_Sales' => 1,
         'Magento_Email' => 1,
+        'MagePal_GoogleTagManager' => 1,
         'Magento_Authorization' => 1,
         'Magento_Checkout' => 1,
         'Magento_AdvancedCatalog' => 1,
