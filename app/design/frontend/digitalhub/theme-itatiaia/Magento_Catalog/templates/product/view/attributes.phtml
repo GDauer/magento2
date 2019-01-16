@@ -22,10 +22,17 @@
             <caption class="table-caption"><?= /* @escapeNotVerified */ __('Especificações Técnicas') ?></caption>
             <tbody>
             <?php foreach ($_additional as $_data): ?>
+                <?php if($_data['value'] != 'No' && $_data['value'] != 'Não'): ?>
                 <tr>
                     <th class="col label" scope="row"><?= $block->escapeHtml(__($_data['label'])) ?></th>
-                    <td class="col data" data-th="<?= $block->escapeHtml(__($_data['label'])) ?>"><?= /* @escapeNotVerified */ $_helper->productAttribute($_product, $_data['value'], $_data['code']) ?></td>
+                    <td class="col data" data-th="<?= $block->escapeHtml(__($_data['label'])) ?>">
+                        <?= /* @escapeNotVerified */ $_helper->productAttribute($_product, $_data['value'], $_data['code']) ?>
+                        <?php if($_data['code'] == 'comprimento_montado' || $_data['code'] == 'largura_montado' || $_data['code'] == 'altura_montado'): ?>
+                            cm
+                        <?php endif; ?>
+                    </td>
                 </tr>
+                <?php endif; ?>
             <?php endforeach; ?>
             </tbody>
         </table>
