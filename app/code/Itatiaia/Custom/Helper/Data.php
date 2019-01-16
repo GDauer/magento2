@@ -6,8 +6,18 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function verifyIsGroupedLockedItems($quoteItem)
     {
         $logger = \Magento\Framework\App\ObjectManager::getInstance()->get('\Psr\Log\LoggerInterface');
-        // $logger->info('VERIFICADOR GROUPED', [$quoteItem]);
 
+        if($parentProduct = $this->getGroupedByQuoteItem($quoteItem)){
+            if($parentProduct->getLockItems()){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    function getGroupedByQuoteItem($quoteItem)
+    {
         $isGroupedItem = false;
         $groupedProductId = false;
         foreach($quoteItem->getOptions() as $option){
@@ -19,14 +29,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         }
 
         if($isGroupedItem){
-            // $logger->info('VERIFICADOR GROUPED :: IS_LOCKED');
             $productFactory = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\ProductFactory');
             $parentProduct = $productFactory->create()->load($groupedProductId);
-
-            if($parentProduct->getLockItems()){
-                // $logger->info('VERIFICADOR GROUPED :: LOCKED_ITEMS');
-                return true;
-            }
+            return $parentProduct;
         }
 
         return false;
