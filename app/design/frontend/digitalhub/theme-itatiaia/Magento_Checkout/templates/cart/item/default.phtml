@@ -97,7 +97,7 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
                            title="<?= $block->escapeHtml(__('Qty')) ?>"
                            class="input-text qty"
                            data-validate="{required:true,'validate-greater-than-zero':true}"
-                           data-role="cart-item-qty"/>
+                           data-role="cart-item-qty" rel="<?php if($grouped = $this->helper('\Itatiaia\Custom\Helper\Data')->getGroupedByQuoteItem($block->getItem())) echo "grouped_" . $grouped->getId() ?>"/>
                 </div>
             </div>
         </td>

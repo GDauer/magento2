@@ -3,4 +3,7 @@
     <event name="sales_quote_remove_item">
         <observer name="sales_quote_remove_item_custom_locked_items" instance="Itatiaia\Custom\Observer\RemoveGroupLockedItems" />
     </event>
+    <event name="sales_quote_item_save_after">
+        <observer name="sales_quote_item_save_after_custom_locked_items" instance="Itatiaia\Custom\Observer\UpdateGroupLockedItems" />
+    </event>
 </config>

@@ -3,6 +3,16 @@ namespace Itatiaia\Custom\Helper;
 
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
+    private $_productFactory;
+
+    public function __construct
+    (
+        \Magento\Catalog\Model\ProductFactory $productFactory
+    )
+    {
+        $this->_productFactory = $productFactory;
+    }
+
     public function verifyIsGroupedLockedItems($quoteItem)
     {
         $logger = \Magento\Framework\App\ObjectManager::getInstance()->get('\Psr\Log\LoggerInterface');
@@ -29,9 +39,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         }
 
         if($isGroupedItem){
-            $productFactory = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\ProductFactory');
-            $parentProduct = $productFactory->create()->load($groupedProductId);
-            return $parentProduct;
+            $parentProduct = $this->_productFactory->create();
+            return $parentProduct->load($groupedProductId);
         }
 
         return false;

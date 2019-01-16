@@ -31,8 +31,25 @@ require([
       jQuery(target_tab_selector).addClass('active');
          });
     });
+
+
+    // verificação de quantidade para grouped locked items
+    jQuery(function(){
+        jQuery('.checkout-cart-index .cart.item input[name^=cart]').keyup(function(){
+            // se é um item de um agrupado
+            if(jQuery(this).attr('rel').split('grouped_').length){
+                var groupedId = jQuery(this).attr('rel').split('grouped_')[1];
+                var qty = parseInt(jQuery(this).val());
+                if(qty){
+                    jQuery('.checkout-cart-index input[rel=grouped_'+groupedId+']').val(qty);
+                }
+            }
+        })
+    })
 });
 
+
+// verificações de remoção para grouped locked items
 function confirmRemoveLockItem(target){
     if(!confirm('Este item só pode ser vendido com todo o conjunto. Se você removê-lo do seu carrinho, irá remover todos os itens deste conjunto. Deseja mesmo prosseguir?')){
         return false;
