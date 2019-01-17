@@ -626,8 +626,13 @@ a, a:hover, .alink, a:visited, .alink:visited {
     .container{
       .menumanager-submenu{
         .children-items{
+          padding: 30px 30px 0;
           ul{
             li{
+              float: none;
+              padding: 0;
+              width: auto;
+              max-width: 200px;
               a{
                 font-size: 14px;
                 color: #242424;
@@ -639,6 +644,27 @@ a, a:hover, .alink, a:visited, .alink:visited {
                     font-size: 14px;
                     color: #3c3c3c;
                     border-bottom: 0;
+                  }
+                }
+              }
+            }
+          }
+        }
+        &:first-child{
+          .children-items{
+            padding: 30px 30px 0 0;
+            ul{
+              li{
+                float: left;
+                list-style: none;
+                padding: 0 0 0 30px;
+                width: 25%;
+                box-sizing: border-box;
+                max-width: 100%;
+                ul{
+                  li{
+                    width: 100%;
+                    padding: 0;
                   }
                 }
               }
@@ -2994,6 +3020,7 @@ select:not([disabled]) {
       margin: 0 0 10px 0;
       font-family: 'MullerBlack';
       font-weight: 500;
+      width: calc(~'100% - 25px');
     }
     .stock.unavailable{
       background: #ff6600;
@@ -3328,8 +3355,42 @@ select:not([disabled]) {
         right: 0;
         margin: 0;
         .split.button.wishlist{
-          display: none;
-          &:after{
+          display: inline-block;
+          padding: 0;
+          width: 44px;
+          height: 44px;
+          color: #a1aeb7;
+          background: none;
+          text-align: center;
+          border: none;
+          position: relative;
+          &:before {
+            font-family: "Font Awesome 5 Free";
+            content: "\f004";
+            font-size: 25px;
+            vertical-align: middle;
+            line-height: normal;
+            float: right;
+          }
+          button.label.action.split{
+            display: none;
+          }
+          .action.toggle:after{
+            position: absolute;
+            top: 0;
+            right: 0;
+            opacity: 0;
+          }
+          .items{
+            right: -5px;
+            &:after{
+              left:unset;
+              right: 9px;
+            }
+            &:before{
+              left:unset;
+              right: 10px;
+            }
           }
         }
         .action.towishlist{
@@ -3348,6 +3409,7 @@ select:not([disabled]) {
             font-size: 25px;
             vertical-align: middle;
             line-height: normal;
+            float: right;
           }
           span {
             font-size: 14px;

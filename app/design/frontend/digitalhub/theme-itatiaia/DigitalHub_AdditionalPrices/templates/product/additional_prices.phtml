@@ -1,0 +1,37 @@
+<?php
+$customPrice = $this->getCustomPrice();
+$_product = $this->getProduct();
+
+$installments_active = $this->getConfig('digitalhub_additionalprices_installments/active');
+$price_with_discount_active = $this->getConfig('digitalhub_additionalprices_payment_discount/active');
+
+// Installments config
+$max_installment_number = $this->getMaxInstallmentNumber($_product, $customPrice);
+$max_installment_price = $this->getMaxInstallmentPrice($_product, $customPrice);
+$interest_rate = $this->getInterestRateFor($max_installment_number);
+
+$installments_text = $this->getConfig('digitalhub_additionalprices_installments/installments_text');
+$installments_text = str_replace('{num_parcelas}', $max_installment_number, $installments_text);
+$installments_text = str_replace('{valor_parcelas}', $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($max_installment_price,true,false), $installments_text);
+$installments_text = str_replace('{taxa_juros}', $interest_rate, $installments_text);
+
+// Price with discount config
+$discount_price = $this->getPriceWithDiscount($_product, $customPrice);
+$discount_price_text = $this->getConfig('digitalhub_additionalprices_payment_discount/text');
+$discount_price_text = str_replace('{valor}', $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($discount_price,true,false), $discount_price_text);
+?>
+<?php if ($_product->getIsSalable()): ?>
+<div class="additional-prices-container">
+    <?php if($price_with_discount_active): ?>
+    <p class="price-with-discount">
+        <?php echo $discount_price_text ?>
+    </p>
+    <?php endif; ?>
+    <?php if($installments_active && $max_installment_number >= 1): ?>
+    <p class="installments-price">
+        <?php echo $installments_text ?>
+    </p>
+    <?php endif; ?>
+</div>
+<?php else: ?>
+<?php endif; ?>
