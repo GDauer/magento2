@@ -97,7 +97,11 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
                            title="<?= $block->escapeHtml(__('Qty')) ?>"
                            class="input-text qty"
                            data-validate="{required:true,'validate-greater-than-zero':true}"
-                           data-role="cart-item-qty" rel="<?php if($grouped = $this->helper('\Itatiaia\Custom\Helper\Data')->getGroupedByQuoteItem($block->getItem())) echo "grouped_" . $grouped->getId() ?>"/>
+                           data-role="cart-item-qty"
+                           <?php if($this->helper('\Itatiaia\Custom\Helper\Data')->verifyIsGroupedLockedItems($block->getItem())): ?>
+                               rel="<?php if($grouped = $this->helper('\Itatiaia\Custom\Helper\Data')->getGroupedByQuoteItem($block->getItem())) echo "grouped_" . $grouped->getId() ?>"
+                           <?php endif; ?>
+                           />
                 </div>
             </div>
         </td>

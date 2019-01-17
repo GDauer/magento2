@@ -941,12 +941,12 @@
             "source": {
                 "type": "git",
                 "url": "git@gitlab.com:digitalhub/m2/modules/menu-manager.git",
-                "reference": "bb0fbb2f1db134beb4a0b6012a2c46f6027b6e04"
+                "reference": "282191314d8d93c35d4b4f5abbf682169d7d4633"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/digitalhub%2Fm2%2Fmodules%2Fmenu-manager/repository/archive.zip?sha=bb0fbb2f1db134beb4a0b6012a2c46f6027b6e04",
-                "reference": "bb0fbb2f1db134beb4a0b6012a2c46f6027b6e04",
+                "url": "https://gitlab.com/api/v4/projects/digitalhub%2Fm2%2Fmodules%2Fmenu-manager/repository/archive.zip?sha=282191314d8d93c35d4b4f5abbf682169d7d4633",
+                "reference": "282191314d8d93c35d4b4f5abbf682169d7d4633",
                 "shasum": ""
             },
             "require": {
@@ -967,7 +967,7 @@
                 }
             },
             "description": "Módulo para gerenciamento de menus para o storefront",
-            "time": "2018-07-19T17:33:46+00:00"
+            "time": "2019-01-17T15:18:24+00:00"
         },
         {
             "name": "digitalhub/theme-base",
@@ -1098,16 +1098,16 @@
         },
         {
             "name": "elasticsearch/elasticsearch",
-            "version": "v5.3.2",
+            "version": "v5.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/elastic/elasticsearch-php.git",
-                "reference": "4b29a4121e790bbfe690d5ee77da348b62d48eb8"
+                "reference": "d3c5b55ad94f5053ca76c48585b4cde2cdc6bc59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/4b29a4121e790bbfe690d5ee77da348b62d48eb8",
-                "reference": "4b29a4121e790bbfe690d5ee77da348b62d48eb8",
+                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/d3c5b55ad94f5053ca76c48585b4cde2cdc6bc59",
+                "reference": "d3c5b55ad94f5053ca76c48585b4cde2cdc6bc59",
                 "shasum": ""
             },
             "require": {
@@ -1149,7 +1149,7 @@
                 "elasticsearch",
                 "search"
             ],
-            "time": "2017-11-08T17:04:47+00:00"
+            "time": "2019-01-08T18:57:00+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1437,16 +1437,16 @@
         },
         {
             "name": "intelipost/magento2-basic",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/intelipost/magento2-basic.git",
-                "reference": "75fddf2ba493ac40903b1c51c6dd834aa9956067"
+                "reference": "e436f8689b09519174d3199be1a261dff5b9b526"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/intelipost/magento2-basic/zipball/75fddf2ba493ac40903b1c51c6dd834aa9956067",
-                "reference": "75fddf2ba493ac40903b1c51c6dd834aa9956067",
+                "url": "https://api.github.com/repos/intelipost/magento2-basic/zipball/e436f8689b09519174d3199be1a261dff5b9b526",
+                "reference": "e436f8689b09519174d3199be1a261dff5b9b526",
                 "shasum": ""
             },
             "require": {
@@ -1478,7 +1478,7 @@
                 }
             ],
             "description": "Intelipost Basic",
-            "time": "2018-12-12T17:28:58+00:00"
+            "time": "2019-01-08T21:48:43+00:00"
         },
         {
             "name": "intelipost/magento2-push",
@@ -1611,23 +1611,23 @@
         },
         {
             "name": "justinrainbow/json-schema",
-            "version": "5.2.7",
+            "version": "5.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/justinrainbow/json-schema.git",
-                "reference": "8560d4314577199ba51bf2032f02cd1315587c23"
+                "reference": "dcb6e1006bb5fd1e392b4daa68932880f37550d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/8560d4314577199ba51bf2032f02cd1315587c23",
-                "reference": "8560d4314577199ba51bf2032f02cd1315587c23",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/dcb6e1006bb5fd1e392b4daa68932880f37550d4",
+                "reference": "dcb6e1006bb5fd1e392b4daa68932880f37550d4",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.1",
+                "friendsofphp/php-cs-fixer": "~2.2.20",
                 "json-schema/json-schema-test-suite": "1.2.0",
                 "phpunit/phpunit": "^4.8.35"
             },
@@ -1673,7 +1673,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2018-02-14T22:26:30+00:00"
+            "time": "2019-01-14T23:55:14+00:00"
         },
         {
             "name": "klarna/module-core",
@@ -11213,16 +11213,16 @@
         },
         {
             "name": "magepal/magento2-gmailsmtpapp",
-            "version": "2.6.0",
+            "version": "2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/magepal/magento2-gmail-smtp-app.git",
-                "reference": "934713bdd75482fb6c06c00c905822acc2f7935a"
+                "reference": "fcc506d929382a45da74352d96d60ebb680468b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/magepal/magento2-gmail-smtp-app/zipball/934713bdd75482fb6c06c00c905822acc2f7935a",
-                "reference": "934713bdd75482fb6c06c00c905822acc2f7935a",
+                "url": "https://api.github.com/repos/magepal/magento2-gmail-smtp-app/zipball/fcc506d929382a45da74352d96d60ebb680468b7",
+                "reference": "fcc506d929382a45da74352d96d60ebb680468b7",
                 "shasum": ""
             },
             "require": {
@@ -11265,7 +11265,7 @@
                 "magento2 smtp",
                 "send email magento2"
             ],
-            "time": "2018-12-04T21:53:02+00:00"
+            "time": "2019-01-04T00:36:53+00:00"
         },
         {
             "name": "magepal/magento2-googletagmanager",
@@ -11448,6 +11448,42 @@
             "time": "2018-11-05T09:00:11+00:00"
         },
         {
+            "name": "mundipagg/ecommerce-module-core",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mundipagg/ecommerce-module-core.git",
+                "reference": "b481f6d6a7b4f2cd1fbd11b731bb145cd53415f5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mundipagg/ecommerce-module-core/zipball/b481f6d6a7b4f2cd1fbd11b731bb145cd53415f5",
+                "reference": "b481f6d6a7b4f2cd1fbd11b731bb145cd53415f5",
+                "shasum": ""
+            },
+            "require": {
+                "monolog/monolog": "~1.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mundipagg\\Core\\": "src",
+                    "Mundipagg\\Core\\Test\\": "tests"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "MundiPagg Embeddables Team",
+                    "email": "embeddables@mundipagg.com"
+                }
+            ],
+            "time": "2019-01-16T17:03:40+00:00"
+        },
+        {
             "name": "mundipagg/mundiapi",
             "version": "3.0.11",
             "source": {
@@ -11501,21 +11537,22 @@
         },
         {
             "name": "mundipagg/mundipagg-magento2-module",
-            "version": "1.2.29",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mundipagg/magento2.git",
-                "reference": "a9626c77295dc9aa4439cf6e2d8022c058668507"
+                "reference": "2fc34a794a512133213edb8cdfe0a9656ed01c7b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mundipagg/magento2/zipball/a9626c77295dc9aa4439cf6e2d8022c058668507",
-                "reference": "a9626c77295dc9aa4439cf6e2d8022c058668507",
+                "url": "https://api.github.com/repos/mundipagg/magento2/zipball/2fc34a794a512133213edb8cdfe0a9656ed01c7b",
+                "reference": "2fc34a794a512133213edb8cdfe0a9656ed01c7b",
                 "shasum": ""
             },
             "require": {
+                "mundipagg/ecommerce-module-core": "^1.0",
                 "mundipagg/mundiapi": "^3.0",
-                "php": "~5.6.0|~7.0.0|~7.1.0"
+                "php": ">=5.6.0"
             },
             "require-dev": {
                 "fabpot/php-cs-fixer": "~1.2",
@@ -11553,7 +11590,7 @@
                 }
             ],
             "description": "Magento 2 Module Mundipagg",
-            "time": "2018-12-10T15:59:11+00:00"
+            "time": "2019-01-15T18:19:51+00:00"
         },
         {
             "name": "oyejorge/less.php",
@@ -11619,16 +11656,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v2.0.17",
+            "version": "v2.0.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "29af24f25bab834fcbb38ad2a69fa93b867e070d"
+                "reference": "0a58ef6e3146256cc3dc7cc393927bcc7d1b72db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/29af24f25bab834fcbb38ad2a69fa93b867e070d",
-                "reference": "29af24f25bab834fcbb38ad2a69fa93b867e070d",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/0a58ef6e3146256cc3dc7cc393927bcc7d1b72db",
+                "reference": "0a58ef6e3146256cc3dc7cc393927bcc7d1b72db",
                 "shasum": ""
             },
             "require": {
@@ -11664,7 +11701,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2018-07-04T16:31:37+00:00"
+            "time": "2019-01-03T20:59:08+00:00"
         },
         {
             "name": "pelago/emogrifier",
@@ -12154,16 +12191,16 @@
         },
         {
             "name": "react/promise",
-            "version": "v2.7.0",
+            "version": "v2.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/reactphp/promise.git",
-                "reference": "f4edc2581617431aea50430749db55cc3fc031b3"
+                "reference": "31ffa96f8d2ed0341a57848cbb84d88b89dd664d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reactphp/promise/zipball/f4edc2581617431aea50430749db55cc3fc031b3",
-                "reference": "f4edc2581617431aea50430749db55cc3fc031b3",
+                "url": "https://api.github.com/repos/reactphp/promise/zipball/31ffa96f8d2ed0341a57848cbb84d88b89dd664d",
+                "reference": "31ffa96f8d2ed0341a57848cbb84d88b89dd664d",
                 "shasum": ""
             },
             "require": {
@@ -12196,7 +12233,7 @@
                 "promise",
                 "promises"
             ],
-            "time": "2018-06-13T15:59:06+00:00"
+            "time": "2019-01-07T21:25:54+00:00"
         },
         {
             "name": "seld/cli-prompt",
@@ -12553,16 +12590,16 @@
         },
         {
             "name": "symfony/css-selector",
-            "version": "v4.2.1",
+            "version": "v4.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
-                "reference": "aa9fa526ba1b2ec087ffdfb32753803d999fcfcd"
+                "reference": "76dac1dbe2830213e95892c7c2ec1edd74113ea4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/css-selector/zipball/aa9fa526ba1b2ec087ffdfb32753803d999fcfcd",
-                "reference": "aa9fa526ba1b2ec087ffdfb32753803d999fcfcd",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/76dac1dbe2830213e95892c7c2ec1edd74113ea4",
+                "reference": "76dac1dbe2830213e95892c7c2ec1edd74113ea4",
                 "shasum": ""
             },
             "require": {
@@ -12602,7 +12639,7 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
-            "time": "2018-11-11T19:52:12+00:00"
+            "time": "2019-01-03T09:07:35+00:00"
         },
         {
             "name": "symfony/debug",
@@ -12723,16 +12760,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v3.4.20",
+            "version": "v3.4.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "b49b1ca166bd109900e6a1683d9bb1115727ef2d"
+                "reference": "c24ce3d18ccc9bb9d7e1d6ce9330fcc6061cafde"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/b49b1ca166bd109900e6a1683d9bb1115727ef2d",
-                "reference": "b49b1ca166bd109900e6a1683d9bb1115727ef2d",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/c24ce3d18ccc9bb9d7e1d6ce9330fcc6061cafde",
+                "reference": "c24ce3d18ccc9bb9d7e1d6ce9330fcc6061cafde",
                 "shasum": ""
             },
             "require": {
@@ -12769,20 +12806,20 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2018-11-11T19:48:54+00:00"
+            "time": "2019-01-01T13:45:19+00:00"
         },
         {
             "name": "symfony/finder",
-            "version": "v3.4.20",
+            "version": "v3.4.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "6cf2be5cbd0e87aa35c01f80ae0bf40b6798e442"
+                "reference": "3f2a2ab6315dd7682d4c16dcae1e7b95c8b8555e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/6cf2be5cbd0e87aa35c01f80ae0bf40b6798e442",
-                "reference": "6cf2be5cbd0e87aa35c01f80ae0bf40b6798e442",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/3f2a2ab6315dd7682d4c16dcae1e7b95c8b8555e",
+                "reference": "3f2a2ab6315dd7682d4c16dcae1e7b95c8b8555e",
                 "shasum": ""
             },
             "require": {
@@ -12818,7 +12855,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2018-11-11T19:48:54+00:00"
+            "time": "2019-01-01T13:45:19+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -13878,16 +13915,16 @@
         },
         {
             "name": "zendframework/zend-http",
-            "version": "2.8.2",
+            "version": "2.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-http.git",
-                "reference": "2c8aed3d25522618573194e7cc51351f8cd4a45b"
+                "reference": "e70ed2a51f37b848c8c3829739d1b1f803854ffa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-http/zipball/2c8aed3d25522618573194e7cc51351f8cd4a45b",
-                "reference": "2c8aed3d25522618573194e7cc51351f8cd4a45b",
+                "url": "https://api.github.com/repos/zendframework/zend-http/zipball/e70ed2a51f37b848c8c3829739d1b1f803854ffa",
+                "reference": "e70ed2a51f37b848c8c3829739d1b1f803854ffa",
                 "shasum": ""
             },
             "require": {
@@ -13929,7 +13966,7 @@
                 "zend",
                 "zf"
             ],
-            "time": "2018-08-13T18:47:03+00:00"
+            "time": "2019-01-08T15:55:38+00:00"
         },
         {
             "name": "zendframework/zend-hydrator",
@@ -14059,16 +14096,16 @@
         },
         {
             "name": "zendframework/zend-inputfilter",
-            "version": "2.9.0",
+            "version": "2.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-inputfilter.git",
-                "reference": "c34ca7a1bffe2d089edbf96166435bffca8aa940"
+                "reference": "3dc2ff5a474bce824e2429564daa56b4c6b0d547"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-inputfilter/zipball/c34ca7a1bffe2d089edbf96166435bffca8aa940",
-                "reference": "c34ca7a1bffe2d089edbf96166435bffca8aa940",
+                "url": "https://api.github.com/repos/zendframework/zend-inputfilter/zipball/3dc2ff5a474bce824e2429564daa56b4c6b0d547",
+                "reference": "3dc2ff5a474bce824e2429564daa56b4c6b0d547",
                 "shasum": ""
             },
             "require": {
@@ -14112,7 +14149,7 @@
                 "inputfilter",
                 "zf"
             ],
-            "time": "2018-12-17T21:30:06+00:00"
+            "time": "2019-01-07T17:52:18+00:00"
         },
         {
             "name": "zendframework/zend-json",
@@ -17216,16 +17253,16 @@
         },
         {
             "name": "symfony/config",
-            "version": "v4.2.1",
+            "version": "v4.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "005d9a083d03f588677d15391a716b1ac9b887c0"
+                "reference": "a7a7d0a0244cfc82f040729ccf769e6cf55a78fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/005d9a083d03f588677d15391a716b1ac9b887c0",
-                "reference": "005d9a083d03f588677d15391a716b1ac9b887c0",
+                "url": "https://api.github.com/repos/symfony/config/zipball/a7a7d0a0244cfc82f040729ccf769e6cf55a78fb",
+                "reference": "a7a7d0a0244cfc82f040729ccf769e6cf55a78fb",
                 "shasum": ""
             },
             "require": {
@@ -17275,7 +17312,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2018-11-30T22:21:14+00:00"
+            "time": "2019-01-03T09:07:35+00:00"
         },
         {
             "name": "symfony/contracts",
@@ -17347,16 +17384,16 @@
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v4.2.1",
+            "version": "v4.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "e4adc57a48d3fa7f394edfffa9e954086d7740e5"
+                "reference": "a28dda9df1d5494367454cad91e44751ac53921c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/e4adc57a48d3fa7f394edfffa9e954086d7740e5",
-                "reference": "e4adc57a48d3fa7f394edfffa9e954086d7740e5",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/a28dda9df1d5494367454cad91e44751ac53921c",
+                "reference": "a28dda9df1d5494367454cad91e44751ac53921c",
                 "shasum": ""
             },
             "require": {
@@ -17416,20 +17453,20 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2018-12-02T15:59:36+00:00"
+            "time": "2019-01-05T16:37:49+00:00"
         },
         {
             "name": "symfony/options-resolver",
-            "version": "v4.2.1",
+            "version": "v4.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
-                "reference": "a9c38e8a3da2c03b3e71fdffa6efb0bda51390ba"
+                "reference": "fbcb106aeee72f3450298bf73324d2cc00d083d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/a9c38e8a3da2c03b3e71fdffa6efb0bda51390ba",
-                "reference": "a9c38e8a3da2c03b3e71fdffa6efb0bda51390ba",
+                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/fbcb106aeee72f3450298bf73324d2cc00d083d1",
+                "reference": "fbcb106aeee72f3450298bf73324d2cc00d083d1",
                 "shasum": ""
             },
             "require": {
@@ -17470,7 +17507,7 @@
                 "configuration",
                 "options"
             ],
-            "time": "2018-11-11T19:52:12+00:00"
+            "time": "2019-01-03T09:07:35+00:00"
         },
         {
             "name": "symfony/polyfill-php54",
@@ -17702,16 +17739,16 @@
         },
         {
             "name": "symfony/stopwatch",
-            "version": "v4.2.1",
+            "version": "v4.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stopwatch.git",
-                "reference": "ec076716412274e51f8a7ea675d9515e5c311123"
+                "reference": "af62b35760fc92c8dbdce659b4eebdfe0e6a0472"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/stopwatch/zipball/ec076716412274e51f8a7ea675d9515e5c311123",
-                "reference": "ec076716412274e51f8a7ea675d9515e5c311123",
+                "url": "https://api.github.com/repos/symfony/stopwatch/zipball/af62b35760fc92c8dbdce659b4eebdfe0e6a0472",
+                "reference": "af62b35760fc92c8dbdce659b4eebdfe0e6a0472",
                 "shasum": ""
             },
             "require": {
@@ -17748,7 +17785,7 @@
             ],
             "description": "Symfony Stopwatch Component",
             "homepage": "https://symfony.com",
-            "time": "2018-11-11T19:52:12+00:00"
+            "time": "2019-01-03T09:07:35+00:00"
         },
         {
             "name": "theseer/fdomdocument",
