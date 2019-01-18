@@ -153,11 +153,9 @@ require([
                       <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $postParams['data']['product'] ?>">
                       <input type="hidden" name="<?= /* @escapeNotVerified */ Action::PARAM_NAME_URL_ENCODED ?>" value="<?= /* @escapeNotVerified */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
                       <?= $block->getBlockHtml('formkey') ?>
-                      <button type="submit"
-                      title="<?= $block->escapeHtml(__('Comprar')) ?>"
-                      class="action tocart primary">
-                      <span><?= /* @escapeNotVerified */ __('Comprar') ?></span>
-                    </button>
+                      <button class="action tocart primary" onClick="self.location='<?= $block->escapeUrl($block->getProductUrl($_product)) ?>'" type="button" title="<?= $block->escapeHtmlAttr(__('Comprar')) ?>">
+                          <span><?= $block->escapeHtml(__('Comprar')) ?></span>
+                      </button>
                   </form>
                 <?php else: ?>
                   <?php if ($_product->isAvailable()): ?>
