@@ -48,32 +48,35 @@ class UpdateInvoice implements \Magento\Framework\Event\ObserverInterface
             }
 
             $nf_data = $last_status->getComment();
-            $nf_data = $this->parseNfData($nf_data);
-            $logger->info('ORDER NF DATA', $nf_data);
 
-            if(isset($nf_data['invoice_number'])){
-                $invoices = $order->getInvoiceCollection();
-                $last_paid_invoice = null;
-                foreach($invoices as $invoice){
-                    if($invoice->getState() == \Magento\Sales\Model\Order\Invoice::STATE_PAID){
-                        $last_paid_invoice = $invoice;
-                        $logger->info('ORDER INVOICE PAID DATA', [$last_paid_invoice->getData()]);
+            if(strpos($nf_data, 'invoice_number') !== false){
+                $nf_data = $this->parseNfData($nf_data);
+                $logger->info('ORDER NF DATA', $nf_data);
+
+                if(isset($nf_data['invoice_number'])){
+                    $invoices = $order->getInvoiceCollection();
+                    $last_paid_invoice = null;
+                    foreach($invoices as $invoice){
+                        if($invoice->getState() == \Magento\Sales\Model\Order\Invoice::STATE_PAID){
+                            $last_paid_invoice = $invoice;
+                            $logger->info('ORDER INVOICE PAID DATA', [$last_paid_invoice->getData()]);
+                        }
                     }
-                }
 
-                if(!$this->intelipostInvoiceExists($nf_data['invoice_number'], $nf_data['order_number'])){
-                    $intelipostInvoice = $objectManager->get('\Intelipost\Push\Model\InvoiceFactory')->create();
-                    $intelipostInvoice->setInvoiceNumber($nf_data['invoice_number']);
-                    $intelipostInvoice->setOrderNumber($nf_data['order_number']);
-                    $intelipostInvoice->setInvoiceSeries($nf_data['invoice_series']);
-                    $intelipostInvoice->setInvoiceKey($nf_data['invoice_key']);
-                    $intelipostInvoice->setInvoiceDate(date('Y-m-d H:i:s', strtotime($nf_data['invoice_date'])));
-                    $intelipostInvoice->setInvoiceTotalValue($nf_data['invoice_total_value']);
-                    $intelipostInvoice->setInvoiceProductsValue($nf_data['invoice_products_value']);
-                    $intelipostInvoice->setInvoiceCfop($nf_data['invoice_cfop']);
-                    $intelipostInvoice->save();
+                    if(!$this->intelipostInvoiceExists($nf_data['invoice_number'], $nf_data['order_number'])){
+                        $intelipostInvoice = $objectManager->get('\Intelipost\Push\Model\InvoiceFactory')->create();
+                        $intelipostInvoice->setInvoiceNumber($nf_data['invoice_number']);
+                        $intelipostInvoice->setOrderNumber($nf_data['order_number']);
+                        $intelipostInvoice->setInvoiceSeries($nf_data['invoice_series']);
+                        $intelipostInvoice->setInvoiceKey($nf_data['invoice_key']);
+                        $intelipostInvoice->setInvoiceDate(date('Y-m-d H:i:s', strtotime($nf_data['invoice_date'])));
+                        $intelipostInvoice->setInvoiceTotalValue($nf_data['invoice_total_value']);
+                        $intelipostInvoice->setInvoiceProductsValue($nf_data['invoice_products_value']);
+                        $intelipostInvoice->setInvoiceCfop($nf_data['invoice_cfop']);
+                        $intelipostInvoice->save();
 
-                    $logger->info('INTELIPOST_INVOICE CREATED', $intelipostInvoice->getData());
+                        $logger->info('INTELIPOST_INVOICE CREATED', $intelipostInvoice->getData());
+                    }
                 }
             }
         }
