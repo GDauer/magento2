@@ -76,6 +76,8 @@ class UpdateInvoice implements \Magento\Framework\Event\ObserverInterface
                         $intelipostInvoice->save();
 
                         $logger->info('INTELIPOST_INVOICE CREATED', $intelipostInvoice->getData());
+
+                        $this->createMagentoShipment($order);
                     }
                 }
             }
@@ -108,5 +110,49 @@ class UpdateInvoice implements \Magento\Framework\Event\ObserverInterface
         $intelipostInvoiceCollection->load();
 
         return $intelipostInvoiceCollection->count();
+    }
+
+    private function createMagentoShipment($order)
+    {
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $logger = $objectManager->get('\Psr\Log\LoggerInterface');
+
+        if($order->canShip()){
+            $convertOrder = $objectManager->create('Magento\Sales\Model\Convert\Order');
+            $shipment = $convertOrder->toShipment($order);
+            foreach ($order->getAllItems() AS $orderItem) {
+                if (! $orderItem->getQtyToShip() || $orderItem->getIsVirtual()) {
+                    continue;
+                }
+                $qtyShipped = $orderItem->getQtyToShip();
+                $shipmentItem = $convertOrder->itemToShipmentItem($orderItem)->setQty($qtyShipped);
+                $shipment->addItem($shipmentItem);
+            }
+
+            $shipment->register();
+            $shipment->getOrder()->setIsInProcess(true);
+            $shipment->getOrder()->setStatus('complete');
+
+            try {
+                // Save created shipment and order
+                $shipment->save();
+                $shipment->getOrder()->save();
+
+                // Send email
+                // $_objectManager->create('Magento\Shipping\Model\ShipmentNotifier')
+                //     ->notify($shipment);
+
+                // $shipment->save();
+            } catch (\Exception $e) {
+                throw new \Magento\Framework\Exception\LocalizedException(
+                    __($e->getMessage())
+                );
+            }
+        } else {
+            $logger->critical('Pedido não pode gerar entrega', [
+                'id' => $order->getId(),
+                'increment_id' => $order->getIncrementId()
+            ]);
+        }
     }
 }
