@@ -103,15 +103,6 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
                         </span>
                     </div>
                 </div>
-                <div class="preco-a-vista">
-                    <?php
-                        echo $this->getLayout()
-                            ->createBlock('\DigitalHub\AdditionalPrices\Block\Product\Additional')
-                            ->setTemplate('DigitalHub_AdditionalPrices::product/additional_prices.phtml')
-                            ->setProduct($product)
-                            ->toHtml();
-                    ?>
-                </div>
             </div>
             <div class="box-tocart">
                 <?php

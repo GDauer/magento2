@@ -12,7 +12,10 @@ $product = $block->getSaleableItem();
 // }
 $oldPrice = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Data')->getRegularPrice($product);
 $finalPrice = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Data')->getFinalPrice($product);
-$discount = abs((int)(($finalPrice * 100) / $oldPrice) - 100);
+$discount = 0;
+if($oldPrice && $finalPrice){
+    $discount = abs((int)(($finalPrice * 100) / $oldPrice) - 100);
+}
 
 // ///
 // var_dump($this->helper('Itatiaia\GroupedCatalogRule\Helper\Data')->getRegularPrice($product));
