@@ -1,27 +1,11 @@
 <?php
 $product = $block->getSaleableItem();
-// $oldPrice = 0;
-// $finalPrice = 0;
-// $discount = 0;
-// $associatedProducts = $product->getTypeInstance(true)->getAssociatedProducts($product);
-// foreach ($associatedProducts as $item) {
-//     $qty = $item->getQty() ? $item->getQty() : 1;
-//     $childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\Product')->load($item->getId());
-//     $oldPrice = $oldPrice + (float)$childProduct->getPrice();
-//     $finalPrice = $finalPrice + ((float)$childProduct->getFinalPrice() * (int)$qty);
-// }
 $oldPrice = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Data')->getRegularPrice($product);
 $finalPrice = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Data')->getFinalPrice($product);
 $discount = 0;
 if($oldPrice && $finalPrice){
-    $discount = abs((int)(($finalPrice * 100) / $oldPrice) - 100);
+    $discount = 100 - (($finalPrice * 100) / $oldPrice);
 }
-
-// ///
-// var_dump($this->helper('Itatiaia\GroupedCatalogRule\Helper\Data')->getRegularPrice($product));
-// var_dump($this->helper('Itatiaia\GroupedCatalogRule\Helper\Data')->getPrice($product));
-// var_dump($this->helper('Itatiaia\GroupedCatalogRule\Helper\Data')->getFinalPrice($product));
-// ///
 ?>
 <div class="price-box price-final_price">
     <?php if($oldPrice > $finalPrice): ?>
