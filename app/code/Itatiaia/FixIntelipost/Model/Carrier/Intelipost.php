@@ -39,6 +39,21 @@ class Intelipost extends \Intelipost\Quote\Model\Carrier\Intelipost
 
         $destPostcode = $pickup ? $request->getPickupDestPostcode() : $request->getDestPostcode();
 
+        // Result
+        $result = $this->_rateResultFactory->create();
+
+        if($this->blockRatesByPostcode($destPostcode)){
+            // return false;
+            $error = $this->_rateErrorFactory->create();
+            $specificerrmsg = 'Ainda não possuímos entregas para esta região';
+            $error->setCarrier($this->_code);
+            $error->setCarrierTitle($this->getConfigData('title'));
+            $error->setErrorMessage($specificerrmsg ? $specificerrmsg : $e->getMessage ());
+            // if ($breakOnError) return $error;
+            $result->append ($error);
+            return $result;
+        }
+
         // Factory
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $objectProduct = $objectManager->get('Magento\Catalog\Model\ProductFactory');
@@ -192,9 +207,6 @@ class Intelipost extends \Intelipost\Quote\Model\Carrier\Intelipost
         $postData ['cart_amount'] = $cartAmount;
         $postData ['cart_qtys'] = $cartQtys;
         $postData['seller_id'] = $request->getSellerId() ? $request->getSellerId() : '';
-
-        // Result
-        $result = $this->_rateResultFactory->create();
 
         $resultQuotes = array();
 
@@ -351,6 +363,29 @@ class Intelipost extends \Intelipost\Quote\Model\Carrier\Intelipost
         $this->_helper->saveResultQuotes ($resultQuotes, $this->_removeQuotes);
 
         return $result;
+    }
+
+    private function blockRatesByPostcode($postcode)
+    {
+        $postcode = (int)preg_replace('/\D+/','',$postcode);
+        $postcode_block_rates = $this->_scopeConfig->getValue ('carriers/itatiaia_fixintelipost/zipcode_block_rates');
+
+        if(!$postcode_block_rates) return false;
+
+        $ranges = explode(';', $postcode_block_rates);
+        $block = false;
+        foreach($ranges as $range){
+            $parts = explode('-',$range);
+            if(isset($parts[0]) && isset($parts[1])){
+                $from = (int)$parts[0];
+                $to = (int)$parts[1];
+                if($postcode >= $from && $postcode <= $to){
+                    $block = true;
+                }
+            }
+        }
+
+        return $block;
     }
 
 }

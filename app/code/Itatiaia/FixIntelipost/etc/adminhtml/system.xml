@@ -7,6 +7,10 @@
                 <field id="zipcode_warehouse_aco" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>CEP origem de CD para material aço</label>
                 </field>
+                <field id="zipcode_block_rates" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Faixas de CEP para bloqueio de entregas</label>
+                    <comment>Para múltiplas faixas, separar valores com '-' e ';'. Exemplo: 80000000-90000000; 01000000-10000000;</comment>
+                </field>
             </group>
         </section>
     </system>

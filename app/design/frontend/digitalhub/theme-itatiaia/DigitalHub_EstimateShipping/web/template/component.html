@@ -2,7 +2,6 @@
     <div class="wrp-block-title">
       <div class="block-title">
         <p class="title">Calcule o frete e prazo de entrega</p>
-
       </div>
     </div>
     <div class="field">
@@ -36,9 +35,18 @@
     <div class="estimate-shipping-result">
         <p class="title">Opções entrega:</p>
         <ul data-bind="foreach: estimateResult">
+            <!-- ko if: !error_message -->
             <li>
                 <span data-bind="text: title"></span> - <strong data-bind="text: price_formatted"></strong>
             </li>
+            <!-- /ko -->
+            <!-- ko if: error_message -->
+            <li class="has-error">
+                <div class="message error">
+                    <div data-bind="text: error_message"></div>
+                </div>
+            </li>
+            <!-- /ko -->
         </ul>
     </div>
     <!-- /ko -->
