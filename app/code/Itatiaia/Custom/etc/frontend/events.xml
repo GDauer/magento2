@@ -6,4 +6,7 @@
     <event name="sales_quote_item_save_after">
         <observer name="sales_quote_item_save_after_custom_locked_items" instance="Itatiaia\Custom\Observer\UpdateGroupLockedItems" />
     </event>
+    <event name="controller_front_send_response_before">
+        <observer name="controller_front_send_response_before_restricted_acccess" instance="Itatiaia\Custom\Observer\RestrictedAccess" />
+    </event>
 </config>
