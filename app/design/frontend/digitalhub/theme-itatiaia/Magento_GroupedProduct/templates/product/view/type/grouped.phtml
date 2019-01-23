@@ -5,14 +5,14 @@
     <div id="tabs-list">
         <ul class="nav nav-tabs">
             <li class="active"><a href="#tab1">Descrição</a></li>
-            <li><a href="#tab2">Dimensões</a></li>
+            <!-- <li><a href="#tab2">Dimensões</a></li> -->
         </ul>
     </div>
     <div class="wrp-desc">
         <section id="tab1" class="tab-content active">
             <?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getShortDescription(), 'short_description') ?>
         </section>
-        <section id="tab2" class="tab-content hide">
+        <!-- <section id="tab2" class="tab-content hide">
             <div class="wrp-dimensoes">
               <ul>
                 <?php if ($product->getAlturaMontado()): ?>
@@ -32,7 +32,7 @@
                 <?php endif; ?>
               </ul>
             </div>
-        </section>
+        </section> -->
     </div>
 </div>
 

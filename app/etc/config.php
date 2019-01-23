@@ -11,6 +11,7 @@ return [
         'DigitalHub_Breadcrumbs' => 1,
         'DigitalHub_CustomerAttributes' => 1,
         'DigitalHub_EstimateShipping' => 1,
+        'DigitalHub_FeedManager' => 1,
         'DigitalHub_FixProductTitle' => 1,
         'DigitalHub_MenuManager' => 1,
         'Magento_AdminNotification' => 1,

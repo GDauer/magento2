@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4aaff2be0488a7660dfa4636906085a2",
+    "content-hash": "d98c4d81f92e4824db48fc71053354a1",
     "packages": [
         {
             "name": "adyen/module-payment",
@@ -906,6 +906,37 @@
             "time": "2019-01-21T16:35:09+00:00"
         },
         {
+            "name": "digitalhub/feedmanager",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@gitlab.com:digitalhub/m2/modules/feed-manager.git",
+                "reference": "e16fc02e06821b4038898db4b1ea526edb230c41"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/digitalhub%2Fm2%2Fmodules%2Ffeed-manager/repository/archive.zip?sha=e16fc02e06821b4038898db4b1ea526edb230c41",
+                "reference": "e16fc02e06821b4038898db4b1ea526edb230c41",
+                "shasum": ""
+            },
+            "require": {
+                "magento/framework": "*",
+                "mustache/mustache": "*",
+                "php": "~7.0.0|~7.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "DigitalHub\\FeedManager\\": ""
+                }
+            },
+            "description": "Módulo para gestão de feeds XML de produtos",
+            "time": "2018-10-01T20:02:26+00:00"
+        },
+        {
             "name": "digitalhub/language-pt_br",
             "version": "dev-master",
             "source": {
@@ -1437,16 +1468,16 @@
         },
         {
             "name": "intelipost/magento2-basic",
-            "version": "1.1.2",
+            "version": "1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/intelipost/magento2-basic.git",
-                "reference": "e436f8689b09519174d3199be1a261dff5b9b526"
+                "reference": "e895459d471d1ad0b1007323e30a8fd34a57e599"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/intelipost/magento2-basic/zipball/e436f8689b09519174d3199be1a261dff5b9b526",
-                "reference": "e436f8689b09519174d3199be1a261dff5b9b526",
+                "url": "https://api.github.com/repos/intelipost/magento2-basic/zipball/e895459d471d1ad0b1007323e30a8fd34a57e599",
+                "reference": "e895459d471d1ad0b1007323e30a8fd34a57e599",
                 "shasum": ""
             },
             "require": {
@@ -1478,7 +1509,7 @@
                 }
             ],
             "description": "Intelipost Basic",
-            "time": "2019-01-08T21:48:43+00:00"
+            "time": "2019-01-21T19:29:13+00:00"
         },
         {
             "name": "intelipost/magento2-push",
@@ -11449,20 +11480,21 @@
         },
         {
             "name": "mundipagg/ecommerce-module-core",
-            "version": "1.0.1",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mundipagg/ecommerce-module-core.git",
-                "reference": "b481f6d6a7b4f2cd1fbd11b731bb145cd53415f5"
+                "reference": "7752fdd7b6dfe99abe950aa89d377d4f782ae6d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mundipagg/ecommerce-module-core/zipball/b481f6d6a7b4f2cd1fbd11b731bb145cd53415f5",
-                "reference": "b481f6d6a7b4f2cd1fbd11b731bb145cd53415f5",
+                "url": "https://api.github.com/repos/mundipagg/ecommerce-module-core/zipball/7752fdd7b6dfe99abe950aa89d377d4f782ae6d2",
+                "reference": "7752fdd7b6dfe99abe950aa89d377d4f782ae6d2",
                 "shasum": ""
             },
             "require": {
-                "monolog/monolog": "~1.6"
+                "monolog/monolog": "~1.6",
+                "mundipagg/mundiapi": "^3.0"
             },
             "type": "library",
             "autoload": {
@@ -11481,20 +11513,20 @@
                     "email": "embeddables@mundipagg.com"
                 }
             ],
-            "time": "2019-01-16T17:03:40+00:00"
+            "time": "2019-01-21T19:20:17+00:00"
         },
         {
             "name": "mundipagg/mundiapi",
-            "version": "3.1.0",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mundipagg/MundiAPI-PHP.git",
-                "reference": "0676f99eeabf85f21fcb4c9a6fff39556e481017"
+                "reference": "4f4d4e6891bce7d59f9838fa8089b18e6b661b84"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mundipagg/MundiAPI-PHP/zipball/0676f99eeabf85f21fcb4c9a6fff39556e481017",
-                "reference": "0676f99eeabf85f21fcb4c9a6fff39556e481017",
+                "url": "https://api.github.com/repos/mundipagg/MundiAPI-PHP/zipball/4f4d4e6891bce7d59f9838fa8089b18e6b661b84",
+                "reference": "4f4d4e6891bce7d59f9838fa8089b18e6b661b84",
                 "shasum": ""
             },
             "require": {
@@ -11533,24 +11565,24 @@
                 "api",
                 "sdk"
             ],
-            "time": "2019-01-18T14:46:27+00:00"
+            "time": "2019-01-21T19:33:38+00:00"
         },
         {
             "name": "mundipagg/mundipagg-magento2-module",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mundipagg/magento2.git",
-                "reference": "2fc34a794a512133213edb8cdfe0a9656ed01c7b"
+                "reference": "2d0494ee824ad53a1c75df8e87308de2a5352e97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mundipagg/magento2/zipball/2fc34a794a512133213edb8cdfe0a9656ed01c7b",
-                "reference": "2fc34a794a512133213edb8cdfe0a9656ed01c7b",
+                "url": "https://api.github.com/repos/mundipagg/magento2/zipball/2d0494ee824ad53a1c75df8e87308de2a5352e97",
+                "reference": "2d0494ee824ad53a1c75df8e87308de2a5352e97",
                 "shasum": ""
             },
             "require": {
-                "mundipagg/ecommerce-module-core": "^1.0",
+                "mundipagg/ecommerce-module-core": "1.2.0",
                 "mundipagg/mundiapi": "^3.0",
                 "php": ">=5.6.0"
             },
@@ -11590,7 +11622,53 @@
                 }
             ],
             "description": "Magento 2 Module Mundipagg",
-            "time": "2019-01-15T18:19:51+00:00"
+            "time": "2019-01-21T19:21:45+00:00"
+        },
+        {
+            "name": "mustache/mustache",
+            "version": "v2.12.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bobthecow/mustache.php.git",
+                "reference": "fe8fe72e9d580591854de404cc59a1b83ca4d19e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bobthecow/mustache.php/zipball/fe8fe72e9d580591854de404cc59a1b83ca4d19e",
+                "reference": "fe8fe72e9d580591854de404cc59a1b83ca4d19e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "~1.11",
+                "phpunit/phpunit": "~3.7|~4.0|~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Mustache": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Justin Hileman",
+                    "email": "justin@justinhileman.info",
+                    "homepage": "http://justinhileman.com"
+                }
+            ],
+            "description": "A Mustache implementation in PHP.",
+            "homepage": "https://github.com/bobthecow/mustache.php",
+            "keywords": [
+                "mustache",
+                "templating"
+            ],
+            "time": "2017-07-11T12:54:05+00:00"
         },
         {
             "name": "oyejorge/less.php",
@@ -17931,6 +18009,7 @@
         "digitalhub/customer-attributes": 20,
         "digitalhub/language-pt_br": 20,
         "digitalhub/banners": 20,
+        "digitalhub/feedmanager": 20,
         "phpmd/phpmd": 0
     },
     "prefer-stable": false,

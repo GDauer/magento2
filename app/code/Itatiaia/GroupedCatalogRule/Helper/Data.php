@@ -35,8 +35,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             if(count($result)){
                 return $result;
             }
-            return null;
         }
+        return null;
     }
 
     //

@@ -43,6 +43,7 @@
         "digitalhub/language-pt_br": "dev-master",
         "mundipagg/mundipagg-magento2-module": "^1.2",
         "digitalhub/banners": "dev-master",
+        "digitalhub/feedmanager": "dev-master",
         "magepal/magento2-gmailsmtpapp": "^2.5",
         "smile/elasticsuite": "^2.6",
         "intelipost/magento2-basic": "^1.1",
@@ -129,6 +130,10 @@
         {
             "type": "vcs",
             "url": "https://gitlab.com/digitalhub/m2/modules/banners.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://gitlab.com/digitalhub/m2/modules/feed-manager.git"
         }
     ],
     "extra": {
