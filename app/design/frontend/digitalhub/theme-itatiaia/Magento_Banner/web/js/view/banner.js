@@ -136,7 +136,7 @@ define([
             setTimeout(function(){
                 $('.block-banners .banner-items.owl-carousel').owlCarousel({
                     navigation: false,
-                    dots: false,
+                    dots: true,
                     autoHeight: true,
                     loop: true,
                     autoplay: true,
@@ -149,6 +149,8 @@ define([
                     }
                 })
             }, 50)
+
+            console.log(123)
         }
 
         return initializedItems[blockId];

@@ -2059,19 +2059,25 @@ a, a:hover, .alink, a:visited, .alink:visited {
   }
 }
 .owl-dots {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
   text-align: center;
   vertical-align: bottom;
   button {
     vertical-align: bottom;
+    display: inline-block;
     span {
-      background: none repeat scroll #000;
       display: block;
-      height: 2px;
+      height: 14px;
+      width: 14px;
       margin: 10px 3px;
-      width: 36px;
+      background: #1aa3ff;
+      border-radius: 100px;
+      opacity: 0.4;
     }
     &.active span {
-      height: 5px;
+      opacity: 0.8
     }
   }
 }
