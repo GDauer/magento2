@@ -2,4 +2,5 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
     <preference for="Magento\Catalog\Block\Product\View\Attributes" type="Itatiaia\Custom\Block\Catalog\Product\View\Attributes" />
     <preference for="DigitalHub\FeedManager\Helper\Feed" type="Itatiaia\Custom\Helper\FeedManager\Feed" />
+    <preference for="Magento\Sales\Model\Order\Config" type="Itatiaia\Custom\Model\Sales\Order\Config" />
 </config>
