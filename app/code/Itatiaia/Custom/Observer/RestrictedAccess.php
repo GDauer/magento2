@@ -37,10 +37,10 @@ class RestrictedAccess implements \Magento\Framework\Event\ObserverInterface
     public function execute(
         \Magento\Framework\Event\Observer $observer
     ) {
-        if((int)$this->_scopeConfig->getValue('dev/itatiaia_restricted_access/active', \Magento\Store\Model\ScopeInterface::SCOPE_STORE)){
+        if((int)$this->_scopeConfig->getValue('system/itatiaia_restricted_access/active', \Magento\Store\Model\ScopeInterface::SCOPE_STORE)){
 
             $allow = false;
-            $allowedQuerystring = $this->_scopeConfig->getValue('dev/itatiaia_restricted_access/allow_querystring', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+            $allowedQuerystring = $this->_scopeConfig->getValue('system/itatiaia_restricted_access/allow_querystring', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 
             // verifica se possui QueryString para liberação via URL
             if(strpos($_SERVER['REQUEST_URI'], $allowedQuerystring) !== false){
@@ -65,8 +65,8 @@ class RestrictedAccess implements \Magento\Framework\Event\ObserverInterface
 
             // verificação por Basic Auth
             if(!$allow){
-                $username = $this->_scopeConfig->getValue('dev/itatiaia_restricted_access/username', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-                $password = $this->_scopeConfig->getValue('dev/itatiaia_restricted_access/password', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+                $username = $this->_scopeConfig->getValue('system/itatiaia_restricted_access/username', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+                $password = $this->_scopeConfig->getValue('system/itatiaia_restricted_access/password', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 
                 if(isset($_SERVER['PHP_AUTH_USER']) && $_SERVER['PHP_AUTH_USER'] == $username){
                     if(isset($_SERVER['PHP_AUTH_PW']) && $_SERVER['PHP_AUTH_PW'] == $password){
