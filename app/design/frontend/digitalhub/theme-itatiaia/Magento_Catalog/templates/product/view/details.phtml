@@ -41,6 +41,24 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
             </div>
         <?php endif; ?>
 
+        <?php if($block->getProduct()->getTypeId() == 'grouped'): ?>
+            <?php $html = $layout->renderElement('product.info.description'); ?>
+            <div class="data item title"
+                aria-labeledby="tab-label-description-title"
+                data-role="collapsible" id="tab-label-description">
+                <a class="data switch"
+                    tabindex="-1"
+                    data-toggle="switch"
+                    href="#description"
+                    id="tab-label-description-title">
+                    Descrição
+                </a>
+            </div>
+            <div class="data item content" id="description" data-role="content">
+                <?= /* @escapeNotVerified */ $html ?>
+            </div>
+        <?php endif; ?>
+
         <?php foreach ($detailedInfoGroup as $name): ?>
 
             <?php if($name == 'grouped.items') continue; ?>
