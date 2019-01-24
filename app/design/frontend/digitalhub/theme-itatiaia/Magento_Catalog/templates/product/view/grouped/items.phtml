@@ -24,11 +24,13 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
                                 </div>
                             <?php endif; ?>
                         </div>
-                        <div class="wrp-img">
-                            <?php $productImage = $_imagehelper->init($_childProduct, 'category_page_list') ?>
-                            <img class="default_image" src="<?= $productImage->getUrl() ?>" alt="<?= $productImage->getLabel() ?>"/>
-                        </div>
-                        <div class="wrp-infos">
+                        <?php if(!$groupedProduct->getLockItems()): ?>
+                            <div class="wrp-img">
+                                <?php $productImage = $_imagehelper->init($_childProduct, 'category_page_list') ?>
+                                <img class="default_image" src="<?= $productImage->getUrl() ?>" alt="<?= $productImage->getLabel() ?>"/>
+                            </div>
+                        <?php endif; ?>
+                        <div class="wrp-infos <?php if($groupedProduct->getLockItems()) echo "locked-items"; ?>">
                             <div class="in-infos">
                                 <h1 class="product-name"><?= $_childProduct->getName(); ?></h1>
 

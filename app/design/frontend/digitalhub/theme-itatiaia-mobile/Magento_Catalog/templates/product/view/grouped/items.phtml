@@ -12,7 +12,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
         <?php foreach($groupedProduct->getTypeInstance(true)->getAssociatedProducts($groupedProduct) as $_item): ?>
             <?php $_childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\Product')->load($_item->getEntityId()) ?>
             <?php if($_item->getStatus()): ?>
-                <div class="item-out" id="super-group-item-<?= $_item->getId() ?>">
+                <div class="item-out <?php if(!$groupedProduct->getLockItems()) echo "locked-items"; ?>" id="super-group-item-<?= $_item->getId() ?>">
                     <div class="item-in">
                       <div class="wrp-init">
                           <div class="wrp-input">
@@ -27,15 +27,17 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
                                   </div>
                               <?php endif; ?>
                           </div>
-                          <div class="wrp-img">
-                              <?php $productImage = $_imagehelper->init($_childProduct, 'category_page_list') ?>
-                              <img class="default_image" src="<?= $productImage->getUrl() ?>" alt="<?= $productImage->getLabel() ?>"/>
-                          </div>
+                          <?php if(!$groupedProduct->getLockItems()): ?>
+                              <div class="wrp-img">
+                                  <?php $productImage = $_imagehelper->init($_childProduct, 'category_page_list') ?>
+                                  <img class="default_image" src="<?= $productImage->getUrl() ?>" alt="<?= $productImage->getLabel() ?>"/>
+                              </div>
+                          <?php endif; ?>
                         </div>
                         <div class="wrp-infos">
                             <div class="in-infos">
                                 <h1 class="product-name"><?= $_childProduct->getName(); ?></h1>
-                                
+
                                 <?php if(!$groupedProduct->getLockItems()): ?>
                                     <div class="field qty">
                                         <div class="control">

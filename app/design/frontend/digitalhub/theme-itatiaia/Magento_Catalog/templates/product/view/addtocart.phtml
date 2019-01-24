@@ -40,8 +40,15 @@
             </button>
             <?= $block->getChildHtml('', true) ?>
         </div>
+
         <?php if($_product->getTypeId()== "grouped"): ?>
-            <a class="btn-rev" href="#" onclick="scrollToGroupedItems(); return false;">Revisar itens do conjunto</a>
+            <a class="btn-rev" href="#" onclick="scrollToGroupedItems(); return false;">
+                <?php if(!$_product->getLockItems()): ?>
+                    <?php echo __('Revisar itens do conjunto') ?>
+                <?php else: ?>
+                    <?php echo __('Itens do conjunto') ?>
+                <?php endif; ?>
+            </a>
         <?php endif; ?>
 
         <?php
