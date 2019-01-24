@@ -133,7 +133,16 @@ define([
                 });
             }
 
-            setTimeout(function(){
+            initializeCarousel()
+        }
+
+        return initializedItems[blockId];
+    }
+
+    function initializeCarousel(){
+        var bannersInterval = setInterval(function(){
+            if($('.block-banners .banner-items.owl-carousel').length){
+                clearInterval(bannersInterval);
                 $('.block-banners .banner-items.owl-carousel').owlCarousel({
                     navigation: false,
                     dots: false,
@@ -147,11 +156,9 @@ define([
                             items: 1
                         }
                     }
-                })
-            }, 250)
-        }
-
-        return initializedItems[blockId];
+                });
+            }
+        }, 10);
     }
 
     return Component.extend({
