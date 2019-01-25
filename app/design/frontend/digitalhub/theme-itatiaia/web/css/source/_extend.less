@@ -1752,7 +1752,8 @@ a, a:hover, .alink, a:visited, .alink:visited {
       }
       .product-item-details {
         background: #fff;
-        width: 90%;
+        width: auto;
+        padding: 0 10px;
         margin: 0 auto;
         position: relative;
         z-index: 9;
@@ -1872,6 +1873,8 @@ a, a:hover, .alink, a:visited, .alink:visited {
         .product-item-actions {
           text-align: center;
           margin: 0;
+          margin-left: -12px;
+          margin-right: -12px;
           .actions-primary {
             display: block;
             margin: 0 auto 0;
@@ -1960,22 +1963,22 @@ a, a:hover, .alink, a:visited, .alink:visited {
         .product-item-details {
           .product-item-actions {
             position: absolute;
-            top: 181px;
-            margin: 0;
-            width: 100%;
-            background: #fff;
-            .action.primary {
-              opacity: 1;
-              max-height:100%;
-            }
+            min-width: 100%;
+            // top: 181px;
+            // margin: 0;
+            // background: #fff;
+            // .action.primary {
+            //   opacity: 1;
+            //   max-height:100%;
+            // }
           }
           .wrp-short {
             display: block;
-            background: #fff;
-            border: none;
-            padding: 0 0 0px 0;
-            overflow: hidden;
-            text-align: left;
+            // background: #fff;
+            // border: none;
+            // padding: 0 0 0px 0;
+            // overflow: hidden;
+            // text-align: left;
           }
         }
       }
@@ -1991,21 +1994,21 @@ a, a:hover, .alink, a:visited, .alink:visited {
         z-index: 2;
       }
     }
-    &:hover {
-      .product-item-info {
-        border: 1px solid #fff;
-        .product-item-details {
-          .product-item-actions{
-            top: 193px;
-            position: absolute;
-            z-index: 12;
-            .wrp-short{
-              padding: 0 9px 20px;
-            }
-          }
-        }
-      }
-    }
+    // &:hover {
+    //   .product-item-info {
+    //     border: 1px solid #fff;
+    //     .product-item-details {
+    //       .product-item-actions{
+    //         top: 193px;
+    //         position: absolute;
+    //         z-index: 12;
+    //         .wrp-short{
+    //           padding: 0 9px 20px;
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
   }
 }
 .tag-desc {
@@ -2853,15 +2856,15 @@ a, a:hover, .alink, a:visited, .alink:visited {
         border: none;
         height: 438px;
       }
-      &:hover {
-        .product-item-info {
-          .product-item-details {
-            .product-item-actions {
-              top: 181px;
-            }
-          }
-        }
-      }
+      // &:hover {
+      //   .product-item-info {
+      //     .product-item-details {
+      //       .product-item-actions {
+      //         top: 181px;
+      //       }
+      //     }
+      //   }
+      // }
     }
   }
 }
