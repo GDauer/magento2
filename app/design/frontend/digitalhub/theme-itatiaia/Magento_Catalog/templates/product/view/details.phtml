@@ -157,7 +157,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
             </div>
 
             <!-- Fim Listagem de produtos agrupados -->
-            <?php if ($product->isSaleable()): ?>
+            <?php if ($product->isAvailable()): ?>
                 <div class="wrp-price">
                     <p>Leve o conjunto selecionado por apenas:</p>
                     <div class="price-box">
@@ -179,6 +179,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
                         <p class="installments-price"> ou <span>4x</span> de <span>R$12,25</span> sem juros</p>
                     </div> -->
                 </div>
+
                 <div class="box-tocart">
                     <div class="btn">
                         <button title="Add to Cart" onclick="jQuery('#product-addtocart-button').trigger('click'); return false;" class="action tocart primary">

@@ -122,4 +122,86 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             return $this->calculateSimpleFinalPrice($product, $parentProduct);
         }
     }
+
+
+    public function updateGroupedStockStatusByStockItem($stockItem)
+    {
+        $groupedProductType = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\GroupedProduct\Model\Product\Type\GroupedFactory')->create();
+        $productFactory = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\ProductFactory');
+        $logger = \Magento\Framework\App\ObjectManager::getInstance()->get('\Psr\Log\LoggerInterface');
+        $logger->info('GROUPED STOCK STATUS', [$stockItem->getData()]);
+
+        // busca produtos agrupados relacionados
+        // para cada agrupado encontrado, busca pelos filhos
+            // verifica o status do estoque de cada item
+            // verifica se exite um dos itens do agrupado sem estoque
+            // altera status de stock do agrupado para sem estoque
+
+        $product = $productFactory->create()->load($stockItem->getProductId());
+        $logger->info('STOCK PRODUCT ID', [$product->getId(), $product->getName()]);
+
+        if($product->getTypeId() == 'simple'){
+            // busca produtos agrupados relacionados
+            $parentProductsIds = $groupedProductType->getParentIdsByChild($product->getId());
+
+            if(count($parentProductsIds)){
+                $groupedCollection = $productFactory->create()->getCollection();
+                $groupedCollection->addFieldToFilter('row_id', ['in' => $parentProductsIds]);
+                $groupedCollection->load();
+
+                // para cada agrupado encontrado, busca pelos filhos
+                foreach($groupedCollection as $groupedProduct){
+                    $childrenIds = $groupedProduct->getTypeInstance(true)->getChildrenIds($groupedProduct->getId());
+
+                    $is_in_stock = true;
+                    $logger->info('CHILDREN IDS', [$childrenIds]);
+
+                    // Link Type ID = 3
+                    // verifica o status do estoque de cada item
+                    foreach($childrenIds['3'] as $k => $id){
+                        $childProduct = $productFactory->create()->load($id);
+
+                        // verifica se exite um dos itens do agrupado sem estoque
+                        $logger->info('CHILD ITEM', [$childProduct->getData()]);
+
+                        $extensionAttributes = $childProduct->getExtensionAttributes();
+                        if(!$extensionAttributes->getStockItem()->getIsInStock()){
+                            $is_in_stock = false;
+                        }
+                    }
+
+                    // update stock item do produto agrupado
+                    $this->updateProductIsInStock($groupedProduct, $is_in_stock);
+                }
+            }
+        }
+    }
+
+    public function isGroupedProductInStock($groupedProduct)
+    {
+        $productFactory = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\ProductFactory');
+        $childrenIds = $groupedProduct->getTypeInstance(true)->getChildrenIds($groupedProduct->getId());
+        $is_in_stock = true;
+
+        // Link Type ID = 3
+        // verifica o status do estoque de cada item
+        foreach($childrenIds['3'] as $k => $id){
+            $childProduct = $productFactory->create()->load($id);
+
+            // verifica se exite um dos itens do agrupado sem estoque
+            $extensionAttributes = $childProduct->getExtensionAttributes();
+            if(!$extensionAttributes->getStockItem()->getIsInStock()){
+                $is_in_stock = false;
+            }
+        }
+
+        return $is_in_stock;
+    }
+
+    public function updateProductIsInStock($product, $is_in_stock) {
+        $stockRegistry = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\CatalogInventory\Api\StockRegistryInterface');
+        $stockItem = $stockRegistry->getStockItemBySku($product->getSku());
+        $stockItem->setIsInStock((bool)$is_in_stock);
+        $stockRegistry->updateStockItemBySku($product->getSku(), $stockItem);
+    }
 }

@@ -148,15 +148,9 @@ require([
                 <?php endif; ?>
                 <div class="actions-primary"<?= strpos($pos, $viewMode . '-primary') ? $position : '' ?>>
                   <?php if ($_product->isSaleable()): ?>
-                    <?php $postParams = $block->getAddToCartPostParams($_product); ?>
-                    <form data-role="tocart-form" data-product-sku="<?= $block->escapeHtml($_product->getSku()) ?>" action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post">
-                      <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $postParams['data']['product'] ?>">
-                      <input type="hidden" name="<?= /* @escapeNotVerified */ Action::PARAM_NAME_URL_ENCODED ?>" value="<?= /* @escapeNotVerified */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
-                      <?= $block->getBlockHtml('formkey') ?>
-                      <button class="action tocart primary" onClick="self.location='<?= $block->escapeUrl($block->getProductUrl($_product)) ?>'" type="button" title="<?= $block->escapeHtmlAttr(__('Comprar')) ?>">
-                          <span><?= $block->escapeHtml(__('Comprar')) ?></span>
-                      </button>
-                  </form>
+                  <a href="<?php echo $_product->getProductUrl() ?>" class="action tocart primary">
+                      <span><?php echo __('Comprar') ?></span>
+                  </a>
                 <?php else: ?>
                   <?php if ($_product->isAvailable()): ?>
                     <div class="stock available"><span><?= /* @escapeNotVerified */ __('In stock') ?></span></div>

@@ -148,25 +148,15 @@ $hoverimg = 'category_page_list_hover';
                   </div>
                   <?php if ($showCart): ?>
                     <div class="actions-primary">
-                      <?php if ($_item->isSaleable()): ?>
-                        <?php if ($_item->getTypeInstance()->hasRequiredOptions($_item)): ?>
-                          <button class="action tocart primary" onClick="self.location='<?= $block->escapeUrl($block->getProductUrl($_item)) ?>'" type="button" title="<?= $block->escapeHtmlAttr(__('Comprar agora')) ?>">
-                            <span><?= $block->escapeHtml(__('Comprar agora')) ?></span>
-                          </button>
-                        <?php else: ?>
-                          <?php
-                          $postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
-                          $postData = $postDataHelper->getPostData($block->getAddToCartUrl($_item), ['product' => $_item->getEntityId()])
-                          ?>
-                          <button class="action tocart primary" onClick="self.location='<?= $block->escapeUrl($block->getProductUrl($_item)) ?>'" type="button" title="<?= $block->escapeHtmlAttr(__('Comprar agora')) ?>">
-                            <span><?= $block->escapeHtml(__('Comprar agora')) ?></span>
-                          </button>
-                        <?php endif; ?>
+                        <?php if ($_item->isSaleable()): ?>
+                        <a href="<?php echo $_item->getProductUrl() ?>" class="action tocart primary">
+                            <span><?php echo __('Comprar') ?></span>
+                        </a>
                       <?php else: ?>
-                        <?php if ($_item->getIsSalable()): ?>
-                          <div class="stock available"><span><?= $block->escapeHtml(__('In stock')) ?></span></div>
+                        <?php if ($_item->isAvailable()): ?>
+                          <div class="stock available"><span><?= /* @escapeNotVerified */ __('In stock') ?></span></div>
                         <?php else: ?>
-                          <div class="stock unavailable"><span><?= $block->escapeHtml(__('Out of stock')) ?></span></div>
+                          <div class="stock unavailable"><span><?= /* @escapeNotVerified */ __('Out of stock') ?></span></div>
                         <?php endif; ?>
                       <?php endif; ?>
                     </div>
