@@ -11,7 +11,8 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
         $imagehelper = $objectManager->get('Magento\Catalog\Helper\Image');
         $urlBuilder = $objectManager->get('Magento\Framework\UrlInterface');
         $currencyHelper = $objectManager->get('Magento\Framework\Pricing\Helper\Data');
-        $stockItemRepository = $objectManager->get('\Magento\CatalogInventory\Model\Stock\StockItemRepository');
+        // $stockItemRepository = $objectManager->get('\Magento\CatalogInventory\Model\Stock\StockItemRepository');
+        $stockRegistry = $objectManager->get('Magento\CatalogInventory\Api\StockRegistryInterface');
 
         $newCollection = [];
 
@@ -19,7 +20,7 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
             $item = $product->getData();
 
             // remove sem estoque e com preço zerado por não ter itens vinculados
-            if(!$product->getIsSalable()) continue;
+            if(!$product->isAvailable()) continue;
 
             foreach($item as $attr_code => $value){
                 if($product->getResource()->getAttribute($attr_code)){
@@ -37,15 +38,22 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
 
             if($product->getTypeId() == 'grouped'){
                 $groupedCatalogRuleHelper = $objectManager->get('\Itatiaia\GroupedCatalogRule\Helper\Data');
+
+                // prevenir envio de produtos com valor Zero
+                if(!$groupedCatalogRuleHelper->getFinalPrice($product)) continue;
+
                 $item['final_price'] = $groupedCatalogRuleHelper->getFinalPrice($product);
                 $item['final_price_formatted'] = $currencyHelper->currency($item['final_price'], true, false);
-                $objectManager->get('\Psr\Log\LoggerInterface')->info('GROUPED FINAL PRICE', [$product->getFinalPrice(), $item['final_price']]);
+                // $objectManager->get('\Psr\Log\LoggerInterface')->info('GROUPED FINAL PRICE', [$product->getFinalPrice(), $item['final_price']]);
             } else {
+                // prevenir envio de produtos com valor Zero
+                if(!$product->getFinalPrice()) continue;
+
                 $item['final_price'] = $product->getFinalPrice();
                 $item['final_price_formatted'] = $currencyHelper->currency($item['final_price'], true, false);
             }
 
-            $stockItem = $stockItemRepository->get($product->getId());
+            $stockItem = $stockRegistry->getStockItem($product->getId());
 
             $item['in_stock'] = $stockItem->getIsInStock();
             $item['stock_qty'] = $stockItem->getQty();
