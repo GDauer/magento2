@@ -43,16 +43,16 @@
         },
         {
             "name": "adyen/php-api-library",
-            "version": "1.5.4",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Adyen/adyen-php-api-library.git",
-                "reference": "8272f52a26e87233cfae598460cc88d23a509a51"
+                "reference": "b644c34a9990e4f3f719b189947659d3cf858d4b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Adyen/adyen-php-api-library/zipball/8272f52a26e87233cfae598460cc88d23a509a51",
-                "reference": "8272f52a26e87233cfae598460cc88d23a509a51",
+                "url": "https://api.github.com/repos/Adyen/adyen-php-api-library/zipball/b644c34a9990e4f3f719b189947659d3cf858d4b",
+                "reference": "b644c34a9990e4f3f719b189947659d3cf858d4b",
                 "shasum": ""
             },
             "require": {
@@ -82,7 +82,7 @@
             "keywords": [
                 "adyen"
             ],
-            "time": "2018-11-29T10:15:17+00:00"
+            "time": "2019-01-25T15:17:04+00:00"
         },
         {
             "name": "amzn/amazon-pay-and-login-with-amazon-core-module",
@@ -493,16 +493,16 @@
         },
         {
             "name": "composer/ca-bundle",
-            "version": "1.1.3",
+            "version": "1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
-                "reference": "8afa52cd417f4ec417b4bfe86b68106538a87660"
+                "reference": "558f321c52faeb4828c03e7dc0cfe39a09e09a2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/8afa52cd417f4ec417b4bfe86b68106538a87660",
-                "reference": "8afa52cd417f4ec417b4bfe86b68106538a87660",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/558f321c52faeb4828c03e7dc0cfe39a09e09a2d",
+                "reference": "558f321c52faeb4828c03e7dc0cfe39a09e09a2d",
                 "shasum": ""
             },
             "require": {
@@ -545,7 +545,7 @@
                 "ssl",
                 "tls"
             ],
-            "time": "2018-10-18T06:09:13+00:00"
+            "time": "2019-01-28T09:30:10+00:00"
         },
         {
             "name": "composer/composer",
@@ -911,12 +911,12 @@
             "source": {
                 "type": "git",
                 "url": "git@gitlab.com:digitalhub/m2/modules/feed-manager.git",
-                "reference": "e16fc02e06821b4038898db4b1ea526edb230c41"
+                "reference": "3594446cce4e97af7fd99b9a59d30603643e8b26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/digitalhub%2Fm2%2Fmodules%2Ffeed-manager/repository/archive.zip?sha=e16fc02e06821b4038898db4b1ea526edb230c41",
-                "reference": "e16fc02e06821b4038898db4b1ea526edb230c41",
+                "url": "https://gitlab.com/api/v4/projects/digitalhub%2Fm2%2Fmodules%2Ffeed-manager/repository/archive.zip?sha=3594446cce4e97af7fd99b9a59d30603643e8b26",
+                "reference": "3594446cce4e97af7fd99b9a59d30603643e8b26",
                 "shasum": ""
             },
             "require": {
@@ -934,7 +934,7 @@
                 }
             },
             "description": "Módulo para gestão de feeds XML de produtos",
-            "time": "2018-10-01T20:02:26+00:00"
+            "time": "2019-01-28T13:49:23+00:00"
         },
         {
             "name": "digitalhub/language-pt_br",
@@ -11480,16 +11480,16 @@
         },
         {
             "name": "mundipagg/ecommerce-module-core",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mundipagg/ecommerce-module-core.git",
-                "reference": "7752fdd7b6dfe99abe950aa89d377d4f782ae6d2"
+                "reference": "bc16761282f00d73e96c28e35fbffcc16a6a568c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mundipagg/ecommerce-module-core/zipball/7752fdd7b6dfe99abe950aa89d377d4f782ae6d2",
-                "reference": "7752fdd7b6dfe99abe950aa89d377d4f782ae6d2",
+                "url": "https://api.github.com/repos/mundipagg/ecommerce-module-core/zipball/bc16761282f00d73e96c28e35fbffcc16a6a568c",
+                "reference": "bc16761282f00d73e96c28e35fbffcc16a6a568c",
                 "shasum": ""
             },
             "require": {
@@ -11513,7 +11513,7 @@
                     "email": "embeddables@mundipagg.com"
                 }
             ],
-            "time": "2019-01-21T19:20:17+00:00"
+            "time": "2019-01-22T22:12:33+00:00"
         },
         {
             "name": "mundipagg/mundiapi",
@@ -11569,20 +11569,20 @@
         },
         {
             "name": "mundipagg/mundipagg-magento2-module",
-            "version": "1.4.0",
+            "version": "1.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mundipagg/magento2.git",
-                "reference": "2d0494ee824ad53a1c75df8e87308de2a5352e97"
+                "reference": "bac00f6a8bef5e518a6c843ca1b1351aec69aa1a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mundipagg/magento2/zipball/2d0494ee824ad53a1c75df8e87308de2a5352e97",
-                "reference": "2d0494ee824ad53a1c75df8e87308de2a5352e97",
+                "url": "https://api.github.com/repos/mundipagg/magento2/zipball/bac00f6a8bef5e518a6c843ca1b1351aec69aa1a",
+                "reference": "bac00f6a8bef5e518a6c843ca1b1351aec69aa1a",
                 "shasum": ""
             },
             "require": {
-                "mundipagg/ecommerce-module-core": "1.2.0",
+                "mundipagg/ecommerce-module-core": "1.2.1",
                 "mundipagg/mundiapi": "^3.0",
                 "php": ">=5.6.0"
             },
@@ -11622,7 +11622,7 @@
                 }
             ],
             "description": "Magento 2 Module Mundipagg",
-            "time": "2019-01-21T19:21:45+00:00"
+            "time": "2019-01-25T19:53:54+00:00"
         },
         {
             "name": "mustache/mustache",
@@ -11911,16 +11911,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.13",
+            "version": "2.0.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "42603ce3f42a27f7e14e54feab95db7b680ad473"
+                "reference": "8ebfcadbf30524aeb75b2c446bc2519d5b321478"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/42603ce3f42a27f7e14e54feab95db7b680ad473",
-                "reference": "42603ce3f42a27f7e14e54feab95db7b680ad473",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/8ebfcadbf30524aeb75b2c446bc2519d5b321478",
+                "reference": "8ebfcadbf30524aeb75b2c446bc2519d5b321478",
                 "shasum": ""
             },
             "require": {
@@ -11999,7 +11999,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2018-12-16T17:45:25+00:00"
+            "time": "2019-01-27T19:37:29+00:00"
         },
         {
             "name": "psr/container",
@@ -12456,16 +12456,16 @@
         },
         {
             "name": "smile/elasticsuite",
-            "version": "2.6.5",
+            "version": "2.6.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Smile-SA/elasticsuite.git",
-                "reference": "ba9b625d107c8269f1e4a7f83b2ab4e62fdb63b4"
+                "reference": "c1355d245b7be6ef088bce549af170529f33f868"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Smile-SA/elasticsuite/zipball/ba9b625d107c8269f1e4a7f83b2ab4e62fdb63b4",
-                "reference": "ba9b625d107c8269f1e4a7f83b2ab4e62fdb63b4",
+                "url": "https://api.github.com/repos/Smile-SA/elasticsuite/zipball/c1355d245b7be6ef088bce549af170529f33f868",
+                "reference": "c1355d245b7be6ef088bce549af170529f33f868",
                 "shasum": ""
             },
             "require": {
@@ -12545,7 +12545,7 @@
                 "search",
                 "setup"
             ],
-            "time": "2019-01-18T09:41:34+00:00"
+            "time": "2019-01-23T16:43:01+00:00"
         },
         {
             "name": "solarium/solarium",
