@@ -75,9 +75,9 @@ require([
               <span class="tag-new">Novo</span>
             <?php endif ;?>
 
-            <?php if($_product->getFinalPrice() < $_product->getPrice()) : ?>
+            <?php /*if($_product->getFinalPrice() < $_product->getPrice()) : ?>
               <span class="tag-desc">-<?= (int)(100 - ($_product->getFinalPrice() * 100 / $_product->getPrice()))?>%</span>
-            <?php endif; ?>
+            <?php endif;*/ ?>
 
             <?php
             $productImage = $block->getImage($_product, $image);

@@ -33,12 +33,12 @@ $schema = ($block->getZone() == 'item_view') ? true : false;
       ]); ?>
     </span>
     <div class="wrp-desc">
-      <span class="tag-desc">
+      <!-- <span class="tag-desc">
         <?php $_item = $block->getSaleableItem(); ?>
         <?php if($_item->getFinalPrice() < $_item->getPrice()) : ?>
           -<?= (int)(100 - ($_item->getFinalPrice() * 100 / $_item->getPrice()))?>%
         <?php endif; ?>
-      </span>
+      </span> -->
     </div>
   </div>
   <div class="clear"></div>

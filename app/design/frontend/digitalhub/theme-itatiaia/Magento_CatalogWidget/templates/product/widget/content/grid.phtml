@@ -82,9 +82,9 @@ $hoverimg = 'category_page_list_hover';
               <span class="tag-new">Novo</span>
             <?php endif ;?>
 
-            <?php if($_item->getFinalPrice() < $_item->getPrice()) : ?>
+            <?php /*if($_item->getFinalPrice() < $_item->getPrice()) : ?>
               <span class="tag-desc">-<?= (int)(100 - ($_item->getFinalPrice() * 100 / $_item->getPrice()))?>%</span>
-            <?php endif; ?>
+            <?php endif;*/ ?>
 
             <a href="<?= /* @escapeNotVerified */ $_item->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
               <?php

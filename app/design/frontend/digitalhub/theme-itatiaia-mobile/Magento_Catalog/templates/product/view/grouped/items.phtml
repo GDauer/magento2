@@ -63,7 +63,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
                                                 </span>
                                                 <?php $percent = abs((($groupedCatalogRuleHelper->getFinalPrice($_childProduct, $groupedProduct) * 100) / $groupedCatalogRuleHelper->getRegularPrice($_childProduct, $groupedProduct)) - 100) ?>
                                                 <div class="wrp-desc">
-                                                    <span class="tag-desc">-<?= (int)$percent ?>%</span>
+                                                    <!-- <span class="tag-desc">-<?= (int)$percent ?>%</span> -->
                                                 </div>
                                             <?php endif; ?>
 

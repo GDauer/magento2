@@ -196,7 +196,7 @@ switch ($type = $block->getType()) {
                     <a href="<?= /* @escapeNotVerified */ $block->getProductUrl($_item) ?>" class="product photo product-item-photo">
                         <?= $block->getImage($_item, $image)->toHtml() ?>
                     </a>
-                    <?php if($_item->getFinalPrice() < $_item->getPrice()) : ?>
+                    <?php /*if($_item->getFinalPrice() < $_item->getPrice()) : ?>
                     <div class="tag-desc">
                        <div class="label-product label-sale">
                            <span class="sale-product-icon">
@@ -204,7 +204,7 @@ switch ($type = $block->getType()) {
                            </span>
                        </div>
                     </div>
-                    <?php endif; ?>
+                    <?php endif;*/ ?>
                     <?php if(date('Y-m-d H:i:s') >= $_item->getData('news_from_date') && date('Y-m-d H:i:s') <= $_item->getData('news_to_date')) :?>
                       <span class="tag-new">
                       <span class="label-product">
