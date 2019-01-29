@@ -12,7 +12,7 @@
 
 <?php $buttonTitle = __('Comprar'); ?>
 
-<?php if ($_product->isSaleable()): ?>
+<?php if ($_product->isAvailable()): ?>
 <div class="box-tocart">
     <div class="fieldset">
         <?php if ($block->shouldRenderQuantity()): ?>

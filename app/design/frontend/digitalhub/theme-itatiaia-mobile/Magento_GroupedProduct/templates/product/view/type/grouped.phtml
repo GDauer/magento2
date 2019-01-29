@@ -1,22 +1,15 @@
 <?php $product = $block->getProduct(); ?>
 <?php $_associatedProducts = $block->getAssociatedProducts(); ?>
 <?php $_hasAssociatedProducts = count($_associatedProducts) > 0; ?>
-<?php $isInStock = $product->isAvailable() ?>
 
-<?php if($product->getTypeId()== "grouped"): ?>
-    <?php if($isInStock): ?>
-        <a class="btn-rev" href="#" onclick="scrollToGroupedItems(); return false;">
-            <?php if(!$product->getLockItems()): ?>
-                <?php echo __('Revisar itens do conjunto') ?>
-            <?php else: ?>
-                <?php echo __('Itens do conjunto') ?>
-            <?php endif; ?>
-        </a>
-    <?php else: ?>
-        <div class="message error">
-            <span>Este produto está temporariamente fora de estoque.</span>
-        </div>
-    <?php endif; ?>
+<?php if($product->getTypeId()== "grouped" && $product->isAvailable()): ?>
+    <a class="btn-rev" href="#" onclick="scrollToGroupedItems(); return false;">
+        <?php if(!$product->getLockItems()): ?>
+            <?php echo __('Revisar itens do conjunto') ?>
+        <?php else: ?>
+            <?php echo __('Itens do conjunto') ?>
+        <?php endif; ?>
+    </a>
 <?php endif; ?>
 
 <div id="grouped-details">
@@ -56,7 +49,7 @@
 
 <div id="validation-message-box"></div>
 
-<?php if($_hasAssociatedProducts): ?>
+<?php if($_hasAssociatedProducts && $product->isAvailable()): ?>
     <div id="super-product-table">
         <?php foreach($_associatedProducts as $_item): ?>
         <input type="hidden"

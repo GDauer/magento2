@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="productalert.stock">
+            <action method="setSignupLabel">
+                <argument translate="true" name="value" xsi:type="string">Avise-me quando este produto estiver disponível novamente</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

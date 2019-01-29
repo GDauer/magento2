@@ -4,9 +4,9 @@ $priceHelper = $this->helper('Magento\Framework\Pricing\Helper\Data');
 $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
 $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Data');
 ?>
+<?php if($groupedProduct->isAvailable()): ?>
 <a name="grouped-items"></a>
 <div id="tab-grouped-items">
-
     <p class="ttl">Módulos inclusos</p>
     <section>
         <?php foreach($groupedProduct->getTypeInstance(true)->getAssociatedProducts($groupedProduct) as $_item): ?>
@@ -108,3 +108,4 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
         <?php endforeach; ?>
     </section>
 </div>
+<?php endif; ?>
