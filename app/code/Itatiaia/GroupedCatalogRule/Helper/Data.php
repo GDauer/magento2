@@ -188,9 +188,12 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         foreach($childrenIds['3'] as $k => $id){
             $childProduct = $productFactory->create()->load($id);
 
-            // verifica se exite um dos itens do agrupado sem estoque
-            $extensionAttributes = $childProduct->getExtensionAttributes();
-            if(!$extensionAttributes->getStockItem()->getIsInStock()){
+            // // verifica se exite um dos itens do agrupado sem estoque
+            // $extensionAttributes = $childProduct->getExtensionAttributes();
+            // if(!$extensionAttributes->getStockItem()->getIsInStock()){
+            //     $is_in_stock = false;
+            // }
+            if(!$childProduct->isAvailable()){
                 $is_in_stock = false;
             }
         }

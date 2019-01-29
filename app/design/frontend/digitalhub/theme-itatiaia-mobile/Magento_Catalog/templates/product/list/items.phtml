@@ -285,7 +285,7 @@ switch ($type = $block->getType()) {
                                                 <?php if ($_item->getIsSalable()): ?>
                                                     <div class="stock available"><span><?= /* @escapeNotVerified */ __('In stock') ?></span></div>
                                                 <?php else: ?>
-                                                    <div class="stock unavailable"><span><?= /* @escapeNotVerified */ __('Out of stock') ?></span></div>
+                                                    <div class="stock unavailable"><span><?= /* @escapeNotVerified */ __('Item indisponível no momento') ?></span></div>
                                                 <?php endif; ?>
                                             <?php endif; ?>
                                         </div>

@@ -23,7 +23,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
     <?php $layout = $block->getLayout(); ?>
     <div class="product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
 
-        <?php if($block->getProduct()->getTypeId() == 'grouped'): ?>
+        <?php if($block->getProduct()->getTypeId() == 'grouped' && $product->isAvailable()): ?>
             <?php $html = $layout->renderElement('grouped.items'); ?>
             <div class="data item title"
                 aria-labeledby="tab-label-grouped_items-title"
@@ -142,7 +142,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
 </div>
 <?php endif; ?>
 
-<?php if($product->getTypeId() == 'grouped'): ?>
+<?php if($product->getTypeId() == 'grouped' && $product->isAvailable()): ?>
     <div class="float-min">
         <div class="min-in">
             <h1 class="product-name"><?= $product->getName(); ?></h1>

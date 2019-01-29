@@ -3041,13 +3041,13 @@ select:not([disabled]) {
       font-weight: 500;
       width: calc(~'100% - 25px');
     }
-    .stock.unavailable{
-      background: #ff6600;
-      padding: 0 7px;
-      color: #fff;
-      font-size: 18px;
-      border-radius: 3px;
-    }
+    // .stock.unavailable{
+    //   background: #ff6600;
+    //   padding: 0 7px;
+    //   color: #fff;
+    //   font-size: 18px;
+    //   border-radius: 3px;
+    // }
     .product.attribute.sku {
       font-size: 12px;
       display: none;
@@ -5133,16 +5133,16 @@ body.checkout-index-index {
             display: none;
           }
         }
-        p.unavailable.stock{
-          background: #ff6600;
-          padding: 0 7px;
-          color: #fff;
-          font-size: 16px;
-          text-transform: uppercase;
-          border-radius: 3px;
-          font-family: 'MullerBold';
-          display: inline-block;
-        }
+        // p.unavailable.stock{
+        //   background: #ff6600;
+        //   padding: 0 7px;
+        //   color: #fff;
+        //   font-size: 16px;
+        //   text-transform: uppercase;
+        //   border-radius: 3px;
+        //   font-family: 'MullerBold';
+        //   display: inline-block;
+        // }
       }
     }
   }
@@ -5623,4 +5623,11 @@ form.form-create-account .field-ruc { display: none }
     .modal-content #shipping-new-address-form .field.choice input[type=checkbox] { float: none; display: inline-block; }
     .modal-content #shipping-new-address-form .field.choice .label { float: none; display: inline-block }
     .modal-content #shipping-new-address-form .field.choice:before { display: none }
+}
+
+.stock.unavailable {
+    background: #f0f0f0;
+    padding: 5px;
+    color: #666;
+    font-size: 12px;
 }
