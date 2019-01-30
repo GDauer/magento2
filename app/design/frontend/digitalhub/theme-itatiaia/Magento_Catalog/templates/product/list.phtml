@@ -75,10 +75,6 @@ require([
               <span class="tag-new">Novo</span>
             <?php endif ;?>
 
-            <?php /*if($_product->getFinalPrice() < $_product->getPrice()) : ?>
-              <span class="tag-desc">-<?= (int)(100 - ($_product->getFinalPrice() * 100 / $_product->getPrice()))?>%</span>
-            <?php endif;*/ ?>
-
             <?php
             $productImage = $block->getImage($_product, $image);
             if ($pos != null) {
@@ -117,15 +113,6 @@ require([
             </strong>
 
             <?= /* @escapeNotVerified */ $block->getProductPrice($_product) ?>
-            <div class="preco-a-vista">
-              <?php
-              echo $this->getLayout()
-              ->createBlock('\DigitalHub\AdditionalPrices\Block\Product\Additional')
-              ->setTemplate('DigitalHub_AdditionalPrices::product/additional_prices.phtml')
-              ->setProduct($_product)
-              ->toHtml();
-              ?>
-            </div>
 
             <?php /* $block->getProductDetailsHtml($_product) */ ?>
 
@@ -147,32 +134,21 @@ require([
                   </div>
                 <?php endif; ?>
                 <div class="actions-primary"<?= strpos($pos, $viewMode . '-primary') ? $position : '' ?>>
-                  <?php if ($_product->isSaleable()): ?>
-                  <a href="<?php echo $_product->getProductUrl() ?>" class="action tocart primary">
-                      <span><?php echo __('Comprar') ?></span>
-                  </a>
-                <?php else: ?>
                   <?php if ($_product->isAvailable()): ?>
-                    <div class="stock available"><span><?= /* @escapeNotVerified */ __('In stock') ?></span></div>
+                      <a href="<?php echo $_product->getProductUrl() ?>" class="action tocart primary">
+                          <span><?php echo __('Comprar') ?></span>
+                      </a>
                   <?php else: ?>
-                    <div class="stock unavailable"><span><?= /* @escapeNotVerified */ __('Item indisponível no momento') ?></span></div>
+                      <?php if ($_product->isAvailable()): ?>
+                        <div class="stock available"><span><?= /* @escapeNotVerified */ __('In stock') ?></span></div>
+                      <?php else: ?>
+                        <div class="stock unavailable"><span><?= /* @escapeNotVerified */ __('Item indisponível no momento') ?></span></div>
+                      <?php endif; ?>
                   <?php endif; ?>
-                <?php endif; ?>
               </div>
-              <div data-role="add-to-links" class="actions-secondary"<?= strpos($pos, $viewMode . '-secondary') ? $position : '' ?>>
-                <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
-                  <?= $addToBlock->setProduct($_product)->getChildHtml() ?>
-                <?php endif; ?>
-              </div>
+
             </div>
-            <?php if ($showDescription):?>
-              <div class="product description product-item-description">
-                <?= /* @escapeNotVerified */ $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
-                <a href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>" title="<?= /* @escapeNotVerified */ $_productNameStripped ?>"
-                  class="action more"><?= /* @escapeNotVerified */ __('Learn More') ?></a>
-                </div>
-              <?php endif; ?>
-              <?= $block->getReviewsSummaryHtml($_product, $templateType) ?>
+
             </div>
           </div>
         </div>

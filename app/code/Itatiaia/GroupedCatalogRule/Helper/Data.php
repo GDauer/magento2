@@ -100,27 +100,54 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     // regular price
     public function getRegularPrice($product)
     {
+        // \Magento\Framework\App\ObjectManager::getInstance()->get('\Psr\Log\LoggerInterface')->info('GROUPED GET REGULAR PRICE');
+        $registry = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Framework\Registry');
+
+        // se já está calculado, retorna
+        if($registry->registry('grouped_regular_price_' . $product->getId())){
+            // \Magento\Framework\App\ObjectManager::getInstance()->get('\Psr\Log\LoggerInterface')->info('RETORNANDO JÀ EXISTENTE');
+            return $registry->registry('grouped_regular_price_' . $product->getId());
+        }
+
+        $price = 0;
         if($product->getTypeId() == 'grouped'){
-            $price = 0;
             $associatedProducts = $product->getTypeInstance(true)->getAssociatedProducts($product);
             foreach ($associatedProducts as $item) {
                 $qty = $item->getQty() ? $item->getQty() : 1;
                 $childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\Product')->load($item->getId());
                 $price = $price + ((float)$childProduct->getPrice() * (int)$qty);
             }
-            return $price;
+        } else {
+            $price = $product->getPrice();
         }
-        return $product->getPrice();
+
+        $registry->register('grouped_regular_price_' . $product->getId(), $price);
+
+        return $price;
     }
 
     // final price
     public function getFinalPrice($product, $parentProduct = null)
     {
-        if($product->getTypeId() == 'grouped'){
-            return $this->calculateGroupedFinalPrice($product);
-        } else {
-            return $this->calculateSimpleFinalPrice($product, $parentProduct);
+        // \Magento\Framework\App\ObjectManager::getInstance()->get('\Psr\Log\LoggerInterface')->info('GROUPED GET FINAL PRICE');
+        $registry = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Framework\Registry');
+
+        // se já está calculado, retorna
+        if($registry->registry('grouped_final_price_' . $product->getId())){
+            // \Magento\Framework\App\ObjectManager::getInstance()->get('\Psr\Log\LoggerInterface')->info('RETORNANDO JÀ EXISTENTE');
+            return $registry->registry('grouped_final_price_' . $product->getId());
         }
+
+        $finalPrice = null;
+        if($product->getTypeId() == 'grouped'){
+            $finalPrice = $this->calculateGroupedFinalPrice($product);
+        } else {
+            $finalPrice = $this->calculateSimpleFinalPrice($product, $parentProduct);
+        }
+
+        $registry->register('grouped_final_price_' . $product->getId(), $finalPrice);
+
+        return $finalPrice;
     }
 
 
