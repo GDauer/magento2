@@ -1619,7 +1619,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           float: none;
           margin: 0;
           text-align: center;
-          height: 190px;
+          // height: 190px;
           .product-item-name{
             text-align: left;
             color: #242424;
@@ -1640,6 +1640,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
             padding: 0 10px;
             margin: 9px 0 0 0;
             position: unset;
+            height: 52px;
             .price-container {
                 text-align: center;
                 display: block;
@@ -4237,4 +4238,16 @@ body.checkout-index-index {
   border: 1px solid #e5102a;
   text-decoration: none;
   margin: 10px 0;
+}
+
+body.catalog-category-view,
+body.cms-index-index,
+body.catalogsearch-result-index {
+    .products-grid {
+        .price-wrapper {
+            span.price {
+                visibility: hidden
+            }
+        }
+    }
 }

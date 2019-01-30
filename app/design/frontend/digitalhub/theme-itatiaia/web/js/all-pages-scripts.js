@@ -46,6 +46,19 @@ require([
             }
         })
     })
+
+    if(jQuery('body.catalog-category-view').length || jQuery('body.cms-index-index').length || jQuery('body.catalogsearch-result-index').length){
+        if(!window.__decimalsRemoved){
+            jQuery('.price-wrapper').each(function(){
+                var span = jQuery(this).find('span.price')
+                var text = span.text()
+                text = text.split(',')[0]
+                span.html(text)
+                span.css('visibility', 'visible')
+            })
+            window.__decimalsRemoved = true;
+        }
+    }
 });
 
 
