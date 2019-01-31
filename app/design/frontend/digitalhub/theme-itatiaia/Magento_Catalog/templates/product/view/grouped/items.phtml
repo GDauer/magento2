@@ -8,7 +8,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
 <div id="tab-grouped-items">
     <section>
         <?php foreach($groupedProduct->getTypeInstance(true)->getAssociatedProducts($groupedProduct) as $_item): ?>
-            <?php $_childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\Product')->load($_item->getEntityId()) ?>
+            <?php $_childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\ProductFactory')->create()->load($_item->getEntityId()) ?>
             <?php if($_item->getStatus()): ?>
                 <div class="item-out" id="super-group-item-<?= $_item->getId() ?>">
                     <div class="item-in">

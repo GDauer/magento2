@@ -88,7 +88,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             $associatedProducts = $product->getTypeInstance(true)->getAssociatedProducts($product);
             foreach ($associatedProducts as $item) {
                 $qty = $item->getQty() ? $item->getQty() : 1;
-                $childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\Product')->load($item->getId());
+                $childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\ProductFactory')->create()->load($item->getId());
                 $price = $price + ((float)$childProduct->getFinalPrice() * (int)$qty);
             }
             return $price;
@@ -114,7 +114,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             $associatedProducts = $product->getTypeInstance(true)->getAssociatedProducts($product);
             foreach ($associatedProducts as $item) {
                 $qty = $item->getQty() ? $item->getQty() : 1;
-                $childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\Product')->load($item->getId());
+                $childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\ProductFactory')->create()->load($item->getId());
                 $price = $price + ((float)$childProduct->getPrice() * (int)$qty);
             }
         } else {

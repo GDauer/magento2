@@ -14,7 +14,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $has_material_aco = false;
 
         foreach($items as $item){
-            $product = $objectManager->get('\Magento\Catalog\Model\Product')->load($item->getProduct()->getId());
+            $product = $objectManager->get('\Magento\Catalog\Model\ProductFactory')->create()->load($item->getProduct()->getId());
             $material = $product->getAttributeText('material_predominante');
             if($material && ($material == 'Aço' || $material == 'aço')){
                 $has_material_aco = true;
