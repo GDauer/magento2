@@ -37,6 +37,8 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
             $item['thumbnail'] = $imagehelper->init($product, 'product_thumbnail_image')->getUrl();
 
             if($product->getTypeId() == 'grouped'){
+                $item['is_grouped'] = true;
+
                 $groupedCatalogRuleHelper = $objectManager->get('\Itatiaia\GroupedCatalogRule\Helper\Data');
 
                 // prevenir envio de produtos com valor Zero
