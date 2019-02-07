@@ -239,7 +239,9 @@ class Intelipost extends \Intelipost\Quote\Model\Carrier\Intelipost
         }
 
         // Free Shipping
-        $this->_helper->checkFreeShipping ($response);
+        if($request->getFreeShipping()){
+            $this->_helper->checkFreeShipping($response);
+        }
 
         // Volumes
 
