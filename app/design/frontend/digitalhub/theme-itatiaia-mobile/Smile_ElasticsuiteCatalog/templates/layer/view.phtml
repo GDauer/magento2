@@ -32,7 +32,10 @@
         <?php if ($this->getRequest()->getFullActionName() == 'catalog_category_view'): ?>
         <div class="block-title filter-title" data-count="<?= /* @escapeNotVerified */ $filtered ?>">
             <strong data-role="title"><?php echo $category->getName(); ?></strong>
-            <a class="show-filters" href="javascript:void(0);"><span class="icon-filters"></span></a>
+            <a class="show-filters" href="javascript:void(0);">
+                Filtro
+                <span class="icon-filters"></span>
+            </a>
         </div>
         <?php endif; ?>
 
