@@ -80,7 +80,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
 .page-wrapper {
   .page-header {
     position: relative;
-    z-index: 99 !important;
+    z-index: 99999 !important;
     height: 113px;
     .panel.wrapper {
       display: none;
@@ -5650,4 +5650,45 @@ body.catalogsearch-result-index {
             }
         }
     }
+}
+
+/* Media Gallery Zoom */
+.mz-gallery-thumbs-wrap {
+    margin-top: 10px;
+    .slick-prev,
+    .slick-next {
+        margin-top: -2px;
+        height: 90px;
+        background: #f0f0f0;
+        border-radius: 0;
+    }
+    .slick-prev {
+        left: 0;
+    }
+    .slick-next {
+        right: 0;
+    }
+    .slick-list {
+        margin: 0 25px;
+        .thumb {
+            cursor: pointer;
+            img {
+                border: 3px solid #fff;
+            }
+            &.slick-current {
+                img {
+                    border: 3px solid #28a6fb;
+                    display: block;
+                }
+            }
+        }
+    }
+}
+.zoomContainer {
+    .zoomWindow {
+        border: 2px solid #ddd;
+    }
+}
+.modal-popup {
+    z-index: 100000;
 }

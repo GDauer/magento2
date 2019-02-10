@@ -51,7 +51,9 @@
         "intelipost/magento2-quote": "^1.3",
         "intelipost/magento2-tracking": "^1.2",
         "adyen/module-payment": "^2.4",
-        "magepal/magento2-googletagmanager": "^2.2"
+        "magepal/magento2-googletagmanager": "^2.2",
+        "scandiweb/module-core": "~0.1.2",
+        "scandiweb/module-magiczoom": "1.1.4"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.2.0",
@@ -94,48 +96,56 @@
         }
     },
     "minimum-stability": "stable",
-    "repositories": [
-        {
+    "repositories": {
+        "0": {
             "type": "composer",
             "url": "https://repo.magento.com/"
         },
-        {
+        "1": {
             "type": "vcs",
             "url": "https://gitlab.com/digitalhub/m2/themes/base.git"
         },
-        {
+        "2": {
             "type": "vcs",
             "url": "https://gitlab.com/digitalhub/m2/themes/base-mobile.git"
         },
-        {
+        "3": {
             "type": "vcs",
             "url": "https://gitlab.com/digitalhub/m2/modules/additional-prices.git"
         },
-        {
+        "4": {
             "type": "vcs",
             "url": "https://gitlab.com/digitalhub/m2/modules/menu-manager.git"
         },
-        {
+        "5": {
             "type": "vcs",
             "url": "https://gitlab.com/digitalhub/m2/modules/estimate-shipping.git"
         },
-        {
+        "6": {
             "type": "vcs",
             "url": "https://gitlab.com/digitalhub/m2/modules/customer-attributes.git"
         },
-        {
+        "7": {
             "type": "vcs",
             "url": "https://gitlab.com/digitalhub/m2/modules/language-pt_br.git"
         },
-        {
+        "8": {
             "type": "vcs",
             "url": "https://gitlab.com/digitalhub/m2/modules/banners.git"
         },
-        {
+        "9": {
             "type": "vcs",
             "url": "https://gitlab.com/digitalhub/m2/modules/feed-manager.git"
+        },
+        "scandiweb-module-core": {
+            "type": "git",
+            "url": "https://github.com/scandiwebcom/Scandiweb-Assets-Core.git"
+        },
+        "module-magiczoom": {
+            "type": "git",
+            "url": "git@github.com:scandiwebcom/Magic-Zoom-for-Magento-2-by-Scandiweb.git"
         }
-    ],
+    },
     "extra": {
         "magento-force": "override"
     }
