@@ -254,6 +254,8 @@ return [
         'Magento_Worldpay' => 1,
         'MagestyApps_FixRules' => 1,
         'MundiPagg_MundiPagg' => 0,
+        'Scandi_MagicZoom' => 1,
+        'Scandiweb_Core' => 1,
         'Smile_ElasticsuiteCore' => 1,
         'Smile_ElasticsuiteCatalog' => 1,
         'Smile_ElasticsuiteCatalogRule' => 1,

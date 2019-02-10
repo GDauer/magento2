@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d98c4d81f92e4824db48fc71053354a1",
+    "content-hash": "7c305226e71a8059ffaecadc90ac9fa6",
     "packages": [
         {
             "name": "adyen/module-payment",
@@ -12312,6 +12312,59 @@
                 "promises"
             ],
             "time": "2019-01-07T21:25:54+00:00"
+        },
+        {
+            "name": "scandiweb/module-core",
+            "version": "0.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/scandiwebcom/Scandiweb-Assets-Core.git",
+                "reference": "41a09c769d670ebfb7ccaad398374a765a6e3ace"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Scandiweb\\Core\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Scandiweb Core module for Magento 2 extensions.",
+            "time": "2017-06-30T06:13:52+00:00"
+        },
+        {
+            "name": "scandiweb/module-magiczoom",
+            "version": "1.1.4",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:scandiwebcom/Magic-Zoom-for-Magento-2-by-Scandiweb.git",
+                "reference": "2daaf561093ce2c4e74fefc9d8d8e219276ebbc3"
+            },
+            "require": {
+                "magento/module-catalog": "*",
+                "magento/module-product-video": "*",
+                "scandiweb/module-core": "~0.1.2"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Scandi\\MagicZoom\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Scandiweb MagicZoom - Replaces Magento 2 native gallery with Slick and ElevateZoom",
+            "time": "2017-10-17T12:17:58+00:00"
         },
         {
             "name": "seld/cli-prompt",
