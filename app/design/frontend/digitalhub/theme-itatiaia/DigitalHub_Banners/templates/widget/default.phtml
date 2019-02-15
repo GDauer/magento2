@@ -1,0 +1,71 @@
+<?php
+$bannerRandomId = rand(1000,9999);
+$banners = $block->getAllBanners();
+$containerInlineStyles = '';
+if($block->getData('margin_top')){
+	$containerInlineStyles = $containerInlineStyles . 'margin-top: ' . (int)$block->getData('margin_top') . 'px;';
+}
+if($block->getData('margin_bottom')){
+	$containerInlineStyles = $containerInlineStyles . 'margin-bottom: ' . (int)$block->getData('margin_bottom') . 'px;';
+}
+if($block->getData('background')){
+	$containerInlineStyles = $containerInlineStyles . 'background-color: ' . $block->getData('background') . ';';
+}
+?>
+
+<script type="text/javascript">
+window._resizeBannerContainer = function(imgEl, containerId){
+	var container = document.getElementById(containerId)
+	container.style.overflow = 'hidden';
+	container.style.height = imgEl.height + 'px';
+}
+</script>
+
+<?php if(count($banners)): ?>
+	<div class="digitalhub-banners-widget-banner-container <?php if($block->getData('fullwidth')) echo "full-width-container"; ?>" id="banner-<?php echo $bannerRandomId ?>" style="<?php echo $containerInlineStyles ?>">
+		<div class="banners">
+			<?php foreach($banners as $banner): ?>
+				<div class="banner-item">
+					<?php if($banner['link']): ?><a href="<?php echo $banner['link'] ?>"><?php endif; ?>
+					<img src="<?php echo $banner['image'] ?>" onload="_resizeBannerContainer(this, 'banner-<?php echo $bannerRandomId ?>')" />
+					<?php if($banner['link']): ?></a><?php endif; ?>
+				</div>
+			<?php endforeach; ?>
+		</div>
+	</div>
+
+	<?php if($block->getData('control_colors')): ?>
+	<style>
+	.digitalhub-banners-widget-banner-container .slick-dots { bottom: inherit; top: <?php echo (int)$block->getData('height') - 30 ?>px }
+	.digitalhub-banners-widget-banner-container .slick-dots li button { background-color: <?php echo $block->getData('control_colors') ?> }
+	</style>
+	<?php endif; ?>
+
+	<?php if(count($banners) > 1): ?>
+	<script type="text/javascript">
+		require([
+			'jquery',
+			'DigitalHub_Banners/slick/slick'
+		], function($){
+			$(function(){
+				var bannerContainer = $('#banner-<?php echo $bannerRandomId ?> .banners');
+				bannerContainer.slick({
+					infinite: true,
+	  				slidesToShow: 1,
+					dots: true,
+					speed: 300,
+					autoplay: true,
+	  				autoplaySpeed: <?php echo (int)$block->getData('time') ? (int)$block->getData('time') * 1000 : '5000' ?>,
+					adaptiveHeight: true
+				});
+			})
+			$(window).resize(function(){
+				console.log('resize')
+				$('.digitalhub-banners-widget-banner-container').each(function(){
+					_resizeBannerContainer($(this).find('.banner-item:first img:first').get(0), $(this).attr('id'))
+				})
+			})
+		})
+	</script>
+	<?php endif; ?>
+<?php endif; ?>
