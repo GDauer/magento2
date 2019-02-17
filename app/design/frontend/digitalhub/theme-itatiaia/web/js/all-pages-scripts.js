@@ -71,3 +71,15 @@ function confirmRemoveLockItem(target){
     jQuery(target).attr('data-post', removePostJson);
     return true;
 }
+
+// limpeza do carrinho a partir do minicart
+function emptyCartFromMinicart()
+{
+    if(confirm('Tem certeza que deseja remover todos os itens do seu carrinho de compras?')){
+        jQuery.post(BASE_URL + 'checkout/cart/updatePost', {
+            update_cart_action: 'empty_cart',
+            form_key: jQuery.cookie('form_key')
+        })
+    }
+    return false;
+}

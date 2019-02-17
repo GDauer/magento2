@@ -18,6 +18,16 @@
 
 <div class="block-content">
     <span class="title">Seu carrinho</span>
+
+    <if args="getCartParam('summary_count')">
+        <button type="button"
+                id="btn-minicart-clear"
+                class="action clearcart"
+                onclick="emptyCartFromMinicart()">
+            <span translate="'Limpar carrinho'"/>
+        </button>
+    </if>
+
     <button type="button"
             id="btn-minicart-close"
             class="action close"
