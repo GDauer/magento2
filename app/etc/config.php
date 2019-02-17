@@ -21,6 +21,7 @@ return [
         'Magento_Quote' => 1,
         'Magento_Catalog' => 1,
         'Magento_CatalogInventory' => 1,
+        'Itatiaia_AllinIntegration' => 1,
         'Magento_Rule' => 1,
         'Itatiaia_CheckoutBillingAddress' => 1,
         'Itatiaia_Custom' => 1,
