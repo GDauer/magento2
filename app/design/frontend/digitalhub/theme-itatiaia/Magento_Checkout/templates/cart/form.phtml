@@ -10,6 +10,15 @@
 ?>
 <?php $mergedCells = ($this->helper('Magento\Tax\Helper\Data')->displayCartBothPrices() ? 2 : 1); ?>
 <?= $block->getChildHtml('form_before') ?>
+
+<?php if ($block->getContinueShoppingUrl()): ?>
+    <a class="action continue button-continue-top"
+       href="<?= $block->escapeUrl($block->getContinueShoppingUrl()) ?>"
+       title="<?= $block->escapeHtml(__('Continue Shopping')) ?>">
+        <span><?= /* @escapeNotVerified */ __('Continue Shopping') ?></span>
+    </a>
+<?php endif; ?>
+
 <form action="<?= /* @escapeNotVerified */ $block->getUrl('checkout/cart/updatePost') ?>"
           method="post"
           id="form-validate"
