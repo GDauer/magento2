@@ -33,7 +33,7 @@
         <?php endif ?>
         <table id="shopping-cart-table"
                class="cart items data table"
-               data-mage-init='{"shoppingCart":{"emptyCartButton": "action.clear",
+               data-mage-init='{"shoppingCart":{"emptyCartButton": ".action.clear",
                "updateCartActionContainer": "#update_cart_action_container"}}'>
             <caption role="heading" aria-level="2" class="table-caption"><?= /* @escapeNotVerified */ __('Shopping Cart Items') ?></caption>
             <thead>
@@ -60,6 +60,14 @@
                 <span><?= /* @escapeNotVerified */ __('Continue Shopping') ?></span>
             </a>
         <?php endif; ?>
+
+        <button type="submit"
+                name="update_cart_action"
+                value="empty_cart"
+                title="<?= $block->escapeHtml(__('Limpar carrinho')) ?>"
+                class="action clear">
+            <span><?= /* @escapeNotVerified */ __('Limpar carrinho') ?></span>
+        </button>
 
         <button type="submit"
                 name="update_cart_action"
