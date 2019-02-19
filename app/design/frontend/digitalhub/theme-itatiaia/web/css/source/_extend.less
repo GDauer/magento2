@@ -2138,58 +2138,6 @@ a, a:hover, .alink, a:visited, .alink:visited {
 
 /*-- Homepage --*/
 .cms-index-index {
-  .digitalhub-banners-widget-banner-container {
-    .slick-dotted.slick-slider{
-      .slick-arrow{
-        right: 36px;
-        top:86%;
-        background: #fff;
-        width: 36px;
-        height: 36px;
-        &.slick-next:before{
-          content:'';
-          background: url('@{baseDir}images/arrow-right.png') center center no-repeat;
-          width: 20px;
-          height: 20px;
-          display: block;
-          margin: 0 auto;
-        }
-        &.slick-prev{
-          right: 81px;
-          z-index: 5;
-          left: unset;
-          &:before{
-           content:'';
-           margin: 0 auto;
-           background: url('@{baseDir}images/arrow-left.png') center center no-repeat;
-           width: 20px;
-           height: 20px;
-           display: block;
-          }
-        }
-      }
-    }
-    ul.slick-dots{
-      bottom:20%;
-      left: unset;
-      right: 36px;
-      width: 10px;
-      li{
-        border-radius:100%;
-        height: 8px;
-        width: 8px;
-        background: #fff;
-        opacity: 0.5;
-        margin: 0;
-        button{
-          background: none;
-        }
-        &.slick-active{
-          opacity: 1;
-        }
-      }
-    }
-  }
   .page-main {
     max-width: 100%;
     padding: 0;
@@ -5734,4 +5682,37 @@ body.catalogsearch-result-index {
 }
 .modal-popup {
     z-index: 100000;
+}
+
+/* DigitalHub_Banners */
+.digitalhub-banners-widget-banner-container {
+    .slick-dotted.slick-slider {
+        position: relative;
+        .slick-arrow {
+            display: none;
+        }
+        ul.slick-dots {
+            left: inherit;
+            right: 30px;
+            bottom: 30px;
+            top: inherit;
+            width: auto;
+            li {
+                margin: 0 5px;
+                width: 12px;
+                height: 12px;
+                button {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 100px;
+                    opacity: 0.5;
+                }
+                &.slick-active {
+                    button {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
 }
