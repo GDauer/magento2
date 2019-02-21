@@ -3,4 +3,5 @@
     <preference for="Magento\Catalog\Block\Product\View\Attributes" type="Itatiaia\Custom\Block\Catalog\Product\View\Attributes" />
     <preference for="DigitalHub\FeedManager\Helper\Feed" type="Itatiaia\Custom\Helper\FeedManager\Feed" />
     <preference for="Magento\Sales\Model\Order\Config" type="Itatiaia\Custom\Model\Sales\Order\Config" />
+    <preference for="MagePal\GoogleTagManager\Model\Customer" type="Itatiaia\Custom\Model\GoogleTagManager\Customer" />
 </config>
