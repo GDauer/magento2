@@ -36,8 +36,6 @@ class SendNewsletterSubscribeEmail implements \Magento\Framework\Event\ObserverI
         $isActive = (int)$this->scopeConfig->getValue('newsletter/itatiaia_allinintegration/active', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 
         if($isActive){
-            $this->logger->info('SUBSCRIBER', [$subscriber->getData()]);
-
             if($subscriber->isSubscribed()){
                 $customerEmail = $subscriber->getEmail();
                 $this->helper->sendCustomerEmail($customerEmail);
