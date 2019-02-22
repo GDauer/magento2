@@ -60,8 +60,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                     $this->httpClient->setMethod(\Zend\Http\Request::METHOD_POST);
                     $this->httpClient->setParameterPost($post);
                     $response = $this->httpClient->send();
-                    $this->logger->info('Token', [$token]);
-                    $this->logger->info('POST', [$post]);
+                    // $this->logger->info('Token', [$token]);
+                    // $this->logger->info('POST', [$post]);
                     $this->logger->info('Resposta Allin', [$response->getBody()]);
                 } catch (\Exception $e){
                     $this->logger->info('Erro ao enviar cliente para AllIn', [$e->getMessage()]);
