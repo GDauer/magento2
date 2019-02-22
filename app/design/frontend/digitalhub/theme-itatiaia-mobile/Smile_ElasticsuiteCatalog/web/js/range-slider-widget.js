@@ -74,6 +74,9 @@ define(["jquery", 'Magento_Catalog/js/price-utils', 'mage/template', "jquery/ui"
         _refreshDisplay: function() {
             this.count = this._getItemCount();
 
+            window._priceFilterFrom = this.from
+            window._priceFilterTo = this.to
+
             if (this.element.find('[data-role=from-label]')) {
                 this.element.find('[data-role=from-label]').html(this._formatLabel(this.from));
             }
