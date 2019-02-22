@@ -1,7 +1,7 @@
 <?php
 namespace Itatiaia\AllinIntegration\Observer;
 
-class SendCustomerEmail implements \Magento\Framework\Event\ObserverInterface
+class SendNewsletterSubscribeEmail implements \Magento\Framework\Event\ObserverInterface
 {
     private $subscriberFactory;
     private $logger;
@@ -32,18 +32,15 @@ class SendCustomerEmail implements \Magento\Framework\Event\ObserverInterface
     public function execute(
         \Magento\Framework\Event\Observer $observer
     ) {
-        $customer = $observer->getCustomer();
+        $subscriber = $observer->getSubscriber();
         $isActive = (int)$this->scopeConfig->getValue('newsletter/itatiaia_allinintegration/active', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 
         if($isActive){
-            $subscriber = $this->subscriberFactory->create();
-            $subscriber->loadByEmail($customer->getEmail());
+            $this->logger->info('SUBSCRIBER', [$subscriber->getData()]);
 
             if($subscriber->isSubscribed()){
-                $customerName = $customer->getFirstName() . ' ' . $customer->getLastname();
-                $customerEmail = $customer->getEmail();
-
-                $this->helper->sendCustomer($customerEmail, $customerName);
+                $customerEmail = $subscriber->getEmail();
+                $this->helper->sendCustomerEmail($customerEmail);
             }
         }
     }

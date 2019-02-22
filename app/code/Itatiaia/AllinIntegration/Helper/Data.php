@@ -40,7 +40,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return $token;
     }
 
-    public function sendCustomer($customerEmail, $customerName = '')
+    public function sendCustomerEmail($customerEmail)
     {
         $isActive = (int)$this->_scopeConfig->getValue('newsletter/itatiaia_allinintegration/active', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 
@@ -51,7 +51,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             if($token){
                 try {
                     $post = [
-                        'dados_email' => '{"nm_lista":"'.$lista.'","campos":"nm_email;nome","valor":"'.$customerEmail.';'.$customerName.'"}'
+                        'dados_email' => '{"nm_lista":"'.$lista.'","campos":"nm_email","valor":"'.$customerEmail.'"}'
                     ];
 
                     $uri = 'https://painel02.allinmail.com.br/allinapi/?method=inserir_email_base&output=json&token=' . $token;
@@ -60,9 +60,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                     $this->httpClient->setMethod(\Zend\Http\Request::METHOD_POST);
                     $this->httpClient->setParameterPost($post);
                     $response = $this->httpClient->send();
-                    // $this->logger->info('Token', [$token]);
-                    // $this->logger->info('POST', [$post]);
-                    // $this->logger->info('Resposta Allin', [$response->getBody()]);
+                    $this->logger->info('Token', [$token]);
+                    $this->logger->info('POST', [$post]);
+                    $this->logger->info('Resposta Allin', [$response->getBody()]);
                 } catch (\Exception $e){
                     $this->logger->info('Erro ao enviar cliente para AllIn', [$e->getMessage()]);
                 }
