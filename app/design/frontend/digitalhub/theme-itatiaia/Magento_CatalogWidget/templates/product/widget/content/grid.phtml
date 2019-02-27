@@ -11,9 +11,6 @@
 <?php if ($exist = ($block->getProductCollection() && $block->getProductCollection()->getSize())): ?>
   <script>
   require(['jquery'],function($){
-    jQuery(document).ready(function() {
-      jQuery(".home-products-list .product-items").addClass("owl-carousel");
-    });
     jQuery('.product-image-wrapper').hover(function() {
       jQuery(this).children('.hover_image').css('display', 'block');
       jQuery(this).children('.hover_image').stop(true).fadeTo(200,1);
@@ -178,7 +175,9 @@ $hoverimg = 'category_page_list_hover';
   ], function () {
     'use strict';
     jQuery.noConflict();
-    jQuery(".home-products-list .owl-carousel").owlCarousel({
+    jQuery(".home-products-list .product-items")
+        .addClass("owl-carousel")
+        .owlCarousel({
       loop: true,
       nav: true,
       dots: true,
