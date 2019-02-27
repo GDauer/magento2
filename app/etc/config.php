@@ -29,6 +29,7 @@ return [
         'Magento_Ui' => 1,
         'Itatiaia_FreeShippingAlert' => 1,
         'Magento_CatalogRule' => 1,
+        'Itatiaia_SitemapXml' => 1,
         'Magento_Payment' => 1,
         'Magento_SalesSequence' => 1,
         'Magento_Sales' => 1,

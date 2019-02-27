@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Itatiaia_SitemapXml::sitemap_menu" title="Arquivos de Sitemap XML Customizados" translate="title" module="Itatiaia_SitemapXml" parent="Magento_Backend::marketing" sortOrder="15" resource="Itatiaia_SitemapXml::sitemap"/>
+        <add id="Itatiaia_SitemapXml::sitemap" title="Arquivos" module="Itatiaia_SitemapXml" sortOrder="0" action="itatiaia_sitemapxml/sitemap" resource="Itatiaia_SitemapXml::sitemap" parent="Itatiaia_SitemapXml::sitemap_menu" />
+    </menu>
+</config>
