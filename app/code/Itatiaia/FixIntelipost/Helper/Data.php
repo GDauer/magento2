@@ -80,8 +80,10 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                     }
 
                     if(!$this->intelipostInvoiceExists($nf_data['invoice_number'], $nf_data['order_number'])){
+                        $nf_number = ltrim($nf_data['invoice_number'], '0');
+
                         $intelipostInvoice = $objectManager->get('\Intelipost\Push\Model\InvoiceFactory')->create();
-                        $intelipostInvoice->setInvoiceNumber($nf_data['invoice_number']);
+                        $intelipostInvoice->setInvoiceNumber($nf_number);
                         $intelipostInvoice->setOrderNumber($nf_data['order_number']);
                         $intelipostInvoice->setInvoiceSeries($nf_data['invoice_series']);
                         $intelipostInvoice->setInvoiceKey($nf_data['invoice_key']);
