@@ -8,7 +8,7 @@ class Products extends \Itatiaia\SitemapXml\Model\Sitemap\Generator
             {{#products}}
                 <url>
                     <loc>{{url}}</loc>
-                    <lastmod>{{created_at}}</lastmod>
+                    <lastmod>{{updated_at}}</lastmod>
                 </url>
             {{/products}}
         </urlset>
@@ -16,6 +16,8 @@ class Products extends \Itatiaia\SitemapXml\Model\Sitemap\Generator
 
     public function generateXml(\Itatiaia\SitemapXml\Model\Sitemap $sitemap)
     {
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $dateFormat = $objectManager->get('\Magento\Framework\Stdlib\DateTime\TimezoneInterface');
         $collection = $this->getProductCollection(json_decode($sitemap['conditions'],true));
 
         $newCollection = [];
@@ -23,6 +25,10 @@ class Products extends \Itatiaia\SitemapXml\Model\Sitemap\Generator
         foreach($collection as $_product){
             $item = $_product->getData();
             $item['url'] = $_product->getProductUrl();
+            $item['updated_at'] = $dateFormat->date($item['updated_at'])->format('d/m/Y H:i:s');
+            $item['created_at'] = $dateFormat->date($item['created_at'])->format('d/m/Y H:i:s');
+
+            \Magento\Framework\App\ObjectManager::getInstance()->get('\Psr\Log\LoggerInterface')->info('PRODUCT', $item);
 
             $newCollection[] = $item;
         }

@@ -8,7 +8,7 @@ class Categories extends \Itatiaia\SitemapXml\Model\Sitemap\Generator
             {{#categories}}
                 <url>
                     <loc>{{url}}</loc>
-                    <lastmod>{{created_at}}</lastmod>
+                    <lastmod>{{updated_at}}</lastmod>
                 </url>
             {{/categories}}
         </urlset>
@@ -16,13 +16,19 @@ class Categories extends \Itatiaia\SitemapXml\Model\Sitemap\Generator
 
     public function generateXml(\Itatiaia\SitemapXml\Model\Sitemap $sitemap)
     {
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $dateFormat = $objectManager->get('\Magento\Framework\Stdlib\DateTime\TimezoneInterface');
         $collection = $this->getCategoryCollection(json_decode($sitemap['conditions'],true));
 
         $newCollection = [];
 
         foreach($collection as $_category){
+            if($_category->getLevel() < 2) continue;
+
             $item = $_category->getData();
-            $item['url'] = $_category->getCategoryUrl();
+            $item['url'] = $_category->getUrl();
+            $item['updated_at'] = $dateFormat->date($item['updated_at'])->format('d/m/Y H:i:s');
+            $item['created_at'] = $dateFormat->date($item['created_at'])->format('d/m/Y H:i:s');
 
             $newCollection[] = $item;
         }
