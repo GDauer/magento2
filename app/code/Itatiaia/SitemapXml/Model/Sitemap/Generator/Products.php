@@ -46,7 +46,7 @@ class Products extends \Itatiaia\SitemapXml\Model\Sitemap\Generator
 
         $collection = $objectManager->get('\Magento\Catalog\Model\ProductFactory')->create()->getResourceCollection();
         $collection->addAttributeToSelect('*');
-        if(isset($conditions['category'])){
+        if(isset($conditions['category']) && $conditions['category']){
             $collection->addCategoriesFilter(array('in' => $conditions['category']));
         }
         $collection->addAttributeToFilter('status', 1);
@@ -57,7 +57,7 @@ class Products extends \Itatiaia\SitemapXml\Model\Sitemap\Generator
         }
 
         $productVisibility = $objectManager->get('\Magento\Catalog\Model\Product\Visibility');
-        $collection->setVisibility($productVisibility->getVisibleInSiteIds());
+        $collection->setVisibility($productVisibility->getVisibleInCatalogIds());
 
         $collection->load();
 

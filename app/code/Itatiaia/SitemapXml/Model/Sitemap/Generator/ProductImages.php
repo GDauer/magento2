@@ -30,7 +30,9 @@ class ProductImages extends \Itatiaia\SitemapXml\Model\Sitemap\Generator
 
         $newCollection = [];
 
-        foreach($collection as $_product){
+        foreach($collection as $p){
+            $_product = $objectManager->get('\Magento\Catalog\Model\ProductFactory')->create()->load($p->getId());
+
             $item = $_product->getData();
             $item['url'] = $_product->getProductUrl();
             $item['updated_at'] = $dateFormat->date($item['updated_at'])->format('d/m/Y H:i:s');
@@ -58,12 +60,12 @@ class ProductImages extends \Itatiaia\SitemapXml\Model\Sitemap\Generator
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 
         $collection = $objectManager->get('\Magento\Catalog\Model\ProductFactory')->create()->getResourceCollection();
-        $collection->addAttributeToSelect('*');
-        if(isset($conditions['category'])){
+        $collection->addAttributeToSelect(['status','category_ids','visibility']);
+
+        if(isset($conditions['category']) && $conditions['category']){
             $collection->addCategoriesFilter(array('in' => $conditions['category']));
         }
         $collection->addAttributeToFilter('status', 1);
-        $collection->addMediaGalleryData();
 
         if(isset($conditions['only_in_stock']) && (int)$conditions['only_in_stock']){
             $stockFilter = $objectManager->get('\Magento\CatalogInventory\Helper\Stock');
