@@ -4,14 +4,14 @@ namespace Itatiaia\SitemapXml\Model\Sitemap\Generator;
 class Index extends \Itatiaia\SitemapXml\Model\Sitemap\Generator
 {
     public $_template = '<?xml version="1.0" encoding="UTF-8"?>
-        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-            {{#sitemaps}}
-                <url>
-                    <loc>{{url}}</loc>
-                    <lastmod>{{updated_at}}</lastmod>
-                </url>
-            {{/sitemaps}}
-        </urlset>
+    <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        {{#sitemaps}}
+        <sitemap>
+            <loc>{{url}}</loc>
+            <lastmod>{{updated_at}}</lastmod>
+        </sitemap>
+        {{/sitemaps}}
+    </sitemapindex>
     ';
 
     public function generateXml(\Itatiaia\SitemapXml\Model\Sitemap $sitemap)

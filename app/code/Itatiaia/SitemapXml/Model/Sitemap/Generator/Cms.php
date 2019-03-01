@@ -18,7 +18,7 @@ class Cms extends \Itatiaia\SitemapXml\Model\Sitemap\Generator
     {
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $dateFormat = $objectManager->get('\Magento\Framework\Stdlib\DateTime\TimezoneInterface');
-        $storeManager = $objectManager->get('Magento\Framework\UrlInterface');
+        $urlBuilder = $objectManager->get('Magento\Framework\UrlInterface');
 
         $collection = $this->getSitemapCollection(json_decode($sitemap['conditions'],true));
 
