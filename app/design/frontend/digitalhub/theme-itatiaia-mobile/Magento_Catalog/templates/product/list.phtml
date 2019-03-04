@@ -100,12 +100,12 @@ require([
               <?php
               $_productNameStripped = $block->stripTags($_product->getName(), null, true);
               ?>
-              <strong class="product name product-item-name">
+              <h2 class="product name product-item-name">
                 <a class="product-item-link"
                 href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>">
-                <?= /* @escapeNotVerified */ $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
-              </a>
-            </strong>
+                    <?= /* @escapeNotVerified */ $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+                  </a>
+              </h2>
 
             <?= /* @escapeNotVerified */ $block->getProductPrice($_product) ?>
 
