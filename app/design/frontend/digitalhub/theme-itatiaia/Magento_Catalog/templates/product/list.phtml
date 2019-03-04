@@ -84,22 +84,8 @@ require([
             ?>
             <?php // Product Image ?>
             <a href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
-              <?php
-              $productImage = $_imagehelper->init($_product, $image);
-              $productImageUrl = $productImage->getUrl();
-              $productHoverImage = $_imagehelper->init($_product, $hoverimg);
-              $productHoverImageUrl = $productHoverImage->getUrl();
-              ?>
-              <span class="product-image-container">
-                <span class="product-image-wrapper">
-                  <img class="default_image" src="<?php echo $productImageUrl; ?>" alt="<?php echo $productImage->getLabel(); ?>"/>
-                  <?php if($_product->getHoverImage()): ?>
-                    <?php if($productImageUrl != str_replace("/thumbnail/","/small_image/",$productHoverImageUrl)): ?>
-                      <img class="hover_image" src="<?php echo $productHoverImageUrl; ?>" alt="<?php echo $productHoverImage->getLabel(); ?>" style="opacity: 1; display: none;" />
-                    <?php endif; ?>
-                  <?php endif; ?>
-                </span>
-              </span>
+              <?php $productImageBlock = $block->getImage($_product, $image); ?>
+              <?php echo $productImageBlock->toHtml() ?>
             </a>
             <div class="product details product-item-details">
               <?php
