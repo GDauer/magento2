@@ -842,6 +842,8 @@ a, a:hover, .alink, a:visited, .alink:visited {
             color: #242424;
             text-transform: none;
             font-family: 'MullerBold';
+            display: block;
+            line-height: 130%;
           }
         }
         .price-box {
@@ -1850,17 +1852,6 @@ select:not([disabled]) {
     .fotorama__caption {
       display: none;
     }
-    h1.product-name{
-      padding: 0 15px;
-      color: #242424;
-      font-family: 'MullerBlack';
-      font-size: 24px;
-      font-weight: 900;
-      line-height: 32px;
-      text-transform: none;
-      margin: 0;
-    }
-
   }
   .fotorama__stage {
     .fotorama__caption {
@@ -1869,9 +1860,13 @@ select:not([disabled]) {
   }
   .product-info-main{
     padding: 0 15px;
+    h1.product-name{
+      font-size: 22px;
+      margin: 0;
+    }
     .product-info-stock-sku{
       display: block;
-      h1.product-name, .product.attribute.sku{
+      .product.attribute.sku{
         display: none;
       }
       .stock.unavailable{
@@ -2063,7 +2058,7 @@ select:not([disabled]) {
                 }
             }
             .in-infos{
-              h1.product-name{
+              h2.product-name{
                 font-family: 'MullerBlack';
                 font-size: 16px;
                 font-weight: 700;
@@ -2226,7 +2221,7 @@ select:not([disabled]) {
     .price-box {
       position: relative;
       margin-bottom: 0;
-      margin-top: 20px;
+      margin-top: 10px;
       .wrp-oldprice{
         width: 100%;
         display: inline-block;

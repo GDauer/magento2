@@ -1113,12 +1113,12 @@ a, a:hover, .alink, a:visited, .alink:visited {
           width: 150px;
           &.locked-items {
               width: 300px;
-              .in-infos h1.product-name {
+              .in-infos h2.product-name {
                   max-width: 100%;
               }
           }
           .in-infos{
-            h1.product-name{
+            h2.product-name{
               font-family: 'MullerBold';
               font-size: 16px;
               font-weight: 700;
@@ -1781,7 +1781,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
         .product-item-name {
           height: 54px;
           margin-bottom: 37px;
-          line-height: 130%;
+          line-height: 100%;
           overflow: hidden;
           a {
             font-size: 18px;
@@ -1789,6 +1789,8 @@ a, a:hover, .alink, a:visited, .alink:visited {
             color: #242424;
             text-transform: none;
             font-family: 'MullerBold';
+            line-height: 100%;
+            display: block
           }
         }
         .price-box {
@@ -3600,6 +3602,7 @@ select:not([disabled]) {
           color:#a1aeb7;
           padding: 0;
           margin: 0 20px 0px 0px;
+          cursor: pointer;
           span.counter {
               &::before {
                   content: '(';
