@@ -7,10 +7,10 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
 <a name="grouped-items"></a>
 <div id="tab-grouped-items">
     <section>
-        <?php foreach($groupedProduct->getTypeInstance(true)->getAssociatedProducts($groupedProduct) as $_item): ?>
+        <?php foreach($this->helper('\Itatiaia\Custom\Helper\Grouped')->parseGroupedItems($groupedProduct) as $_item): ?>
             <?php $_childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\ProductFactory')->create()->load($_item->getEntityId()) ?>
             <?php if($_item->getStatus()): ?>
-                <div class="item-out" id="super-group-item-<?= $_item->getId() ?>">
+                <div class="item-out <?php if($_item->getFirstSubgroupItem()) echo 'first-subgroup-item'; ?>" id="super-group-item-<?= $_item->getId() ?>">
                     <div class="item-in">
                         <div class="wrp-input">
                             <?php if(!$groupedProduct->getLockItems()): ?>
@@ -76,6 +76,8 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
 
                             </div>
                         </div>
+
+                        <?php if(!$_item->getHideDetails()): ?>
                         <div class="wrp-dimensoes">
                           <ul>
                             <?php if ($_childProduct->getAlturaMontado()): ?>
@@ -103,8 +105,10 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
                         <div class="wrp-dtls">
                             <a href="javascript:void(0)">Detalhes</a>
                         </div>
+                        <?php endif; ?>
                     </div>
                     <div class="min-dtls">
+                        <?php if(!$_item->getHideDetails()): ?>
                         <ul class="nav nav-tabs">
                             <li class="active">
                                 <a href="#tab-desc-<?php echo $_item->getId() ?>">Descrição</a>
@@ -122,6 +126,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
                                     ->setTemplate('Magento_Catalog::product/view/attributes.phtml')
                                     ->toHtml() ?>
                         </section>
+                        <?php endif; ?>
                     </div>
                 </div>
             <?php endif; ?>
