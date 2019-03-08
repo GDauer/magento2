@@ -4,6 +4,7 @@
     <link src="js/product-page-scripts.js"/>
   </head>
   <body>
+    <referenceContainer name="page.main.title" remove="true" />
     <!-- add this code -->
     <!--<move element="reviews.tab" destination="content" after="product.info.details" />-->
     <!-- end -->
