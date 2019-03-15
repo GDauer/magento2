@@ -151,7 +151,7 @@ class Intelipost extends \Intelipost\Quote\Model\Carrier\Intelipost
             $height = $product->getData($heightAttribute);
             $width = $product->getData($widthAttribute);
             $length = $product->getData($lengthAttribute);
-            $weight = $item->getWeight() / $weightUnit; // always kg
+            $weight = $product->getWeight() / $weightUnit; // always kg
             $categories = $useCategoryAttribute
                 ? $product->getData($useCategoryAttribute)
                 : $this->_helper->getProductCategories($product, false)
