@@ -18,7 +18,7 @@ class Cart extends \MagePal\GoogleTagManager\Model\Cart
             foreach ($quote->getAllVisibleItems() as $item) {
                 $items[] = [
                     'sku' => $item->getSku(),
-                    'id' => $item->getId(),
+                    'id' => $item->getProduct()->getId(),
                     'name' => $this->escapeJsQuote($item->getName()),
                     'price' => $this->gtmHelper->formatPrice($item->getPrice()),
                     'quantity' => $item->getQty(),

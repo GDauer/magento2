@@ -21,7 +21,7 @@ class Order extends \MagePal\GoogleTagManager\Model\Order
             foreach ($order->getAllVisibleItems() as $item) {
                 $products[] = [
                     'sku' => $item->getSku(),
-                    'id' => $item->getId(),
+                    'id' => $item->getProduct()->getId(),
                     'name' => $this->escapeJsQuote($item->getName()),
                     'price' => $this->gtmHelper->formatPrice($item->getBasePrice()),
                     'quantity' => $item->getQtyOrdered() * 1
