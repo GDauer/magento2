@@ -4,5 +4,10 @@
     <preference for="DigitalHub\FeedManager\Helper\Feed" type="Itatiaia\Custom\Helper\FeedManager\Feed" />
     <preference for="Magento\Sales\Model\Order\Config" type="Itatiaia\Custom\Model\Sales\Order\Config" />
     <preference for="MagePal\GoogleTagManager\Model\Customer" type="Itatiaia\Custom\Model\GoogleTagManager\Customer" />
+<<<<<<< HEAD
+=======
+    <preference for="MagePal\GoogleTagManager\Model\Cart" type="Itatiaia\Custom\Model\GoogleTagManager\Cart" />
+    <preference for="MagePal\GoogleTagManager\Model\Order" type="Itatiaia\Custom\Model\GoogleTagManager\Order" />
+>>>>>>> modify/tag-manager
     <preference for="Smile\ElasticsuiteCatalog\Block\Navigation\Renderer\Attribute" type="Itatiaia\Custom\Block\ElasticsuiteCatalog\Navigation\Renderer\Attribute" />
 </config>
