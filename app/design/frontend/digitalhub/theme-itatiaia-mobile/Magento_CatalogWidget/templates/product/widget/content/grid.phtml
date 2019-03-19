@@ -9,13 +9,7 @@
 /** @var \Magento\CatalogWidget\Block\Product\ProductsList $block */
 ?>
 <?php if ($exist = ($block->getProductCollection() && $block->getProductCollection()->getSize())): ?>
-  <script>
-  require(['jquery'],function($){
-    jQuery(document).ready(function() {
-      jQuery(".home-products-list .product-items").addClass("owl-carousel");
-    });
-  });
-</script>
+
 <?php
 $type = 'widget-product-grid';
 
@@ -39,7 +33,7 @@ $description = false;
   <div class="block-content">
     <?= /* @noEscape */ '<!-- ' . $image . '-->' ?>
     <div class="products-<?= /* @noEscape */ $mode ?> <?= /* @noEscape */ $mode ?>">
-      <ol class="product-items <?= /* @noEscape */ $type ?>">
+      <ol class="product-items owl-carousel <?= /* @noEscape */ $type ?>">
         <?php $iterator = 1; ?>
         <?php foreach ($items as $_item): ?>
           <?php if ($iterator++ != 1): ?></li><?php endif ?>

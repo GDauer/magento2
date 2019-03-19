@@ -17,9 +17,14 @@
 @font-face {font-family: 'MullerMedium'; src: url('@{baseDir}fonts/MullerMedium.woff2') format('woff2'), url('@{baseDir}fonts/MullerMedium.woff') format('woff'); font-weight: 500; font-style: normal;}
 @font-face {font-family: 'MullerBold'; src: url('@{baseDir}fonts/MullerBold.woff2') format('woff2'), url('@{baseDir}fonts/MullerBold.woff') format('woff'); font-weight: bold; font-style: normal;}
 
+@screen__s: 1280px;
+@screen__m: 1280px;
+
 body {
   overflow-x: hidden;
   font-family: 'MullerRegular', sans-serif;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 * {
   box-sizing: border-box;
@@ -1721,9 +1726,10 @@ a, a:hover, .alink, a:visited, .alink:visited {
       }
     }
     .owl-carousel {
-        .product-item {
-            width: 100%;
-            padding-top: 19px;
+        .owl-item {
+            .product-item {
+                width: 100%;
+            }
         }
     }
   }
@@ -4280,4 +4286,11 @@ body.catalogsearch-result-index {
         padding: 0;
         margin: 0;
     }
+}
+
+/*-- Modal popups --*/
+.modal-popup.modal-slide._inner-scroll {
+  .modal-inner-wrap {
+    height: -webkit-fill-available;
+  }
 }

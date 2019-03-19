@@ -3,6 +3,8 @@ namespace Itatiaia\Custom\Helper\FeedManager;
 
 class Feed extends \DigitalHub\FeedManager\Helper\Feed
 {
+    private $_loadedCategories = [];
+
     public function parseTemplateVariables($collection)
     {
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
@@ -60,6 +62,8 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
             $item['in_stock'] = $stockItem->getIsInStock();
             $item['stock_qty'] = $stockItem->getQty();
 
+            $item['category_path'] = $this->_getCategoryPath($product);
+
             $newCollection[] = $item;
         }
 
@@ -68,5 +72,40 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
         $variables['store_name'] = $scopeConfig->getValue('general/store_information/name', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $variables['products'] = $newCollection;
         return $variables;
+    }
+
+    private function _getCategoryPath($product)
+    {
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+        $logger = $objectManager->get('\Psr\Log\LoggerInterface');
+
+        $categories = $product->getCategoryIds();
+        $last_category_id = array_pop($categories);
+
+        if($last_category_id){
+            $category = $this->_getCategory($last_category_id);
+
+            $path = [];
+            foreach(explode('/', $category->getPath()) as $cid){
+                $c = $this->_getCategory($cid);
+                if($c->getLevel() < 2) continue;
+                $path[] = $c->getName();
+            }
+
+            $path = implode(' > ', $path);
+
+            return $path;
+        }
+        return '';
+    }
+
+    private function _getCategory($category_id)
+    {
+        if(!isset($this->_loadedCategories[$category_id])){
+            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+            $this->_loadedCategories[$category_id] = $objectManager->get('\Magento\Catalog\Model\CategoryFactory')->create()->load($category_id);
+        }
+        return $this->_loadedCategories[$category_id];
     }
 }
