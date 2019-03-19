@@ -128,3 +128,4 @@
 "<%- count %> products","<%- count %> produtos"
 "Installments", "Parcelamento"
 "Do not use Installments", "Não usar parcelamento"
+"Click here to download Boleto PDF.", "Clique aqui para imprimir o Boleto em PDF."
