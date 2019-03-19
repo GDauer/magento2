@@ -17,9 +17,14 @@
 @font-face {font-family: 'MullerMedium'; src: url('@{baseDir}fonts/MullerMedium.woff2') format('woff2'), url('@{baseDir}fonts/MullerMedium.woff') format('woff'); font-weight: 500; font-style: normal;}
 @font-face {font-family: 'MullerBold'; src: url('@{baseDir}fonts/MullerBold.woff2') format('woff2'), url('@{baseDir}fonts/MullerBold.woff') format('woff'); font-weight: bold; font-style: normal;}
 
+@screen__s: 1280px;
+@screen__m: 1280px;
+
 body {
   overflow-x: hidden;
   font-family: 'MullerRegular', sans-serif;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 * {
   box-sizing: border-box;
@@ -4268,4 +4273,11 @@ body.catalogsearch-result-index {
             }
         }
     }
+}
+
+/*-- Modal popups --*/
+.modal-popup.modal-slide._inner-scroll {
+  .modal-inner-wrap {
+    height: -webkit-fill-available;
+  }
 }
