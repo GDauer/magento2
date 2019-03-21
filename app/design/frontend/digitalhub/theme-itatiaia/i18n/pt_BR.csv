@@ -127,5 +127,5 @@
 "Alert subscription has been saved.","Cadastro realizado. Assim que o produto estiver disponível novamente você será avisado através do seu e-mail de cadastro."
 "<%- count %> products","<%- count %> produtos"
 "Installments", "Parcelamento"
-"Do not use Installments", "Não usar parcelamento"
 "Click here to download Boleto PDF.", "Clique aqui para imprimir o Boleto em PDF."
+"Do not use Installments", "Por favor selecione"
