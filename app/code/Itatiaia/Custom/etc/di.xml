@@ -6,5 +6,5 @@
     <preference for="MagePal\GoogleTagManager\Model\Customer" type="Itatiaia\Custom\Model\GoogleTagManager\Customer" />
     <preference for="MagePal\GoogleTagManager\Model\Cart" type="Itatiaia\Custom\Model\GoogleTagManager\Cart" />
     <preference for="MagePal\GoogleTagManager\Model\Order" type="Itatiaia\Custom\Model\GoogleTagManager\Order" />
-    <preference for="Smile\ElasticsuiteCatalog\Block\Navigation\Renderer\Attribute" type="Itatiaia\Custom\Block\ElasticsuiteCatalog\Navigation\Renderer\Attribute" />
+    <preference for="MagePal\GoogleTagManager\Block\Data\Product" type="Itatiaia\Custom\Block\GoogleTagManager\Data\Product" />
 </config>
