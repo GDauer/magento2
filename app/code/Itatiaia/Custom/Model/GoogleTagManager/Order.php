@@ -8,6 +8,8 @@ class Order extends \MagePal\GoogleTagManager\Model\Order
     {
         $collection = $this->getOrderCollection();
 
+        $categoryFactory = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\CategoryFactory');
+
         if (!$collection) {
             return false;
         }
@@ -19,9 +21,16 @@ class Order extends \MagePal\GoogleTagManager\Model\Order
         foreach ($collection as $order) {
             $products = [];
             foreach ($order->getAllVisibleItems() as $item) {
+                $categories = [];
+
+                foreach ($item->getProduct()->getCategoryIds() as $categoryId) {
+                  $categories = $categoryFactory->create()->load($categoryId)->getName();
+                }
+
                 $products[] = [
                     'sku' => $item->getSku(),
                     'id' => $item->getProduct()->getId(),
+                    'category' => $categories,
                     'name' => $this->escapeJsQuote($item->getName()),
                     'price' => $this->gtmHelper->formatPrice($item->getBasePrice()),
                     'quantity' => $item->getQtyOrdered() * 1
