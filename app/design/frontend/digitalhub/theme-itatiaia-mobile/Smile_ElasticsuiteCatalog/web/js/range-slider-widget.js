@@ -74,6 +74,8 @@ define(["jquery", 'Magento_Catalog/js/price-utils', 'mage/template', "jquery/ui"
         _refreshDisplay: function() {
             this.count = this._getItemCount();
 
+            console.log(this, this.from, this.to)
+
             window._priceFilterFrom = this.from
             window._priceFilterTo = this.to
 
