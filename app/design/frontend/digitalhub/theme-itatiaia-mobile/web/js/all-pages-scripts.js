@@ -82,3 +82,11 @@ function confirmRemoveLockItem(target){
     jQuery(target).attr('data-post', removePostJson);
     return true;
 }
+
+
+// layered nav com filtros aplicados após click em botão
+window._layeredFilters = {}
+function _toggleFilterOption()
+{
+    
+}

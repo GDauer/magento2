@@ -17,9 +17,14 @@
 @font-face {font-family: 'MullerMedium'; src: url('@{baseDir}fonts/MullerMedium.woff2') format('woff2'), url('@{baseDir}fonts/MullerMedium.woff') format('woff'); font-weight: 500; font-style: normal;}
 @font-face {font-family: 'MullerBold'; src: url('@{baseDir}fonts/MullerBold.woff2') format('woff2'), url('@{baseDir}fonts/MullerBold.woff') format('woff'); font-weight: bold; font-style: normal;}
 
+@screen__s: 1280px;
+@screen__m: 1280px;
+
 body {
   overflow-x: hidden;
   font-family: 'MullerRegular', sans-serif;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 * {
   box-sizing: border-box;
@@ -48,8 +53,12 @@ body {
 }
 
 .smile-es-range-slider{
+  padding: 5px 5px 0 5px;
   .ui-slider-handle{
     background: #1aa3ff;
+    margin: -5px 0 0 -7px;
+    width: 20px;
+    height: 20px
   }
 }
 
@@ -1456,6 +1465,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
         background: #ffff;
         overflow-y: scroll;
         transition: all 0.2s;
+        overscroll-behavior: contain;
         &.active{
           transition: all 0.2s;
           left: 0;
@@ -1549,9 +1559,11 @@ a, a:hover, .alink, a:visited, .alink:visited {
         .swatch-option.text{
           height: 30px;
         }
-        a.apply-fltr{
+        button.apply-fltr{
           text-decoration: none;
-          width: 80%;
+          position: fixed;
+          bottom: 0;
+          width: 100%;
           margin: 0 auto;
           border-radius: 2px;
           background-color: #1aa3ff;
@@ -1562,7 +1574,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           font-weight: 900;
           text-transform: uppercase;
           text-align: center;
-          display: none;
+          display: block;
         }
       }
     }
@@ -4269,4 +4281,11 @@ body.catalogsearch-result-index {
             }
         }
     }
+}
+
+/*-- Modal popups --*/
+.modal-popup.modal-slide._inner-scroll {
+  .modal-inner-wrap {
+    height: -webkit-fill-available;
+  }
 }
