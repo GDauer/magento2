@@ -97,7 +97,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
     <div class="min-in">
         <?php $productImage = $this->helper('Magento\Catalog\Helper\Image')->init($product, 'imagem_miniatura'); ?>
         <img src="<?= $productImage->getUrl() ?>" alt="<?= $block->escapeHtml($product->getTitle()) ?>" />
-        <h1 class="product-name"><?= $product->getName(); ?></h1>
+        <h4 class="product-name"><?= $product->getName(); ?></h4>
         <?php if ($product->isSaleable()): ?>
             <div class="wrp-price">
                 <div class="price-box">
