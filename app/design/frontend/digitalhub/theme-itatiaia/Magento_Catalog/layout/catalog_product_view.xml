@@ -11,6 +11,7 @@
     <move element="catalog.product.related" destination="page.wrapper" after="main.content"/>
     <referenceBlock name="product.info.overview" remove="true" />
     <referenceBlock name="product.info.shipping" remove="true" />
+    <referenceContainer name="page.main.title" remove="true" />
   <!-- <referenceBlock name="product.info.details">
     <block class="Magento\Catalog\Block\Product\View" name="demo.tab" template="Magento_Catalog::templates/product/min-prod.phtml" group="detailed_info" >
         <arguments>
