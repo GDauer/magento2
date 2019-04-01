@@ -8,6 +8,10 @@ class Order extends \MagePal\GoogleTagManager\Model\Order
     {
         $collection = $this->getOrderCollection();
 
+        $categoryFactory = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\CategoryFactory');
+
+        $helper = \Magento\Framework\App\ObjectManager::getInstance()->get('Itatiaia\Custom\Helper\Data');
+
         if (!$collection) {
             return false;
         }
@@ -19,14 +23,42 @@ class Order extends \MagePal\GoogleTagManager\Model\Order
         foreach ($collection as $order) {
             $products = [];
             foreach ($order->getAllVisibleItems() as $item) {
+              $categories = [];
+
+              if($grouped = $helper->getGroupedByOrderItem($item)){
+                $groupedPrice = \Magento\Framework\App\ObjectManager::getInstance()->get('Itatiaia\GroupedCatalogRule\Helper\Data')->calculateGroupedFinalPrice($grouped);
+
+                foreach ($grouped->getCategoryIds() as $categoryId) {
+                  $categories = $categoryFactory->create()->load($categoryId)->getName();
+                }
+
+                $products[] = [
+                    'sku' => $grouped->getSku(),
+                    'id' => $grouped->getId(),
+                    'category' => $categories,
+                    'name' => $this->escapeJsQuote($grouped->getName()),
+                    'price' => $this->gtmHelper->formatPrice($groupedPrice)
+                ];
+
+              } else {
+
+                foreach ($item->getProduct()->getCategoryIds() as $categoryId) {
+                  $categories = $categoryFactory->create()->load($categoryId)->getName();
+                }
+
                 $products[] = [
                     'sku' => $item->getSku(),
                     'id' => $item->getProduct()->getId(),
+                    'category' => $categories,
                     'name' => $this->escapeJsQuote($item->getName()),
                     'price' => $this->gtmHelper->formatPrice($item->getBasePrice()),
                     'quantity' => $item->getQtyOrdered() * 1
                 ];
+              }
+
             }
+
+            $products = $helper->removeDuplicates($products);
 
             $transaction =[
                 'event' => 'gtm.orderComplete',

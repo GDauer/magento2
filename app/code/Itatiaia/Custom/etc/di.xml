@@ -8,4 +8,5 @@
     <preference for="MagePal\GoogleTagManager\Model\Cart" type="Itatiaia\Custom\Model\GoogleTagManager\Cart" />
     <preference for="MagePal\GoogleTagManager\Model\Order" type="Itatiaia\Custom\Model\GoogleTagManager\Order" />
     <preference for="Magento\Catalog\Helper\Data" type="Itatiaia\Custom\Helper\Catalog\Data" />
+    <preference for="MagePal\GoogleTagManager\Block\Data\Product" type="Itatiaia\Custom\Block\GoogleTagManager\Data\Product" />
 </config>
