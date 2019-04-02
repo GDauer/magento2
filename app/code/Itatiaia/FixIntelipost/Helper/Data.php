@@ -3,15 +3,20 @@ namespace Itatiaia\FixIntelipost\Helper;
 
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
-    public function getCustomOriginZipcodeByItems(Array $items){
+    public function getCustomOriginZipcodeByItems(Array $items, $destPostcode){
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $config = $objectManager->get('\Magento\Framework\App\Config\ScopeConfigInterface');
         $logger = $objectManager->get('\Psr\Log\LoggerInterface');
         $defaultZipcode = $config->getValue('carriers/intelipost/source_zip');
         $zipcodeWarehouseAco = $config->getValue('carriers/itatiaia_fixintelipost/zipcode_warehouse_aco');
+        $zipcodeRangeEletro = $config->getValue('carriers/itatiaia_fixintelipost/zipcode_range_cd_eletro');
+        $zipcodeCdEletro = $config->getValue('carriers/itatiaia_fixintelipost/zipcode_cd_eletro');
+        $attributeSetIdEletro = $config->getValue('carriers/itatiaia_fixintelipost/attribute_set_id_eletro');
 
         $zipcode = $defaultZipcode;
         $has_material_aco = false;
+        $has_eletro = false;
+        $has_not_eletro = false;
 
         foreach($items as $item){
             $product = $objectManager->get('\Magento\Catalog\Model\ProductFactory')->create()->load($item->getProduct()->getId());
@@ -19,14 +24,55 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             if($material && ($material == 'Aço' || $material == 'aço')){
                 $has_material_aco = true;
             }
-            $logger->info($material);
+            // $logger->info('ATTRIBUTE_SET', [$product->getAttributeSetId()]);
+
+            if($product->getAttributeSetId() == $attributeSetIdEletro){
+                $has_eletro = true;
+            }
+            if($product->getAttributeSetId() != $attributeSetIdEletro){
+                $has_not_eletro = true;
+            }
         }
 
         if($has_material_aco){
             $zipcode = $zipcodeWarehouseAco;
         }
 
+        if($has_eletro && !$has_not_eletro){
+            // se somente houver eletro no carrinho, usar o CD de origem custom
+            // $logger->info('SOMENTE ELETRO', [$destPostcode, $zipcodeRangeEletro]);
+
+            if($this->isZipcodeInRange($destPostcode, $zipcodeRangeEletro)){
+                // $logger->info('IN RANGE');
+                $zipcode = $zipcodeCdEletro;
+            }
+        }
+
+        // $logger->info('ORIGEM', [$zipcode]);
+
         return $zipcode;
+    }
+
+    public function isZipcodeInRange($postcode, $string_range)
+    {
+        $postcode = (int)preg_replace('/\D+/','',$postcode);
+        $postcode_range = $string_range;
+
+        if(!$postcode_range) return false;
+
+        $ranges = explode(';', $postcode_range);
+        $inRange = false;
+        foreach($ranges as $range){
+            $parts = explode('-',$range);
+            if(isset($parts[0]) && isset($parts[1])){
+                $from = (int)$parts[0];
+                $to = (int)$parts[1];
+                if($postcode >= $from && $postcode <= $to){
+                    $inRange = true;
+                }
+            }
+        }
+        return $inRange;
     }
 
     public function updateIntelipostInvoice($order_id)

@@ -11,6 +11,15 @@
                     <label>Faixas de CEP para bloqueio de entregas</label>
                     <comment>Para múltiplas faixas, separar valores com '-' e ';'. Exemplo: 80000000-90000000; 01000000-10000000;</comment>
                 </field>
+                <field id="zipcode_cd_eletro" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>CEP de origem de CD padrão para Eletro</label>
+                </field>
+                <field id="zipcode_range_cd_eletro" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Faixas de CEP para uso de CD de Eletro</label>
+                </field>
+                <field id="attribute_set_id_eletro" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>ID do grupo de atributos de Eletro</label>
+                </field>
             </group>
         </section>
     </system>
