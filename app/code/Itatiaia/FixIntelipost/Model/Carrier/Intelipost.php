@@ -66,7 +66,7 @@ class Intelipost extends \Intelipost\Quote\Model\Carrier\Intelipost
             $originZipcode = $this->_origin_zipcode ? $this->_origin_zipcode : $originZipcode;
 
             // Custom code para Itatiaia / Multi CD
-            $originZipcode = \Magento\Framework\App\ObjectManager::getInstance()->get('\Itatiaia\FixIntelipost\Helper\Data')->getCustomOriginZipcodeByItems($request->getAllItems());
+            $originZipcode = \Magento\Framework\App\ObjectManager::getInstance()->get('\Itatiaia\FixIntelipost\Helper\Data')->getCustomOriginZipcodeByItems($request->getAllItems(), $destPostcode);
             //
             \Magento\Framework\App\ObjectManager::getInstance()->get('\Psr\Log\LoggerInterface')->info('ORIGIN CEP', [$originZipcode]);
 
