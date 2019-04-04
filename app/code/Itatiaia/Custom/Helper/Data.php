@@ -51,4 +51,45 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
         return false;
     }
+
+    function getGroupedByOrderItem($item)
+    {
+        $isGroupedItem = false;
+        $groupedProductId = false;
+        foreach($item->getBuyRequest()->getData() as $option){
+            if(isset($option['product_type']) && $option['product_type'] == 'grouped'){
+                $groupedProductId = $option['product_id'];
+                $isGroupedItem = true;
+                break;
+            }
+        }
+
+        if($isGroupedItem){
+            $parentProduct = $this->_productFactory->create();
+            return $parentProduct->load($groupedProductId);
+        }
+
+        return false;
+    }
+
+    public function removeDuplicates($array, $keep_key_assoc = false){
+      $duplicate_keys = array();
+      $tmp = array();
+
+      foreach ($array as $key => $val){
+          // convert objects to arrays, in_array() does not support objects
+          if (is_object($val))
+              $val = (array)$val;
+
+          if (!in_array($val, $tmp))
+              $tmp[] = $val;
+          else
+              $duplicate_keys[] = $key;
+      }
+
+      foreach ($duplicate_keys as $key)
+          unset($array[$key]);
+
+      return $keep_key_assoc ? $array : array_values($array);
+    }
 }
