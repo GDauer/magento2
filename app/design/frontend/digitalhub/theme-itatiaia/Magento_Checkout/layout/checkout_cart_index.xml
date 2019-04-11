@@ -39,7 +39,7 @@
         </argument>
       </arguments>
     </referenceBlock>
-    <referenceBlock name="breadcrumbs">
+    <!-- <referenceBlock name="breadcrumbs">
       <action method="addCrumb">
           <argument name="crumbName" xsi:type="string">Home</argument>
           <argument name="crumbInfo" xsi:type="array">
@@ -55,7 +55,7 @@
               <item name="label" xsi:type="string">Shopping Cart</item>
           </argument>
       </action>
-    </referenceBlock>
+    </referenceBlock> -->
     <referenceBlock name="checkout-methods-items" remove="true"/>
   </body>
 </page>
