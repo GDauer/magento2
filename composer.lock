@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3cddf996ea5ba16f3d9c7517631285b5",
+    "content-hash": "6e1ce639b85f62de3442ea8367f0aa09",
     "packages": [
         {
             "name": "adyen/module-payment",
@@ -12156,6 +12156,41 @@
             "time": "2019-01-27T19:37:29+00:00"
         },
         {
+            "name": "pmclain/magento2-successtest",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pmclain/magento2-successtest.git",
+                "reference": "993e059d748ac4674167361a4918285f13196f2d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pmclain/magento2-successtest/zipball/993e059d748ac4674167361a4918285f13196f2d",
+                "reference": "993e059d748ac4674167361a4918285f13196f2d",
+                "shasum": ""
+            },
+            "require": {
+                "magento/module-backend": "~100.1.0||~100.2.0||~101.0.0",
+                "magento/module-checkout": "~100.1.0||~100.2.0||~100.3.0",
+                "php": "~7.1.3||~7.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Pmclain\\SuccessTest\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0"
+            ],
+            "description": "Magento 2 Checkout Success Page Testing",
+            "time": "2019-03-16T15:06:48+00:00"
+        },
+        {
             "name": "psr/container",
             "version": "1.0.0",
             "source": {
@@ -13579,17 +13614,6 @@
         {
             "name": "swissup/rtl",
             "version": "1.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/swissup/rtl.git",
-                "reference": "43c3f3c3b50f401c93c290f74ad21408338c728b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/swissup/rtl/zipball/43c3f3c3b50f401c93c290f74ad21408338c728b",
-                "reference": "43c3f3c3b50f401c93c290f74ad21408338c728b",
-                "shasum": ""
-            },
             "require": {
                 "swissup/module-rtl": "^1.3.0"
             },
