@@ -12,10 +12,9 @@ define([
     'Magento_Customer/js/action/login',
     'Magento_Checkout/js/model/quote',
     'Magento_Checkout/js/checkout-data',
-    'Magento_Checkout/js/model/step-navigator',
     'Magento_Checkout/js/model/full-screen-loader',
     'mage/validation'
-], function ($, Component, ko, customer, checkEmailAvailability, loginAction, quote, checkoutData, stepNavigator, fullScreenLoader) {
+], function ($, Component, ko, customer, checkEmailAvailability, loginAction, quote, checkoutData, fullScreenLoader) {
     'use strict';
 
     var validatedEmail = checkoutData.getValidatedEmailValue();
@@ -31,9 +30,8 @@ define([
             emailFocused: false,
             isLoading: false,
             isPasswordVisible: false,
-            isContinueEmailVisible: true,
             listens: {
-                // email: 'emailHasChanged',
+                email: 'emailHasChanged',
                 emailFocused: 'validateEmail'
             }
         },
@@ -51,7 +49,7 @@ define([
          */
         initObservable: function () {
             this._super()
-                .observe(['email', 'emailFocused', 'isLoading', 'isPasswordVisible','isContinueEmailVisible']);
+                .observe(['email', 'emailFocused', 'isLoading', 'isPasswordVisible']);
 
             return this;
         },
@@ -59,33 +57,34 @@ define([
         /** @inheritdoc */
         initConfig: function () {
             this._super();
+
             this.isPasswordVisible = this.resolveInitialPasswordVisibility();
 
             return this;
         },
 
-        // /**
-        //  * Callback on changing email property
-        //  */
-        // emailHasChanged: function () {
-        //     var self = this;
-        //
-        //     clearTimeout(this.emailCheckTimeout);
-        //
-        //     if (self.validateEmail()) {
-        //         quote.guestEmail = self.email();
-        //         checkoutData.setValidatedEmailValue(self.email());
-        //     }
-        //     this.emailCheckTimeout = setTimeout(function () {
-        //         if (self.validateEmail()) {
-        //             self.checkEmailAvailability();
-        //         } else {
-        //             self.isPasswordVisible(false);
-        //         }
-        //     }, self.checkDelay);
-        //
-        //     checkoutData.setInputFieldEmailValue(self.email());
-        // },
+        /**
+         * Callback on changing email property
+         */
+        emailHasChanged: function () {
+            var self = this;
+
+            clearTimeout(this.emailCheckTimeout);
+
+            if (self.validateEmail()) {
+                quote.guestEmail = self.email();
+                checkoutData.setValidatedEmailValue(self.email());
+            }
+            this.emailCheckTimeout = setTimeout(function () {
+                if (self.validateEmail()) {
+                    self.checkEmailAvailability();
+                } else {
+                    self.isPasswordVisible(false);
+                }
+            }, self.checkDelay);
+
+            checkoutData.setInputFieldEmailValue(self.email());
+        },
 
         /**
          * Check email existing.
@@ -98,11 +97,7 @@ define([
 
             $.when(this.isEmailCheckComplete).done(function () {
                 this.isPasswordVisible(false);
-                console.log('1')
-                // stepNavigator.navigateTo('shipping');
-                document.location.hash = "shipping"
             }.bind(this)).fail(function () {
-                this.isContinueEmailVisible(false);
                 this.isPasswordVisible(true);
                 checkoutData.setCheckedEmailValue(this.email());
             }.bind(this)).always(function () {
@@ -122,12 +117,6 @@ define([
                 this.checkRequest.abort();
                 this.checkRequest = null;
             }
-        },
-
-        continueEmail: function(){
-            console.log('continueEmail')
-            // this.validateEmail(true);
-            this.checkEmailAvailability()
         },
 
         /**
