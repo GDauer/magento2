@@ -29,7 +29,13 @@ define([
                     self.active(parseInt(result.active))
 
                     if(result.trigger_subtotal){
-                        self.updateTotal(result.trigger_subtotal,result.cart_subtotal)
+                        var cart_subtotal = result.cart_subtotal;
+
+                        if(!result.cart_subtotal){
+                            cart_subtotal = parseFloat(window.checkoutConfig.quoteData.base_subtotal);
+                        }
+
+                        self.updateTotal(result.trigger_subtotal,cart_subtotal)
                     }
                 }
             })
