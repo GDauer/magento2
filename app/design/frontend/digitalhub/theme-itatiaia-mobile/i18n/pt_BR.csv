@@ -127,3 +127,4 @@
 "<%- count %> products","<%- count %> produtos"
 "Installments", "Parcelamento"
 "Do not use Installments", "Não usar parcelamento"
+"For delivery questions.", "Enviaremos atualizações sobre seu pedido neste número."

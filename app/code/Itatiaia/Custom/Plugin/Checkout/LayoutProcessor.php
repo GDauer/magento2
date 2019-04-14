@@ -27,6 +27,10 @@ class LayoutProcessor
             $shippingAddressChildren['postcode']['additionalClasses'] = 'field-postcode';
         }
 
+        if(isset($shippingAddressChildren['telephone'])){
+            $shippingAddressChildren['telephone']['label'] = __('Celular');
+        }
+
         $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']['shippingAddress']['children']['shipping-address-fieldset']['children'] = $shippingAddressChildren;
 
         // print_r($jsLayout);
