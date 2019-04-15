@@ -9,4 +9,7 @@
     <preference for="MagePal\GoogleTagManager\Model\Order" type="Itatiaia\Custom\Model\GoogleTagManager\Order" />
     <preference for="Magento\Catalog\Helper\Data" type="Itatiaia\Custom\Helper\Catalog\Data" />
     <preference for="MagePal\GoogleTagManager\Block\Data\Product" type="Itatiaia\Custom\Block\GoogleTagManager\Data\Product" />
+    <type name="Magento\Framework\Reflection\DataObjectProcessor">
+      <plugin name="custom_shipping_method_sap_id" type="Itatiaia\Custom\Plugin\Framework\Reflection\DataObjectProcessorPlugin" sortOrder="1" disabled="false" />
+    </type>
 </config>
