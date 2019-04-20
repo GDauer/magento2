@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Email/etc/email_templates.xsd">
+    <template id="order_processing_email_alert" label="Aviso de pedido com pagamento recebido" file="order_processing_email_alert.html" type="html" module="Itatiaia_EmailOrderProcessing" area="frontend"/>
+</config>
