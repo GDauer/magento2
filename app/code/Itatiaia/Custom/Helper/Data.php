@@ -92,4 +92,27 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
       return $keep_key_assoc ? $array : array_values($array);
     }
+
+    public function getCheckoutCartItems()
+    {
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $cart = $objectManager->get('\Magento\Checkout\Model\Cart');
+        return $cart->getQuote()->getAllVisibleItems();
+    }
+
+    public function getGroupedPriceInCart($groupedProduct, $quoteItems)
+    {
+        // calcula o preço final do produto agrupado no carrinho, somando os valores dos produtos associados adicionados no carrinho
+        $finalPrice = 0;
+
+        foreach($quoteItems as $item){
+            if($groupedItem = $this->getGroupedByQuoteItem($item)){
+                if($groupedItem->getId() == $groupedProduct->getId()){
+                    $finalPrice+= $item->getPrice() * $item->getQty();
+                }
+            }
+        }
+
+        return $finalPrice;
+    }
 }
