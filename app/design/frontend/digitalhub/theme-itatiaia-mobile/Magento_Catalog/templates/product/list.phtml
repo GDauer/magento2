@@ -133,3 +133,32 @@ require([
     <?= $block->getToolbarHtml() ?>
   </div>
 <?php endif; ?>
+
+<?php if(count($_productCollection)): ?>
+    <?php
+        $groupedHelper = $this->helper('\Itatiaia\GroupedCatalogRule\Helper\Data');
+        $productsListData = [];
+        $position = 1;
+        foreach($_productCollection as $_product){
+            $productData = [
+                'id' => $_product->getId(),
+                'name' => $_product->getName(),
+                'price' => $_product->getTypeId() == 'simple' ? $_product->getFinalPrice() : $groupedHelper->getFinalPrice($_product),
+                'brand' => $_product->getManufacturer() ? $_product->getManufacturer() : 'Itatiaia',
+                'list' => 'Categoria',
+                'position' => $position
+            ];
+            $productsListData[] = $productData;
+            $position++;
+        }
+    ?>
+    <script>
+    if(!window.dataLayer) window.dataLayer = []
+    window.dataLayer.push({
+        "ecommerce": {
+            "currencyCode": "BRL",
+            "impressions": <?php echo json_encode($productsListData); ?>
+        }
+    });
+    </script>
+<?php endif; ?>

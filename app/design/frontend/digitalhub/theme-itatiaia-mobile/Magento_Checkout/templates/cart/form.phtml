@@ -73,3 +73,61 @@
 </form>
 <?= $block->getChildHtml('checkout.cart.order.actions') ?>
 <?= $block->getChildHtml('shopping.cart.table.after') ?>
+
+<?php $helper = $this->helper('\Itatiaia\Custom\Helper\Data'); ?>
+<?php $groupedHelper = $this->helper('\Itatiaia\GroupedCatalogRule\Helper\Data'); ?>
+<?php if(count($helper->getCheckoutCartItems())): ?>
+    <?php
+        $productsListData = [];
+        $position = 1;
+        $groupedItems = [];
+
+        foreach($helper->getCheckoutCartItems() as $item){
+            $_product = $item->getProduct();
+
+            if($helper->getGroupedByQuoteItem($item)){
+                $_product = $helper->getGroupedByQuoteItem($item);
+
+                if(!isset($groupedItems[$_product->getId()])){
+                    // agrupado
+                    $groupedItems[$_product->getId()] = $_product->getId(); // para não repetir os agrupados
+
+                    $mainCategory = $this->helper('\Itatiaia\Custom\Helper\Catalog\Data')->getProductMainCategory($_product);
+                    $productData = [
+                        'id' => $_product->getId(),
+                        'name' => $_product->getName(),
+                        'price' => $helper->getGroupedPriceInCart($_product, $helper->getCheckoutCartItems()),
+                        'brand' => $_product->getManufacturer() ? $_product->getManufacturer() : 'Itatiaia',
+                        'category' => $mainCategory ? $mainCategory->getName() : ''
+                    ];
+                    $productsListData[] = $productData;
+                    $position++;
+                }
+            } else {
+                // simples
+                $mainCategory = $this->helper('\Itatiaia\Custom\Helper\Catalog\Data')->getProductMainCategory($_product);
+                $productData = [
+                    'id' => $_product->getId(),
+                    'name' => $_product->getName(),
+                    'price' => $_product->getTypeId() == 'simple' ? $_product->getFinalPrice() : $groupedHelper->getFinalPrice($_product),
+                    'brand' => $_product->getManufacturer() ? $_product->getManufacturer() : 'Itatiaia',
+                    'category' => $mainCategory ? $mainCategory->getName() : ''
+                ];
+                $productsListData[] = $productData;
+                $position++;
+            }
+        }
+    ?>
+    <script>
+    if(!window.dataLayer) window.dataLayer = []
+    window.dataLayer.push({
+        "event": "addToCart",
+        "ecommerce": {
+            "currencyCode": "BRL",
+            "add": {
+                "products": <?php echo json_encode($productsListData) ?>
+            }
+        }
+    });
+    </script>
+<?php endif; ?>
