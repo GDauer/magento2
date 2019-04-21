@@ -4,25 +4,26 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6e1ce639b85f62de3442ea8367f0aa09",
+    "content-hash": "72175c67f5342ef2add5885d1b092e31",
     "packages": [
         {
             "name": "adyen/module-payment",
-            "version": "2.4.3",
+            "version": "4.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Adyen/adyen-magento2.git",
-                "reference": "1545004a9be7e37bdd06976d9342822555d63eb2"
+                "reference": "ecd01eb16682623c418a4f1d955b4d94e773e015"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Adyen/adyen-magento2/zipball/1545004a9be7e37bdd06976d9342822555d63eb2",
-                "reference": "1545004a9be7e37bdd06976d9342822555d63eb2",
+                "url": "https://api.github.com/repos/Adyen/adyen-magento2/zipball/ecd01eb16682623c418a4f1d955b4d94e773e015",
+                "reference": "ecd01eb16682623c418a4f1d955b4d94e773e015",
                 "shasum": ""
             },
             "require": {
                 "adyen/php-api-library": ">=1.5.3",
-                "magento/framework": ">=100.1.0"
+                "magento/framework": ">=101.0.0",
+                "magento/module-vault": "101.*"
             },
             "type": "magento2-module",
             "autoload": {
@@ -39,7 +40,7 @@
                 "AFL-3.0"
             ],
             "description": "Official Magento2 Plugin to connect to Payment Service Provider Adyen.",
-            "time": "2018-12-21T08:37:03+00:00"
+            "time": "2019-04-19T07:11:52+00:00"
         },
         {
             "name": "adyen/php-api-library",
