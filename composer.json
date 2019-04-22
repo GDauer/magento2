@@ -54,7 +54,8 @@
         "magepal/magento2-googletagmanager": "^2.2",
         "scandiweb/module-core": "~0.1.2",
         "scandiweb/module-magiczoom": "1.1.4",
-        "mustache/mustache": "^2.12"
+        "mustache/mustache": "^2.12",
+        "mageplaza/module-better-popup": "^1.1"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.2.0",
