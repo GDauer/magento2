@@ -110,8 +110,10 @@ switch ($type = $block->getType()) {
                                                 <?php $postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
                                                 $postData = $postDataHelper->getPostData($block->getAddToCartUrl($_item), ['product' => $_item->getEntityId()])
                                                 ?>
-                                                <button class="action tocart primary" onClick="self.location='<?= $block->escapeUrl($block->getProductUrl($_item)) ?>'" type="button" title="<?= $block->escapeHtmlAttr(__('Comprar')) ?>">
-                                                    <span><?= $block->escapeHtml(__('Comprar')) ?></span>
+                                                <button class="action tocart primary"
+                                                        data-post='<?= /* @escapeNotVerified */ $postData ?>'
+                                                        type="button" title="<?= /* @escapeNotVerified */ __('Add to Cart') ?>">
+                                                    <span><?= /* @escapeNotVerified */ __('Add to Cart') ?></span>
                                                 </button>
                                             <?php endif; ?>
                                         <?php else: ?>
