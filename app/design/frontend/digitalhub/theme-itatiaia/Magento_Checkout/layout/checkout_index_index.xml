@@ -33,9 +33,9 @@
                                                     <item name="additional-payment-validators" xsi:type="array">
                                                         <item name="children" xsi:type="array">
 
-                                                            <item name="cpfValidation" xsi:type="array">
+                                                            <!-- <item name="cpfValidation" xsi:type="array">
                                                                 <item name="component" xsi:type="string">Itatiaia_Custom/js/view/cpf-validation</item>
-                                                            </item>
+                                                            </item> -->
 
                                                         </item>
                                                     </item>
