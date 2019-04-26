@@ -1,0 +1,178 @@
+/* One Step Checkout */
+body.checkout-index-index.firecheckout {
+    .page-wrapper .actions-toolbar .primary {
+        width: auto;
+        padding: 0 !important;
+        float: right;
+        button {
+            background: #1d71b8
+        }
+    }
+    .page-wrapper .actions-toolbar .secondary {
+        float: left
+    }
+    .wrp-header .wrp-checkout-steps {
+        display: none;
+    }
+    .page-wrapper .page-header {
+        height: 70px;
+    }
+    .wrp-header #header-checkout .content-header {
+        max-width: 1260px;
+    }
+    #maincontent {
+        max-width: 1280px;
+    }
+    #header-checkout .content-header {
+        max-width: 1280px
+    }
+
+    .modal-custom:not(.opc-sidebar) {
+        top: 60px;
+    }
+    .block-authentication {
+        .fieldset {
+            margin: 0 0 20px;
+        }
+    }
+
+    #checkout {
+        margin: 0 auto;
+        max-width: 100%;
+
+        button.action.primary {
+            padding: 10px 20px !important;
+        }
+
+        /* step titles */
+        .step-title {
+            color: #333;
+            font-size: 17px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+        .opc-sidebar .opc-block-summary .title,
+        .checkout-payment-method .step-title,
+        .opc-wrapper .checkout-shipping-method .step-title,
+        .opc-wrapper .checkout-shipping-address .step-title {
+            color: #333;
+            font-size: 17px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+        .opc-sidebar .opc-block-summary {
+            border: 0;
+            border-radius: 0;
+            padding: 0;
+            .title {
+                margin-bottom: 15px;
+            }
+            .primary {
+                width: 190px;
+                text-align: center;
+                button.checkout {
+                    margin: 0 auto;
+                }
+            }
+        }
+        .minicart-items-wrapper.overflowed,
+        .opc-block-summary .minicart-items-wrapper.overflowed {
+            padding: 0 10px 0 0;
+        }
+
+        /* forms */
+        .checkout-shipping-address .fieldset.address .field {
+            margin: 0
+        }
+        .field .field-tooltip {
+            position: absolute;
+        }
+        .field.field-postcode {
+            width: 40%;
+        }
+        .form-shipping-address {
+            fieldset.field:nth-of-type(1),
+            fieldset.field:nth-of-type(4) {
+                width: 100%;
+                box-sizing: border-box;
+                padding: 5px;
+            }
+            fieldset.field:nth-of-type(2) {
+                width: 40%;
+                box-sizing: border-box;
+                padding: 5px;
+            }
+            fieldset.field:nth-of-type(3) {
+                width: 55%;
+                box-sizing: border-box;
+                padding: 5px;
+                float: right;
+                margin: 0 5px 0 0 !important
+            }
+        }
+
+        /* shipping methods */
+        .opc-wrapper .table-checkout-shipping-method .row {
+            cursor: pointer;
+        }
+        .opc-wrapper .checkout-shipping-method .price,
+        .opc-wrapper .checkout-shipping-method .col-method {
+            font-size: 12px
+        }
+        .table-checkout-shipping-method tbody tr td.col-carrier {
+            display: none
+        }
+
+        /* payment methods */
+        .checkout-payment-method .payment-method {
+            border-radius: 0;
+            border: 0;
+            margin: 0;
+            padding: 0 2px
+        }
+        .checkout-payment-method .giftcardaccount,
+        .checkout-payment-method .discount-code {
+            margin: 0 !important;
+            border: 0 !important;
+            padding: 10px !important;
+        }
+        .fc-magento-giftoptions {
+            display: none
+        }
+
+        /* adyen */
+        .checkout-payment-method .payment-method .payment-method-title .label {
+            position: relative;
+            top: -8px;
+        }
+        .checkout-payment-method .payment-method-title label div.adyen-sprite {
+            position: relative;
+            top: 15px;
+            margin: 0 5px;
+        }
+        .checkout-payment-method .ccard {
+            max-width: 100%;
+        }
+        .checkout-payment-method .fieldset .field select {
+            width: 90%;
+        }
+
+        .giftcardaccount button.action.primary,
+        .giftcard-form button.action.primary {
+            width: auto !important;
+            height: auto !important;
+        }
+
+    }
+    #opc-new-shipping-address {
+        .field {
+            width: 45%;
+        }
+        fieldset.field {
+            margin: 5px;
+        }
+    }
+    .field .field-tooltip {
+        position: absolute;
+    }
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <head>
+    <script src="Magento_Checkout::js/view/active-steps.js" />
+    <script src="DigitalHub_CustomerAttributes::js/checkout/shipping-address.js" />
+  </head>
+  <body>
+      <referenceBlock name="page.main.title">
+          <action method="setPageTitle">
+              <argument translate="true" name="page_title" xsi:type="string">Finalizar pedido</argument>
+          </action>
+      </referenceBlock>
+  </body>
+</page>

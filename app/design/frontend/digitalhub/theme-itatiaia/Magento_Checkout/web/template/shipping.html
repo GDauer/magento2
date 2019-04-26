@@ -4,17 +4,13 @@
  * See COPYING.txt for license details.
  */
 -->
-
-<li id="email" class="checkout-customer-email" data-bind="visible: visibleEmail()">
-    <each if="!quoteIsVirtual" args="getRegion('customer-email')" render="" />
-</li>
-
-<li id="shipping" class="checkout-shipping-address" data-bind="visible: visibleShipping()">
+<li id="shipping" class="checkout-shipping-address" data-bind="fadeVisible: visible()">
     <div class="step-title" translate="'Shipping Address'" data-role="title" />
     <div id="checkout-step-shipping"
          class="step-content"
          data-role="content">
 
+        <each if="!quoteIsVirtual" args="getRegion('customer-email')" render="" />
         <each args="getRegion('address-list')" render="" />
         <each args="getRegion('address-list-additional-addresses')" render="" />
 
@@ -41,7 +37,7 @@
 <!--Shipping method template-->
 <li id="opc-shipping_method"
     class="checkout-shipping-method"
-    data-bind="visible: visibleShipping(), blockLoader: isLoading"
+    data-bind="fadeVisible: visible(), blockLoader: isLoading"
     role="presentation">
     <div class="checkout-shipping-method">
         <div class="step-title"
@@ -73,11 +69,8 @@
                 </div>
                 <div class="actions-toolbar" id="shipping-method-buttons-container">
                     <div class="primary">
-                        <button data-bind="click: backToEmail" class="button action back primary">
-                            <span translate="'Voltar'" />
-                        </button>
                         <button data-role="opc-continue" type="submit" class="button action continue primary">
-                            <span translate="'Continuar'" />
+                            <span translate="'Next'" />
                         </button>
                     </div>
                 </div>

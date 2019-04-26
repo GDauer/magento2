@@ -62,8 +62,7 @@ define([
             shippingMethodListTemplate: 'Magento_Checkout/shipping-address/shipping-method-list',
             shippingMethodItemTemplate: 'Magento_Checkout/shipping-address/shipping-method-item'
         },
-        visibleEmail: ko.observable(false),
-        visibleShipping: ko.observable(false),
+        visible: ko.observable(!quote.isVirtual()),
         errorValidationMessage: ko.observable(false),
         isCustomerLoggedIn: customer.isLoggedIn,
         isFormPopUpVisible: formPopUpState.isVisible,
@@ -82,34 +81,12 @@ define([
 
             this._super();
 
-            console.log('Register Steps !!')
-
-            if (!quote.isVirtual()) {
-                stepNavigator.registerStep(
-                    'customer-email',
-                    'email',
-                    $t('Identificação'),
-                    this.visibleEmail,
-                    _.bind(this.navigate, this),
-                    10
-                );
-            }
-
-            // Logged
-            if(!quote.isVirtual() && window.checkoutConfig.customerData && window.checkoutConfig.customerData.id){
-                document.location.hash = "shipping";
-                this.visibleShipping(true);
-            } else {
-                this.visibleEmail(true);
-            }
-
             if (!quote.isVirtual()) {
                 stepNavigator.registerStep(
                     'shipping',
                     '',
                     $t('Shipping'),
-                    this.visibleShipping,
-                    _.bind(this.navigate, this),
+                    this.visible, _.bind(this.navigate, this),
                     10
                 );
             }
@@ -346,12 +323,6 @@ define([
             }
 
             return true;
-        },
-
-        backToEmail: function(){
-            // stepNavigator.navigate('customer-email');
-            document.location.hash = 'customer-email';
-            return false;
         },
 
         /**
