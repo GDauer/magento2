@@ -5,6 +5,10 @@
     <script src="DigitalHub_CustomerAttributes::js/checkout/shipping-address.js" />
   </head>
   <body>
+      <referenceContainer name="after.body.start">
+        <block name="adyen_external_js" template="Adyen_Payment::external_js.phtml" />
+      </referenceContainer>
+      
       <referenceBlock name="page.main.title">
           <action method="setPageTitle">
               <argument translate="true" name="page_title" xsi:type="string">Finalizar pedido</argument>

@@ -1,6 +1,5 @@
-<script type="text/javascript">
-    var scriptTag = document.createElement('script');
-    scriptTag.src = window.checkoutConfig.payment.checkoutCardComponentSource;
-    scriptTag.type = "text/javascript";
-    document.body.appendChild(scriptTag);
-</script>
+<?php
+$storeId = $this->helper('\Itatiaia\Custom\Helper\Data')->getStoreId();
+$adyenHelper = $this->helper('\Adyen\Payment\Helper\Data');
+?>
+<script type="text/javascript" src="<?php echo $adyenHelper->getCheckoutCardComponentJs($storeId) ?>"></script>
