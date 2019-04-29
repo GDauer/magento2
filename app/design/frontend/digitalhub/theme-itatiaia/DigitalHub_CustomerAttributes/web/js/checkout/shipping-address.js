@@ -8,11 +8,22 @@ require([
 
             $('input[name=vat_id]').mask('000.000.000-00', {
                 placeholder: "CPF *",
-            }).change(function(){
-                if(!$(this).val()){
-                    console.log(4234)
-                }
             })
+
+            $('input[name=postcode]').mask('00000-000', {
+                placeholder: "CEP *",
+            })
+
+            var TelephoneBehaviour = function (val) {
+                return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+            };
+            var telOptions = {
+                onKeyPress: function(val, e, field, options) {
+                    field.mask(TelephoneBehaviour.apply({}, arguments), options);
+                },
+                placeholder: "Celular *"
+            };
+            $('input[name=telephone]').mask(TelephoneBehaviour, telOptions);
         }
     });
 });
