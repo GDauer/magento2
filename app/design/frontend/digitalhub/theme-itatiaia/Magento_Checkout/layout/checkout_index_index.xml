@@ -5,7 +5,7 @@
     <script src="DigitalHub_CustomerAttributes::js/checkout/shipping-address.js" />
   </head>
   <body>
-      <referenceContainer name="root">
+      <referenceContainer name="after.body.start">
         <block name="adyen_external_js" template="Adyen_Payment::external_js.phtml" />
       </referenceContainer>
 
