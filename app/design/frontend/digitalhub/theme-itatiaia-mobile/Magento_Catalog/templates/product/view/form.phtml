@@ -87,3 +87,28 @@
   </div>
 </div>
 <?php endif;*/ ?>
+
+
+<?php if($_product): ?>
+    <?php
+    $groupedHelper = $this->helper('\Itatiaia\GroupedCatalogRule\Helper\Data');
+    $mainCategory = $this->helper('\Itatiaia\Custom\Helper\Catalog\Data')->getProductMainCategory($_product);
+    ?>
+    <script>
+    if(!window.dataLayer) window.dataLayer = []
+    window.dataLayer.push({
+        "ecommerce": {
+            "detail": {
+                'actionField': {'list': 'Página de produto'},
+                'products': [{
+                    'name': '<?php echo $_product->getName() ?>',
+                    'id': <?= $_product->getId() ?>,
+                    'price': <?= $_product->getTypeId() == 'simple' ? $_product->getFinalPrice() : $groupedHelper->getFinalPrice($_product) ?>,
+                    'brand': '<?= $_product->getManufacturer() ? $_product->getManufacturer() : 'Itatiaia' ?>',
+                    'category': '<?= $mainCategory ? $mainCategory->getName() : '' ?>'
+                }]
+            }
+        }
+    });
+    </script>
+<?php endif; ?>

@@ -79,4 +79,36 @@ class Data extends \Magento\Catalog\Helper\Data
 
         return $this->_categoryPath;
     }
+
+    public function getProductMainCategory($_product)
+    {
+        $categoryIds = $_product->getCategoryIds();
+
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $lastLevelCategory = null;
+        $lastLevel = 0;
+        foreach($categoryIds as $cid){
+            $category = $objectManager->get('\Magento\Catalog\Model\CategoryFactory')->create()->load($cid);
+            if((int)$category->getLevel() > $lastLevel){
+                $lastLevel = (int)$category->getLevel();
+                $lastLevelCategory = $category;
+            }
+        }
+
+        if($lastLevelCategory){
+            $pathInStore = $lastLevelCategory->getPathInStore();
+            $pathIds = array_reverse(explode(',', $pathInStore));
+
+            $categories = $lastLevelCategory->getParentCategories();
+
+            // add category path breadcrumb
+            foreach ($pathIds as $categoryId) {
+                if (isset($categories[$categoryId]) && $categories[$categoryId]->getName()) {
+                    return $categories[$categoryId];
+                }
+            }
+        }
+
+        return null;
+    }
 }
