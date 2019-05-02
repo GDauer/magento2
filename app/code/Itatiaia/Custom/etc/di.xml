@@ -9,4 +9,8 @@
     <preference for="MagePal\GoogleTagManager\Model\Order" type="Itatiaia\Custom\Model\GoogleTagManager\Order" />
     <preference for="MagePal\GoogleTagManager\Block\Data\Product" type="Itatiaia\Custom\Block\GoogleTagManager\Data\Product" />
     <preference for="Magento\Catalog\Helper\Data" type="Itatiaia\Custom\Helper\Catalog\Data" />
+
+    <type name="Magento\Framework\Reflection\DataObjectProcessor">
+        <plugin name="custom_guest_order_data_api" type="Itatiaia\Custom\Plugin\Framework\Reflection\DataObjectProcessorPlugin" sortOrder="100" disabled="false" />
+    </type>
 </config>
