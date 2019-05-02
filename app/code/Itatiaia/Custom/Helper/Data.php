@@ -121,10 +121,4 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
         return $finalPrice;
     }
-
-    public function getStoreId()
-    {
-        $storeManager = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Store\Model\StoreManagerInterface');
-        return $storeManager->getStore()->getId();
-    }
 }
