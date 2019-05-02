@@ -11,8 +11,10 @@ class DataObjectProcessorPlugin
         $data = $result;
 
         if(isset($data['customer_is_guest']) && $data['customer_is_guest']){
-            $data['customer_firstname'] = $dataObject->getBillingAddress()->getFirstname();
-            $data['customer_lastname'] = $dataObject->getBillingAddress()->getLastname();
+            if($dataObject->getBillingAddress()){
+                $data['customer_firstname'] = $dataObject->getBillingAddress()->getFirstname();
+                $data['customer_lastname'] = $dataObject->getBillingAddress()->getLastname();
+            }
         }
 
         return $data;
