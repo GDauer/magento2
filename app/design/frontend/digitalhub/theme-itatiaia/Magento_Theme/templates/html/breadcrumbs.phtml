@@ -29,9 +29,11 @@
               <span itemprop="name"><?= $block->escapeHtml($crumbInfo['label']) ?></span>
           </strong>
         <?php else: ?>
-           <span itemprop="name">
-              <?= $block->escapeHtml($crumbInfo['label']) ?>
-           </span>
+            <span itemtype="https://schema.org/Thing" itemprop="item">
+                <span itemprop="name">
+                    <?= $block->escapeHtml($crumbInfo['label']) ?>
+                </span>
+            </span>
         <?php endif; ?>
         <meta itemprop="position" content="<?php echo $pos ?>" />
         </li>
