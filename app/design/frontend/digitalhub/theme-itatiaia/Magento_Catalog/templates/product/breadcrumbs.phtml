@@ -29,11 +29,21 @@ if ($breadcrumbsBlock = $objectManager->create('DigitalHub\Breadcrumbs\Block\Htm
                 <li class="item <?= /* @escapeNotVerified */ $crumbName ?>" itemprop="itemListElement" itemscope
               itemtype="https://schema.org/ListItem">
                 <?php if ($crumbInfo['link']) : ?>
-                    <a itemtype="https://schema.org/Thing" itemprop="item" href="<?= /* @escapeNotVerified */ $crumbInfo['link'] ?>" title="<?= $block->escapeHtml($crumbInfo['title']) ?>"><?= $block->escapeHtml($crumbInfo['label']) ?></a>
+                    <a itemtype="https://schema.org/Thing" itemprop="item" href="<?= /* @escapeNotVerified */ $crumbInfo['link'] ?>" title="<?= $block->escapeHtml($crumbInfo['title']) ?>">
+                        <span itemprop="name">
+                            <?= $block->escapeHtml($crumbInfo['label']) ?>
+                        </span>
+                    </a>
                 <?php elseif ($crumbInfo['last']) : ?>
-                    <strong itemtype="https://schema.org/Thing" itemprop="item"><?= $block->escapeHtml($crumbInfo['label']) ?></strong>
+                    <strong itemtype="https://schema.org/Thing" itemprop="item">
+                        <span itemprop="name">
+                            <?= $block->escapeHtml($crumbInfo['label']) ?>
+                        </span>
+                    </strong>
                 <?php else: ?>
-                    <?= $block->escapeHtml($crumbInfo['label']) ?>
+                    <span itemprop="name">
+                        <?= $block->escapeHtml($crumbInfo['label']) ?>
+                    </span>
                 <?php endif; ?>
                     <meta itemprop="position" content="<?php echo $pos ?>" />
                 </li>
