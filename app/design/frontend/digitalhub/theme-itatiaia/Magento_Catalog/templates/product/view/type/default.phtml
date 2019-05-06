@@ -16,7 +16,7 @@
   $title 	= $product->getName();
 ?>
 
-<h1 class="product-name"><?php echo $product->getName(); ?></h1>
+<h1 class="product-name" itemprop="name"><?php echo $product->getName(); ?></h1>
 
 <?php if ($block->displayProductStockStatus()): ?>
     <?php if ($_product->isAvailable()): ?>
