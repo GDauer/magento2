@@ -111,3 +111,11 @@
     });
     </script>
 <?php endif; ?>
+
+
+<?php if($_product->getTypeId() == 'simple'): ?>
+    <?php $_helper = $this->helper('Magento\Catalog\Helper\Output'); ?>
+    <div class="short-description description">
+        <?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
+    </div>
+<?php endif; ?>
