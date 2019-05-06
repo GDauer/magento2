@@ -111,3 +111,20 @@
     });
     </script>
 <?php endif; ?>
+
+
+<?php if($_product->getTypeId() == 'simple'): ?>
+    <?php $_helper = $this->helper('Magento\Catalog\Helper\Output'); ?>
+    <div id="grouped-details">
+        <div id="tabs-list">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab1">Descrição</a></li>
+            </ul>
+        </div>
+        <div class="wrp-desc">
+            <section id="tab1" class="tab-content active">
+                <?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
+            </section>
+        </div>
+    </div>
+<?php endif; ?>
