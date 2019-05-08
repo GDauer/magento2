@@ -9,7 +9,7 @@
  *
  * @author      Magento Core Team <core@magentocommerce.com>
  */
-namespace Itatiaia\CustomReports\Model\ResourceModel\Report\GroupedSalesCollection;
+namespace Itatiaia\CustomReports\Model\ResourceModel\Report\GroupedCollection;
 
 /**
  * @api
@@ -22,5 +22,5 @@ class Initial extends \Magento\Reports\Model\ResourceModel\Report\Collection
      *
      * @var string
      */
-    protected $_reportCollection = \Itatiaia\CustomReports\Model\ResourceModel\Report\GroupedSalesCollection::class;
+    protected $_reportCollection = \Itatiaia\CustomReports\Model\ResourceModel\Report\GroupedCollection::class;
 }

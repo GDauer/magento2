@@ -1,7 +1,7 @@
 <?php
-namespace Itatiaia\CustomReports\Block\Adminhtml\Report\GroupedSales;
+namespace Itatiaia\CustomReports\Block\Adminhtml\Reports;
 
-class Grid extends \Magento\Backend\Block\Widget\Grid\Container
+class Grouped extends \Magento\Backend\Block\Widget\Grid\Container
 {
     /**
      * @var string
@@ -16,7 +16,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Container
     protected function _construct()
     {
         $this->_blockGroup = 'Itatiaia_CustomReports';
-        $this->_controller = 'adminhtml_reports_groupedsales';
+        $this->_controller = 'adminhtml_reports_grouped';
         $this->_headerText = __('Produtos agrupados vendidos');
         parent::_construct();
         $this->buttonList->remove('add');

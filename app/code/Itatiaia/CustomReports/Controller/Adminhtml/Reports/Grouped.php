@@ -1,7 +1,7 @@
 <?php
 namespace Itatiaia\CustomReports\Controller\Adminhtml\Reports;
 
-class GroupedSales extends \Magento\Framework\App\Action\Action
+class Grouped extends \Magento\Framework\App\Action\Action
 {
 	protected $resultPageFactory = false;
 
