@@ -9,4 +9,7 @@
     <event name="controller_front_send_response_before">
         <observer name="controller_front_send_response_before_restricted_acccess" instance="Itatiaia\Custom\Observer\RestrictedAccess" />
     </event>
+    <event name="customer_register_success">
+        <observer name="customer_register_success_associated_guest_orders" instance="Itatiaia\Custom\Observer\AssociateGuestOrders" />
+    </event>
 </config>
