@@ -40,7 +40,8 @@ define([
             regionCode: addressData.region ? addressData.region['region_code'] : null,
             region: addressData.region ? addressData.region.region : null,
             customerId: addressData['customer_id'] || addressData.customerId,
-            street: addressData.street ? _.compact(addressData.street) : addressData.street,
+            // street: addressData.street ? _.compact(addressData.street) : addressData.street, // FIX
+            street: addressData.street, // NEW WAY
             company: addressData.company,
             telephone: addressData.telephone,
             fax: addressData.fax,
