@@ -25,7 +25,7 @@ class GroupedCollection extends \Magento\Sales\Model\ResourceModel\Order\Item\Co
     public function setStoreIds($storeIds)
     {
         if ($storeIds) {
-            $this->getSelect()->where('order_items.store_id IN (?)', (array)$storeIds);
+            $this->getSelect()->where('main_table.store_id IN (?)', (array)$storeIds);
         }
         return $this;
     }
@@ -60,5 +60,25 @@ class GroupedCollection extends \Magento\Sales\Model\ResourceModel\Order\Item\Co
             $this->getConnection()->quote($from),
             $this->getConnection()->quote($to)
         );
+    }
+
+    protected function _beforeLoad()
+    {
+        $this->addFieldToFilter('product_type', 'grouped');
+
+        $this->getSelect()->reset(\Zend_Db_Select::COLUMNS);
+
+        $this->getSelect()->columns([
+            'total' => 'count(*)',
+            'store_id' => 'main_table.store_id',
+            'created_at' => 'main_table.created_at',
+            'grouped_id' => new \Zend_Db_Expr ("reverse(substring(reverse(substring(REGEXP_SUBSTR(product_options, '\{\"product_type\"\:\"grouped\"\,\"product_id\"\:\"[0-9]+\"\}'), 41)), 3))"),
+            'sku' => new \Zend_Db_Expr ("(SELECT sku FROM catalog_product_entity as cpe WHERE cpe.entity_id = grouped_id)")
+        ]);
+
+        $this->getSelect()->group('grouped_id');
+        $this->getSelect()->order('total desc');
+
+        return parent::_beforeLoad();
     }
 }

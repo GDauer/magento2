@@ -54,17 +54,19 @@ class Grid extends \Magento\Backend\Block\Widget\Grid
         }
 
         /** @var $collection \Magento\Reports\Model\ResourceModel\Product\Lowstock\Collection  */
-        $collection = $this->_groupedCollectionFactory->create()->addAttributeToSelect(
-            '*'
-        );
-
-        $collection->getSelect()
+        $collection = $this->_groupedCollectionFactory->create();
 
         if ($storeId) {
-            $collection->addStoreFilter($storeId);
+            $collection->setStoreIds($storeId);
         }
 
+
+        // print_r((string)$collection->getSelect());
+        // exit;
+
         $this->setCollection($collection);
+
+
         return parent::_prepareCollection();
     }
 }
