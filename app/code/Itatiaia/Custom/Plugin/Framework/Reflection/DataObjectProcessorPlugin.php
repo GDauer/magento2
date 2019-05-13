@@ -29,7 +29,8 @@ class DataObjectProcessorPlugin
 
                     foreach($rules as $rowId => $rule){
                         if($rule->intelipost == $delivery_method_name){
-                            $data['shipping_method_sap'] = $rule->sap;
+                            // $data['shipping_method_sap'] = $rule->sap;
+                            $data['shipping_description'] = $rule->sap;
                         }
                     }
                 }
