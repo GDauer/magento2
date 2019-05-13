@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
     <preference for="Adyen\Payment\Gateway\Request\AddressDataBuilder" type="Itatiaia\AdyenCustom\Gateway\Request\AddressDataBuilder" />
+    <preference for="Adyen\Payment\Gateway\Request\CustomerIpDataBuilder" type="Itatiaia\AdyenCustom\Gateway\Request\CustomerIpDataBuilder" />
     <preference for="Adyen\Payment\Gateway\Response\PaymentAuthorisationDetailsHandler" type="Itatiaia\AdyenCustom\Gateway\Response\PaymentAuthorisationDetailsHandler" />
     <!-- <preference for="Magento\Framework\Reflection\DataObjectProcessor" type="Itatiaia\AdyenCustom\Framework\Reflection\DataObjectProcessor" /> -->
     <type name="Magento\Framework\Reflection\DataObjectProcessor">
