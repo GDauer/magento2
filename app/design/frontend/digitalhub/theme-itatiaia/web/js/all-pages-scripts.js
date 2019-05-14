@@ -63,7 +63,7 @@ require([
     })
 
     jQuery(function(){
-        if(jQuery('body.checkout-index-index').length){
+        if(jQuery('body.checkout-index-index').length && window.checkoutConfig){
             initGaEnchancedCheckout();
         }
     });
