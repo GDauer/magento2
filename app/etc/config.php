@@ -28,6 +28,7 @@ return [
         'Itatiaia_CustomAdditionalPrices' => 1,
         'Itatiaia_CustomElasticSuite' => 1,
         'Itatiaia_EmailOrderProcessing' => 1,
+        'Itatiaia_CustomReports' => 1,
         'Magento_Ui' => 1,
         'Itatiaia_FreeShippingAlert' => 1,
         'Magento_CatalogRule' => 1,
