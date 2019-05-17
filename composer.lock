@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "786da7057def75b9436542d6654a3af7",
+    "content-hash": "758a5d00913a6d17818bfe19e0d272be",
     "packages": [
         {
             "name": "adyen/module-payment",
@@ -907,16 +907,16 @@
         },
         {
             "name": "digitalhub/feedmanager",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "git@gitlab.com:digitalhub/m2/modules/feed-manager.git",
-                "reference": "3594446cce4e97af7fd99b9a59d30603643e8b26"
+                "reference": "c6b8ce0cc8dbd5a40152dfb416723d805681aa18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/digitalhub%2Fm2%2Fmodules%2Ffeed-manager/repository/archive.zip?sha=3594446cce4e97af7fd99b9a59d30603643e8b26",
-                "reference": "3594446cce4e97af7fd99b9a59d30603643e8b26",
+                "url": "https://gitlab.com/api/v4/projects/digitalhub%2Fm2%2Fmodules%2Ffeed-manager/repository/archive.zip?sha=c6b8ce0cc8dbd5a40152dfb416723d805681aa18",
+                "reference": "c6b8ce0cc8dbd5a40152dfb416723d805681aa18",
                 "shasum": ""
             },
             "require": {
@@ -934,7 +934,7 @@
                 }
             },
             "description": "Módulo para gestão de feeds XML de produtos",
-            "time": "2019-01-28T13:49:23+00:00"
+            "time": "2019-05-16T08:32:14+00:00"
         },
         {
             "name": "digitalhub/language-pt_br",
@@ -19120,7 +19120,6 @@
         "digitalhub/customer-attributes": 20,
         "digitalhub/language-pt_br": 20,
         "digitalhub/banners": 20,
-        "digitalhub/feedmanager": 20,
         "phpmd/phpmd": 0
     },
     "prefer-stable": false,
