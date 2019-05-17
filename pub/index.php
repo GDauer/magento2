@@ -9,6 +9,13 @@
 use Magento\Framework\App\Bootstrap;
 use Magento\Framework\App\Filesystem\DirectoryList;
 
+$now = date('Y-m-d H:i:s');
+
+if($now >= date('2019-05-19 00:00:00') && $now <= date('2019-05-19 07:30:00')){
+    require_once ('manutencao.php');
+    exit;
+}
+
 try {
     require __DIR__ . '/../app/bootstrap.php';
 } catch (\Exception $e) {
