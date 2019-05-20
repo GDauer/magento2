@@ -11,7 +11,7 @@ header('Retry-After: 300');//300 seconds
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Loja Virtual Cozinhas Itatiaia</title>
     <style>
-        body { padding: 200px 0; margin: 0; font-size: 12px; font-family: Arial, Helvetica, sans-serif; color: #333; text-align: center }
+        body { padding: 100px 0; margin: 0; font-size: 12px; font-family: Arial, Helvetica, sans-serif; color: #333; text-align: center }
         .box { margin: 0 auto; }
         .box img { margin: 0 0 20px 0 }
         .box p { color: #fff; font-size: 16px; margin: 5px 0; opacity: 0.7 }
@@ -19,7 +19,7 @@ header('Retry-After: 300');//300 seconds
 </head>
 <body>
 <div class="box">
-    <img src="manutencao.png" alt="Digital Hub">
+    <img src="/manutencao.png" alt="Loja Virtual Cozinhas Itatiaia">
 </div>
 </html>
 <?php exit; ?>
