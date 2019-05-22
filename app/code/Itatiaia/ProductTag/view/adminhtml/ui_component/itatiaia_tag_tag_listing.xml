@@ -89,23 +89,29 @@
                 <label translate="true">Imagem</label>
             </settings>
         </column>
-        <column name="position">
+        <column name="position" class="Itatiaia\ProductTag\Ui\Component\Listing\Column\Position">
             <settings>
                 <filter>text</filter>
                 <label translate="true">Posição</label>
             </settings>
         </column>
-        <column name="is_active">
+        <column name="attribute_code">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Atributo</label>
+            </settings>
+        </column>
+        <column name="is_active" class="Itatiaia\ProductTag\Ui\Component\Listing\Column\Status">
             <settings>
                 <filter>text</filter>
                 <label translate="true">Status</label>
             </settings>
         </column>
 
-<!--        <actionsColumn name="actions" class="DigitalHub\PreRegister\Ui\Component\Listing\Column\CustomerActions">-->
-<!--            <settings>-->
-<!--                <indexField>id</indexField>-->
-<!--            </settings>-->
-<!--        </actionsColumn>-->
+        <actionsColumn name="actions" class="Itatiaia\ProductTag\Ui\Component\Form\Config\Actions">
+            <settings>
+                <indexField>id</indexField>
+            </settings>
+        </actionsColumn>
     </columns>
 </listing>

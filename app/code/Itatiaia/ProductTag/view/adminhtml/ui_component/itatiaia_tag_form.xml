@@ -36,7 +36,7 @@
     <fieldset name="tag">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
-                <item name="label" xsi:type="string" translate="true">Adicionar novo selo</item>
+                <item name="label" xsi:type="string" translate="true">Selo</item>
             </item>
         </argument>
 
@@ -73,6 +73,8 @@
                     <item name="label" xsi:type="string">Imagem</item>
                     <item name="visible" xsi:type="boolean">true</item>
                     <item name="formElement" xsi:type="string">fileUploader</item>
+                    <item name="previewTmpl" xsi:type="string">Itatiaia_ProductTag/image-preview</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>
@@ -99,6 +101,21 @@
 		    </argument>
 		</field>
 
+        <field name="attribute_code">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Itatiaia\ProductTag\Ui\Component\Form\Config\Attribute</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" xsi:type="string" translate="true">Atributo</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">tag</item>
+                    <item name="default" xsi:type="string">0</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
         <field name="is_active">
             <argument name="data" xsi:type="array">
                 <item name="options" xsi:type="object">Itatiaia\ProductTag\Ui\Component\Form\Config\Active</item>

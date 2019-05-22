@@ -37,16 +37,22 @@ class InstallSchema implements InstallSchemaInterface
                 'Tag Name'
             )->addColumn(
                 'image',
-                Table::TYPE_INTEGER,
+                Table::TYPE_TEXT,
                 null,
                 ['nullable' => false],
                 'Image'
             )->addColumn(
                 'position',
                 Table::TYPE_INTEGER,
-                255,
+                null,
                 ['nullable' => false],
                 'Position'
+            )->addColumn(
+                'attribute_code',
+                Table::TYPE_TEXT,
+                null,
+                [],
+                'Attribute Code'
             )->addColumn(
                 'is_active',
                 Table::TYPE_TEXT,
