@@ -1,0 +1,7 @@
+<?php $_product = $this->getProduct() ?>
+<?php $tags = $block->getProductTag($_product); ?>
+<?php foreach($tags as $tag): ?>
+    <span class="tag <?= $block->getTagPosition($tag); ?>">
+        <img src="<?= $block->getTagImage($tag); ?>" alt="<?= $tag->getTagName(); ?>" style="width:50px">
+    </span>
+<?php endforeach; ?>

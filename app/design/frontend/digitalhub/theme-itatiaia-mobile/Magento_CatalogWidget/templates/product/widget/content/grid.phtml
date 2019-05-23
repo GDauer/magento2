@@ -48,6 +48,10 @@ $description = false;
               <?php endif;*/ ?>
 
             <a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>" class="product-item-photo">
+                <?php echo $this->getLayout()
+                    ->createBlock('Itatiaia\ProductTag\Block\Product\Image')
+                    ->setProduct($_item)
+                    ->setTemplate('Itatiaia_ProductTag::product/tag.phtml')->toHtml() ?>
               <?= $block->getImage($_item, $image)->toHtml() ?>
             </a>
 
