@@ -4,7 +4,7 @@ namespace Itatiaia\ProductTag\Model\Resource\Tag;
 class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {
     protected $_idFieldName = 'id';
-    protected $_eventPrefix = 'itatiaia_producttag_collection';
+    protected $_eventPrefix = 'itatiaia_producttag_tag_collection';
     protected $_eventObject = 'tag_collection';
 
     /**

@@ -22,19 +22,13 @@ class Attribute implements OptionSourceInterface
     public function toOptionArray()
     {
 
-        $attributeInfo = $this->_attributeFactory->getCollection()->addFieldToFilter('frontend_input', 'select');
+        $attributeInfo = $this->_attributeFactory->getCollection()->addFieldToFilter('frontend_input', 'boolean');
 
         foreach($attributeInfo as $attribute) {
-            $options = $attribute->getSource()->getAllOptions();
-            if(count($options) == 2)
-            {
-                $this->options[] = [
-                    'label' => $attribute->getFrontendLabel(),
-                    'value' => $attribute->getAttributeCode()
-                ];
-
-            }
-
+            $this->options[] = [
+                'label' => $attribute->getFrontendLabel(),
+                'value' => $attribute->getAttributeCode()
+            ];
         }
 
         return $this->options;

@@ -2,11 +2,11 @@
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="itatiaia_tag_tag_listing_data_source" xsi:type="string">Itatiaia\ProductTag\Model\Resource\Tag\Collection</item>
+                <item name="itatiaia_tag_tag_listing_data_source" xsi:type="string">Itatiaia\ProductTag\Model\Resource\Tag\Grid\Collection</item>
             </argument>
         </arguments>
     </type>
-    <virtualType name="Itatiaia\ProductTag\Model\Resource\Tag\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+    <virtualType name="Itatiaia\ProductTag\Model\Resource\Tag\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
             <argument name="mainTable" xsi:type="string">itatiaia_product_tag</argument>
             <argument name="resourceModel" xsi:type="string">Itatiaia\ProductTag\Model\Resource\Tag</argument>

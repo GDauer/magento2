@@ -40,17 +40,6 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
             ];
         }
 
-//        foreach ($items as $tag) {
-//            $this->loadedData[$tag->getId()]['tag'] = $tag->getData();
-//            if ($tag->getImage()) {
-//                $m[$tag->getId()]['tag']['name'] = $tag->getTagName();
-//                $m[$tag->getId()]['tag']['url'] = $this->getMediaUrl().$tag->getImage();
-//                $fullData = $this->loadedData;
-//                $this->loadedData[$tag->getId()] = array_merge($fullData[$tag->getId()], $m);
-//            }
-//        }
-
-
         return $this->loadedData;
 
     }
