@@ -42,5 +42,9 @@ class OpenGraph extends \Magento\Framework\View\Element\Template
     {
         return $this->scopeConfig->getValue('design/head/default_description', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
     }
+    public function isHomePage()
+    {
+        return $this->logo->isHomePage();
+    }
 }
 
