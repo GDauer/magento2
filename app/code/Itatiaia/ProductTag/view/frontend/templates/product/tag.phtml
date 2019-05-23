@@ -2,6 +2,6 @@
 <?php $tags = $block->getProductTag($_product); ?>
 <?php foreach($tags as $tag): ?>
     <span class="tag <?= $block->getTagPosition($tag); ?>">
-        <img src="<?= $block->getTagImage($tag); ?>" alt="<?= $tag->getTagName(); ?>" style="width:50px">
+        <img src="<?= $block->getTagImage($tag); ?>" alt="<?= $tag->getTagName(); ?>">
     </span>
 <?php endforeach; ?>
