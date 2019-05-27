@@ -1,0 +1,19 @@
+{
+    "name": "digitalhub/banners",
+    "description": "Módulo para gestão de banners",
+    "type": "magento2-module",
+    "version": "0.1.0",
+    "require": {
+        "magento/framework": "*",
+        "php": "~7.0.0|~7.1.0"
+    },
+    "require-dev": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "DigitalHub\\Banners\\": ""
+        }
+    }
+}

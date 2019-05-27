@@ -41,8 +41,6 @@
         "digitalhub/estimate-shipping": "dev-master",
         "digitalhub/customer-attributes": "dev-master",
         "digitalhub/language-pt_br": "dev-master",
-        "mundipagg/mundipagg-magento2-module": "^1.2",
-        "digitalhub/banners": "dev-master",
         "digitalhub/feedmanager": "^1.0",
         "magepal/magento2-gmailsmtpapp": "^2.5",
         "smile/elasticsuite": "^2.6",
