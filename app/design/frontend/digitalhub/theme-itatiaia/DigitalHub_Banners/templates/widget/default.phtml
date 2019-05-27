@@ -25,7 +25,7 @@ window._resizeBannerContainer = function(imgEl, containerId){
 	<div class="digitalhub-banners-widget-banner-container <?php if($block->getData('fullwidth')) echo "full-width-container"; ?>" id="banner-<?php echo $bannerRandomId ?>" style="<?php echo $containerInlineStyles ?>">
 		<div class="banners">
 			<?php foreach($banners as $banner): ?>
-				<div class="banner-item">
+				<div data-name="<?php echo $banner['name'] ?>" data-position="<?php echo $banner['position'] ?>" class="banner-item">
 					<?php if($banner['link']): ?><a href="<?php echo $banner['link'] ?>"><?php endif; ?>
 					<img src="<?php echo $banner['image'] ?>" onload="_resizeBannerContainer(this, 'banner-<?php echo $bannerRandomId ?>')" />
 					<?php if($banner['link']): ?></a><?php endif; ?>

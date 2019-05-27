@@ -263,7 +263,6 @@ return [
         'Mageplaza_Core' => 1,
         'Mageplaza_BetterPopup' => 1,
         'MagestyApps_FixRules' => 1,
-        'MundiPagg_MundiPagg' => 0,
         'Pmclain_SuccessTest' => 1,
         'Scandi_MagicZoom' => 1,
         'Scandiweb_Core' => 1,
