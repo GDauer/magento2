@@ -56,7 +56,7 @@
         "swissup/firecheckout": "^1.18",
         "swissup/rtl": "^1.3",
         "pmclain/magento2-successtest": "^2.0",
-        "mageplaza/module-better-popup": "^1.1"
+        "mageplaza/module-better-popup": "^1.1",
         "mundipagg/mundipagg-magento2-module": "^1.8"
     },
     "require-dev": {
