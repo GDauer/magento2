@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2649df2421e9115651f701a38dd1bdd2",
+    "content-hash": "8b2a1dc8a1ea6614a0c742a543e60ad4",
     "packages": [
         {
             "name": "adyen/module-payment",
@@ -247,6 +247,51 @@
                 "Apache-2.0"
             ],
             "description": "Login with Amazon module"
+        },
+        {
+            "name": "apimatic/jsonmapper",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apimatic/jsonmapper.git",
+                "reference": "9182bc9afed443ed45b5e2f86c2c0a60fb5b5ecf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apimatic/jsonmapper/zipball/9182bc9afed443ed45b5e2f86c2c0a60fb5b5ecf",
+                "reference": "9182bc9afed443ed45b5e2f86c2c0a60fb5b5ecf",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.2.*",
+                "squizlabs/php_codesniffer": "~1.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "apimatic\\jsonmapper\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Weiske",
+                    "email": "christian.weiske@netresearch.de",
+                    "homepage": "http://www.netresearch.de/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Mehdi Jaffery",
+                    "email": "mehdi.jaffery@apimatic.io",
+                    "homepage": "http://apimatic.io/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Map nested JSON structures onto PHP classes",
+            "time": "2017-11-21T09:17:09+00:00"
         },
         {
             "name": "braintree/braintree_php",
@@ -11090,6 +11135,52 @@
             "time": "2019-03-27T01:40:38+00:00"
         },
         {
+            "name": "mashape/unirest-php",
+            "version": "v3.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Mashape/unirest-php.git",
+                "reference": "842c0f242dfaaf85f16b72e217bf7f7c19ab12cb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Mashape/unirest-php/zipball/842c0f242dfaaf85f16b72e217bf7f7c19ab12cb",
+                "reference": "842c0f242dfaaf85f16b72e217bf7f7c19ab12cb",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "0.1.*",
+                "phpunit/phpunit": "~4.4"
+            },
+            "suggest": {
+                "ext-json": "Allows using JSON Bodies for sending and parsing requests"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Unirest\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Unirest PHP",
+            "homepage": "https://github.com/Mashape/unirest-php",
+            "keywords": [
+                "client",
+                "curl",
+                "http",
+                "https",
+                "rest"
+            ],
+            "time": "2016-08-11T17:49:21+00:00"
+        },
+        {
             "name": "maxmind-db/reader",
             "version": "v1.4.1",
             "source": {
@@ -11268,6 +11359,152 @@
                 "psr-3"
             ],
             "time": "2018-11-05T09:00:11+00:00"
+        },
+        {
+            "name": "mundipagg/ecommerce-module-core",
+            "version": "1.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mundipagg/ecommerce-module-core.git",
+                "reference": "f3e1c71d1d103dc23c394f26859ed88b626a87d5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mundipagg/ecommerce-module-core/zipball/f3e1c71d1d103dc23c394f26859ed88b626a87d5",
+                "reference": "f3e1c71d1d103dc23c394f26859ed88b626a87d5",
+                "shasum": ""
+            },
+            "require": {
+                "monolog/monolog": "~1.6",
+                "mundipagg/mundiapi": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mundipagg\\Core\\": "src",
+                    "Mundipagg\\Core\\Test\\": "tests"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "MundiPagg Embeddables Team",
+                    "email": "embeddables@mundipagg.com"
+                }
+            ],
+            "time": "2019-05-27T18:46:25+00:00"
+        },
+        {
+            "name": "mundipagg/mundiapi",
+            "version": "3.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mundipagg/MundiAPI-PHP.git",
+                "reference": "deb8359c87b550d3bb1b19b9d26eceeb88332a91"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mundipagg/MundiAPI-PHP/zipball/deb8359c87b550d3bb1b19b9d26eceeb88332a91",
+                "reference": "deb8359c87b550d3bb1b19b9d26eceeb88332a91",
+                "shasum": ""
+            },
+            "require": {
+                "apimatic/jsonmapper": "~1.3.0",
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "mashape/unirest-php": "~3.0.1",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "squizlabs/php_codesniffer": "^2.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MundiAPILib\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "APIMatic SDK Generator",
+                    "email": "support@apimatic.io",
+                    "homepage": "https://apimatic.io",
+                    "role": "API Tool"
+                }
+            ],
+            "description": "Mundipagg API",
+            "homepage": "https://apimatic.io",
+            "keywords": [
+                "MundiAPI",
+                "api",
+                "sdk"
+            ],
+            "time": "2019-05-16T21:38:10+00:00"
+        },
+        {
+            "name": "mundipagg/mundipagg-magento2-module",
+            "version": "1.8.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mundipagg/magento2.git",
+                "reference": "b133ec0eb2e8af35850ef4502c21bb07eb8ee0cf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mundipagg/magento2/zipball/b133ec0eb2e8af35850ef4502c21bb07eb8ee0cf",
+                "reference": "b133ec0eb2e8af35850ef4502c21bb07eb8ee0cf",
+                "shasum": ""
+            },
+            "require": {
+                "mundipagg/ecommerce-module-core": "1.9.0",
+                "mundipagg/mundiapi": "^3.0",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "~1.2",
+                "lusitanian/oauth": "~0.3 <=0.7.0",
+                "magento-ecg/coding-standard": "dev-master",
+                "mundipagg/mundiapi": "^3.0",
+                "pdepend/pdepend": "2.2.2",
+                "phpdocumentor/phpdocumentor": "^2.8",
+                "phpmd/phpmd": "@stable",
+                "phpunit/phpunit": "4.1.0",
+                "phpunit/phpunit-selenium": ">=1.2",
+                "rregeer/phpunit-coverage-check": "^0.1.3",
+                "satooshi/php-coveralls": "^1.0",
+                "sebastian/phpcpd": "^2.0",
+                "sjparkinson/static-review": "~4.1",
+                "squizlabs/php_codesniffer": "2.7.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "MundiPagg\\MundiPagg\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "MundiPagg Embeddables Team",
+                    "email": "embeddables@mundipagg.com"
+                }
+            ],
+            "description": "Magento 2 Module Mundipagg",
+            "time": "2019-05-29T20:13:14+00:00"
         },
         {
             "name": "mustache/mustache",
