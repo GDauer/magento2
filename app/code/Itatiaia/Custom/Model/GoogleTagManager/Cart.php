@@ -29,12 +29,15 @@ class Cart extends \MagePal\GoogleTagManager\Model\Cart
                   $categories = $categoryFactory->create()->load($categoryId)->getName();
                 }
 
+                $minQty = $helper->getGroupedCartQty($grouped, $quote);
+
                 $items[] = [
                   'sku' => $grouped->getSku(),
                   'id' => $grouped->getId(),
                   'category' => $categories,
                   'name' => $this->escapeJsQuote($grouped->getName()),
                   'price' => $this->gtmHelper->formatPrice($groupedPrice),
+                  'quantity' => $minQty
                 ];
 
               } else {

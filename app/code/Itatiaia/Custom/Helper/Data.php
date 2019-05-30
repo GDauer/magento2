@@ -72,6 +72,40 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return false;
     }
 
+    function getGroupedCartQty($product, $quote)
+    {
+        $associatedProducts = $product->getTypeInstance(true)->getAssociatedProductIds($product);
+        $quoteItems = $quote->getAllVisibleItems();
+        $quoteItemsQty = [];
+        foreach ($quoteItems as $item)
+        {
+            $quoteProductId = $item->getProduct()->getId();
+            if(in_array($quoteProductId, $associatedProducts))
+            {
+                $quoteItemsQty[] = $item->getQty();
+            }
+        }
+
+        return min($quoteItemsQty);
+    }
+
+    function getGroupedSuccessQty($product, $order)
+    {
+        $associatedProducts = $product->getTypeInstance(true)->getAssociatedProductIds($product);
+        $orderItems = $order->getAllVisibleItems();
+        $orderItemsQty = [];
+        foreach ($orderItems as $item)
+        {
+            $quoteProductId = $item->getProductId();
+            if(in_array($quoteProductId, $associatedProducts))
+            {
+                $orderItemsQty[] = $item->getQtyOrdered();
+            }
+        }
+
+        return min($orderItemsQty);
+    }
+
     public function removeDuplicates($array, $keep_key_assoc = false){
       $duplicate_keys = array();
       $tmp = array();
