@@ -14,6 +14,9 @@
                 <field id="token" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Token</label>
                 </field>
+                <field id="key" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Key</label>
+                </field>
             </group>
         </section>
     </system>
