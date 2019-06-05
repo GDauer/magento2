@@ -24,7 +24,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $isActive = (int)$this->_scopeConfig->getValue('sales/itatiaia_tracksale/active', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $token = $this->_scopeConfig->getValue('sales/itatiaia_tracksale/token', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $campaign = $this->_scopeConfig->getValue('sales/itatiaia_tracksale/campaign', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-
+        $this->logger->info('TOKEN: ', [$token]);
         if($isActive){
             if($token){
                 try {
