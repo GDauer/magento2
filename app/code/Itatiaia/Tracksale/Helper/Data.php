@@ -23,7 +23,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     {
         $isActive = (int)$this->_scopeConfig->getValue('sales/itatiaia_tracksale/active', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $token = $this->_scopeConfig->getValue('sales/itatiaia_tracksale/token', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $campaign = $this->_scopeConfig->getValue('sales/itatiaia_tracksale/campaign', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+        $campaignId = $this->_scopeConfig->getValue('sales/itatiaia_tracksale/campaign_id', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $this->logger->info('TOKEN: ', [$token]);
         if($isActive){
             if($token){
@@ -39,8 +39,16 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                         "schedule_time" => 0
                     ];
 
-                    $uri = 'https://api.tracksale.co/v2/campaign/'.$campaign.'/dispatch';
+                    $this->logger->info('post: ', $post);
+
+                    $uri = 'https://api.tracksale.co/v2/campaign/'.$campaignId.'/dispatch';
                     $this->httpClient->reset();
+                    $this->httpClient->setHeaders(
+                        [
+                            'Authorization' => 'bearer '.$token,
+                            'Content-Type' => 'application/json'
+                        ]
+                    );
                     $this->httpClient->setUri($uri);
                     $this->httpClient->setMethod(\Zend\Http\Request::METHOD_POST);
                     $this->httpClient->setRawBody(json_encode($post));

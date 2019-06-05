@@ -45,9 +45,8 @@ class Track
         $this->logger->info('ENTROU CRON: ', []);
 
         $orderCollection = $this->orderFactory->create()->getCollection()
-            ->addFieldToFilter('increment_id', '000000357');
-//            ->addFieldToFilter('state', 'complete')
-//            ->addFieldToFilter('status', ['neq' => 'entregue']);
+            ->addFieldToFilter('state', 'complete')
+            ->addFieldToFilter('status', ['neq' => 'entregue']);
 
             $api_key  = $this->scopeConfig->getValue('intelipost_basic/settings/api_key');
 
@@ -56,8 +55,8 @@ class Track
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-//                CURLOPT_URL => "https://api.intelipost.com.br/api/v1/shipment_order/" . $order->getIncrementId(),
-                CURLOPT_URL => "https://api.intelipost.com.br/api/v1/shipment_order/000000357",
+                CURLOPT_URL => "https://api.intelipost.com.br/api/v1/shipment_order/" . $order->getIncrementId(),
+//                CURLOPT_URL => "https://api.intelipost.com.br/api/v1/shipment_order/000000357",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
@@ -81,9 +80,8 @@ class Track
             if ($err) {
                 $this->logger->info('erro: ' , [$err]);
             } else if($response) {
-                $this->logger->info('response: ', [$response]);
 
-                if(strtoupper($response->content->shipment_order_volume_array[0]->shipment_order_volume_state) == 'NEW')
+                if(strtoupper($response->content->shipment_order_volume_array[0]->shipment_order_volume_state) == 'DELIVERED')
                 {
                     $order->setStatus('entregue');
                     $this->eventManager->dispatch('itatiaia_tracksale_order_save_before', ['order' => $order]);

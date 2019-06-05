@@ -11,6 +11,9 @@
                 <field id="campaign" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Código da campanha</label>
                 </field>
+                <field id="campaign_id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>ID da campanha</label>
+                </field>
                 <field id="token" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Token</label>
                 </field>
