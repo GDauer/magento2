@@ -1,11 +1,14 @@
 <?php $order = $block->getOrder() ?>
+<?php $billingAddress = $order->getBillingAddress() ?>
+<?php $customerName = $billingAddress->getFirstname() . ' ' . $billingAddress->getLastname() ?>
+
 <?php if($block->getConfigPath('active')): ?>
     <script>
         (function(f,b,g){
             var a={
                 key: "<?php echo $block->getConfigPath('key') ?>",
                 campaign:  "<?php echo $block->getConfigPath('campaign') ?>",
-                name:  "<?php echo $order->getCustomerName() ?>",
+                name:  "<?php echo $customerName ?>",
                 email: "<?php echo $order->getCustomerEmail() ?>",
                 tags:{
                     "produto": "PRODUTO-X",
