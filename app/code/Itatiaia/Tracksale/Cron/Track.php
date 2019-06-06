@@ -46,6 +46,7 @@ class Track
 
         $orderCollection = $this->orderFactory->create()->getCollection()
             ->addFieldToFilter('state', 'complete')
+            ->addFieldToFilter('created_at', ['gt' => '2019-06-05 15:00:00'])
             ->addFieldToFilter('status', ['neq' => 'entregue']);
 
             $api_key  = $this->scopeConfig->getValue('intelipost_basic/settings/api_key');
