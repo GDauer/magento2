@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">itatiaia_tag_tag_listing.itatiaia_tag_tag_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/create"/>
+                <class>primary</class>
+                <label translate="true">Adicionar novo selo</label>
+            </button>
+        </buttons>
+        <spinner>itatiaia_tag_tag_listing_columns</spinner>
+        <deps>
+            <dep>itatiaia_tag_tag_listing.itatiaia_tag_tag_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="itatiaia_tag_tag_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
+            <argument name="name" xsi:type="string">itatiaia_tag_tag_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" path="mui/index/render" xsi:type="url"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="observers" xsi:type="array">
+                    <item name="column" xsi:type="string">column</item>
+                </item>
+            </argument>
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+        </filters>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="itatiaia_tag_tag_listing_columns">
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>55</resizeDefaultWidth>
+            </settings>
+        </selectionsColumn>
+        <column name="id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+                <resizeDefaultWidth>100</resizeDefaultWidth>
+            </settings>
+        </column>
+        <column name="tag_name">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Nome</label>
+            </settings>
+        </column>
+        <column name="image">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Imagem</label>
+            </settings>
+        </column>
+        <column name="position" class="Itatiaia\ProductTag\Ui\Component\Listing\Column\Position">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Posição</label>
+            </settings>
+        </column>
+        <column name="attribute_code">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Atributo</label>
+            </settings>
+        </column>
+        <column name="is_active" class="Itatiaia\ProductTag\Ui\Component\Listing\Column\Status">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+
+        <actionsColumn name="actions" class="Itatiaia\ProductTag\Ui\Component\Form\Config\Actions">
+            <settings>
+                <indexField>id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>
