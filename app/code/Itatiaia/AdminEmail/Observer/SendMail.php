@@ -93,6 +93,8 @@ class SendMail implements \Magento\Framework\Event\ObserverInterface
             ->setTemplateVars($variables)
             ->setFrom($sender)
             ->addTo($sender['email'])
+            ->addCc('barbara.silva@cozinhasitatiaia.com.br')
+            ->addCc('gebeard.pereira@cozinhasitatiaia.com.br')
             ->getTransport();
 
         $result = $transport->sendMessage();
