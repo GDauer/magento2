@@ -2986,6 +2986,9 @@ select:not([disabled]) {
     display: none;
   }
   .product-info-main {
+    .additional-prices-container {
+      margin-top: 10px;
+    }
     width: 40%;
     background: #fff;
     position: relative;
@@ -3074,9 +3077,17 @@ select:not([disabled]) {
           font-family: 'MullerMedium';
         }
       }
+      .price-final_price {
+        .price {
+          font-size: 34px;
+        }
+        .price.old-price-grouped {
+          font-size: 22px;
+        }
+      }
       .special-price {
         display: inline-block;
-        margin-top: 15px;
+        margin: 15px 0 0 0;
         .price {
           font-size: 34px;
           color:#242424;
