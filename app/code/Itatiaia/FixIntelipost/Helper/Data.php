@@ -3,6 +3,7 @@ namespace Itatiaia\FixIntelipost\Helper;
 
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
+
     public function getCustomOriginZipcodeByItems(Array $items, $destPostcode){
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $config = $objectManager->get('\Magento\Framework\App\Config\ScopeConfigInterface');
