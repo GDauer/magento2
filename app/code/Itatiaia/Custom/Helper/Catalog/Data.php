@@ -71,7 +71,10 @@ class Data extends \Magento\Catalog\Helper\Data
             }
 
             if ($this->getProduct()) {
-                $path['product'] = ['label' => $this->getProduct()->getName()];
+                $path['product'] = [
+                    'label' => $this->getProduct()->getName(),
+                    'link' => $this->getProduct()->getProductUrl()
+                ];
             }
 
             $this->_categoryPath = $path;

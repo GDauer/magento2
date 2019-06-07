@@ -255,6 +255,8 @@ return [
         'Magento_WishlistAnalytics' => 1,
         'Magento_MultipleWishlistSampleData' => 1,
         'Magento_Worldpay' => 1,
+        'Mageplaza_Core' => 1,
+        'Mageplaza_BetterPopup' => 1,
         'MagestyApps_FixRules' => 1,
         'MundiPagg_MundiPagg' => 1,
         'Pmclain_SuccessTest' => 1,
