@@ -12,13 +12,13 @@ class DateOption extends \Magento\Framework\View\Element\Html\Select
      * @var array
      */
     protected $_options = [
-        '0' => 'Domingo',
         '1' => 'Segunda-Feira',
         '2' => 'Terça-Feira',
         '3' => 'Quarta-Feira',
         '4' => 'Quinta-Feira',
         '5' => 'Sexta-Feira',
-        '6' => 'Sábado'
+        '6' => 'Sábado',
+        '7' => 'Domingo'
     ];
 
     public function setInputName($value)

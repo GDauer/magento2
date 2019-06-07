@@ -32,14 +32,77 @@ class Estimate extends \Magento\Framework\App\Helper\AbstractHelper
         $this->json = $json;
     }
 
-    function calculateEstimateDeliveryDate($orderNumber)
+    function getBusinessDays($orderNumber)
     {
         $order = $this->orderFactory->create()->loadByIncrementId($orderNumber);
         $intelipostQuote = $this->json->unserialize($order->getIntelipostQuote());
 
         $businessDays = $intelipostQuote['result']['quotes'][0]['delivery_estimated_delivery_business_day'];
-        return $businessDays;
 
+        $invoice = $order->getInvoiceCollection()->getFirstItem();
+
+        $finalData = $this->calculateFinalDate($invoice->getCreatedAt(),$businessDays);
+        return $finalData;
+    }
+
+    function calculateFinalDate($startDate,$days){
+
+        $storeWorkingDays = $this->getStoreWorkingDays();
+        $holidays = $this->getHolidays();
+
+        $daysToAdd = $days;
+
+        $diasUteis = 0;
+        $i = 0;
+
+        while($diasUteis < $days){
+
+            $currentDay = strtotime($startDate . ' +' . $i . 'days');
+            $currentDate = date('d/m/Y', $currentDay);
+            $current = date("N", $currentDay);
+
+            if(!in_array($current, $storeWorkingDays) || in_array($currentDate,$holidays)){
+                $daysToAdd++;
+            } else {
+                $diasUteis++;
+            }
+
+            $i++;
+        }
+
+        $finalDay = strtotime($startDate . '+ ' . $daysToAdd . "days");
+        $date = date('Y-m-d', $finalDay);
+
+        return $date;
+    }
+
+    public function getStoreWorkingDays()
+    {
+        $days = $this->json->unserialize($this->scopeConfig->getValue('intelipost_push/holidays_table/business_days', \Magento\Store\Model\ScopeInterface::SCOPE_STORE));
+        $result = [];
+
+        foreach ($days as $day)
+        {
+            foreach ($day as $key => $value) {
+                $result[] = $value;
+            }
+        }
+        return $result;
+    }
+
+    public function getHolidays()
+    {
+        $days = $this->json->unserialize($this->scopeConfig->getValue('intelipost_push/holidays_table/business_days_disabled', \Magento\Store\Model\ScopeInterface::SCOPE_STORE));
+        $result = [];
+
+        foreach ($days as $day)
+        {
+            foreach ($day as $key => $value) {
+                $result[] = $value;
+            }
+        }
+        return $result;
     }
 
 }
+

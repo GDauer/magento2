@@ -15,7 +15,7 @@ class ShipmentOrder extends \Intelipost\Push\Model\Request\ShipmentOrder
         $this->sales_order_number              = $collectionData['increment_id'];
         $this->quote_id                        = $collectionData['quote_id'];
         $this->delivery_method_id              = $collectionData['delivery_method_id'];
-        $this->estimated_delivery_date         = $objectManager->get('\Itatiaia\FixIntelipost\Helper\Estimate')->calculateEstimateDeliveryDate($collectionData['order_number']);
+        $this->estimated_delivery_date         = $objectManager->get('\Itatiaia\FixIntelipost\Helper\Estimate')->getBusinessDays($collectionData['order_number']);
 //        $this->estimated_delivery_date         = str_replace(' ', 'T', $collectionData['delivery_estimate_date_exact_iso']);
         $this->customer_shipping_costs         = $collectionData['customer_shipping_costs'];
         $this->provider_shipping_costs         = $collectionData['provider_shipping_costs'];
