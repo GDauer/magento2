@@ -25,16 +25,21 @@ class Success extends \Magento\Checkout\Controller\Onepage
     public function isValid()
     {
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $logger = $objectManager->get('\Psr\Log\LoggerInterface');
         $checkoutSession = $objectManager->get('\Magento\Checkout\Model\Session');
+
         $quoteId = $checkoutSession->getLastSuccessQuoteId();
         $lastOrderId = $checkoutSession->getLastOrderId();
-        $lastQuoteId = $checkoutSession->getLastQuoteId();
+        $lastQuoteId = (string)$checkoutSession->getLastQuoteId();
 
-        if(!$quoteId)
-        {
-            return false;
+        try {
+            $order = $objectManager->get('Magento\Sales\Model\OrderFactory')->create()->load($lastOrderId);
+            $logger->info('ORDER SUCCESS', ['increment_id' => $order->getIncrementId(), 'quoteId' => $quoteId, 'lastOrderId' => $lastOrderId, 'lastQuoteId' => $lastQuoteId]);
+        } catch (\Exception $e){
+            // apenas para não gerar execeção no fechamento do pedido
         }
-        if((!$lastOrderId || !$lastQuoteId))
+
+        if((!$lastOrderId))
         {
             return false;
         }
