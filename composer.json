@@ -41,8 +41,6 @@
         "digitalhub/estimate-shipping": "dev-master",
         "digitalhub/customer-attributes": "dev-master",
         "digitalhub/language-pt_br": "dev-master",
-        "mundipagg/mundipagg-magento2-module": "^1.2",
-        "digitalhub/banners": "dev-master",
         "digitalhub/feedmanager": "^1.0",
         "magepal/magento2-gmailsmtpapp": "^2.5",
         "smile/elasticsuite": "^2.6",
@@ -57,7 +55,8 @@
         "mustache/mustache": "^2.12",
         "swissup/firecheckout": "^1.18",
         "swissup/rtl": "^1.3",
-        "pmclain/magento2-successtest": "^2.0"
+        "pmclain/magento2-successtest": "^2.0",
+        "mundipagg/mundipagg-magento2-module": "^1.8"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.2.0",

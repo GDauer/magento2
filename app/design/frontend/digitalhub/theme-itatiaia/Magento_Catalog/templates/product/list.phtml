@@ -85,7 +85,11 @@ require([
             <?php // Product Image ?>
             <a href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
               <?php $productImageBlock = $block->getImage($_product, $image); ?>
-              <?php echo $productImageBlock->toHtml() ?>
+                    <?php echo $this->getLayout()
+                        ->createBlock('Itatiaia\ProductTag\Block\Product\Image')
+                        ->setProduct($_product)
+                        ->setTemplate('Itatiaia_ProductTag::product/tag.phtml')->toHtml() ?>
+                <?php echo $productImageBlock->toHtml() ?>
             </a>
             <div class="product details product-item-details">
               <?php

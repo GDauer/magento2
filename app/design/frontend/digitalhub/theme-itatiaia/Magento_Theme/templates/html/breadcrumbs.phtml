@@ -10,20 +10,34 @@
 <?php if ($crumbs && is_array($crumbs)) : ?>
 <div class="wrp-breadcrumbs">
   <div class="breadcrumbs">
-    <ul class="items">
+    <ul class="items" itemscope itemtype="https://schema.org/BreadcrumbList">
       <li class="item back-item">
         <a href="#" onclick="window.history.back();" title="Página anterior">Voltar</a>
       </li>
+      <?php $pos = 1; ?>
       <?php foreach ($crumbs as $crumbName => $crumbInfo) : ?>
-        <li class="item <?= /* @escapeNotVerified */ $crumbName ?>">
+        <li class="item <?= /* @escapeNotVerified */ $crumbName ?>" itemprop="itemListElement" itemscope
+      itemtype="https://schema.org/ListItem">
         <?php if ($crumbInfo['link']) : ?>
-          <a href="<?= /* @escapeNotVerified */ $crumbInfo['link'] ?>" title="<?= $block->escapeHtml($crumbInfo['title']) ?>"><?= $block->escapeHtml($crumbInfo['label']) ?></a>
+          <a href="<?= /* @escapeNotVerified */ $crumbInfo['link'] ?>" itemtype="https://schema.org/Thing" itemprop="item" title="<?= $block->escapeHtml($crumbInfo['title']) ?>">
+              <span itemprop="name">
+                  <?= $block->escapeHtml($crumbInfo['label']) ?>
+              </span>
+          </a>
         <?php elseif ($crumbInfo['last']) : ?>
-          <strong><?= $block->escapeHtml($crumbInfo['label']) ?></strong>
+          <strong itemtype="https://schema.org/Thing" itemprop="item">
+              <span itemprop="name"><?= $block->escapeHtml($crumbInfo['label']) ?></span>
+          </strong>
         <?php else: ?>
-          <?= $block->escapeHtml($crumbInfo['label']) ?>
+            <span itemtype="https://schema.org/Thing" itemprop="item">
+                <span itemprop="name">
+                    <?= $block->escapeHtml($crumbInfo['label']) ?>
+                </span>
+            </span>
         <?php endif; ?>
+        <meta itemprop="position" content="<?php echo $pos ?>" />
         </li>
+        <?php $pos++; ?>
       <?php endforeach; ?>
     </ul>
   </div>

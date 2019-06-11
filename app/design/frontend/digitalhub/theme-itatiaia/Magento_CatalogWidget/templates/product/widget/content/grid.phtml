@@ -92,6 +92,10 @@ $hoverimg = 'category_page_list_hover';
               ?>
               <span class="product-image-container">
                 <span class="product-image-wrapper">
+                    <?php echo $this->getLayout()
+                        ->createBlock('Itatiaia\ProductTag\Block\Product\Image')
+                        ->setProduct($_item)
+                        ->setTemplate('Itatiaia_ProductTag::product/tag.phtml')->toHtml() ?>
                   <img class="default_image" src="<?php echo $productImageUrl; ?>" alt="<?php echo $productImage->getLabel(); ?>"/>
                   <?php if($_item->getHoverImage()): ?>
                     <?php if($productImageUrl != str_replace("/thumbnail/","/small_image/",$productHoverImageUrl)): ?>

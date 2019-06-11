@@ -1603,6 +1603,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
         border-radius: 0;
         width: auto;
         .product-item-photo{
+          position: relative;
           display: block;
           width: auto;
           float: none;
@@ -2274,6 +2275,14 @@ select:not([disabled]) {
           font-weight: 700;
           line-height: 48px;
           text-transform: uppercase;
+        }
+      }
+      .price-final_price {
+        .price {
+          font-size: 28px;
+        }
+        .price.old-price-grouped {
+          font-size: 1.5rem;
         }
       }
       .normal-price {
