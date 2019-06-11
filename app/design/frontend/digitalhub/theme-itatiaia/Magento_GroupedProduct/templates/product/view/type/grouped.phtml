@@ -36,6 +36,13 @@
     </div>
 </div>
 
+<?php
+echo $this->getLayout()
+    ->createBlock('\Itatiaia\GarantiaEstendida\Block\Garantia')
+    ->setTemplate('Itatiaia_GarantiaEstendida::garantia.phtml')
+    ->toHtml();
+?>
+
 <div id="validation-message-box"></div>
 
 <?php if($_hasAssociatedProducts): ?>

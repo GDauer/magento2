@@ -32,6 +32,12 @@ foreach($block->getTotals() as $total){
   <div class="title">
     <strong role="heading">Resumo da compra</strong>
   </div>
+    <?php
+    echo $this->getLayout()
+        ->createBlock('\Itatiaia\GarantiaEstendida\Block\Garantia')
+        ->setTemplate('Itatiaia_GarantiaEstendida::checkout/garantia.phtml')
+        ->toHtml();
+    ?>
 
   <!-- totais estáticos, para uso até que o componente seja renderizado -->
   <!-- ko if: !getTemplate() -->
