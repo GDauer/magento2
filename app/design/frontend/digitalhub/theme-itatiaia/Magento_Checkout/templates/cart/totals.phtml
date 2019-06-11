@@ -32,6 +32,12 @@ foreach($block->getTotals() as $total){
   <div class="title">
     <strong role="heading">Resumo da compra</strong>
   </div>
+    <?php
+    echo $this->getLayout()
+        ->createBlock('\Itatiaia\GarantiaEstendida\Block\Garantia')
+        ->setTemplate('Itatiaia_GarantiaEstendida::checkout/garantia.phtml')
+        ->toHtml();
+    ?>
 
   <!-- totais estáticos, para uso até que o componente seja renderizado -->
   <!-- ko if: !getTemplate() -->
@@ -45,6 +51,7 @@ foreach($block->getTotals() as $total){
                         <span class="price">R$ <?php echo number_format($subtotal,2,'.',','); ?></span>
                     </td>
                 </tr>
+
                 <?php if($shipping_amount): ?>
                 <tr class="totals shipping excl">
                     <th class="mark" scope="row">
