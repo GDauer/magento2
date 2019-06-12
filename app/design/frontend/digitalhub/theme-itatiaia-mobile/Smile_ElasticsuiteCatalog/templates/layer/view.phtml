@@ -29,15 +29,16 @@
     <?php $activeFilters = $block->getActiveFilters(); ?>
     <div class="block filter" id="layered-filter-block" data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false, "collateral": { "openedState": "filter-active", "element": "body" } }}'>
         <?php $filtered = count($block->getLayer()->getState()->getFilters()) ?>
-        <?php if ($this->getRequest()->getFullActionName() == 'catalog_category_view'): ?>
         <div class="block-title filter-title" data-count="<?= /* @escapeNotVerified */ $filtered ?>">
-            <strong data-role="title"><?php echo $category->getName(); ?></strong>
+            <?php if ($this->getRequest()->getFullActionName() == 'catalog_category_view'): ?>
+                <strong data-role="title"><?php echo $category->getName(); ?></strong>
+            <?php endif; ?>
             <a class="show-filters" href="javascript:void(0);">
                 Filtro
                 <span class="icon-filters"></span>
             </a>
         </div>
-        <?php endif; ?>
+
 
         <div class="block-content filter-content">
 
@@ -123,7 +124,7 @@
                         if(filterVar == 'price'){
                             form.append('<input type="hidden" name="price" value="'+filterValue+'" />');
                         } else {
-                            form.append('<input type="hidden" name="'+filterVar+'[]" value="'+filterValue+'" />');
+                            form.append('<input type="hidden" name="'+filterVar+'" value="'+filterValue+'" />');
                         }
                     }
                 })
