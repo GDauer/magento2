@@ -39,8 +39,7 @@
                 <span class="icon-filters"></span>
             </a>
         </div>
-
-
+        
         <div class="block-content filter-content">
 
             <?php $wrapOptions = false; ?>
@@ -125,7 +124,7 @@
                         if(filterVar == 'price'){
                             form.append('<input type="hidden" name="price" value="'+filterValue+'" />');
                         } else {
-                            form.append('<input type="hidden" name="'+filterVar+'[]" value="'+filterValue+'" />');
+                            form.append('<input type="hidden" name="'+filterVar+'" value="'+filterValue+'" />');
                         }
                     }
                 })
