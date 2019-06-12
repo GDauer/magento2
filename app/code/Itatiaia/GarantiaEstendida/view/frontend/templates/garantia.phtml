@@ -1,6 +1,10 @@
+<?php $product = $this->getProduct() ?>
+
 <?php if($block->isActive()): ?>
-    <div id="garantia-estendida">
-        <span><?php echo $block->getMessage() ?></span>
-    </div>
+    <?php if($block->canShowGarantia($product)): ?>
+        <div id="garantia-estendida">
+            <span><?php echo $block->getMessage() ?></span>
+        </div>
+    <?php endif; ?>
 <?php endif; ?>
 
