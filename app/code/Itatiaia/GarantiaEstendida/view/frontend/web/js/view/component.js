@@ -5,19 +5,18 @@ define(
             defaults: {
                 title: 'GARANTIA ESTENDIDA GRATUITA'
             },
-
             initialize: function(){
                 this._super();
 
             },
-
             afterRender: function(element){
+                console.log('123');
                 var options = {
                     type: 'popup',
                     responsive: true,
                     innerScroll: true,
                     modalClass: 'modal-garantia',
-                    title: this.title,
+                    title: 'GARANTIA ESTENDIDA ITATIAIA',
                     buttons: false
                 };
                 var popup = modal(options, element);
