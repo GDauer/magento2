@@ -13,15 +13,41 @@ class Garantia extends Template
      * @var ScopeConfigInterface
      */
     private $scopeConfig;
+    /**
+     * @var Itatiaia\Custom\Helper
+     */
+    private $helper;
 
     public function __construct(
         ScopeConfigInterface $scopeConfig,
         Template\Context $context,
+        \Itatiaia\Custom\Helper\Data $helper,
         array $data = [])
     {
         parent::__construct($context, $data);
         $this->scopeConfig = $scopeConfig;
+        $this->helper = $helper;
     }
+
+    public function canShowOnCheckout($quote)
+    {
+        foreach ($quote->getAllVisibleItems() as $item)
+        {
+            if($grouped = $this->helper->getGroupedByQuoteItem($item)){
+                if(!$this->canShowGarantia($grouped)) {
+                    continue;
+                }
+                return true;
+            } else {
+                if(!$this->canShowGarantia($item)){
+                    continue;
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public function canShowGarantia($product)
     {
