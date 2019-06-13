@@ -36,6 +36,7 @@
         echo $this->getLayout()
             ->createBlock('\Itatiaia\GarantiaEstendida\Block\Garantia')
             ->setTemplate('Itatiaia_GarantiaEstendida::garantia.phtml')
+            ->setProduct($_product)
             ->toHtml();
         ?>
 

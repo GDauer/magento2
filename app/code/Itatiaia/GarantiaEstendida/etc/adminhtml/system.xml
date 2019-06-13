@@ -14,6 +14,10 @@
                 <field id="message" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Mensagem a ser exibida</label>
                 </field>
+                <field id="categorias" translate="label" type="multiselect" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Categorias Contempladas</label>
+                    <source_model>Itatiaia\GarantiaEstendida\Model\Config\Source\Categories</source_model>
+                </field>
             </group>
         </section>
     </system>

@@ -36,6 +36,7 @@ foreach($block->getTotals() as $total){
     echo $this->getLayout()
         ->createBlock('\Itatiaia\GarantiaEstendida\Block\Garantia')
         ->setTemplate('Itatiaia_GarantiaEstendida::checkout/garantia.phtml')
+        ->setQuote($block->getQuote())
         ->toHtml();
     ?>
 
