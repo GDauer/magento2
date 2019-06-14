@@ -55,10 +55,10 @@ class Garantia extends Template
         $categoriesAllowed = $this->getCategories();
 
         if(!is_array($categoriesAllowed)){
-            $categoriesAllowed = [$categoriesAllowed];
+            $categoriesAllowed = explode(',',$categoriesAllowed);
         }
         if(!is_array($categoryIds)){
-            $categoryIds = [$categoryIds];
+            $categoryIds = explode(',',$categoryIds);
         }
 
         if(!array_intersect($categoryIds, $categoriesAllowed)) {
