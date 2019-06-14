@@ -2,15 +2,12 @@ define(
     ['jquery', 'ko', 'Magento_Ui/js/modal/modal', 'uiComponent'],
     function ($, ko, modal, Component) {
         return Component.extend({
-            defaults: {
-                title: 'GARANTIA ESTENDIDA GRATUITA'
-            },
-            initialize: function(){
-                this._super();
 
+            initialize: function(config){
+                this._super();
+                this.title = ko.observable(config.title)
             },
             afterRender: function(element){
-                console.log('123');
                 var options = {
                     type: 'popup',
                     responsive: true,

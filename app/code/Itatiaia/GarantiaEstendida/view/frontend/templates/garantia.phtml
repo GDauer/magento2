@@ -2,9 +2,25 @@
 
 <?php if($block->isActive()): ?>
     <?php if($block->canShowGarantia($product)): ?>
-        <div id="garantia-estendida">
-            <span><?php echo $block->getMessage() ?></span>
+        <div id="garantia-estendida" data-bind="scope: 'garantiaestendida'">
+            <!-- ko template: getTemplate() --><!-- /ko -->
         </div>
+
+        <script type="text/x-magento-init">
+        {
+            "#garantia-estendida": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "garantiaestendida": {
+                            "component": "Itatiaia_GarantiaEstendida/js/view/component",
+                            "template" : "Itatiaia_GarantiaEstendida/component",
+                            "title": "Comprando este produto você conta com GARANTIA ESTENDIDA GRATUITA. Este é um benefício exclusivo da loja virtual Itatiaia."
+                        }
+                    }
+                }
+            }
+        }
+        </script>
     <?php endif; ?>
 <?php endif; ?>
 
