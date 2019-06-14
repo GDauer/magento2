@@ -111,6 +111,8 @@ class Intelipost extends \Intelipost\Quote\Model\Carrier\Intelipost
         $parentSku = null;
         $totalQuoteItems = 0;
 
+        $maxLeadTime = \Magento\Framework\App\ObjectManager::getInstance()->get('\Itatiaia\FixIntelipost\Helper\Data')->getMaxLeadTime($request->getAllItems());
+
         foreach ($request->getAllItems () as $item)
         {
             $product = $objectProduct->create()->load ($item->getProductId ());
@@ -270,6 +272,7 @@ class Intelipost extends \Intelipost\Quote\Model\Carrier\Intelipost
         // Methods
         foreach ($response ['content']['delivery_options'] as $child)
         {
+            $child ['delivery_estimate_business_days'] = $child ['delivery_estimate_business_days'] + $maxLeadTime;
             $method = $this->_rateMethodFactory->create();
 
             // Risk Area

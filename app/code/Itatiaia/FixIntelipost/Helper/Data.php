@@ -220,4 +220,26 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             ]);
         }
     }
+
+    public function getMaxLeadTime($items)
+    {
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $leadTimes = [];
+        foreach ($items as $item)
+        {
+            if($grouped = $objectManager->get('\Itatiaia\Custom\Helper\Data')->getGroupedByQuoteItem($item)){
+                $product = $objectManager->get('\Magento\Catalog\Model\ProductFactory')->create()->load($grouped->getId());
+            } else {
+                $product = $objectManager->get('\Magento\Catalog\Model\ProductFactory')->create()->load($item->getProduct()->getId());
+            }
+            if($product->getLeadTime())
+            {
+                $leadTimes[] = $product->getLeadTime();
+            }
+        }
+        if(count($leadTimes)){
+            return max($leadTimes);
+        }
+        return 0;
+    }
 }
