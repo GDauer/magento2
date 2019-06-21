@@ -55,7 +55,6 @@ class Track
         {
             $nps = $order->getNpsSent();
             $increment = $order->getIncrementId();
-            if(!$order->getNpsSent()) {
 
                 $curl = curl_init();
 
@@ -91,13 +90,15 @@ class Track
                         $currentDate = date("Y-m-d");
                         $deliveredDate = date("Y-m-d", strtotime($response->content->shipment_order_volume_array[0]->delivered_date_iso));
 
-                        $now = strtotime($currentDate);
-                        $delivery = strtotime($deliveredDate);
-                        $difference =  $now - $delivery;
-                        $differenceDays = round($difference / (60 * 60 * 24));
+                        if(!$order->getNpsSent()) {
+                            $now = strtotime($currentDate);
+                            $delivery = strtotime($deliveredDate);
+                            $difference =  $now - $delivery;
+                            $differenceDays = round($difference / (60 * 60 * 24));
 
-                        if($differenceDays >= 7) {
-                            $this->eventManager->dispatch('itatiaia_tracksale_order_save_before', ['order' => $order]);
+                            if($differenceDays >= 7) {
+                                $this->eventManager->dispatch('itatiaia_tracksale_order_save_before', ['order' => $order]);
+                            }
                         }
 
                         $order->save();
@@ -107,7 +108,7 @@ class Track
                 }
 
                 curl_close($curl);
-            }
+
 
         }
     }
