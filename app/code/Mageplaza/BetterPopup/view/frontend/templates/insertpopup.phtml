@@ -33,9 +33,6 @@ if ($block->isManuallyInsert()):
                     <?php echo $block->getPopupContent(); ?>
                 </div>
             </div>
-            <div id="mp-powered">
-                <span class="lable-powered">Powered by Mageplaza</span>
-            </div>
         </div>
         <?php if ($block->isShowFloatButton()): ?>
             <div class="mp-better-popup-click-trigger" style="<?php echo $floatLocation; ?>; display: none">
@@ -43,10 +40,5 @@ if ($block->isManuallyInsert()):
             </div>
         <?php endif; ?>
     </div>
-    <style>
-        .mppopup-text {
-            color: <?php echo $block->getTextColor(); ?>
-        }
-    </style>
 <?php endif; ?>
 
