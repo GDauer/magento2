@@ -36,7 +36,6 @@ class Index extends Action
 
     public function execute()
     {
-        $csv = '';
         $result = $this->redirectFactory->create();
 
         $customers = $this->customerCollectionFactory->create();
@@ -46,6 +45,13 @@ class Index extends Action
         $orderEmails = $this->getOrderEmails($orders);
 
         $intersect = array_intersect($customerEmails, $orderEmails);
+
+        $csv = 'Clientes Cadastrados: ;';
+        $csv .=  count($customerEmails) . ";" . "\n";
+
+        $csv .= 'Clientes com Vendas: ;';
+        $csv .=  count($orderEmails) . ";" . "\n";
+
 
         foreach ($intersect as $email) {
             $csv .= '"' . $email . '";'. "\n";
