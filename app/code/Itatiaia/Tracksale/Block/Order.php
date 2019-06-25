@@ -21,18 +21,24 @@ class Order extends Template
      * @var RegionFactory
      */
     private $regionFactory;
+    /**
+     * @var \Itatiaia\Tracksale\Helper\Data
+     */
+    private $helper;
 
     public function __construct(
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         Template\Context $context,
         \Magento\Checkout\Model\Session $checkoutSession,
         RegionFactory $regionFactory,
+        \Itatiaia\Tracksale\Helper\Data $helper,
         array $data = []
     ) {
         parent::__construct($context, $data);
         $this->scopeConfig = $scopeConfig;
         $this->checkoutSession = $checkoutSession;
         $this->regionFactory = $regionFactory;
+        $this->helper = $helper;
     }
 
     public function getOrder()
@@ -48,7 +54,6 @@ class Order extends Template
     }
 
     public function getRegionUf($regionName){
-        $region = $this->regionFactory->create()->loadByName($regionName, 'BR');
-        return $region->getCode();
+        return $this->helper->getRegionUf($regionName);
     }
 }

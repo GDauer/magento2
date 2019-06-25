@@ -20,12 +20,7 @@ class SendTracksaleNpsAfterDelivery implements \Magento\Framework\Event\Observer
     {
         $order = $observer->getOrder();
 
-        $customerEmail = $order->getCustomerEmail();
-        $customerName = $order->getBillingAddress()->getFirstname() . ' ' . $order->getBillingAddress()->getLastname();
-        $customerPhone = $order->getBillingAddress()->getTelephone();
-
-        $this->logger->info('SEND NPS', [$customerEmail, $customerName, $customerPhone]);
-        $this->helper->sendCustomer($customerName, $customerEmail, $customerPhone);
+        $this->helper->sendCustomer($order);
         $order->setNpsSent('1');
     }
 }
