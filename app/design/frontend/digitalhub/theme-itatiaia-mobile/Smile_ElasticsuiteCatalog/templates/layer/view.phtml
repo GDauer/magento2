@@ -125,7 +125,7 @@
                         if(filterVar == 'price'){
                             form.append('<input type="hidden" name="price" value="'+filterValue+'" />');
                         } else {
-                            form.append('<input type="hidden" name="'+filterVar+'[]" value="'+filterValue+'" />');
+                            form.append('<input type="hidden" name="'+filterVar+'" value="'+filterValue+'" />');
                         }
                     }
                 })
