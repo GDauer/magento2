@@ -51,9 +51,18 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                                 "email" => $customerEmail,
                                 "phone" => $customerPhone,
                                 "tags" => [
-                                    "TagMg_Pedido" => $order->getIncrementId(),
-                                    "TagMg_DataCompra" => $order->getCreatedAt(),
-                                    "TagMg_UF" => $this->getRegionUf($order->getShippingAddress()->getRegion())
+                                    [
+                                        'name' => "TagMg_Pedido",
+                                        'value' => $order->getIncrementId()
+                                    ],
+                                    [
+                                        'name' => "TagMg_DataCompra",
+                                        'value' => $order->getCreatedAt()
+                                    ],
+                                    [
+                                        'name' => "TagMg_UF",
+                                        'value' => $this->getRegionUf($order->getShippingAddress()->getRegion())
+                                    ]
                                 ]
                             ]
                         ],
