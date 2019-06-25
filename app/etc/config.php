@@ -34,6 +34,7 @@ return [
         'Itatiaia_ProductTag' => 1,
         'Itatiaia_OpenGraph' => 1,
         'Itatiaia_SitemapXml' => 1,
+        'Itatiaia_Tracksale' => 1,
         'Magento_Payment' => 1,
         'Magento_SalesSequence' => 1,
         'Magento_Sales' => 1,
