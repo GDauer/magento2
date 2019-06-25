@@ -32,12 +32,15 @@ class Order extends \MagePal\GoogleTagManager\Model\Order
                   $categories = $categoryFactory->create()->load($categoryId)->getName();
                 }
 
+                $minQty = $helper->getGroupedSuccessQty($grouped, $order);
+
                 $products[] = [
                     'sku' => $grouped->getSku(),
                     'id' => $grouped->getId(),
                     'category' => $categories,
                     'name' => $this->escapeJsQuote($grouped->getName()),
-                    'price' => $this->gtmHelper->formatPrice($groupedPrice)
+                    'price' => $this->gtmHelper->formatPrice($groupedPrice),
+                    'quantity' => $minQty
                 ];
 
               } else {
