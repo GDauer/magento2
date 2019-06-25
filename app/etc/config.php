@@ -30,6 +30,7 @@ return [
         'Itatiaia_CustomElasticSuite' => 1,
         'Magento_Ui' => 1,
         'Itatiaia_FreeShippingAlert' => 1,
+        'Itatiaia_GarantiaEstendida' => 1,
         'Magento_CatalogRule' => 1,
         'Itatiaia_ProductTag' => 1,
         'Itatiaia_OpenGraph' => 1,

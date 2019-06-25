@@ -31,6 +31,15 @@
         <input type="hidden" name="selected_configurable_option" value="" />
         <input type="hidden" name="related_product" id="related-products-field" value="" />
         <input type="hidden" name="item"  value="<?= /* @noEscape */ $block->getRequest()->getParam('id') ?>" />
+
+        <?php
+        echo $this->getLayout()
+            ->createBlock('\Itatiaia\GarantiaEstendida\Block\Garantia')
+            ->setTemplate('Itatiaia_GarantiaEstendida::garantia.phtml')
+            ->setProduct($_product)
+            ->toHtml();
+        ?>
+
         <?= $block->getBlockHtml('formkey') ?>
         <?= $block->getChildHtml('form_top') ?>
         <?php if (!$block->hasOptions()):?>
@@ -112,3 +121,4 @@
     });
     </script>
 <?php endif; ?>
+
