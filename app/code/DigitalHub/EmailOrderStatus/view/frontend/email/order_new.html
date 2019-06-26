@@ -1,0 +1,108 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!--@subject {{trans "Your %store_name order confirmation" store_name=$store.getFrontendName()}} @-->
+<!--@vars {
+"var formattedBillingAddress|raw":"Billing Address",
+"var order.getEmailCustomerNote()":"Email Order Note",
+"var order.increment_id":"Order Id",
+"layout handle=\"sales_email_order_items\" order=$order area=\"frontend\"":"Order Items Grid",
+"var payment_html|raw":"Payment Details",
+"var formattedShippingAddress|raw":"Shipping Address",
+"var order.getShippingDescription()":"Shipping Description",
+"var shipping_msg":"Shipping message"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<table width="600" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tbody><tr>
+        <td style="display:none;">
+            Você está quase lá!
+        </td>
+    </tr>
+    <tr>
+        <td align="center" valign="top" bgcolor="#f8f8f8" class="side-border" style="padding: 10px 0px 10px 0px;">
+            <p style="margin: 0; text-align: center;"><span style="font-family:&#39;Arial&#39;,sans-serif; font-size:11px; color:#313131;">Caso não esteja visualizando, <a href="##preview##" target="_blank"><span style="color:#313131; font-size: 11px; font-family: &#39;Arial&#39;, sans-serif;">acesse o preview aqui.</span></a></span></p>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<table width="600" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tbody><tr>
+        <td style="width: 600px; padding-top: 2px;">
+            <a style="display: block; margin: 0;" href="http://siteantigo.cozinhasitatiaia.com.br/blog/?utm_source=magento&utm_medium=email&utm_campaign=compra_efetuada" target="_blank">
+                <img border="0" style="display: block;" src="{{config path='web/secure/base_url'}}media/wysiwyg/email/img_02.jpg" alt="Cozinhas Itatiaia" width="600" height="142">
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" style="width: 600px; padding: 10px 0 30px 0;">
+            <div style="font-size: 28px; color: #218ccc; font-family: Arial, Helvetica, sans-serif; font-weight: 700;">Compra efetuada</div>
+        </td>
+    </tr>
+    <tr>
+        <td style="width: 600px;">
+            <a style="display: block; margin: 0;" href="http://siteantigo.cozinhasitatiaia.com.br/blog/?utm_source=magento&utm_medium=email&utm_campaign=compra_efetuada" target="_blank">
+                <img border="0" style="display: block;" src="{{config path='web/secure/base_url'}}media/wysiwyg/email/img_04.jpg" alt="Cozinhas Itatiaia" width="600" height="51">
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" style="width: 600px; padding: 15px 0; background: #e7e5e5;">
+            <div style="font-size: 16px; color: #454444; font-family: Arial, Helvetica, sans-serif;"><strong>Número do pedido: </strong>{{trans '%increment_id' increment_id=$order.increment_id |raw}}</div>
+        </td>
+    </tr>
+    <tr>
+        <td style="width: 600px;">
+            <a style="display: block; margin: 0;" href="http://siteantigo.cozinhasitatiaia.com.br/blog/?utm_source=magento&utm_medium=email&utm_campaign=compra_efetuada" target="_blank">
+                <img border="0" style="display: block;" src="{{config path='web/secure/base_url'}}media/wysiwyg/email/img_06.jpg" alt="Cozinhas Itatiaia" width="600" height="89">
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" style="padding: 40px 0;">
+            <table width="600" border="0" cellspacing="0" cellpadding="0" align="center">
+                <tbody><tr>
+                    <td align="center" style="padding-bottom: 10px;">
+                        <div style="font-size: 16px; color: #454444; font-family: Arial, Helvetica, sans-serif; line-height: 21px;">Olá <strong>{{trans "%customer_name," customer_name=$order.getCustomerName()}}</strong>, tudo bem?!</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding-bottom: 10px;">
+                        <div style="font-size: 16px; color: #454444; font-family: Arial, Helvetica, sans-serif; line-height: 21px;">Recebemos o seu pedido, mas nosso sistema ainda não computou</div>
+                        <div style="font-size: 16px; color: #454444; font-family: Arial, Helvetica, sans-serif; line-height: 21px;">o pagamento. Esse processo pode levar até 48h (cartão de crédito)</div>
+                        <div style="font-size: 16px; color: #454444; font-family: Arial, Helvetica, sans-serif; line-height: 21px;">ou até 72h após o vencimento (boleto bancário).</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding-bottom: 10px;">
+                        <div style="font-size: 16px; color: #454444; font-family: Arial, Helvetica, sans-serif; line-height: 21px;">Não precisa ficar preocupado(a), pois manteremos</div>
+                        <div style="font-size: 16px; color: #454444; font-family: Arial, Helvetica, sans-serif; line-height: 21px;">você atualizado(a) do status desse pedido.</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <div style="font-size: 16px; color: #218ccc; font-family: Arial, Helvetica, sans-serif; line-height: 21px; font-weight: 700;">Enquanto isso, confira conteúdos interessantes</div>
+                        <div style="font-size: 16px; color: #218ccc; font-family: Arial, Helvetica, sans-serif; line-height: 21px; font-weight: 700;">sobre cozinha.</div>
+                    </td>
+                </tr>
+                </tbody></table>
+        </td>
+    </tr>
+    <tr>
+        <td style="width: 600px; padding-bottom: 40px;" align="center">
+            <a style="display: block; margin: 0;" href="http://siteantigo.cozinhasitatiaia.com.br/blog/?utm_source=magento&utm_medium=email&utm_campaign=compra_efetuada" target="_blank">
+                <img border="0" style="display: block;" src="{{config path='web/secure/base_url'}}media/wysiwyg/email/cta.png" alt="Cozinhas Itatiaia" width="243" height="38">
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+{{template config_path="design/email/footer_template"}}
