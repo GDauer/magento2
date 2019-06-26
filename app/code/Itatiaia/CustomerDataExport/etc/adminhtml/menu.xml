@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Itatiaia_CustomerDataExport::product_tag" title="Exportar dados cruzados" module="Itatiaia_CustomerDataExport" sortOrder="100" action="itatiaia_customer_data_export/index/index" resource="Itatiaia_CustomerDataExport::itatiaia_customer_data_export" parent="Magento_Customer::customer" />
+    </menu>
+</config>

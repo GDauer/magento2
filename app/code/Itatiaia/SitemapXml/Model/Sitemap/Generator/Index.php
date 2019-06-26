@@ -29,13 +29,13 @@ class Index extends \Itatiaia\SitemapXml\Model\Sitemap\Generator
 
             $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
             $logger = $objectManager->get('\Psr\Log\LoggerInterface');
-            $logger->info('ITEM INDEX', [$item]);
+//            $logger->info('ITEM INDEX', [$item]);
 
             $item['url'] = $urlBuilder->getBaseUrl() . 'media/sitemap/' . $item['filename'];
             $item['updated_at'] = date('d/m/Y H:i:s', strtotime($item['updated_at'] . ' -3 hours'));
             $item['created_at'] = date('d/m/Y H:i:s', strtotime($item['created_at'] . ' -3 hours'));
 
-            $logger->info('ITEM INDEX', [$item]);
+//            $logger->info('ITEM INDEX', [$item]);
 
             $newCollection[] = $item;
         }
