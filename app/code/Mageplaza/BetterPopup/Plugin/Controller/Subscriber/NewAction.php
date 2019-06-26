@@ -110,12 +110,13 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction {
                     $response = [
                         'success' => false,
                         'title'   => __('Ops!'),
-                        'msg'     => __('O e-mail informado já está cadastrado.'),
+                        'msg'     => __('Houve um problema ao se inscrever: O email já está associado a outro usuário.'),
                     ];
                 }
             } catch (\Magento\Framework\Exception\LocalizedException $e) {
                 $response = [
-                    'success' => true,
+                    'success' => false,
+                    'title'   => __('Ops!'),
                     'msg'     => __('There was a problem with the subscription: %1', $e->getMessage()),
                 ];
             } catch (\Exception $e) {
