@@ -9,22 +9,66 @@
 
 {{template config_path="design/email/header_template"}}
 
-<table>
-    <tr class="email-intro">
-        <td>
-            <p class="greeting">Olá, {{trans "%customer_name," customer_name=$customer_name}}</p>
-            <p>
-                {{trans
-                    "Seu pedido #%increment_id foi atualizado com o status <strong>%order_status</strong>."
-
-                    increment_id=$order_increment_id
-                    order_status=$order_status
-                |raw}}
-            </p>
-            <p>{{trans 'You can check the status of your order by <a href="%account_url">logging into your account</a>.' account_url=$this.getUrl($store,'customer/account/',[_nosid:1]) |raw}}</p>
-            <p>
-                {{trans 'If you have questions about your order, you can email us at <a href="mailto:%store_email">%store_email</a>' store_email=$store_email |raw}}.
-            </p>
+<table width="600" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+        <td style="width: 600px; padding-top: 2px;">
+            <a style="display: block; margin: 0;" href="https://loja.cozinhasitatiaia.com.br/?utm_source=magento&utm_medium=email&utm_campaign=pedido_separado" target="_blank">
+                <img border="0" style="display: block;" src="{{config path='web/secure/base_url'}}media/wysiwyg/email/img_02_sep.jpg" alt="Cozinhas Itatiaia" width="600" height="142"/>
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" style="width: 600px; padding: 10px 0 30px 0;">
+            <div style="font-size: 28px; color: #218ccc; font-family: Arial, Helvetica, sans-serif; font-weight: 700;">Pedido separado</div>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" style="width: 600px;">
+            <a style="display: block; margin: 0;" href="https://loja.cozinhasitatiaia.com.br/?utm_source=magento&utm_medium=email&utm_campaign=pedido_separado" target="_blank">
+                <img border="0" style="display: block;" src="{{config path='web/secure/base_url'}}media/wysiwyg/email/img_04.jpg" alt="Cozinhas Itatiaia" width="600" height="50"/>
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" style="width: 600px; padding: 15px 0; background: #e7e5e5;">
+            <div style="font-size: 16px; color: #454444; font-family: Arial, Helvetica, sans-serif;"><strong>Número do pedido: </strong>{{trans '%increment_id' increment_id=$order.increment_id |raw}}</div>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" style="width: 600px;">
+            <a style="display: block; margin: 0;" href="https://loja.cozinhasitatiaia.com.br/?utm_source=magento&utm_medium=email&utm_campaign=pedido_separado" target="_blank">
+                <img border="0" style="display: block;" src="{{config path='web/secure/base_url'}}media/wysiwyg/email/img_06_sep.jpg" alt="Cozinhas Itatiaia" width="600" height="89"/>
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" style="padding: 40px 0;">
+            <table width="600" border="0" cellspacing="0" cellpadding="0" align="center">
+                <tr>
+                    <td align="center" style="padding: 0 0 10px 0;">
+                        <div style="font-size: 16px; color: #454444; font-family: Arial, Helvetica, sans-serif; line-height: 21px;">Olá <strong>{{trans "%customer_name," customer_name=$order.getCustomerName()}}</strong>, tudo bem?!</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding: 0 0 10px 0;">
+                        <div style="font-size: 16px; color: #454444; font-family: Arial, Helvetica, sans-serif; line-height: 21px;">Separamos a sua encomenda para entregarmos ? transportadora. </div>
+                        <div style="font-size: 16px; color: #454444; font-family: Arial, Helvetica, sans-serif; line-height: 21px;">Em breve, seu produto chegar? em seu endere?o!</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <div style="font-size: 16px; color: #454444; font-family: Arial, Helvetica, sans-serif; line-height: 21px;">Enquanto isso, convidamos voc? a visitar nosso blog.</div>
+                        <div style="font-size: 16px; color: #454444; font-family: Arial, Helvetica, sans-serif; line-height: 21px;">Por l? voc? encontrar? dicas e receitas interessantes.</div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" style="width: 600px; padding-bottom: 40px;">
+            <a style="display: block; margin: 0;" href="http://siteantigo.cozinhasitatiaia.com.br/blog/?utm_source=magento&utm_medium=email&utm_campaign=pedido_separado" target="_blank">
+                <img border="0" style="display: block;" src="{{config path='web/secure/base_url'}}media/wysiwyg/email/cta.png" alt="Cozinhas Itatiaia" width="234" height="38"/>
+            </a>
         </td>
     </tr>
 </table>
