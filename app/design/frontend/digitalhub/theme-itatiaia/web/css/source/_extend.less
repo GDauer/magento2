@@ -633,6 +633,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
     }
   }
   .container-menumanager-submenus{
+    z-index: 10000;
     .container{
       .menumanager-submenu{
         .children-items{
@@ -1041,6 +1042,9 @@ a, a:hover, .alink, a:visited, .alink:visited {
       border-bottom: 2px solid #ccc;
       overflow: hidden;
       max-height: auto;
+      &.first-subgroup-item {
+          border: none
+      }
       .item-in{
         .wrp-input{
           float: left;
@@ -1227,31 +1231,31 @@ a, a:hover, .alink, a:visited, .alink:visited {
                 float: left;
                 width: 20px;
                 display: inline-block;
-                background: url('@{baseDir}images/icon-dimensions.png') no-repeat;
+                background: url('@{baseDir}images/spritesheet.png') no-repeat;
                 margin-right: 20px;
               }
               &.product-height {
                 &:before {
-                  background-position: 0 0;
+                  background-position: -25px -55px;
                   height: 19px;
                 }
               }
               &.product-width {
                 &:before {
-                  background-position: 0 -42px;
+                  background-position: -25px -97px;
                   height: 9px;
                   margin-top: 5px;
                 }
               }
               &.product-lenght {
                 &:before {
-                  background-position: 0 -74px;
+                  background-position: -25px -129px;
                   height: 19px;
                 }
               }
               &.product-weight {
                 &:before {
-                  background-position: 0 -116px;
+                  background-position: -25px -171px;
                   height: 19px;
                 }
               }
@@ -1274,8 +1278,8 @@ a, a:hover, .alink, a:visited, .alink:visited {
               content:'';
               width: 11px;
               height: 6px;
-              background: url('@{baseDir}images/arrow.png') center center no-repeat;
-              background-size: contain;
+              background: url('@{baseDir}images/spritesheet.png') center center no-repeat;
+              background-position: -5px -5px;
               display: inline-block;
               margin: 0 9px;
             }
@@ -4180,10 +4184,13 @@ select:not([disabled]) {
       }
     }
   }
+  .cart-container {
+      position: relative;
+  }
   a.button-continue-top {
         position: absolute;
-        top: 210px;
-        right: 17px;
+        top: -78px;
+        right: 0;
         background: #e2e2e2;
         border: 1px solid #cdcdcd;
         color: #555555;
@@ -5733,6 +5740,19 @@ body.catalogsearch-result-index {
                 }
             }
         }
+    }
+}
+
+.widget.block.block-static-block {
+    p {
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.mz-gallery-container {
+    .slick-arrow {
+        z-index: 10000;
     }
 }
 
