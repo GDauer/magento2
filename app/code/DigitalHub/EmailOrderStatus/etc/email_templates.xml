@@ -6,6 +6,7 @@
     <template id="sales_email_order_guest_template" label="New Order for Guest" file="order_new.html" type="html" module="DigitalHub_EmailOrderStatus" area="frontend"/>
 
     <template id="sales_email_order_canceled_template" label="Order Canceled" file="order_canceled.html" type="html" module="DigitalHub_EmailOrderStatus" area="frontend"/>
+    <template id="itatiaia_email_order_recuperar_boleto" label="Recuperação de Boleto" file="recuperar_boleto.html" type="html" module="DigitalHub_EmailOrderStatus" area="frontend"/>
 
     <template id="sales_email_invoice_template" label="New Invoice" file="invoice_new.html" type="html" module="DigitalHub_EmailOrderStatus" area="frontend"/>
     <template id="sales_email_invoice_guest_template" label="New Invoice for Guest" file="invoice_new.html" type="html" module="DigitalHub_EmailOrderStatus" area="frontend"/>
