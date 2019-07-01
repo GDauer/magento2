@@ -94,7 +94,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $logger->info('HELPER UPDATE INVOICE');
 
         // somente na troca de um status para outro será disparado
-        if($order->getState() == 'processing' && $order->getStatus() == 'faturado_sap'){
+        if(($order->getState() == 'processing' || $order->getState() == 'complete') && $order->getStatus() == 'faturado_sap'){
 
             $logger->info('ORDER DATA POST', [
                 'id' => $order->getId(),

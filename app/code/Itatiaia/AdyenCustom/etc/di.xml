@@ -8,4 +8,5 @@
       <plugin name="custom_additional_information_format" type="Itatiaia\AdyenCustom\Plugin\Framework\Reflection\DataObjectProcessorPlugin" sortOrder="1" disabled="false" />
     </type>
     <preference for="Adyen\Payment\Block\Info\Boleto" type="Itatiaia\AdyenCustom\Block\Info\Boleto" />
+    <preference for="Adyen\Payment\Gateway\Response\CheckoutPaymentsDetailsHandler" type="Itatiaia\AdyenCustom\Gateway\Response\CheckoutPaymentsDetailsHandler" />
 </config>
