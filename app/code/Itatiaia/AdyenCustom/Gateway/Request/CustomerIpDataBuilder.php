@@ -15,6 +15,7 @@ class CustomerIpDataBuilder extends \Adyen\Payment\Gateway\Request\CustomerIpDat
     public function build(array $buildSubject)
     {
         /** @var \Magento\Payment\Gateway\Data\PaymentDataObject $paymentDataObject */
+        $request = [];
         $paymentDataObject = \Magento\Payment\Gateway\Helper\SubjectReader::readPayment($buildSubject);
         $payment = $paymentDataObject->getPayment();
         $fullOrder = $payment->getOrder();
@@ -27,7 +28,8 @@ class CustomerIpDataBuilder extends \Adyen\Payment\Gateway\Request\CustomerIpDat
         }
 
         $objectManager->get('\Psr\Log\LoggerInterface')->info('NEW SHOPPER IP', [$ip]);
+        $request['shopperIP'] = $ip;
 
-        return ['shopperIP' => $ip];
+        return $request;
     }
 }
