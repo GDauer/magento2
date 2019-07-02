@@ -46,7 +46,7 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
                 // prevenir envio de produtos com valor Zero
                 if(!$groupedCatalogRuleHelper->getFinalPrice($product)) continue;
 
-                $item['final_price'] = $groupedCatalogRuleHelper->getFinalPrice($product);
+                $item['final_price'] = number_format($groupedCatalogRuleHelper->getFinalPrice($product),2);
                 $item['final_price_formatted'] = $currencyHelper->currency($item['final_price'], true, false);
                 // $objectManager->get('\Psr\Log\LoggerInterface')->info('GROUPED FINAL PRICE', [$product->getFinalPrice(), $item['final_price']]);
             } else {
