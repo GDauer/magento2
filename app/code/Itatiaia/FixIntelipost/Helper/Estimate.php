@@ -45,6 +45,14 @@ class Estimate extends \Magento\Framework\App\Helper\AbstractHelper
         return $finalData;
     }
 
+
+    function getDate($businessDays)
+    {
+        $finalData = $this->calculateFinalDate(date('Y-m-d'),$businessDays);
+        return $finalData;
+    }
+
+
     function calculateFinalDate($startDate,$days){
 
         $storeWorkingDays = $this->getStoreWorkingDays();
@@ -105,4 +113,3 @@ class Estimate extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
 }
-
