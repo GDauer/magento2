@@ -45,7 +45,11 @@
                             $(content).modal('openModal');
                         } else {
                             var content = document.createElement('div')
-                            $(content).html('<h4>Ocorreu um erro ao tentar realizar o cadastro. Por favor, tente novamente mais tarde.</h4>');
+                            if(result.registered) {
+                                $(content).html('<h4>Já existe um usuário cadastrado com esse e-mail.</h4>');
+                            } else {
+                                $(content).html('<h4>Ocorreu um erro ao tentar realizar o cadastro. Por favor, tente novamente mais tarde.</h4>');
+                            }
                             $(content).modal({
                                 modalClass: 'popup-alert-news',
                                 buttons: [],

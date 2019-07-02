@@ -27,11 +27,18 @@ class Subscribe extends \Magento\Framework\App\Action\Action
 
         try {
             // subscribe news
-            $this->subscriberFactory->create()->subscribe($email);
+            $collection = $this->subscriberFactory->create()->getCollection()->addFieldToFilter('subscriber_email', $email);
+            if(!count($collection)) {
+                $this->subscriberFactory->create()->subscribe($email);
+                $result->setData([
+                    'success' => true
+                ]);
+            } else {
+                $result->setData([
+                    'registered' => true
+                ]);
+            }
 
-            $result->setData([
-                'success' => true
-            ]);
         } catch (\Exception $e){
             $result->setData([
                 'error' => $e->getMessage()
