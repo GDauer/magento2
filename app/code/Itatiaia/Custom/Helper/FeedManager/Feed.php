@@ -53,7 +53,7 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
                 // prevenir envio de produtos com valor Zero
                 if(!$product->getFinalPrice()) continue;
 
-                $item['final_price'] = $product->getFinalPrice();
+                $item['final_price'] = number_format($product->getFinalPrice(), 2);
                 $item['final_price_formatted'] = $currencyHelper->currency($item['final_price'], true, false);
             }
 
