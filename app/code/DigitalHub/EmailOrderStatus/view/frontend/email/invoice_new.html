@@ -1,10 +1,18 @@
 <!--@subject {{trans "Fatura para o seu pedido na %store_name" store_name=$store.getFrontendName()}} @-->
 <!--@vars {
-"var order_status":"Order Status",
-"var order_increment_id":"Order Increment ID",
-"var customer_email":"E-mail do cliente",
-"var customer_name":"Nome do cliente"
+"var formattedBillingAddress|raw":"Billing Address",
+"var this.getUrl($store, 'customer/account/')":"Customer Account URL",
+"var order.getCustomerName()":"Customer Name",
+"var comment":"Invoice Comment",
+"var invoice.increment_id":"Invoice Id",
+"layout area=\"frontend\" handle=\"sales_email_order_invoice_items\" invoice=$invoice order=$order":"Invoice Items Grid",
+"var order.increment_id":"Order Id",
+"var payment_html|raw":"Payment Details",
+"var formattedShippingAddress|raw":"Shipping Address",
+"var order.shipping_description":"Shipping Description",
+"var order.getShippingDescription()":"Shipping Description"
 } @-->
+
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -119,7 +127,7 @@
             <table width="600" border="0" cellspacing="0" cellpadding="0" align="center">
                 <tr>
                     <td align="center" style="padding-bottom: 10px;">
-                        <div style="font-size: 16px; color: #454444; font-family: Arial, Helvetica, sans-serif; line-height: 21px;">Olá <strong>{{trans "%customer_name" customer_name=$customer_name}}</strong>, tudo bem?!</div>
+                        <div style="font-size: 16px; color: #454444; font-family: Arial, Helvetica, sans-serif; line-height: 21px;">Olá <strong>{{trans "%customer_name," customer_name=$order.getCustomerName()}}</strong>, tudo bem?!</div>
                     </td>
                 </tr>
                 <tr>
