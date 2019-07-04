@@ -14,6 +14,6 @@ $data = $product->getData();
         <meta itemprop="url" content="<?= $product->getProductUrl() ?>" />
 </span>
 <meta itemprop="brand" content="Itatiaia" />
-<meta itemprop="description" content="<?= $product->getDescription() ?>" />
+<meta itemprop="description" content="<?= $block->escapeHtml($product->getDescription()) ?>" />
 <meta itemprop="image" content="<?= $block->getProductImage($product) ?>" />
 <meta itemprop="gtin13" content="<?= $product->getEan() ?>" />
