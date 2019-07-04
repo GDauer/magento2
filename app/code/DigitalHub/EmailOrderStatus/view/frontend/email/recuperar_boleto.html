@@ -6,7 +6,68 @@
 "var customer_name":"Nome do cliente"
 } @-->
 
-{{template config_path="design/email/header_template"}}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <style type="text/css">
+        {{var template_styles|raw}}
+
+        {{css file="css/email.css"}}
+    </style>
+</head>
+<body>
+{{inlinecss file="css/email-inline.css"}}
+
+<!-- Begin wrapper table -->
+<table class="wrapper" width="100%" style="border-collapse: collapse; margin: 0 auto;">
+    <tr>
+        <td class="wrapper-inner" align="center" style="font-family: 'MullerMedium', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; vertical-align: top; padding-bottom: 30px; width: 100%;">
+            <table class="main" align="center" style="border-collapse: collapse; margin: 0 auto; text-align: left; width: 600px;">
+                <tr style="display:block;">
+                    <td class="header" style="padding: 31px 25px 24px 35px;background-color: #1aa3ff;">
+                        <a class="logo" href="{{store url=""}}">
+                        <img src="{{media url="wysiwyg/geral/email/logo-mail.png"}}" alt="Cozinhas Itatiaia" />
+                        </a>
+                    </td>
+                    <td style="font-family: 'MullerMedium', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;vertical-align: top; padding: 33px 31px 14px 14px;background-color: #454444; background-image: url(https://loja.cozinhasitatiaia.com.br/media/wysiwyg/geral/email/bg-hdr-mail.png);background-size: cover;background-position-y: 34px;">
+                        <table align="right">
+                            <tr>
+                            <tr>
+                                <td style="white-space: nowrap; padding-right: 0px;">
+                                    <a href="https://loja.cozinhasitatiaia.com.br/cozinhas.html" style="color: #fff; text-decoration: none;">
+                                        <span style="display: inline-block; color: #fff; font-size: 13px; font-weight: 600; vertical-align: middle; padding-left: 0px;letter-spacing:1px;">COZINHAS</span>
+                                    </a>
+                                </td>
+                                <td style="width:4px;height: 4px;border-radius:100%;background-color: #1aa3ff;margin: 10px 10px 0;display: inline-block;"></td>
+                                <td style="white-space: nowrap; padding: 0;">
+                                    <a class="logo" href="https://loja.cozinhasitatiaia.com.br/fogoes.html" style="color: #1979c3; text-decoration: none;">
+                                        <span style="display: inline-block; color: #fff; font-size: 13px; font-weight: 600; vertical-align: middle; padding-left: 0px;letter-spacing:1px;">FOGÕES</span>
+                                    </a>
+                                </td>
+                                <td style="width:4px;height: 4px;border-radius:100%;background-color: #1aa3ff;margin: 10px 14px 0;display: inline-block;"></td>
+                                <td style="white-space: nowrap; padding-left: 0px;">
+                                    <a class="logo" href="https://loja.cozinhasitatiaia.com.br/cooktops.html" style="color: #1979c3; text-decoration: none;">
+                                        <span style="display: inline-block; color: #fff; font-size: 13px; font-weight: 600; vertical-align: middle; padding-left: 0px;letter-spacing:1px;">COOKTOPS</span>
+                                    </a>
+                                </td>,
+                                <td style="width:4px;height: 4px;border-radius:100%;background-color: #1aa3ff;margin: 10px 11px 0;display: inline-block;"></td>
+                                <td style="white-space: nowrap; padding-left: 0;">
+                                    <a class="logo" href="https://loja.cozinhasitatiaia.com.br/modulos.html" style="color: #1979c3; text-decoration: none;">
+                                        <span style="display: inline-block; color: #fff; font-size: 13px; font-weight: 600; vertical-align: middle; padding-left: 0px;letter-spacing:1px;">MODULOS</span>
+                                    </a>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="main-content" colspan="2" style="font-family: 'MullerMedium', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; vertical-align: top; background-color: #ffffff; ">
+                        <!-- Begin Content -->
 
     <table width="600" border="0" cellspacing="0" cellpadding="0" align="center">
         <tr>

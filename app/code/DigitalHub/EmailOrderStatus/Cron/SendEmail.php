@@ -45,6 +45,7 @@ class SendEmail
         $this->logger->info('CRON DE RECUPERAÇÃO', []);
 
         $last_day = date('Y-m-d H:i:s', strtotime('now - 24 hours'));
+        $final_day = date('Y-m-d H:i:s', strtotime($last_day .  ' - 48 hours'));
 
         $orders = $this->orderFactory->create()->getCollection();
 
@@ -58,7 +59,8 @@ class SendEmail
             );
 
         $orders->addFieldToFilter('sales_order_payment.method', 'adyen_boleto');
-        $orders->addFieldToFilter('created_at', ['gt' => $last_day]);
+        $orders->addFieldToFilter('created_at', ['gt' => $final_day]);
+        $orders->addFieldToFilter('created_at', ['lteq' => $last_day]);
         $orders->addFieldToFilter('state', 'payment_review');
 //        $orders->addFieldToFilter('increment_id', '000000407');
         $orders->load();
