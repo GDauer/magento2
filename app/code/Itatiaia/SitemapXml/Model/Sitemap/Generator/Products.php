@@ -28,7 +28,7 @@ class Products extends \Itatiaia\SitemapXml\Model\Sitemap\Generator
             $item['updated_at'] = date('d/m/Y H:i:s', strtotime($item['updated_at'] . ' -3 hours'));
             $item['created_at'] = date('d/m/Y H:i:s', strtotime($item['created_at'] . ' -3 hours'));
 
-            \Magento\Framework\App\ObjectManager::getInstance()->get('\Psr\Log\LoggerInterface')->info('PRODUCT', $item);
+//            \Magento\Framework\App\ObjectManager::getInstance()->get('\Psr\Log\LoggerInterface')->info('PRODUCT', $item);
 
             $newCollection[] = $item;
         }
