@@ -5,7 +5,7 @@
       </div>
     </div>
     <div class="field">
-        <input type="text" id="estimate-shipping-postcode" placeholder="Insira seu CEP" data-bind="value: postcode, afterRender: afterRender">
+        <input type="text" id="estimate-shipping-postcode" placeholder="Insira seu CEP" data-bind="value: postcode, afterRender: afterRender, postcodeBinding: postcode">
         <a data-bind="click: estimateShipping" class="button"><span>Consultar</span></a>
     </div>
     <a class="busca-cep" href="http://www.buscacep.correios.com.br/sistemas/buscacep/" target="_blanck">Não sei o meu CEP</a>
