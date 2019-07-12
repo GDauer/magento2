@@ -973,12 +973,12 @@
             "source": {
                 "type": "git",
                 "url": "git@gitlab.com:digitalhub/m2/modules/module-cookie.git",
-                "reference": "e413b38e2866bf24e64484864f5f24eab3e968dd"
+                "reference": "85073bd4b7de2055af46c4428746926c300e8aee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/digitalhub%2Fm2%2Fmodules%2Fmodule-cookie/repository/archive.zip?sha=e413b38e2866bf24e64484864f5f24eab3e968dd",
-                "reference": "e413b38e2866bf24e64484864f5f24eab3e968dd",
+                "url": "https://gitlab.com/api/v4/projects/digitalhub%2Fm2%2Fmodules%2Fmodule-cookie/repository/archive.zip?sha=85073bd4b7de2055af46c4428746926c300e8aee",
+                "reference": "85073bd4b7de2055af46c4428746926c300e8aee",
                 "shasum": ""
             },
             "require": {
@@ -997,7 +997,7 @@
                 "proprietary"
             ],
             "description": "Módulo para guardar o cookie do postcode, e auto iniciar os campos de postcode no checkout",
-            "time": "2019-07-12T18:42:45+00:00"
+            "time": "2019-07-12T20:49:31+00:00"
         },
         {
             "name": "digitalhub/theme-base",
