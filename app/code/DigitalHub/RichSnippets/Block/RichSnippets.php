@@ -2,7 +2,9 @@
 
 namespace DigitalHub\RichSnippets\Block;
 
+use Itatiaia\GroupedCatalogRule\Helper\Data;
 use Magento\Catalog\Helper\Image;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Element\Template;
 use Magento\Store\Model\StoreManagerInterface;
@@ -23,9 +25,14 @@ class RichSnippets extends Template
      * @var Image
      */
     private $imageHelper;
+    /**
+     * @var Data
+     */
+    private $priceHelper;
 
     public function __construct
     (
+        Data $priceHelper,
         StoreManagerInterface $storeManager,
         Image $imageHelper,
         Registry $registry,
@@ -37,6 +44,7 @@ class RichSnippets extends Template
         $this->registry = $registry;
         $this->storeManager = $storeManager;
         $this->imageHelper = $imageHelper;
+        $this->priceHelper = $priceHelper;
     }
 
     public function getProduct()
@@ -70,7 +78,11 @@ class RichSnippets extends Template
 
     public function getPrice($product)
     {
-        return number_format($product->getFinalPrice(), 2);
+        if($product->getTypeId() == 'grouped')
+        {
+            return number_format($this->priceHelper->calculateGroupedFinalPrice($product), 2, '.','');
+        }
+        return number_format($product->getFinalPrice(), 2, '.','');
     }
 
     public function getProductImage($product)
