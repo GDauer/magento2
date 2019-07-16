@@ -27,7 +27,8 @@ class SendMail implements ObserverInterface
         \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation,
         \Psr\Log\LoggerInterface $logger
 
-    ) {
+    )
+    {
         $this->transportBuilder = $transportBuilder;
         $this->scopeConfig = $scopeConfig;
         $this->storeManager = $storeManager;
@@ -38,11 +39,11 @@ class SendMail implements ObserverInterface
     public function execute(Observer $observer)
     {
         $order = $observer->getEvent()->getOrder();
-        if($this->scopeConfig->getValue('sales/itatiaia_garantiaestendida/active', \Magento\Store\Model\ScopeInterface::SCOPE_STORE)) {
+        if ($this->scopeConfig->getValue('sales/itatiaia_garantiaestendida/active', \Magento\Store\Model\ScopeInterface::SCOPE_STORE)) {
             try {
+                $this->logger->info('ENABLED');
                 $this->sendMail($order);
-            } catch (\Exception $e)
-            {
+            } catch (\Exception $e) {
                 $this->logger->info('ERROR', [$e->getMessage()]);
             }
         }
@@ -51,7 +52,6 @@ class SendMail implements ObserverInterface
 
     private function sendMail($order)
     {
-
         $this->logger->info('SEND MAIL INIT');
 
         $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
@@ -62,10 +62,14 @@ class SendMail implements ObserverInterface
             'order_increment_id' => $order->getIncrementId()
         ];
 
+        $this->logger->info('VARIABLES', [$variables]);
+
         $sender = [
             'name' => $this->scopeConfig->getValue('trans_email/ident_general/name', $storeScope),
             'email' => $this->scopeConfig->getValue('trans_email/ident_general/email', $storeScope)
         ];
+
+        $this->logger->info('SENDER', [$sender]);
 
         $this->inlineTranslation->suspend();
 
@@ -81,11 +85,10 @@ class SendMail implements ObserverInterface
 
         $result = $transport->sendMessage();
 
+        $this->logger->info('RESULT', [$result]);
+
         $this->inlineTranslation->resume();
 
         return $result;
-
     }
-
-
 }
