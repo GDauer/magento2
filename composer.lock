@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1edc9c757e8e85bebfc7bbc4daecac16",
+    "content-hash": "4000351157e18a9a3e205ffccb0e1bfe",
     "packages": [
         {
             "name": "adyen/module-payment",
@@ -966,6 +966,38 @@
             },
             "description": "Módulo para gerenciamento de menus para o storefront",
             "time": "2019-01-17T15:18:24+00:00"
+        },
+        {
+            "name": "digitalhub/module-cookie",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@gitlab.com:digitalhub/m2/modules/module-cookie.git",
+                "reference": "85073bd4b7de2055af46c4428746926c300e8aee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/digitalhub%2Fm2%2Fmodules%2Fmodule-cookie/repository/archive.zip?sha=85073bd4b7de2055af46c4428746926c300e8aee",
+                "reference": "85073bd4b7de2055af46c4428746926c300e8aee",
+                "shasum": ""
+            },
+            "require": {
+                "magento/framework": "*"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "psr-4": {
+                    "DigitalHub\\Cookie\\": ""
+                },
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Módulo para guardar o cookie do postcode, e auto iniciar os campos de postcode no checkout",
+            "time": "2019-07-12T20:49:31+00:00"
         },
         {
             "name": "digitalhub/theme-base",
@@ -18761,6 +18793,7 @@
         "digitalhub/estimate-shipping": 20,
         "digitalhub/customer-attributes": 20,
         "digitalhub/language-pt_br": 20,
+        "digitalhub/module-cookie": 20,
         "phpmd/phpmd": 0
     },
     "prefer-stable": false,
