@@ -7,10 +7,10 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
 <a name="grouped-items"></a>
 <div id="tab-grouped-items">
     <section>
-        <?php foreach($this->helper('\Itatiaia\Custom\Helper\Grouped')->parseGroupedItems($groupedProduct) as $_item): ?>
+        <?php foreach($groupedProduct->getTypeInstance(true)->getAssociatedProducts($groupedProduct) as $_item): ?>
             <?php $_childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\ProductFactory')->create()->load($_item->getEntityId()) ?>
             <?php if($_item->getStatus()): ?>
-                <div class="item-out <?php if($_item->getFirstSubgroupItem()) echo 'first-subgroup-item'; ?>" id="super-group-item-<?= $_item->getId() ?>">
+                <div class="item-out" id="super-group-item-<?= $_item->getId() ?>">
                     <div class="item-in">
                         <div class="wrp-input">
                             <?php if(!$groupedProduct->getLockItems()): ?>
@@ -47,68 +47,64 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
                                     <span>Qtde: <?= (int)$_item->getQty() ?><strong></strong></span>
                                 <?php endif; ?>
 
-                                <div class="wrp-price">
+                                <!--<div class="wrp-price">
                                     <div class="price-box">
                                         <div class="wrp-oldprice">
 
-                                            <?php if($groupedCatalogRuleHelper->getFinalPrice($_childProduct, $groupedProduct) < $groupedCatalogRuleHelper->getRegularPrice($_childProduct, $groupedProduct)): ?>
+                                            <?php /*if($groupedCatalogRuleHelper->getFinalPrice($_childProduct, $groupedProduct) < $groupedCatalogRuleHelper->getRegularPrice($_childProduct, $groupedProduct)): */?>
                                                 <span class="old-price">
                                                     <span class="price">
-                                                            <?= $priceHelper->currency($groupedCatalogRuleHelper->getRegularPrice($_childProduct, $groupedProduct), true, false); ?>
+                                                            <?/*= $priceHelper->currency($groupedCatalogRuleHelper->getRegularPrice($_childProduct, $groupedProduct), true, false); */?>
                                                     </span>
                                                 </span>
-                                                <?php $percent = abs((($groupedCatalogRuleHelper->getFinalPrice($_childProduct, $groupedProduct) * 100) / $groupedCatalogRuleHelper->getRegularPrice($_childProduct, $groupedProduct)) - 100) ?>
+                                                <?php /*$percent = abs((($groupedCatalogRuleHelper->getFinalPrice($_childProduct, $groupedProduct) * 100) / $groupedCatalogRuleHelper->getRegularPrice($_childProduct, $groupedProduct)) - 100) */?>
                                                 <div class="wrp-desc">
-                                                    <!-- <span class="tag-desc">-<?= (int)$percent ?>%</span> -->
+                                                     <span class="tag-desc">-<?/*= (int)$percent */?>%</span>
                                                 </div>
-                                            <?php endif; ?>
+                                            <?php /*endif; */?>
 
                                             <div class="clear"></div>
 
                                             <span class="special-price">
                                                 <span class="price">
-                                                    <?= $priceHelper->currency($groupedCatalogRuleHelper->getFinalPrice($_childProduct, $groupedProduct), true, false); ?>
+                                                    <?/*= $priceHelper->currency($groupedCatalogRuleHelper->getFinalPrice($_childProduct, $groupedProduct), true, false); */?>
                                                 </span>
                                             </span>
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
 
                             </div>
                         </div>
-
-                        <?php if(!$_item->getHideDetails()): ?>
-                        <div class="wrp-dimensoes">
+                        <!--<div class="wrp-dimensoes">
                           <ul>
-                            <?php if ($_childProduct->getAlturaMontado()): ?>
+                            <?php /*if ($_childProduct->getAlturaMontado()): */?>
                               <li class="product-height">
-                                Altura <?php echo $_childProduct->getAlturaMontado(); ?> cm
+                                Altura <?php /*echo $_childProduct->getAlturaMontado(); */?> cm
                               </li>
-                            <?php endif; ?>
-                            <?php if ($_childProduct->getLarguraMontado()): ?>
+                            <?php /*endif; */?>
+                            <?php /*if ($_childProduct->getLarguraMontado()): */?>
                               <li class="product-width">
-                                Largura <?php echo $_childProduct->getLarguraMontado(); ?> cm
+                                Largura <?php /*echo $_childProduct->getLarguraMontado(); */?> cm
                               </li>
-                            <?php endif; ?>
-                            <?php if ($_childProduct->getComprimentoMontado()): ?>
+                            <?php /*endif; */?>
+                            <?php /*if ($_childProduct->getComprimentoMontado()): */?>
                               <li class="product-lenght">
-                                Profundidade <?php echo $_childProduct->getComprimentoMontado(); ?>cm
+                                Profundidade <?php /*echo $_childProduct->getComprimentoMontado(); */?>cm
                               </li>
-                            <?php endif; ?>
-                            <?php if ($_childProduct->getWeight()): ?>
+                            <?php /*endif; */?>
+                            <?php /*if ($_childProduct->getWeight()): */?>
                               <li class="product-weight">
-                                Peso <?php echo round($_childProduct->getWeight(),4); ?>kg
+                                Peso <?php /*echo round($_childProduct->getWeight(),4); */?>kg
                               </li>
-                            <?php endif; ?>
+                            <?php /*endif; */?>
                           </ul>
-                        </div>
+                        </div>-->
                         <div class="wrp-dtls">
                             <a href="javascript:void(0)">Detalhes</a>
                         </div>
-                        <?php endif; ?>
                     </div>
                     <div class="min-dtls">
-                        <?php if(!$_item->getHideDetails()): ?>
                         <ul class="nav nav-tabs">
                             <li class="active">
                                 <a href="#tab-desc-<?php echo $_item->getId() ?>">Descrição</a>
@@ -126,7 +122,6 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
                                     ->setTemplate('Magento_Catalog::product/view/attributes.phtml')
                                     ->toHtml() ?>
                         </section>
-                        <?php endif; ?>
                     </div>
                 </div>
             <?php endif; ?>

@@ -21,7 +21,7 @@ class CustomerIpDataBuilder extends \Adyen\Payment\Gateway\Request\CustomerIpDat
         $fullOrder = $payment->getOrder();
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 
-        $ip = $fullOrder->getXForwardedFor() ? $fullOrder->getXForwardedFor() : $fullOrder->getRemoteIp();
+        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'] ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $fullOrder->getRemoteIp();
 
         if(count(explode(',', $ip)) > 1){
             $ip = trim(explode(',', $ip)[0]);
