@@ -4,7 +4,7 @@ namespace Itatiaia\CreateCustomer\Observer;
 
 use Magento\Customer\Model\AddressFactory;
 use Magento\Customer\Model\CustomerFactory;
-use Magento\Directory\Model\RegionFactory;
+use Magento\Customer\Model\SessionFactory;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Store\Model\StoreManagerInterface;
@@ -24,13 +24,13 @@ class CreateCustomer implements ObserverInterface
      */
     private $storeManager;
     /**
-     * @var RegionFactory
+     * @var SessionFactory
      */
-    private $regionFactory;
+    private $sessionFactory;
 
     public function __construct
     (
-        RegionFactory $regionFactory,
+        SessionFactory $sessionFactory,
         StoreManagerInterface $storeManager,
         CustomerFactory $customerFactory,
         AddressFactory $addressFactory
@@ -39,13 +39,14 @@ class CreateCustomer implements ObserverInterface
         $this->customerFactory = $customerFactory;
         $this->addressFactory = $addressFactory;
         $this->storeManager = $storeManager;
-        $this->regionFactory = $regionFactory;
+        $this->sessionFactory = $sessionFactory;
     }
 
     public function execute(Observer $observer)
     {
         $order = $observer->getOrder();
-        $orderAddress = $order->getBillingAddress();
+        $orderAddress = $order->getShippingAddress();
+        $session = $this->sessionFactory->create();
 
         $customerEmail = $order->getCustomerEmail();
 
@@ -57,42 +58,39 @@ class CreateCustomer implements ObserverInterface
         if(!count($customer->getCollection()->addFieldToFilter('email', $customerEmail)))
         {
             $customer = $this->customerFactory->create();
-            $customer->setFirstname($order->getCustomerFirstname());
-            $customer->setEmail($order->getCustomerEmail());
-            $customer->setLastname($order->getCustomerLastname());
-            $customer->setTaxvat($order->getCustomerTaxvat());
+            $customer->setFirstname($orderAddress->getFirstname());
+            $customer->setEmail($orderAddress->getEmail());
+            $customer->setLastname($orderAddress->getLastname());
+            $customer->setTaxvat($orderAddress->getVatId());
             $customer->setStore($this->storeManager->getStore());
-            $customer->setPassword('teste123');
+            $customer->setPassword(uniqid());
 
             $customer->save();
 
-            $regionName = $this->regionFactory->create()->load($orderAddress->getRegionId())->getName();
             $address = $this->addressFactory->create();
             $address->setCustomerId($customer->getId())
-                ->setFirstname($order->getCustomerFirstname())
-                ->setLastname($order->getCustomerLastname())
-                ->setCountryId('BR')
+                ->setFirstname($orderAddress->getFirstname())
+                ->setLastname($orderAddress->getLastname())
+                ->setCountryId($orderAddress->getCountryId())
                 ->setRegionId($orderAddress->getRegionId())
-                ->setRegion($regionName)
+                ->setRegion($orderAddress->getRegion())
                 ->setPostcode($orderAddress->getPostcode())
                 ->setCity($orderAddress->getCity())
-                ->setTelephone($orderAddress->getTelephone)
-                ->setStreet(array(
-                    '0' => $orderAddress->getStreet(1),
-                    '1' => $orderAddress->getStreet(2),
-                    '2' => $orderAddress->getStreet(3),
-                    '3' => $orderAddress->getStreet(4)
-                ))
+                ->setTelephone($orderAddress->getTelephone())
+                ->setStreet($orderAddress->getStreet())
                 ->setIsDefaultBilling('1')
                 ->setIsDefaultShipping('1')
                 ->setSaveInAddressBook('1');
 
             try {
                 $address->save();
+                $order->setCustomerId($customer->getId());
+                $order->save();
+                $session->setCustomerAsLoggedIn($customer);
             } catch (Exception $e) {
 
             }
-            $customer->sendNewAccountEmail();
+            $customer->sendPasswordResetConfirmationEmail();
         }
     }
 }
