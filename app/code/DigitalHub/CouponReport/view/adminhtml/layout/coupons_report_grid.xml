@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="couponpeport.container">
+            <block class="DigitalHub\CouponReport\Block\Adminhtml\Report\CouponReport\Grid" name="couponpeport.grid" as="grid">
+                <arguments>
+                    <argument name="id" xsi:type="string">coupon_grid</argument>
+                    <argument name="use_ajax" xsi:type="string">0</argument>
+                    <argument name="dataSource" xsi:type="object">Magento\Sales\Model\ResourceModel\Order\Collection</argument>
+                </arguments>
+                <block class="Magento\Backend\Block\Widget\Grid\ColumnSet" as="grid.columnSet" name="couponpeport.grid.columnSet">
+                    <arguments>
+                        <argument name="filter_visibility" xsi:type="string">1</argument>
+                        <argument name="empty_text" xsi:type="string" translate="true">We can't find records for this period.</argument>
+                        <argument name="empty_cell_label" xsi:type="string" translate="true">We can't find records for this period.</argument>
+                    </arguments>
+                    <!--<block class="Magento\Backend\Block\Widget\Grid\Column" name="couponpeport.grid.columnSet.entity_id" as="entity_id">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">ID</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="index" xsi:type="string">entity_id</argument>
+                            <argument name="header_css_class" xsi:type="string">col-id</argument>
+                            <argument name="column_css_class" xsi:type="string">col-id</argument>
+                        </arguments>
+                    </block>-->
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" name="couponpeport.grid.columnSet.increment_id" as="increment_id">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Pedido</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="index" xsi:type="string">increment_id</argument>
+                            <argument name="renderer" xsi:type="string">DigitalHub\CouponReport\Block\Widget\Grid\Renderer\OrderLink</argument>
+                            <argument name="header_css_class" xsi:type="string">col-id</argument>
+                            <argument name="column_css_class" xsi:type="string">col-id</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" name="couponpeport.grid.columnSet.coupon_rule_name" as="coupon_rule_name">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Cupom</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="index" xsi:type="string">coupon_rule_name</argument>
+                            <argument name="header_css_class" xsi:type="string">col-id</argument>
+                            <argument name="column_css_class" xsi:type="string">col-id</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" name="couponpeport.grid.columnSet.coupon_code" as="coupon_code">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Código do cupom</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="index" xsi:type="string">coupon_code</argument>
+                            <argument name="header_css_class" xsi:type="string">col-id</argument>
+                            <argument name="column_css_class" xsi:type="string">col-id</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" name="couponpeport.grid.columnSet.firstname" as="firstname">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Nome</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="index" xsi:type="string">customer_firstname</argument>
+                            <argument name="header_css_class" xsi:type="string">col-id</argument>
+                            <argument name="column_css_class" xsi:type="string">col-id</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" name="couponpeport.grid.columnSet.lastname" as="lastname">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Sobrenome</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="index" xsi:type="string">customer_lastname</argument>
+                            <argument name="header_css_class" xsi:type="string">col-id</argument>
+                            <argument name="column_css_class" xsi:type="string">col-id</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" name="couponpeport.grid.columnSet.taxvat" as="taxvat">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">CPF</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="index" xsi:type="string">customer_taxvat</argument>
+                            <argument name="header_css_class" xsi:type="string">col-id</argument>
+                            <argument name="column_css_class" xsi:type="string">col-id</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" name="couponpeport.grid.columnSet.total" as="total">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Valor</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="index" xsi:type="string">grand_total</argument>
+                            <argument name="renderer" xsi:type="string">Magento\Backend\Block\Widget\Grid\Column\Renderer\Currency</argument>
+                            <argument name="header_css_class" xsi:type="string">col-id</argument>
+                            <argument name="column_css_class" xsi:type="string">col-id</argument>
+                        </arguments>
+                    </block>
+                </block>
+            </block>
+        </referenceBlock>
+    </body>
+</page>
