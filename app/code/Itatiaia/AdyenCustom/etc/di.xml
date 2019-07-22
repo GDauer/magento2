@@ -8,4 +8,5 @@
     <type name="Adyen\Payment\Helper\Requests">
         <plugin name="adyen_customer_ip" type="Itatiaia\AdyenCustom\Plugin\Helper\Requests" sortOrder="1" disabled="false" />
     </type>
+    <preference for="Adyen\Payment\Gateway\Response\CheckoutPaymentsDetailsHandler" type="Itatiaia\AdyenCustom\Gateway\Response\CheckoutPaymentsDetailsHandler" />
 </config>
