@@ -8,4 +8,9 @@
     <type name="Adyen\Payment\Helper\Requests">
         <plugin name="adyen_customer_ip" type="Itatiaia\AdyenCustom\Plugin\Helper\Requests" sortOrder="1" disabled="false" />
     </type>
+
+    <type name="Magento\Framework\Reflection\DataObjectProcessor">
+        <plugin name="custom_additional_information_format" type="Itatiaia\AdyenCustom\Plugin\Framework\Reflection\DataObjectProcessorPlugin" sortOrder="1" disabled="false" />
+    </type>
+
 </config>
