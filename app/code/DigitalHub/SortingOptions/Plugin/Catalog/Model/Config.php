@@ -14,8 +14,8 @@ class Config
         unset($options['name']);
         unset($options['price']);
         unset($options['position']);
-        $options['price_asc'] = __('Menor Preço');
         $options['price_desc'] = __('Maior Preço');
+        $options['price_asc'] = __('Menor Preço');
         $options['name_asc'] = __('Nome (A - Z)');
         $options['name_desc'] = __('Nome (Z - A)');
         return $options;
