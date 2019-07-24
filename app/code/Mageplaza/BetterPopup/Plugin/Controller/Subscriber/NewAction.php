@@ -34,8 +34,7 @@ use Mageplaza\BetterPopup\Helper\Data;
  * Class NewAction
  * @package Mageplaza\BetterPopup\Plugin\Controller\Subscriber
  */
-class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
-{
+class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction {
     /**
      * @var \Magento\Framework\Controller\Result\JsonFactory
      */
@@ -48,14 +47,15 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
 
     /**
      * NewAction constructor.
-     * @param Context $context
-     * @param SubscriberFactory $subscriberFactory
-     * @param Session $customerSession
-     * @param StoreManagerInterface $storeManager
-     * @param CustomerUrl $customerUrl
+     *
+     * @param Context                   $context
+     * @param SubscriberFactory         $subscriberFactory
+     * @param Session                   $customerSession
+     * @param StoreManagerInterface     $storeManager
+     * @param CustomerUrl               $customerUrl
      * @param CustomerAccountManagement $customerAccountManagement
-     * @param JsonFactory $resultJsonFactory
-     * @param Data $helperData
+     * @param JsonFactory               $resultJsonFactory
+     * @param Data                      $helperData
      */
     public function __construct(
         Context $context,
@@ -66,8 +66,7 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
         CustomerAccountManagement $customerAccountManagement,
         JsonFactory $resultJsonFactory,
         Data $helperData
-    )
-    {
+    ) {
         $this->resultJsonFactory = $resultJsonFactory;
         $this->_helperData       = $helperData;
 
@@ -77,10 +76,10 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
     /**
      * @param $subject
      * @param $proceed
+     *
      * @return \Magento\Framework\Controller\Result\Json
      */
-    public function aroundExecute($subject, $proceed)
-    {
+    public function aroundExecute($subject, $proceed) {
         if (!$this->_helperData->isEnabled() || !$this->getRequest()->isAjax()) {
             return $proceed();
         }
@@ -94,9 +93,25 @@ class NewAction extends \Magento\Newsletter\Controller\Subscriber\NewAction
                 $this->validateGuestSubscription();
                 $this->validateEmailAvailable($email);
 
-                $this->_subscriberFactory->create()->subscribe($email);
-                if (!$this->_helperData->versionCompare('2.2.0')) {
-                    $this->_subscriberFactory->create()->loadByEmail($email)->setChangeStatusAt(date("Y-m-d h:i:s"))->save();
+                $checkSubscription = $this->_subscriberFactory->create()->loadByEmail($email);
+
+                if (!$checkSubscription->isSubscribed()) {
+                    $this->_subscriberFactory->create()->subscribe($email);
+                    if (!$this->_helperData->versionCompare('2.2.0')) {
+                        $this->_subscriberFactory->create()
+                                                 ->loadByEmail($email)
+                                                 ->setChangeStatusAt(date("Y-m-d h:i:s"))
+                                                 ->save();
+                    }
+                    $response = [
+                        'success' => true
+                    ];
+                } else {
+                    $response = [
+                        'success' => false,
+                        'title'   => __('Ops!'),
+                        'msg'     => __('O e-mail informado já está cadastrado.'),
+                    ];
                 }
             } catch (\Magento\Framework\Exception\LocalizedException $e) {
                 $response = [

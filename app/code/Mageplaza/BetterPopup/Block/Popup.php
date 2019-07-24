@@ -246,7 +246,8 @@ class Popup extends AbstractProduct implements BlockInterface
             '{{img_tmp4}}',
             '{{img_content_tmp5}}',
             '{{img_cap_tmp5}}',
-            '{{img_email_tmp5}}'
+            '{{img_email_tmp5}}',
+            '{{bg_ita}}'
         ];
         $replace = [
             $this->getFormActionUrl(),
@@ -259,7 +260,8 @@ class Popup extends AbstractProduct implements BlockInterface
             $this->getViewFileUrl('Mageplaza_BetterPopup::images/template4/img-content.png'),
             $this->getViewFileUrl('Mageplaza_BetterPopup::images/template5/img-content.png'),
             $this->getViewFileUrl('Mageplaza_BetterPopup::images/template5/img-cap.png'),
-            $this->getViewFileUrl('Mageplaza_BetterPopup::images/template5/img-email.png')
+            $this->getViewFileUrl('Mageplaza_BetterPopup::images/template5/img-email.png'),
+            $this->getViewFileUrl('Mageplaza_BetterPopup::images/itatiaia/bg.png')
         ];
 
         $html = str_replace($search, $replace, $htmlConfig);

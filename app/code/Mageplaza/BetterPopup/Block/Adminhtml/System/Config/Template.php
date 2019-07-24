@@ -122,6 +122,15 @@ class Template extends Field
                 'textColor'   => '#000000',
                 'width'       => '800',
                 'height'      => '250'
+            ],
+            [
+                'label'       => __('Itatiaia'),
+                'popupHtml'   => $this->_helperData->getDefaultTemplateHtml('itatiaia/popup'),
+                'successHtml' => $this->_helperData->getDefaultTemplateHtml('success_itatiaia'),
+                'background'  => '#ffffff',
+                'textColor'   => '#1d1d1d',
+                'width'       => '600',
+                'height'      => '323'
             ]
         ];
 

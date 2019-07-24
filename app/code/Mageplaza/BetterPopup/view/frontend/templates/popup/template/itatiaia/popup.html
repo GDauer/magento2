@@ -1,0 +1,27 @@
+<div id="popup-itatiaia" style="background-image: url('{{bg_ita}}')">
+    <div class="itatiaia-header">
+        <div class="itatiaia-header-text">OPORTUNIDADE ÚNICA!</div>
+        <div class="itatiaia-header-subtext">Inscreva-se e receba novidades interessantes e <b>ofertas exclusivas</b>.
+        </div>
+    </div>
+    <div class="itatiaia-content">
+        <form class="form subscribe" novalidate action="{{form_url}}" method="post"
+              data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+              id="mp-newsletter-validate-detail">
+            <div class="input-group">
+                <label for="mp-name">Nome</label>
+                <input name="name" type="text" id="mp-name" data-validate="{required:true}">
+            </div>
+            <div class="input-group">
+                <label for="mp-newsletter">E-mail *</label>
+                <input name="email" type="email" id="mp-newsletter" data-validate="{required:true, 'validate-email':true}">
+            </div>
+            <div class="popup-loader">
+                <img class="loader" src="{{url_loader}}" alt="Loading...">
+            </div>
+            <div class="center-text">
+                <button class="action" title="Send" type="submit">CADASTRAR!</button>
+            </div>
+        </form>
+    </div>
+</div>

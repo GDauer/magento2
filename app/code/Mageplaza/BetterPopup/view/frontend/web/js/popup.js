@@ -160,27 +160,36 @@ define([
                         type: 'POST',
                         data: {email: email},
                         success: function (data) {
-                            $.ajax({
-                                url: self.options.dataPopup.url,
-                                dataType: 'json',
-                                cache: false,
-                                success: function (result) {
-                                    bioContent.empty;
-                                    bioContent.html(result.success);
-                                    bioContent.trigger('contentUpdated');
-                                    if (self.options.dataPopup.isShowFireworks) {
-                                        $('canvas#screen').show();
-                                        firework(this);
+                            if (data.success) {
+                                $.ajax({
+                                    url: self.options.dataPopup.url,
+                                    dataType: 'json',
+                                    cache: false,
+                                    success: function (result) {
+                                        bioContent.empty;
+                                        bioContent.html(result.success);
+                                        bioContent.trigger('contentUpdated');
+                                        if (self.options.dataPopup.isShowFireworks) {
+                                            $('canvas#screen').show();
+                                            firework(this);
+                                        }
+                                        if (template4 || template5) {
+                                            $('#bio_ep_content').css('color', '#3d3d3e');
+                                            $('#mp-coupon-code').css('color', '#3d3d3e');
+                                        }
+                                        if (template5) {
+                                            $('#bio_ep_close').css({'top': '0px'});
+                                        }
                                     }
-                                    if (template4 || template5) {
-                                        $('#bio_ep_content').css('color', '#3d3d3e');
-                                        $('#mp-coupon-code').css('color', '#3d3d3e');
-                                    }
-                                    if (template5) {
-                                        $('#bio_ep_close').css({'top': '0px'});
-                                    }
-                                }
-                            });
+                                });
+                            } else {
+                                bioContent.empty();
+                                bioContent.html('<div id="popup-success-content">' +
+                                    '<p class="itatiaia-warning-title">' + data.title + '</p>' +
+                                    '<p class="itatiaia-warning-text">' + data.msg + '</p>' +
+                                    '</div>');
+                                bioContent.trigger('contentUpdated');
+                            }
                         }
                     });
                 }
