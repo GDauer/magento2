@@ -46,15 +46,15 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
                 // prevenir envio de produtos com valor Zero
                 if(!$groupedCatalogRuleHelper->getFinalPrice($product)) continue;
 
-                $item['final_price'] = $groupedCatalogRuleHelper->getFinalPrice($product);
-                $item['final_price_formatted'] = $currencyHelper->currency($item['final_price'], true, false);
+                $item['final_price'] = number_format($groupedCatalogRuleHelper->getFinalPrice($product),2);
+                $item['final_price_formatted'] = $currencyHelper->currency($groupedCatalogRuleHelper->getFinalPrice($product), true, false);
                 // $objectManager->get('\Psr\Log\LoggerInterface')->info('GROUPED FINAL PRICE', [$product->getFinalPrice(), $item['final_price']]);
             } else {
                 // prevenir envio de produtos com valor Zero
                 if(!$product->getFinalPrice()) continue;
 
-                $item['final_price'] = $product->getFinalPrice();
-                $item['final_price_formatted'] = $currencyHelper->currency($item['final_price'], true, false);
+                $item['final_price'] = number_format($product->getFinalPrice(), 2);
+                $item['final_price_formatted'] = $currencyHelper->currency($product->getFinalPrice(), true, false);
             }
 
             $stockItem = $stockRegistry->getStockItem($product->getId());

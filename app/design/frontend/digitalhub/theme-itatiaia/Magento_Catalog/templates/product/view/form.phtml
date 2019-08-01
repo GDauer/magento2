@@ -67,6 +67,20 @@
         });
 
         priceBoxes.priceBox({'priceConfig': <?= /* @escapeNotVerified */ $block->getJsonConfig() ?>});
+
+        $(document).keydown(function(e) {
+            switch(e.which) {
+                case 37: $('.slick-prev.slick-arrow').trigger('click');
+                    break;
+
+                case 39: $('.slick-next.slick-arrow').trigger('click');
+                    break;
+
+                default: return;
+            }
+            e.preventDefault();
+        });
+        
     });
 </script>
 
