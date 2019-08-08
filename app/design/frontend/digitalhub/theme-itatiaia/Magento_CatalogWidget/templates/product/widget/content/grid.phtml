@@ -37,7 +37,7 @@ $description = true;
 $_helper = $this->helper('Magento\Catalog\Helper\Output');
 $price_with_discount_active = $this->getConfig('digitalhub_additionalprices_payment_discount/active');
 $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
-$hoverimg = 'category_page_grid_hover';
+//$hoverimg = 'category_page_grid_hover';
 $hoverimg = 'category_page_list_hover';
 ?>
 <div class="block widget block-products-list <?= /* @noEscape */ $mode ?>">
@@ -96,10 +96,10 @@ $hoverimg = 'category_page_list_hover';
                         ->createBlock('Itatiaia\ProductTag\Block\Product\Image')
                         ->setProduct($_item)
                         ->setTemplate('Itatiaia_ProductTag::product/tag.phtml')->toHtml() ?>
-                  <img class="default_image" src="<?php echo $productImageUrl; ?>" alt="<?php echo $productImage->getLabel(); ?>"/>
+                  <img class="default_image owl-lazy" data-src="<?php echo $productImageUrl; ?>" alt="<?php echo $productImage->getLabel(); ?>"/>
                   <?php if($_item->getHoverImage()): ?>
                     <?php if($productImageUrl != str_replace("/thumbnail/","/small_image/",$productHoverImageUrl)): ?>
-                      <img class="hover_image" src="<?php echo $productHoverImageUrl; ?>" alt="<?php echo $productHoverImage->getLabel(); ?>" style="opacity: 1; display: none;" />
+                      <img class="hover_image  owl-lazy" data-src="<?php echo $productHoverImageUrl; ?>" alt="<?php echo $productHoverImage->getLabel(); ?>" style="opacity: 1; display: none;" />
                     <?php endif; ?>
                   <?php endif; ?>
                 </span>
@@ -176,17 +176,15 @@ $hoverimg = 'category_page_list_hover';
   require([
     'jquery',
     'owlcarousel'
-  ], function () {
+  ], function ($) {
     'use strict';
-    jQuery.noConflict();
-    jQuery(".home-products-list .product-items")
+    $(".home-products-list .product-items")
         .addClass("owl-carousel")
         .owlCarousel({
       loop: true,
       nav: true,
       dots: true,
       lazyLoad: true,
-      //center: true,
       margin: 0,
       responsive:{
         0:{
