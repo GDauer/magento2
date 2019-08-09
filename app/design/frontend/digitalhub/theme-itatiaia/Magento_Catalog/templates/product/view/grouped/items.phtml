@@ -14,10 +14,10 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
                     <div class="item-in">
                         <div class="wrp-input">
                             <?php if(!$groupedProduct->getLockItems()): ?>
-                            <label class="container-check">
-                                <input type="checkbox" checked="checked" id="check_super_<?= $_item->getId() ?>" rel="<?= $_item->getId() ?>" class="check-super-group">
-                                <span class="checkmark"></span>
-                            </label>
+                                <label class="container-check">
+                                    <input type="checkbox" checked="checked" id="check_super_<?= $_item->getId() ?>" rel="<?= $_item->getId() ?>" class="check-super-group">
+                                    <span class="checkmark"></span>
+                                </label>
                             <?php else: ?>
                                 <div style="display: none">
                                     <input type="checkbox" checked="checked" id="check_super_<?= $_item->getId() ?>" rel="<?= $_item->getId() ?>" class="check-super-group">
@@ -59,7 +59,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
                                                 </span>
                                                 <?php $percent = abs((($groupedCatalogRuleHelper->getFinalPrice($_childProduct, $groupedProduct) * 100) / $groupedCatalogRuleHelper->getRegularPrice($_childProduct, $groupedProduct)) - 100) ?>
                                                 <div class="wrp-desc">
-                                                    <!-- <span class="tag-desc">-<?= (int)$percent ?>%</span> -->
+                                                    <!--<span class="tag-desc">---><?//= (int)$percent ?><!--%</span>-->
                                                 </div>
                                             <?php endif; ?>
 
@@ -76,33 +76,38 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
 
                             </div>
                         </div>
-                        <div class="wrp-dimensoes">
-                          <ul>
-                            <?php if ($_childProduct->getAlturaMontado()): ?>
-                              <li class="product-height">
-                                Altura <?php echo $_childProduct->getAlturaMontado(); ?> cm
-                              </li>
-                            <?php endif; ?>
-                            <?php if ($_childProduct->getLarguraMontado()): ?>
-                              <li class="product-width">
-                                Largura <?php echo $_childProduct->getLarguraMontado(); ?> cm
-                              </li>
-                            <?php endif; ?>
-                            <?php if ($_childProduct->getComprimentoMontado()): ?>
-                              <li class="product-lenght">
-                                Profundidade <?php echo $_childProduct->getComprimentoMontado(); ?>cm
-                              </li>
-                            <?php endif; ?>
-                            <?php if ($_childProduct->getWeight()): ?>
-                              <li class="product-weight">
-                                Peso <?php echo round($_childProduct->getWeight(),4); ?>kg
-                              </li>
-                            <?php endif; ?>
-                          </ul>
-                        </div>
-                        <div class="wrp-dtls">
-                            <a href="javascript:void(0)">Detalhes</a>
-                        </div>
+
+                        <?php if (!strpos(strtolower($_childProduct->getName()), 'volume') ||
+                            strpos(strtolower($_childProduct->getName()), 'volume 1') > 0 ): ?>
+                            <div class="wrp-dimensoes">
+                                <ul>
+                                    <?php if ($_childProduct->getAlturaMontado()): ?>
+                                        <li class="product-height">
+                                            Altura <?php echo $_childProduct->getAlturaMontado(); ?> cm
+                                        </li>
+                                    <?php endif; ?>
+                                    <?php if ($_childProduct->getLarguraMontado()): ?>
+                                        <li class="product-width">
+                                            Largura <?php echo $_childProduct->getLarguraMontado(); ?> cm
+                                        </li>
+                                    <?php endif; ?>
+                                    <?php if ($_childProduct->getComprimentoMontado()): ?>
+                                        <li class="product-lenght">
+                                            Profundidade <?php echo $_childProduct->getComprimentoMontado(); ?>cm
+                                        </li>
+                                    <?php endif; ?>
+                                    <?php if ($_childProduct->getWeight()): ?>
+                                        <li class="product-weight">
+                                            Peso <?php echo round($_childProduct->getWeight(),4); ?>kg
+                                        </li>
+                                    <?php endif; ?>
+                                </ul>
+                            </div>
+                            <div class="wrp-dtls">
+                                <a href="javascript:void(0)">Detalhes</a>
+                            </div>
+                        <?php endif; ?>
+
                     </div>
                     <div class="min-dtls">
                         <ul class="nav nav-tabs">
@@ -118,9 +123,9 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
                         </section>
                         <section id="tab-attr-<?php echo $_item->getId() ?>" class="tab-content hide">
                             <?php echo $this->getLayout()->createBlock('Magento\Catalog\Block\Product\View\Attributes')
-                                    ->setProduct($_childProduct)
-                                    ->setTemplate('Magento_Catalog::product/view/attributes.phtml')
-                                    ->toHtml() ?>
+                                ->setProduct($_childProduct)
+                                ->setTemplate('Magento_Catalog::product/view/attributes.phtml')
+                                ->toHtml() ?>
                         </section>
                     </div>
                 </div>
