@@ -304,6 +304,7 @@ return [
         'Swissup_Tippyjs' => 1,
         'Temando_Shipping' => 1,
         'Vertex_Tax' => 1,
-        'DigitalHub_MobilePhotoswipe' => 1
+        'DigitalHub_MobilePhotoswipe' => 1,
+        'DigitalHub_SalesGrid' => 1
     ]
 ];
