@@ -8,9 +8,11 @@ define([
     'elevatezoom',
     'fancybox',
     'uiClass',
+    'DigitalHub_MobilePhotoswipe/js/photoswipe',
+    'DigitalHub_MobilePhotoswipe/js/photoswipe-ui-default',
     'Magento_ProductVideo/js/load-player',
     'Magento_Ui/js/modal/modal'
-], function ($, slick, elevatezoom, fancybox, Class) {
+], function ($, slick, elevatezoom, fancybox, Class, photoSwipe, photoSwipeUi, loadPlayer, modal) {
     'use strict';
 
     /**
@@ -285,6 +287,23 @@ define([
 
                 self.sliderElement.slick('slickAdd', _slide);
             });
+
+            var items = [];
+            $('.slick-slide img').each(function() {
+                let img = $(this);
+                items.push({
+                    src: img.attr('src'),
+                    w: 842,
+                    h: 593
+                })
+            });
+
+            var pswp = document.querySelectorAll('.pswp')[0];
+            $('.slick-slide').on('click', function() {
+                let ind = $(this).index();
+                var gallery = new photoSwipe(pswp, photoSwipeUi, items, {index: ind});
+                gallery.init();
+            });
         },
 
         /**
@@ -323,6 +342,8 @@ define([
                 $('.zoomContainer').remove();
 
                 var options = this.config.zoomSettings.options;
+                console.log('options', options);
+
                 // Check if there's enough space for zoom and force inner if necessary
                 if (this.config.zoomSettings.autoType) {
                     var windowWidth = $(window).width(),
