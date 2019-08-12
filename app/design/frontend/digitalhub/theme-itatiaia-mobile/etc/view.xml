@@ -204,33 +204,33 @@
   <var name="effect">slide</var> <!-- Sets transition effect for slides changing (slide/crossfade/dissolve) -->
   <var name="duration">500</var> <!-- Sets transition duration in ms -->
   </var>
-  <var name="fullscreen">
-  <var name="nav">thumbs</var> <!-- Fullscreen navigation style (false/thumbs/dots) -->
-  <var name="loop">true</var> <!-- Fullscreen navigation loop (true/false/null) -->
-  <var name="keyboard">true</var> <!-- Turn on/off keyboard arrows navigation (true/false/null) -->
-  <var name="arrows">false</var> <!-- Turn on/off arrows on the sides preview (true/false/null) -->
-  <var name="caption">false</var> <!-- Display alt text as image title (true/false) -->
-  <var name="navdir">horizontal</var> <!--Sliding direction of thumbnails in full screen(horizontal/vertical) -->
-  <var name="thumbwidth">150</var> <!-- Width of thumbnails in fullscreen -->
-  <var name="thumbheight">150</var> <!-- Height of thumbnails in fullscreen -->
-  <var name="navigation_carousel">true</var> <!-- Display navigation thumbs as carousel (true/false) -->
-  <var name="transition">
-  <var name="effect">dissolve</var> <!-- Sets transition effect for slides changing (slide/crossfade/dissolve) -->
-  <var name="duration">500</var> <!-- Sets transition duration in ms -->
-  <var name="carousel">true</var> <!-- Display navigation thumbs as carousel (true/false) -->
-  </var>
-  </var>
+<!--  <var name="fullscreen">-->
+<!--  <var name="nav">thumbs</var> &lt;!&ndash; Fullscreen navigation style (false/thumbs/dots) &ndash;&gt;-->
+<!--  <var name="loop">true</var> &lt;!&ndash; Fullscreen navigation loop (true/false/null) &ndash;&gt;-->
+<!--  <var name="keyboard">true</var> &lt;!&ndash; Turn on/off keyboard arrows navigation (true/false/null) &ndash;&gt;-->
+<!--  <var name="arrows">false</var> &lt;!&ndash; Turn on/off arrows on the sides preview (true/false/null) &ndash;&gt;-->
+<!--  <var name="caption">false</var> &lt;!&ndash; Display alt text as image title (true/false) &ndash;&gt;-->
+<!--  <var name="navdir">horizontal</var> &lt;!&ndash;Sliding direction of thumbnails in full screen(horizontal/vertical) &ndash;&gt;-->
+<!--  <var name="thumbwidth">150</var> &lt;!&ndash; Width of thumbnails in fullscreen &ndash;&gt;-->
+<!--  <var name="thumbheight">150</var> &lt;!&ndash; Height of thumbnails in fullscreen &ndash;&gt;-->
+<!--  <var name="navigation_carousel">true</var> &lt;!&ndash; Display navigation thumbs as carousel (true/false) &ndash;&gt;-->
+<!--  <var name="transition">-->
+<!--  <var name="effect">dissolve</var> &lt;!&ndash; Sets transition effect for slides changing (slide/crossfade/dissolve) &ndash;&gt;-->
+<!--  <var name="duration">500</var> &lt;!&ndash; Sets transition duration in ms &ndash;&gt;-->
+<!--  <var name="carousel">true</var> &lt;!&ndash; Display navigation thumbs as carousel (true/false) &ndash;&gt;-->
+<!--  </var>-->
+<!--  </var>-->
   </var>
 
-  <var name="magnifier">
-  <var name="fullscreenzoom">5</var> <!-- Zoom for fullscreen (integer)-->
-  <var name="top"></var> <!-- Top position of magnifier -->
-  <var name="left"></var> <!-- Left position of magnifier -->
-  <var name="width"></var> <!-- Width of magnifier block -->
-  <var name="height"></var> <!-- Height of magnifier block -->
-  <var name="eventType">hover</var> <!-- Action that atcivates zoom (hover/click) -->
-  <var name="enabled">false</var> <!-- Turn on/off magnifier (true/false) -->
-  </var>
+<!--  <var name="magnifier">-->
+<!--  <var name="fullscreenzoom">5</var> &lt;!&ndash; Zoom for fullscreen (integer)&ndash;&gt;-->
+<!--  <var name="top"></var> &lt;!&ndash; Top position of magnifier &ndash;&gt;-->
+<!--  <var name="left"></var> &lt;!&ndash; Left position of magnifier &ndash;&gt;-->
+<!--  <var name="width"></var> &lt;!&ndash; Width of magnifier block &ndash;&gt;-->
+<!--  <var name="height"></var> &lt;!&ndash; Height of magnifier block &ndash;&gt;-->
+<!--  <var name="eventType">hover</var> &lt;!&ndash; Action that atcivates zoom (hover/click) &ndash;&gt;-->
+<!--  <var name="enabled">false</var> &lt;!&ndash; Turn on/off magnifier (true/false) &ndash;&gt;-->
+<!--  </var>-->
 
   <var name="breakpoints">
   <var name="mobile">
