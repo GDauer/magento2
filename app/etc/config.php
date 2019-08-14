@@ -299,6 +299,7 @@ return [
         'Swissup_Taxvat' => 1,
         'Swissup_Tippyjs' => 1,
         'Temando_Shipping' => 1,
-        'Vertex_Tax' => 1
+        'Vertex_Tax' => 1,
+        'DigitalHub_MobilePhotoswipe' => 1
     ]
 ];
