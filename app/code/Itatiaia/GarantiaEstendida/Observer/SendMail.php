@@ -4,6 +4,7 @@
 namespace Itatiaia\GarantiaEstendida\Observer;
 
 
+use Itatiaia\GarantiaEstendida\Block\Garantia;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 
@@ -19,12 +20,15 @@ class SendMail implements ObserverInterface
 
     private $logger;
 
+    private $garantiaBlock;
+
     public function __construct
     (
         \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation,
+        \Itatiaia\GarantiaEstendida\Block\Garantia $garantiaBlock,
         \Psr\Log\LoggerInterface $logger
 
     )
@@ -34,6 +38,7 @@ class SendMail implements ObserverInterface
         $this->storeManager = $storeManager;
         $this->inlineTranslation = $inlineTranslation;
         $this->logger = $logger;
+        $this->garantiaBlock = $garantiaBlock;
     }
 
     public function execute(Observer $observer)
@@ -52,6 +57,20 @@ class SendMail implements ObserverInterface
 
     private function sendMail($order)
     {
+        /** @var \Magento\Sales\Model\Order $order */
+        $sendmail = false;
+        $items = $order->getAllItems();
+        foreach($items as $item) {
+            $prod = $item->getProduct();
+            if ($this->garantiaBlock->canShowGarantia($prod)) {
+                $sendmail = true;
+                break;
+            }
+        }
+        if (!$sendmail) {
+            return $this;
+        }
+
         $this->logger->info('SEND MAIL INIT');
 
         $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
