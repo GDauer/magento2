@@ -1,8 +1,8 @@
 <?php
 /**
-* Copyright © Magento, Inc. All rights reserved.
-* See COPYING.txt for license details.
-*/
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 
 // @codingStandardsIgnoreFile
 
@@ -10,139 +10,137 @@
 ?>
 <?php if ($exist = ($block->getProductCollection() && $block->getProductCollection()->getSize())): ?>
 
-<?php
-$type = 'widget-product-grid';
+    <?php
+    $type = 'widget-product-grid';
 
-$mode = 'grid';
+    $mode = 'grid';
 
-$image = 'new_products_content_widget_grid';
-$items = $block->getProductCollection()->getItems();
+    $image = 'new_products_content_widget_grid';
+    $items = $block->getProductCollection()->getItems();
 
-$showWishlist = true;
-$showCompare = true;
-$showCart = true;
-$templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::DEFAULT_VIEW;
-$description = false;
-?>
-<div class="block widget block-products-list <?= /* @noEscape */ $mode ?>">
-  <?php if ($block->getTitle()): ?>
-    <div class="block-title">
-      <strong><?= $block->escapeHtml(__($block->getTitle())) ?></strong>
-    </div>
-  <?php endif ?>
-  <div class="block-content">
-    <?= /* @noEscape */ '<!-- ' . $image . '-->' ?>
-    <div class="products-<?= /* @noEscape */ $mode ?> <?= /* @noEscape */ $mode ?>">
-      <ol class="product-items owl-carousel <?= /* @noEscape */ $type ?>">
-        <?php $iterator = 1; ?>
-        <?php foreach ($items as $_item): ?>
-          <?php if ($iterator++ != 1): ?></li><?php endif ?>
-          <li class="product-item">
-            <div class="product-item-info">
+    $showWishlist = true;
+    $showCompare = true;
+    $showCart = true;
+    $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::DEFAULT_VIEW;
+    $description = false;
+    ?>
+    <div class="block widget block-products-list <?= /* @noEscape */ $mode ?>">
+        <?php if ($block->getTitle()): ?>
+            <div class="block-title">
+                <strong><?= $block->escapeHtml(__($block->getTitle())) ?></strong>
+            </div>
+        <?php endif ?>
+        <div class="block-content">
+            <?= /* @noEscape */ '<!-- ' . $image . '-->' ?>
+            <div class="products-<?= /* @noEscape */ $mode ?> <?= /* @noEscape */ $mode ?>">
+                <ol class="product-items owl-carousel <?= /* @noEscape */ $type ?>">
+                    <?php $iterator = 1; ?>
+                    <?php foreach ($items as $_item): ?>
+                    <?php if ($iterator++ != 1): ?></li><?php endif ?>
+                    <li class="product-item">
+                        <div class="product-item-info">
 
-              <?php if(date('Y-m-d H:i:s') >= $_item->getData('news_from_date') && date('Y-m-d H:i:s') <= $_item->getData('news_to_date')) :?>
-                <span class="tag-new">Novo</span>
-              <?php endif ;?>
-              <?php /*if($_item->getFinalPrice() < $_item->getPrice()) : ?>
+                            <?php if(date('Y-m-d H:i:s') >= $_item->getData('news_from_date') && date('Y-m-d H:i:s') <= $_item->getData('news_to_date')) :?>
+                                <span class="tag-new">Novo</span>
+                            <?php endif ;?>
+                            <?php /*if($_item->getFinalPrice() < $_item->getPrice()) : ?>
                 <span class="tag-desc">-<?= (int)(100 - ($_item->getFinalPrice() * 100 / $_item->getPrice()))?>%</span>
               <?php endif;*/ ?>
 
-            <a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>" class="product-item-photo">
-                <?php echo $this->getLayout()
-                    ->createBlock('Itatiaia\ProductTag\Block\Product\Image')
-                    ->setProduct($_item)
-                    ->setTemplate('Itatiaia_ProductTag::product/tag.phtml')->toHtml() ?>
-              <?= $block->getImage($_item, $image)->toHtml() ?>
-            </a>
+                            <a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>" class="product-item-photo">
+                                <?php echo $this->getLayout()
+                                    ->createBlock('Itatiaia\ProductTag\Block\Product\Image')
+                                    ->setProduct($_item)
+                                    ->setTemplate('Itatiaia_ProductTag::product/tag.phtml')->toHtml() ?>
+                                <?= $block->getImage($_item, $image)->toHtml() ?>
+                            </a>
 
-            <div class="product-item-details">
-              <strong class="product-item-name">
-                <a title="<?= $block->escapeHtml($_item->getName()) ?>"
-                  href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>"
-                  class="product-item-link">
-                  <?= $block->escapeHtml($_item->getName()) ?>
-                </a>
-              </strong>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="<?= $block->escapeHtml($_item->getName()) ?>"
+                                       href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>"
+                                       class="product-item-link">
+                                        <?= $block->escapeHtml($_item->getName()) ?>
+                                    </a>
+                                </strong>
 
-              <?php echo $block->getProductPriceHtml($_item, $type); ?>
+                                <?php echo $block->getProductPriceHtml($_item, $type); ?>
 
-              <div class="preco-parcelado">
-                <?php
-                    echo $this->getLayout()
-                        ->createBlock('\DigitalHub\AdditionalPrices\Block\Product\Additional')
-                        ->setTemplate('DigitalHub_AdditionalPrices::product/additional_prices.phtml')
-                        ->setProduct($_item)
-                        ->toHtml();
-                ?>
-              </div>
+                                <div class="preco-parcelado">
+                                    <?php
+                                    echo $this->getLayout()
+                                        ->createBlock('\DigitalHub\AdditionalPrices\Block\Product\Additional')
+                                        ->setTemplate('DigitalHub_AdditionalPrices::product/additional_prices.phtml')
+                                        ->setProduct($_item)
+                                        ->toHtml();
+                                    ?>
+                                </div>
 
-              <?php if ($templateType): ?>
-                <?= $block->getReviewsSummaryHtml($_item, $templateType) ?>
-              <?php endif; ?>
+                                <?php if ($templateType): ?>
+                                    <?= $block->getReviewsSummaryHtml($_item, $templateType) ?>
+                                <?php endif; ?>
 
-              <?php if ($showWishlist || $showCompare || $showCart): ?>
-                <div class="product-item-actions">
-                  <?php if ($showCart): ?>
-                    <div class="actions-primary">
-                      <?php if ($_item->isSaleable()): ?>
-                          <button class="action tocart primary" onclick="document.location.href='<?php echo $_item->getProductUrl() ?>'; return false;">
-                            <span><?= __('Comprar') ?></span>
-                          </button>
-                      <?php else: ?>
-                          <?php if ($_item->isAvailable()): ?>
-                            <div class="stock available"><span><?= /* @escapeNotVerified */ __('In stock') ?></span></div>
-                          <?php else: ?>
-                            <div class="stock unavailable"><span><?= /* @escapeNotVerified */ __('Item indisponível no momento') ?></span></div>
-                          <?php endif; ?>
-                      <?php endif; ?>
-                    </div>
-                  <?php endif; ?>
+                                <?php if ($showWishlist || $showCompare || $showCart): ?>
+                                    <div class="product-item-actions">
+                                        <?php if ($showCart): ?>
+                                            <div class="actions-primary">
+                                                <?php if ($_item->isSaleable()): ?>
+                                                    <button class="action tocart primary" onclick="document.location.href='<?php echo $_item->getProductUrl() ?>'; return false;">
+                                                        <span><?= __('Comprar') ?></span>
+                                                    </button>
+                                                <?php else: ?>
+                                                    <?php if ($_item->isAvailable()): ?>
+                                                        <div class="stock available"><span><?= /* @escapeNotVerified */ __('In stock') ?></span></div>
+                                                    <?php else: ?>
+                                                        <div class="stock unavailable"><span><?= /* @escapeNotVerified */ __('Item indisponível no momento') ?></span></div>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                            </div>
+                                        <?php endif; ?>
 
-              </div>
-            <?php endif; ?>
-          </div>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <?= ($iterator == count($items)+1) ? '</li>' : '' ?>
+                        <?php endforeach ?>
+                </ol>
+            </div>
+            <?= $block->getPagerHtml() ?>
         </div>
-        <?= ($iterator == count($items)+1) ? '</li>' : '' ?>
-      <?php endforeach ?>
-    </ol>
-  </div>
-  <?= $block->getPagerHtml() ?>
-</div>
-<script>
-require([
-  'jquery',
-  'owlcarousel'
-], function () {
-  'use strict';
-  jQuery.noConflict();
-  jQuery(".home-products-list .owl-carousel").owlCarousel({
-    loop: true,
-    nav: true,
-    dots: true,
-    lazyLoad: true,
-    dotsEach: 1,
-    slideBy: 2,
-    //center: true,
-    margin: 10,
-    responsive:{
-      0:{
-        items:2
-      },
-      600:{
-        items:2
-      },
-      1000:{
-        items:5
-      }
-    }
-  })
-});
-</script>
-</div>
-<?php endif;?>
-
-<?php if(count($items)): ?>
-    <?php
+        <script>
+            require([
+                'jquery',
+                'owlcarousel'
+            ], function () {
+                'use strict';
+                jQuery.noConflict();
+                jQuery(".home-products-list .owl-carousel").owlCarousel({
+                    loop: true,
+                    nav: true,
+                    dots: true,
+                    lazyLoad: true,
+                    dotsEach: 1,
+                    slideBy: 2,
+                    //center: true,
+                    margin: 10,
+                    responsive:{
+                        0:{
+                            items:2
+                        },
+                        600:{
+                            items:2
+                        },
+                        1000:{
+                            items:5
+                        }
+                    }
+                })
+            });
+        </script>
+    </div>
+    <?php if(count($items)): ?>
+        <?php
         $groupedHelper = $this->helper('\Itatiaia\GroupedCatalogRule\Helper\Data');
         $productsListData = [];
         $position = 1;
@@ -158,14 +156,17 @@ require([
             $productsListData[] = $productData;
             $position++;
         }
-    ?>
-    <script>
-    if(!window.dataLayer) window.dataLayer = []
-    window.dataLayer.push({
-        "ecommerce": {
-            "currencyCode": "BRL",
-            "impressions": <?php echo json_encode($productsListData); ?>
-        }
-    });
-    </script>
-<?php endif; ?>
+        ?>
+        <script>
+            if(!window.dataLayer) window.dataLayer = []
+            window.dataLayer.push({
+                "ecommerce": {
+                    "currencyCode": "BRL",
+                    "impressions": <?php echo json_encode($productsListData); ?>
+                }
+            });
+        </script>
+    <?php endif; ?>
+<?php endif;?>
+
+
