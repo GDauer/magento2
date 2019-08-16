@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <cms>
+            <external_images>
+                <enabled>1</enabled>
+                <recipients>rlazarotto@digitalhub.com.br</recipients>
+            </external_images>
+        </cms>
+    </default>
+</config>
