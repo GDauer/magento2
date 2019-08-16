@@ -13,9 +13,9 @@
       <block class="Magento\Newsletter\Block\Subscribe" name="form.subscribe" as="subscribe" before="-" template="Magento_Newsletter::subscribe.phtml"/>
     </referenceContainer>
     <referenceBlock name="catalog.compare.sidebar" remove="true"/>
-    <referenceBlock name="view.addto.compare" remove="true" />
+    <!--<referenceBlock name="view.addto.compare" remove="true" />-->
     <referenceContainer name="sidebar.additional" remove="true" />
-    <referenceBlock name="view.addto.compare" remove="true" />
+    <!--<referenceBlock name="view.addto.compare" remove="true" />-->
     <referenceBlock name="footer_links" remove="true"/>
     <referenceBlock name="report.bugs" remove="true"/>
     <referenceBlock name="form.subscribe" remove="true" />
