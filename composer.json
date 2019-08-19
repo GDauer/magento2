@@ -89,6 +89,16 @@
             "**/Test/**"
         ]
     },
+    "scripts": {
+        "post-update-cmd": [
+            "./patches/apply_patch.sh patches/theme-base-Commenting-lines-to-remove-view.addto.compare-block.patch",
+            "./patches/apply_patch.sh patches/theme-base-mobile-Commenting-lines-to-remove-view.addto.compare-block.patch"
+        ],
+        "post-install-cmd": [
+            "./patches/apply_patch.sh patches/theme-base-Commenting-lines-to-remove-view.addto.compare-block.patch",
+            "./patches/apply_patch.sh patches/theme-base-mobile-Commenting-lines-to-remove-view.addto.compare-block.patch"
+        ]
+    },
     "autoload-dev": {
         "psr-4": {
             "Magento\\Sniffs\\": "dev/tests/static/framework/Magento/Sniffs/",
