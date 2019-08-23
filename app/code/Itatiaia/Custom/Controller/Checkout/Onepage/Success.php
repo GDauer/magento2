@@ -3,90 +3,9 @@
 
 namespace Itatiaia\Custom\Controller\Checkout\Onepage;
 
-use Magento\Customer\Api\AccountManagementInterface;
-use Magento\Customer\Api\CustomerRepositoryInterface;
-use Magento\Checkout\Model\Session;
-use Psr\Log\LoggerInterface;
-use Magento\Sales\Model\OrderFactory;
 
 class Success extends \Magento\Checkout\Controller\Onepage
 {
-    /**
-     * @var Session
-     */
-    protected $checkoutSession;
-    /**
-     * @var LoggerInterface
-     */
-    protected $logger;
-    /**
-     * @var OrderFactory
-     */
-    protected $orderFactory;
-
-    /**
-     * @param \Magento\Framework\App\Action\Context $context
-     * @param \Magento\Customer\Model\Session $customerSession
-     * @param CustomerRepositoryInterface $customerRepository
-     * @param AccountManagementInterface $accountManagement
-     * @param \Magento\Framework\Registry $coreRegistry
-     * @param \Magento\Framework\Translate\InlineInterface $translateInline
-     * @param \Magento\Framework\Data\Form\FormKey\Validator $formKeyValidator
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-     * @param \Magento\Framework\View\LayoutFactory $layoutFactory
-     * @param \Magento\Quote\Api\CartRepositoryInterface $quoteRepository
-     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
-     * @param \Magento\Framework\View\Result\LayoutFactory $resultLayoutFactory
-     * @param \Magento\Framework\Controller\Result\RawFactory $resultRawFactory
-     * @param \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
-     * @param Session $checkoutSession
-     * @param LoggerInterface $logger
-     * @param OrderFactory $orderFactory
-     *
-     * @codeCoverageIgnore
-     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
-     */
-    public function __construct(
-        \Magento\Framework\App\Action\Context $context,
-        \Magento\Customer\Model\Session $customerSession,
-        CustomerRepositoryInterface $customerRepository,
-        AccountManagementInterface $accountManagement,
-        \Magento\Framework\Registry $coreRegistry,
-        \Magento\Framework\Translate\InlineInterface $translateInline,
-        \Magento\Framework\Data\Form\FormKey\Validator $formKeyValidator,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-        \Magento\Framework\View\LayoutFactory $layoutFactory,
-        \Magento\Quote\Api\CartRepositoryInterface $quoteRepository,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-        \Magento\Framework\View\Result\LayoutFactory $resultLayoutFactory,
-        \Magento\Framework\Controller\Result\RawFactory $resultRawFactory,
-        \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
-        Session $checkoutSession,
-        LoggerInterface $logger,
-        OrderFactory $orderFactory
-    ) {
-        parent::__construct(
-            $context,
-            $customerSession,
-            $customerRepository,
-            $accountManagement,
-            $coreRegistry,
-            $translateInline,
-            $formKeyValidator,
-            $scopeConfig,
-            $layoutFactory,
-            $quoteRepository,
-            $resultPageFactory,
-            $resultLayoutFactory,
-            $resultRawFactory,
-            $resultJsonFactory
-        );
-
-        $this->checkoutSession = $checkoutSession;
-        $this->logger = $logger;
-        $this->orderFactory = $orderFactory;
-    }
-
     public function execute()
     {
         $session = $this->getOnepage()->getCheckout();
@@ -105,19 +24,19 @@ class Success extends \Magento\Checkout\Controller\Onepage
 
     public function isValid()
     {
-        //$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-        //$logger = $objectManager->get('\Psr\Log\LoggerInterface');
-        //$checkoutSession = $objectManager->get('\Magento\Checkout\Model\Session');
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $logger = $objectManager->get('\Psr\Log\LoggerInterface');
+        $checkoutSession = $objectManager->get('\Magento\Checkout\Model\Session');
 
-        $quoteId = $this->checkoutSession->getLastSuccessQuoteId();
-        $lastOrderId = $this->checkoutSession->getLastOrderId();
-        $lastQuoteId = (string)$this->checkoutSession->getLastQuoteId();
+        $quoteId = $checkoutSession->getLastSuccessQuoteId();
+        $lastOrderId = $checkoutSession->getLastOrderId();
+        $lastQuoteId = (string)$checkoutSession->getLastQuoteId();
 
         try {
-            $order = $this->orderFactory->create()->load($lastOrderId);
-            $this->logger->info('ORDER SUCCESS', ['increment_id' => $order->getIncrementId(), 'quoteId' => $quoteId, 'lastOrderId' => $lastOrderId, 'lastQuoteId' => $lastQuoteId]);
+            $order = $objectManager->get('Magento\Sales\Model\OrderFactory')->create()->load($lastOrderId);
+            $logger->info('ORDER SUCCESS', ['increment_id' => $order->getIncrementId(), 'quoteId' => $quoteId, 'lastOrderId' => $lastOrderId, 'lastQuoteId' => $lastQuoteId]);
         } catch (\Exception $e){
-            $this->logger->error('Pedido gerado com erro.', [$e->getMessage()]);
+            // apenas para não gerar execeção no fechamento do pedido
         }
 
         if((!$lastOrderId))
