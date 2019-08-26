@@ -3,16 +3,17 @@
 
 namespace Itatiaia\BirthdayMail\Cron;
 
-
 use Itatiaia\BirthdayMail\Service\CodeGeneratorService;
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Customer\Model\ResourceModel\Customer\CollectionFactory;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\Area;
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\Exception\InputException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\MailException;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Exception\State\InputMismatchException;
 use Magento\Framework\Mail\Template\TransportBuilder;
 use Magento\Framework\Translate\Inline\StateInterface;
 use Magento\Store\Model\ScopeInterface;
@@ -69,13 +70,11 @@ class SendBirthdayGiftMail
     }
 
     /**
-     * Execute action based on request and return result
-     *
-     * Note: Request will be added as operation argument in future
-     *
-     * @return void
      * @throws LocalizedException
+     * @throws MailException
      * @throws NoSuchEntityException
+     * @throws InputException
+     * @throws InputMismatchException
      */
     public function execute()
     {
