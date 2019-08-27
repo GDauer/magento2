@@ -9,8 +9,8 @@ $iplArray = [];
 <div id="tab-grouped-items">
     <section>
         <?php foreach ($groupedProduct->getTypeInstance(true)->getAssociatedProducts($groupedProduct) as $_item): ?>
-            <?php $_childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\ProductFactory')->create()->load($_item->getEntityId());
-
+            <?php $_childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\ProductFactory')->create()->load($_item->getEntityId()); ?>
+            <?php
             $name = strtolower($_item->getName());
 
             if (strpos($name, 'volume') && strpos($name, '- ip')) {
@@ -29,16 +29,11 @@ $iplArray = [];
                 }
             }
             ?>
-        <? endforeach; ?>
+        <?php endforeach; ?>
         <?php foreach ($groupedProduct->getTypeInstance(true)->getAssociatedProducts($groupedProduct) as $_item): ?>
-            <?php $_childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\ProductFactory')->create()->load($_item->getEntityId()) ?>
-
-
-            <?php if (strpos(strtolower($_childProduct->getName()), 'volume') === false ||
-                strpos(strtolower($_childProduct->getName()), 'volume 1') > 0): ?>
-
+            <?php $_childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\ProductFactory')->create()->load($_item->getEntityId()); ?>
+            <?php if (strpos(strtolower($_childProduct->getName()), 'volume') === false || strpos(strtolower($_childProduct->getName()), 'volume 1') > 0): ?>
                 <?php
-
                 $pos_name = strpos(strtolower($_childProduct->getName()), '- vol');
                 if ($pos_name !== false) {
                     $pName = substr($_childProduct->getName(), 0, $pos_name);
@@ -110,7 +105,6 @@ $iplArray = [];
                                                             $end = strpos($name, '-', $pos);
                                                             $str = trim(substr($name, $pos, $end - $pos));
                                                             echo $priceHelper->currency($iplArray[$str]['regular-price'], true, false);
-
                                                         } else {
                                                             echo $priceHelper->currency($groupedCatalogRuleHelper->getRegularPrice($_childProduct, $groupedProduct), true, false);
                                                         }
@@ -118,9 +112,7 @@ $iplArray = [];
                                                     </span>
                                                 </span>
                                                 <?php endif; ?>
-
                                                 <div class="clear"></div>
-
                                                 <span class="special-price">
                                                 <span class="price">
                                                     <?php
@@ -131,7 +123,6 @@ $iplArray = [];
                                                         $end = strpos($name, '-', $pos);
                                                         $str = trim(substr($name, $pos, $end - $pos));
                                                         echo $priceHelper->currency($iplArray[$str]['final-price'], true, false);
-
                                                     } else {
                                                         echo $priceHelper->currency($groupedCatalogRuleHelper->getFinalPrice($_childProduct, $groupedProduct), true, false);
                                                     }
