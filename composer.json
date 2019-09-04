@@ -89,6 +89,14 @@
             "**/Test/**"
         ]
     },
+    "scripts": {
+        "post-update-cmd": [
+            "./patches/apply_patch.sh patches/io-35-datalayer-before-sales-success-page-disable.patch"
+        ],
+        "post-install-cmd": [
+            "./patches/apply_patch.sh patches/io-35-datalayer-before-sales-success-page-disable.patch"
+        ]
+    },
     "autoload-dev": {
         "psr-4": {
             "Magento\\Sniffs\\": "dev/tests/static/framework/Magento/Sniffs/",
