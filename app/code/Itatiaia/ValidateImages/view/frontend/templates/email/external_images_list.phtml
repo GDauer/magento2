@@ -1,0 +1,25 @@
+<?php $remoteImages = $block->getData("remoteImages") ?>
+<table class="pure-table pure-table-horizontal">
+    <thead>
+    <tr>
+        <th>Página</th>
+        <th>Link da Imagem</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($remoteImages as $source => $images) : ?>
+        <?php foreach ($images as $image) : ?>
+            <?php $imageInfo = pathinfo($image); ?>
+            <tr>
+                <td>
+                    <?= $source ?>
+                </td>
+                <td>
+                    <a href="<?= $image ?>"
+                       target="_blank"><?= $imageInfo['filename'] . '.' . $imageInfo['extension'] ?></a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    <?php endforeach; ?>
+    </tbody>
+</table>
