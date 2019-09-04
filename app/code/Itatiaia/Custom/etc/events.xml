@@ -3,4 +3,7 @@
     <event name="sales_order_save_before">
         <observer name="sales_order_save_before_fix_vat_id" instance="Itatiaia\Custom\Observer\FixVatId" />
     </event>
+    <event name="sales_order_save_after">
+        <observer name="itatiaia_custom_set_ga_orderdata_after_payment" instance="Itatiaia\Custom\Observer\Frontend\SetGaOrderdataAfterPaymentObserver" />
+    </event>
 </config>
