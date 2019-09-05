@@ -23,6 +23,10 @@ class Success extends \Magento\Checkout\Controller\Onepage
      * @var OrderFactory
      */
     protected $orderFactory;
+    /**
+     * @var string
+     */
+    protected $lastOrderId;
 
     /**
      * @param \Magento\Framework\App\Action\Context $context
@@ -98,29 +102,31 @@ class Success extends \Magento\Checkout\Controller\Onepage
         $resultPage = $this->resultPageFactory->create();
         $this->_eventManager->dispatch(
             'checkout_onepage_controller_success_action',
-            ['order_ids' => [(string)$session->getLastOrderId()]]
+            ['order_ids' => [(string)$this->lastOrderId]]
         );
         return $resultPage;
     }
 
     public function isValid()
     {
-        //$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-        //$logger = $objectManager->get('\Psr\Log\LoggerInterface');
-        //$checkoutSession = $objectManager->get('\Magento\Checkout\Model\Session');
-
         $quoteId = $this->checkoutSession->getLastSuccessQuoteId();
-        $lastOrderId = $this->checkoutSession->getLastOrderId();
         $lastQuoteId = (string)$this->checkoutSession->getLastQuoteId();
 
+        $this->lastOrderId = $this->checkoutSession->getLastOrderId();
+        $this->logger->info('GETTING NATIVE ORDER ID', ['lastOrderId' => $this->lastOrderId]);
+        if (!$this->lastOrderId) {
+            $this->lastOrderId = $this->checkoutSession->getCustomLastOrderId();
+            $this->logger->info('GETTING CUSTOM ORDER ID', ['lastOrderId' => $this->lastOrderId]);
+        }
+
         try {
-            $order = $this->orderFactory->create()->load($lastOrderId);
-            $this->logger->info('ORDER SUCCESS', ['increment_id' => $order->getIncrementId(), 'quoteId' => $quoteId, 'lastOrderId' => $lastOrderId, 'lastQuoteId' => $lastQuoteId]);
+            $order = $this->orderFactory->create()->load($this->lastOrderId);
+            $this->logger->info('ORDER SUCCESS', ['increment_id' => $order->getIncrementId(), 'quoteId' => $quoteId, 'lastOrderId' => $this->lastOrderId, 'lastQuoteId' => $lastQuoteId]);
         } catch (\Exception $e){
             $this->logger->error('Pedido gerado com erro.', [$e->getMessage()]);
         }
 
-        if((!$lastOrderId))
+        if((!$this->lastOrderId))
         {
             return false;
         }
