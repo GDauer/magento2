@@ -19,5 +19,19 @@
                 </field>
             </group>
         </section>
+        <section id="carriers">
+            <group id="itatiaia_intelipost_mapping" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Mapeamento de exportação de transportadoras para SAP</label>
+                <field id="active" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Active</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="mapping" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>DE/PARA</label>
+                    <frontend_model>Itatiaia\Custom\Block\Adminhtml\Form\Field\Mapping</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+            </group>
+        </section>
     </system>
 </config>

@@ -56,6 +56,7 @@
         "swissup/firecheckout": "^1.18",
         "swissup/rtl": "^1.3",
         "pmclain/magento2-successtest": "^2.0",
+        "mageplaza/module-better-popup": "^1.1",
         "mundipagg/mundipagg-magento2-module": "^1.8",
         "digitalhub/module-cookie": "dev-master"
     },
@@ -91,10 +92,14 @@
     },
     "scripts": {
         "post-update-cmd": [
-            "./patches/apply_patch.sh patches/io-35-datalayer-before-sales-success-page-disable.patch"
+            "./patches/apply_patch.sh patches/io-35-datalayer-before-sales-success-page-disable.patch",
+            "./patches/apply_patch.sh patches/theme-base-Commenting-lines-to-remove-view.addto.compare-block.patch",
+            "./patches/apply_patch.sh patches/theme-base-mobile-Commenting-lines-to-remove-view.addto.compare-block.patch"
         ],
         "post-install-cmd": [
-            "./patches/apply_patch.sh patches/io-35-datalayer-before-sales-success-page-disable.patch"
+            "./patches/apply_patch.sh patches/io-35-datalayer-before-sales-success-page-disable.patch",
+            "./patches/apply_patch.sh patches/theme-base-Commenting-lines-to-remove-view.addto.compare-block.patch",
+            "./patches/apply_patch.sh patches/theme-base-mobile-Commenting-lines-to-remove-view.addto.compare-block.patch"
         ]
     },
     "autoload-dev": {

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+sof        <add id="Itatiaia_CustomReports::report_grouped" title="Vendas por produto agrupado" translate="title" module="Itatiaia_CustomReports" sortOrder="20" parent="Magento_Reports::report_products" action="itatiaia_customreports/reports/grouped" resource="Itatiaia_CustomReports::report_grouped"/>
+    </menu>
+</config>
