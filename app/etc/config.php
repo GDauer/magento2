@@ -305,7 +305,8 @@ return [
         'Temando_Shipping' => 1,
         'Vertex_Tax' => 1,
         'DigitalHub_MobilePhotoswipe' => 1,
-        'DigitalHub_SalesGrid' => 1,
-        'DigitalHub_WishlistGrid' => 1
+        'DigitalHub_WishlistGrid' => 1,
+        'Itatiaia_ValidateImages' => 1,
+        'DigitalHub_SalesGrid' => 1
     ]
 ];
