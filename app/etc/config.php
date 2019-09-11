@@ -308,5 +308,6 @@ return [
         'DigitalHub_WishlistGrid' => 1,
         'Itatiaia_ValidateImages' => 1,
         'DigitalHub_SalesGrid' => 1
+        'Konduto_Antifraud' => 1,
     ]
 ];
