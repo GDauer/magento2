@@ -15,4 +15,8 @@
         <plugin name="custom_additional_information_format" type="Itatiaia\AdyenCustom\Plugin\Framework\Reflection\DataObjectProcessorPlugin" sortOrder="1" disabled="false" />
     </type>
 
+    <type name="Adyen\Payment\Gateway\Http\Client\TransactionPayment">
+        <plugin name="itatiaia_adyen_custom_set_order_items_into_request" type="Itatiaia\AdyenCustom\Plugin\Gateway\Http\Client\SetOrderItemsIntoRequestPlugin" sortOrder="1" disabled="false" />
+    </type>
+
 </config>
