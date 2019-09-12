@@ -58,7 +58,8 @@
         "pmclain/magento2-successtest": "^2.0",
         "mageplaza/module-better-popup": "^1.1",
         "mundipagg/mundipagg-magento2-module": "^1.8",
-        "digitalhub/module-cookie": "dev-master"
+        "digitalhub/module-cookie": "dev-master",
+        "konduto/magento2": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.2.0",
