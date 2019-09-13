@@ -122,7 +122,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
                     </div>
                 </div>
             </div>
-            <div class="box-tocart">
+            <div class="box-tocart" data-mage-init='{"addToCartDisable":{}}'>
                 <?php
                 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
                 $listBlock = $objectManager->get('\Magento\Catalog\Block\Product\ListProduct');
@@ -131,7 +131,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
                 <form data-role="tocart-form" action="<?= $addToCartUrl; ?>" method="post">
                     <?= $block->getBlockHtml('formkey')?>
                     <div class="btn">
-                        <button type="submit" title="Add to Cart" class="action tocart primary">
+                        <button type="submit" title="Add to Cart" class="action tocart primary itatiaia-tocart">
                             <span>COMPRE AGORA</span>
                         </button>
                     </div>
@@ -182,7 +182,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
 
                 <div class="box-tocart">
                     <div class="btn">
-                        <button title="Add to Cart" onclick="jQuery('#product-addtocart-button').trigger('click'); return false;" class="action tocart primary">
+                        <button title="Add to Cart" onclick="jQuery('#product-addtocart-button').trigger('mousedown'); return false;" class="action tocart primary">
                             <span>COMPRE AGORA</span>
                         </button>
                     </div>
