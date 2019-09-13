@@ -13,7 +13,7 @@
 <?php $buttonTitle = __('Comprar'); ?>
 
 <?php if ($_product->isAvailable()): ?>
-<div class="box-tocart">
+<div class="box-tocart" data-mage-init='{"addToCartDisable":{}}'>
     <div class="fieldset">
         <?php if ($block->shouldRenderQuantity()): ?>
         <div class="field qty">
@@ -36,7 +36,7 @@
         <div class="actions">
             <button type="submit"
                     title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
-                    class="action primary tocart"
+                    class="action primary tocart itatiaia-tocart"
                     id="product-addtocart-button">
                 <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
             </button>
