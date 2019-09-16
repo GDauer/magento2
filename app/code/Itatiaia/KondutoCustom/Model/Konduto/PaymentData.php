@@ -102,7 +102,6 @@ class PaymentData extends \Konduto\Antifraud\Model\Konduto\AbstractData
     private function getBoletoExpirationDate($payment)
     {
         $pResp = $payment->getAdditionalInformation('expirationDate');
-        $dateArray = explode('-', $pResp); // ['YYYY', 'MM', 'DD'];
-        return $dateArray[1] . $dateArray[0];
+        return $pResp;
     }
 }
