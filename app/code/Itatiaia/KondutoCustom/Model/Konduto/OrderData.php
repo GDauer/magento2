@@ -3,7 +3,10 @@
 namespace Itatiaia\KondutoCustom\Model\Konduto;
 
 use Konduto\Antifraud\Helper\Data;
-use Konduto\Core\Konduto;
+use Konduto\Antifraud\Model\Konduto\BillingData;
+use Konduto\Antifraud\Model\Konduto\CustomerData;
+use Konduto\Antifraud\Model\Konduto\ShippingData;
+use Konduto\Antifraud\Model\Konduto\ShoppingCartData;
 use Konduto\Models\Order;
 
 /**
@@ -79,15 +82,18 @@ class OrderData extends \Konduto\Antifraud\Model\Konduto\AbstractData
         $orderKonduto->setCurrency($order->getBaseCurrencyCode());
         $orderKonduto->setIp($order->getRemoteIp());
         $orderKonduto->setCustomer($this->customerData->getCustomerData($order));
-        $orderKonduto->setPayment($this->paymentData->getPaymentData($order));
-        $this->helper->log('PAYMENT_DATA : ' . json_encode($this->paymentData->getPaymentData($order)), 'info');
+        $a = $this->paymentData->getPaymentData($order);
+        $orderKonduto->setPayment($a);
+        $this->helper->log('PAYMENT_DATA : ' . json_encode($a), 'info');
         $orderKonduto->setBilling($this->billingData->getBillingData($order->getBillingAddress()));
         if ($order->getShippingAddress()) {
             $orderKonduto->setShipping($this->shippingData->getShippingData($order->getShippingAddress()));
         }
         $orderKonduto->setShoppingCart($this->shoppingCartData->getItems($order));
 
-        return (object) $orderKonduto;
+        $this->helper->log('ORDER _DATA : ' . json_encode((array) $orderKonduto), 'info');
+        $this->helper->log('ORDER P_DATA : ' . json_encode($orderKonduto->toJsonArray()), 'info');
+        return $orderKonduto;
     }
 
     public function treatCents($number)
