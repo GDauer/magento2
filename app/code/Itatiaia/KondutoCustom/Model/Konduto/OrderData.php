@@ -7,18 +7,15 @@ use Konduto\Antifraud\Model\Konduto\BillingData;
 use Konduto\Antifraud\Model\Konduto\CustomerData;
 use Konduto\Antifraud\Model\Konduto\ShippingData;
 use Konduto\Antifraud\Model\Konduto\ShoppingCartData;
-use Konduto\Models\Order;
+use Konduto\Antifraud\Model\Konduto\PaymentData;
+use Konduto\Antifraud\Model\Konduto\OrderData as OriginalOrderData;
 
 /**
  * Class OrderData
  * @package Konduto\Antifraud\Model\Konduto
  */
-class OrderData extends \Konduto\Antifraud\Model\Konduto\AbstractData
+class OrderData extends OriginalOrderData
 {
-    /**
-     * @var
-     */
-    private $orderData;
     /**
      * @var PaymentData
      */
@@ -51,10 +48,10 @@ class OrderData extends \Konduto\Antifraud\Model\Konduto\AbstractData
      */
     public function __construct(
         PaymentData $paymentData,
-        \Konduto\Antifraud\Model\Konduto\CustomerData $customerData,
-        \Konduto\Antifraud\Model\Konduto\BillingData $billingData,
-        \Konduto\Antifraud\Model\Konduto\ShippingData $shippingData,
-        \Konduto\Antifraud\Model\Konduto\ShoppingCartData $shoppingCartData,
+        CustomerData $customerData,
+        BillingData $billingData,
+        ShippingData $shippingData,
+        ShoppingCartData $shoppingCartData,
         Data $helper
     ){
         $this->paymentData = $paymentData;
@@ -62,7 +59,13 @@ class OrderData extends \Konduto\Antifraud\Model\Konduto\AbstractData
         $this->billingData = $billingData;
         $this->shippingData = $shippingData;
         $this->shoppingCartData = $shoppingCartData;
-        parent::__construct($helper);
+        parent::__construct(
+            $paymentData,
+            $customerData,
+            $billingData,
+            $shippingData,
+            $shoppingCartData
+        );
     }
 
     /**
