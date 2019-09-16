@@ -2,4 +2,6 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Konduto\Antifraud\Model\Konduto\PaymentData" type="Itatiaia\KondutoCustom\Model\Konduto\PaymentData" />
     <preference for="Konduto\Antifraud\Model\Konduto\OrderData" type="Itatiaia\KondutoCustom\Model\Konduto\OrderData" />
+    <preference for="Konduto\Antifraud\Model\KondutoService" type="Itatiaia\KondutoCustom\Model\Konduto\KondutoService" />
+    <preference for="Konduto\Antifraud\Model\QueueManager" type="Itatiaia\KondutoCustom\Model\Konduto\QueueManager" />
 </config>

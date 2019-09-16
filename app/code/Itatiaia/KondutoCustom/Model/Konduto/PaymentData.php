@@ -34,9 +34,9 @@ class PaymentData extends \Konduto\Antifraud\Model\Konduto\AbstractData
         $this->payment = $this->order->getPayment();
         $this->transactions = $this->helper->getTransactions($this->order->getId());
 
-        if (sizeof($this->transactions) < 2) {
-            return $this->getSimplePayment();
-        }
+//        if (sizeof($this->transactions) < 2) {
+        return $this->getSimplePayment();
+//        }
     }
 
     public function loadQuote($quoteId)
@@ -60,7 +60,11 @@ class PaymentData extends \Konduto\Antifraud\Model\Konduto\AbstractData
             if ($this->payment->getCcLast4()) {
                 $data[0]['last4'] = $this->payment->getCcLast4();
             }
+        } else {
+            $this->helper->log('ORDER: ' . json_encode($this->order->getId()), 'info');
+            $data[0]['expiration_date'] = $this->getBoletoExpirationDate($this->order->getPayment());
         }
+        $this->helper->log('DATA END: ' . json_encode($data), 'info');
 
         return $data;
     }
@@ -93,5 +97,12 @@ class PaymentData extends \Konduto\Antifraud\Model\Konduto\AbstractData
         $pResp = $payment->getAdditionalInformation('paymentsResponse');
         $expiryDate = $pResp['additionalData']['expiryDate']; // mm/yyyy
         return str_replace('/', '', $expiryDate);
+    }
+
+    private function getBoletoExpirationDate($payment)
+    {
+        $pResp = $payment->getAdditionalInformation('expirationDate');
+        $dateArray = explode('-', $pResp); // ['YYYY', 'MM', 'DD'];
+        return $dateArray[1] . $dateArray[0];
     }
 }
