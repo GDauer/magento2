@@ -201,10 +201,8 @@ $hoverimg = 'category_page_list_hover';
   });
   </script>
 </div>
-<?php endif;?>
-
-<?php if(count($items)): ?>
-    <?php
+    <?php if(count($items)): ?>
+        <?php
         $groupedHelper = $this->helper('\Itatiaia\GroupedCatalogRule\Helper\Data');
         $productsListData = [];
         $position = 1;
@@ -220,14 +218,17 @@ $hoverimg = 'category_page_list_hover';
             $productsListData[] = $productData;
             $position++;
         }
-    ?>
-    <script>
-    if(!window.dataLayer) window.dataLayer = []
-    window.dataLayer.push({
-        "ecommerce": {
-            "currencyCode": "BRL",
-            "impressions": <?php echo json_encode($productsListData); ?>
-        }
-    });
-    </script>
-<?php endif; ?>
+        ?>
+        <script>
+            if(!window.dataLayer) window.dataLayer = []
+            window.dataLayer.push({
+                "ecommerce": {
+                    "currencyCode": "BRL",
+                    "impressions": <?php echo json_encode($productsListData); ?>
+                }
+            });
+        </script>
+    <?php endif; ?>
+<?php endif;?>
+
+
