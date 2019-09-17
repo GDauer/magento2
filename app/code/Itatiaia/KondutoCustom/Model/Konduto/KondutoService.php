@@ -2,6 +2,7 @@
 
 namespace Itatiaia\KondutoCustom\Model\Konduto;
 
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Sales\Model\ResourceModel\Attribute as OrderAttributeResource;
 use Konduto\Antifraud\Model\KondutoService as OriginalKondutoService;
 
@@ -11,6 +12,16 @@ use Konduto\Antifraud\Model\KondutoService as OriginalKondutoService;
  */
 class KondutoService extends OriginalKondutoService
 {
+    /**
+     * @var \Magento\Sales\Model\Order\Status\HistoryFactory
+     */
+    protected $orderHistoryFactory;
+
+    /**
+     * @var \Magento\Sales\Model\OrderFactory
+     */
+    protected $orderFactory;
+
     /**
      * KondutoService constructor.
      * @param \Konduto\Antifraud\Helper\Data $helper,
@@ -42,16 +53,20 @@ class KondutoService extends OriginalKondutoService
         \Magento\Sales\Model\Order $orderModel,
         \Magento\Sales\Model\Service\InvoiceService $invoiceService,
         \Magento\Framework\DB\Transaction $transaction,
-        \Magento\Sales\Model\Order\Email\Sender\InvoiceSender $invoiceSender
+        \Magento\Sales\Model\Order\Email\Sender\InvoiceSender $invoiceSender,
+        \Magento\Sales\Model\Order\Status\HistoryFactory $orderHistoryFactory,
+        \Magento\Sales\Model\OrderFactory $orderFactory
     ) {
+        $this->orderHistoryFactory = $orderHistoryFactory;
+        $this->orderFactory = $orderFactory;
         parent::__construct(
-            $helper,
-            $queueFactory,
-            $queueRepository,
-            $historyFactory,
-            $historyRepository,
-            $collectionFactory,
             $orderRepository,
+            $queueRepository,
+            $historyRepository,
+            $queueFactory,
+            $historyFactory,
+            $collectionFactory,
+            $helper,
             $orderData,
             $state,
             $orderAttribute,
@@ -71,5 +86,58 @@ class KondutoService extends OriginalKondutoService
     {
         $this->helper->log('ANALYSIS : ' . $orderId, 'info');
         parent::analysis($orderId);
+    }
+
+    public function updateHistory($orderId, $newStatus)
+    {
+        $nowTime = $this->helper->getNowDateTime();
+        try {
+            $history = $this->historyRepository->getById($orderId);
+        } catch (NoSuchEntityException $e) {
+            $history = $this->historyFactory->create();
+            $history->setOrderId($orderId);
+            $history->setCreatedAt($nowTime);
+        }
+        $history->setStatus($newStatus);
+        $history->setUpdatedAt($nowTime);
+        $this->historyRepository->save($history);
+
+        // Setting order history
+        $order = $this->orderFactory->create()->load($orderId);
+        $history = $this->orderHistoryFactory->create()
+            ->setComment('New Konduto status - ' . $newStatus)
+            ->setEntityName('order')
+            ->setOrder($order);
+
+        $history->save();
+    }
+
+    public function updateOrder($params)
+    {
+        $isValidSignature = $this->helper->validateSignature($params);
+
+        if ($isValidSignature) {
+            $kondutoResponse = $this->updateOrderStatus($params['order_id'], $params['status']);
+        }
+
+        if (!isset($kondutoResponse) || $kondutoResponse === false) {
+            return false;
+        }
+
+        $order = $this->orderFactory->create()->loadByIncrementId($params['order_id']);
+        if (!$order->getId()) {
+            return false;
+        }
+        $this->updateHistory($order->getId(), $params['status']);
+        $order->setKondutoStatus($params['status']);
+        if ($this->helper->getAutomaticKondutoUpdate()) {
+            $order->setStatus($this->helper->getStatusCode($params['status']));
+            if ($params['status'] == 'approved') {
+                $this->createInvoice($order);
+            }
+        }
+
+        $order->save();
+        return true;
     }
 }

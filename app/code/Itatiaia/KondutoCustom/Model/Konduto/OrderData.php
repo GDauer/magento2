@@ -59,12 +59,14 @@ class OrderData extends OriginalOrderData
         $this->billingData = $billingData;
         $this->shippingData = $shippingData;
         $this->shoppingCartData = $shoppingCartData;
+
         parent::__construct(
             $paymentData,
             $customerData,
             $billingData,
             $shippingData,
-            $shoppingCartData
+            $shoppingCartData,
+            $helper
         );
     }
 
@@ -75,7 +77,7 @@ class OrderData extends OriginalOrderData
      */
     public function getOrderData($order)
     {
-        $orderKonduto = new Order;
+        $orderKonduto = new \Konduto\Models\Order;
         $orderKonduto->setId($order->getIncrementId());
         if ($order->getVisitorId()) {
             $orderKonduto->setVisitor($order->getVisitorId());

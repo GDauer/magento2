@@ -4,4 +4,5 @@
     <preference for="Konduto\Antifraud\Model\Konduto\OrderData" type="Itatiaia\KondutoCustom\Model\Konduto\OrderData" />
     <preference for="Konduto\Antifraud\Model\KondutoService" type="Itatiaia\KondutoCustom\Model\Konduto\KondutoService" />
     <preference for="Konduto\Antifraud\Model\QueueManager" type="Itatiaia\KondutoCustom\Model\Konduto\QueueManager" />
+    <preference for="Konduto\Antifraud\Helper\Data" type="Itatiaia\KondutoCustom\Helper\Data" />
 </config>
