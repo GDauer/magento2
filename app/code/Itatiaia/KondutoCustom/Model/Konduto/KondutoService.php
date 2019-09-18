@@ -2,184 +2,118 @@
 
 namespace Itatiaia\KondutoCustom\Model\Konduto;
 
-use Konduto\Antifraud\Helper\Data;
-use Konduto\Antifraud\Model\ResourceModel\Queue\CollectionFactory;
-use Konduto\Core\Konduto;
-use Konduto\Exceptions\KondutoException;
-use Magento\Framework\App\State;
-use Magento\Framework\DB\Transaction;
-use Magento\Framework\Model\AbstractModel;
-use Magento\Sales\Api\OrderRepositoryInterface;
-use Magento\Sales\Model\Order;
-use Magento\Sales\Model\Order\Email\Sender\InvoiceSender;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Sales\Model\ResourceModel\Attribute as OrderAttributeResource;
-use Magento\Sales\Model\Service\InvoiceService;
+use Konduto\Antifraud\Model\KondutoService as OriginalKondutoService;
 
 /**
  * Class KondutoService
  * @package Konduto\Antifraud\Model
  */
-class KondutoService extends AbstractModel
+class KondutoService extends OriginalKondutoService
 {
     /**
-     * It is used if there is a problem with communication with Konduto
+     * @var \Magento\Sales\Model\Order\Status\HistoryFactory
      */
-    const STATUS_RETRY = 'retry';
+    protected $orderHistoryFactory;
 
     /**
-     * @var OrderRepositoryInterface
+     * @var \Magento\Sales\Model\OrderFactory
      */
-    protected $orderRepository;
+    protected $orderFactory;
+
     /**
-     * @var QueueRepository
+     * @var \Adyen\Payment\Gateway\Http\TransferFactory
      */
-    protected $queueRepository;
+    private $transferFactory;
+
     /**
-     * @var HistoryRepository
+     * @var \Adyen\Payment\Helper\Requests
      */
-    protected $historyRepository;
+    private $adyenRequestHelper;
+
     /**
-     * @var QueueFactory
+     * @var \Adyen\Payment\Gateway\Http\Client\TransactionCapture
      */
-    protected $queueFactory;
+    private $transactionCapture;
+
     /**
-     * @var HistoryFactory
+     * @var \Adyen\Payment\Helper\Data
      */
-    protected $historyFactory;
-    /**
-     * @var CollectionFactory
-     */
-    protected $collectionFactory;
-    /**
-     * @var Data
-     */
-    protected $helper;
-    /**
-     * @var OrderData
-     */
-    protected $orderData;
-    /**
-     * @var
-     */
-    protected $orderId;
-    /**
-     * @var
-     */
-    private $response;
-    /**
-     * @var
-     */
-    private $order;
-    /**
-     * @var State
-     */
-    private $state;
-    /**
-     * @var OrderAttributeResource
-     */
-    private $orderAttribute;
-    /**
-     * @var Order
-     */
-    private $orderModel;
-    /**
-     * @var InvoiceService
-     */
-    private $invoiceService;
-    /**
-     * @var Transaction
-     */
-    private $transaction;
-    /**
-     * @var InvoiceSender
-     */
-    private $invoiceSender;
+    private $adyenHelper;
 
     public function __construct(
-        OrderRepositoryInterface $orderRepository,
-        \Konduto\Antifraud\Model\QueueRepository $queueRepository,
-        \Konduto\Antifraud\Model\HistoryRepository $historyRepository,
+        \Konduto\Antifraud\Helper\Data $helper,
         \Konduto\Antifraud\Model\QueueFactory $queueFactory,
+        \Konduto\Antifraud\Model\QueueRepository $queueRepository,
         \Konduto\Antifraud\Model\HistoryFactory $historyFactory,
-        CollectionFactory $collectionFactory,
-        Data $helper,
-        OrderData $orderData,
-        State $state,
+        \Konduto\Antifraud\Model\HistoryRepository $historyRepository,
+        \Konduto\Antifraud\Model\ResourceModel\Queue\CollectionFactory $collectionFactory,
+        \Magento\Sales\Api\OrderRepositoryInterface $orderRepository,
+        \Konduto\Antifraud\Model\Konduto\OrderData $orderData,
+        \Magento\Framework\App\State $state,
         OrderAttributeResource $orderAttribute,
-        Order $orderModel,
-        InvoiceService $invoiceService,
-        Transaction $transaction,
-        InvoiceSender $invoiceSender
+        \Magento\Sales\Model\Order $orderModel,
+        \Magento\Sales\Model\Service\InvoiceService $invoiceService,
+        \Magento\Framework\DB\Transaction $transaction,
+        \Magento\Sales\Model\Order\Email\Sender\InvoiceSender $invoiceSender,
+        \Magento\Sales\Model\Order\Status\HistoryFactory $orderHistoryFactory,
+        \Magento\Sales\Model\OrderFactory $orderFactory,
+        \Adyen\Payment\Gateway\Http\TransferFactory $transferFactory,
+        \Adyen\Payment\Helper\Requests $adyenRequestHelper,
+        \Adyen\Payment\Gateway\Http\Client\TransactionCapture $transactionCapture,
+        \Adyen\Payment\Helper\Data $adyenHelper
     ) {
-        $this->helper = $helper;
-        $this->queueFactory = $queueFactory;
-        $this->queueRepository = $queueRepository;
-        $this->historyFactory = $historyFactory;
-        $this->historyRepository = $historyRepository;
-        $this->collectionFactory = $collectionFactory;
-        $this->orderRepository = $orderRepository;
-        $this->orderData = $orderData;
-        $this->state = $state;
-        $this->orderAttribute = $orderAttribute;
-        $this->orderModel = $orderModel;
-        $this->invoiceService = $invoiceService;
-        $this->transaction = $transaction;
-        $this->invoiceSender = $invoiceSender;
+        $this->orderHistoryFactory = $orderHistoryFactory;
+        $this->orderFactory = $orderFactory;
+        $this->transferFactory = $transferFactory;
+        $this->adyenRequestHelper = $adyenRequestHelper;
+        $this->transactionCapture = $transactionCapture;
+        $this->adyenHelper = $adyenHelper;
+        parent::__construct(
+            $orderRepository,
+            $queueRepository,
+            $historyRepository,
+            $queueFactory,
+            $historyFactory,
+            $collectionFactory,
+            $helper,
+            $orderData,
+            $state,
+            $orderAttribute,
+            $orderModel,
+            $invoiceService,
+            $transaction,
+            $invoiceSender
+        );
     }
 
-    /**
-     * Method for sending orders and returning status.
-     *
-     * @param $orderId
-     */
-    public function analysis($orderId)
+    public function updateHistory($orderId, $newStatus)
     {
-        $this->orderId = $orderId;
-        $this->helper->log('ANALYSIS : ' . $orderId, 'info');
-        $this->order = $this->helper->loadOrder($this->orderId);
-        $orderKonduto = $this->orderData->getOrderData($this->order);
-
+        $nowTime = $this->helper->getNowDateTime();
         try {
-            $response = Konduto::analyze($orderKonduto);
-            $this->registerHistory($response);
-            // emulate adminhtml
-            $this->state->emulateAreaCode('adminhtml', [$this, 'registerStatus'], [$response]);
-            $this->registerStatus($response);
-            $this->queueRepository->deleteById($this->orderId);
-        } catch (KondutoException $exception) {
-            $this->queueRetry();
-            $this->helper->log('INCREMENT ID : ' . $this->order->getIncrementId() . ' - ' . $exception, 'info');
+            $history = $this->historyRepository->getById($orderId);
+        } catch (NoSuchEntityException $e) {
+            // if history doesn't exist, we create a new one
+            $history = $this->historyFactory->create();
+            $history->setOrderId($orderId);
+            $history->setCreatedAt($nowTime);
         }
+        $history->setStatus($newStatus);
+        $history->setUpdatedAt($nowTime);
+        $this->historyRepository->save($history);
+
+        // Setting order history
+        /** @var \Magento\Sales\Model\Order $order */
+        $order = $this->orderFactory->create()->load($orderId);
+        $history = $this->orderHistoryFactory->create()
+            ->setComment('New Konduto status - ' . $newStatus)
+            ->setEntityName('order')
+            ->setOrder($order);
+
+        $history->save();
     }
 
-    /**
-     * Method to update order with payment status.
-     * @param $orderId
-     * @param $newStatus
-     * @return array
-     * @throws KondutoException
-     */
-    public function updateOrderStatus($orderId, $newStatus)
-    {
-        if (!in_array($newStatus, $this->helper::$updateOrderStatusList)) {
-            throw new \InvalidArgumentException(sprintf('Invalid new status code (%s)', $newStatus));
-        }
-
-        try {
-            $this->helper->apiKeyIsValid();
-            $kondutoResponse = Konduto::updateOrderStatus($orderId, $newStatus, '');
-        } catch (\Exception $exception) {
-            throw $exception;
-        }
-
-        return $kondutoResponse;
-    }
-
-    /**
-     * @param $params
-     * @return bool
-     * @throws KondutoException
-     */
     public function updateOrder($params)
     {
         $isValidSignature = $this->helper->validateSignature($params);
@@ -192,7 +126,8 @@ class KondutoService extends AbstractModel
             return false;
         }
 
-        $order = $this->orderModel->loadByIncrementId($params['order_id']);
+        /** @var \Magento\Sales\Model\Order $order */
+        $order = $this->orderFactory->create()->loadByIncrementId($params['order_id']);
         if (!$order->getId()) {
             return false;
         }
@@ -200,84 +135,39 @@ class KondutoService extends AbstractModel
         $order->setKondutoStatus($params['status']);
         if ($this->helper->getAutomaticKondutoUpdate()) {
             $order->setStatus($this->helper->getStatusCode($params['status']));
-            if ($params['status'] = 'approved') {
-                $this->createInvoice($order);
+            if ($params['status'] == 'approved') {
+                // TODO -> refactor to change status and implement adyen request on Observer
+
+                // Merchant account data builder
+                $payment = $order->getPayment();
+                $paymentMethod = $payment->getMethod();
+                $storeId = $order->getStoreId();
+
+                $currency = $order->getOrderCurrencyCode();
+                $amount = $this->adyenHelper->formatAmount($order->getGrandTotal(), $currency);
+                $modificationAmount = ['currency' => $currency, 'value' => $amount];
+
+                $request = [
+                    "modificationAmount" => $modificationAmount,
+                    "reference" => $order->getIncrementId(),
+                    "originalReference" => $payment->getCcTransId()
+                ];
+
+                $request = $this->adyenRequestHelper->buildMerchantAccountData($request, $paymentMethod, $storeId);
+
+                $transferObject = $this->transferFactory->create($request);
+                $paymentsResponse = $this->transactionCapture->placeRequest($transferObject);
+
+                if (!isset($paymentsResponse['response']) || !$paymentsResponse['response'] == '[capture-received]'
+                    || !isset($paymentsResponse['pspReference']) || !$paymentsResponse['pspReference'] == $payment->getCcTransId()
+                ) {
+                    $this->helper->log('ERROR SENDING CAPTURE DATA TO ADYEN - REQUEST WAS ' . json_encode($request), 'warning');
+                    // TODO -> return error to Konduto
+                }
             }
         }
 
         $order->save();
         return true;
-    }
-
-    /**
-     * Method that updates the order on the history entity.
-     * @param $orderId
-     * @param $newStatus
-     * @throws \Magento\Framework\Exception\LocalizedException
-     */
-    public function updateHistory($orderId, $newStatus)
-    {
-        $nowTime = $this->helper->getNowDateTime();
-        $history = $this->historyRepository->getById($orderId);
-        $history->setStatus($newStatus);
-        $history->setUpdatedAt($nowTime);
-        $this->historyRepository->save($history);
-    }
-
-    /**
-     * @param $response
-     * @throws \Magento\Framework\Exception\LocalizedException
-     */
-    private function registerHistory($response)
-    {
-        $nowTime = $this->helper->getNowDateTime();
-        $history = $this->historyFactory->create();
-        $history->setOrderId($this->orderId);
-        $history->setStatus($response->getStatus());
-        $history->setCreatedAt($nowTime);
-        $history->setUpdatedAt($nowTime);
-        $this->historyRepository->save($history);
-    }
-
-    /**
-     * @param $response
-     * @throws \Exception
-     */
-    public function registerStatus($response)
-    {
-        $this->order->setKondutoStatus($response->getStatus());
-        $this->orderAttribute->saveAttribute($this->order, 'konduto_status');
-    }
-
-    /**
-     * @throws \Magento\Framework\Exception\LocalizedException
-     */
-    private function queueRetry()
-    {
-        $queue = $this->queueRepository->getById($this->orderId);
-        $queue->setStatus(self::STATUS_RETRY);
-        $this->queueRepository->save($queue);
-    }
-
-    /**
-     * @param $order
-     * @throws \Magento\Framework\Exception\LocalizedException
-     */
-    public function createInvoice($order)
-    {
-        if ($order->canInvoice()) {
-            $invoice = $this->invoiceService->prepareInvoice($order);
-            $invoice->register();
-            $invoice->save();
-            $transactionSave = $this->transaction->addObject($invoice)->addObject($invoice->getOrder());
-            $transactionSave->save();
-            $this->invoiceSender->send($invoice);
-            //send notification code
-            $order->addStatusHistoryComment(
-                __('Notified customer about invoice #%1.', $invoice->getId())
-            )
-                ->setIsCustomerNotified(true)
-                ->save();
-        }
     }
 }

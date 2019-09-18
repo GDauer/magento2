@@ -4,9 +4,9 @@ namespace Itatiaia\KondutoCustom\Model\Konduto;
 
 use Konduto\Antifraud\Helper\Data;
 use Magento\Quote\Api\CartRepositoryInterface as QuoteRepositoryInterface;
-use Magento\Quote\Model\QuoteFactory as QuoteFactory;
+use Konduto\Antifraud\Model\Konduto\PaymentData as OriginalPaymentData;
 
-class PaymentData extends \Konduto\Antifraud\Model\Konduto\AbstractData
+class PaymentData extends OriginalPaymentData
 {
     private $method;
     private $order;
@@ -15,7 +15,6 @@ class PaymentData extends \Konduto\Antifraud\Model\Konduto\AbstractData
 
     /** @var QuoteRepositoryInterface  */
     public $quoteRepository;
-
 
     /**
      * PaymentData constructor.
