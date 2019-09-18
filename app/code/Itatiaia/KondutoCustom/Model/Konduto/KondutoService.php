@@ -23,22 +23,25 @@ class KondutoService extends OriginalKondutoService
     protected $orderFactory;
 
     /**
-     * KondutoService constructor.
-     * @param \Konduto\Antifraud\Helper\Data $helper,
-     * @param \Konduto\Antifraud\Model\QueueFactory $queueFactory,
-     * @param \Konduto\Antifraud\Model\QueueRepository $queueRepository,
-     * @param \Konduto\Antifraud\Model\HistoryFactory $historyFactory,
-     * @param \Konduto\Antifraud\Model\HistoryRepository $historyRepository,
-     * @param \Konduto\Antifraud\Model\ResourceModel\Queue\CollectionFactory $collectionFactory,
-     * @param \Magento\Sales\Api\OrderRepositoryInterface $orderRepository,
-     * @param \Konduto\Antifraud\Model\Konduto\OrderData $orderData,
-     * @param \Magento\Framework\App\State $state,
-     * @param OrderAttributeResource $orderAttribute,
-     * @param \Magento\Sales\Model\Order $orderModel,
-     * @param \Magento\Sales\Model\Service\InvoiceService $invoiceService,
-     * @param \Magento\Framework\DB\Transaction $transaction,
-     * @param \Magento\Sales\Model\Order\Email\Sender\InvoiceSender $invoiceSender
+     * @var \Adyen\Payment\Gateway\Http\TransferFactory
      */
+    private $transferFactory;
+
+    /**
+     * @var \Adyen\Payment\Helper\Requests
+     */
+    private $adyenRequestHelper;
+
+    /**
+     * @var \Adyen\Payment\Gateway\Http\Client\TransactionCapture
+     */
+    private $transactionCapture;
+
+    /**
+     * @var \Adyen\Payment\Helper\Data
+     */
+    private $adyenHelper;
+
     public function __construct(
         \Konduto\Antifraud\Helper\Data $helper,
         \Konduto\Antifraud\Model\QueueFactory $queueFactory,
@@ -55,10 +58,18 @@ class KondutoService extends OriginalKondutoService
         \Magento\Framework\DB\Transaction $transaction,
         \Magento\Sales\Model\Order\Email\Sender\InvoiceSender $invoiceSender,
         \Magento\Sales\Model\Order\Status\HistoryFactory $orderHistoryFactory,
-        \Magento\Sales\Model\OrderFactory $orderFactory
+        \Magento\Sales\Model\OrderFactory $orderFactory,
+        \Adyen\Payment\Gateway\Http\TransferFactory $transferFactory,
+        \Adyen\Payment\Helper\Requests $adyenRequestHelper,
+        \Adyen\Payment\Gateway\Http\Client\TransactionCapture $transactionCapture,
+        \Adyen\Payment\Helper\Data $adyenHelper
     ) {
         $this->orderHistoryFactory = $orderHistoryFactory;
         $this->orderFactory = $orderFactory;
+        $this->transferFactory = $transferFactory;
+        $this->adyenRequestHelper = $adyenRequestHelper;
+        $this->transactionCapture = $transactionCapture;
+        $this->adyenHelper = $adyenHelper;
         parent::__construct(
             $orderRepository,
             $queueRepository,
@@ -77,23 +88,13 @@ class KondutoService extends OriginalKondutoService
         );
     }
 
-    /**
-     * Method for sending orders and returning status.
-     *
-     * @param $orderId
-     */
-    public function analysis($orderId)
-    {
-        $this->helper->log('ANALYSIS : ' . $orderId, 'info');
-        parent::analysis($orderId);
-    }
-
     public function updateHistory($orderId, $newStatus)
     {
         $nowTime = $this->helper->getNowDateTime();
         try {
             $history = $this->historyRepository->getById($orderId);
         } catch (NoSuchEntityException $e) {
+            // if history doesn't exist, we create a new one
             $history = $this->historyFactory->create();
             $history->setOrderId($orderId);
             $history->setCreatedAt($nowTime);
@@ -103,6 +104,7 @@ class KondutoService extends OriginalKondutoService
         $this->historyRepository->save($history);
 
         // Setting order history
+        /** @var \Magento\Sales\Model\Order $order */
         $order = $this->orderFactory->create()->load($orderId);
         $history = $this->orderHistoryFactory->create()
             ->setComment('New Konduto status - ' . $newStatus)
@@ -124,6 +126,7 @@ class KondutoService extends OriginalKondutoService
             return false;
         }
 
+        /** @var \Magento\Sales\Model\Order $order */
         $order = $this->orderFactory->create()->loadByIncrementId($params['order_id']);
         if (!$order->getId()) {
             return false;
@@ -133,7 +136,34 @@ class KondutoService extends OriginalKondutoService
         if ($this->helper->getAutomaticKondutoUpdate()) {
             $order->setStatus($this->helper->getStatusCode($params['status']));
             if ($params['status'] == 'approved') {
-                $this->createInvoice($order);
+                // TODO -> refactor to change status and implement adyen request on Observer
+
+                // Merchant account data builder
+                $payment = $order->getPayment();
+                $paymentMethod = $payment->getMethod();
+                $storeId = $order->getStoreId();
+
+                $currency = $order->getOrderCurrencyCode();
+                $amount = $this->adyenHelper->formatAmount($order->getGrandTotal(), $currency);
+                $modificationAmount = ['currency' => $currency, 'value' => $amount];
+
+                $request = [
+                    "modificationAmount" => $modificationAmount,
+                    "reference" => $order->getIncrementId(),
+                    "originalReference" => $payment->getCcTransId()
+                ];
+
+                $request = $this->adyenRequestHelper->buildMerchantAccountData($request, $paymentMethod, $storeId);
+
+                $transferObject = $this->transferFactory->create($request);
+                $paymentsResponse = $this->transactionCapture->placeRequest($transferObject);
+
+                if (!isset($paymentsResponse['response']) || !$paymentsResponse['response'] == '[capture-received]'
+                    || !isset($paymentsResponse['pspReference']) || !$paymentsResponse['pspReference'] == $payment->getCcTransId()
+                ) {
+                    $this->helper->log('ERROR SENDING CAPTURE DATA TO ADYEN - REQUEST WAS ' . json_encode($request), 'warning');
+                    // TODO -> return error to Konduto
+                }
             }
         }
 
