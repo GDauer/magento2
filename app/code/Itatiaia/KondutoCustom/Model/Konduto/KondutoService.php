@@ -107,6 +107,7 @@ class KondutoService extends OriginalKondutoService
         /** @var \Magento\Sales\Model\Order $order */
         $order = $this->orderFactory->create()->load($orderId);
         $history = $this->orderHistoryFactory->create()
+            ->setStatus($this->helper->getStatusCode($newStatus))
             ->setComment('New Konduto status - ' . $newStatus)
             ->setEntityName('order')
             ->setOrder($order);
@@ -131,11 +132,14 @@ class KondutoService extends OriginalKondutoService
         if (!$order->getId()) {
             return false;
         }
+        $this->helper->log('WEBHOOK ORDER ID ' . $order->getId(), 'info');
         $this->updateHistory($order->getId(), $params['status']);
         $order->setKondutoStatus($params['status']);
         if ($this->helper->getAutomaticKondutoUpdate()) {
+            $this->helper->log('WEBHOOK SETTING STATUS ' . json_encode($this->helper->getStatusCode($params['status'])), 'info');
             $order->setStatus($this->helper->getStatusCode($params['status']));
             if ($params['status'] == 'approved') {
+                $this->helper->log('WEBHOOK APPROVING', 'info');
                 // TODO -> refactor to change status and implement adyen request on Observer
 
                 // Merchant account data builder
@@ -155,9 +159,11 @@ class KondutoService extends OriginalKondutoService
 
                 $request = $this->adyenRequestHelper->buildMerchantAccountData($request, $paymentMethod, $storeId);
 
+                $this->helper->log('WEBHOOK SENDING REQUEST TO ADYEN' . json_encode($request), 'info');
                 $transferObject = $this->transferFactory->create($request);
                 $paymentsResponse = $this->transactionCapture->placeRequest($transferObject);
 
+                $this->helper->log('WEBHOOK PAYMENT RESPONSE' . json_encode($paymentsResponse), 'info');
                 if (!isset($paymentsResponse['response']) || !$paymentsResponse['response'] == '[capture-received]'
                     || !isset($paymentsResponse['pspReference']) || !$paymentsResponse['pspReference'] == $payment->getCcTransId()
                 ) {

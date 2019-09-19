@@ -10,6 +10,7 @@ class PaymentData extends OriginalPaymentData
 {
     private $method;
     private $order;
+    public $helper;
     private $transactions;
     private $payment;
 
@@ -23,7 +24,7 @@ class PaymentData extends OriginalPaymentData
      */
     public function __construct(Data $helper, QuoteRepositoryInterface $quoteRepository)
     {
-        parent::__construct($helper);
+        $this->helper = $helper;
         $this->quoteRepository = $quoteRepository;
     }
 
@@ -56,8 +57,14 @@ class PaymentData extends OriginalPaymentData
             $this->helper->log('QUOTE: ' . json_encode($quote->getId()), 'info');
             $data[0]['expiration_date'] = $this->getCcExpDate($quote->getPayment());
             $data[0]['status'] = $this->getCcStatus($this->order);
-            if ($this->payment->getCcLast4()) {
-                $data[0]['last4'] = $this->payment->getCcLast4();
+
+            $last4 = $this->getCcLast4($quote->getPayment());;
+            if (false !== $last4) {
+                $data[0]['last4'] = $last4;
+            }
+            $bin = $this->getCcBin($quote->getPayment());
+            if (false !== $bin) {
+                $data[0]['bin'] = $bin;
             }
         } else {
             $this->helper->log('ORDER: ' . json_encode($this->order->getId()), 'info');
@@ -98,9 +105,38 @@ class PaymentData extends OriginalPaymentData
         return str_replace('/', '', $expiryDate);
     }
 
+    private function getCcBin($payment)
+    {
+        $pResp = $payment->getAdditionalInformation('paymentsResponse');
+        $this->helper->log('QUOTE PAYMENTRESPONSE: ' . json_encode($pResp), 'info');
+        $this->helper->log('QUOTE cardBin: ' . json_encode($pResp['additionalData']['cardBin']), 'info');
+        if (isset($pResp['additionalData']) && isset($pResp['additionalData']['cardBin'])) {
+            return $pResp['additionalData']['cardBin'];
+        }
+
+        return false;
+    }
+
+    private function getCcLast4($payment)
+    {
+        $pResp = $payment->getAdditionalInformation('paymentsResponse');
+        if (isset($pResp['additionalData']) && isset($pResp['additionalData']['cardSummary'])) {
+            return $pResp['additionalData']['cardSummary'];
+        }
+
+        return false;
+    }
+
     private function getBoletoExpirationDate($payment)
     {
-        $pResp = $payment->getAdditionalInformation('expirationDate');
-        return $pResp;
+        if ($this->payment->getCcLast4()) {
+            return $this->payment->getCcLast4();
+        } else {
+            $pResp = $payment->getAdditionalInformation('paymentsResponse');
+            if (isset($pResp['additionalData']) && isset($pResp['additionalData']['cardSummary'])) {
+                return $pResp['additionalData']['cardSummary'];
+            }
+        }
+        return false;
     }
 }
