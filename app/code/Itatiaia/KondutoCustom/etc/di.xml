@@ -6,4 +6,5 @@
     <preference for="Konduto\Antifraud\Model\KondutoService" type="Itatiaia\KondutoCustom\Model\Konduto\KondutoService" />
     <preference for="Konduto\Antifraud\Model\QueueManager" type="Itatiaia\KondutoCustom\Model\Konduto\QueueManager" />
     <preference for="Konduto\Antifraud\Helper\Data" type="Itatiaia\KondutoCustom\Helper\Data" />
+    <preference for="Konduto\Antifraud\Ui\Component\Columns\OrderGrid" type="Itatiaia\KondutoCustom\Ui\Component\Columns\OrderGrid" />
 </config>

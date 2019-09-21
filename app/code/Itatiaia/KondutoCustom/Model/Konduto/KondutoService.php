@@ -5,6 +5,7 @@ namespace Itatiaia\KondutoCustom\Model\Konduto;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Sales\Model\ResourceModel\Attribute as OrderAttributeResource;
 use Konduto\Antifraud\Model\KondutoService as OriginalKondutoService;
+use Magento\Sales\Model\Order\StatusFactory;
 
 /**
  * Class KondutoService
@@ -42,6 +43,11 @@ class KondutoService extends OriginalKondutoService
      */
     private $adyenHelper;
 
+    /**
+     * @var \Magento\Sales\Model\ResourceModel\Order\Status\CollectionFactory
+     */
+    protected $orderStatusCollection;
+
     public function __construct(
         \Konduto\Antifraud\Helper\Data $helper,
         \Konduto\Antifraud\Model\QueueFactory $queueFactory,
@@ -50,7 +56,7 @@ class KondutoService extends OriginalKondutoService
         \Konduto\Antifraud\Model\HistoryRepository $historyRepository,
         \Konduto\Antifraud\Model\ResourceModel\Queue\CollectionFactory $collectionFactory,
         \Magento\Sales\Api\OrderRepositoryInterface $orderRepository,
-        \Konduto\Antifraud\Model\Konduto\OrderData $orderData,
+        \Konduto\Antifraud\Model\Konduto\OrderData $orderData, // there is an error compiling this on staging, it says it should be a \Itatiaia\KondutoCustom\Model\Konduto\OrderData
         \Magento\Framework\App\State $state,
         OrderAttributeResource $orderAttribute,
         \Magento\Sales\Model\Order $orderModel,
@@ -62,7 +68,8 @@ class KondutoService extends OriginalKondutoService
         \Adyen\Payment\Gateway\Http\TransferFactory $transferFactory,
         \Adyen\Payment\Helper\Requests $adyenRequestHelper,
         \Adyen\Payment\Gateway\Http\Client\TransactionCapture $transactionCapture,
-        \Adyen\Payment\Helper\Data $adyenHelper
+        \Adyen\Payment\Helper\Data $adyenHelper,
+        \Magento\Sales\Model\ResourceModel\Order\Status\CollectionFactory $orderStatusCollection
     ) {
         $this->orderHistoryFactory = $orderHistoryFactory;
         $this->orderFactory = $orderFactory;
@@ -70,6 +77,7 @@ class KondutoService extends OriginalKondutoService
         $this->adyenRequestHelper = $adyenRequestHelper;
         $this->transactionCapture = $transactionCapture;
         $this->adyenHelper = $adyenHelper;
+        $this->orderStatusCollection = $orderStatusCollection;
         parent::__construct(
             $orderRepository,
             $queueRepository,
@@ -119,6 +127,9 @@ class KondutoService extends OriginalKondutoService
     {
         $isValidSignature = $this->helper->validateSignature($params);
 
+        /* FIXING STRCASE ERROR*/
+        $params['status'] = strtolower($params['status']);
+
         if ($isValidSignature) {
             $kondutoResponse = $this->updateOrderStatus($params['order_id'], $params['status']);
         }
@@ -137,43 +148,70 @@ class KondutoService extends OriginalKondutoService
         $order->setKondutoStatus($params['status']);
         if ($this->helper->getAutomaticKondutoUpdate()) {
             $this->helper->log('WEBHOOK SETTING STATUS ' . json_encode($this->helper->getStatusCode($params['status'])), 'info');
-            $order->setStatus($this->helper->getStatusCode($params['status']));
-            if ($params['status'] == 'approved') {
-                $this->helper->log('WEBHOOK APPROVING', 'info');
-                // TODO -> refactor to change status and implement adyen request on Observer
 
-                // Merchant account data builder
-                $payment = $order->getPayment();
-                $paymentMethod = $payment->getMethod();
-                $storeId = $order->getStoreId();
+            $statusCode = $this->helper->getStatusCode($params['status']);
 
-                $currency = $order->getOrderCurrencyCode();
-                $amount = $this->adyenHelper->formatAmount($order->getGrandTotal(), $currency);
-                $modificationAmount = ['currency' => $currency, 'value' => $amount];
-
-                $request = [
-                    "modificationAmount" => $modificationAmount,
-                    "reference" => $order->getIncrementId(),
-                    "originalReference" => $payment->getCcTransId()
-                ];
-
-                $request = $this->adyenRequestHelper->buildMerchantAccountData($request, $paymentMethod, $storeId);
-
-                $this->helper->log('WEBHOOK SENDING REQUEST TO ADYEN' . json_encode($request), 'info');
-                $transferObject = $this->transferFactory->create($request);
-                $paymentsResponse = $this->transactionCapture->placeRequest($transferObject);
-
-                $this->helper->log('WEBHOOK PAYMENT RESPONSE' . json_encode($paymentsResponse), 'info');
-                if (!isset($paymentsResponse['response']) || !$paymentsResponse['response'] == '[capture-received]'
-                    || !isset($paymentsResponse['pspReference']) || !$paymentsResponse['pspReference'] == $payment->getCcTransId()
-                ) {
-                    $this->helper->log('ERROR SENDING CAPTURE DATA TO ADYEN - REQUEST WAS ' . json_encode($request), 'warning');
-                    // TODO -> return error to Konduto
-                }
+            $order->setState($this->getOrderState($statusCode));
+            $order->setStatus($statusCode);
+            $this->helper->log('WEBHOOK CHECKING IF SEND TO ADYEN IS TRUE', 'info');
+            if (strtolower($params['status']) == 'approved') {
+                $this->helper->log('WEBHOOK SEND TO ADYEN IS TRUE', 'info');
+                $this->sendToAdyen($order);
             }
         }
 
         $order->save();
         return true;
+    }
+
+    public function sendToAdyen($order) {
+        $this->helper->log('WEBHOOK APPROVING', 'info');
+        // TODO -> refactor to change status and implement adyen request on Observer
+
+        // Merchant account data builder
+        $request = $this->createRequest($order);
+        $transferObject = $this->transferFactory->create($request);
+        $paymentsResponse = $this->transactionCapture->placeRequest($transferObject);
+
+        $this->helper->log('WEBHOOK PAYMENT RESPONSE' . json_encode($paymentsResponse), 'info');
+        if (!isset($paymentsResponse['response']) || !$paymentsResponse['response'] == '[capture-received]'
+            || !isset($paymentsResponse['pspReference']) || !$paymentsResponse['pspReference'] == $order->getPayment()->getCcTransId()
+        ) {
+            $this->helper->log('ERROR SENDING CAPTURE DATA TO ADYEN - REQUEST WAS ' . json_encode($request), 'warning');
+            // TODO -> return error to Konduto
+        }
+    }
+
+    /**
+     * @param $order
+     * @return mixed
+     */
+    public function createRequest($order) {
+        $payment = $order->getPayment();
+        $paymentMethod = $payment->getMethod();
+        $storeId = $order->getStoreId();
+
+        $currency = $order->getOrderCurrencyCode();
+        $amount = $this->adyenHelper->formatAmount($order->getGrandTotal(), $currency);
+        $modificationAmount = ['currency' => $currency, 'value' => $amount];
+
+        $request = [
+            "modificationAmount" => $modificationAmount,
+            "reference" => $order->getIncrementId(),
+            "originalReference" => $payment->getCcTransId()
+        ];
+
+        return $this->adyenRequestHelper->buildMerchantAccountData($request, $paymentMethod, $storeId);
+    }
+
+    public function getOrderState($status) {
+        $this->helper->log('WEBHOOK GETTING STATE ' . $status, 'info');
+        $statusObject = $this->orderStatusCollection->create()
+            ->addFieldToFilter('main_table.status', $status)
+            ->addFieldToFilter('state_table.is_default', true)
+            ->joinStates()
+            ->getFirstItem();
+
+        return $statusObject->getState();
     }
 }
