@@ -6,7 +6,7 @@ use Konduto\Antifraud\Helper\Data;
 use Magento\Quote\Api\CartRepositoryInterface as QuoteRepositoryInterface;
 use Konduto\Antifraud\Model\Konduto\PaymentData as OriginalPaymentData;
 
-class PaymentData extends OriginalPaymentData
+class OrderData extends OriginalPaymentData
 {
     private $method;
     private $order;
