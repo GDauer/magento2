@@ -302,6 +302,9 @@ return [
         'Vertex_Tax' => 1,
         'DigitalHub_MobilePhotoswipe' => 1,
         'DigitalHub_WishlistGrid' => 1,
-        'Itatiaia_ValidateImages' => 1
+        'Itatiaia_ValidateImages' => 1,
+        'Konduto_Antifraud' => 1,
+        'Itatiaia_KondutoCustom' => 1
     ]
 ];
+

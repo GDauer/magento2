@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4000351157e18a9a3e205ffccb0e1bfe",
+    "content-hash": "7fd8d0940c981b3c7bd66af65d0b01ce",
     "packages": [
         {
             "name": "adyen/module-payment",
@@ -1966,6 +1966,83 @@
                 }
             ],
             "description": "Klarna Order Management Magento 2 Extension"
+        },
+        {
+            "name": "konduto/magento2",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/konduto/magento2.git",
+                "reference": "c9fd06a6841a08a58263b8a3cd9ea0f90a66ff38"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/konduto/magento2/zipball/c9fd06a6841a08a58263b8a3cd9ea0f90a66ff38",
+                "reference": "c9fd06a6841a08a58263b8a3cd9ea0f90a66ff38",
+                "shasum": ""
+            },
+            "require": {
+                "konduto/sdk": "v2.0.1",
+                "php": "~7.0.0||~7.1.0||~7.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Konduto\\Antifraud\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Trezo",
+                    "email": "contato@trezo.com.br"
+                },
+                {
+                    "name": "Cristhian Silveira Silva",
+                    "email": "cristhian@trezo.com.br"
+                }
+            ],
+            "description": "Konduto Anti Fraud Module",
+            "time": "2019-08-27T19:06:23+00:00"
+        },
+        {
+            "name": "konduto/sdk",
+            "version": "v2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/konduto/php-sdk.git",
+                "reference": "df08dc516a457e8bf58a8bb9ebb44bd34e4538ef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/konduto/php-sdk/zipball/df08dc516a457e8bf58a8bb9ebb44bd34e4538ef",
+                "reference": "df08dc516a457e8bf58a8bb9ebb44bd34e4538ef",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.10"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.8.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Konduto\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Konduto Fraud Detection Service PHP SDK",
+            "time": "2017-07-11T19:52:24+00:00"
         },
         {
             "name": "magento/composer",
