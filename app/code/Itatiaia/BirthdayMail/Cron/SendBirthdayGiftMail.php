@@ -107,9 +107,10 @@ class SendBirthdayGiftMail
              */
             if (is_null($lastSentGiftMail)) {
                 $this->logger->notice('Nunca houve envio de email, enviando...');
-                $this->sendMail($customer);
-                $customer->setCustomAttribute('dob_last_mail', date('Y-m-d H:i:s'));
-                $this->customerRepository->save($customer);
+                if ($this->sendMail($customer)) {
+                    $customer->setCustomAttribute('dob_last_mail', date('Y-m-d H:i:s'));
+                    $this->customerRepository->save($customer);
+                }
             } else {
                 /*
                  * Inside here it means that the email has been sent before. We'll check the dates here.
@@ -122,9 +123,10 @@ class SendBirthdayGiftMail
 
                 if (date('Y', strtotime($lastSentDate)) != date('Y')) {
                     $this->logger->notice('Envio anterior a um ano, enviando...');
-                    $this->sendMail($customer);
-                    $customer->setCustomAttribute('dob_last_mail', date('Y-m-d H:i:s'));
-                    $this->customerRepository->save($customer);
+                    if ($this->sendMail($customer)) {
+                        $customer->setCustomAttribute('dob_last_mail', date('Y-m-d H:i:s'));
+                        $this->customerRepository->save($customer);
+                    }
                 }
             }
         }
@@ -141,36 +143,37 @@ class SendBirthdayGiftMail
 
         $this->logger->notice('Codigo de desconto', $codes);
 
-        if(!$codes) {
-            $this->logger->notice('Deu ruim nos codigos');
+        if ($codes) {
+            $variables = [
+                'customer_name' => $customer->getFirstname(),
+                'customer_email' => $customer->getEmail(),
+                'coupon_code' => $codes[0]
+            ];
+
+            $this->logger->notice('Variaveis do email', $variables);
+
+            $sender = [
+                'name' => $this->scopeConfig->getValue('trans_email/ident_general/name', ScopeInterface::SCOPE_STORE),
+                'email' => $this->scopeConfig->getValue('trans_email/ident_general/email', ScopeInterface::SCOPE_STORE)
+            ];
+
+            $this->inlineTranslation->suspend();
+
+            $transport = $this->transportBuilder->setTemplateIdentifier('dob_gift_mail_template')
+                ->setTemplateOptions([
+                    'area' => Area::AREA_FRONTEND,
+                    'store' => Store::DEFAULT_STORE_ID,
+                ])
+                ->setTemplateVars($variables)
+                ->setFrom($sender)
+                ->addTo($customer->getEmail())
+                ->getTransport();
+
+            $transport->sendMessage();
+            $this->inlineTranslation->resume();
+            return true;
+        } else {
+            return false;
         }
-
-        $variables = [
-            'customer_name' => $customer->getFirstname(),
-            'customer_email' => $customer->getEmail(),
-            'coupon_code' => $codes[0]
-        ];
-
-        $this->logger->notice('Variaveis do email', $variables);
-
-        $sender = [
-            'name' => $this->scopeConfig->getValue('trans_email/ident_general/name', ScopeInterface::SCOPE_STORE),
-            'email' => $this->scopeConfig->getValue('trans_email/ident_general/email', ScopeInterface::SCOPE_STORE)
-        ];
-
-        $this->inlineTranslation->suspend();
-
-        $transport = $this->transportBuilder->setTemplateIdentifier('dob_gift_mail_template')
-            ->setTemplateOptions([
-                'area' => Area::AREA_FRONTEND,
-                'store' => Store::DEFAULT_STORE_ID,
-            ])
-            ->setTemplateVars($variables)
-            ->setFrom($sender)
-            ->addTo($customer->getEmail())
-            ->getTransport();
-
-        $transport->sendMessage();
-        $this->inlineTranslation->resume();
     }
 }
