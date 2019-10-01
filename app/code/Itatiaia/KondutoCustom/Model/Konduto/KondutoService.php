@@ -76,7 +76,8 @@ class KondutoService extends OriginalKondutoService
         \Adyen\Payment\Gateway\Http\Client\TransactionCancel $transactionCancel,
         \Adyen\Payment\Helper\Data $adyenHelper,
         \Magento\Sales\Model\ResourceModel\Order\Status\CollectionFactory $orderStatusCollection
-    ) {
+    )
+    {
         $this->orderHistoryFactory = $orderHistoryFactory;
         $this->orderFactory = $orderFactory;
         $this->transferFactory = $transferFactory;
@@ -152,6 +153,7 @@ class KondutoService extends OriginalKondutoService
         }
         $this->helper->log('WEBHOOK ORDER ID ' . $order->getId(), 'info');
         $this->updateHistory($order->getId(), $params['status']);
+        $oldStatus = strtolower($order->getKondutoStatus());
         $order->setKondutoStatus($params['status']);
         if ($this->helper->getAutomaticKondutoUpdate()) {
             $this->helper->log('WEBHOOK SETTING STATUS ' . json_encode($this->helper->getStatusCode($params['status'])), 'info');
@@ -164,9 +166,12 @@ class KondutoService extends OriginalKondutoService
             if (strtolower($params['status']) == 'approved') {
                 $this->helper->log('WEBHOOK SEND TO ADYEN IS TRUE', 'info');
                 $this->sendToAdyen($order);
-            } elseif (strtolower($params['status']) == 'declined' || strtolower($params['status']) == 'not_authorized') {
-                $this->helper->log('WEBHOOK SEND TO ADYEN IS TRUE -- ' . strtolower($params['status']), 'info');
-                $this->sendToAdyen($order);
+            } elseif (
+                (strtolower($params['status']) == 'declined' || strtolower($params['status']) == 'not_authorized')
+                && $oldStatus != 'approved'
+            ) {
+                $this->helper->log('WEBHOOK SEND CANCEL TO ADYEN IS TRUE -- ' . strtolower($params['status']), 'info');
+                $this->sendToAdyenCancel($order);
             }
         }
 
@@ -174,7 +179,8 @@ class KondutoService extends OriginalKondutoService
         return true;
     }
 
-    public function sendToAdyen($order) {
+    public function sendToAdyen($order)
+    {
         $this->helper->log('WEBHOOK APPROVING', 'info');
         // TODO -> refactor to change status and implement adyen request on Observer
 
@@ -192,7 +198,8 @@ class KondutoService extends OriginalKondutoService
         }
     }
 
-    public function sendToAdyenCancel($order) {
+    public function sendToAdyenCancel($order)
+    {
         $this->helper->log('WEBHOOK APPROVING', 'info');
 
         // Merchant account data builder
@@ -212,7 +219,8 @@ class KondutoService extends OriginalKondutoService
      * @param $order
      * @return mixed
      */
-    public function createRequest($order) {
+    public function createRequest($order)
+    {
         $payment = $order->getPayment();
         $paymentMethod = $payment->getMethod();
         $storeId = $order->getStoreId();
@@ -234,7 +242,8 @@ class KondutoService extends OriginalKondutoService
      * @param $order
      * @return mixed
      */
-    public function createCancelRequest($order) {
+    public function createCancelRequest($order)
+    {
         $payment = $order->getPayment();
         $paymentMethod = $payment->getMethod();
         $storeId = $order->getStoreId();
@@ -247,7 +256,8 @@ class KondutoService extends OriginalKondutoService
         return $this->adyenRequestHelper->buildMerchantAccountData($request, $paymentMethod, $storeId);
     }
 
-    public function getOrderState($status) {
+    public function getOrderState($status)
+    {
         $this->helper->log('WEBHOOK GETTING STATE ' . $status, 'info');
         $statusObject = $this->orderStatusCollection->create()
             ->addFieldToFilter('main_table.status', $status)
