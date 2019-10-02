@@ -1,68 +1,75 @@
-define([
-        'jquery',
-        'mage/validation'
-    ], function ($) {
-        'use strict';
+define(
+	[
+		'jquery',
+		'Magento_Ui/js/model/messageList',
+		'mage/translate'
+	],
+	function ($, messageList,$t) {
+		'use strict';
+		return {
+			validationErrors: [],
 
-        return {
+			/**
+			 * CPF validation
+			 *
+			 * @param {string} cpf CPF to be validated
+			 * @returns {boolean}
+			 */
+			validaCPF: function(cpf) {
+				cpf = cpf.replace(/[\.-]+/g, "");
+				let num, dig, sum, i, res, eqDigits;
+				eqDigits = 1;
+				if (cpf.length < 11)
+					return false;
+				for (i = 0; i < cpf.length - 1; i++) {
+					if (cpf.charAt(i) != cpf.charAt(i + 1)) {
+						eqDigits = 0;
+						break;
+					}
+				}
+				if (!eqDigits) {
+					num = cpf.substring(0, 9);
+					dig = cpf.substring(9);
+					sum = 0;
+					for (i = 10; i > 1; i--) {
+						sum += num.charAt(10 - i) * i;
+					}
+					res = sum % 11 < 2 ? 0 : 11 - sum % 11;
+					if (res != dig.charAt(0)) {
+						return false;
+					}
+					num = cpf.substring(0, 10);
+					sum = 0;
+					for (i = 11; i > 1; i--) {
+						sum += num.charAt(11 - i) * i;
+					}
+					res = sum % 11 < 2 ? 0 : 11 - sum % 11;
+					return res == dig.charAt(1);
+				}
+				return false;
+			},
 
-            /**
-             * Validate checkout agreements
-             *
-             * @returns {Boolean}
-             */
-            validate: function () {
-                var result = false;
-                var cpf = $('input[name=vat_id]').val();
+			validate: function() {
+				var val = $('input[name=vat_id]').val();
+				this.validationErrors = [];
 
-                var validaCpf = function(cpf) {
-                	cpf = cpf.replace(/[^\d]+/g,'');
-                	if(cpf == '') return false;
-                	// Elimina CPFs invalidos conhecidos
-                	if (cpf.length != 11 ||
-                		cpf == "00000000000" ||
-                		cpf == "11111111111" ||
-                		cpf == "22222222222" ||
-                		cpf == "33333333333" ||
-                		cpf == "44444444444" ||
-                		cpf == "55555555555" ||
-                		cpf == "66666666666" ||
-                		cpf == "77777777777" ||
-                		cpf == "88888888888" ||
-                		cpf == "99999999999")
-                			return false;
-                	// Valida 1o digito
-                	var add = 0;
-                    var rev;
-                	for (var i=0; i < 9; i++)
-                		add += parseInt(cpf.charAt(i)) * (10 - i);
-                		rev = 11 - (add % 11);
-                		if (rev == 10 || rev == 11)
-                			rev = 0;
-                		if (rev != parseInt(cpf.charAt(9)))
-                			return false;
-                	// Valida 2o digito
-                	add = 0;
-                	for (i = 0; i < 10; i ++)
-                		add += parseInt(cpf.charAt(i)) * (11 - i);
-                	rev = 11 - (add % 11);
-                	if (rev == 10 || rev == 11)
-                		rev = 0;
-                	if (rev != parseInt(cpf.charAt(10)))
-                		return false;
-                	return true;
-                }
+				if (undefined === val || '' === val) {
+					messageList.addErrorMessage({
+						message: $t('O campo ') + 'CPF' + $t(' é obrigatório.')
+					});
 
-                if(validaCpf(cpf)){
-                    result = true;
-                }
+					return false;
+				}
+				if (!this.validaCPF(val)) {
+					messageList.addErrorMessage({
+						message: 'CPF' + $t(' inválido.')
+					});
 
-                if(!result){
-                    alert('CPF inválido');
-                }
+					return false;
+				}
 
-                return result;
-            }
-        };
-    }
+				return true;
+			}
+		}
+	}
 );
