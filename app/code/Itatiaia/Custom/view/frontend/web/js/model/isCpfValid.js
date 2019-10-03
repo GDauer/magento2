@@ -50,7 +50,15 @@ define(
 			},
 
 			validate: function() {
-				var val = $('input[name=vat_id]').val();
+				var vatIdField = $('input[name=vat_id] :visible');
+				if (vatIdField.length <= 0) {
+					vatIdField = $('input[name=taxvat] :visible');
+				}
+				if (vatIdField.length <= 0 || $('.shipping-address-item').length > 0) {
+					return true;
+				}
+				var val = vatIdField.val();
+
 				this.validationErrors = [];
 
 				if (undefined === val || '' === val) {
