@@ -9,7 +9,6 @@
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="visible" xsi:type="boolean">true</item>
                     <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
-                    <item name="sortable" xsi:type="boolean">false</item>
                 </item>
             </argument>
         </column>
