@@ -1,7 +1,8 @@
 <?php
-namespace Swissup\CheckoutFields\Plugin\Ui\Component;
+namespace Itatiaia\KondutoCustom\Plugin\Ui\Component;
 
 use Swissup\CheckoutFields\Model\ResourceModel\Field\Collection;
+use Konduto\Antifraud\Helper\Data;
 
 class OrderListingData
 {
@@ -13,17 +14,17 @@ class OrderListingData
 
     /**
      * Checkout fields helper
-     * @var \Swissup\CheckoutFields\Helper\Data
+     * @var \Konduto\Antifraud\Helper\Data
      */
     protected $helper;
 
     /**
      * @param Collection $fieldsCollection
-     * @param \Swissup\CheckoutFields\Helper\Data $helper
+     * @param \Konduto\Antifraud\Helper\Data $helper
      */
     public function __construct(
         Collection $fieldsCollection,
-        \Swissup\CheckoutFields\Helper\Data $helper
+        Data $helper
     ) {
         $this->fieldsCollection = $fieldsCollection;
         $this->helper = $helper;
@@ -44,21 +45,17 @@ class OrderListingData
         ) {
             $select = $result->getSelect();
             $select->joinLeft(
-                ['swissupcfv' => $connection->getTableName('swissup_checkoutfields_values')],
-                'main_table.entity_id = swissupcfv.order_id AND main_table.store_id = swissupcfv.store_id',
-                []
-            )->joinLeft(
-                ['swissupcf' => $connection->getTableName('swissup_checkoutfields_field')],
-                'swissupcf.field_id = swissupcfv.field_id',
-                []
-            )->group('main_table.entity_id')
-            ->columns($this->getFieldsColumns());
+                ['kondutohist' => $connection->getTableName('konduto_antifraud_history')],
+                'main_table.entity_id = kondutohist.order_id',
+                ['konduto_status' => 'status']
+            )->group('kondutohist.status')
+            ->columns('status');
 
             // Fix column in where clause is ambiguous error
             $where = $select->getPart('where');
             foreach ($where as &$item) {
-                if (strpos($item, '(`store_id`') !== false) {
-                    $item = str_replace('`store_id`', '`main_table`.`store_id`', $item);
+                if (strpos($item, '(`updated_at`') !== false) {
+                    $item = str_replace('`updated_at`', '`main_table`.`updated_at`', $item);
                 }
 
                 if (strpos($item, '(`created_at`') !== false) {
@@ -69,20 +66,5 @@ class OrderListingData
         }
 
         return $result;
-    }
-
-    /**
-     * @return array
-     */
-    protected function getFieldsColumns()
-    {
-        $columns = [];
-        $fields = $this->fieldsCollection->addUsedInGridFilter(1);
-        $codes = $fields->getColumnValues('attribute_code');
-        foreach ($codes as $code) {
-            $columns[$code] = new \Zend_Db_Expr("MAX(CASE WHEN (swissupcf.attribute_code = '$code') THEN swissupcfv.value ELSE NULL END)");
-        }
-
-        return $columns;
     }
 }
