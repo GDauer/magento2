@@ -167,7 +167,9 @@ class KondutoService extends OriginalKondutoService
                 $this->helper->log('WEBHOOK SEND TO ADYEN IS TRUE', 'info');
                 $this->sendToAdyen($order);
             } elseif (
-                (strtolower($params['status']) == 'declined' || strtolower($params['status']) == 'not_authorized')
+                (strtolower($params['status']) == 'declined'
+                    || strtolower($params['status']) == 'not_authorized'
+                    || strtolower($params['status']) == 'canceled')
                 && $oldStatus != 'approved'
             ) {
                 $this->helper->log('WEBHOOK SEND CANCEL TO ADYEN IS TRUE -- ' . strtolower($params['status']), 'info');
