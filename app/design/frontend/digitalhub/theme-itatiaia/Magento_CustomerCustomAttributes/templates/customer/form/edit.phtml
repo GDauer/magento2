@@ -8,7 +8,7 @@
 
 /** @var Magento\CustomerCustomAttributes\Block\Form $block */
 ?>
-<form class="form form-edit-account" action="<?= /* @escapeNotVerified */ $block->getUrl('customer/account/editPost') ?>" method="post" id="form-validate" enctype="multipart/form-data" data-hasrequired="<?= /* @escapeNotVerified */ __('* Required Fields') ?>" autocomplete="off">
+<form class="form form-edit-account" action="<?= /* @escapeNotVerified */ $block->getUrl('customer/account/editPost') ?>" method="post" id="form-validate" enctype="multipart/form-data" data-hasrequired="<?= /* @escapeNotVerified */ __('* Required Fields') ?>" autocomplete="off" data-mage-init='{"validation":{}}'>
     <fieldset class="fieldset info">
         <?= $block->getBlockHtml('formkey') ?>
         <legend class="legend"><span><?= /* @escapeNotVerified */ __('Account Information') ?></span></legend><br>
@@ -144,7 +144,9 @@
                     "Magento_CustomerCustomAttributes/error-placement",
                     "Magento_CustomerCustomAttributes/validation-ignore"
                 ]
-            }
+            },
+            "customValidation": {},
+            "taxVatValidation": {}
         },
         "[data-container=new-password]": {
             "passwordStrengthIndicator": {
