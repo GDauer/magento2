@@ -160,6 +160,13 @@ class KondutoService extends OriginalKondutoService
 
             $statusCode = $this->helper->getStatusCode($params['status']);
 
+            if ( // Return false IF order was already approved, and we are trying to approve it again
+                $params['status'] == 'approved' &&
+                ($order->getState() == 'processing' || $order->getStatus() == 'processing' || $oldStatus == 'approved')
+            ) {
+                return false;
+            }
+
             $order->setState($this->getOrderState($statusCode));
             $order->setStatus($statusCode);
             $this->helper->log('WEBHOOK CHECKING IF SEND TO ADYEN IS TRUE', 'info');
