@@ -20,6 +20,7 @@ class DataObjectProcessorPlugin
         $this->scopeConfig = $scopeConfig;
         $this->jsonHelper = $jsonHelper;
         $this->factory = $intelipostFactory;
+        $this->logger = $logger;
     }
 
     public function afterBuildOutputDataArray(\Magento\Framework\Reflection\DataObjectProcessor $subject, $result, $dataObject, $dataObjectType){
@@ -29,7 +30,7 @@ class DataObjectProcessorPlugin
 
         $data = $result;
 
-        if (!isset($data['track_number'])) {
+        if (!isset($data['track_number']) && method_exists($dataObject, "getOrder")) {
             $data['shipping_method_sap'] = null;
 
             $order = $dataObject->getOrder();
@@ -53,14 +54,14 @@ class DataObjectProcessorPlugin
                     }
 
                 }
-            if (isset($data['customer_group_id'])) { // para assegurar que é um Order
-                if ($dataObject->getBillingAddress()) {
-                    if (!isset($data['customer_firstname'])) {
-                        $data['customer_firstname'] = $dataObject->getBillingAddress()->getFirstname();
-                        $data['customer_lastname'] = $dataObject->getBillingAddress()->getLastname();
+                if (isset($data['customer_group_id'])) { // para assegurar que é um Order
+                    if ($dataObject->getBillingAddress()) {
+                        if (!isset($data['customer_firstname'])) {
+                            $data['customer_firstname'] = $dataObject->getBillingAddress()->getFirstname();
+                            $data['customer_lastname'] = $dataObject->getBillingAddress()->getLastname();
+                        }
                     }
                 }
-            }
             }
 
         }
