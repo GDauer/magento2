@@ -20,7 +20,6 @@ class DataObjectProcessorPlugin
         $this->scopeConfig = $scopeConfig;
         $this->jsonHelper = $jsonHelper;
         $this->factory = $intelipostFactory;
-        $this->logger = $logger;
     }
 
     public function afterBuildOutputDataArray(\Magento\Framework\Reflection\DataObjectProcessor $subject, $result, $dataObject, $dataObjectType){
