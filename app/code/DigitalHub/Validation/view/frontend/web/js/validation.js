@@ -41,7 +41,7 @@ define([
                 }
                 return false;
             },
-            $.mage.__("CPF inválido.")
+            $.mage.__("O CPF informado é inválido.")
         );
     }
 });
