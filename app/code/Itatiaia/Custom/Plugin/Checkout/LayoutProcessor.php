@@ -19,7 +19,8 @@ class LayoutProcessor
             $shippingAddressChildren['vat_id']['sortOrder'] = 50;
             $shippingAddressChildren['vat_id']['required'] = true;
             $shippingAddressChildren['vat_id']['validation'] = [
-                'required-entry' => 1
+                'required-entry' => 1,
+                'taxvatvalidation' => 1
             ];
         }
         if(isset($shippingAddressChildren['postcode'])){
