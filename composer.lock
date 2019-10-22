@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "662ba5cd5e344cfd2aaac614b61d7f6a",
+    "content-hash": "eb73772658d24ac469f8f6f4d1ce9d36",
     "packages": [
         {
             "name": "adyen/module-payment",
@@ -11244,6 +11244,85 @@
             "time": "2019-03-27T01:40:38+00:00"
         },
         {
+            "name": "mageplaza/module-better-popup",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mageplaza/magento-2-better-popup.git",
+                "reference": "bf6099d7591dbf2b362581a604f8e28a630b49ea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mageplaza/magento-2-better-popup/zipball/bf6099d7591dbf2b362581a604f8e28a630b49ea",
+                "reference": "bf6099d7591dbf2b362581a604f8e28a630b49ea",
+                "shasum": ""
+            },
+            "require": {
+                "mageplaza/module-core": "^1.4.4"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Mageplaza\\BetterPopup\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Mageplaza",
+                    "email": "support@mageplaza.com",
+                    "homepage": "https://www.mageplaza.com",
+                    "role": "Technical Support"
+                }
+            ],
+            "description": "Magento 2 Better Popup",
+            "time": "2019-07-25T05:07:59+00:00"
+        },
+        {
+            "name": "mageplaza/module-core",
+            "version": "1.4.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mageplaza/module-core.git",
+                "reference": "85bfb6ef453471b2cef789dcf23525be8e7b881f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mageplaza/module-core/zipball/85bfb6ef453471b2cef789dcf23525be8e7b881f",
+                "reference": "85bfb6ef453471b2cef789dcf23525be8e7b881f",
+                "shasum": ""
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Mageplaza\\Core\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Mageplaza",
+                    "email": "support@mageplaza.com",
+                    "homepage": "https://www.mageplaza.com",
+                    "role": "Technical Support"
+                }
+            ],
+            "description": "Mageplaza Core for Magento 2",
+            "time": "2019-08-16T08:51:45+00:00"
+        },
+        {
             "name": "mashape/unirest-php",
             "version": "v3.0.4",
             "source": {
@@ -11390,6 +11469,56 @@
             "description": "Internal MaxMind Web Service API",
             "homepage": "https://github.com/maxmind/web-service-common-php",
             "time": "2018-02-12T22:31:54+00:00"
+        },
+        {
+            "name": "mercadopago/magento2-plugin",
+            "version": "3.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mercadopago/cart-magento2.git",
+                "reference": "f5208e407b648e3cb7b56ef0eda4c48139ef0582"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mercadopago/cart-magento2/zipball/f5208e407b648e3cb7b56ef0eda4c48139ef0582",
+                "reference": "f5208e407b648e3cb7b56ef0eda4c48139ef0582",
+                "shasum": ""
+            },
+            "require": {
+                "magento/magento-composer-installer": "*"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "~1.2",
+                "lusitanian/oauth": "~0.3 <=0.7.0",
+                "magento/product-community-edition": "2.*",
+                "pdepend/pdepend": "2.2.2",
+                "phpmd/phpmd": "@stable",
+                "phpunit/phpunit": "4.1.0",
+                "sjparkinson/static-review": "~4.1",
+                "squizlabs/php_codesniffer": "1.5.3"
+            },
+            "type": "magento2-component",
+            "autoload": {
+                "psr-4": {
+                    "MercadoPago\\Core\\": "src/MercadoPago/Core"
+                },
+                "files": [
+                    "src/MercadoPago/Core/registration.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Mercado Pago",
+                    "email": "info@mercadopago.com"
+                }
+            ],
+            "description": "Mercado Pago Magento 2 Plugin",
+            "time": "2019-08-26T17:40:20+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -13850,7 +13979,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "BackEndTea@gmail.com"
+                    "email": "backendtea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
