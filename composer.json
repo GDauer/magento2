@@ -58,7 +58,8 @@
         "pmclain/magento2-successtest": "^2.0",
         "mundipagg/mundipagg-magento2-module": "^1.8",
         "digitalhub/module-cookie": "dev-master",
-        "konduto/magento2": "^1.0"
+        "konduto/magento2": "^1.0",
+        "mercadopago/magento2-plugin": "^3.3"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.2.0",
