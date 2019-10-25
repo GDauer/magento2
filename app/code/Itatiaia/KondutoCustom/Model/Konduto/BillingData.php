@@ -17,7 +17,7 @@ class BillingData extends OriginalBillingData
 
     public function __construct(Data $helper, Address $address)
     {
-        parent::__construct($address);
+        $this->address = $address;
         $this->helper = $helper;
     }
 
