@@ -3,6 +3,7 @@
     <module name="Itatiaia_KondutoCustom" setup_version="1.0.0">
         <sequence>
             <module name="Konduto_Antifraud" />
+            <module name="Magento_Sales" />
         </sequence>
     </module>
 </config>
