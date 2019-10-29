@@ -1,0 +1,5 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="MercadoPago\Core\Model\Core">
+        <plugin name="Itatiaia_CustomMercadoPago_Plugin_Model_CorePlugin" type="Itatiaia\CustomMercadoPago\Plugin\Model\CorePlugin" sortOrder="100" disabled="false" />
+    </type>
+</config>
