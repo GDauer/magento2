@@ -53,6 +53,11 @@ class KondutoService extends OriginalKondutoService
      */
     protected $orderStatusCollection;
 
+    /**
+     * @var \Itatiaia\CustomMercadoPago\Http\Order\Payment
+     */
+    protected $mercadoPagoHttpPayment;
+
     public function __construct(
         \Konduto\Antifraud\Helper\Data $helper,
         \Konduto\Antifraud\Model\QueueFactory $queueFactory,
@@ -75,7 +80,8 @@ class KondutoService extends OriginalKondutoService
         \Adyen\Payment\Gateway\Http\Client\TransactionCapture $transactionCapture,
         \Adyen\Payment\Gateway\Http\Client\TransactionCancel $transactionCancel,
         \Adyen\Payment\Helper\Data $adyenHelper,
-        \Magento\Sales\Model\ResourceModel\Order\Status\CollectionFactory $orderStatusCollection
+        \Magento\Sales\Model\ResourceModel\Order\Status\CollectionFactory $orderStatusCollection,
+        \Itatiaia\CustomMercadoPago\Http\Order\Payment $mercadoPagoHttpPayment
     )
     {
         $this->orderHistoryFactory = $orderHistoryFactory;
@@ -86,6 +92,7 @@ class KondutoService extends OriginalKondutoService
         $this->transactionCancel = $transactionCancel;
         $this->adyenHelper = $adyenHelper;
         $this->orderStatusCollection = $orderStatusCollection;
+        $this->mercadoPagoHttpPayment = $mercadoPagoHttpPayment;
         parent::__construct(
             $orderRepository,
             $queueRepository,
@@ -172,14 +179,14 @@ class KondutoService extends OriginalKondutoService
             $this->helper->log('WEBHOOK CHECKING IF SEND TO ADYEN IS TRUE', 'info');
             if (strtolower($params['status']) == 'approved') {
                 $this->helper->log('WEBHOOK SEND TO ADYEN IS TRUE', 'info');
-                $this->sendToAdyen($order);
+                $this->sendCapture($order);
             } elseif (
                 strtolower($params['status']) == 'declined'
                 || strtolower($params['status']) == 'not_authorized'
                 || strtolower($params['status']) == 'canceled'
             ) {
-                $this->helper->log('WEBHOOK SEND CANCEL TO ADYEN IS TRUE -- ' . strtolower($params['status']), 'info');
-                $this->sendToAdyenCancel($order);
+                $this->helper->log('WEBHOOK SEND CANCEL IS TRUE -- ' . strtolower($params['status']), 'info');
+                $this->sendCancel($order);
             }
         }
 
@@ -204,6 +211,47 @@ class KondutoService extends OriginalKondutoService
             $this->helper->log('ERROR SENDING CAPTURE DATA TO ADYEN - REQUEST WAS ' . json_encode($request), 'warning');
             // TODO -> return error to Konduto
         }
+    }
+
+    /**
+     * @param $order
+     * @return array|bool
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function sendToMercadoPago($order)
+    {
+        $this->helper->log('WEBHOOK CAPTURING ON MERCADOPAGO', 'info');
+        $resp = $this->mercadoPagoHttpPayment->capture($order);
+        $this->helper->log('MERCADOPAGO RET - ' . json_encode($resp), 'info');
+
+        return $resp;
+    }
+
+    public function sendCapture($order)
+    {
+        if (strpos($order->payment->getMethod(), 'mercadopago') !== false) {
+            return $this->sendToMercadoPago($order);
+        }
+
+        return $this->sendToAdyen($order);
+    }
+
+    public function sendCancel($order)
+    {
+        if (strpos($order->payment->getMethod(), 'mercadopago') !== false) {
+            return $this->sendToMercadoPagoCancel($order);
+        }
+
+        return $this->sendToAdyenCancel($order);
+    }
+
+    public function sendToMercadoPagoCancel($order)
+    {
+        $this->helper->log('WEBHOOK CANCELLING MERCADOPAGO', 'info');
+        $resp = $this->mercadoPagoHttpPayment->cancel($order);
+        $this->helper->log('MERCADOPAGO RET - ' . json_encode($resp), 'info');
+
+        return $resp;
     }
 
     public function sendToAdyenCancel($order)
