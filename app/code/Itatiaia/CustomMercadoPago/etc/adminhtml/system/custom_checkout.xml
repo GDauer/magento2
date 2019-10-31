@@ -42,9 +42,14 @@
       <config_path>payment/mercadopago_custom/order_status_refunded</config_path>
     </field>
     <field id="order_status_partially_refunded" translate="label" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="0">
-      <label>Order status when payment is partually refunded</label>
+      <label>Order status when payment is partially refunded</label>
       <source_model>MercadoPago\Core\Model\System\Config\Source\Order\Status</source_model>
       <config_path>payment/mercadopago_custom/order_status_partially_refunded</config_path>
+    </field>
+    <field id="order_status" translate="label" type="select" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="0">
+      <label>Status do pedido quando é criado</label>
+      <source_model>MercadoPago\Core\Model\System\Config\Source\Order\Status</source_model>
+      <config_path>payment/mercadopago_custom/order_status</config_path>
     </field>
   </group>
 </include>

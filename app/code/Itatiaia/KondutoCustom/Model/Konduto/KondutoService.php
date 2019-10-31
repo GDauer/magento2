@@ -178,7 +178,6 @@ class KondutoService extends OriginalKondutoService
             $order->setStatus($statusCode);
             $this->helper->log('WEBHOOK CHECKING IF SEND TO ADYEN IS TRUE', 'info');
             if (strtolower($params['status']) == 'approved') {
-                $this->helper->log('WEBHOOK SEND TO ADYEN IS TRUE', 'info');
                 $this->sendCapture($order);
             } elseif (
                 strtolower($params['status']) == 'declined'
@@ -238,7 +237,7 @@ class KondutoService extends OriginalKondutoService
 
     public function sendCancel($order)
     {
-        if (strpos($order->payment->getMethod(), 'mercadopago') !== false) {
+        if (strpos($order->getPayment()->getMethod(), 'mercadopago') !== false) {
             return $this->sendToMercadoPagoCancel($order);
         }
 

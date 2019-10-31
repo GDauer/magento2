@@ -2,8 +2,6 @@
   <system>
     <section id="payment">
       <group id="mercadopago_configurations">
-        <include path="Itatiaia_CustomMercadoPago::system/credentials.xml"/>
-        <include path="Itatiaia_CustomMercadoPago::system/order_management.xml"/>
         <include path="Itatiaia_CustomMercadoPago::system/custom_checkout.xml"/>
         <include path="Itatiaia_CustomMercadoPago::system/custom_checkout_ticket.xml"/>
       </group>
