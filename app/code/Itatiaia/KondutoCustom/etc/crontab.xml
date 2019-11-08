@@ -5,4 +5,9 @@
             <config_path>10 * * * *</config_path>
         </job>
     </group>
+    <group id="konduto">
+        <job name="konduto_antifraud_update_order_status" instance="Itatiaia\KondutoCustom\Cron\UpdateOrderStatus" method="execute">
+            <schedule>* * * * *</schedule>
+        </job>
+    </group>
 </config>
