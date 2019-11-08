@@ -320,6 +320,8 @@ class KondutoService extends OriginalKondutoService
             ->joinStates()
             ->getFirstItem();
 
+        $this->helper->log('==== STATE TO SET ====' . $statusObject->getState(), 'info');
+
         return $statusObject->getState();
     }
 }
