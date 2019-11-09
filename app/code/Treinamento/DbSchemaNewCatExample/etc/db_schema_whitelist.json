@@ -1,0 +1,8 @@
+{
+    "pet_table": {
+        "column": {
+            "cat_name": true,
+            "pet_type": true
+        }
+    }
+}

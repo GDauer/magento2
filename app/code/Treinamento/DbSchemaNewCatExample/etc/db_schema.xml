@@ -1,0 +1,10 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="pet_table" >
+        <column xsi:type="varchar" name="pet_type"
+            nullable="false"
+            length="255"
+            comment="Cat"
+        />
+    </table>
+</schema>

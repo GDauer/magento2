@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="standard">
+        <route id="treinamento_layout" frontName="treinamento_layout">
+            <module name="Treinamento_LayoutExample" />
+        </route>
+        <route id="static_layout" frontName="static_layout">
+            <module name="Treinamento_LayoutExample" />
+        </route>
+    </router>
+</config>

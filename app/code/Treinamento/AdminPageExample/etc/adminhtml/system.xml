@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="teste">
+            <label>Label Teste</label>
+        </tab>
+        <section id="teste" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Teste</label>
+            <tab>teste</tab>
+            <resource>Treinamento_AdminPageExample::index</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Treinamento Magento</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Teste</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="upload" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Upload File Example</label>
+                <field id="upload_example" translate="label" type="file" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>PDF Example</label>
+                    <backend_model>Treinamento\AdminPageExample\Model\Config\Backend\Pdf</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">sales/store</upload_dir>
+                    <base_url type="media" scope_info="1">sales/store</base_url>
+                </field>
+            </group>
+            <group id="password" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Password Example</label>
+                <field id="password" translate="label" type="obscure" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Password Example</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <comment>THIS IS A COMMENT!</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

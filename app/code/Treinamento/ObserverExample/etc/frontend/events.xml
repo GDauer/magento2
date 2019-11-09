@@ -1,0 +1,7 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_predispatch">
+        <observer name="treinamento_observer_example"
+                  instance="Treinamento\ObserverExample\Observer\Controller\Action\PredispatchObserver"/>
+    </event>
+</config>

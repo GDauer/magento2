@@ -1,0 +1,12 @@
+<?php
+/** \Magento\Framework\View\Element\Template $block */
+
+/** @var \Treinamento\AdminPageExample\ViewModel\Argument $model */
+$model = $block->getViewModel();
+?>
+
+<?php foreach ($model->getValues() as $values): ?>
+<ul>
+    <li><?= json_encode($values) ?></li>
+</ul>
+<?php endforeach; ?>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="footer-container">
+            <block class="Magento\Theme\Block\Html\Footer" name="copyright"
+                   template="Treinamento_LayoutExample::copyright.phtml" />
+        </referenceBlock>
+        <referenceContainer name="footer">
+            <block name="treinamento.helloworld.footer" template="Treinamento_LayoutExample::hello.phtml"/>
+            <block class="Magento\Framework\View\Element\Text" name="treinamento.helloworld.footer.text">
+                <arguments>
+                    <argument name="text" xsi:type="string">Hello Text</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

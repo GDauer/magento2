@@ -1,0 +1,16 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+
+/**
+ * This function depends on <argument> node
+ *
+ * @var \Treinamento\ViewModelExample\ViewModel\ViewModel $viewModel
+ */
+$viewModel = $block->getViewModel();
+$something = $viewModel->getSomething();
+?>
+<?php foreach ($something as $key => $value): ?>
+<p>
+    <?= $key . ': ' . $block->escapeHtml($value) ?>
+<?php endforeach; ?>
+</p>
