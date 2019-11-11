@@ -24,7 +24,7 @@ class CorePlugin
      */
     public function beforePostPaymentV1(\MercadoPago\Core\Model\Core $subject, $preference)
     {
-        if (!isset($preference['capture'])) {
+        if (!isset($preference['capture']) && $preference['payment_method_id'] != 'bolbradesco') {
             $preference['capture'] = false;
         }
 
