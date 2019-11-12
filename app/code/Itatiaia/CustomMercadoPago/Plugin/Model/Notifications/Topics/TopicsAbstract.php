@@ -14,7 +14,7 @@ class TopicsAbstract
 
     public function __construct
     (
-        Magento\Sales\Model\ResourceModel\Order\Status\CollectionFactory $collectionFactory
+        \Magento\Sales\Model\ResourceModel\Order\Status\CollectionFactory $collectionFactory
     )
     {
         $this->collectionFactory = $collectionFactory;
