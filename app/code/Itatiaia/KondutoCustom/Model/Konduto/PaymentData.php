@@ -73,15 +73,15 @@ class PaymentData extends OriginalPaymentData
         );
 
         $this->helper->log('METHOD - ' . $this->payment->getMethod(), 'info');
-        if ($this->method === "credit") {
+        if (strpos($this->payment->getMethod(), 'mercadopago') !== false) {
+            $this->helper->log('ELSEIF - MERCADOPAGO', 'info');
+            $data[0] = $this->getMercadoPagoData();
+            $data[0]['type'] = $this->getMethod($this->payment);
+        } elseif ($this->method === "credit") {
             $this->helper->log('IF - CREDIT', 'info');
             $this->helper->log('', 'info');
             $quote = $this->loadQuote($this->order->getQuoteId());
             $data[0] = $this->getAdyenData($quote);
-            $data[0]['type'] = $this->getMethod($this->payment);
-        } elseif (strpos($this->payment->getMethod(), 'mercadopago') !== false) {
-            $this->helper->log('ELSEIF - MERCADOPAGO', 'info');
-            $data[0] = $this->getMercadoPagoData();
             $data[0]['type'] = $this->getMethod($this->payment);
         } else {
             $this->helper->log('ELSE', 'info');
