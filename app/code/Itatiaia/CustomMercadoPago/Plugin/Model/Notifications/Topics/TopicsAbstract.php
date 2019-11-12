@@ -20,7 +20,7 @@ class TopicsAbstract
         $this->collectionFactory = $collectionFactory;
     }
 
-    public function afterAetStatusAndComment(\MercadoPago\Core\Model\Notifications\Topics\TopicsAbstract $subject, $order)
+    public function afterSetStatusAndComment(\MercadoPago\Core\Model\Notifications\Topics\TopicsAbstract $subject, $order)
     {
         $payment = $order->getPayment();
         $method = $payment->getMethodInstance();
