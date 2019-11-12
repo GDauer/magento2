@@ -2,4 +2,7 @@
     <type name="MercadoPago\Core\Model\Core">
         <plugin name="Itatiaia_CustomMercadoPago_Plugin_Model_CorePlugin" type="Itatiaia\CustomMercadoPago\Plugin\Model\CorePlugin" sortOrder="100" disabled="false" />
     </type>
+    <type name="MercadoPago\Core\Model\Notifications\Topics\TopicsAbstract">
+        <plugin name="Itatiaia_CustomMercadoPago_Plugin_Model_Notifications_Topics_TopicsAbstract" type="Itatiaia\CustomMercadoPago\Plugin\Model\Notifications\Topics\TopicsAbstract" sortOrder="100" disabled="false" />
+    </type>
 </config>
