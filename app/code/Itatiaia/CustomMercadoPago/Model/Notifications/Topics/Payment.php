@@ -5,7 +5,7 @@ namespace Itatiaia\CustomMercadoPago\Model\Notifications\Topics;
 use Magento\Sales\Model\Order;
 use MercadoPago\Core\Helper\Response;
 
-class TopicsAbstract extends \MercadoPago\Core\Model\Notifications\Topics\Payment
+class Payment extends \MercadoPago\Core\Model\Notifications\Topics\Payment
 {
 
     const STATUS = 'payment_review';

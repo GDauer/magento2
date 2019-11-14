@@ -162,21 +162,31 @@ class KondutoService extends OriginalKondutoService
         $this->updateHistory($order->getId(), $params['status']);
         $oldStatus = strtolower($order->getKondutoStatus());
         $order->setKondutoStatus($params['status']);
+        $this->helper->log('============ ANTES IF =========' , 'info');
         if ($this->helper->getAutomaticKondutoUpdate()) {
-            $this->helper->log('WEBHOOK SETTING STATUS ' . json_encode($this->helper->getStatusCode($params['status'])), 'info');
 
+            $this->helper->log('WEBHOOK SENDING STATE ' . $params['status'], 'info');
             $statusCode = $this->helper->getStatusCode($params['status']);
 
+            $this->helper->log('COND 1 ' . $params['status'], 'info');
+            $this->helper->log('COND 2 ' . $order->getState(), 'info');
+            $this->helper->log('COND 3 ' . $order->getStatus(), 'info');
+            $this->helper->log('COND 4 ' . $oldStatus, 'info');
+            $this->helper->log('COND 5 ' . $order->canInvoice(), 'info');
             if ( // Return false IF order was already approved, and we are trying to approve it again
                 $params['status'] == 'approved' &&
-                ($order->getState() == 'processing' || $order->getStatus() == 'processing' || $oldStatus == 'approved')
+                $oldStatus == 'approved' &&
+                !$order->canInvoice() &&
+                ($order->getState() == 'processing' || $order->getStatus() == 'processing' )
             ) {
                 return false;
             }
 
+            $this->helper->log('WEBHOOK SETTING ORDER STATE ' . json_encode($this->getOrderState($statusCode)), 'info');
+            $this->helper->log('WEBHOOK SETTING ORDER STATUS ' . $statusCode, 'info');
             $order->setState($this->getOrderState($statusCode));
             $order->setStatus($statusCode);
-            $this->helper->log('WEBHOOK CHECKING IF SEND TO ADYEN IS TRUE', 'info');
+
             if (strtolower($params['status']) == 'approved') {
                 $this->sendCapture($order);
             } elseif (
@@ -188,7 +198,8 @@ class KondutoService extends OriginalKondutoService
                 $this->sendCancel($order);
             }
         }
-
+        $this->helper->log('FINAL ORDER STATE ' . $order->getState(), 'info');
+        $this->helper->log('FINAL ORDER STATUS ' . $order->getStatus(), 'info');
         $order->save();
         return true;
     }
@@ -313,7 +324,6 @@ class KondutoService extends OriginalKondutoService
 
     public function getOrderState($status)
     {
-        $this->helper->log('WEBHOOK GETTING STATE ' . $status, 'info');
         $statusObject = $this->orderStatusCollection->create()
             ->addFieldToFilter('main_table.status', $status)
             ->addFieldToFilter('state_table.is_default', true)
