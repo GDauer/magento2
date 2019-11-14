@@ -187,15 +187,20 @@ class KondutoService extends OriginalKondutoService
             $order->setState($this->getOrderState($statusCode));
             $order->setStatus($statusCode);
 
-            if (strtolower($params['status']) == 'approved') {
+            $this->helper->log('New order state ' . $order->getState(), 'info');
+            $this->helper->log('New order status ' . $order->getStatus(), 'info');
+
+            if ($params['status'] == 'approved') {
                 $this->sendCapture($order);
             } elseif (
-                strtolower($params['status']) == 'declined'
-                || strtolower($params['status']) == 'not_authorized'
-                || strtolower($params['status']) == 'canceled'
+                $params['status'] == 'declined'
+                || $params['status'] == 'not_authorized'
+                || $params['status'] == 'canceled'
             ) {
-                $this->helper->log('WEBHOOK SEND CANCEL IS TRUE -- ' . strtolower($params['status']), 'info');
+                $this->helper->log('WEBHOOK SEND CANCEL IS TRUE -- ', 'info');
                 $this->sendCancel($order);
+            } else {
+                $this->helper->log('ELSE PERDIDO ', 'info');
             }
         }
         $this->helper->log('FINAL ORDER STATE ' . $order->getState(), 'info');
@@ -239,10 +244,16 @@ class KondutoService extends OriginalKondutoService
 
     public function sendCapture($order)
     {
-        if (strpos($order->payment->getMethod(), 'mercadopago') !== false) {
+        $payment = $order->getPayment();
+        $method = $payment->getMethod();
+
+        $this->helper->log('SEND CAPTURE ', 'info');
+
+        if (strpos($method, 'mercadopago') !== false) {
+            $this->helper->log('SEND CAPTURE MERCADO BEFORE ', 'info');
             return $this->sendToMercadoPago($order);
         }
-
+        $this->helper->log('SEND ADYEN BEFORE ', 'info');
         return $this->sendToAdyen($order);
     }
 
