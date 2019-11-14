@@ -4,6 +4,7 @@
       <group id="mercadopago_configurations">
         <include path="Itatiaia_CustomMercadoPago::system/custom_checkout.xml"/>
         <include path="Itatiaia_CustomMercadoPago::system/custom_checkout_ticket.xml"/>
+        <include path="Itatiaia_CustomMercadoPago::system/order_management.xml"/>
       </group>
     </section>
   </system>
