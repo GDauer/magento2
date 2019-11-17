@@ -91,10 +91,10 @@
         <!-- ko if: (getCountryId() == 'MLB')-->
         <div id="form-ticket">
           <div class="form-row">
-            <div class="form-col-6">
+            <div class="form-col-12">
               <input type="radio" name="mercadopago_custom_ticket[doc-type]" class="MPv1-docType" id="MPv1-docType-fisica" checked="checked" value="CPF" data-bind="attr: {title: $t('Document Number')}"> <!-- ko i18n: 'Pessoa Física'--><!-- /ko -->
             </div>
-            <div class="form-col-6">
+            <div style="display:none;" class="form-col-6">
               <input type="radio" name="mercadopago_custom_ticket[doc-type]" class="MPv1-docType" id="MPv1-docType-juridica" value="CNPJ" data-bind="attr: {title: $t('Document Number')}"> <!-- ko i18n: 'Pessoa Jurídica'--><!-- /ko -->
             </div>
           </div>
@@ -102,7 +102,6 @@
           <div class="form-row">
             <div class="form-col-6" id="box-firstname">
               <label for="firstname" class="require title-name"><!-- ko i18n: 'Name'--><!-- /ko --></label>
-              <label for="firstname" class="require title-razao-social"><!-- ko i18n: 'Razão Social'--><!-- /ko --> </label>
               <input type="text" name="mercadopago_custom_ticket[firstname]" id="MPv1-firstname" class="form-control-mine required-entry-firstname"  data-bind="attr: {title: $t('Name'), 'data-validate': JSON.stringify({required:true})}">
             </div>
 
