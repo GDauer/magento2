@@ -17,7 +17,7 @@
 <?= $block->getChildHtml('form_fields_before') ?>
 <?php /* Extensions placeholder */ ?>
 <?= $block->getChildHtml('customer.form.register.extra') ?>
-<form class="form create account form-create-account" action="<?= /* @escapeNotVerified */ $block->getPostActionUrl() ?>" method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off">
+<form class="form create account form-create-account" action="<?= /* @escapeNotVerified */ $block->getPostActionUrl() ?>" method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off" data-mage-init='{"validation":{}}'>
     <?= /* @noEscape */ $block->getChildHtml('form_fields_before_in_form') ?>
     <?= /* @noEscape */ $block->getBlockHtml('formkey'); ?>
     <fieldset class="fieldset create info">
@@ -212,7 +212,9 @@
                     "Magento_CustomerCustomAttributes/error-placement",
                     "Magento_CustomerCustomAttributes/validation-ignore"
                 ]
-            }
+            },
+            "customValidation": {},
+            "taxVatValidation": {}
         },
         ".field.password": {
             "passwordStrengthIndicator": {
