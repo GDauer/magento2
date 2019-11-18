@@ -18,7 +18,9 @@ if($oldPrice && $finalPrice){
                 </span>
             </span>
             <div class="wrp-desc">
-                 <span class="tag-desc discount-grouped">-<?= (int) $discount ?>%</span>
+                <?php if($discount >= 10): ?>
+                     <span class="tag-desc discount-grouped">-<?= (int) $discount ?>%</span>
+                <?php endif; ?>
             </div>
         </div>
     <?php endif; ?>

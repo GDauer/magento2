@@ -197,10 +197,13 @@ switch ($type = $block->getType()) {
                         <?= $block->getImage($_item, $image)->toHtml() ?>
                     </a>
                     <?php if($_item->getFinalPrice() < $_item->getPrice()) : ?>
+                        <?php $discount =  (100 - ($_item->getFinalPrice() * 100 / $_item->getPrice())) ?>
                     <div class="tag-desc">
                        <div class="label-product label-sale">
                            <span class="sale-product-icon">
-                              <?= (int)(100 - ($_item->getFinalPrice() * 100 / $_item->getPrice()))?>%
+                               <?php if($discount >= 10) : ?>
+                                 <?= (int)$discount?>%
+                               <?php endif; ?>
                            </span>
                        </div>
                     </div>

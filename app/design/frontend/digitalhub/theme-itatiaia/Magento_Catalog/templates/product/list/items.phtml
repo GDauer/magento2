@@ -197,13 +197,16 @@ switch ($type = $block->getType()) {
                         <?= $block->getImage($_item, $image)->toHtml() ?>
                     </a>
                     <?php if($_item->getFinalPrice() < $_item->getPrice()) : ?>
-                    <div class="tag-desc">
-                       <div class="label-product label-sale">
-                           <span class="sale-product-icon">
-                              <?= (int)(100 - ($_item->getFinalPrice() * 100 / $_item->getPrice()))?>%
-                           </span>
-                       </div>
-                    </div>
+                    <?php $discount =  (100 - ($_item->getFinalPrice() * 100 / $_item->getPrice())) ?>
+                        <?php if($discount >= 10) : ?>
+                            <div class="tag-desc">
+                                <div class="label-product label-sale">
+                                   <span class="sale-product-icon">
+                                            <?= (int) $discount?>%
+                                   </span>
+                                </div>
+                             </div>
+                        <?php endif; ?>
                     <?php endif; ?>
                     <?php if(date('Y-m-d H:i:s') >= $_item->getData('news_from_date') && date('Y-m-d H:i:s') <= $_item->getData('news_to_date')) :?>
                       <span class="tag-new">

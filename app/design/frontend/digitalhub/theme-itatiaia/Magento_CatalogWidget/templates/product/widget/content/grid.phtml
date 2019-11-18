@@ -80,7 +80,10 @@ $hoverimg = 'category_page_list_hover';
             <?php endif ;?>
 
             <?php if($_item->getFinalPrice() < $_item->getPrice()) : ?>
-              <span class="tag-desc">-<?= (int)(100 - ($_item->getFinalPrice() * 100 / $_item->getPrice()))?>%</span>
+                <?php $discount = (100 - ($_item->getFinalPrice() * 100 / $_item->getPrice()))?>
+                <?php if($discount >= 10): ?>
+                     <span class="tag-desc">-<?= (int)$discount?>%</span>
+                <?php endif; ?>
             <?php endif; ?>
 
             <a href="<?= /* @escapeNotVerified */ $_item->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
