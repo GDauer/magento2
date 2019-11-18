@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7fd8d0940c981b3c7bd66af65d0b01ce",
+    "content-hash": "662ba5cd5e344cfd2aaac614b61d7f6a",
     "packages": [
         {
             "name": "adyen/module-payment",
@@ -1029,16 +1029,16 @@
         },
         {
             "name": "digitalhub/theme-base-mobile",
-            "version": "dev-master",
+            "version": "dev-fix/itatiaia",
             "source": {
                 "type": "git",
                 "url": "git@gitlab.com:digitalhub/m2/themes/base-mobile.git",
-                "reference": "194fa0288fedebaafb601684a8fb1798d953df80"
+                "reference": "d0041791e4d6f0ae0ec02a21ee7131f56c91a8ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/digitalhub%2Fm2%2Fthemes%2Fbase-mobile/repository/archive.zip?sha=194fa0288fedebaafb601684a8fb1798d953df80",
-                "reference": "194fa0288fedebaafb601684a8fb1798d953df80",
+                "url": "https://gitlab.com/api/v4/projects/digitalhub%2Fm2%2Fthemes%2Fbase-mobile/repository/archive.zip?sha=d0041791e4d6f0ae0ec02a21ee7131f56c91a8ed",
+                "reference": "d0041791e4d6f0ae0ec02a21ee7131f56c91a8ed",
                 "shasum": ""
             },
             "require": {
@@ -1054,7 +1054,7 @@
                 ]
             },
             "description": "Tema base mobile para Loja Modelo Digital Hub",
-            "time": "2019-02-19T16:37:46+00:00"
+            "time": "2019-10-11T18:15:08+00:00"
         },
         {
             "name": "dotmailer/dotmailer-magento2-extension",
@@ -13850,7 +13850,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "backendtea@gmail.com"
+                    "email": "BackEndTea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
