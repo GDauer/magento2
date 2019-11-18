@@ -111,9 +111,15 @@ $iplArray = [];
                                                         ?>
                                                     </span>
                                                 </span>
-                                                <?php endif; ?>
-                                                <div class="clear"></div>
-                                                <span class="special-price">
+                                                <?php $percent = abs((($groupedCatalogRuleHelper->getFinalPrice($_childProduct, $groupedProduct) * 100) / $groupedCatalogRuleHelper->getRegularPrice($_childProduct, $groupedProduct)) - 100) ?>
+                                                <div class="wrp-desc">
+                                                    <span class="tag-desc">-<?= (int)$percent ?>%</span>
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <div class="clear"></div>
+
+                                            <span class="special-price">
                                                 <span class="price">
                                                     <?php
                                                     $name = strtolower($_item->getName());
