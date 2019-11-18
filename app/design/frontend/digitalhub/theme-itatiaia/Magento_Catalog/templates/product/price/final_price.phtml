@@ -36,7 +36,10 @@ $schema = ($block->getZone() == 'item_view') ? true : false;
        <span class="tag-desc">
         <?php $_item = $block->getSaleableItem(); ?>
         <?php if($_item->getFinalPrice() < $_item->getPrice()) : ?>
-          -<?= (int)(100 - ($_item->getFinalPrice() * 100 / $_item->getPrice()))?>%
+            <?php $discount = (100 - ($_item->getFinalPrice() * 100 / $_item->getPrice())); ?>
+           <?php if($discount >= 10) : ?>
+            -<?= (int)$discount?>%
+          <?php endif; ?>
         <?php endif; ?>
       </span>
     </div>
