@@ -2,7 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
     <group id="konduto">
         <job instance="Konduto\Antifraud\Cron\CreateOrders" method="execute" name="konduto_antifraud_create_orders">
-            <config_path>10 * * * *</config_path>
+            <config_path>* * * * *</config_path>
         </job>
     </group>
     <group id="konduto">

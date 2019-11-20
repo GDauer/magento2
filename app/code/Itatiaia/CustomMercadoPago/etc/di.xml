@@ -1,0 +1,7 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="MercadoPago\Core\Model\Core">
+        <plugin name="Itatiaia_CustomMercadoPago_Plugin_Model_CorePlugin" type="Itatiaia\CustomMercadoPago\Plugin\Model\CorePlugin" sortOrder="100" disabled="false" />
+    </type>
+    <preference for="MercadoPago\Core\Model\Notifications\Topics\Payment" type="Itatiaia\CustomMercadoPago\Model\Notifications\Topics\Payment" />
+    <preference for="MercadoPago\Core\Helper\ConfigData" type="Itatiaia\CustomMercadoPago\Helper\ConfigData" />
+</config>

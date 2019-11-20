@@ -36,22 +36,34 @@ class PaymentData extends OriginalPaymentData
         $this->notificationFactory = $notification;
     }
 
+    /**
+     * @param $order
+     * @return array
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
     public function getPaymentData($order)
     {
         $this->order = $order;
         $this->payment = $this->order->getPayment();
         $this->transactions = $this->helper->getTransactions($this->order->getId());
 
-//        if (sizeof($this->transactions) < 2) {
         return $this->getSimplePayment();
-//        }
     }
 
+    /**
+     * @param $quoteId
+     * @return \Magento\Quote\Api\Data\CartInterface
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
     public function loadQuote($quoteId)
     {
         return $this->quoteRepository->get($quoteId);
     }
 
+    /**
+     * @return array
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
     public function getSimplePayment()
     {
         $data = array(
@@ -60,25 +72,20 @@ class PaymentData extends OriginalPaymentData
             )
         );
 
-        $quote = $this->loadQuote($this->order->getQuoteId());
-        if ($this->method === "credit") {
-            $this->helper->log('QUOTE: ' . json_encode($quote->getId()), 'info');
-            $data[0]['expiration_date'] = $this->getCcExpDate($quote->getPayment());
-            $this->helper->log('GETTING CCSTATUS', 'info');
-            $data[0]['status'] = $this->getCcStatus($this->order);
-
-            $this->helper->log('GETTING CCLAST4', 'info');
-            $last4 = $this->getCcLast4($quote->getPayment());
-            if (false !== $last4) {
-                $data[0]['last4'] = $last4;
-            }
-
-            $this->helper->log('GETTING CCBIN', 'info');
-            $bin = $this->getCcBin($quote->getPayment());
-            if (false !== $bin) {
-                $data[0]['bin'] = $bin;
-            }
+        $this->helper->log('METHOD - ' . $this->payment->getMethod(), 'info');
+        if (strpos($this->payment->getMethod(), 'mercadopago') !== false) {
+            $this->helper->log('ELSEIF - MERCADOPAGO', 'info');
+            $data[0] = $this->getMercadoPagoData();
+            $data[0]['type'] = $this->getMethod($this->payment);
+        } elseif ($this->method === "credit") {
+            $this->helper->log('IF - CREDIT', 'info');
+            $this->helper->log('', 'info');
+            $quote = $this->loadQuote($this->order->getQuoteId());
+            $data[0] = $this->getAdyenData($quote);
+            $data[0]['type'] = $this->getMethod($this->payment);
         } else {
+            $this->helper->log('ELSE', 'info');
+            $quote = $this->loadQuote($this->order->getQuoteId());
             $this->helper->log('getBoletoExpirationDate ORDER: ' . json_encode($this->order->getId()), 'info');
             $data[0]['expiration_date'] = $this->getBoletoExpirationDate($quote->getPayment());
         }
@@ -89,13 +96,75 @@ class PaymentData extends OriginalPaymentData
 
     private function getMethod($payment)
     {
+        $this->helper->log('GETMETHOD', 'info', [$payment->getMethod()]);
+        if (strpos($payment->getMethod(), 'mercadopago') !== false) {
+            return 'credit';
+        }
+
         $this->method = $this->helper->getPaymentType($payment->getMethod());
         if (!$this->method) {
             return false;
         }
+
         return $this->method;
     }
 
+    /**
+     * @return array
+     */
+    private function getMercadoPagoData()
+    {
+        $data = [];
+        $this->helper->log('MERCADOPAGO', 'info');
+        $data['expiration_date'] = $this->getCcExpDateMercadoPago();
+        $this->helper->log('MERCADOPAGO EXPIRATION DATE', 'info', [$data['expiration_date']]);
+        $data['status'] = $this->getCcStatus($this->order);
+
+        $this->helper->log('GETTING CCLAST4 MERCADOPAGO', 'info');
+        $last4 = $this->getCcLastMercadoPago();
+        if (false !== $last4) {
+            $data['last4'] = $last4;
+        }
+
+        $this->helper->log('GETTING CCBIN', 'info');
+        $bin = $this->getCcBinMercadoPago();
+        if (false !== $bin) {
+            $data['bin'] = $bin;
+        }
+
+        return $data;
+    }
+
+    /**
+     * @param $quote
+     * @return array
+     */
+    private function getAdyenData($quote)
+    {
+        $data = [];
+        $this->helper->log('ADYEN QUOTE: ' . json_encode($quote->getId()), 'info');
+        $data['expiration_date'] = $this->getCcExpDate($quote->getPayment());
+        $this->helper->log('GETTING CCSTATUS', 'info');
+        $data['status'] = $this->getCcStatus($this->order);
+
+        $this->helper->log('GETTING CCLAST4', 'info');
+        $last4 = $this->getCcLast4($quote->getPayment());
+        if (false !== $last4) {
+            $data['last4'] = $last4;
+        }
+
+        $this->helper->log('GETTING CCBIN', 'info');
+        $bin = $this->getCcBin($quote->getPayment());
+        if (false !== $bin) {
+            $data['bin'] = $bin;
+        }
+        return $data;
+    }
+
+    /**
+     * @param $order
+     * @return string
+     */
     private function getCcStatus($order)
     {
         $paymentSituation = '';
@@ -110,6 +179,10 @@ class PaymentData extends OriginalPaymentData
         return 'pending';
     }
 
+    /**
+     * @param $payment
+     * @return mixed|string
+     */
     private function getCcExpDate($payment)
     {
         $expiryDate = $this->payment->getAdditionalInformation('adyen_expiry_date');
@@ -140,6 +213,46 @@ class PaymentData extends OriginalPaymentData
         return str_replace('/', '', $expiryDate);
     }
 
+    /**
+     * @return string
+     */
+    private function getCcExpDateMercadoPago()
+    {
+        $expiryMonth = $this->payment->getAdditionalInformation('card_expiration_month');
+        $expiryYear = $this->payment->getAdditionalInformation('card_expiration_year');
+        return $expiryMonth . $expiryYear;
+    }
+
+    /**
+     * @return bool
+     */
+    private function getCcLastMercadoPago()
+    {
+        $pResp = $this->payment->getAdditionalInformation('paymentResponse');
+        if (isset($pResp['card']) && isset($pResp['card']['last_four_digits'])) {
+            return $pResp['card']['last_four_digits'];
+        }
+
+        return false;
+    }
+
+    /**
+     * @return bool
+     */
+    private function getCcBinMercadoPago()
+    {
+        $pResp = $this->payment->getAdditionalInformation('paymentResponse');
+        if (isset($pResp['card']) && isset($pResp['card']['first_six_digits'])) {
+            return $pResp['card']['first_six_digits'];
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $payment
+     * @return bool
+     */
     private function getCcBin($payment)
     {
         $pResp = $payment->getAdditionalInformation('paymentsResponse');
@@ -163,6 +276,10 @@ class PaymentData extends OriginalPaymentData
         return false;
     }
 
+    /**
+     * @param $payment
+     * @return bool
+     */
     private function getCcLast4($payment)
     {
         if ($this->payment->getCcLast4()) {
@@ -185,7 +302,10 @@ class PaymentData extends OriginalPaymentData
         return false;
     }
 
-
+    /**
+     * @param $payment
+     * @return bool
+     */
     private function getBoletoExpirationDate($payment)
     {
         $pResp = $payment->getAdditionalInformation('paymentsResponse');
