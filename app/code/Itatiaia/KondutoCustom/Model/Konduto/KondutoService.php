@@ -179,11 +179,11 @@ class KondutoService extends OriginalKondutoService
             $this->helper->log('OLD KONDUTO STATUS ' . $oldStatus, 'info');
 
             if($order->getState() == 'canceled' || $order->getState() == 'complete') {
-                return false;
+                return true;
             }
 
             if($params['status'] == 'approved' && $order->getState() == 'processing') {
-                return false;
+                return true;
             }
 
 //            if ( // Return false IF order was already approved, and we are trying to approve it again
