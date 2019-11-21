@@ -168,19 +168,27 @@ class KondutoService extends OriginalKondutoService
             $this->helper->log('WEBHOOK SENDING STATE ' . $params['status'], 'info');
             $statusCode = $this->helper->getStatusCode($params['status']);
 
-            $this->helper->log('COND 1 ' . $params['status'], 'info');
-            $this->helper->log('COND 2 ' . $order->getState(), 'info');
-            $this->helper->log('COND 3 ' . $order->getStatus(), 'info');
-            $this->helper->log('COND 4 ' . $oldStatus, 'info');
-            $this->helper->log('COND 5 ' . $order->canInvoice(), 'info');
-            if ( // Return false IF order was already approved, and we are trying to approve it again
-                $params['status'] == 'approved' &&
-                $oldStatus == 'approved' &&
-                !$order->canInvoice() &&
-                ($order->getState() == 'processing' || $order->getStatus() == 'processing' )
-            ) {
+            $this->helper->log('STATUS ENVIADO DA KONDUTO ' . $params['status'], 'info');
+            $this->helper->log('ORDER STATE ' . $order->getState(), 'info');
+            $this->helper->log('ORDER STATUS ' . $order->getStatus(), 'info');
+            $this->helper->log('OLD KONDUTO STATUS ' . $oldStatus, 'info');
+
+            if($order->getState() == 'canceled' || $order->getState() == 'complete') {
                 return false;
             }
+
+            if($params['status'] == 'approved' && $order->getState() == 'processing') {
+                return false;
+            }
+
+//            if ( // Return false IF order was already approved, and we are trying to approve it again
+//                $params['status'] == 'approved' &&
+//                $oldStatus == 'approved' &&
+//                !$order->canInvoice() &&
+//                ($order->getState() == 'processing' || $order->getStatus() == 'processing' )
+//            ) {
+//                return false;
+//            }
 
             $this->helper->log('WEBHOOK SETTING ORDER STATE ' . json_encode($this->getOrderState($statusCode)), 'info');
             $this->helper->log('WEBHOOK SETTING ORDER STATUS ' . $statusCode, 'info');
