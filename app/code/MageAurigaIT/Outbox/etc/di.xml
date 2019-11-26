@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="\Magento\Framework\Mail\TransportInterface">
+        <plugin name="MageAurigaITOutboxMailArchivist" type="MageAurigaIT\Outbox\Plugin\MailArchivist" sortOrder="1" />
+    </type>       
+    
+    <virtualType name="MageAurigaIT\Outbox\Model\ResourceModel\SentEmail\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mageaurigait_outbox_sent_emails</argument>
+            <argument name="resourceModel" xsi:type="string">MageAurigaIT\Outbox\Model\ResourceModel\SentEmail</argument>
+        </arguments>
+    </virtualType>
+    
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="mageaurigait_outbox_sent_emails_data_source" xsi:type="string">MageAurigaIT\Outbox\Model\ResourceModel\SentEmail\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    
+    <preference for="Magento\Framework\Mail\Transport" type="MageAurigaIT\Outbox\Model\Mail\Transport" />
+    
+</config>
+
