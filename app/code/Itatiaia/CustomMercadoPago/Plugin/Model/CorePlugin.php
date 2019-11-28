@@ -4,22 +4,15 @@
 namespace Itatiaia\CustomMercadoPago\Plugin\Model;
 
 use Magento\Backend\Model\UrlInterface;
-use Magento\Framework\App\Config\ScopeConfigInterface;
 
 class CorePlugin
 {
     protected $backendUrl;
-    /**
-     * @var ScopeConfigInterface
-     */
-    private $scopeConfig;
 
     public function __construct(
-        UrlInterface $backendUrl,
-        ScopeConfigInterface $scopeConfig
+        UrlInterface $backendUrl
     ) {
         $this->backendUrl = $backendUrl;
-        $this->scopeConfig = $scopeConfig;
     }
 
     /**
