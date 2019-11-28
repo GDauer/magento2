@@ -4,15 +4,22 @@
 namespace Itatiaia\CustomMercadoPago\Plugin\Model;
 
 use Magento\Backend\Model\UrlInterface;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 
 class CorePlugin
 {
     protected $backendUrl;
+    /**
+     * @var ScopeConfigInterface
+     */
+    private $scopeConfig;
 
     public function __construct(
-        UrlInterface $backendUrl
+        UrlInterface $backendUrl,
+        ScopeConfigInterface $scopeConfig
     ) {
         $this->backendUrl = $backendUrl;
+        $this->scopeConfig = $scopeConfig;
     }
 
     /**
@@ -27,6 +34,7 @@ class CorePlugin
         if (!isset($preference['capture']) && $preference['payment_method_id'] != 'bolbradesco') {
             $preference['capture'] = false;
         }
+        $preference['binary_mode'] = true;
 
         return [$preference];
     }
