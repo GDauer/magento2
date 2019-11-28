@@ -34,7 +34,7 @@ class CorePlugin
         if (!isset($preference['capture']) && $preference['payment_method_id'] != 'bolbradesco') {
             $preference['capture'] = false;
         }
-        $preference['binary_mode'] = true;
+        // $preference['binary_mode'] = true;
 
         return [$preference];
     }
