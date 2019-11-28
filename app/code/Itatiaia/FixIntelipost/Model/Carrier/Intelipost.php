@@ -160,7 +160,7 @@ class Intelipost extends \Intelipost\Quote\Model\Carrier\Intelipost
             ;
 
             // Price
-            $productPrice = $product->getPrice();
+            $productPrice = $product->getFinalPrice ();
             $productFinalPrice = 0;
             if (!strcmp ($this->_scopeConfig->getValue ('carriers/intelipost/price_config'), 'product'))
             {
