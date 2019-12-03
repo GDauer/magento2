@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <!-- Plugins -->
-    <!-- Adds additional data to the orders grid collection -->
-    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
-        <plugin name="DigitalHub_SalesGrid_Plugin_AddRegionIdToOrdersGridPlugin" type="DigitalHub\SalesGrid\Plugin\AddRegionIdToOrdersGridPlugin" sortOrder="10" disabled="false"/>
-    </type>
-</config>
