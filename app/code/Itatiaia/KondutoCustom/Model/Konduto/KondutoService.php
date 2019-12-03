@@ -186,15 +186,6 @@ class KondutoService extends OriginalKondutoService
                 return true;
             }
 
-//            if ( // Return false IF order was already approved, and we are trying to approve it again
-//                $params['status'] == 'approved' &&
-//                $oldStatus == 'approved' &&
-//                !$order->canInvoice() &&
-//                ($order->getState() == 'processing' || $order->getStatus() == 'processing' )
-//            ) {
-//                return false;
-//            }
-
             $this->helper->log('WEBHOOK SETTING ORDER STATE ' . json_encode($this->getOrderState($statusCode)), 'info');
             $this->helper->log('WEBHOOK SETTING ORDER STATUS ' . $statusCode, 'info');
             $order->setState($this->getOrderState($statusCode));

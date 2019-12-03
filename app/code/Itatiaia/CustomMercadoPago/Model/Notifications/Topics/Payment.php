@@ -68,7 +68,6 @@ class Payment extends \MercadoPago\Core\Model\Notifications\Topics\Payment
 
     public function setStatusAndComment($order, $newStatusOrder, $message)
     {
-
         if ($order->getState() !== Order::STATE_COMPLETE) {
             if ($newStatusOrder == 'canceled' && $order->getState() != 'canceled') {
                 $order->cancel();
@@ -88,5 +87,27 @@ class Payment extends \MercadoPago\Core\Model\Notifications\Topics\Payment
 
         return $order;
 
+    }
+
+    public function createInvoice($order, $message)
+    {
+        if (!$order->hasInvoices()) {
+            $invoice = $order->prepareInvoice();
+
+            $payId = (int)preg_replace('/\D+/','',$message);
+            $invoice->setTransactionId($payId);
+
+            $invoice->register()->pay();
+            $invoice->addComment(str_replace("<br/>", "", $message), false, true);
+
+            $transaction = $this->_transactionFactory->create();
+            $transaction->addObject($invoice);
+            $transaction->addObject($invoice->getOrder());
+            $transaction->save();
+            $this->_invoiceSender->send($invoice, true, $message);
+            return true;
+        }
+
+        return false;
     }
 }
