@@ -56,6 +56,7 @@
         "swissup/firecheckout": "^1.18",
         "swissup/rtl": "^1.3",
         "pmclain/magento2-successtest": "^2.0",
+        "mageplaza/module-better-popup": "^1.1",
         "mundipagg/mundipagg-magento2-module": "^1.8",
         "digitalhub/module-cookie": "dev-master",
         "konduto/magento2": "^1.0",
@@ -89,6 +90,18 @@
             "**/dev/**",
             "**/update/**",
             "**/Test/**"
+        ]
+    },
+    "scripts": {
+        "post-update-cmd": [
+            "./patches/apply_patch.sh patches/theme-base-Commenting-lines-to-remove-view.addto.compare-block.patch",
+            "./patches/apply_patch.sh patches/theme-base-mobile-Commenting-lines-to-remove-view.addto.compare-block.patch",
+            "./patches/apply_patch.sh patches/503-adyen-magento2-pull-request.patch"
+        ],
+        "post-install-cmd": [
+            "./patches/apply_patch.sh patches/theme-base-Commenting-lines-to-remove-view.addto.compare-block.patch",
+            "./patches/apply_patch.sh patches/theme-base-mobile-Commenting-lines-to-remove-view.addto.compare-block.patch",
+            "./patches/apply_patch.sh patches/503-adyen-magento2-pull-request.patch"
         ]
     },
     "autoload-dev": {
