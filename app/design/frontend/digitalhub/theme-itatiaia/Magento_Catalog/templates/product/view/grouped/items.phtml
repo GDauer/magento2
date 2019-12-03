@@ -3,112 +3,58 @@ $groupedProduct = $block->getParentBlock()->getProduct();
 $priceHelper = $this->helper('Magento\Framework\Pricing\Helper\Data');
 $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
 $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Data');
-$iplArray = [];
 ?>
 <a name="grouped-items"></a>
 <div id="tab-grouped-items">
     <section>
-        <?php foreach ($groupedProduct->getTypeInstance(true)->getAssociatedProducts($groupedProduct) as $_item): ?>
-            <?php $_childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\ProductFactory')->create()->load($_item->getEntityId()); ?>
-            <?php
-            $name = strtolower($_item->getName());
-
-            if (strpos($name, 'volume') && strpos($name, '- ip')) {
-                $pos = strpos($name, '- ip') + 1;
-                $end = strpos($name, '-', $pos);
-                $str = trim(substr($name, $pos, $end - $pos));
-
-                if (isset($iplArray[$str])) {
-                    $iplArray[$str]['regular-price'] += $groupedCatalogRuleHelper->getRegularPrice($_childProduct, $groupedProduct);
-                    $iplArray[$str]['final-price'] += $groupedCatalogRuleHelper->getFinalPrice($_childProduct, $groupedProduct);
-                } else {
-                    $iplArray[$str] = [
-                        'regular-price' => $groupedCatalogRuleHelper->getRegularPrice($_childProduct, $groupedProduct),
-                        'final-price' => $groupedCatalogRuleHelper->getFinalPrice($_childProduct, $groupedProduct)
-                    ];
-                }
-            }
-            ?>
-        <?php endforeach; ?>
-        <?php foreach ($groupedProduct->getTypeInstance(true)->getAssociatedProducts($groupedProduct) as $_item): ?>
-            <?php $_childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\ProductFactory')->create()->load($_item->getEntityId()); ?>
-            <?php if (strpos(strtolower($_childProduct->getName()), 'volume') === false || strpos(strtolower($_childProduct->getName()), 'volume 1') > 0): ?>
-                <?php
-                $pos_name = strpos(strtolower($_childProduct->getName()), '- vol');
-                if ($pos_name !== false) {
-                    $pName = substr($_childProduct->getName(), 0, $pos_name);
-                } else {
-                    $pName = $_childProduct->getName();
-                }
-
-                ?>
-                <?php if ($_item->getStatus()): ?>
-                    <div class="item-out" id="super-group-item-<?= $_item->getId() ?>">
-                        <div class="item-in">
-                            <div class="wrp-input">
-                                <?php if (!$groupedProduct->getLockItems()): ?>
-                                    <label class="container-check">
-                                        <input type="checkbox" checked="checked" id="check_super_<?= $_item->getId() ?>"
-                                               rel="<?= $_item->getId() ?>" class="check-super-group">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                <?php else: ?>
-                                    <div style="display: none">
-                                        <input type="checkbox" checked="checked" id="check_super_<?= $_item->getId() ?>"
-                                               rel="<?= $_item->getId() ?>" class="check-super-group">
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                            <?php if (!$groupedProduct->getLockItems()): ?>
-                                <div class="wrp-img">
-                                    <?php $productImage = $_imagehelper->init($_childProduct, 'category_page_list') ?>
-                                    <img class="default_image" src="<?= $productImage->getUrl() ?>"
-                                         alt="<?= $productImage->getLabel() ?>"/>
+        <?php foreach($groupedProduct->getTypeInstance(true)->getAssociatedProducts($groupedProduct) as $_item): ?>
+            <?php $_childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\ProductFactory')->create()->load($_item->getEntityId()) ?>
+            <?php if($_item->getStatus()): ?>
+                <div class="item-out" id="super-group-item-<?= $_item->getId() ?>">
+                    <div class="item-in">
+                        <div class="wrp-input">
+                            <?php if(!$groupedProduct->getLockItems()): ?>
+                                <label class="container-check">
+                                    <input type="checkbox" checked="checked" id="check_super_<?= $_item->getId() ?>" rel="<?= $_item->getId() ?>" class="check-super-group">
+                                    <span class="checkmark"></span>
+                                </label>
+                            <?php else: ?>
+                                <div style="display: none">
+                                    <input type="checkbox" checked="checked" id="check_super_<?= $_item->getId() ?>" rel="<?= $_item->getId() ?>" class="check-super-group">
                                 </div>
                             <?php endif; ?>
-                            <div class="wrp-infos <?php if ($groupedProduct->getLockItems()) echo "locked-items"; ?>">
-                                <div class="in-infos">
-                                    <!--<h2 class="product-name"><? /*= $_childProduct->getName(); */ ?></h2>-->
-                                    <h2 class="product-name"><?= $pName ?></h2>
-                                    <?php if (!$groupedProduct->getLockItems()): ?>
-                                        <div class="field qty">
-                                            <div class="control">
-                                                <a href="javascript:void(0)" class="qty-dec">-</a>
-                                                <input type="number" name="qty" readonly rel="<?= $_item->getId() ?>"
-                                                       id="super_group_qty_<?= $_item->getId() ?>"
-                                                       value="<?= (int)$_item->getQty() ?>"
-                                                       title="<?= __('Quantidade') ?>"
-                                                       class="input-text qty super-group-qty"/>
-                                                <a href="javascript:void(0)" class="qty-inc">+</a>
-                                            </div>
+                        </div>
+                        <?php if(!$groupedProduct->getLockItems()): ?>
+                            <div class="wrp-img">
+                                <?php $productImage = $_imagehelper->init($_childProduct, 'category_page_list') ?>
+                                <img class="default_image" src="<?= $productImage->getUrl() ?>" alt="<?= $productImage->getLabel() ?>"/>
+                            </div>
+                        <?php endif; ?>
+                        <div class="wrp-infos <?php if($groupedProduct->getLockItems()) echo "locked-items"; ?>">
+                            <div class="in-infos">
+                                <h2 class="product-name"><?= $_childProduct->getName(); ?></h2>
+
+                                <?php if(!$groupedProduct->getLockItems()): ?>
+                                    <div class="field qty">
+                                        <div class="control">
+                                            <a href="javascript:void(0)" class="qty-dec">-</a>
+                                            <input type="number" name="qty" readonly rel="<?= $_item->getId() ?>" id="super_group_qty_<?= $_item->getId() ?>" value="<?= (int)$_item->getQty() ?>" title="<?= __('Quantidade') ?>" class="input-text qty super-group-qty" />
+                                            <a href="javascript:void(0)" class="qty-inc">+</a>
                                         </div>
-                                    <?php else: ?>
-                                        <input type="hidden" name="qty" readonly rel="<?= $_item->getId() ?>"
-                                               id="super_group_qty_<?= $_item->getId() ?>"
-                                               value="<?= (int)$_item->getQty() ?>" title="<?= __('Quantidade') ?>"
-                                               class="input-text qty super-group-qty"/>
-                                        <span>Qtde: <?= (int)$_item->getQty() ?><strong></strong></span>
-                                    <?php endif; ?>
+                                    </div>
+                                <?php else: ?>
+                                    <input type="hidden" name="qty" readonly rel="<?= $_item->getId() ?>" id="super_group_qty_<?= $_item->getId() ?>" value="<?= (int)$_item->getQty() ?>" title="<?= __('Quantidade') ?>" class="input-text qty super-group-qty" />
+                                    <span>Qtde: <?= (int)$_item->getQty() ?><strong></strong></span>
+                                <?php endif; ?>
 
-                                    <div class="wrp-price">
-                                        <div class="price-box">
-                                            <div class="wrp-oldprice">
+                                <div class="wrp-price">
+                                    <div class="price-box">
+                                        <div class="wrp-oldprice">
 
-                                                <?php if ($groupedCatalogRuleHelper->getFinalPrice($_childProduct, $groupedProduct) < $groupedCatalogRuleHelper->getRegularPrice($_childProduct, $groupedProduct)): ?>
-                                                    <span class="old-price">
+                                            <?php if($groupedCatalogRuleHelper->getFinalPrice($_childProduct, $groupedProduct) < $groupedCatalogRuleHelper->getRegularPrice($_childProduct, $groupedProduct)): ?>
+                                                <span class="old-price">
                                                     <span class="price">
-                                                        <?php
-                                                        $name = strtolower($_item->getName());
-
-                                                        if (strpos($name, 'volume') && strpos($name, '- ip')) {
-                                                            $pos = strpos($name, '- ip') + 1;
-                                                            $end = strpos($name, '-', $pos);
-                                                            $str = trim(substr($name, $pos, $end - $pos));
-                                                            echo $priceHelper->currency($iplArray[$str]['regular-price'], true, false);
-                                                        } else {
-                                                            echo $priceHelper->currency($groupedCatalogRuleHelper->getRegularPrice($_childProduct, $groupedProduct), true, false);
-                                                        }
-                                                        ?>
+                                                            <?= $priceHelper->currency($groupedCatalogRuleHelper->getRegularPrice($_childProduct, $groupedProduct), true, false); ?>
                                                     </span>
                                                 </span>
                                                 <?php $percent = abs((($groupedCatalogRuleHelper->getFinalPrice($_childProduct, $groupedProduct) * 100) / $groupedCatalogRuleHelper->getRegularPrice($_childProduct, $groupedProduct)) - 100) ?>
@@ -123,81 +69,68 @@ $iplArray = [];
 
                                             <span class="special-price">
                                                 <span class="price">
-                                                    <?php
-                                                    $name = strtolower($_item->getName());
-
-                                                    if (strpos($name, 'volume') && strpos($name, '- ip')) {
-                                                        $pos = strpos($name, '- ip') + 1;
-                                                        $end = strpos($name, '-', $pos);
-                                                        $str = trim(substr($name, $pos, $end - $pos));
-                                                        echo $priceHelper->currency($iplArray[$str]['final-price'], true, false);
-                                                    } else {
-                                                        echo $priceHelper->currency($groupedCatalogRuleHelper->getFinalPrice($_childProduct, $groupedProduct), true, false);
-                                                    }
-                                                    ?>
+                                                    <?= $priceHelper->currency($groupedCatalogRuleHelper->getFinalPrice($_childProduct, $groupedProduct), true, false); ?>
                                                 </span>
                                             </span>
-                                            </div>
                                         </div>
                                     </div>
-
                                 </div>
+
                             </div>
-
-                            <?php if (strpos(strtolower($_childProduct->getName()), 'volume') === false ||
-                                strpos(strtolower($_childProduct->getName()), 'volume 1') > 0): ?>
-                                <div class="wrp-dimensoes">
-                                    <ul>
-                                        <?php if ($_childProduct->getAlturaMontado()): ?>
-                                            <li class="product-height">
-                                                Altura <?php echo $_childProduct->getAlturaMontado(); ?> cm
-                                            </li>
-                                        <?php endif; ?>
-                                        <?php if ($_childProduct->getLarguraMontado()): ?>
-                                            <li class="product-width">
-                                                Largura <?php echo $_childProduct->getLarguraMontado(); ?> cm
-                                            </li>
-                                        <?php endif; ?>
-                                        <?php if ($_childProduct->getComprimentoMontado()): ?>
-                                            <li class="product-lenght">
-                                                Profundidade <?php echo $_childProduct->getComprimentoMontado(); ?>cm
-                                            </li>
-                                        <?php endif; ?>
-                                        <?php if ($_childProduct->getWeight()): ?>
-                                            <li class="product-weight">
-                                                Peso <?php echo round($_childProduct->getWeight(), 4); ?>kg
-                                            </li>
-                                        <?php endif; ?>
-                                    </ul>
-                                </div>
-                                <div class="wrp-dtls">
-                                    <a href="javascript:void(0)">Detalhes</a>
-                                </div>
-                            <?php endif; ?>
-
                         </div>
-                        <div class="min-dtls">
-                            <ul class="nav nav-tabs">
-                                <li class="active">
-                                    <a href="#tab-desc-<?php echo $_item->getId() ?>">Descrição</a>
-                                </li>
-                                <li>
-                                    <a href="#tab-attr-<?php echo $_item->getId() ?>">Especificações técnicas</a>
-                                </li>
-                            </ul>
-                            <section id="tab-desc-<?php echo $_item->getId() ?>" class="tab-content active">
-                                <?php /* @escapeNotVerified */
-                                echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($_childProduct, $_childProduct->getDescription(), 'description') ?>
-                            </section>
-                            <section id="tab-attr-<?php echo $_item->getId() ?>" class="tab-content hide">
-                                <?php echo $this->getLayout()->createBlock('Magento\Catalog\Block\Product\View\Attributes')
-                                    ->setProduct($_childProduct)
-                                    ->setTemplate('Magento_Catalog::product/view/attributes.phtml')
-                                    ->toHtml() ?>
-                            </section>
-                        </div>
+
+                        <?php if (!strpos(strtolower($_childProduct->getName()), 'volume') ||
+                            strpos(strtolower($_childProduct->getName()), 'volume 1') > 0 ): ?>
+                            <div class="wrp-dimensoes">
+                                <ul>
+                                    <?php if ($_childProduct->getAlturaMontado()): ?>
+                                        <li class="product-height">
+                                            Altura <?php echo $_childProduct->getAlturaMontado(); ?> cm
+                                        </li>
+                                    <?php endif; ?>
+                                    <?php if ($_childProduct->getLarguraMontado()): ?>
+                                        <li class="product-width">
+                                            Largura <?php echo $_childProduct->getLarguraMontado(); ?> cm
+                                        </li>
+                                    <?php endif; ?>
+                                    <?php if ($_childProduct->getComprimentoMontado()): ?>
+                                        <li class="product-lenght">
+                                            Profundidade <?php echo $_childProduct->getComprimentoMontado(); ?>cm
+                                        </li>
+                                    <?php endif; ?>
+                                    <?php if ($_childProduct->getWeight()): ?>
+                                        <li class="product-weight">
+                                            Peso <?php echo round($_childProduct->getWeight(),4); ?>kg
+                                        </li>
+                                    <?php endif; ?>
+                                </ul>
+                            </div>
+                            <div class="wrp-dtls">
+                                <a href="javascript:void(0)">Detalhes</a>
+                            </div>
+                        <?php endif; ?>
+
                     </div>
-                <?php endif; ?>
+                    <div class="min-dtls">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#tab-desc-<?php echo $_item->getId() ?>">Descrição</a>
+                            </li>
+                            <li>
+                                <a href="#tab-attr-<?php echo $_item->getId() ?>">Especificações técnicas</a>
+                            </li>
+                        </ul>
+                        <section id="tab-desc-<?php echo $_item->getId() ?>" class="tab-content active">
+                            <?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($_childProduct, $_childProduct->getDescription(), 'description') ?>
+                        </section>
+                        <section id="tab-attr-<?php echo $_item->getId() ?>" class="tab-content hide">
+                            <?php echo $this->getLayout()->createBlock('Magento\Catalog\Block\Product\View\Attributes')
+                                ->setProduct($_childProduct)
+                                ->setTemplate('Magento_Catalog::product/view/attributes.phtml')
+                                ->toHtml() ?>
+                        </section>
+                    </div>
+                </div>
             <?php endif; ?>
         <?php endforeach; ?>
     </section>

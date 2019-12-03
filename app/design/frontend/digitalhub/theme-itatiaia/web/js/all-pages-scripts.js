@@ -61,12 +61,6 @@ require([
             }
         }
     })
-
-    jQuery(function(){
-        if(jQuery('body.checkout-index-index').length && window.checkoutConfig){
-            initGaEnchancedCheckout();
-        }
-    });
 });
 
 
@@ -90,64 +84,4 @@ function emptyCartFromMinicart()
         })
     }
     return false;
-}
-
-
-// Eventos para GA Enchanced Ecommerce no OneStepCheckout
-function initGaEnchancedCheckout($){
-    var cartProducts = [];
-    for(var k in window.checkoutConfig.quoteItemData){
-        var quoteItem = window.checkoutConfig.quoteItemData[k];
-        var item = {
-            'name': quoteItem.name,
-            'id': quoteItem.product_id,
-            'sku': quoteItem.sku,
-            'price': quoteItem.price
-        }
-        cartProducts.push(item);
-    }
-
-    function eventFrete(){
-        // console.log('passo 2 disparado')
-        var shippingMethod = jQuery('#co-shipping-method-form input:checked').parents('tr.row:first').find('td.col-method').text().trim();
-        if(!window.dataLayer) window.dataLayer = []
-        window.dataLayer.push({
-            'event': 'checkout',
-            'ecommerce': {
-                'checkout': {
-                    'actionField': {'step': 1, 'option': shippingMethod.split(' - ')[0]},
-                    'products': cartProducts
-                }
-            }
-        });
-    }
-
-    function eventPayment(){
-        // console.log('passo 3 disparado')
-        var paymentMethod = jQuery('input[name="payment[method]"]:checked').parents('.payment-method-title:first').find('label:first').text().trim();
-        if(!window.dataLayer) window.dataLayer = []
-        window.dataLayer.push({
-            'event': 'checkout',
-            'ecommerce': {
-                'checkout': {
-                    'actionField': {'step': 2, 'option': paymentMethod},
-                    'products': cartProducts
-                }
-            }
-        });
-    }
-
-    var intervalSearchElFrete = setInterval(function(){
-        if(jQuery('#co-shipping-method-form').serialize()){
-            eventFrete();
-            clearInterval(intervalSearchElFrete)
-        }
-    }, 500)
-
-    var intervalSearchElPayment = setInterval(function(){
-        if(jQuery('input[name="payment[method]"]:checked').length){
-            eventPayment();
-            clearInterval(intervalSearchElPayment)
-        }
-    }, 500)
 }
