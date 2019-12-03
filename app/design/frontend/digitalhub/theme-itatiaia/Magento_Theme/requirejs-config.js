@@ -9,10 +9,5 @@ var config = {
         'owlcarousel': {
             deps: ['jquery']
         }
-    },
-    map: {
-        '*': {
-            'addToCartDisable': 'js/add-to-cart-disable'
-        }
     }
 };
