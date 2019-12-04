@@ -2,11 +2,49 @@
 
 namespace Itatiaia\CustomMercadoPago\Model\Notifications\Topics;
 
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\DB\TransactionFactory;
 use Magento\Sales\Model\Order;
+use Magento\Sales\Model\Order\CreditmemoFactory;
+use Magento\Sales\Model\Order\Email\Sender\InvoiceSender;
+use Magento\Sales\Model\Order\Email\Sender\OrderCommentSender;
+use Magento\Sales\Model\Order\Email\Sender\OrderSender;
+use Magento\Sales\Model\OrderFactory;
+use Magento\Sales\Model\ResourceModel\Status\Collection as StatusFactory;
+use Magento\Sales\Model\Service\InvoiceService;
+use MercadoPago\Core\Helper\Data as mpHelper;
+use MercadoPago\Core\Helper\Message\MessageInterface;
 use MercadoPago\Core\Helper\Response;
+use MercadoPago\Core\Model\Core;
 
 class Payment extends \MercadoPago\Core\Model\Notifications\Topics\Payment
 {
+
+    /**
+     * @var Order\Payment\Transaction\Builder
+     */
+    private $transactionBuilder;
+
+    public function __construct(
+        mpHelper $mpHelper,
+        ScopeConfigInterface $scopeConfig,
+        Core $coreModel,
+        OrderFactory $orderFactory,
+        CreditmemoFactory $creditmemoFactory,
+        MessageInterface $messageInterface,
+        StatusFactory $statusFactory,
+        OrderSender $orderSender,
+        OrderCommentSender $orderCommentSender,
+        TransactionFactory $transactionFactory,
+        InvoiceSender $invoiceSender,
+        InvoiceService $invoiceService,
+        Order\Payment\Transaction\Builder $transactionBuilder
+
+    )
+    {
+        parent::__construct($mpHelper, $scopeConfig, $coreModel, $orderFactory, $creditmemoFactory, $messageInterface, $statusFactory, $orderSender, $orderCommentSender, $transactionFactory, $invoiceSender, $invoiceService);
+        $this->transactionBuilder = $transactionBuilder;
+    }
 
     const STATUS = 'payment_review';
 
@@ -104,6 +142,16 @@ class Payment extends \MercadoPago\Core\Model\Notifications\Topics\Payment
             $transaction->addObject($invoice);
             $transaction->addObject($invoice->getOrder());
             $transaction->save();
+
+            $salesTransaction = $this->transactionBuilder->setPayment($order->getPayment())
+                ->setOrder($order)
+                ->setTransactionId($payId)
+                ->build(\Magento\Sales\Api\Data\TransactionInterface::TYPE_AUTH);
+
+            $salesTransaction->setIsClosed(false);
+
+            $salesTransaction->save();
+
             $this->_invoiceSender->send($invoice, true, $message);
             return true;
         }
