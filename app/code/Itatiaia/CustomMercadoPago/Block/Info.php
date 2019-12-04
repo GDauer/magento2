@@ -1,5 +1,5 @@
 <?php
-namespace DigitalHub\MpCustom\Block;
+namespace Itatiaia\CustomMercadoPago\Block;
 
 /**
  * Class Info
@@ -66,13 +66,13 @@ class Info extends \MercadoPago\Core\Block\Info
         $title = __('Payment Status Detail');
         $data[$title->__toString()] = ucfirst($paymentResponse['status_detail']);   
       }
- 
-      // LINK TO TICKET
-      if(isset($paymentResponse['transaction_details']) && $paymentResponse['transaction_details']['external_resource_url']){ 
-        $link = "<a href='" . $paymentResponse['transaction_details']['external_resource_url'] . "' target='_blank'>Clique aqui</a>";
-        $data['Segunda Via'] = $link;
-      }
 
+      // LINK TO TICKET
+      if(isset($paymentResponse['transaction_details']) && $paymentResponse['transaction_details']['external_resource_url']){
+        $link = "<a href='" . $paymentResponse['transaction_details']['external_resource_url'] . "' target='_blank'>Segunda via do Boleto</a> <br><br>";
+//        $data['Segunda Via'] = $link;
+        echo $link;
+      }
       return $transport->setData(array_merge($data, $transport->getData()));
     }
 
