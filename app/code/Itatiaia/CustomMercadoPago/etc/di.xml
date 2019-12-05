@@ -4,5 +4,4 @@
     </type>
     <preference for="MercadoPago\Core\Model\Notifications\Topics\Payment" type="Itatiaia\CustomMercadoPago\Model\Notifications\Topics\Payment" />
     <preference for="MercadoPago\Core\Helper\ConfigData" type="Itatiaia\CustomMercadoPago\Helper\ConfigData" />
-    <preference for="MercadoPago\Core\Model\Custom\Payment" type="Itatiaia\CustomMercadoPago\Model\Custom\Payment" />
 </config>
