@@ -37,35 +37,6 @@ class Payment
         return $response;
     }
 
-    private function refundPayment($paymentId)
-    {
-        $accessToken = $this->scopeConfig->getValue(\MercadoPago\Core\Helper\ConfigData::PATH_ACCESS_TOKEN, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-
-        $this->coreHelper->log("Access Token for Refund", 'mercadopago-custom.log', $accessToken);
-
-        //set sdk php mercadopago
-        $mp = $this->coreHelper->getApiInstance($accessToken);
-
-        $response = $mp->refund_payment($paymentId);
-
-        return $response;
-    }
-
-    /**
-     * @param $payment
-     * @return array|bool
-     * @throws \Magento\Framework\Exception\LocalizedException
-     */
-    public function refund($payment)
-    {
-        $paymentId = $payment->getRefundTransactionId();
-
-        if (!$paymentId) {
-            return false;
-        }
-
-        return $this->refundPayment($paymentId);
-    }
     /**
      * @param $order
      * @return array|bool
