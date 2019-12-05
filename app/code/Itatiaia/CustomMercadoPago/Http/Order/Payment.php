@@ -38,21 +38,6 @@ class Payment
     }
 
     /**
-     * @param $payment
-     * @return array|bool
-     * @throws \Magento\Framework\Exception\LocalizedException
-     */
-    public function refund($payment)
-    {
-        $paymentId = $payment->getRefundTransactionId();
-
-        if (!$paymentId) {
-            return false;
-        }
-
-        return $this->put($paymentId, ['status' => 'refunded']);
-    }
-    /**
      * @param $order
      * @return array|bool
      * @throws \Magento\Framework\Exception\LocalizedException
