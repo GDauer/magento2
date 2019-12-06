@@ -64,8 +64,15 @@ class Info extends \MercadoPago\Core\Block\Info
 
       if(isset($paymentResponse['status_detail'])){
         $title = __('Payment Status Detail');
-        $data[$title->__toString()] = ucfirst($paymentResponse['status_detail']);   
+        $data[$title->__toString()] = ucfirst($paymentResponse['status_detail']);
+        unset($data[$title->__toString()]);
+
+          if(isset($transport[$title->__toString()])){
+              unset($transport[$title->__toString()]);
+          }
+          
       }
+
 
       // LINK TO TICKET
       if(isset($paymentResponse['transaction_details']) && $paymentResponse['transaction_details']['external_resource_url']){
@@ -73,6 +80,9 @@ class Info extends \MercadoPago\Core\Block\Info
 //        $data['Segunda Via'] = $link;
         echo $link;
       }
+
+
+
       return $transport->setData(array_merge($data, $transport->getData()));
     }
 
