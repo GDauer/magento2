@@ -79,7 +79,7 @@ class CatalogRules extends \Magento\ImportExport\Model\Import\Entity\AbstractEnt
         \Magento\Framework\Stdlib\StringUtils $string,
         ProcessingErrorAggregatorInterface $errorAggregator,
         \Magento\Customer\Model\GroupFactory $groupFactory,
-        \Magento\CatalogRule\Model\ResourceModel\Rule\Collection $ruleCollection
+        \Magento\CatalogRule\Model\ResourceModel\Rule\CollectionFactory $ruleCollection
     )
     {
         $this->jsonHelper = $jsonHelper;
@@ -220,7 +220,7 @@ class CatalogRules extends \Magento\ImportExport\Model\Import\Entity\AbstractEnt
             if ($entityIn) {
 
                 foreach ($entityIn as $rule) {
-                    $rules = $this->ruleCollection->addFieldToFilter('rule_id', $rule['rule_id']);
+                    $rules = $this->ruleCollection->create()->addFieldToFilter('rule_id', $rule['rule_id']);
                     foreach ($rules as $content) {
                         $content->setDiscountAmount($rule['discount_amount']);
                         $content->setName($rule['name']);
