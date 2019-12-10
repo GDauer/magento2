@@ -28,7 +28,7 @@ define(["jquery", 'Magento_Catalog/js/price-utils', 'mage/template', "jquery/ui"
             sliderBar      : '[data-role=slider-bar]',
             message        : '[data-role=message-box]',
             applyButton    : '[data-role=apply-range]',
-            rate           : 1.0000,
+            rate           : 2.0000,
             maxLabelOffset : 0.01,
             messageTemplates : {
                 "displayCount": '<span class="msg"><%- count %> items</span>',
@@ -74,10 +74,13 @@ define(["jquery", 'Magento_Catalog/js/price-utils', 'mage/template', "jquery/ui"
         _refreshDisplay: function() {
             this.count = this._getItemCount();
 
-            console.log(this, this.from, this.to)
+            //console.log(this, this.from, this.to)
 
-            window._priceFilterFrom = this.from
-            window._priceFilterTo = this.to
+            if(this.bindings[0].dataset.role == "range-price-slider-price"){
+                console.log(this, this.from, this.to)
+                window._priceFilterFrom = this.from
+                window._priceFilterTo = this.to
+            }
 
             if (this.element.find('[data-role=from-label]')) {
                 this.element.find('[data-role=from-label]').html(this._formatLabel(this.from));
@@ -116,7 +119,7 @@ define(["jquery", 'Magento_Catalog/js/price-utils', 'mage/template', "jquery/ui"
         _getItemCount : function() {
             var from = this.from, to = this.to, intervals = this.intervals;
             var count = intervals.map(function(item) {return item.value >= from && item.value < to ? item.count : 0;})
-                                 .reduce(function(a,b) {return a + b;});
+                .reduce(function(a,b) {return a + b;});
             return count;
         },
 

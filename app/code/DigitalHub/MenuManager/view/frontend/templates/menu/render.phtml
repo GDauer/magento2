@@ -1,0 +1,185 @@
+<?php if($this->getMenu()->getActive()): ?>
+
+    <?php $jsonData = $this->getJsonData() ?>
+
+    <div class="container-menumanager-menu">
+        <nav id="menumanager-menu-<?php echo $this->getMenu()->getId() ?>" class="menumanager-menu <?php echo $this->getMenu()->getType() ?>">
+            <ul>
+                <?php foreach($jsonData as $item): ?>
+                    <?php $item = $this->parseItemData($item) ?>
+                    <?php $showStaticBlock = $item->getOptions()->getData('submenu_static_block_id') && $item->getOptions()->getData('use_submenu_static_block') ?>
+                    <li rel="<?php echo $item->getId() ?>" class="<?php if($showStaticBlock || count($item->getChildren())) echo "with-submenu"; ?>">
+                        <a href="<?php echo $item->getOptions()->getUrl() ?>">
+                            <?php echo $item->getText() ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </nav>
+    </div>
+
+    <div id="menumanager-submenus-<?php echo $this->getMenu()->getId() ?>" class="container-menumanager-submenus">
+        <div class="container">
+            <?php foreach($jsonData as $item): ?>
+                <?php $item = $this->parseItemData($item) ?>
+                <?php $showStaticBlock = $item->getOptions()->getData('submenu_static_block_id') && $item->getOptions()->getData('use_submenu_static_block') ?>
+                <?php if($showStaticBlock || count($item->getHasChildren())): ?>
+                    <div class="menumanager-submenu" rel="<?php echo $item->getId() ?>">
+                        <?php if($showStaticBlock): ?>
+                            <div class="static-block">
+                                <!-- Static Block content -->
+                                <?php $staticBlock = $this->getLayout()
+                                        ->createBlock('\Magento\Cms\Block\Block')
+                                        ->setBlockId($item->getOptions()->getData('submenu_static_block_id')) ?>
+                                <?php if($staticBlock): ?>
+                                    <?php echo $staticBlock->toHtml() ?>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if($item->getHasChildren()): ?>
+                            <!-- Children Items -->
+                            <div class="children-items <?php if($showStaticBlock) echo "with-static-block"; ?>">
+
+                                <?php if($item->getOptions()->getType() == 'category' && $item->getOptions()->getUseSubcategoriesTree()): ?>
+
+                                    <ul>
+                                        <?php $cols = 0; ?>
+                                        <?php $maxCols = 4; ?>
+
+                                        <?php foreach($item->getCategory()->getChildrenCategories() as $_category): ?>
+                                            <li class="<?php if($cols == ($maxCols-1)) echo "last" ?> <?php if($cols == 0) echo "first" ?> <?php if(count($_category->getChildrenCategories())) echo "with-children"; ?>">
+                                                <a href="<?php echo $_category->getUrl() ?>">
+                                                    <?php echo $_category->getName() ?>
+                                                </a>
+
+                                                <!-- Level 3 -->
+                                                <?php if(count($_category->getChildrenCategories())): ?>
+                                                <ul>
+                                                    <?php foreach($_category->getChildrenCategories() as $_subCategory): ?>
+                                                        <li>
+                                                            <a href="<?php echo $_subCategory->getUrl() ?>">
+                                                                <?php echo $_subCategory->getName() ?>
+                                                            </a>
+                                                        </li>
+                                                    <?php endforeach; ?>
+                                                </ul>
+                                                <?php endif; ?>
+
+                                            </li>
+                                            <?php $cols++ ?>
+
+                                            <?php if($cols == $maxCols): ?>
+                                                </ul><ul>
+                                                <?php $cols = 0 ?>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </ul>
+
+                                <?php else: ?>
+                                    <!-- Level 2 -->
+                                    <ul>
+                                        <?php $cols = 0; ?>
+                                        <?php $maxCols = 4; ?>
+
+                                        <?php foreach($item->getChildren() as $subitem): ?>
+                                            <?php $subitem = $this->parseItemData($subitem) ?>
+                                            <li class="<?php if($cols == ($maxCols-1)) echo "last" ?> <?php if($cols == 0) echo "first" ?> <?php if(count($subitem->getChildren())) echo "with-children"; ?>">
+                                                <a href="<?php echo $subitem->getOptions()->getUrl() ?>">
+                                                    <?php echo $subitem->getText() ?>
+                                                </a>
+
+                                                <!-- Level 3 -->
+                                                <?php if(count($subitem->getChildren())): ?>
+                                                <ul>
+                                                    <?php foreach($subitem->getChildren() as $sub_subitem): ?>
+                                                        <?php $sub_subitem = $this->parseItemData($sub_subitem) ?>
+                                                        <li>
+                                                            <a href="<?php echo $sub_subitem->getOptions()->getUrl() ?>">
+                                                                <?php echo $sub_subitem->getText() ?>
+                                                            </a>
+                                                        </li>
+                                                    <?php endforeach; ?>
+                                                </ul>
+                                                <?php endif; ?>
+
+                                            </li>
+                                            <?php $cols++ ?>
+
+                                            <?php if($cols == $maxCols): ?>
+                                                </ul><ul>
+                                                <?php $cols = 0 ?>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
+    <script>
+        require([
+            'jquery',
+            'owlcarousel'
+        ], function($, owl){
+            var oldSubmenu = $('#menumanager-submenus-<?php echo $this->getMenu()->getId() ?>');
+            var newSubmenu = oldSubmenu.clone();
+            oldSubmenu.remove();
+
+            $('.page-wrapper:first').append(newSubmenu);
+            newSubmenu.css({top: top});
+
+            // Submenu Interaction
+            $('#menumanager-menu-<?php echo $this->getMenu()->getId() ?> ul li').hover(function(){
+                var otherSubmenus = $('#menumanager-submenus-<?php echo $this->getMenu()->getId() ?> .menumanager-submenu');
+                otherSubmenus.hide().removeClass('hovered');
+
+                var rel = $(this).attr('rel');
+                var currentSubmenu = $('#menumanager-submenus-<?php echo $this->getMenu()->getId() ?> .menumanager-submenu[rel='+rel+']');
+
+                if(currentSubmenu.length){
+                    // Update top on hover
+
+                    if($(this).parents('.down:first').length){
+                        // if page scroll
+                        var newTop = parseInt($('#menumanager-menu-<?php echo $this->getMenu()->getId() ?>').parents('.container-menumanager-menu').position().top) + $('#menumanager-menu-<?php echo $this->getMenu()->getId() ?>').height();
+                        currentSubmenu.parents('.container-menumanager-submenus').css({position: 'fixed', top: newTop - 2});
+                    } else {
+                        // else
+                        var top = $('#menumanager-menu-<?php echo $this->getMenu()->getId() ?>').offset().top + $('#menumanager-menu-<?php echo $this->getMenu()->getId() ?>').height()
+                        currentSubmenu.parents('.container-menumanager-submenus').css({position: '', top: top});
+                    }
+
+                    currentSubmenu.show();
+                }
+            }, function(){
+                var rel = $(this).attr('rel');
+                var currentSubmenu = $('#menumanager-submenus-<?php echo $this->getMenu()->getId() ?> .menumanager-submenu[rel='+rel+']');
+
+                setTimeout(function(){
+                    if(!currentSubmenu.hasClass('hovered')){
+                        $(this).removeClass('active');
+                        currentSubmenu.hide();
+                    }
+                }, 200);
+            })
+
+            $('#menumanager-submenus-<?php echo $this->getMenu()->getId() ?> .menumanager-submenu').hover(function(){
+                $(this).addClass('hovered');
+                var rel = $(this).attr('rel');
+                $('#menumanager-menu-<?php echo $this->getMenu()->getId() ?> ul li[rel='+rel+']').addClass('active');
+            }, function(){
+                $(this).removeClass('hovered');
+                $(this).hide();
+
+                var rel = $(this).attr('rel');
+                $('#menumanager-menu-<?php echo $this->getMenu()->getId() ?> ul li[rel='+rel+']').removeClass('active');
+            });
+        })
+    </script>
+
+<?php endif; ?>
