@@ -36,7 +36,6 @@
         "magento/module-swatches-sample-data": "100.2.*",
         "digitalhub/theme-base": "dev-master",
         "digitalhub/theme-base-mobile": "dev-fix/itatiaia",
-        "digitalhub/menu-manager": "dev-master",
         "digitalhub/additional-prices": "dev-master",
         "digitalhub/estimate-shipping": "dev-master",
         "digitalhub/customer-attributes": "dev-master",
