@@ -220,7 +220,7 @@ class CatalogRules extends \Magento\ImportExport\Model\Import\Entity\AbstractEnt
             if ($entityIn) {
 
                 foreach ($entityIn as $rule) {
-                    $rules = $this->ruleCollection->create()->addFieldToFilter('rule_id', $rule['rule_id']);
+                    $rules = $this->ruleCollection->create()->addFieldToFilter('name', $rule['rule_id']);
                     foreach ($rules as $content) {
                         $content->setDiscountAmount($rule['discount_amount']);
                         $content->setName($rule['name']);
