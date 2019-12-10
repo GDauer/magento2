@@ -1,0 +1,83 @@
+<div class="menu-editor-container">
+    <input type="hidden" name="json_data" data-bind="value: JSON.stringify()">
+
+    <div class="tree-container" data-bind="afterRender: initMenuRender">
+        <ul></ul>
+    </div>
+
+    <p>
+        <a class="btn" data-bind="click: addMenuItem">Adicionar item</a>
+    </p>
+</div>
+
+<div id="edit-modal">
+    <h2>Editar propriedades do item</h2>
+
+    <div class="type-fields">
+        <div class="type-container">
+            <div class="field">
+                <label>Tipo do item <em>*</em></label>
+                <select id="edit-type" class="form-control">
+                    <option value=""> --- </option>
+                    <option value="category">Link para categoria</option>
+                    <option value="cms">Link para página de CMS</option>
+                    <option value="url">Link customizado</option>
+                </select>
+            </div>
+        </div>
+        <div class="type-child-container">
+            <div class="field">
+                <label>Selecione a categoria <em>*</em></label>
+                <select id="edit-category-id" class="form-control"></select>
+            </div>
+
+            <div class="field">
+                <label>Selecione a página CMS <em>*</em></label>
+                <select id="edit-cms-page-id" class="form-control"></select>
+            </div>
+
+            <div class="field">
+                <label>Digite o link <em>*</em></label>
+                <input type="text" id="edit-url" class="form-control">
+            </div>
+        </div>
+    </div>
+
+    <div class="edit-submenu-section">
+        <div class="field">
+            <label>
+                <input type="checkbox" id="edit-use-subcategories-tree" value="1">
+                Exibir subcategorias deste item no submenu
+            </label>
+        </div>
+
+        <div class="field">
+            <label>
+                <input type="checkbox" id="edit-use-static-block" value="1">
+                Exibir bloco estático de conteúdo no submenu?
+            </label>
+        </div>
+
+        <div class="field">
+            <label>Bloco estático para o submenu</label>
+            <select id="edit-static-block" class="form-control"></select>
+        </div>
+    </div>
+</div>
+
+<style>
+.menu-editor-container a { cursor: pointer }
+.menu-editor-container a.btn { display: inline-block; border-radius: 3px; border: 1px solid #ccc; background: #f0f0f0; padding: 3px 5px; font-size: 12px; color: #333 }
+.menu-editor-container a.btn:hover { text-decoration: none }
+.menu-editor-container .tree-container { padding: 10px 10px 5px 10px; margin-bottom: 10px; border: 1px dotted #ccc; background: #fafafa; }
+
+#edit-modal { }
+#edit-modal .field { margin-bottom: 5px }
+#edit-modal .field label { display: block; padding: 5px 0; }
+#edit-modal .field label em { color: red }
+#edit-modal .field .form-control { width: 100%; padding: 3px 5px }
+
+#edit-modal .type-fields { overflow: hidden; margin-bottom: 10px }
+#edit-modal .type-fields .type-container { float: left; width: 30%; }
+#edit-modal .type-fields .type-child-container { float: right; width: 67%; }
+</style>
