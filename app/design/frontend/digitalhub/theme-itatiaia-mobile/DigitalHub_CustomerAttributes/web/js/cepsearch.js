@@ -8,6 +8,10 @@ require([
         $("input[name='street[0]']").val();
         $("input[name='street[3]']").val();
         $("input[name='city']").val();
+        $('select[name="region_id"]').attr('disabled',false);
+        $('input[name="street[3]"]').attr('disabled',false);
+        $('input[name="city"]').attr('disabled',false);
+        $('select[name="country_id"]').attr('disabled',false);
     }
 
     // Executa busca de CEP
@@ -104,6 +108,10 @@ require([
                                 $("select[name='region_id'] option[value=" + estado.UF[i].id + "]").attr('selected', 'selected').trigger('change');
                             }
                         }
+                        $('select[name="region_id"]').attr('disabled',true);
+                        $('input[name="street[3]"]').attr('disabled',true);
+                        $('input[name="city"]').attr('disabled',true);
+                        $('select[name="country_id"]').attr('disabled',true);
                     } //end if.
                     else {
                         //CEP pesquisado não foi encontrado.
