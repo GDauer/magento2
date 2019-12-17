@@ -11,11 +11,43 @@ $link_to_order = '<a href="' . $block->escapeUrl($this->getOrderUrl()) . '">' . 
 
 $paymentResponse = $payment->getAdditionalInformation("paymentResponse");
 
+$message_status = $this->getMessageByStatus($paymentResponse);
 ?>
-<h2 class="mercadopago-title"><?php /* @escapeNotVerified */ echo __('Thank you for your purchase!'); ?></h2>
+<div id="box-mercadopago">
+    <?php if (!isset($paymentResponse['status'])): ?>
+        <h2 class="mercadopago-title"><?php /* @escapeNotVerified */
+            echo __('Thank you for your purchase!'); ?></h2>
+        <p><?php /* @escapeNotVerified */
+            echo __($successMsg, $link_to_order); ?></p>
+    <?php else: ?>
+        <?php if (isset($message_status['title']) && isset($message_status['message'])) { ?>
+            <h2 class="mercadopago-title"><?php echo $block->escapeHtml($message_status['title']); ?></h2>
+            <p><?php echo $block->escapeHtml($message_status['message']); ?></p>
+        <?php } else { ?>
+            <p><?php /* @escapeNotVerified */
+                echo __($successMsg, $link_to_order); ?></p>
+        <?php } ?>
 
-<div class="checkout-success">
-        <p><?= __('Your order number is: %1.', sprintf('<a href="%s" class="order-number"><strong>%s</strong></a>', $block->escapeUrl($this->getOrderUrl()), $block->escapeHtml($order->getIncrementId()))) ?></p>
-        <p><?= /* @escapeNotVerified */ __('We\'ll email you an order confirmation with details and tracking info.') ?></p>
+        <?php if ($paymentResponse['status'] != 'rejected' && (isset($message_status['title']) && isset($message_status['message']))): ?>
+            <p><?php /* @escapeNotVerified */
+                echo __($successMsg, $link_to_order); ?></p>
+        <?php endif; ?>
+    <?php endif; ?>
+</div>
+
+<div id="logo-mercadopago">
+    <img src="https://secure.mlstatic.com/components/resources/mp/desktop/css/assets/desktop-logo-mercadopago.png"/>
+</div>
+
+<div class="primary button-success">
+    <?php if ($paymentResponse['status'] == 'rejected'): ?>
+        <a class="action primary continue"
+           href="<?php echo $block->escapeUrl($block->getReOrderUrl()) ?>"><span><?php /* @escapeNotVerified */
+                echo __('Retry order') ?></span></a>
+    <?php else: ?>
+        <a class="action primary continue"
+           href="<?php echo $block->escapeUrl($block->getUrl()) ?>"><span><?php /* @escapeNotVerified */
+                echo __('Continue Shopping') ?></span></a>
+    <?php endif; ?>
 </div>
 
