@@ -29,10 +29,12 @@ require([
         $("#street_1").val("");
         $("#street_4").val("");
         $("#city").val("");
-        $('select[name="region_id"]').attr('disabled',false);
-        $('input[name="street[3]"]').attr('disabled',false);
-        $('input[name="city"]').attr('disabled',false);
-        $('select[name="country_id"]').attr('disabled',false);
+        $('select[name="region_id"]').attr('readonly',false);
+        $('select[name="region_id"]').css("pointer-events","");
+        $('input[name="street[3]"]').attr('readonly',false);
+        $('input[name="city"]').attr('readonly',false);
+        $('select[name="country_id"]').attr('readonly',false);
+        $('select[name="country_id"]').css("pointer-events","");
     }
 
     // Init
@@ -139,10 +141,12 @@ require([
                             }
 
                         }
-                        $('select[name="region_id"]').attr('disabled',true);
-                        $('input[name="street[3]"]').attr('disabled',true);
-                        $('input[name="city"]').attr('disabled',true);
-                        $('select[name="country_id"]').attr('disabled',true);
+                        $('select[name="region_id"]').attr('readonly',true);
+                        $('select[name="region_id"]').css("pointer-events","none");
+                        $('input[name="street[3]"]').attr('readonly',true);
+                        $('input[name="city"]').attr('readonly',true);
+                        $('select[name="country_id"]').attr('readonly',true);
+                        $('select[name="country_id"]').css("pointer-events","none");
                     } //end if.
                     else {
                         //CEP pesquisado não foi encontrado.
