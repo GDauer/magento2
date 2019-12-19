@@ -3,6 +3,17 @@ require([
     'DigitalHub_CustomerAttributes/js/jquery.mask.min'
 ], function ($, inputMask) {
 
+    $( document ).ready(function() {
+        if ($('input[name="postcode"]').val().length != 0) {
+            $('select[name="region_id"]').attr('readonly',true);
+            $('select[name="region_id"]').css("pointer-events","none");
+            $('input[name="street[3]"]').attr('readonly',true);
+            $('input[name="city"]').attr('readonly',true);
+            $('select[name="country_id"]').attr('readonly',true);
+            $('select[name="country_id"]').css("pointer-events","none");
+        }
+    });
+
     // Verificação do tipo de conta selecionada no form
     function verifyAccountType(val) {
         if ($('input[name=account_type]:checked').val() == 'pf') {
