@@ -4,7 +4,7 @@ require([
 ], function ($, inputMask) {
 
     $( document ).ready(function() {
-        if ($('input[name="postcode"]').val().length != 0) {
+        if ($('input[name="postcode"]').length != 0) {
             $('select[name="region_id"]').attr('readonly',true);
             $('select[name="region_id"]').css("pointer-events","none");
             $('input[name="street[3]"]').attr('readonly',true);
