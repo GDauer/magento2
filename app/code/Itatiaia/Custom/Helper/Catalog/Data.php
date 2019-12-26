@@ -67,7 +67,7 @@ class Data extends \Magento\Catalog\Helper\Data
                     }
                 }
 
-                \Magento\Framework\App\ObjectManager::getInstance()->get('\Psr\Log\LoggerInterface')->info('CRUMBS CATEGORY LAST', [$lastLevelCategory->getName()]);
+//                \Magento\Framework\App\ObjectManager::getInstance()->get('\Psr\Log\LoggerInterface')->info('CRUMBS CATEGORY LAST', [$lastLevelCategory->getName()]);
             }
 
             if ($this->getProduct()) {
