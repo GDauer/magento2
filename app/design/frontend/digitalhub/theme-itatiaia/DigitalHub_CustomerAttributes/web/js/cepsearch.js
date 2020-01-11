@@ -7,7 +7,6 @@ require([
         if ($('input[name="postcode"]').length != 0) {
             $('select[name="region_id"]').attr('readonly',true);
             $('select[name="region_id"]').css("pointer-events","none");
-            $('input[name="street[3]"]').attr('readonly',true);
             $('input[name="city"]').attr('readonly',true);
             $('select[name="country_id"]').attr('readonly',true);
             $('select[name="country_id"]').css("pointer-events","none");
@@ -21,7 +20,6 @@ require([
         $("input[name='city']").val();
         $('select[name="region_id"]').attr('readonly',false);
         $('select[name="region_id"]').css("pointer-events","");
-        $('input[name="street[3]"]').attr('readonly',false);
         $('input[name="city"]').attr('readonly',false);
         $('select[name="country_id"]').attr('readonly',false);
         $('select[name="country_id"]').css("pointer-events","");
@@ -125,7 +123,6 @@ require([
                         }
                         $('select[name="region_id"]').attr('readonly',true);
                         $('select[name="region_id"]').css("pointer-events","none");
-                        $('input[name="street[3]"]').attr('readonly',true);
                         $('input[name="city"]').attr('readonly',true);
                         $('select[name="country_id"]').attr('readonly',true);
                         $('select[name="country_id"]').css("pointer-events","none");
