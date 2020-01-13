@@ -27,7 +27,7 @@ require(['jquery','owlcarousel'],function(){
         lazyLoad: true,
         dotsEach: 1,
         slideBy: 1,
-        //center: true,
+        autoplay: true,
         margin: 20,
         responsive:{
             0:{
