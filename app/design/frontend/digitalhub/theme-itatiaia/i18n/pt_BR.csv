@@ -137,3 +137,5 @@
 "Your order # is: <span>%1</span>.", "O número do seu pedido é <b>%1</b>."
 "Your order #%increment_id has been updated with a status of <strong>%order_status</strong>.","Seu pedido #%increment_id foi atualizado com o status <strong>%order_status</strong>."
 "Update to your %store_name order","Atualização para seu pedido %store_name"
+"Retry order","Repetir pedido"
+"Continue Shopping","Continue comprando"

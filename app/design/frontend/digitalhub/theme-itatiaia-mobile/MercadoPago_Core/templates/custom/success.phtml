@@ -34,11 +34,6 @@ $message_status = $this->getMessageByStatus($paymentResponse);
         <?php endif; ?>
     <?php endif; ?>
 </div>
-
-<div id="logo-mercadopago">
-    <img src="https://secure.mlstatic.com/components/resources/mp/desktop/css/assets/desktop-logo-mercadopago.png"/>
-</div>
-
 <div class="primary button-success">
     <?php if ($paymentResponse['status'] == 'rejected'): ?>
         <a class="action primary continue"
