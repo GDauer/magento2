@@ -45,6 +45,14 @@ class IgnoreCanceled
     {
         $this->logger->info("PLUGIN - Checking order status before send to Konduto");
         $order = $this->kondutoDataHelper->loadOrder($orderId);
+        $payment = $order->getPayment();
+        $additional = $payment->getAdditionalInformation();
+        if(!$additional['card_expiration_month'] || !$additional['card_expiration_year']) {
+            $additional['card_expiration_month'] = $additional['paymentResponse']['card']['expiration_month'];
+            $additional['card_expiration_year'] = $additional['paymentResponse']['card']['expiration_year'];
+            $payment->setAdditionalInformation($additional);
+            $payment->save();
+        }
         if($order->getStatus() == 'canceled') {
             $orderIncrementId = $order->getIncrementId();
             $this->logger->info("Cancelled Order not sended to Konduto. [Order Id = $orderId] [Increment Id = $orderIncrementId]");
