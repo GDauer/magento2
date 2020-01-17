@@ -32,6 +32,47 @@ require([
          });
     });
 
+    /*--Landingpage BBB --*/
+    jQuery(".main-banners-landingpage.owl-carousel").owlCarousel({
+      loop: true,
+      nav: false,
+      dots: true,
+      lazyLoad: true,
+      margin: 0,
+      items: 1
+    })
+    jQuery(".products-carousel.owl-carousel").owlCarousel({
+      center: true,
+      items: 2,
+      loop: true,
+      nav: true,
+      dots: false,
+      margin: 20,
+      responsive: {
+        0:{
+          items: 1
+        },
+        600:{
+          items: 2
+        },
+        1000:{
+          items: 3
+        }
+      }
+    })
+
+    var time = setInterval(function(){
+      jQuery(window).scroll(function() {
+       if (jQuery(this).scrollTop() > 100){
+          jQuery('.landingpage-bbb20 .wrp-header').addClass("sticky");
+        }
+        else{
+          jQuery('.landingpage-bbb20 .wrp-header').removeClass("sticky");
+        }
+      });
+    }, 100);
+    /*--Landingpage BBB --*/
+
 
  /*   // verificação de quantidade para grouped locked items
     jQuery(function(){
