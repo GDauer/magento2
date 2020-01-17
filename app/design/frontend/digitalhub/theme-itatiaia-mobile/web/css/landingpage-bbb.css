@@ -76,6 +76,9 @@ body {
   transform: unset;
   text-align: center;
 }
+.landingpage-bbb20 .header .logo-bbb h1 {
+  margin: 0;
+}
 .landingpage-bbb20 .header .logo-bbb a {
   display: block;
 }
@@ -210,7 +213,8 @@ body {
 .landingpage-bbb20 .wrp-main-banners .owl-dots button.active span {
   background: #18a2fd;
 }
-.landingpage-bbb20 .title {
+.landingpage-bbb20 .title,
+.landingpage-bbb20 .block .title {
   display: block;
   font-weight: 900;
   text-transform: uppercase;
@@ -218,11 +222,11 @@ body {
   font-size: 32px;
   line-height: 110%;
   text-align: center;
-  margin-bottom: 20px;
+  margin: 0 0 20px 0;
 }
 .landingpage-bbb20 .wrp-atributos-bbb {
   background: #e3e3e3;
-  padding: 50px 0;
+  padding: 30px 0;
 }
 .landingpage-bbb20 .wrp-atributos-bbb ul {
   display: block;
@@ -256,7 +260,7 @@ body {
 }
 .landingpage-bbb20 .wrp-images-360 {
   padding-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 0;
   overflow: hidden;
 }
 .landingpage-bbb20 .wrp-images-360 .title {
@@ -334,7 +338,8 @@ body {
 }
 .landingpage-bbb20 .wrp-products-carousel {
   background: #e3e3e3;
-  padding: 50px 0;
+  padding: 30px 0;
+  overflow: hidden;
 }
 .landingpage-bbb20 .wrp-products-carousel .container-block,
 .landingpage-bbb20 .wrp-products-carousel .owl-carousel .owl-stage-outer {
@@ -533,4 +538,124 @@ body {
   .landingpage-bbb20 .wrp-images-360 .wrp-tab-titles li a:after {
     display: none;
   }
+}
+
+/*-- Detalhe do produto --*/
+.landingpage-bbb20-produto .wrp-main-banners {
+  padding-bottom: 0;
+}
+.landingpage-bbb20.landingpage-bbb20-produto .wrp-main-banners .owl-dots,
+.landingpage-bbb20.landingpage-bbb20-produto .wrp-descricao-produto .carousel-images .owl-dots {
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.landingpage-bbb20.landingpage-bbb20-produto .wrp-main-banners .owl-dots button span,
+.landingpage-bbb20.landingpage-bbb20-produto .wrp-descricao-produto .carousel-images .owl-dots button span {
+  display: block;
+  height: 14px;
+  width: 14px;
+  margin: 10px 3px;
+  background: #e3e3e3;
+  border-radius: 100%;
+  opacity: 1;
+}
+.landingpage-bbb20.landingpage-bbb20-produto .wrp-main-banners .owl-dots button.active span,
+.landingpage-bbb20.landingpage-bbb20-produto .wrp-descricao-produto .carousel-images .owl-dots button.active span {
+  background: #18a2fd;
+}
+.landingpage-bbb20-produto .wrp-descricao-produto {
+  background: #e3e3e3;
+  float: left;
+  width: 100%;
+  padding: 30px 15px;
+  position: relative;
+  z-index: 9;
+}
+.landingpage-bbb20-produto .wrp-descricao-produto .wrp-columns {
+  max-width: 542px;
+  margin: 0 auto;
+}
+.landingpage-bbb20-produto .wrp-descricao-produto .title {
+  font-size: 20px;
+  position: relative;
+  margin: 20px 0 50px 0;
+}
+.landingpage-bbb20-produto .wrp-descricao-produto .title:before {
+  content: '';
+  display: block;
+  background: #f4f4f4;
+  border-radius: 100%;
+  width: 92px;
+  height: 92px;
+  position: absolute;
+  left: 50%;
+  margin: -100px 0 0 -46px;
+  display: none;
+}
+.landingpage-bbb20-produto .wrp-descricao-produto .wrp-columns {
+  overflow: hidden;
+}
+.landingpage-bbb20-produto .wrp-descricao-produto .column-left,
+.landingpage-bbb20-produto .wrp-descricao-produto .column-right {
+  width: 100%;
+  float: none;
+  text-align: center;
+}
+.landingpage-bbb20-produto .wrp-descricao-produto .column-left {
+  margin-bottom: 20px;
+}
+.landingpage-bbb20-produto .wrp-descricao-produto .subtitle {
+  display: block;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-family: 'MullerBlack';
+  font-size: 30px;
+  line-height: 110%;
+  margin: 0 0 15px 0;
+}
+.landingpage-bbb20-produto .wrp-descricao-produto .wrp-carousel-images,
+.landingpage-bbb20-produto .wrp-descricao-produto .wrp-text,
+.landingpage-bbb20-produto .wrp-descricao-produto .image {
+  margin-bottom: 20px;
+}
+.landingpage-bbb20-produto .wrp-descricao-produto .wrp-text ul {
+  list-style: inside;
+}
+.landingpage-bbb20-produto .wrp-descricao-produto .bt-compre-online {
+  margin-top: 20px;
+  text-align: center;
+}
+.landingpage-bbb20-produto .wrp-descricao-produto .bt-compre-online a {
+  display: block;
+  background: #19a3fe;
+  border-radius: 3px;
+  color: #fff;
+  height: 60px;
+  line-height: 60px;
+  text-transform: uppercase;
+  padding: 0 10px;
+  max-width: 542px;
+  font-family: 'MullerBold';
+  margin: 0 auto;
+}
+.landingpage-bbb20-produto .wrp-descricao-produto .bt-compre-online a:hover {
+  text-decoration: none;
+  opacity: 0.8;
+}
+.landingpage-bbb20-produto .wrp-images-360 .image-360 {
+  background: #000 url(../images/icon-360.png) no-repeat center center;
+  text-align: center;
+  color: #fff;
+  line-height: 520px;
+  height: 520px;
+  overflow: hidden;
+}
+.landingpage-bbb20-produto .wrp-images-360 .image-360 span {
+  display: none;
+}
+.landingpage-bbb20-produto .wrp-redes-sociais {
+  padding: 50px 0;
 }

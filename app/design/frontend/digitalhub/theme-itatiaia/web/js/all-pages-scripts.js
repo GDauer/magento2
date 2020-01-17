@@ -63,7 +63,7 @@ require([
 
     var time = setInterval(function(){
       jQuery(window).scroll(function() {
-       if (jQuery(this).scrollTop() > 100){
+       if (jQuery(this).scrollTop() > 158){
           jQuery('.landingpage-bbb20 .wrp-header').addClass("sticky");
         }
         else{
@@ -71,6 +71,15 @@ require([
         }
       });
     }, 100);
+
+    jQuery(".wrp-descricao-produto .carousel-images").owlCarousel({
+      loop: true,
+      nav: false,
+      dots: true,
+      lazyLoad: true,
+      margin: 0,
+      items: 1
+    });
     /*--Landingpage BBB --*/
 
 

@@ -53,7 +53,7 @@ require(['jquery','owlcarousel'],function(){
         lazyLoad: true,
         margin: 0,
         items: 1
-      })
+      });
       jQuery(".products-carousel.owl-carousel").owlCarousel({
         center: true,
         items: 2,
@@ -72,18 +72,15 @@ require(['jquery','owlcarousel'],function(){
             items: 3
           }
         }
-      })
-
-      var time = setInterval(function(){
-        jQuery(window).scroll(function() {
-         if (jQuery(this).scrollTop() > 100){
-            jQuery('.landingpage-bbb20 .wrp-header').addClass("sticky");
-          }
-          else{
-            jQuery('.landingpage-bbb20 .wrp-header').removeClass("sticky");
-          }
-        });
-      }, 100);
+      });
+      jQuery(".wrp-descricao-produto .carousel-images").owlCarousel({
+        loop: true,
+        nav: false,
+        dots: true,
+        lazyLoad: true,
+        margin: 0,
+        items: 1
+      });
       /*--Landingpage BBB --*/
 
 
