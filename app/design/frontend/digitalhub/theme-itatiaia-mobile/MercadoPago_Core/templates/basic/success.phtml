@@ -1,0 +1,22 @@
+<?php
+/**
+ * @var MercadoPago\Core\Block\Custom\Success $block
+ */
+
+  $order = $this->getOrder();
+  $payment = $this->getPayment();
+
+  //generate link to order
+  $successMsg = 'Your order %1 has been successfully generated.';
+  $link_to_order = '<a href="' . $block->escapeUrl($this->getOrderUrl()) . '">' . $block->escapeHtml($order->getIncrementId()) . '</a>';
+
+  $paymentResponse = $payment->getAdditionalInformation("paymentResponse");
+
+?>
+
+<h2 class="mercadopago-title"><?php /* @escapeNotVerified */ echo __('Thank you for your purchase!'); ?></h2>
+
+<div class="checkout-success">
+    <p><?= __('Your order number is: %1.', sprintf('<a href="%s" class="order-number"><strong>%s</strong></a>', $block->escapeUrl($this->getOrderUrl()), $block->escapeHtml($order->getIncrementId()))) ?></p>
+    <p><?= /* @escapeNotVerified */ __('We\'ll email you an order confirmation with details and tracking info.') ?></p>
+</div>

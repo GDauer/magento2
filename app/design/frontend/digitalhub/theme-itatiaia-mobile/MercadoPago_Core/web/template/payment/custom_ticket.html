@@ -5,8 +5,8 @@
       <!-- Mercado Pago Logo -->
       <span data-bind="text: getTitle()"></span>
       <!-- Mercado Pago Logo -->
-      <!--      <img data-bind="attr: {alt: 'Mercado Pago',src:getLogoUrl()}"-->
-      <!--           class="payment-icon"/>-->
+<!--      <img data-bind="attr: {alt: 'Mercado Pago',src:getLogoUrl()}"-->
+<!--           class="payment-icon"/>-->
     </label>
 
     <!-- ko if: (existBanner() == true)-->
@@ -69,11 +69,11 @@
         <ul id="mercadopago-payment-methods-ticket">
           <!-- ko foreach: {data: getTicketsData(), as: 'ticket'} -->
           <li class="mercadopago-ticket-option">
-            <input
-                    type="radio"
-                    class="optionsTicketMp"
-                    name="mercadopago_custom_ticket[payment_method_ticket]"
-                    data-bind="'attr':{
+            <input 
+                   type="radio" 
+                   class="optionsTicketMp" 
+                   name="mercadopago_custom_ticket[payment_method_ticket]"
+                   data-bind="'attr':{
                               value: ticket.id,
                               'data-validate': JSON.stringify({'validate-one-required-by-name':true})
                               }">
@@ -84,7 +84,7 @@
             </label>
           </li>
           <!--/ko-->
-        </ul>
+        </ul>   
         <!-- /ko -->
 
         <!-- ko if: getCountTickets() > 0 -->
