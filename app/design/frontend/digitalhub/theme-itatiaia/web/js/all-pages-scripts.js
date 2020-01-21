@@ -32,6 +32,21 @@ require([
          });
     });
 
+    jQuery(document).ready(function() {
+      jQuery('#tabs-att .nav-tabs > li > a').click(function(event){
+      event.preventDefault();
+      var active_tab_selector = jQuery('#tabs-att .nav-tabs > li.active > a').attr('href');
+      var actived_nav = jQuery('#tabs-att .nav-tabs > li.active');
+      actived_nav.removeClass('active');
+      jQuery(this).parents('li').addClass('active');
+      jQuery(active_tab_selector).removeClass('active');
+      jQuery(active_tab_selector).addClass('hide');
+      var target_tab_selector = jQuery(this).attr('href');
+      jQuery(target_tab_selector).removeClass('hide');
+      jQuery(target_tab_selector).addClass('active');
+         });
+    });
+
     /*--Landingpage BBB --*/
     jQuery(".main-banners-landingpage.owl-carousel").owlCarousel({
       loop: true,
@@ -43,11 +58,11 @@ require([
     })
     jQuery(".products-carousel.owl-carousel").owlCarousel({
       center: true,
-      items: 2,
+      items: 4,
       loop: true,
       nav: true,
       dots: false,
-      margin: 20,
+      margin: 80,
       responsive: {
         0:{
           items: 1

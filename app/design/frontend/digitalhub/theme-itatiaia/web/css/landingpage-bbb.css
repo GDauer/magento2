@@ -1,6 +1,10 @@
 * {
   box-sizing: border-box;
 }
+.landingpage-bbb20 p.setmargin, .landingpage-bbb20 p{
+  margin-top: 0;
+  margin-bottom: 0;
+}
 body {
   color: #000 !important;
   font-family: 'MullerRegular' !important;
@@ -28,10 +32,18 @@ body {
 .landingpage-bbb20 .page-main .columns .column.main {
   padding: 0;
 }
-.landingpage-bbb20 .page-main .container-block {
+.landingpage-bbb20 .page-main .container-block{
   max-width: 1110px;
   margin: 0 auto;
 }
+.landingpage-bbb20 .page-main .header .container-block{
+  max-width: 1560px;
+}
+
+.landingpage-bbb20 .page-main .atributos-bbb.container-block{
+  max-width: 1280px;
+}
+
 .landingpage-bbb20 .page-main ul {
   list-style: none;
   margin: 0;
@@ -43,17 +55,23 @@ body {
 .landingpage-bbb20 .wrp-header {
   width: 100%;
   overflow: hidden;
+  background: url(../images/landingbbb/lnd-hdr-bg.png) no-repeat center center;
+  background-size: cover;
 }
 .landingpage-bbb20 .header {
   overflow: hidden;
   position: relative;
-  height: 158px;
+  height: 189px;
 }
 .landingpage-bbb20 .wrp-header .display-sticky-header {
   display: none;
 }
 .landingpage-bbb20 .header .block-left {
   float: left;
+  margin-top: 42px;
+}
+
+.landingpage-bbb20 .wrp-header.sticky .block-left{
   margin-top: 30px;
 }
 .landingpage-bbb20 .header .block-left ul li {
@@ -63,6 +81,7 @@ body {
   font-size: 22px;
   margin: 0;
   line-height: 110%;
+  color:#fff;
 }
 .landingpage-bbb20 .header .logo-bbb {
   position: absolute;
@@ -78,18 +97,21 @@ body {
 }
 .landingpage-bbb20 .header .block-right {
   float: right;
-  margin-top: 44px;
+  margin-top: 69px;
 }
 .landingpage-bbb20 .header .block-right a {
   display: inline-block;
-  background: #19a3fe;
+  background: #fff;
   border-radius: 3px;
-  color: #fff;
-  height: 60px;
-  line-height: 60px;
+  color: #238fce;
+  height: 49px;
+  font-size: 16px;
+  line-height: 49px;
   text-transform: uppercase;
-  padding: 0 20px;
-  font-family: 'MullerBold';
+  padding: 0 39px;
+  font-family: 'MullerBlack';
+  border-radius: 30px;
+  letter-spacing: 5.6px;
 }
 .landingpage-bbb20 .header .block-right a:hover {
   text-decoration: none;
@@ -100,11 +122,13 @@ body {
     height: 158px;
   }
   .landingpage-bbb20 .wrp-header.sticky .header {
-    background: #19a3fe;
+    background: url(../images/landingbbb/lnd-hdr-bg.png) no-repeat center center;
+    background-size: cover;
     height: 100px;
     position: fixed !important;
     width: 100%;
     z-index: 99;
+    top:0;
   }
   .landingpage-bbb20 .wrp-header.sticky .header .display-normal-header {
     display: none;
@@ -112,16 +136,19 @@ body {
   .landingpage-bbb20 .wrp-header.sticky .header .display-sticky-header {
     display: block !important;
   }
+  .landingpage-bbb20 .wrp-header.sticky .header img.display-sticky-header{
+    max-width: 100px;
+  }
   .landingpage-bbb20 .wrp-header.sticky .header .block-left ul li {
     font-size: 18px;
   }
   .landingpage-bbb20 .wrp-header.sticky .header .block-right {
     margin-top: 20px;
   }
-  .landingpage-bbb20 .wrp-header.sticky .header .block-right a {
+  /* .landingpage-bbb20 .wrp-header.sticky .header .block-right a {
     background: #000;
     color: #fff;
-  }
+  } */
 }
 .landingpage-bbb20 .wrp-menu {
   background: #e3e3e3;
@@ -204,52 +231,97 @@ body {
   font-weight: 900;
   text-transform: uppercase;
   font-family: 'MullerBlack';
-  font-size: 32px;
+  font-size: 42px;
   line-height: 110%;
   text-align: center;
-  margin: 0 0 20px 0;
+  margin: 0 0 52px 0;
 }
-.landingpage-bbb20 .wrp-atributos-bbb {
-  background: #e3e3e3;
-  padding: 50px 0;
+
+.landingpage-bbb20 .atributos-bbb .title{
+  color:#fff;
 }
-.landingpage-bbb20 .wrp-atributos-bbb ul {
+
+.landingpage-bbb20 .wrp-atributos-bbb .wrp-tab-titles {
+  overflow: hidden;
+  max-width: 100%;
+}
+.landingpage-bbb20 .wrp-atributos-bbb .wrp-tab-titles {
   display: flex;
   justify-content: space-between;
 }
-.landingpage-bbb20 .wrp-atributos-bbb ul li {
-  margin-bottom: 15px;
+.landingpage-bbb20 .wrp-atributos-bbb .wrp-tab-titles li {
+  max-width: 48%;
+  width: 100%;
+  display: block;
 }
-.landingpage-bbb20 .wrp-atributos-bbb .bt-compre-online {
+.landingpage-bbb20 .wrp-atributos-bbb .wrp-tab-titles li a {
+  color: #908f8f;
+  font-family: 'MullerRegular';
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 91px;
+  text-transform: uppercase;
+  display: block;
+  text-align: center;
+  border-bottom: 8px solid transparent;
+}
+.landingpage-bbb20 .wrp-atributos-bbb .wrp-tab-titles li a:hover {
+  text-decoration: none;
+}
+.landingpage-bbb20 .wrp-atributos-bbb .wrp-tab-titles li.active a {
+  color: #238fce;
+  position: relative;
+  border-bottom: 8px solid #238fce;
+}
+
+.landingpage-bbb20 .wrp-atributos {
+  background: url(../images/landingbbb/lnd-bg-attbbb.png) no-repeat center center;
+  background-size: cover;
+  padding: 50px 0 58px;
+}
+.landingpage-bbb20 .wrp-atributos ul {
+  display: flex;
+  justify-content: space-between;
+}
+.landingpage-bbb20 .wrp-atributos ul li {
+  margin-bottom: 25px;
+}
+.landingpage-bbb20 .wrp-atributos .bt-compre-online {
   text-align: center;
   margin-top: 10px;
 }
-.landingpage-bbb20 .wrp-atributos-bbb .bt-compre-online a {
+.landingpage-bbb20 .wrp-atributos .bt-compre-online a {
   display: inline-block;
-  background: #19a3fe;
-  border-radius: 3px;
-  color: #fff;
-  height: 60px;
-  line-height: 60px;
+  background: #fff;
+  border-radius: 30px;
+  color: #238fce;
+  height: 57px;
+  line-height: 57px;
   text-transform: uppercase;
-  padding: 0 60px;
-  font-family: 'MullerBold';
+  padding: 0 32px;
+  font-family: 'MullerBlack';
+  letter-spacing: 5px;
+  font-size: 18px;
+  margin-top: 20px;
 }
-.landingpage-bbb20 .wrp-atributos-bbb .bt-compre-online a:hover {
+.landingpage-bbb20 .wrp-atributos .bt-compre-online a:hover {
   text-decoration: none;
   opacity: 0.8;
 }
 .landingpage-bbb20 .wrp-images-360 {
   padding-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 0;
   overflow: hidden;
 }
 .landingpage-bbb20 .wrp-images-360 .title {
   margin-bottom: 40px;
+  color: #3c3c3b;
+  font-size: 42px;
 }
+
 .landingpage-bbb20 .wrp-images-360 .wrp-tab-titles {
-  padding-bottom: 30px;
   overflow: hidden;
+  max-width: 100%;
 }
 .landingpage-bbb20 .wrp-images-360 .wrp-tab-titles {
   display: flex;
@@ -261,36 +333,25 @@ body {
   display: block;
 }
 .landingpage-bbb20 .wrp-images-360 .wrp-tab-titles li a {
-  display: block;
-  height: 60px;
-  background: #e3e3e3;
-  border-radius: 3px;
-  text-align: center;
-  line-height: 60px;
+  color: #908f8f;
+  font-family: 'MullerRegular';
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 91px;
   text-transform: uppercase;
-  font-family: 'MullerBold';
-  color: #000;
+  display: block;
+  text-align: center;
+  border-bottom: 8px solid transparent;
 }
 .landingpage-bbb20 .wrp-images-360 .wrp-tab-titles li a:hover {
   text-decoration: none;
 }
 .landingpage-bbb20 .wrp-images-360 .wrp-tab-titles li.active a {
-  background: #000;
-  color: #fff;
+  color: #238fce;
   position: relative;
+  border-bottom: 8px solid #238fce;
 }
-.landingpage-bbb20 .wrp-images-360 .wrp-tab-titles li.active a:after {
-  content: '';
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 14px 14px 0 14px;
-  border-color: #000 transparent transparent transparent;
-  position: absolute;
-  bottom: -14px;
-  left: 50%;
-  margin-left: -7px;
-}
+
 .landingpage-bbb20 .wrp-images-360 .wrp-tab-content {
   background: #000;
   text-align: center;
@@ -298,44 +359,107 @@ body {
   line-height: 520px;
   height: 520px;
   overflow: hidden;
+  position: relative;
 }
 .landingpage-bbb20 .wrp-images-360 .bt-compre-online {
   text-align: center;
-  margin-top: 30px;
+  z-index: 9;
+  display: block;
+  width: 100%;
+  height:57px;
+  margin: 0 auto;
+  position: absolute;
+  bottom:64px;
+
 }
 .landingpage-bbb20 .wrp-images-360 .bt-compre-online a {
-  display: inline-block;
-  background: #19a3fe;
+  display: block;
   border-radius: 3px;
   color: #fff;
-  height: 60px;
-  line-height: 60px;
+  height: 57px;
+  line-height: 57px;
   text-transform: uppercase;
-  padding: 0 60px;
-  font-family: 'MullerBold';
+  padding: 0;
+  font-family: 'MullerBlack';
+  width: 100%;
+  max-width: 608px;
+  position: relative;
+  margin: 0 auto;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.17), inset 0 0 7px rgba(255, 255, 255, 0.4);
+  border-radius: 29px;
+  background-color: #ffffff;
+  color: #238fce;
+  font-size: 18px;
+  letter-spacing: 5px;
 }
 .landingpage-bbb20 .wrp-images-360 .bt-compre-online a:hover {
   text-decoration: none;
   opacity: 0.8;
 }
 .landingpage-bbb20 .wrp-products-carousel {
-  background: #e3e3e3;
-  padding: 50px 0 140px 0;
+  background: #fff url(../images/landingbbb/lnd-plus.png) no-repeat center center;
+  padding: 0;
+  height: 574px;
+  padding-top: 66px;
+  text-align: center;
+  position: relative;
 }
+
+.landingpage-bbb20 .wrp-products-carousel:after{
+  content:'';
+  background: url(../images/landingbbb/layer-right.png) no-repeat center center;
+  display: block;
+  height: 633px;
+  width:189px;
+  background-size: contain;
+  position: absolute;
+  right: 0;
+  bottom:-68px;
+}
+
+.landingpage-bbb20 .wrp-products-carousel:before{
+  content:'';
+  background: url(../images/landingbbb/layer-left.png) no-repeat center center;
+  display: block;
+  height: 238px;
+  width:240px;
+  background-size: contain;
+  position: absolute;
+  left: 49px;
+  bottom: -131px;
+
+}
+
+.landingpage-bbb20 .wrp-products-carousel .container-block{
+  max-width:100%;
+}
+
+.landingpage-bbb20 .wrp-products-carousel .owl-nav{
+ width: 100%;
+ max-width: 320px;
+ display: inline-block;
+ height:33px;
+ position: relative;
+}
+
+
+.landingpage-bbb20 .wrp-products-carousel h2.title{
+  color: #ffffff;
+}
+
 .landingpage-bbb20 .wrp-products-carousel .container-block,
 .landingpage-bbb20 .wrp-products-carousel .owl-carousel .owl-stage-outer {
   overflow: visible !important;
 }
 .landingpage-bbb20 .wrp-products-carousel .owl-carousel .owl-nav button {
-  bottom: -90px;
+  bottom: -48px;
   top: unset;
-  background: #000;
   border-radius: 3px;
-  width: 64px;
-  height: 64px;
+  width: 79px;
+  height: 33px;
   color: #fff;
-  line-height: 64px;
-  font-size: 64px;
+  line-height: 33px;
+  font-size: 33px;
 }
 .landingpage-bbb20 .wrp-products-carousel .owl-carousel .owl-nav button:hover {
   opacity: 0.8;
@@ -344,18 +468,28 @@ body {
   display: none;
 }
 .landingpage-bbb20 .wrp-products-carousel .owl-carousel .owl-nav button.owl-prev {
-  left: 50%;
-  margin-left: -85px;
+  left: 0;
+  margin-left: 0;
 }
 .landingpage-bbb20 .wrp-products-carousel .owl-carousel .owl-nav button.owl-prev:before {
-  content: '<';
+  content: '';
+  width: 79px;
+  height: 33px;
+  display: block;
+  background: url(../images/landingbbb/esquerda.png) no-repeat center center;
+
 }
 .landingpage-bbb20 .wrp-products-carousel .owl-carousel .owl-nav button.owl-next {
-  left: 50%;
-  margin-left: 10px;
+  left: unset;
+  right: 0;
+  margin-left: 0;
 }
 .landingpage-bbb20 .wrp-products-carousel .owl-carousel .owl-nav button.owl-next:before {
-  content: '>';
+  content: '';
+  width: 79px;
+  height: 33px;
+  display: block;
+  background: url(../images/landingbbb/direita.png) no-repeat center center;
 }
 .landingpage-bbb20 .wrp-products-carousel a {
   position: relative;
@@ -363,18 +497,18 @@ body {
 }
 .landingpage-bbb20 .wrp-products-carousel .compre-online {
   display: inline-block;
-  background: #19a3fe;
-  border-radius: 3px;
-  color: #fff;
-  height: 60px;
-  line-height: 60px;
+  background: #fff;
+  border-radius: 30px;
+  color: #238fce;
+  height: 57px;
+  line-height: 57px;
   text-transform: uppercase;
   padding: 0 20px;
-  font-family: 'MullerBold';
+  font-family: 'MullerBlack';
   cursor: pointer;
-
+  letter-spacing: 5px;
   position: absolute;
-  top: 50%;
+  top: 75%;
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
@@ -383,6 +517,7 @@ body {
  -ms-transition: all 400ms ease-in-out;
  -o-transition: all 400ms ease-in-out;
  transition: all 400ms ease-in-out;
+ font-size: 18px;
 }
 .landingpage-bbb20 .wrp-products-carousel a:hover .compre-online {
   -webkit-transition: all 0ms ease-in-out;
@@ -394,14 +529,20 @@ body {
 }
 .landingpage-bbb20 .wrp-redes-sociais {
   padding: 50px 0;
+  background: #e9e9e8;
 }
+
+.landingpage-bbb20 .wrp-redes-sociais .title{
+  color: #3c3c3b;
+}
+
 .landingpage-bbb20 .wrp-redes-sociais ul {
   display: flex;
   justify-content: space-between;
 }
 .landingpage-bbb20 .wrp-redes-sociais ul li a {
   display: block;
-  background: #e3e3e3;
+  background: transparent;
   width: 254px;
   height: 222px;
   position: relative;
@@ -415,32 +556,32 @@ body {
   font-variant: normal;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
-  color: #fff;
+  color:  #238fce;
   font-size: 42px;
   font-family: "Font Awesome 5 Brands";
   font-weight: 900;
   line-height: 222px;
 }
 .landingpage-bbb20 .wrp-redes-sociais ul li a.twitter {
-  background: #1da1f2;
+  /* background: #1da1f2; */
 }
 .landingpage-bbb20 .wrp-redes-sociais ul li a.twitter:before {
   content: "\f099";
 }
 .landingpage-bbb20 .wrp-redes-sociais ul li a.facebook {
-  background: #3b5998;
+  /* background: #3b5998; */
 }
 .landingpage-bbb20 .wrp-redes-sociais ul li a.facebook:before {
   content: "\f39e";
 }
 .landingpage-bbb20 .wrp-redes-sociais ul li a.instagram {
-  background: #833ab4;
+  /* background: #833ab4; */
 }
 .landingpage-bbb20 .wrp-redes-sociais ul li a.instagram:before {
   content: "\f16d";
 }
 .landingpage-bbb20 .wrp-redes-sociais ul li a.youtube {
-  background: #ff0000;
+  /* background: #ff0000; */
 }
 .landingpage-bbb20 .wrp-redes-sociais ul li a.youtube:before {
   content: "\f167";
@@ -454,28 +595,50 @@ body {
   display: none;
 }
 .landingpage-bbb20 .wrp-footer {
-  background: #000;
+  background: #ffffff;
+  border-top:11px solid #238fce;
   overflow: hidden;
-  height: 140px;
+  height: 177px;
 }
+
+.landingpage-bbb20 .wrp-footer .container-block{
+  max-width: 1570px;
+}
+
 .landingpage-bbb20 .wrp-footer .logo-footer {
   float: left;
-  margin-top: 46px;
+  margin-top: 31px;
+  text-align: center;
 }
+
+.landingpage-bbb20 .wrp-footer .logo-footer img{
+  float: left;
+}
+
+.landingpage-bbb20 .wrp-footer .logo-footer .bbb-logo{
+  margin: 24px 30px 0 0;
+  float: left;
+}
+
+.landingpage-bbb20 .wrp-footer .logo-footer .logo-itt{
+  margin-top: 35px;
+
+}
+
+.landingpage-bbb20 .wrp-footer .logo-footer .separador{
+  margin: 22px 32px 0 0;
+}
+
 .landingpage-bbb20 .wrp-footer .block-right {
   float: right;
-  margin-top: 34px;
+  margin-top: 68px;
 }
 .landingpage-bbb20 .wrp-footer .block-right a {
   display: inline-block;
-  background: #19a3fe;
-  border-radius: 3px;
-  color: #fff;
-  height: 60px;
-  line-height: 60px;
-  text-transform: uppercase;
-  padding: 0 20px;
-  font-family: 'MullerBold';
+  color: #238fce;
+  font-size: 23px;
+  font-weight: 400;
+  font-family: 'MullerBlack';
 }
 .landingpage-bbb20 .wrp-footer .block-right a:hover {
   text-decoration: none;
@@ -485,6 +648,22 @@ body {
 .landingpage-bbb20 .developer {
   display: none;
 }
+@media (max-width: 1580px) {
+  .landingpage-bbb20 .page-main .container-block{
+    padding: 0 30px;
+  }
+  .landingpage-bbb20 .wrp-atributos-bbb .wrp-tab-titles{
+    padding: 0 0;
+  }
+}
+
+@media (max-width: 1420px) {
+  .landingpage-bbb20 .wrp-products-carousel .compre-online{
+    height: 40px;
+    line-height: 40px;
+  }
+}
+
 
 @media (min-width: 1000px) and (max-width: 1140px) {
   .landingpage-bbb20 .wrp-header {
@@ -495,9 +674,6 @@ body {
   }
   .landingpage-bbb20 .wrp-header.sticky .header {
     padding: 0 15px;
-  }
-  .landingpage-bbb20 .wrp-images-360 .wrp-tab-titles {
-    padding: 0 15px 30px 15px;
   }
 }
 @media (max-width: 1140px) {
@@ -517,6 +693,10 @@ body {
   }
   .landingpage-bbb20 .wrp-redes-sociais ul li a:before {
     line-height: 110px;
+  }
+  .landingpage-bbb20 .wrp-images-360 .wrp-tab-titles li a,
+  .landingpage-bbb20 .wrp-atributos-bbb .wrp-tab-titles li a{
+        font-size: 24px;
   }
 }
 @media (max-width: 999px) {
@@ -583,9 +763,6 @@ body {
     text-decoration: none;
     opacity: 0.8;
   }
-  .landingpage-bbb20 .wrp-header.sticky {
-    display: none;
-  }
   .landingpage-bbb20 .wrp-menu {
     height: auto;
     padding: 30px 5px;
@@ -603,9 +780,6 @@ body {
   }
   .landingpage-bbb20 .wrp-menu ul li .blocked span {
     display: none;
-  }
-  .landingpage-bbb20 .wrp-main-banners {
-    padding-bottom: 20px;
   }
   .landingpage-bbb20 .wrp-main-banners a {
     display: block;
@@ -625,12 +799,12 @@ body {
   .landingpage-bbb20 .wrp-main-banners .owl-dots button.active span {
     background: #18a2fd;
   }
-  .landingpage-bbb20 .wrp-atributos-bbb ul {
+  .landingpage-bbb20 .wrp-atributos ul {
     display: block;
     justify-content: unset;
     padding: 0 15px;
   }
-  .landingpage-bbb20 .wrp-atributos-bbb ul li {
+  .landingpage-bbb20 .wrp-atributos ul li {
     margin-bottom: 15px;
     display: block;
     width: 100%;
@@ -659,18 +833,71 @@ body {
     text-align: center;
   }
   .landingpage-bbb20 .wrp-footer .logo-footer {
-    float: none;
+
     margin: 0 0 30px 0;
   }
   .landingpage-bbb20 .wrp-footer .block-right {
-    float: none;
-    margin: 0;
+    margin: 39px 0 0;
   }
   .landingpage-bbb20 .wrp-footer .block-right a:hover {
     text-decoration: none;
     opacity: 0.8;
   }
 }
+@media (max-width: 990px) {
+  .landingpage-bbb20 .wrp-header.sticky{
+    display: block;
+  }
+  .landingpage-bbb20 .wrp-products-carousel:before{
+    z-index: 8;
+  }
+  .landingpage-bbb20 .wrp-redes-sociais .title{
+    position: relative;
+    z-index: 9;
+  }
+}
+@media (max-width: 790px) {
+  .landingpage-bbb20 .wrp-images-360 .wrp-tab-titles li a,
+  .landingpage-bbb20 .wrp-atributos-bbb .wrp-tab-titles li a{
+    font-size: 15px;
+  }
+  .landingpage-bbb20 .wrp-footer{
+    text-align: center;
+  }
+  .landingpage-bbb20 .wrp-footer .logo-footer{
+    float: none;
+    margin: 0 auto;
+    display: inline-block;
+    width: auto;
+  }
+  .landingpage-bbb20 .wrp-footer .block-right{
+    float: none;
+    text-align: center;
+  }
+}
+
+@media (max-width: 760px) {
+  .landingpage-bbb20 .wrp-products-carousel:before{
+    display: none;
+  }
+  .landingpage-bbb20 .wrp-products-carousel:after{
+    display: none;
+  }
+  .landingpage-bbb20 .wrp-products-carousel{
+    height:474px;
+  }
+}
+
+@media (max-width: 600px) {
+  .landingpage-bbb20 .wrp-products-carousel{
+    padding-top: 16px;
+  }
+  .landingpage-bbb20 .wrp-products-carousel .owl-carousel .owl-nav button{
+    bottom:-8px;
+  }
+}
+
+
 @media (max-width: 500px) {
   .landingpage-bbb20 .wrp-images-360 .wrp-tab-titles {
     display: block;
@@ -693,6 +920,34 @@ body {
   }
   .landingpage-bbb20 .wrp-images-360 .wrp-tab-titles li a:after {
     display: none;
+  }
+  .landingpage-bbb20 .wrp-images-360 .bt-compre-online a{
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+  .landingpage-bbb20 .page-main .wrp-footer .container-block{
+    padding:0 0;
+  }
+  .landingpage-bbb20 .wrp-products-carousel{
+      overflow: hidden;
+      height: 395px;
+  }
+  .landingpage-bbb20 .wrp-products-carousel .owl-nav{
+    margin-top:20px;
+  }
+  .landingpage-bbb20 .wrp-products-carousel .owl-carousel .owl-nav button.owl-prev:before,
+  .landingpage-bbb20 .wrp-products-carousel .owl-carousel .owl-nav button.owl-next:before{
+    width:60px;
+    background-size: contain;
+  }
+  .landingpage-bbb20 .page-main .wrp-atributos-bbb  .container-block{
+    display: block;
+    padding: 0 30px;
+  }
+  .landingpage-bbb20 .wrp-atributos-bbb .wrp-tab-titles li{
+    max-width: 100%;
+    width: 100%;
+    display: block;
   }
 }
 
@@ -780,7 +1035,7 @@ body {
   line-height: 60px;
   text-transform: uppercase;
   padding: 0 60px;
-  font-family: 'MullerBold';
+  font-family: 'MullerBlack';
 }
 .landingpage-bbb20-produto .wrp-descricao-produto .bt-compre-online a:hover {
   text-decoration: none;
