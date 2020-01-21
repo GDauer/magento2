@@ -62,7 +62,7 @@ require([
       loop: true,
       nav: true,
       dots: false,
-      margin: 80,
+      margin: 60,
       responsive: {
         0:{
           items: 1
@@ -71,7 +71,7 @@ require([
           items: 2
         },
         1000:{
-          items: 3
+          items: 4
         }
       }
     })
