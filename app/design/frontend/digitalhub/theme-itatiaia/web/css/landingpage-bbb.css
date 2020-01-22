@@ -70,6 +70,9 @@ body {
   float: left;
   margin-top: 42px;
 }
+.landingpage-bbb20 .header .block-left.mbl{
+  display: none;
+}
 
 .landingpage-bbb20 .wrp-header.sticky .block-left{
   margin-top: 30px;
@@ -738,6 +741,18 @@ body {
   .landingpage-bbb20 .header .block-left {
     display: none;
   }
+  .landingpage-bbb20 .header .block-left.mbl {
+    display: block;
+    float: none;
+    max-width: 290px;
+    width: 100%;
+    margin: 10px auto 0;
+    text-align: center;
+  }
+  .landingpage-bbb20 .header .block-left ul li{
+    font-size: 18px;
+  }
+
   .landingpage-bbb20 .header .logo-bbb {
     position: relative;
     top: unset;
@@ -855,11 +870,12 @@ body {
     position: relative;
     z-index: 9;
   }
+
 }
 @media (max-width: 790px) {
   .landingpage-bbb20 .wrp-images-360 .wrp-tab-titles li a,
   .landingpage-bbb20 .wrp-atributos-bbb .wrp-tab-titles li a{
-    font-size: 15px;
+    font-size: 19px;
   }
   .landingpage-bbb20 .wrp-footer{
     text-align: center;
@@ -922,8 +938,13 @@ body {
     display: none;
   }
   .landingpage-bbb20 .wrp-images-360 .bt-compre-online a{
-    font-size: 13px;
-    letter-spacing: 2px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    height: 44px;
+    line-height: 44px;
+    display: block;
+    padding: 0;
+    width: 277px;
   }
   .landingpage-bbb20 .page-main .wrp-footer .container-block{
     padding:0 0;
@@ -942,7 +963,7 @@ body {
   }
   .landingpage-bbb20 .page-main .wrp-atributos-bbb  .container-block{
     display: block;
-    padding: 0 30px;
+    padding: 0 15px;
   }
   .landingpage-bbb20 .wrp-atributos-bbb .wrp-tab-titles li{
     max-width: 100%;
