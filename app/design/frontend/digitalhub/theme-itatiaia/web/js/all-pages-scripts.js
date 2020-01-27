@@ -50,7 +50,7 @@ require([
     /*--Landingpage BBB --*/
     jQuery(".main-banners-landingpage.owl-carousel").owlCarousel({
       loop: true,
-      nav: false,
+      nav: true,
       dots: true,
       lazyLoad: true,
       margin: 0,

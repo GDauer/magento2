@@ -228,6 +228,34 @@ body {
 .landingpage-bbb20 .wrp-main-banners .owl-dots button.active span {
   background: #18a2fd;
 }
+
+
+.landingpage-bbb20 .wrp-main-banners .owl-nav button.owl-next{
+  left: unset;
+  right: 30px !important;
+  width: 79px;
+  height: 33px;
+  display: block;
+  background: url(../images/landingbbb/direita.png) no-repeat center center;
+
+}
+
+
+.landingpage-bbb20 .wrp-main-banners .owl-nav button.owl-prev{
+  width: 79px;
+  height: 33px;
+  display: block;
+  background: url(../images/landingbbb/esquerda.png) no-repeat center center;
+  left: 30px !important;
+  font-size: 0;
+}
+
+.landingpage-bbb20 .wrp-main-banners .owl-nav button.owl-prev span,
+.landingpage-bbb20 .wrp-main-banners .owl-nav button.owl-next span{
+  font-size: 0;
+}
+
+
 .landingpage-bbb20 .title,
 .landingpage-bbb20 .block .title {
   display: block;
@@ -253,10 +281,15 @@ body {
   justify-content: space-between;
 }
 .landingpage-bbb20 .wrp-atributos-bbb .wrp-tab-titles li {
-  max-width: 48%;
+  max-width: 50%;
   width: 100%;
   display: block;
 }
+
+
+
+
+
 .landingpage-bbb20 .wrp-atributos-bbb .wrp-tab-titles li a {
   color: #908f8f;
   font-family: 'MullerRegular';
@@ -267,6 +300,11 @@ body {
   display: block;
   text-align: center;
   border-bottom: 8px solid transparent;
+}
+
+.landingpage-bbb20 .wrp-atributos-bbb .wrp-tab-titles li a:hover{
+  color:#238fce;
+  border-bottom: 8px solid #238fce;
 }
 .landingpage-bbb20 .wrp-atributos-bbb .wrp-tab-titles li a:hover {
   text-decoration: none;
@@ -750,7 +788,7 @@ body {
     text-align: center;
   }
   .landingpage-bbb20 .header .block-left ul li{
-    font-size: 18px;
+    font-size: 21px;
   }
 
   .landingpage-bbb20 .header .logo-bbb {
@@ -773,6 +811,7 @@ body {
     padding: 0 10px;
     max-width: 300px;
     margin: 0 auto;
+    font-size: 23px;
   }
   .landingpage-bbb20 .header .block-right a:hover {
     text-decoration: none;
@@ -875,7 +914,7 @@ body {
 @media (max-width: 790px) {
   .landingpage-bbb20 .wrp-images-360 .wrp-tab-titles li a,
   .landingpage-bbb20 .wrp-atributos-bbb .wrp-tab-titles li a{
-    font-size: 19px;
+    font-size: 23px;
   }
   .landingpage-bbb20 .wrp-footer{
     text-align: center;
@@ -938,10 +977,10 @@ body {
     display: none;
   }
   .landingpage-bbb20 .wrp-images-360 .bt-compre-online a{
-    font-size: 12px;
-    letter-spacing: 0.5px;
+    font-size: 11px;
+    letter-spacing: normal;
     height: 44px;
-    line-height: 44px;
+    line-height: 46px;
     display: block;
     padding: 0;
     width: 277px;
