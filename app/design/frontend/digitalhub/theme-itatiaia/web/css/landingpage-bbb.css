@@ -211,11 +211,39 @@ body {
 .landingpage-bbb20 .wrp-menu ul li .blocked span {
   display: none;
 }
-.landingpage-bbb20 .wrp-main-banners a {
+.landingpage-bbb20 .wrp-main-banners .banner {
   display: block;
   width: 100%;
+  text-align: center;
 }
-.landingpage-bbb20 .wrp-main-banners a span {
+.landingpage-bbb20 .wrp-main-banners .banner .btn-banner{
+  width:100%;
+  text-align: center;
+  position: absolute;
+  bottom:35%;
+}
+
+.landingpage-bbb20 .wrp-main-banners .banner a{
+    display: inline-block;
+    background: #fff;
+    border-radius: 3px;
+    color: #238fce;
+    height: 49px;
+    font-size: 16px;
+    line-height: 49px;
+    text-transform: uppercase;
+    padding: 0 39px;
+    font-family: 'MullerBlack';
+    border-radius: 30px;
+    letter-spacing: 5.6px;
+    text-decoration: none;
+}
+
+.landingpage-bbb20 .wrp-main-banners .banner a:hover{
+  opacity: 0.9;
+}
+
+.landingpage-bbb20 .wrp-main-banners .banner span {
   display: none;
 }
 .landingpage-bbb20 .wrp-main-banners .owl-dots {
@@ -835,12 +863,24 @@ body {
   .landingpage-bbb20 .wrp-menu ul li .blocked span {
     display: none;
   }
-  .landingpage-bbb20 .wrp-main-banners a {
+  .landingpage-bbb20 .wrp-main-banners .banner {
     display: block;
   }
   .landingpage-bbb20 .wrp-main-banners .owl-dots {
-    bottom: 10px;
+    bottom: 0;
     text-align: center;
+    position: absolute;
+    width: 100%;
+  }
+  .landingpage-bbb20 .wrp-main-banners .banner .btn-banner{
+    bottom:22%;
+  }
+  .landingpage-bbb20 .wrp-main-banners .banner a{
+    height: 34px;
+    font-size: 14px;
+    line-height: 35px;
+    padding: 0 23px;
+    letter-spacing: 2px;
   }
   .landingpage-bbb20 .wrp-main-banners .owl-dots button span {
     display: block;
