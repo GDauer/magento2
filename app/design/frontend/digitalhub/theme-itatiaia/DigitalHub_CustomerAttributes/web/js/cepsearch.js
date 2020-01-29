@@ -31,7 +31,7 @@ require([
         var closestForm = $(this).closest('.form');
         console.log(closestForm);
 
-        var v = document.querySelectorAll('input[name$="postcode"]');
+        var v = $(this).closest('input[name$="postcode"]');
 
         //mask postcode
         $('input[name=postcode]').mask('00000-000', {
@@ -51,11 +51,7 @@ require([
         $('input[name=telephone]').mask(TelephoneBehaviour, telOptions);
 
         //Nova variável "cep" somente com dígitos.
-        if (v[1].value !== '') {
-            var cep = v[1].value.replace(/\D/g, '');
-        } else {
-            var cep = v[0].value.replace(/\D/g, '');
-        }
+        var cep = v.val().replace(/\D/g, '');
 
         //Verifica se campo cep possui valor informado.
         if (cep != "") {
@@ -118,14 +114,14 @@ require([
                             ufm = estado.UF[i].sigla;
 
                             if (ufm == dados.uf) {
-                                $("select[name='region_id'] option[value=" + estado.UF[i].id + "]").attr('selected', 'selected').trigger('change');
+                                closestForm.find("select[name='region_id'] option[value=" + estado.UF[i].id + "]").attr('selected', 'selected').trigger('change');
                             }
                         }
-                        $('select[name="region_id"]').attr('readonly',true);
-                        $('select[name="region_id"]').css("pointer-events","none");
-                        $('input[name="city"]').attr('readonly',true);
-                        $('select[name="country_id"]').attr('readonly',true);
-                        $('select[name="country_id"]').css("pointer-events","none");
+                        closestForm.find('select[name="region_id"]').attr('readonly',true);
+                        closestForm.find('select[name="region_id"]').css("pointer-events","none");
+                        closestForm.find('input[name="city"]').attr('readonly',true);
+                        closestForm.find('select[name="country_id"]').attr('readonly',true);
+                        closestForm.find('select[name="country_id"]').css("pointer-events","none");
                     } //end if.
                     else {
                         //CEP pesquisado não foi encontrado.
