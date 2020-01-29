@@ -34,6 +34,8 @@ class LayoutProcessor
 
         $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']['shippingAddress']['children']['shipping-address-fieldset']['children'] = $shippingAddressChildren;
 
+        $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']['payment']['children']['afterMethods']['children']['billing-address-form']['children']['form-fields']['children']['postcode']['sortOrder'] = 65;
+
         // print_r($jsLayout);
         // exit;
 
