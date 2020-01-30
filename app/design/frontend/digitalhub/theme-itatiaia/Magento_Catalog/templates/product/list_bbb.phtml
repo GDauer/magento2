@@ -3,7 +3,6 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-use Magento\Framework\App\Action\Action;
 
 // @codingStandardsIgnoreFile
 
@@ -119,7 +118,7 @@ $hoverimg = 'category_page_list_hover';
                         <div class="product-item-inner">
                             <div class="product actions product-item-actions"<?= strpos($pos, $viewMode . '-actions') ? $position : '' ?>>
                                 <?php if ($_product->getShortDescription()): ?>
-                                    <div class="wrp-short">
+                                    <div class="desc-bbb">
                                         <?php /* @escapeNotVerified */ echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description'); ?>
                                     </div>
                                 <?php endif; ?>
@@ -196,5 +195,19 @@ $hoverimg = 'category_page_list_hover';
     }
     .text-center {
         text-align: center !important;
+    }
+    .product-item-info {
+        height: unset !important;
+    }
+    .product-item-name {
+        height: 36px !important;
+    }
+    .desc-bbb{
+        min-height: 110px;
+        text-align: justify !important;
+    }
+    .product-item:hover .product-item-info .product-item-details .product-item-actions {
+        position: relative !important;
+        width: auto !important;
     }
 </style>
