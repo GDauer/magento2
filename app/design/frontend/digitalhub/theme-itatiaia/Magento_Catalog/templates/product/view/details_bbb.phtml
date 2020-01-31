@@ -27,7 +27,7 @@ $block->setPreconfiguredValue(); ?>
     <?php endif; ?>
 
     <?php if ($block->getProduct()->getTypeId() == 'grouped' && $product->isAvailable()): ?>
-        <h2 class="px-15">Módulos inclusos</h2>
+        <h2 class="modulos-inclusos">Módulos inclusos</h2>
         <?= $layout->renderElement('grouped.items'); ?>
     <?php endif; ?>
 
@@ -298,6 +298,9 @@ $block->setPreconfiguredValue(); ?>
 <style>
     .px-15 {
         padding: 0 15px !important;
+    }
+    .modulos-inclusos {
+        padding: 45px 15px 0  !important;
     }
     .product.info.detailed {
         margin-top: 0 !important;

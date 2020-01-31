@@ -83,7 +83,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
                         <div class="clear"></div>
                         <div class="accordion-wrp">
                             <a href="javascript:void(0)" data-target="#tab-desc-<?php echo $_item->getId() ?>">Descrição</a>
-                            <section id="tab-desc-<?php echo $_item->getId() ?>" class="tab-content hide">
+                            <section id="tab-desc-<?php echo $_item->getId() ?>" class="tab-content hide module-desc">
                                 <?php /* @escapeNotVerified */
                                 echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($_childProduct, $_childProduct->getDescription(), 'description') ?>
                             </section>
@@ -91,7 +91,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
                         <div class="accordion-wrp">
                             <a href="javascript:void(0)" data-target="#tab-attr-<?php echo $_item->getId() ?>">Especificações
                                 Técnicas</a>
-                            <section id="tab-attr-<?php echo $_item->getId() ?>" class="tab-content hide">
+                            <section id="tab-attr-<?php echo $_item->getId() ?>" class="tab-content hide module-desc">
                                 <?php echo $this->getLayout()->createBlock('Magento\Catalog\Block\Product\View\Attributes')
                                     ->setProduct($_childProduct)
                                     ->setTemplate('Magento_Catalog::product/view/attributes.phtml')
@@ -111,6 +111,9 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
         display: inline-block;
         width: 100%;
         position: relative;
+    }
+    .module-desc {
+        padding: 10px !important;
     }
 
     .accordion-wrp+.accordion-wrp {
