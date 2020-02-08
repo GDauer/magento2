@@ -1,0 +1,7 @@
+"MercadoPago - Starting expired ticket orders cancellation routine...","MercadoPago - Iniciando rotina de cancelamento de pedidos com boletos expirados..."
+"MercadoPago - Finished expired ticket orders cancellation routine.","MercadoPago - Finalizada rotina de cancelamento de pedidos com coletos expirados."
+"Order canceled due to payment expiration date.","Pedido cancelado por ter expirado a data de pagamento do boleto."
+"Order %1 cancelled successfully.","Pedido %1 cancelado com sucesso."
+"Error trying to cancel Order %1. Reason %2","Erro ao tentar cancelar o Pedido %1. Motivo: %2"
+"MercadoPago Payment information not found for Order %1.","Informações de pagamento do MercadoPago não encontradas para o Pedido %1."
+"Unable to generate order payment expiration date. Reason: %1","Não foi possível gerar a data de expiração. Motivo: %1"
