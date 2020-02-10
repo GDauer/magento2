@@ -41,7 +41,7 @@ class AddRegionIdToOrdersGridPlugin
                 $collection->getSelect()->joinLeft(
                     ['soa' => $orderAddressTableName],
                     'soa.parent_id = main_table.entity_id AND soa.address_type = \'shipping\'',
-                    ['region', 'city']
+                    ['soa.region', 'soa.city']
                 );
 
                 $salesOrderItemTableName = $resource->getTable('sales_order_item');
@@ -53,6 +53,9 @@ class AddRegionIdToOrdersGridPlugin
                         'products_id' => new \Zend_Db_Expr('group_concat(`soi`.product_id)')
                     ]
                 )->group('main_table.entity_id');
+
+                $collection->addFilterToMap('entity_id', 'main_table.entity_id');
+                $collection->addFilterToMap('customer_id', 'main_table.customer_id');
             } catch (\Zend_Db_Select_Exception $selectException) {
                 $this->logger->log(100, $selectException);
             }
