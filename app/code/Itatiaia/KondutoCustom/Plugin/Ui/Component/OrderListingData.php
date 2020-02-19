@@ -35,7 +35,7 @@ class OrderListingData
      * @param  \Magento\Framework\Api\Search\SearchResultInterface $result
      * @return \Magento\Framework\Api\Search\SearchResultInterface
      */
-    public function afterSearch(
+ /*   public function afterSearch(
         \Magento\Framework\View\Element\UiComponent\DataProvider\Reporting $subject,
         \Magento\Framework\Api\Search\SearchResultInterface $result
     ) {
@@ -66,5 +66,5 @@ class OrderListingData
         }
 
         return $result;
-    }
+    }*/
 }
