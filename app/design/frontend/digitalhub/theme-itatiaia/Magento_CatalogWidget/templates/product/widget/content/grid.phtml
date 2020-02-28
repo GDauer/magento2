@@ -144,12 +144,7 @@ $hoverimg = 'category_page_list_hover';
                 <?= $block->getReviewsSummaryHtml($_item, $templateType) ?>
               <?php endif; ?>
               <?php if ($showWishlist || $showCompare || $showCart): ?>
-                <div class="product-item-actions">
-                  <div class="wrp-short">
-                  <?php if ($_item->getShortDescription()): ?>
-                      <?php /* @escapeNotVerified */ echo $_helper->productAttribute($_item, $_item->getShortDescription(), 'short_description'); ?>
-                  <?php endif; ?>
-                  </div>
+                  <div class="product-item-actions">
                   <?php if ($showCart): ?>
                     <div class="actions-primary">
                         <?php if ($_item->isSaleable()): ?>
