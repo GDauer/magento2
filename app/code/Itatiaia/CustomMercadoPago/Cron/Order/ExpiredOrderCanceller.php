@@ -10,6 +10,7 @@ use Magento\Framework\Serialize\SerializerInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\ResourceModel\Order\CollectionFactory as OrderCollectionFactory;
 use Magento\Sales\Model\OrderFactory\Proxy as OrderFactoryProxy;
+use Magento\Setup\Exception;
 use Psr\Log\LoggerInterface;
 use DateTime;
 use DateInterval;
@@ -62,7 +63,6 @@ class ExpiredOrderCanceller
         Estimate $intelipostHelper
     ) {
         $this->state = $state;
-        $this->state->setAreaCode(Area::AREA_CRONTAB);
         $this->orderCollectionFactory = $orderCollectionFactory;
         $this->orderFactory = $orderFactory;
         $this->orderRepository = $orderRepository;
@@ -76,6 +76,12 @@ class ExpiredOrderCanceller
      */
     public function execute()
     {
+        try {
+            $this->state->setAreaCode(Area::AREA_CRONTAB);
+        } catch (\Exception $e) {
+            $this->logger->info(__("Area code already set. Executing routine..."));
+        }
+
         $orders = $this->getOrders();
         $this->logger->info(__("MercadoPago - Starting expired ticket orders cancellation routine..."));
         foreach ($orders as $order) {
