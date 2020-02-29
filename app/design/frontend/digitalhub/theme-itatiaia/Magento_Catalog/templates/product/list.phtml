@@ -118,11 +118,6 @@ require([
 
             <div class="product-item-inner">
               <div class="product actions product-item-actions"<?= strpos($pos, $viewMode . '-actions') ? $position : '' ?>>
-                <?php if ($_product->getShortDescription()): ?>
-                  <div class="wrp-short">
-                    <?php /* @escapeNotVerified */ echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description'); ?>
-                  </div>
-                <?php endif; ?>
                 <div class="actions-primary"<?= strpos($pos, $viewMode . '-primary') ? $position : '' ?>>
                   <?php if ($_product->isAvailable()): ?>
                       <a href="<?php echo $_product->getProductUrl() ?>" class="action tocart primary">
