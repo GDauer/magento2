@@ -90,6 +90,7 @@ class ExpiredOrderCanceller
                 $today = new DateTime();
 
                 if ($today > $expirationDate) {
+                    $this->logger->info(__("Trying to cancel order %1. Today: %2 Expiration Date: %3", $order["increment_id"], $today->format('d/m/Y'), $expirationDate->format('d/m/Y')));
                     $this->cancelOrder($order["increment_id"]);
                 }
             } catch (\Exception $e) {
@@ -115,7 +116,9 @@ class ExpiredOrderCanceller
                 $message = __("Order canceled due to payment expiration date.");
                 $order->addStatusToHistory("canceled", $message, true);
                 $this->logger->info(__("Order %1 cancelled successfully.", $incrementId));
+                return;
             }
+            $this->logger->info(__("Due to Magento rules, Order %1 cannot be canceled.", $incrementId));
         } catch (\Exception $e) {
             throw new LocalizedException(__("Error trying to cancel Order %1. Reason %2", $incrementId,
                 $e->getMessage()));

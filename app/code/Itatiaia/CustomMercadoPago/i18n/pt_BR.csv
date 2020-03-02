@@ -5,3 +5,5 @@
 "Error trying to cancel Order %1. Reason %2","Erro ao tentar cancelar o Pedido %1. Motivo: %2"
 "MercadoPago Payment information not found for Order %1.","Informações de pagamento do MercadoPago não encontradas para o Pedido %1."
 "Unable to generate order payment expiration date. Reason: %1","Não foi possível gerar a data de expiração. Motivo: %1"
+"Trying to cancel order %1. Today: %2 Expiration Date: %3","Tentando cancelar pedido %1. Hoje: %2 Data de expiração: %3"
+"Due to Magento rules, Order %1 cannot be canceled.","Pelas regras do Magento, o Pedido %1 não pode ser cancelado."
