@@ -28,6 +28,13 @@ class Page
     protected function _getOrder()
     {
         $order = $this->_checkoutSession->getLastRealOrder();
+
+        if(!$this->_checkoutSession->getLastRealOrder()){
+            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+            $orderModel = $objectManager->get('Magento\Sales\Model\OrderFactory')->create();
+            $order = $orderModel->load($this->_checkoutSession->getCustomLastOrderId());
+        }
+
         return $order;
     }
 }
