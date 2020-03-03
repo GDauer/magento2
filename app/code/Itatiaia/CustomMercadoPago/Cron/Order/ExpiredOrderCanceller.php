@@ -110,15 +110,12 @@ class ExpiredOrderCanceller
     {
         try {
             $order = $this->orderFactory->create()->loadByIncrementId($incrementId);
-            if ($order->canCancel()) {
-                $order->cancel();
-                $this->orderRepository->save($order);
-                $message = __("Order canceled due to payment expiration date.");
-                $order->addStatusToHistory("canceled", $message, true);
-                $this->logger->info(__("Order %1 cancelled successfully.", $incrementId));
-                return;
-            }
-            $this->logger->info(__("Due to Magento rules, Order %1 cannot be canceled.", $incrementId));
+            $order->cancel();
+            $this->orderRepository->save($order);
+            $message = __("Order canceled due to payment expiration date.");
+            $order->addStatusToHistory("canceled", $message, true);
+            $this->logger->info(__("Order %1 cancelled successfully.", $incrementId));
+            return;
         } catch (\Exception $e) {
             throw new LocalizedException(__("Error trying to cancel Order %1. Reason %2", $incrementId,
                 $e->getMessage()));
@@ -206,14 +203,13 @@ class ExpiredOrderCanceller
     {
         $collection = $this->orderCollectionFactory->create()
             ->addFieldToSelect("*")
-            ->addAttributeToFilter('status', ['in' => ['pending']])
+            ->addAttributeToFilter('status', ['in' => ['pending', 'aguardando_analise_manual', 'payment_review']])
             ->addExpressionFieldToSelect('elapsed_hours', 'TIMESTAMPDIFF(HOUR, created_at, NOW())', ['created_at']);
 
         $collection->getSelect()->joinLeft(['payment_table' => 'sales_order_payment'],
             'main_table.entity_id = payment_table.parent_id', ['method', 'additional_information'], null);
         $collection->addAttributeToFilter('payment_table.method', ['mercadopago_customticket']);
         $collection->getSelect()->having("elapsed_hours >=" . self::DEFAULT_EXPIRATION_HOURS);
-
         return $collection->getData();
     }
 }
