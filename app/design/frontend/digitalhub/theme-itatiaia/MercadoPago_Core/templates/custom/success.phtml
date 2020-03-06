@@ -22,7 +22,7 @@ $message_status = $this->getMessageByStatus($paymentResponse);
     <?php else: ?>
         <?php if (isset($message_status['title']) && isset($message_status['message'])) { ?>
             <h2 class="mercadopago-title"><?php echo $block->escapeHtml($message_status['title']); ?></h2>
-            <p>Em ate 48 horas, nós enviaremos o resultado por e-mail.</p>
+            <p>Em até 48 horas, nós enviaremos o resultado por e-mail.</p>
         <?php } else { ?>
             <p><?php /* @escapeNotVerified */
                 echo __($successMsg, $link_to_order); ?></p>
