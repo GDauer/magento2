@@ -1,7 +1,6 @@
 <?php
 return [
     'modules' => [
-        'ADM_QuickDevBar' => 1,
         'Magento_Store' => 1,
         'Magento_Directory' => 1,
         'Magento_Eav' => 1,
