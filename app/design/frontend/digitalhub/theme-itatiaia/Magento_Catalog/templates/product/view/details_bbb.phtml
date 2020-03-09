@@ -53,7 +53,7 @@ $block->setPreconfiguredValue(); ?>
 
     <?php if ($product->getTypeId() == 'simple'): ?>
     <!-- Início - Min Demais Produto -->
-    <div class="float-min" style="height: 0;">
+    <div class="float-min" style="height: auto;">
         <div class="min-in">
             <?php $productImage = $this->helper('Magento\Catalog\Helper\Image')->init($product, 'imagem_miniatura'); ?>
             <img src="<?= $productImage->getUrl() ?>" alt="<?= $block->escapeHtml($product->getTitle()) ?>"/>
@@ -106,7 +106,7 @@ $block->setPreconfiguredValue(); ?>
 <?php endif; ?>
 
 <?php if ($product->getTypeId() == 'grouped' && $product->isAvailable()): ?>
-    <div class="float-min"style="height: 0;">
+    <div class="float-min"style="height: auto;">
         <div class="min-in">
             <h4 class="product-name"><?= $product->getName(); ?></h4>
 
@@ -148,7 +148,9 @@ $block->setPreconfiguredValue(); ?>
                 </div>
             <?php endif; ?>
         </div>
-				<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('bannerbbb')->toHtml(); ?>
+				<div class="bannerout">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('bannerbbb')->toHtml(); ?>
+				</div>
     </div>
 
     <script>
@@ -312,4 +314,7 @@ $block->setPreconfiguredValue(); ?>
     #selected-gift {
         display: none !important;
     }
+		.float-min .bannerout p img{
+			margin-top: 41px !important;
+		}
 </style>
