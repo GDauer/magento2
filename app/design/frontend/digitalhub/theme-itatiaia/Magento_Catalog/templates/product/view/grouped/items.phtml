@@ -4,40 +4,35 @@ $priceHelper = $this->helper('Magento\Framework\Pricing\Helper\Data');
 $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
 $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Data');
 ?>
-<?php if($groupedProduct->isAvailable()): ?>
 <a name="grouped-items"></a>
 <div id="tab-grouped-items">
-    <p class="ttl">Módulos inclusos</p>
     <section>
         <?php foreach($groupedProduct->getTypeInstance(true)->getAssociatedProducts($groupedProduct) as $_item): ?>
-            <?php $name = str_replace('/ Volume 1', '', $_item->getName());
-            $_childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\ProductFactory')->create()->load($_item->getEntityId()) ?>
+            <?php $_childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\ProductFactory')->create()->load($_item->getEntityId()) ?>
             <?php if($_item->getStatus()): ?>
-                <div class="item-out <?php if(!$groupedProduct->getLockItems()) echo "locked-items"; ?>" id="super-group-item-<?= $_item->getId() ?>" style="<?php if (strpos($name, '/ Volume') > 0) echo 'display: none;' ?>">
+                <div class="item-out" id="super-group-item-<?= $_item->getId() ?>">
                     <div class="item-in">
-                      <div class="wrp-init">
-                          <div class="wrp-input">
-                              <?php if(!$groupedProduct->getLockItems()): ?>
-                              <label class="container-check">
-                                  <input type="checkbox" checked="checked" id="check_super_<?= $_item->getId() ?>" rel="<?= $_item->getId() ?>" class="check-super-group">
-                                  <span class="checkmark"></span>
-                              </label>
-                              <?php else: ?>
-                                  <div style="display: none">
-                                      <input type="checkbox" checked="checked" id="check_super_<?= $_item->getId() ?>" rel="<?= $_item->getId() ?>" class="check-super-group">
-                                  </div>
-                              <?php endif; ?>
-                          </div>
-                          <?php if(!$groupedProduct->getLockItems()): ?>
-                              <div class="wrp-img">
-                                  <?php $productImage = $_imagehelper->init($_childProduct, 'category_page_list') ?>
-                                  <img class="default_image" src="<?= $productImage->getUrl() ?>" alt="<?= $productImage->getLabel() ?>"/>
-                              </div>
-                          <?php endif; ?>
+                        <div class="wrp-input">
+                            <?php if(!$groupedProduct->getLockItems()): ?>
+                                <label class="container-check">
+                                    <input type="checkbox" checked="checked" id="check_super_<?= $_item->getId() ?>" rel="<?= $_item->getId() ?>" class="check-super-group">
+                                    <span class="checkmark"></span>
+                                </label>
+                            <?php else: ?>
+                                <div style="display: none">
+                                    <input type="checkbox" checked="checked" id="check_super_<?= $_item->getId() ?>" rel="<?= $_item->getId() ?>" class="check-super-group">
+                                </div>
+                            <?php endif; ?>
                         </div>
-                        <div class="wrp-infos">
+                        <?php if(!$groupedProduct->getLockItems()): ?>
+                            <div class="wrp-img">
+                                <?php $productImage = $_imagehelper->init($_childProduct, 'category_page_list') ?>
+                                <img class="default_image" src="<?= $productImage->getUrl() ?>" alt="<?= $productImage->getLabel() ?>"/>
+                            </div>
+                        <?php endif; ?>
+                        <div class="wrp-infos <?php if($groupedProduct->getLockItems()) echo "locked-items"; ?>">
                             <div class="in-infos">
-                                <h2 class="product-name"><?= $name; ?></h2>
+                                <h2 class="product-name"><?= $_childProduct->getName(); ?></h2>
 
                                 <?php if(!$groupedProduct->getLockItems()): ?>
                                     <div class="field qty">
@@ -56,26 +51,13 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
                                     <div class="price-box">
                                         <div class="wrp-oldprice">
 
-                                            <?php if (strpos(strtolower($_childProduct->getName()), 'volume 1') > 0) {
-                                                $finalPrice = 0;
-                                                $regularPrice = 0;
-                                                foreach ($groupedProduct->getTypeInstance(true)->getAssociatedProducts($groupedProduct) as $product) {
-                                                    if (explode('/ volume', strtolower($product->getName()))[0] == explode('/ volume', strtolower($_childProduct->getName()))[0]) {
-                                                        $finalPrice += $groupedCatalogRuleHelper->getFinalPrice($product, $groupedProduct);
-                                                        $regularPrice += $groupedCatalogRuleHelper->getRegularPrice($product, $groupedProduct);
-                                                    }
-                                                }
-                                            } else {
-                                                $finalPrice = $groupedCatalogRuleHelper->getFinalPrice($_childProduct, $groupedProduct);
-                                                $regularPrice = $groupedCatalogRuleHelper->getRegularPrice($_childProduct, $groupedProduct);
-                                            } ?>
-                                            <?php if($finalPrice < $regularPrice): ?>
+                                            <?php if($groupedCatalogRuleHelper->getFinalPrice($_childProduct, $groupedProduct) < $groupedCatalogRuleHelper->getRegularPrice($_childProduct, $groupedProduct)): ?>
                                                 <span class="old-price">
                                                     <span class="price">
-                                                            <?= $priceHelper->currency($regularPrice, true, false); ?>
+                                                            <?= $priceHelper->currency($groupedCatalogRuleHelper->getRegularPrice($_childProduct, $groupedProduct), true, false); ?>
                                                     </span>
                                                 </span>
-                                                <?php $percent = abs((($finalPrice * 100) / $regularPrice) - 100) ?>
+                                                <?php $percent = abs((($groupedCatalogRuleHelper->getFinalPrice($_childProduct, $groupedProduct) * 100) / $groupedCatalogRuleHelper->getRegularPrice($_childProduct, $groupedProduct)) - 100) ?>
                                                 <div class="wrp-desc">
                                                     <?php if($percent >= 10): ?>
                                                         <span class="tag-desc"><?= (int)$percent ?>%</span>
@@ -87,7 +69,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
 
                                             <span class="special-price">
                                                 <span class="price">
-                                                    <?= $priceHelper->currency($finalPrice, true, false); ?>
+                                                    <?= $priceHelper->currency($groupedCatalogRuleHelper->getFinalPrice($_childProduct, $groupedProduct), true, false); ?>
                                                 </span>
                                             </span>
                                         </div>
@@ -97,8 +79,38 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
                             </div>
                         </div>
 
+                        <?php if (!strpos(strtolower($_childProduct->getName()), 'volume') ||
+                            strpos(strtolower($_childProduct->getName()), 'volume 1') > 0 ): ?>
+                            <div class="wrp-dimensoes">
+                                <ul>
+                                    <?php if ($_childProduct->getAlturaMontado()): ?>
+                                        <li class="product-height">
+                                            Altura <?php echo $_childProduct->getAlturaMontado(); ?> cm
+                                        </li>
+                                    <?php endif; ?>
+                                    <?php if ($_childProduct->getLarguraMontado()): ?>
+                                        <li class="product-width">
+                                            Largura <?php echo $_childProduct->getLarguraMontado(); ?> cm
+                                        </li>
+                                    <?php endif; ?>
+                                    <?php if ($_childProduct->getComprimentoMontado()): ?>
+                                        <li class="product-lenght">
+                                            Profundidade <?php echo $_childProduct->getComprimentoMontado(); ?>cm
+                                        </li>
+                                    <?php endif; ?>
+                                    <?php if ($_childProduct->getWeight()): ?>
+                                        <li class="product-weight">
+                                            Peso <?php echo round($_childProduct->getWeight(),4); ?>kg
+                                        </li>
+                                    <?php endif; ?>
+                                </ul>
+                            </div>
+                            <div class="wrp-dtls">
+                                <a href="javascript:void(0)">Detalhes</a>
+                            </div>
+                        <?php endif; ?>
+
                     </div>
-                    <div class="clear"></div>
                     <div class="min-dtls">
                         <ul class="nav nav-tabs">
                             <li class="active">
@@ -113,15 +125,13 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
                         </section>
                         <section id="tab-attr-<?php echo $_item->getId() ?>" class="tab-content hide">
                             <?php echo $this->getLayout()->createBlock('Magento\Catalog\Block\Product\View\Attributes')
-                                    ->setProduct($_childProduct)
-                                    ->setTemplate('Magento_Catalog::product/view/attributes.phtml')
-                                    ->toHtml() ?>
+                                ->setProduct($_childProduct)
+                                ->setTemplate('Magento_Catalog::product/view/attributes.phtml')
+                                ->toHtml() ?>
                         </section>
                     </div>
-
                 </div>
             <?php endif; ?>
         <?php endforeach; ?>
     </section>
 </div>
-<?php endif; ?>
