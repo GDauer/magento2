@@ -10,9 +10,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         // comparar data para filtragem
         // comparar customer group
         // comparar sobreposição de regras (!!)
-        if (!$product) {
+    /*    if (!$product) {
             return null;
-        }
+        }*/
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $config = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Framework\App\Config\ScopeConfigInterface');
 
