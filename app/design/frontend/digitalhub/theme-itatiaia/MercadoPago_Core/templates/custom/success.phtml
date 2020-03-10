@@ -6,7 +6,7 @@
 $order = $this->getOrder();
 $payment = $this->getPayment();
 
-$successMsg = 'Your order %1 has been successfully generated.';
+$successMsg = 'O número do seu pedido é %1 .';
 $link_to_order = '<a href="' . $block->escapeUrl($this->getOrderUrl()) . '">' . $block->escapeHtml($order->getIncrementId()) . '</a>';
 
 $paymentResponse = $payment->getAdditionalInformation("paymentResponse");
@@ -21,8 +21,8 @@ $message_status = $this->getMessageByStatus($paymentResponse);
             echo __($successMsg, $link_to_order); ?></p>
     <?php else: ?>
         <?php if (isset($message_status['title']) && isset($message_status['message'])) { ?>
-            <h2 class="mercadopago-title"><?php echo $block->escapeHtml($message_status['title']); ?></h2>
-            <p>Em até 48 horas, nós enviaremos o resultado por e-mail.</p>
+            <h2 class="mercadopago-title">Parabéns, o seu pedido foi realizado com sucesso!</h2>
+            <p>A partir de agora, ele passará por um processo de análise, e você receberá a confirmação do seu pedido e pagamento no seu email, em até 48 horas. Fique atento ao telefone. Qualquer divergência de dados, entraremos em contato.</p>
         <?php } else { ?>
             <p><?php /* @escapeNotVerified */
                 echo __($successMsg, $link_to_order); ?></p>
