@@ -63,6 +63,7 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
             $item['stock_qty'] = $stockItem->getQty();
 
             $item['category_path'] = $this->_getCategoryPath($product);
+            $item['google_product_category'] = $this->_getGoogleCategoryPath($product);
 
             $newCollection[] = $item;
         }
@@ -98,6 +99,22 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
             return $path;
         }
         return '';
+    }
+
+    /**
+     * @param $product
+     * @return string
+     */
+    private function _getGoogleCategoryPath($product)
+    {
+        $productCategoryIds = $product->getCategoryIds();
+        $lastCategoryId = array_shift($productCategoryIds);
+
+        if (!$lastCategoryId) {
+            return '';
+        }
+
+        return $this->_getCategory($lastCategoryId)->getData('google_category_path');
     }
 
     private function _getCategory($category_id)
