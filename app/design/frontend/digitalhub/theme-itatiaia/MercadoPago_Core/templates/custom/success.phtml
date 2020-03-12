@@ -23,6 +23,8 @@ $message_status = $this->getMessageByStatus($paymentResponse);
         <?php if (isset($message_status['title']) && isset($message_status['message'])) { ?>
             <h2 class="mercadopago-title">Parabéns, o seu pedido foi realizado com sucesso!</h2>
             <p>A partir de agora, ele passará por um processo de análise, e você receberá a confirmação do seu pedido e pagamento no seu email, em até 48 horas. Fique atento ao telefone. Qualquer divergência de dados, entraremos em contato.</p>
+            <p><?php /* @escapeNotVerified */
+                echo __($successMsg, $link_to_order); ?></p>
         <?php } else { ?>
             <p><?php /* @escapeNotVerified */
                 echo __($successMsg, $link_to_order); ?></p>
