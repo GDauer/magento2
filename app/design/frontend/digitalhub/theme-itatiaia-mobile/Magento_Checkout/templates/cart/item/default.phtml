@@ -15,8 +15,6 @@ $isVisibleProduct = $product->isVisibleInSiteVisibility();
 $helper = $this->helper('Magento\Msrp\Helper\Data');
 $priceHelper = $this->helper('Magento\Framework\Pricing\Helper\Data');
 $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinimalPriceLessMsrp($product);
-$name = str_replace('/ Volume 1', '', $_item->getName());
-if (strpos($name, '/ Volume') == 0) {
 ?>
 <tbody class="cart item">
     <tr class="item-info">
