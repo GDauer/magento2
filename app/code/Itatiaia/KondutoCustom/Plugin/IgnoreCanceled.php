@@ -47,7 +47,12 @@ class IgnoreCanceled
         $order = $this->kondutoDataHelper->loadOrder($orderId);
         $payment = $order->getPayment();
         $additional = $payment->getAdditionalInformation();
-        if(!$additional['card_expiration_month'] || !$additional['card_expiration_year']) {
+        if(
+           isset($additional['card_expiration_month']) &&
+           isset($additional['card_expiration_year']) &&
+           (!$additional['card_expiration_month'] ||
+           !$additional['card_expiration_year']))
+        {
             $additional['card_expiration_month'] = $additional['paymentResponse']['card']['expiration_month'];
             $additional['card_expiration_year'] = $additional['paymentResponse']['card']['expiration_year'];
             $payment->setAdditionalInformation($additional);
