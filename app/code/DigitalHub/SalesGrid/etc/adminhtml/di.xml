@@ -5,4 +5,7 @@
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <plugin name="DigitalHub_SalesGrid_Plugin_AddRegionIdToOrdersGridPlugin" type="DigitalHub\SalesGrid\Plugin\AddRegionIdToOrdersGridPlugin" sortOrder="10" disabled="false"/>
     </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <plugin name="DigitalHub_SalesGrid_Plugin_AddTaxvatToOrdersGridPlugin" type="DigitalHub\SalesGrid\Plugin\AddTaxvatToOrdersGridPlugin" sortOrder="10" disabled="false"/>
+    </type>
 </config>
