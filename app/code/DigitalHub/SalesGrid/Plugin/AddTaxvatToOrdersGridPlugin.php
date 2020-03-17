@@ -8,7 +8,7 @@ use Magento\Sales\Model\ResourceModel\Order\Grid\Collection;
 
 class AddTaxvatToOrdersGridPlugin
 {
-    /** @var \Psr\Log\LoggerInterface */
+    /** @var LoggerInterface  */
     private $logger;
 
     /**
