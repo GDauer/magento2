@@ -38,6 +38,16 @@ class AddTaxvatToOrdersGridPlugin
 
         if ($collection->getMainTable() === $resource->getTable('sales_order_grid')) {
             try {
+                $collection->addFilterToMap('created_at', 'main_table.created_at');
+                $collection->addFilterToMap('base_grand_total', 'main_table.base_grand_total');
+                $collection->addFilterToMap('grand_total', 'main_table.grand_total');
+                $collection->addFilterToMap('store_id', 'main_table.store_id');
+                $collection->addFilterToMap('store_name', 'main_table.store_name');
+                $collection->addFilterToMap('order_id', 'main_table.order_id');
+                $collection->addFilterToMap('order_increment_id', 'main_table.order_increment_id');
+                $collection->addFilterToMap('billing_name', 'main_table.billing_name');
+                $collection->addFilterToMap('billing_name', 'main_table.shipping_name');
+                $collection->addFilterToMap('status', 'main_table.status');
                 $salesOrderTableName = $resource->getTable('sales_order');
                 $collection->getSelect()->joinLeft(
                     ['so' => $salesOrderTableName],

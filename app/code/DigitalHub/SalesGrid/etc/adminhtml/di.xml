@@ -8,11 +8,4 @@
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <plugin name="DigitalHub_SalesGrid_Plugin_AddTaxvatToOrdersGridPlugin" type="DigitalHub\SalesGrid\Plugin\AddTaxvatToOrdersGridPlugin" sortOrder="10" disabled="false"/>
     </type>
-    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
-        <arguments>
-            <argument name="collections" xsi:type="array">
-                <item name="sales_order_grid_data_source" xsi:type="string">DigitalHub\SalesGrid\Model\ResourceModel\Order\Grid\Collection</item>
-            </argument>
-        </arguments>
-    </type>
 </config>
