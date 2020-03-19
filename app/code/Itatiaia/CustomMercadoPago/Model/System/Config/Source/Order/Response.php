@@ -29,7 +29,7 @@ class Response extends AbstractFieldArray
         if (!$this->responseRenderer) {
             $this->responseRenderer = $this->getLayout()->createBlock(
                 '\Itatiaia\CustomMercadoPago\Block\Adminhtml\Form\Field\ResponseOptions',
-                'response',
+                'status',
                 ['data' => ['is_render_to_js_template' => true]]
             );
         }
@@ -38,7 +38,7 @@ class Response extends AbstractFieldArray
 
     protected function _prepareArrayRow(\Magento\Framework\DataObject $row)
     {
-        $response = $row->getData('response');
+        $response = $row->getData('status');
 
         $options = [];
         if ($response) {
