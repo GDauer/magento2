@@ -21,7 +21,7 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
         <td data-th="<?= $block->escapeHtml(__('Item')) ?>" class="col item">
             <?php if ($block->hasProductUrl()):?>
                 <a href="<?= /* @escapeNotVerified */ $block->getProductUrl() ?>"
-                   title="<?= $block->escapeHtml($name) ?>"
+                   title="<?= $block->escapeHtml($block->getProductName()) ?>"
                    tabindex="-1"
                    class="product-item-photo">
             <?php else:?>
