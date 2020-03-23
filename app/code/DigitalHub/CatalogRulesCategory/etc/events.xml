@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="catalogrule_rule_save_after">
+        <observer name="digitalhub_catalogrules_catalogrule_rule_save_after" instance="DigitalHub\CatalogRulesCategory\Observer\SaveCatalogRuleObserver" />
+    </event>
+    <event name="catalog_product_save_after">
+        <observer name="digitalhub_catalogrules_catalog_product_save_after" instance="DigitalHub\CatalogRulesCategory\Observer\SaveProductObserver" />
+    </event>
+</config>
