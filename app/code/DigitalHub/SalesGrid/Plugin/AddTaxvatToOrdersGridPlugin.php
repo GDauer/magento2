@@ -48,6 +48,10 @@ class AddTaxvatToOrdersGridPlugin
                 $collection->addFilterToMap('billing_name', 'main_table.billing_name');
                 $collection->addFilterToMap('billing_name', 'main_table.shipping_name');
                 $collection->addFilterToMap('status', 'main_table.status');
+                $collection->addFilterToMap('increment_id', 'main_table.increment_id');
+                $collection->addFilterToMap('customer_email', 'main_table.customer_email');
+                $collection->addFilterToMap('subtotal', 'main_table.subtotal');
+                $collection->addFilterToMap('total_refunded', 'main_table.total_refunded');
                 $salesOrderTableName = $resource->getTable('sales_order');
                 $collection->getSelect()->joinLeft(
                     ['so' => $salesOrderTableName],
