@@ -68,3 +68,4 @@ atlassian*
 !/generated/.htaccess
 .DS_Store
 pub/var/log/intelipost.log
+/pub/media/feedxml/
