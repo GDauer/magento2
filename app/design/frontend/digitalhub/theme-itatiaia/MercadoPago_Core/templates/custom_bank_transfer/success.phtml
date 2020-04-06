@@ -109,3 +109,13 @@ if($this->checkExistCallback() == false && $this->getRedirectUserStatus()) {
   <a class="action primary continue" href="<?php echo $block->escapeUrl($block->getUrl()) ?>"><span><?php /* @escapeNotVerified */ echo __('Continue Shopping') ?></span></a>    
   <?php endif; ?>
 </div>
+
+<script type="text/javascript">
+    require(['jquery', 'Magento_Customer/js/customer-data'], function($, customerData) {
+        $(window).on('load', function () {
+            var sections = ['customer'];
+            customerData.invalidate(sections);
+            customerData.reload(sections, true);
+        });
+    });
+</script>
