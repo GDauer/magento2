@@ -20,6 +20,14 @@
     <move element="minicart" destination="custom_header" />
     <!-- END HEADER -->
 
+    <referenceContainer name="content">
+      <block name="customer.section.config" class="Magento\Customer\Block\SectionConfig"
+             template="Magento_Customer::js/section-config.phtml"/>
+      <block name="customer.customer.data"
+             class="Magento\Customer\Block\CustomerData"
+             template="Magento_Customer::js/customer-data.phtml"/>
+    </referenceContainer>
+
     <referenceContainer name="footer">
       <block class="Magento\Newsletter\Block\Subscribe" name="form.subscribe" as="subscribe" before="-" template="Magento_Newsletter::subscribe.phtml"/>
     </referenceContainer>

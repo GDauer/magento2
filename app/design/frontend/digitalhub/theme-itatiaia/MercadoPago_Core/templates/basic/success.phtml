@@ -20,3 +20,13 @@
     <p><?= __('Your order number is: %1.', sprintf('<a href="%s" class="order-number"><strong>%s</strong></a>', $block->escapeUrl($this->getOrderUrl()), $block->escapeHtml($order->getIncrementId()))) ?></p>
     <p><?= /* @escapeNotVerified */ __('We\'ll email you an order confirmation with details and tracking info.') ?></p>
 </div>
+
+<script type="text/javascript">
+    require(['jquery', 'Magento_Customer/js/customer-data'], function($, customerData) {
+        $(window).on('load', function () {
+            var sections = ['customer'];
+            customerData.invalidate(sections);
+            customerData.reload(sections, true);
+        });
+    });
+</script>
