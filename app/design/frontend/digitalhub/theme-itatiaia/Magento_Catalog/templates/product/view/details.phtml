@@ -345,7 +345,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
                     }
                 })
 
-                discount = Math.abs(parseInt((finalPrice * 100) / oldPrice) - 100)
+                discount = Math.ceil(((finalPrice * 100) / oldPrice) - 100)
 
                 // console.log(oldPrice)
                 // console.log(finalPrice)
@@ -353,7 +353,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
 
                 $('.old-price-grouped').html(priceUtils.formatPrice(oldPrice, priceFormat));
                 $('.final-price-grouped').html(priceUtils.formatPrice(finalPrice, priceFormat));
-                $('.discount-grouped').html('-' + discount + '%');
+                $('.discount-grouped').html(discount + '%');
 
                 if(oldPrice > finalPrice){
                     $('.old-price-grouped').show()
