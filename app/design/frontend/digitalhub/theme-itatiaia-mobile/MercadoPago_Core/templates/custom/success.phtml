@@ -61,3 +61,12 @@ $message_status = $this->getMessageByStatus($paymentResponse);
     <?php endif; ?>
 </div>
 
+<script type="text/javascript">
+    require(['jquery', 'Magento_Customer/js/customer-data'], function($, customerData) {
+        $(window).on('load', function () {
+            var sections = ['customer'];
+            customerData.invalidate(sections);
+            customerData.reload(sections, true);
+        });
+    });
+</script>
