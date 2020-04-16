@@ -39,15 +39,17 @@ class Toolbar
                 break;
                 default:
                 case 'sell_desc':
-                    $select = $subject->getCollection()->getSelect();
-                    if(strpos($select, "order_sell_item_count_table") === false) {
+                    if (!$subject->getCollection()->getFlag("sell_desc_order")) {
+                        $select = $subject->getCollection()->getSelect();
                         $select->joinLeft(
                             array("order_sell_item_count_table" => new \Zend_Db_Expr("(SELECT product_id, SUM(qty_ordered) AS vendas FROM sales_order_item GROUP BY product_id)")),
                             "order_sell_item_count_table.product_id = e.entity_id",
                             array("vendas" => "order_sell_item_count_table.vendas"));
                         $select->order("vendas DESC");
+                        $subject->getCollection()->setFlag("sell_desc_order", true);
+                        $subject->getCollection()->setFlag("ignore_elastic_score_apply", true);
                     }
-                break;
+                    break;
             }
         }
 

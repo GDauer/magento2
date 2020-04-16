@@ -58,7 +58,8 @@
         "mundipagg/mundipagg-magento2-module": "^1.8",
         "digitalhub/module-cookie": "dev-master",
         "konduto/magento2": "^1.0",
-        "mercadopago/magento2-plugin": "^3.3"
+        "mercadopago/magento2-plugin": "^3.3",
+        "cweagans/composer-patches": "^1.6"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.2.0",
@@ -160,6 +161,12 @@
         }
     },
     "extra": {
-        "magento-force": "override"
+        "magento-force": "override",
+        "composer-exit-on-patch-failure": true,
+        "patches": {
+            "smile/elasticsuite": {
+                "DIGITALHUB-ITAT-192: Fix para evitar aplicar o score na coleção de produtos em condições específicas.": "patches/composer/DIGITALHUB-ITAT-192.diff"
+            }
+        }
     }
 }
