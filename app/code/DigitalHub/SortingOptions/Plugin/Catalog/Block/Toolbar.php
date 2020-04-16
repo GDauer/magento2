@@ -29,13 +29,17 @@ class Toolbar
                 case 'name_desc':
                     $subject->getCollection()->setOrder('name', 'desc');
                 break;
-                case 'descount_desc':
-                    $collection = $subject->getCollection();
-                    $select = $collection->getSelect();
-                    $select->columns(array(
-                        "(100 - ((price_index.final_price * 100) / price_index.price)) AS descount"
-                    ));
-                    $select->order("descount DESC");
+                case 'discount_desc':
+                    if (!$subject->getCollection()->getFlag("discount_desc_order")) {
+                        $collection = $subject->getCollection();
+                        $select = $collection->getSelect();
+                        $select->columns(array(
+                            "(100 - ((price_index.final_price * 100) / price_index.price)) AS discount"
+                        ));
+                        $select->order("discount DESC");
+                        $subject->getCollection()->setFlag("discount_desc_order", true);
+                        $subject->getCollection()->setFlag("ignore_elastic_score_apply", true);
+                    }
                 break;
                 default:
                 case 'sell_desc':
