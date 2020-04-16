@@ -29,6 +29,31 @@ class Toolbar
                 case 'name_desc':
                     $subject->getCollection()->setOrder('name', 'desc');
                 break;
+                case 'discount_desc':
+                    if (!$subject->getCollection()->getFlag("discount_desc_order")) {
+                        $collection = $subject->getCollection();
+                        $select = $collection->getSelect();
+                        $select->columns(array(
+                            "(100 - ((price_index.final_price * 100) / price_index.price)) AS discount"
+                        ));
+                        $select->order("discount DESC");
+                        $subject->getCollection()->setFlag("discount_desc_order", true);
+                        $subject->getCollection()->setFlag("ignore_elastic_score_apply", true);
+                    }
+                break;
+                default:
+                case 'sell_desc':
+                    if (!$subject->getCollection()->getFlag("sell_desc_order")) {
+                        $select = $subject->getCollection()->getSelect();
+                        $select->joinLeft(
+                            array("order_sell_item_count_table" => new \Zend_Db_Expr("(SELECT product_id, SUM(qty_ordered) AS vendas FROM sales_order_item GROUP BY product_id)")),
+                            "order_sell_item_count_table.product_id = e.entity_id",
+                            array("vendas" => "order_sell_item_count_table.vendas"));
+                        $select->order("vendas DESC");
+                        $subject->getCollection()->setFlag("sell_desc_order", true);
+                        $subject->getCollection()->setFlag("ignore_elastic_score_apply", true);
+                    }
+                    break;
             }
         }
 
