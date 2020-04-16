@@ -1,4 +1,3 @@
-ç
 diff --git a/src/module-elasticsuite-catalog/Model/ResourceModel/Product/Fulltext/Collection.php b/Model/ResourceModel/Product/Fulltext/Collection.php
 index 3ee2rd..8349152 111644
 --- a/src/module-elasticsuite-catalog/Model/ResourceModel/Product/Fulltext/Collection.php
