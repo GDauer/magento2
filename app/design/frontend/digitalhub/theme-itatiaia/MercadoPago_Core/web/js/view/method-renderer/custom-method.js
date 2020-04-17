@@ -15,6 +15,7 @@ define(
         'mage/translate',
         'Magento_Checkout/js/model/cart/totals-processor/default',
         'Magento_Checkout/js/model/cart/cache',
+        'Magento_Ui/js/model/messageList',
 
         'MPcustom',
         'MPanalytics',
@@ -22,7 +23,7 @@ define(
         'jquery/validate'
     ],
     function ($, Component, quote, paymentService, paymentMethodList, getTotalsAction, fullScreenLoader, additionalValidators,
-              setPaymentInformationAction, placeOrderAction, customer, setAnalyticsInformation, $t, defaultTotal, cartCache) {
+              setPaymentInformationAction, placeOrderAction, customer, setAnalyticsInformation, $t, defaultTotal, cartCache, messageList) {
         'use strict';
 
         return Component.extend({
@@ -269,25 +270,30 @@ define(
                     event.preventDefault();
                 }
 
-                if (this.validate() && additionalValidators.validate() && !this.hasErrors() && loginForm.validation() && loginForm.validation('isValid')) {
+                if (this.validate() && additionalValidators.validate() && !this.hasErrors()) {
+                    if ($('.fieldset.hidden-fields').length = 0 || !$('.fieldset.hidden-fields').is(":visible")) {
+                        this.isPlaceOrderActionAllowed(false);
 
-                    this.isPlaceOrderActionAllowed(false);
+                        this.getPlaceOrderDeferredObject()
+                            .fail(
+                                function () {
+                                    self.isPlaceOrderActionAllowed(true);
+                                }
+                            ).done(function () {
+                                self.afterPlaceOrder();
 
-                    this.getPlaceOrderDeferredObject()
-                        .fail(
-                            function () {
-                                self.isPlaceOrderActionAllowed(true);
+                                if (self.redirectAfterPlaceOrder) {
+                                    redirectOnSuccessAction.execute();
+                                }
                             }
-                        ).done(function () {
-                            self.afterPlaceOrder();
+                        );
+                        return true;
+                    } else {
+                        messageList.addErrorMessage({
+                            message: "Por favor realize o login para finalizar a compra"
+                        });
+                    }
 
-                            if (self.redirectAfterPlaceOrder) {
-                                redirectOnSuccessAction.execute();
-                            }
-                        }
-                    );
-
-                    return true;
                 }
 
                 return false;
