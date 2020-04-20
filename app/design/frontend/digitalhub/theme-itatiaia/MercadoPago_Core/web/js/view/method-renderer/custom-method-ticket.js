@@ -13,12 +13,13 @@ define(
         'Magento_Checkout/js/model/cart/totals-processor/default',
         'Magento_Checkout/js/model/cart/cache',
         'Magento_Checkout/js/action/place-order',
+        'Magento_Ui/js/model/messageList',
         'Magento_Checkout/js/model/payment/additional-validators',
         'MPcustom',
         'MPv1Ticket',
         'jquery/validate'
     ],
-    function (Component, quote, paymentService, paymentMethodList, getTotalsAction, $, fullScreenLoader, setAnalyticsInformation, $t, defaultTotal, cartCache, placeOrderAction) {
+    function (Component, quote, paymentService, paymentMethodList, getTotalsAction, $, fullScreenLoader, setAnalyticsInformation, $t, defaultTotal, cartCache, placeOrderAction, messageList) {
         'use strict';
 
         var configPayment = window.checkoutConfig.payment.mercadopago_customticket;
@@ -259,25 +260,30 @@ define(
                     event.preventDefault();
                 }
 
-                if (this.validate() && loginForm.validation() && loginForm.validation('isValid')) {
+                if (this.validate()) {
+                    if ($('.fieldset.hidden-fields').length = 0 || !$('.fieldset.hidden-fields').is(":visible")) {
+                        this.isPlaceOrderActionAllowed(false);
 
-                    this.isPlaceOrderActionAllowed(false);
+                        this.getPlaceOrderDeferredObject()
+                            .fail(
+                                function () {
+                                    self.isPlaceOrderActionAllowed(true);
+                                }
+                            ).done(function () {
+                                self.afterPlaceOrder();
 
-                    this.getPlaceOrderDeferredObject()
-                        .fail(
-                            function () {
-                                self.isPlaceOrderActionAllowed(true);
+                                if (self.redirectAfterPlaceOrder) {
+                                    redirectOnSuccessAction.execute();
+                                }
                             }
-                        ).done(function () {
-                            self.afterPlaceOrder();
+                        );
 
-                            if (self.redirectAfterPlaceOrder) {
-                                redirectOnSuccessAction.execute();
-                            }
-                        }
-                    );
-
-                    return true;
+                        return true;
+                    } else {
+                        messageList.addErrorMessage({
+                            message: "Por favor realize o login para finalizar a compra"
+                        });
+                    }
                 }
 
                 return false;
