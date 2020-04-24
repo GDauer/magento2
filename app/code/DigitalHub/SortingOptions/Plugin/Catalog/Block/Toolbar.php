@@ -47,7 +47,7 @@ class Toolbar
                                 ['action_operator', 'action_amount']
                             )
                             ->columns([
-                                'discount_percent_value' => new \Zend_Db_Expr(
+                                'discount_percentage_amount' => new \Zend_Db_Expr(
                                     'GREATEST(
                                     COALESCE(((price_index.price - price_index.final_price) / price_index.price),0), 
                                     COALESCE(((related_price.price - related_price.final_price) / related_price.price), 0),
@@ -56,8 +56,8 @@ class Toolbar
                             ->group(['e.entity_id']);;
                         $select->distinct(true);
 
-                        $subject->getCollection()->setOrder("discount_percent_value", "DESC");
-                        $select->order("discount_percent_value DESC");
+                        $subject->getCollection()->setOrder("price.discount_percentage_amount", "DESC");
+                        $select->order("discount_percentage_amount DESC");
                         $subject->getCollection()->setFlag("discount_desc_order", true);
                         $select->limit($result->getLimit());
 
