@@ -19,7 +19,7 @@ class Config
         $options['price_asc'] = __('Menor Preço');
         $options['name_asc'] = __('Nome (A - Z)');
         $options['name_desc'] = __('Nome (Z - A)');
-        $options['discount_desc'] = __('Maior Desconto');
+        $options['discount_percentage_amount'] = __('Maior Desconto');
         return $options;
     }
 }
