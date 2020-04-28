@@ -16,6 +16,7 @@ class Toolbar
         $result = $proceed($collection);
 
         if ($currentOrder) {
+            $subject->getCollection()->setOrder("stock.is_in_stock", "DESC");
             switch ($currentOrder) {
                 case 'price_asc':
                     $subject->getCollection()->setOrder('price', 'asc');
