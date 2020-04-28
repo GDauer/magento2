@@ -20,4 +20,8 @@
     <type name="Magento\Checkout\CustomerData\Cart">
         <plugin name="custom_after_checkout_customerdata_cart" type="Itatiaia\Custom\Plugin\CustomerData\Cart" sortOrder="100" disabled="false" />
     </type>
+
+    <type name="Magento\CatalogInventory\Api\StockRegistryInterface">
+        <plugin name="teste" type="Itatiaia\Custom\Api\StockRegistryInterface" sortOrder="100" disabled="false" />
+    </type>
 </config>
