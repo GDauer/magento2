@@ -40,7 +40,6 @@
         "digitalhub/estimate-shipping": "dev-master",
         "digitalhub/customer-attributes": "dev-master",
         "digitalhub/language-pt_br": "dev-master",
-        "digitalhub/feedmanager": "^1.0",
         "magepal/magento2-gmailsmtpapp": "^2.5",
         "smile/elasticsuite": "^2.6",
         "intelipost/magento2-basic": "^1.1",
@@ -58,7 +57,8 @@
         "mundipagg/mundipagg-magento2-module": "^1.8",
         "digitalhub/module-cookie": "dev-master",
         "konduto/magento2": "^1.0",
-        "mercadopago/magento2-plugin": "^3.3"
+        "mercadopago/magento2-plugin": "^3.3",
+        "cweagans/composer-patches": "^1.6"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.2.0",

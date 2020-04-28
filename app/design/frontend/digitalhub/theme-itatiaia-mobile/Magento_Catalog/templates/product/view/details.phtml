@@ -75,30 +75,16 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
         $associatedProducts = $product->getTypeInstance(true)->getAssociatedProducts($product);
         $associatedConfig = [];
         foreach ($associatedProducts as $item) {
-            $name = str_replace('/ Volume 1', '', $item->getName());
+
             $childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\Product')->load($item->getId());
-            if (strpos($name, '/ Volume') == 0) {
-                if (strpos(strtolower($item->getName()), 'volume 1') > 0) {
-                    $finalPrice = 0;
-                    $regularPrice = 0;
-                    foreach ($associatedProducts as $_product) {
-                        if (explode('/ volume', strtolower($_product->getName()))[0] == explode('/ volume', strtolower($item->getName()))[0]) {
-                            $finalPrice += $groupedCatalogRuleHelper->getFinalPrice($_product, $product);
-                            $regularPrice += $groupedCatalogRuleHelper->getRegularPrice($_product, $product);
-                        }
-                    }
-                } else {
-                    $finalPrice = $groupedCatalogRuleHelper->getFinalPrice($childProduct, $product);
-                    $regularPrice = $groupedCatalogRuleHelper->getRegularPrice($childProduct, $product);
-                }
-                $associatedConfig[] = [
-                    'name' => $name,
-                    'qty' => (int)$item->getQty(),
-                    'id' => $item->getId(),
-                    'price' => $regularPrice,
-                    'final_price' => $finalPrice
-                ];
-            }
+            $associatedConfig[] = [
+                'name' => $item->getName(),
+                'qty' => (int)$item->getQty(),
+                'id' => $item->getId(),
+                'price' => $groupedCatalogRuleHelper->getRegularPrice($childProduct, $product),
+                'final_price' => $groupedCatalogRuleHelper->getFinalPrice($childProduct, $product)
+            ];
+
         }
         ?>
         var associatedConfig = <?php echo json_encode($associatedConfig) ?>;
@@ -199,7 +185,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
                     }
                 })
 
-                discount = Math.abs(parseInt((finalPrice * 100) / oldPrice) - 100)
+                discount = Math.ceil(((finalPrice * 100) / oldPrice) - 100)
 
                 // console.log(oldPrice)
                 // console.log(finalPrice)
@@ -207,7 +193,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
 
                 $('.old-price-grouped').html(priceUtils.formatPrice(oldPrice, priceFormat));
                 $('.final-price-grouped').html(priceUtils.formatPrice(finalPrice, priceFormat));
-                $('.discount-grouped').html('-' + discount + '%');
+                $('.discount-grouped').html(discount + '%');
 
                 if(oldPrice > finalPrice){
                     $('.old-price-grouped').show()

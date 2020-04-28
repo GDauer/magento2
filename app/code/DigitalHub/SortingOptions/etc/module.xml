@@ -8,6 +8,7 @@
     <module name="DigitalHub_SortingOptions" setup_version="1.0.0">
         <sequence>
             <module name="Magento_Catalog"/>
+            <module name="Smile_ElasticsuiteCatalog"/>
         </sequence>
     </module>
 </config>

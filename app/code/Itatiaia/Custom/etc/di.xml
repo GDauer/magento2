@@ -17,7 +17,7 @@
         <plugin name="custom_guest_order_data_api" type="Itatiaia\Custom\Plugin\Framework\Reflection\DataObjectProcessorPlugin" sortOrder="100" disabled="false" />
     </type>
 
-    <type name="Magento\Checkout\CustomerData\Cart">
+    <!--<type name="Magento\Checkout\CustomerData\Cart">
         <plugin name="custom_after_checkout_customerdata_cart" type="Itatiaia\Custom\Plugin\CustomerData\Cart" sortOrder="100" disabled="false" />
     </type>
 
