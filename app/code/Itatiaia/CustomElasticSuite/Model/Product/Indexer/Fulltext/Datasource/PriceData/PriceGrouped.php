@@ -46,7 +46,7 @@ class PriceGrouped extends \Smile\ElasticsuiteCatalog\Model\Product\Indexer\Full
         $product = $this->getProduct($priceData['entity_id']);
 
         if ($product->getTypeId() == 'grouped') {
-            return $this->groupedCatalogRuleHelper->getPrice($product);
+            return $this->groupedCatalogRuleHelper->getRegularPrice($product);
         }
 
         return $product->getFinalPrice();

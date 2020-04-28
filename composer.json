@@ -161,12 +161,6 @@
         }
     },
     "extra": {
-        "magento-force": "override",
-        "composer-exit-on-patch-failure": true,
-        "patches": {
-            "smile/elasticsuite": {
-                "DIGITALHUB-ITAT-192: Fix para evitar aplicar o score na coleção de produtos em condições específicas.": "patches/composer/DIGITALHUB-ITAT-192.diff"
-            }
-        }
+        "magento-force": "override"
     }
 }

@@ -8,7 +8,9 @@
                 <datasource name="extra_sorting_fields">DigitalHub\SortingOptions\Model\Product\Indexer\Fulltext\Datasource\SortingData</datasource>
             </datasources>
             <mapping>
-                <field name="price.discount_percentage_amount" type="double" nestedPath="price" />
+                <field name="price.discount_percentage_amount" type="double" nestedPath="price" >
+                    <isUsedForSortBy>1</isUsedForSortBy>
+                </field>
             </mapping>
         </type>
     </index>

@@ -28,12 +28,9 @@ class Toolbar
                 case 'name_desc':
                     $subject->getCollection()->setOrder('name', 'desc');
                     break;
-                case 'discount_desc':
+                case 'discount_percentage_amount':
                     if (!$subject->getCollection()->getFlag("discount_desc_order")) {
-                        $collection = $subject->getCollection();
-                        $select = $collection->getSelect();
-                        $subject->getCollection()->setFlag("ignore_elastic_score_apply", true);
-                        $select->joinLeft(
+                        $subject->getCollection()->getSelect()->joinLeft(
                             ['related' => 'catalog_product_relation'], 'related.parent_id = e.entity_id', [])
                             ->joinLeft(
                                 ['related_price' => 'catalog_product_index_price'],
@@ -53,20 +50,20 @@ class Toolbar
                                     COALESCE(((related_price.price - related_price.final_price) / related_price.price), 0),
                                     COALESCE(crp.action_amount/100, 0))'),
                             ])
-                            ->group(['e.entity_id']);;
-                        $select->distinct(true);
+                            ->group(['e.entity_id']);
 
+                        $subject->getCollection()->getSelect()->distinct(true);
                         $subject->getCollection()->setOrder("price.discount_percentage_amount", "DESC");
-                        $select->order("discount_percentage_amount DESC");
+                        $subject->getCollection()->getSelect()->order("discount_percentage_amount DESC");
+                        $subject->getCollection()->setOrder($currentOrder, "desc");
+                        $subject->getCollection()->getSelect()->limit($result->getLimit());
                         $subject->getCollection()->setFlag("discount_desc_order", true);
-                        $select->limit($result->getLimit());
 
                     }
                     break;
                 default:
                 case 'sell_desc':
                     if (!$subject->getCollection()->getFlag("sell_desc_order")) {
-                        $subject->getCollection()->setFlag("ignore_elastic_score_apply", true);
                         $select = $subject->getCollection()->getSelect();
                         $select->joinLeft(
                             array("order_sell_item_count_table" => new \Zend_Db_Expr("(SELECT product_id, SUM(qty_ordered) AS vendas FROM sales_order_item GROUP BY product_id)")),
