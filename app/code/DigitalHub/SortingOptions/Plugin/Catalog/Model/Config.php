@@ -13,7 +13,7 @@ class Config
     {
         unset($options['name']);
         unset($options['price']);
-        unset($options['position']);
+        $options['position'] = __('Relevância');
         $options['sell_desc'] = __('Mais Vendidos');
         $options['price_desc'] = __('Maior Preço');
         $options['price_asc'] = __('Menor Preço');
