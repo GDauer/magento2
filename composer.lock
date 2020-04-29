@@ -877,37 +877,6 @@
             "time": "2019-01-21T16:35:09+00:00"
         },
         {
-            "name": "digitalhub/feedmanager",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "git@gitlab.com:digitalhub/m2/modules/feed-manager.git",
-                "reference": "c6b8ce0cc8dbd5a40152dfb416723d805681aa18"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/digitalhub%2Fm2%2Fmodules%2Ffeed-manager/repository/archive.zip?sha=c6b8ce0cc8dbd5a40152dfb416723d805681aa18",
-                "reference": "c6b8ce0cc8dbd5a40152dfb416723d805681aa18",
-                "shasum": ""
-            },
-            "require": {
-                "magento/framework": "*",
-                "mustache/mustache": "*",
-                "php": "~7.0.0|~7.1.0"
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "DigitalHub\\FeedManager\\": ""
-                }
-            },
-            "description": "Módulo para gestão de feeds XML de produtos",
-            "time": "2019-05-16T08:32:14+00:00"
-        },
-        {
             "name": "digitalhub/language-pt_br",
             "version": "dev-master",
             "source": {
