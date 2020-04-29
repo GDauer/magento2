@@ -22,6 +22,9 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
   <div class="product info detailed">
   <div class="product-info-info">
     <?php if( $product->getTypeId() == 'simple' ): ?>
+			<?php echo $this->getLayout()->createBlock('Magento\Catalog\Block\Product\View\Attributes')
+							->setTemplate('Magento_Catalog::product/view/attributes.phtml')
+							->toHtml() ?>
       <?php if ($_description = $block->getProduct()->getDescription()): ?>
         <div class="wrp-description">
           <div class="wrp-title">
@@ -29,11 +32,12 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
           </div>
           <?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getDescription(), 'description') ?>
         </div>
-        <?php echo $this->getLayout()->createBlock('Magento\Catalog\Block\Product\View\Attributes')
-                ->setTemplate('Magento_Catalog::product/view/attributes.phtml')
-                ->toHtml() ?>
+
       <?php endif; ?>
     <?php elseif( $product->getTypeId() == 'configurable' ): ?>
+			<?php echo $this->getLayout()->createBlock('Magento\Catalog\Block\Product\View\Attributes')
+							->setTemplate('Magento_Catalog::product/view/attributes.phtml')
+							->toHtml() ?>
       <?php if ($_description = $block->getProduct()->getDescription()): ?>
         <div class="wrp-description">
           <div class="wrp-title">
@@ -42,14 +46,24 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
           <?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getDescription(), 'description') ?>
         </div>
       <?php endif; ?>
-      <?php echo $this->getLayout()->createBlock('Magento\Catalog\Block\Product\View\Attributes')
-              ->setTemplate('Magento_Catalog::product/view/attributes.phtml')
-              ->toHtml() ?>
+
     <?php endif; ?>
   </div>
     <?php $layout = $block->getLayout(); ?>
     <div class="product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
         <?php if($block->getProduct()->getTypeId() == 'grouped' && $product->isAvailable()): ?>
+					<?php echo $this->getLayout()->createBlock('Magento\Catalog\Block\Product\View\Attributes')
+	                ->setTemplate('Magento_Catalog::product/view/attributes.phtml')
+	                ->toHtml() ?>
+						<?php if ($_description = $block->getProduct()->getDescription()): ?>
+			        <div class="wrp-description">
+			          <div class="wrp-title">
+			            <span class="title">Descrição</span>
+			          </div>
+			          <?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getDescription(), 'description') ?>
+			        </div>
+
+			      <?php endif; ?>
             <?php $html = $layout->renderElement('grouped.items'); ?>
             <div class="data item title"
                 aria-labeledby="tab-label-grouped_items-title"
@@ -65,6 +79,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
             <div class="data item content" id="grouped_items" data-role="content">
                 <?= /* @escapeNotVerified */ $html ?>
             </div>
+
         <?php endif; ?>
     </div>
 
