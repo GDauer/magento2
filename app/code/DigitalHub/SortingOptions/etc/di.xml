@@ -9,4 +9,12 @@
     </type>
 
     <preference for="Smile\ElasticsuiteCatalog\Model\ResourceModel\Product\Fulltext\Collection" type="DigitalHub\SortingOptions\Model\ResourceModel\Product\Fulltext\CollectionOverwrite" />
+
+    <type name="Magento\Catalog\Model\Config\Source\ListSort">
+        <plugin name="DigitalHub_SortingOptions::addCustomOptionsListSort" type="DigitalHub\SortingOptions\Plugin\Catalog\Model\Config\Source\ListSort" />
+    </type>
+
+    <type name="Magento\Catalog\Model\Category\Attribute\Source\Sortby">
+        <plugin name="DigitalHub_SortingOptions::addCustomOptionsSortby" type="DigitalHub\SortingOptions\Plugin\Catalog\Model\Category\Attribute\Source\Sortby" />
+    </type>
 </config>
