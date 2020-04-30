@@ -8,4 +8,5 @@
         <plugin name="DigitalHub_SortingOptions::addInToolbar" type="DigitalHub\SortingOptions\Plugin\Catalog\Block\Toolbar" />
     </type>
 
+    <preference for="Smile\ElasticsuiteCatalog\Model\ResourceModel\Product\Fulltext\Collection" type="DigitalHub\SortingOptions\Model\ResourceModel\Product\Fulltext\CollectionOverwrite" />
 </config>
