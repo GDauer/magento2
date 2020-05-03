@@ -1,0 +1,6 @@
+.admin__fieldset > .admin__field > .admin__field-control {
+    width: calc( (100%) * 0.7 - 30px );
+}
+.CodeMirror {
+    font-size: 14px;
+}
