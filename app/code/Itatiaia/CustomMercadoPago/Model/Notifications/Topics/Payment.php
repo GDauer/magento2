@@ -12,6 +12,8 @@ use Magento\Sales\Model\Order\Email\Sender\OrderSender;
 use Magento\Sales\Model\OrderFactory;
 use Magento\Sales\Model\ResourceModel\Status\Collection as StatusFactory;
 use Magento\Sales\Model\Service\InvoiceService;
+use Magento\Store\Model\ScopeInterface;
+use Itatiaia\CustomMercadoPago\Helper\ConfigData;
 use MercadoPago\Core\Helper\Data as mpHelper;
 use MercadoPago\Core\Helper\Message\MessageInterface;
 use MercadoPago\Core\Helper\Response;
@@ -24,6 +26,22 @@ class Payment extends \MercadoPago\Core\Model\Notifications\Topics\Payment
      * @var Order\Payment\Transaction\Builder
      */
     private $transactionBuilder;
+
+    /**
+     * @var ScopeConfigInterface 
+     */
+    protected $_scopeConfig;
+
+    /**
+     * @var OrderSender
+     */
+    protected $_orderSender;
+
+    /**
+     * @var mpHelper
+     */
+    protected $_dataHelper;
+
 
     public function __construct(
         mpHelper $mpHelper,
@@ -44,6 +62,9 @@ class Payment extends \MercadoPago\Core\Model\Notifications\Topics\Payment
     {
         parent::__construct($mpHelper, $scopeConfig, $coreModel, $orderFactory, $creditmemoFactory, $messageInterface, $statusFactory, $orderSender, $orderCommentSender, $transactionFactory, $invoiceSender, $invoiceService);
         $this->transactionBuilder = $transactionBuilder;
+        $this->_scopeConfig = $scopeConfig;
+        $this->_orderSender = $orderSender;
+        $this->_dataHelper = $mpHelper;
     }
 
     const STATUS = 'payment_review';
@@ -59,7 +80,7 @@ class Payment extends \MercadoPago\Core\Model\Notifications\Topics\Payment
 
         $message = parent::getMessage($payment);
         $statusAlreadyUpdated = $this->checkStatusAlreadyUpdated($payment, $order);
-        $newOrderStatus = parent::getConfigStatus($payment, $order->canCreditmemo());
+        $newOrderStatus = $this->getConfigStatus($payment, $order->canCreditmemo());
         $currentOrderStatus = $order->getState();
         if ($statusAlreadyUpdated) {
             $orderPayment = $order->getPayment();
@@ -157,5 +178,90 @@ class Payment extends \MercadoPago\Core\Model\Notifications\Topics\Payment
         }
 
         return false;
+    }
+
+    /**
+     * @param $paymentResponse
+     * @param $order
+     * @return bool
+     */
+    public function checkStatusAlreadyUpdated($paymentResponse, $order)
+    {
+        $orderUpdated = false;
+        $statusToUpdate = $this->getConfigStatus($paymentResponse, false);
+        $commentsObject = $order->getStatusHistoryCollection(true);
+        foreach ($commentsObject as $commentObj) {
+            if ($commentObj->getStatus() == $statusToUpdate) {
+                $orderUpdated = true;
+            }
+        }
+
+        return $orderUpdated;
+    }
+
+    /**
+     * @param $order
+     * @param $payment
+     * @param $message
+     * @return mixed
+     */
+    public function updateStatus($order, $payment, $message)
+    {
+        if ($order->getState() !== Order::STATE_COMPLETE) {
+            $statusOrder = $this->getConfigStatus($payment, $order->canCreditmemo());
+
+            $emailAlreadySent = false;
+            $emailOrderCreate = $this->_scopeConfig->getValue(ConfigData::PATH_ADVANCED_EMAIL_CREATE, ScopeInterface::SCOPE_STORE);
+
+            if ($statusOrder == 'canceled') {
+                $order->cancel();
+            } else {
+                $order->setState($this->_getAssignedState($statusOrder));
+            }
+
+            $order->addStatusToHistory($statusOrder, $message, true);
+            if ($emailOrderCreate) {
+                if (!$order->getEmailSent()) {
+                    $this->_orderSender->send($order, true);
+                    $emailAlreadySent = true;
+                }
+            }
+
+            if ($emailAlreadySent === false) {
+                $statusEmail = $this->_scopeConfig->getValue(ConfigData::PATH_ADVANCED_EMAIL_UPDATE, ScopeInterface::SCOPE_STORE);
+                $statusEmailList = explode(",", $statusEmail);
+                if (in_array($payment['status'], $statusEmailList)) {
+                    $this->_orderSender->send($order, $notify = '1', str_replace("<br/>", "", $message));
+                }
+            }
+        }
+
+        $this->_dataHelper->log("Update order", 'mercadopago-basic.log', $order->getData());
+        $this->_dataHelper->log($message, 'mercadopago-basic.log');
+
+        return $order->save();
+    }
+
+    /**
+     * @param $payment
+     * @param $isCanCreditMemo
+     * @return mixed
+     */
+    public function getConfigStatus($payment, $isCanCreditMemo)
+    {
+        $pathStatus = "PATH_ORDER_" . strtoupper($payment['status']);
+        $path = constant('\Itatiaia\CustomMercadoPago\Helper\ConfigData::' . $pathStatus);
+        $status = $this->_scopeConfig->getValue($path, ScopeInterface::SCOPE_STORE);
+        if ($payment['status'] == 'approved') {
+            if ($payment['status_detail'] == 'partially_refunded' && $isCanCreditMemo) {
+                $status = $this->_scopeConfig->getValue(ConfigData::PATH_ORDER_PARTIALLY_REFUNDED, ScopeInterface::SCOPE_STORE);
+            }
+        }
+
+        if (empty($status)) {
+            $status = $this->_scopeConfig->getValue(ConfigData::PATH_ORDER_PENDING, ScopeInterface::SCOPE_STORE);
+        }
+
+        return $status;
     }
 }
