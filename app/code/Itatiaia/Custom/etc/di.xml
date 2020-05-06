@@ -16,13 +16,4 @@
     <type name="Magento\Framework\Reflection\DataObjectProcessor">
         <plugin name="custom_guest_order_data_api" type="Itatiaia\Custom\Plugin\Framework\Reflection\DataObjectProcessorPlugin" sortOrder="100" disabled="false" />
     </type>
-
-    <type name="Magento\Checkout\CustomerData\Cart">
-        <plugin name="custom_after_checkout_customerdata_cart" type="Itatiaia\Custom\Plugin\CustomerData\Cart" sortOrder="100" disabled="false" />
-    </type>
-
-    <type name="Magento\CatalogInventory\Api\StockRegistryInterface">
-        <plugin name="update_product_after_stock_item_id" type="Itatiaia\Custom\Plugin\Api\StockRegistryInterface" sortOrder="100" disabled="false" />
-    </type>
-
 </config>
