@@ -49,7 +49,7 @@
             <parameter name="template" xsi:type="select" required="true" visible="false" sort_order="7">
                 <label translate="true">Template</label>
                 <options>
-                    <option name="default" value="DigitalHub_RecentlyViewedWidget::product/widget/content/grid.phtml"
+                    <option name="default" value="Magento_CatalogWidget::product/widget/content/grid.phtml"
                             selected="true">
                         <label translate="true">Products Grid Template</label>
                     </option>
