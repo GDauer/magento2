@@ -6,7 +6,6 @@ namespace DigitalHub\RecentlyViewedWidget\Block\Product\Widget;
 use Magento\CatalogWidget\Block\Product\ProductsList;
 use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Reports\Block\Product\Viewed as ReportProductViewed;
-//use Magento\Catalog\Block\Widget\RecentlyViewed as RecentlyViewed;
 
 /**
  * Class ProductGrid
@@ -14,17 +13,10 @@ use Magento\Reports\Block\Product\Viewed as ReportProductViewed;
  */
 class ProductGrid extends ProductsList
 {
-    const DEFAULT_SORT_BY = 'name';
-    const DEFAULT_SORT_ORDER = 'asc';
-    const SORT_BY_PARAM = 'products_sort_by';
-    const SORT_ORDER_PARAM = 'products_sort_order';
-
     /**
      * @var ReportProductViewed
      */
     protected $reportProductViewed;
-
-    //protected $recentlyViewed;
 
     public function __construct(
         \Magento\Catalog\Block\Product\Context $context,
@@ -35,88 +27,46 @@ class ProductGrid extends ProductsList
         \Magento\CatalogWidget\Model\Rule $rule,
         \Magento\Widget\Helper\Conditions $conditionsHelper,
         ReportProductViewed $reportProductViewed,
-        //RecentlyViewed $recentlyViewed,
         array $data = [],
         Json $json = null
     )
     {
         $this->reportProductViewed = $reportProductViewed;
-        //$this->recentlyViewed = $recentlyViewed;
         parent::__construct($context, $productCollectionFactory, $catalogProductVisibility, $httpContext, $sqlBuilder, $rule, $conditionsHelper, $data, $json);
     }
 
     /**
-     * Create Collection
-     * @return \Magento\Catalog\Model\ResourceModel\Product\Collection
+     * Returns recently viewed collection.
+     * @return \Magento\Reports\Model\ResourceModel\Product\Index\Collection\AbstractCollection
      */
     public function getProductCollection()
     {
-        $collection = $this->reportProductViewed->getItemsCollection();
-//        $conditions = $this->getConditions();
-//        $conditions->collectValidatedAttributes($collection);
-//        $this->sqlBuilder->attachConditionToCollection($collection, $conditions);
-        return $collection;
+        return $this->reportProductViewed->getItemsCollection();
     }
 
     /**
-     * Create Collection
-     * @return \Magento\Catalog\Model\ResourceModel\Product\Collection
+     * Override to solve core issue.
+     * @return \Magento\Rule\Model\Condition\Combine
      */
-    public function createCollection()
+    protected function getConditions()
     {
-        $collection = $this->getProductCollection();
-        //$collection->addAttributeToSelect('name');
-        $collection->setVisibility($this->catalogProductVisibility->getVisibleInCatalogIds());
-
-        //$pageSize = $this->getPageSize();
-        $pageSize = $this->getProductsCount();
-        $currentPage = $this->getRequest()->getParam($this->getData('page_var_name'), 1);
-
-        $collection = $this->_addProductAttributesAndPrices($collection)
-            ->addStoreFilter()
-            //->setPageSize($pageSize)
-            ->setCurPage($currentPage)
-            ->setOrder($this->getSortBy(), $this->getSortOrder());
-
-        if ($this->getSortBy() !== self::DEFAULT_SORT_BY) {
-            return $collection;
+        $conditions = $this->getData('conditions_encoded')
+            ? $this->getData('conditions_encoded')
+            : $this->getData('conditions');
+        if ($conditions) {
+            $conditions = $this->conditionsHelper->decode($conditions);
         }
-
-        $collection->getSelect()->order($this->getSortBy() . ' ' . $this->getSortOrder());
-
-//        try {
-//            $order = $collection->getSelect()->getPart('order');
-//            array_unshift($order, array_pop($order));
-//            $collection->getSelect()->setPart('order', $order);
-//        } catch (\Exception $e) {
-//            $this->_logger->error(__("Error adding best seller sort order on product collection. Error: %1",
-//                $e->getMessage()));
-//        }
-
-        return $collection;
-    }
-
-    /**
-     * Return Sort By
-     * @return array|mixed|null
-     */
-    public function getSortBy()
-    {
-        if (!$this->hasData(self::SORT_BY_PARAM)) {
-            $this->setData(self::SORT_BY_PARAM, self::DEFAULT_SORT_BY);
+        if (!$conditions ) {
+            $conditions = [];
         }
-        return $this->getData(self::SORT_BY_PARAM);
-    }
-
-    /**
-     * Return Sort Order type
-     * @return array|mixed|null
-     */
-    public function getSortOrder()
-    {
-        if (!$this->hasData(self::SORT_ORDER_PARAM)) {
-            $this->setData(self::SORT_ORDER_PARAM, self::DEFAULT_SORT_ORDER);
+        foreach ($conditions as $key => $condition) {
+            if (!empty($condition['attribute'])
+                && in_array($condition['attribute'], ['special_from_date', 'special_to_date'])
+            ) {
+                $conditions[$key]['value'] = date('Y-m-d H:i:s', strtotime($condition['value']));
+            }
         }
-        return $this->getData(self::SORT_ORDER_PARAM);
+        $this->rule->loadPost(['conditions' => $conditions]);
+        return $this->rule->getConditions();
     }
 }

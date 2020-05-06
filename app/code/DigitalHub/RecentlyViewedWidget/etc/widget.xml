@@ -46,14 +46,19 @@
                 <value>20</value>
             </parameter>
 
-            <parameter name="template" xsi:type="select" required="true" visible="true" sort_order="7">
+            <parameter name="template" xsi:type="select" required="true" visible="false" sort_order="7">
                 <label translate="true">Template</label>
                 <options>
-                    <option name="default" value="Magento_CatalogWidget::product/widget/content/grid.phtml"
+                    <option name="default" value="DigitalHub_RecentlyViewedWidget::product/widget/content/grid.phtml"
                             selected="true">
                         <label translate="true">Products Grid Template</label>
                     </option>
                 </options>
+            </parameter>
+
+            <parameter name="condition" xsi:type="conditions" visible="true" required="true" sort_order="10"
+                       class="Magento\CatalogWidget\Block\Product\Widget\Conditions">
+                <label translate="true">Conditions</label>
             </parameter>
         </parameters>
     </widget>
