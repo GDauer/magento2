@@ -42,16 +42,16 @@ class StockRegistryInterface
         $itemId
     )
     {
-        if(!$this->request->getModuleName()){
-            if($this->registry->registry('update_product_after_stock_item_id') === $itemId){
-                return $itemId;
-            }
-
-            $product = $this->productFactory->create()->load($itemId);
-
-            $this->registry->register('update_product_after_stock_item_id', $itemId);
-            $product->save();
-        }
+//        if(!$this->request->getModuleName()){
+//            if($this->registry->registry('update_product_after_stock_item_id') === $itemId){
+//                return $itemId;
+//            }
+//
+//            $product = $this->productFactory->create()->load($itemId);
+//
+//            $this->registry->register('update_product_after_stock_item_id', $itemId);
+//            $product->save();
+//        }
 
         return $itemId;
     }
