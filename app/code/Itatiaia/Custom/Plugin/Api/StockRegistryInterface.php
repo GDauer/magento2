@@ -44,13 +44,16 @@ class StockRegistryInterface
     )
     {
         if(!$this->request->getModuleName()){
-            if($this->registry->registry('update_product_after_stock_sku') === $productSku){
+            if($this->registry->registry('update_product_after_stock_sku') == $productSku){
                 return $itemId;
             }
             $product = $this->productRepository->get($productSku);
 
-            $this->registry->register('update_product_after_stock_sku', $productSku);
-            $product->save();
+            if($product->getTypeId() === 'simple') {
+                $this->registry->unregister('update_product_after_stock_sku');
+                $this->registry->register('update_product_after_stock_sku', $productSku);
+                $product->save();
+            }
         }
 
         return $itemId;
