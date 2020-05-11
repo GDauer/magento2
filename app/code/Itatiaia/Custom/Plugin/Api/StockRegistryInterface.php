@@ -4,6 +4,7 @@
 namespace Itatiaia\Custom\Plugin\Api;
 
 
+use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Registry;
 use Magento\Catalog\Model\ProductFactory;
@@ -16,42 +17,44 @@ class StockRegistryInterface
      */
     private $registry;
     /**
-     * @var ProductFactory
-     */
-    private $productFactory;
-    /**
      * @var RequestInterface
      */
     private $request;
+    /**
+     * @var ProductRepositoryInterface
+     */
+    private $productRepository;
 
     public function __construct
     (
         Registry $registry,
-        ProductFactory $productFactory,
-        RequestInterface $request
+        RequestInterface $request,
+        ProductRepositoryInterface $productRepository
     )
     {
         $this->registry = $registry;
-
-        $this->productFactory = $productFactory;
         $this->request = $request;
+        $this->productRepository = $productRepository;
     }
 
     public function afterUpdateStockItemBySku(
         \Magento\CatalogInventory\Api\StockRegistryInterface $subject,
-        $itemId
+        $itemId,
+        $productSku
     )
     {
-//        if(!$this->request->getModuleName()){
-//            if($this->registry->registry('update_product_after_stock_item_id') === $itemId){
-//                return $itemId;
-//            }
-//
-//            $product = $this->productFactory->create()->load($itemId);
-//
-//            $this->registry->register('update_product_after_stock_item_id', $itemId);
-//            $product->save();
-//        }
+        if(!$this->request->getModuleName()){
+            if($this->registry->registry('update_product_after_stock_sku') == $productSku){
+                return $itemId;
+            }
+            $product = $this->productRepository->get($productSku);
+
+            if($product->getTypeId() === 'simple') {
+                $this->registry->unregister('update_product_after_stock_sku');
+                $this->registry->register('update_product_after_stock_sku', $productSku);
+                $product->save();
+            }
+        }
 
         return $itemId;
     }
