@@ -9,22 +9,19 @@
 /** @var $block \Magento\Checkout\Block\Cart\Item\Renderer */
 
 $_item = $block->getItem();
-$items = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Checkout\Model\Cart')->getQuote()->getAllVisibleItems();
 $product = $_item->getProduct();
 $isVisibleProduct = $product->isVisibleInSiteVisibility();
 /** @var \Magento\Msrp\Helper\Data $helper */
 $helper = $this->helper('Magento\Msrp\Helper\Data');
-$priceHelper = $this->helper('Magento\Framework\Pricing\Helper\Data');
 $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinimalPriceLessMsrp($product);
-$name = str_replace('/ Volume 1', '', $_item->getName());
-if (strpos($name, '/ Volume') == 0) {
+
 ?>
 <tbody class="cart item">
     <tr class="item-info">
         <td data-th="<?= $block->escapeHtml(__('Item')) ?>" class="col item">
             <?php if ($block->hasProductUrl()):?>
                 <a href="<?= /* @escapeNotVerified */ $block->getProductUrl() ?>"
-                   title="<?= $block->escapeHtml($name) ?>"
+                   title="<?= $block->escapeHtml($block->getProductName()) ?>"
                    tabindex="-1"
                    class="product-item-photo">
             <?php else:?>
@@ -39,9 +36,9 @@ if (strpos($name, '/ Volume') == 0) {
             <div class="product-item-details">
                 <strong class="product-item-name">
                     <?php if ($block->hasProductUrl()):?>
-                        <a href="<?= /* @escapeNotVerified */ $block->getProductUrl() ?>"><?= $block->escapeHtml($name) ?></a>
+                        <a href="<?= /* @escapeNotVerified */ $block->getProductUrl() ?>"><?= $block->escapeHtml($block->getProductName()) ?></a>
                     <?php else: ?>
-                        <?= $block->escapeHtml($name) ?>
+                        <?= $block->escapeHtml($block->getProductName()) ?>
                     <?php endif; ?>
                 </strong>
                 <?php if ($_options = $block->getOptionList()):?>
@@ -82,24 +79,9 @@ if (strpos($name, '/ Volume') == 0) {
                 </span>
             </td>
         <?php else: ?>
-            <?php if (strpos(strtolower($product->getName()), 'volume 1') > 0) {
-                $price = 0;
-                foreach ($items as $item) {
-                    if (explode('/ volume', strtolower($item->getName()))[0] == explode('/ volume', strtolower($product->getName()))[0]) {
-                        $price += $item->getPrice();
-                    }
-                }
-            } else {
-                $price = $_item->getPrice();
-            } ?>
+
             <td class="col price" data-th="<?= $block->escapeHtml(__('Price')) ?>">
-                <span class="price-excluding-tax" data-label="<?= $block->escapeHtml(__('Excl. Tax')) ?>">
-                    <span class="cart-price">
-                        <span class="price">
-                            <?= $priceHelper->currency($price, true, false); ?>
-                        </span>
-                    </span>
-                </span>
+                <?= $block->getUnitPriceHtml($_item) ?>
             </td>
         <?php endif; ?>
         <td class="col qty" data-th="<?= $block->escapeHtml(__('Qty')) ?>">
@@ -127,13 +109,12 @@ if (strpos($name, '/ Volume') == 0) {
         </td>
 
         <td class="col subtotal" data-th="<?= $block->escapeHtml(__('Subtotal')) ?>">
-            <span class="price-excluding-tax" data-label="<?= $block->escapeHtml(__('Excl. Tax')) ?>">
-                <span class="cart-price">
-                    <span class="price">
-                        <?= $priceHelper->currency($price*$_item->getQty(), true, false); ?>
-                    </span>
-                </span>
-            </span>
+            <?php if ($canApplyMsrp): ?>
+                <span class="cart msrp subtotal">--</span>
+            <?php else: ?>
+                <?= $block->getRowTotalHtml($_item) ?>
+            <?php endif; ?>
+
         </td>
     </tr>
     <tr class="item-actions">
@@ -144,4 +125,3 @@ if (strpos($name, '/ Volume') == 0) {
         </td>
     </tr>
 </tbody>
-<?php } ?>

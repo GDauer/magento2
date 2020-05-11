@@ -2,6 +2,11 @@
     <type name="MercadoPago\Core\Model\Core">
         <plugin name="Itatiaia_CustomMercadoPago_Plugin_Model_CorePlugin" type="Itatiaia\CustomMercadoPago\Plugin\Model\CorePlugin" sortOrder="100" disabled="false" />
     </type>
+    <type name="MercadoPago\Core\Model\Notifications\Notifications">
+        <arguments>
+            <argument name="payment" xsi:type="object">Itatiaia\CustomMercadoPago\Model\Notifications\Topics\Payment</argument>
+        </arguments>
+    </type>
     <preference for="MercadoPago\Core\Model\Notifications\Topics\Payment" type="Itatiaia\CustomMercadoPago\Model\Notifications\Topics\Payment" />
     <preference for="MercadoPago\Core\Helper\ConfigData" type="Itatiaia\CustomMercadoPago\Helper\ConfigData" />
     <preference for="MercadoPago\Core\Block\Info" type="Itatiaia\CustomMercadoPago\Block\Info" />
