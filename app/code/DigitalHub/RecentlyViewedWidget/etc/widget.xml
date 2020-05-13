@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
-    <widget id="digitalhub_recentlyviewedwidget" class="DigitalHub\RecentlyViewedWidget\Block\Product\Widget\ProductGrid"
-            ttl="86400">
-        <label translate="true">Recently Viewed Products</label>
+    <widget id="digitalhub_recentlyviewedwidget" class="DigitalHub\RecentlyViewedWidget\Block\Product\Widget\ProductGrid" ttl="0">
+        <label translate="true">Recently Viewed Products Itatiaia</label>
         <description translate="true">List of Recently Viewed Products</description>
         <parameters>
 
@@ -11,17 +10,7 @@
                 <label translate="true">Title</label>
             </parameter>
 
-            <parameter name="products_sort_by" xsi:type="select" visible="true" sort_order="2"
-                       source_model="DigitalHub\RecentlyViewedWidget\Model\SortBy">
-                <label translate="true">Products Sort By</label>
-            </parameter>
-
-            <parameter name="products_sort_order" xsi:type="select" visible="true" sort_order="3"
-                       source_model="DigitalHub\RecentlyViewedWidget\Model\SortOrder">
-                <label translate="true">Products Sort Order</label>
-            </parameter>
-
-            <parameter name="show_pager" xsi:type="select" visible="true" sort_order="4">
+            <parameter name="show_pager" xsi:type="select" visible="true" sort_order="2">
                 <label translate="true">Display Page Control</label>
                 <options>
                     <option name="yes" value="1" selected="true">
@@ -33,7 +22,7 @@
                 </options>
             </parameter>
 
-            <parameter name="products_per_page" xsi:type="text" required="true" visible="true" sort_order="5">
+            <parameter name="products_per_page" xsi:type="text" required="true" visible="true" sort_order="3">
                 <label translate="true">Products per Page</label>
                 <depends>
                     <parameter name="show_pager" value="1"/>
@@ -41,12 +30,12 @@
                 <value>20</value>
             </parameter>
 
-            <parameter name="products_count" xsi:type="text" required="true" visible="true" sort_order="6">
+            <parameter name="products_count" xsi:type="text" required="true" visible="true" sort_order="4">
                 <label translate="true">Number of Products to Display</label>
                 <value>20</value>
             </parameter>
 
-            <parameter name="template" xsi:type="select" required="true" visible="false" sort_order="7">
+            <parameter name="template" xsi:type="select" required="true" visible="false" sort_order="5">
                 <label translate="true">Template</label>
                 <options>
                     <option name="default" value="Magento_CatalogWidget::product/widget/content/grid.phtml"
@@ -54,11 +43,6 @@
                         <label translate="true">Products Grid Template</label>
                     </option>
                 </options>
-            </parameter>
-
-            <parameter name="condition" xsi:type="conditions" visible="true" required="true" sort_order="10"
-                       class="Magento\CatalogWidget\Block\Product\Widget\Conditions">
-                <label translate="true">Conditions</label>
             </parameter>
         </parameters>
     </widget>
