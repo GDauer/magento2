@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="digitalhub_bestsellerswidget" class="DigitalHub\BestSellersWidget\Block\Product\Widget\ProductGrid"
+            ttl="86400">
+        <label translate="true">Bestseller Products List</label>
+        <description translate="true">List of Best Selling Products</description>
+        <parameters>
+
+            <parameter name="title" xsi:type="text" visible="true" sort_order="1">
+                <label translate="true">Title</label>
+            </parameter>
+
+            <parameter name="products_sort_by" xsi:type="select" visible="true" sort_order="2"
+                       source_model="DigitalHub\BestSellersWidget\Model\SortBy">
+                <label translate="true">Products Sort By</label>
+            </parameter>
+
+            <parameter name="products_sort_order" xsi:type="select" visible="true" sort_order="3"
+                       source_model="DigitalHub\BestSellersWidget\Model\SortOrder">
+                <label translate="true">Products Sort Order</label>
+            </parameter>
+
+            <parameter name="show_pager" xsi:type="select" visible="true" sort_order="4">
+                <label translate="true">Display Page Control</label>
+                <options>
+                    <option name="yes" value="1" selected="true">
+                        <label>Yes</label>
+                    </option>
+                    <option name="no" value="0">
+                        <label>No</label>
+                    </option>
+                </options>
+            </parameter>
+
+            <parameter name="products_per_page" xsi:type="text" required="true" visible="true" sort_order="5">
+                <label translate="true">Products per Page</label>
+                <depends>
+                    <parameter name="show_pager" value="1"/>
+                </depends>
+                <value>20</value>
+            </parameter>
+
+            <parameter name="products_count" xsi:type="text" required="true" visible="true" sort_order="6">
+                <label translate="true">Number of Products to Display</label>
+                <value>20</value>
+            </parameter>
+
+            <parameter name="template" xsi:type="select" required="true" visible="false" sort_order="7">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="Magento_CatalogWidget::product/widget/content/grid.phtml"
+                            selected="true">
+                        <label translate="true">Products Grid Template</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>
