@@ -98,7 +98,7 @@ require([
     /*--Landingpage BBB --*/
 
 
- /*   // verificação de quantidade para grouped locked items
+    // verificação de quantidade para grouped locked items
     jQuery(function(){
         jQuery('.checkout-cart-index .cart.item input[name^=cart]').keyup(function(){
             // se é um item de um agrupado
@@ -111,7 +111,7 @@ require([
             }
         })
     })
-*/
+
     jQuery(function(){
         if(jQuery('body.catalog-category-view').length || jQuery('body.cms-index-index').length || jQuery('body.catalogsearch-result-index').length){
             if(!window.__decimalsRemoved){

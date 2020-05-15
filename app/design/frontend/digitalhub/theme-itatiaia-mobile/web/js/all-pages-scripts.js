@@ -106,7 +106,7 @@ require(['jquery','owlcarousel'],function(){
       /*--Landingpage BBB --*/
 
 
-/*
+
 
       // verificação de quantidade para grouped locked items
       jQuery(function(){
@@ -121,7 +121,7 @@ require(['jquery','owlcarousel'],function(){
               }
           })
       })
-*/
+
 
       jQuery(function(){
           if(jQuery('body.catalog-category-view').length || jQuery('body.cms-index-index').length || jQuery('body.catalogsearch-result-index').length){

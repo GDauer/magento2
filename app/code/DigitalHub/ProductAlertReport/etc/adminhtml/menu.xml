@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="DigitalHub_ProductAlertReport::report_product_alert_stock"
+             title="Alerta Produtos/Estoque"
+             translate="title"
+             module="DigitalHub_ProductAlertReport"
+             sortOrder="70"
+             parent="Magento_Reports::report_products"
+             action="product_alert/report_alert/stock"
+             resource="Magento_Reports::report"/>
+    </menu>
+</config>
