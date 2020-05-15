@@ -18,8 +18,8 @@ use Itatiaia\FixIntelipost\Helper\Estimate;
 
 class ExpiredOrderCanceller
 {
-    const DEFAULT_EXPIRATION_DAYS = 3;
-    const DEFAULT_EXPIRATION_HOURS = 72;
+    const DEFAULT_EXPIRATION_DAYS = 7;
+    const DEFAULT_EXPIRATION_HOURS = 168;
 
     /** @var OrderCollectionFactory */
     protected $orderCollectionFactory;
@@ -141,17 +141,12 @@ class ExpiredOrderCanceller
             }
 
             $dateCreated = $paymentInfo["date_created"] ? new DateTime($paymentInfo["date_created"]) : null;
-            $dateOfExpiration = $paymentInfo["date_of_expiration"] ? new DateTime($paymentInfo["date_of_expiration"]) : null;
 
             if (!$dateCreated) {
                 $dateCreated = new DateTime($order["created_at"]);
             }
 
-            if (!$dateOfExpiration) {
-                $dateOfExpiration = $this->getExpirationDate($dateCreated, self::DEFAULT_EXPIRATION_DAYS);
-            }
-
-            $expiredDate = $this->getExpirationDate($dateOfExpiration, self::DEFAULT_EXPIRATION_DAYS);
+            $expiredDate = $this->getExpirationDate($dateCreated, self::DEFAULT_EXPIRATION_DAYS);
 
             return $expiredDate;
         } catch (\Exception $e) {
@@ -171,14 +166,9 @@ class ExpiredOrderCanceller
     private function getExpirationDate(DateTime $initialDate, $daysToAdd)
     {
         $finalDate = clone $initialDate;
+        $interval  = "P" . $daysToAdd . "D";
 
-        for ($i = 0; $i < $daysToAdd; $i++) {
-            $finalDate->add(new DateInterval("P1D"));
-
-            while (in_array($finalDate->format("d/m/Y"), $this->disabledDates) || $this->isWeekend($finalDate)) {
-                $finalDate->add(new DateInterval("P1D"));
-            }
-        }
+        $finalDate->add(new DateInterval($interval));
 
         return $finalDate;
     }
