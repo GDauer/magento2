@@ -77,7 +77,8 @@ class Grid extends AbstractGrid
                 'sortable' => true,
                 'header_css_class' => 'status',
                 'column_css_class' => 'status',
-                'filter_condition_callback' => array($this, '_filterStatus'),
+                'type' => 'options',
+                'options' => ['' => 'Todos', 0 => 'Não Enviado', 1 => 'Enviado'],
                 'renderer' => 'DigitalHub\ProductAlertReport\Block\Widget\Grid\Column\Renderer\Status'
             ]
         );
@@ -121,92 +122,6 @@ class Grid extends AbstractGrid
         $this->addExportType('*/*/exportStockExcel', __('Excel XML'));
 
         return parent::_prepareColumns();
-    }
-
-    /**
-     * Get filter from request using the same method in grid widget
-     *
-     * @param string $param
-     * @return mixed|null
-     */
-    private function getFilter(string $param)
-    {
-        $filter = $this->getParam($this->getVarNameFilter(), null);
-
-        if ($filter === null) {
-            $filter = $this->_defaultFilter;
-        }
-
-        $data = [];
-        if (is_string($filter)) {
-            $data = $this->_backendHelper->prepareFilterString($filter);
-            $data = array_merge($data, (array)$this->getRequest()->getPost($this->getVarNameFilter()));
-        } elseif ($filter && is_array($filter)) {
-            $data = $filter;
-        } elseif (0 !== sizeof($this->_defaultFilter)) {
-            $data = $this->_defaultFilter;
-        }
-
-        if (array_key_exists($param, $data)) {
-            return $data[$param];
-        }
-        return null;
-    }
-
-    /**
-     * Custom filter for status column
-     * @param $collection
-     * @param $column
-     * @return $this
-     */
-    protected function _filterStatus($collection, $column)
-    {
-        return $this;
-    }
-
-    /**
-     * Add our custom filter based on renderer logic
-     *
-     * @param $collection
-     */
-    private function _addCustomFilterToCollection($collection, $attribute)
-    {
-        $ids = [];
-        foreach ($collection->getItems() as $key => $row) {
-            $renderedValue = '';
-            switch ($attribute) {
-                case 'status':
-                    $status = $row->getData('status');
-                    if ($status === '1') {
-                        $renderedValue = 'Enviado';
-                    } else {
-                        $renderedValue = 'Não Enviado';
-                    }
-                    break;
-            }
-
-            $filterValue = $this->getFilter($attribute);
-
-            if (strpos($renderedValue, $filterValue) === false) {
-                $ids[] = $row->getData('alert_stock_id');
-            }
-        }
-
-        if (!empty($ids)) {
-            $this->getCollection()->getSelect()->where('product_alert_stock.alert_stock_id NOT IN (?)', $ids);
-        }
-    }
-
-    /**
-     * @return \Magento\Backend\Block\Widget\Grid|AbstractGrid
-     */
-    protected function _prepareCollection()
-    {
-        $collection = $this->collectionStockFactory->create();
-        if ($this->getFilter('status') !== null) {
-            $this->_addCustomFilterToCollection($collection, 'status');
-        }
-        return parent::_prepareCollection();
     }
 
 }
