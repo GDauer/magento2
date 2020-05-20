@@ -132,20 +132,7 @@ class ExpiredOrderCanceller
     private function getCompensationExpirationDate($order)
     {
         try {
-            $info = $this->serializer->unserialize($order['additional_information']);
-            $paymentInfo = $info["paymentResponse"] ?? null;
-
-            if (!$paymentInfo) {
-                throw new LocalizedException(__("MercadoPago Payment information not found for Order %1.",
-                    $order["increment_id"]));
-            }
-
-            $dateCreated = $paymentInfo["date_created"] ? new DateTime($paymentInfo["date_created"]) : null;
-
-            if (!$dateCreated) {
-                $dateCreated = new DateTime($order["created_at"]);
-            }
-
+            $dateCreated = new DateTime($order["created_at"]);
             $expiredDate = $this->getExpirationDate($dateCreated, self::DEFAULT_EXPIRATION_DAYS);
 
             return $expiredDate;
@@ -191,15 +178,20 @@ class ExpiredOrderCanceller
      */
     private function getOrders()
     {
+        $timeLimit = new DateTime(date("Y-m-d h:i:s"));
+        $timeLimit->modify('-1 month');
+
         $collection = $this->orderCollectionFactory->create()
             ->addFieldToSelect("*")
             ->addAttributeToFilter('status', ['in' => ['pending', 'aguardando_analise_manual', 'payment_review']])
+            ->addAttributeToFilter('created_at', array('from'=>  $timeLimit->format('Y-m-d h:i:s'), 'to' => date("Y-m-d h:i:s")))
             ->addExpressionFieldToSelect('elapsed_hours', 'TIMESTAMPDIFF(HOUR, created_at, NOW())', ['created_at']);
 
         $collection->getSelect()->joinLeft(['payment_table' => 'sales_order_payment'],
             'main_table.entity_id = payment_table.parent_id', ['method', 'additional_information'], null);
         $collection->addAttributeToFilter('payment_table.method', ['mercadopago_customticket']);
         $collection->getSelect()->having("elapsed_hours >=" . self::DEFAULT_EXPIRATION_HOURS);
+
         return $collection->getData();
     }
 }
