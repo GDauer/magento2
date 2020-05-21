@@ -15,4 +15,5 @@
             </argument>
         </arguments>
     </type>
+    <preference for="MercadoPago\Core\Plugin\OrderCancelPlugin" type="Itatiaia\CustomMercadoPago\Plugin\Rewrite\Core\OrderCancelPluginRewrite" />
 </config>
