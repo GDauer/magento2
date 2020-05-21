@@ -111,9 +111,9 @@ class ExpiredOrderCanceller
         try {
             $order = $this->orderFactory->create()->loadByIncrementId($incrementId);
             $order->cancel();
-            $this->orderRepository->save($order);
             $message = __("Order canceled due to payment expiration date.");
             $order->addStatusToHistory("canceled", $message, true);
+            $this->orderRepository->save($order);
             $this->logger->info(__("Order %1 cancelled successfully.", $incrementId));
             return;
         } catch (\Exception $e) {
