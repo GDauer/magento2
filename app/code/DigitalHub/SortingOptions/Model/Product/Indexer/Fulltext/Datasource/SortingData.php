@@ -19,7 +19,7 @@ class SortingData implements DatasourceInterface
     public function addData($storeId, array $indexData)
     {
         foreach ($indexData as $data) {
-            if (!$data['price']) {
+            if (!isset($data['price']) || !$data['price']) {
                 continue;
             }
             $productId = $data["entity_id"];
