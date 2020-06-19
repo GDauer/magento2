@@ -31,6 +31,6 @@ class SaveProductObserver implements ObserverInterface
     public function execute(Observer $observer)
     {
         $product = $observer->getProduct();
-        $this->helper->validateProduct($product);
+        $this->helper->setProductToCategory($product);
     }
 }

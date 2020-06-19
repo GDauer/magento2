@@ -58,7 +58,7 @@ class SaveProductCron
         foreach ($products as $product) {
             if($product->getSpecialPrice() > 0 || count($product->getTierPrice()) > 0) {
                 $this->logger->info('PRODUCT: ', [$product->getData()]);
-                $this->helper->validateProduct($product);
+                $this->helper->setProductToCategory($product);
             }
         }
     }

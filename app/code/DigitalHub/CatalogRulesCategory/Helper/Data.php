@@ -7,12 +7,23 @@ use Magento\Catalog\Api\CategoryLinkManagementInterface;
 use Magento\Catalog\Model\ResourceModel\Category\CollectionFactory as CategoryFactory;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductFactory;
 use Magento\Catalog\Model\Product;
+use Magento\CatalogRule\Api\CatalogRuleRepositoryInterface;
 use Magento\CatalogRule\Model\Rule;
+use Magento\Customer\Model\ResourceModel\Group\Collection as GroupCollection;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Itatiaia\GroupedCatalogRule\Helper\Data as Helper;
+use Magento\Catalog\Api\CategoryLinkRepositoryInterface;
+use Magento\Framework\Exception\CouldNotSaveException;
+use Magento\Framework\Exception\StateException;
+use Magento\Framework\Stdlib\DateTime\DateTime;
+use Magento\Store\Api\StoreRepositoryInterface;
+use Psr\Log\LoggerInterface;
+use Magento\CatalogRule\Model\ResourceModel\Rule as RuleResourceModel;
 
 class Data extends AbstractHelper
 {
+    const NOT_LOGGED_IN = "NOT LOGGED IN";
+
     /**
      * @var CategoryFactory
      */
@@ -31,74 +42,76 @@ class Data extends AbstractHelper
     private $helper;
 
     /**
+     * @var CategoryLinkRepositoryInterface
+     */
+    private $categoryLinkRepository;
+
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
+     * @var RuleResourceModel
+     */
+    private $rule;
+
+    /**
+     * @var GroupCollection
+     */
+    private $customerGroupCollection;
+
+    /**
+     * @var DateTime
+     */
+    private $dateTime;
+
+    /**
+     * @var CatalogRuleRepositoryInterface
+     */
+    private $catalogRuleRepository;
+
+    /**
      * Data constructor.
      * @param CategoryFactory $categoryFactory
      * @param CategoryLinkManagementInterface $categoryLinkManagement
      * @param ProductFactory $productFactory
      * @param Helper $helper
+     * @param CategoryLinkRepositoryInterface $categoryLinkRepository
+     * @param LoggerInterface $logger
+     * @param RuleResourceModel $rule
+     * @param GroupCollection $customerGroupCollection
+     * @param DateTime $dateTime
+     * @param CatalogRuleRepositoryInterface $catalogRuleRepository
      */
     public function __construct(
         CategoryFactory $categoryFactory,
         CategoryLinkManagementInterface $categoryLinkManagement,
         ProductFactory $productFactory,
-        Helper $helper
+        Helper $helper,
+        CategoryLinkRepositoryInterface $categoryLinkRepository,
+        LoggerInterface $logger,
+        RuleResourceModel $rule,
+        GroupCollection $customerGroupCollection,
+        DateTime $dateTime,
+        CatalogRuleRepositoryInterface $catalogRuleRepository
     )
     {
         $this->categoryFactory = $categoryFactory;
         $this->categoryLinkManagement = $categoryLinkManagement;
         $this->productFactory = $productFactory;
         $this->helper = $helper;
+        $this->categoryLinkRepository = $categoryLinkRepository;
+        $this->logger = $logger;
+        $this->rule = $rule;
+        $this->customerGroupCollection = $customerGroupCollection;
+        $this->dateTime = $dateTime;
+        $this->catalogRuleRepository = $catalogRuleRepository;
     }
 
     /**
-     * @param Rule $rule
-     */
-    public function getRuleSkuToSaveInSalesCategory(Rule $rule) {
-        $conditions = $rule->getConditions();
-        if (!empty($conditions) && !empty($conditions->getData()) && ($conditions->getAggregator() === 'all' || $conditions->getAggregator() === 'any') && $conditions->getValue() == 1) {
-            $ruleConditions = $conditions->getConditions();
-            if (!empty($ruleConditions) && count($ruleConditions)) {
-                foreach ($ruleConditions as $condition) {
-                    if ($condition->getAttribute() === 'sku') {
-                        switch ($condition->getOperator()) {
-                            case '{}':
-                                $sku = $condition->getValue();
-                                $products = $this->productFactory->create();
-                                $products->addFieldToSelect('*')
-                                    ->addAttributeToFilter('sku', ['like' => '%'. $sku . '%']);
-                                foreach ($products as $product) {
-                                    $this->validateRule($product, $rule);
-                                }
-                                break;
-                            case '==':
-                                $sku = $condition->getValue();
-                                $products = $this->productFactory->create();
-                                $products->addFieldToSelect('*')
-                                    ->addAttributeToFilter('sku', $sku);
-                                $product = $products->getFirstItem();
-                                $this->validateRule($product, $rule);
-                                break;
-                            case '()':
-                                $skus = $condition->getValue();
-                                $skus = explode(',', $skus);
-                                foreach ($skus as $sku) {
-                                    $products = $this->productFactory->create();
-                                    $products->addFieldToSelect('*')
-                                        ->addAttributeToFilter('sku', $sku);
-                                    $product = $products->getFirstItem();
-                                    $this->validateRule($product, $rule);
-                                }
-                                break;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * @param Product|null $sku
-     * @return void
+     * @param Product|null $product
+     * @return bool
      */
     public function validateProduct(Product $product = null) {
         if (!empty($product) ) {
@@ -114,7 +127,9 @@ class Data extends AbstractHelper
                 $discount = 100 - (($finalPrice * 100) / $oldPrice);
             }
             if ($discount > 10) {
-                $this->setCategory($product);
+                return true;
+            } else {
+                return false;
             }
         }
     }
@@ -122,8 +137,9 @@ class Data extends AbstractHelper
     /**
      * @param Product|null $product
      * @param Rule|null $rule
+     * @return bool
      */
-    private function validateRule(Product $product = null, Rule $rule = null) {
+    public function validateRule(Product $product = null, Rule $rule = null) {
         if (!empty($product) ) {
             switch ($rule->getSimpleAction()) {
                 case 'by_percent':
@@ -148,7 +164,9 @@ class Data extends AbstractHelper
                     break;
             }
             if ($discount > 10) {
-                $this->setCategory($product);
+                return true;
+            } else {
+                return false;
             }
         }
     }
@@ -156,16 +174,82 @@ class Data extends AbstractHelper
     /**
      * @param Product|null $product
      */
-    private function setCategory(Product $product = null) {
-        $categoryName = 'Ofertas';
-        $categories = $this->categoryFactory->create();
-        $categories->addAttributeToSelect('*')
-            ->addAttributeToFilter('name', ['like' => '%'. $categoryName . '%']);
-        if ($categories->getSize() > 0) {
-            $category = $categories->getFirstItem();
-            $categoriesIds = $product->getCategoryIds();
-            $categoriesIds[] = $category->getEntityId();
-            $this->categoryLinkManagement->assignProductToCategories($product->getSku(), $categoriesIds);
+    public function setCategory(Product $product = null) {
+        if (!empty($product)) {
+            $categoryName = 'Ofertas';
+            $categories = $this->categoryFactory->create();
+            $categories->addAttributeToSelect('*')
+                ->addAttributeToFilter('name', ['like' => '%'. $categoryName . '%']);
+            if ($categories->getSize() > 0) {
+                $category = $categories->getFirstItem();
+                $categoriesIds = $product->getCategoryIds();
+                if (array_search($category->getEntityId(),$categoriesIds) === false) {
+                    $categoriesIds[] = $category->getEntityId();
+                    $this->categoryLinkManagement->assignProductToCategories($product->getSku(), $categoriesIds);
+                    $product->setCategoryIds($categoriesIds);
+                }
+            }
+        }
+    }
+
+    /**
+     * @param Product|null $product
+     */
+    public function unsetCategory(Product $product = null) {
+        if (!empty($product)) {
+            $categoryName = 'Ofertas';
+            $categories = $this->categoryFactory->create();
+            $categories->addAttributeToSelect('*')
+                ->addAttributeToFilter('name', ['like' => '%'. $categoryName . '%']);
+            if ($categories->getSize() > 0) {
+                $category = $categories->getFirstItem();
+                $categoriesIds = $product->getCategoryIds();
+                if (array_search($category->getEntityId(),$categoriesIds) !== false) {
+                    try {
+                        $this->categoryLinkRepository->deleteByIds($category->getEntityId(), $product->getSku());
+                    } catch (CouldNotSaveException | StateException $e) {
+                        $this->logger->error('Error in deleting product from category Ofertas', [$e->getMessage()]);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * @param Product|null $product
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function setProductToCategory(Product $product = null) {
+        if (!empty($product)) {
+            $customerGroups = $this->customerGroupCollection->getItems();
+            $customerGroupId = 0;
+            foreach ($customerGroups as $customerGroup) {
+                if ($customerGroup->getCustomerGroupCode() !== self::NOT_LOGGED_IN) {
+                    $customerGroupId = $customerGroup->getCustomerGroupId();
+                    break;
+                }
+            }
+            $websitesId = $product->getWebsiteIds();
+
+            $websiteId = reset($websitesId);;
+            /**
+             * @var \Magento\Framework\Stdlib\DateTime\DateTime
+             */
+            $dateTs = $this->dateTime->gmtDate();
+            $rules = $this->rule->getRulesFromProduct($dateTs, $websiteId, $customerGroupId, $product->getEntityId());
+            $ruleValidated = false;
+            foreach ($rules as $item) {
+                $rule = $this->catalogRuleRepository->get($item['rule_id']);
+                $ruleValidated = $this->validateRule($product, $rule);
+            }
+
+            $productValidated = $this->validateProduct($product);
+
+            if ($ruleValidated === true || $productValidated === true) {
+                $this->setCategory($product);
+            } else {
+                $this->unsetCategory($product);
+            }
         }
     }
 }
