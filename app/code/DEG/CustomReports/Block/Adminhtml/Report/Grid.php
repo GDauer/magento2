@@ -54,10 +54,16 @@ class Grid extends \Magento\Backend\Block\Widget\Grid
                 $this->_defaultSort = $key;
             }
             /** @var $column \Magento\Backend\Block\Widget\Grid\Column **/
+            $header = $key;
+            $type = 'text';
+            if( $key == 'created_at'){
+                $header = 'Data Pedido';
+                $type = "datetime";
+            }
             $data = [
-                'data' => ['header' => $key,
+                'data' => ['header' => $header,
                     'index' => $key,
-                    'type' => 'text']
+                    'type' => $type]
             ];
             $column = $this->_layout->createBlock('Magento\Backend\Block\Widget\Grid\Column', 'deg_customreports_grid.grid.column.'.$key, $data);
             $columnSet->setChild($key, $column);
