@@ -96,7 +96,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             return $price;
         }
 
-        return $product->getFinalPrice();
+        return $product->getPrice();
     }
 
     // regular price
