@@ -14,6 +14,15 @@
                         </a>
                     </li>
                 <?php endforeach; ?>
+								<?php if($this->getLayout()->createBlock('Magento\Cms\Block\Block')
+								->setBlockId('link_rastreio')->toHtml()): ?>
+									<li class="link-rastreio">
+										<?php
+										 echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')
+										 ->setBlockId('link_rastreio')->toHtml();
+										?>
+									</li>
+								<?php endif; ?>
             </ul>
         </nav>
     </div>
