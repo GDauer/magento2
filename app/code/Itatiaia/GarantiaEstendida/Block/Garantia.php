@@ -65,25 +65,31 @@ class Garantia extends Template
         $allowByCategory = array_intersect($categoryIds, $categoriesAllowed);
         $allowByByProductAttribute = false;
 
-        $attributeValue = $product->getCustomAttribute($productAttribute);
+        $attributeValue = $productAttribute ? $product->getCustomAttribute($productAttribute) : null;
 
-        if ($attributeValue && $attributeValue->getValue()) {
-            $allowByByProductAttribute = true;
-        }
+        if ($attributeValue) {
+            if ($attributeValue && $attributeValue->getValue()) {
+                $allowByByProductAttribute = true;
+            }
 
-        // CAT = 1 PROD = 1
-        if ($allowByByProductAttribute && $allowByCategory) {
-            return true;
-        }
+            // CAT = 1 PROD = 1
+            if ($allowByByProductAttribute && $allowByCategory) {
+                return true;
+            }
 
-        // CAT = 1 PROD 0
-        if ($allowByCategory && !$allowByByProductAttribute) {
-            return false;
-        }
+            // CAT = 1 PROD 0
+            if ($allowByCategory && !$allowByByProductAttribute) {
+                return false;
+            }
 
-        // CAT = 0 PROD = 1
-        if (!$allowByCategory && $allowByByProductAttribute) {
-            return true;
+            // CAT = 0 PROD = 1
+            if (!$allowByCategory && $allowByByProductAttribute) {
+                return true;
+            }
+        } else {
+            if ($allowByCategory) {
+                return true;
+            }
         }
 
         return false;
