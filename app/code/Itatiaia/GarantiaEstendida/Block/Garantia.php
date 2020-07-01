@@ -53,6 +53,7 @@ class Garantia extends Template
     {
         $categoryIds = $product->getCategoryIds();
         $categoriesAllowed = $this->getCategories();
+        $productAttribute = $this->getSelectedProductAttribute();
 
         if(!is_array($categoriesAllowed)){
             $categoriesAllowed = explode(',',$categoriesAllowed);
@@ -61,10 +62,31 @@ class Garantia extends Template
             $categoryIds = explode(',',$categoryIds);
         }
 
-        if(!array_intersect($categoryIds, $categoriesAllowed)) {
+        $allowByCategory = array_intersect($categoryIds, $categoriesAllowed);
+        $allowByByProductAttribute = false;
+
+        $attributeValue = $product->getCustomAttribute($productAttribute);
+
+        if ($attributeValue && $attributeValue->getValue()) {
+            $allowByByProductAttribute = true;
+        }
+
+        // CAT = 1 PROD = 1
+        if ($allowByByProductAttribute && $allowByCategory) {
+            return true;
+        }
+
+        // CAT = 1 PROD 0
+        if ($allowByCategory && !$allowByByProductAttribute) {
             return false;
         }
-        return true;
+
+        // CAT = 0 PROD = 1
+        if (!$allowByCategory && $allowByByProductAttribute) {
+            return true;
+        }
+
+        return false;
     }
 
     public function isActive(){
@@ -76,5 +98,10 @@ class Garantia extends Template
     }
     public function getCategories(){
         return $this->scopeConfig->getValue('sales/itatiaia_garantiaestendida/categorias', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+    }
+
+    public function getSelectedProductAttribute()
+    {
+        return $this->scopeConfig->getValue('sales/itatiaia_garantiaestendida/atributo_produto_garantia_estendida', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
     }
 }
