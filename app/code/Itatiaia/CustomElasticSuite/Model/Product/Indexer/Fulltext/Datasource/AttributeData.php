@@ -1,0 +1,254 @@
+<?php
+
+namespace Itatiaia\CustomElasticSuite\Model\Product\Indexer\Fulltext\Datasource;
+
+use Magento\Framework\App\ObjectManager;
+
+/**
+ * Class AttributeData
+ * @package Itatiaia\CustomElasticSuite\Model\Product\Indexer\Fulltext\Datasource
+ */
+class AttributeData extends \Smile\ElasticsuiteCatalog\Model\Product\Indexer\Fulltext\Datasource\AttributeData
+{
+    const FORBIDDEN_CHILDREN_ATTRIBUTES = ['visibility', 'status', 'price', 'tax_class_id'];
+
+    /** @var \Magento\Eav\Model\Config $eavConfig */
+    private $eavConfig;
+
+    /** @var  \Psr\Log\LoggerInterface $logger */
+    private $logger;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addData($storeId, array $indexData)
+    {
+        $this->eavConfig = ObjectManager::getInstance()->get('\Magento\Eav\Model\Config');
+        $this->logger = ObjectManager::getInstance()->get('\Psr\Log\LoggerInterface');
+        $productIds   = array_keys($indexData);
+        $indexData    = $this->addAttributeData($storeId, $productIds, $indexData);
+
+        $relationsByChildId = $this->resourceModel->loadChildrens($productIds, $storeId);
+
+        if (!empty($relationsByChildId)) {
+            $allChildrenIds      = array_keys($relationsByChildId);
+            $childrenIndexData   = $this->addAttributeData($storeId, $allChildrenIds);
+
+            foreach ($childrenIndexData as $childrenId => $childrenData) {
+                $enabled = isset($childrenData['status']) && current($childrenData['status']) == 1;
+                if ($enabled === false) {
+                    unset($childrenIndexData[$childrenId]);
+                }
+            }
+
+            foreach ($relationsByChildId as $childId => $relations) {
+                foreach ($relations as $relation) {
+                    $parentId = (int) $relation['parent_id'];
+                    if (isset($indexData[$parentId]) && isset($childrenIndexData[$childId])) {
+                        $indexData[$parentId]['children_ids'][] = $childId;
+                        $this->addRelationData($indexData[$parentId], $childrenIndexData[$childId], $relation);
+                        $this->addChildData($indexData[$parentId], $childrenIndexData[$childId]);
+                        $this->addChildSku($indexData[$parentId], $relation);
+                    }
+                }
+            }
+        }
+
+        $indexData = $this->filterCompositeProducts($indexData);
+
+        return $indexData;
+    }
+
+    /**
+     * Append attribute data to the index.
+     *
+     * @param int   $storeId    Indexed store id.
+     * @param array $productIds Indexed product ids.
+     * @param array $indexData  Original indexed data.
+     *
+     * @return array
+     */
+    private function addAttributeData($storeId, $productIds, $indexData = [])
+    {
+        foreach ($this->attributeIdsByTable as $backendTable => $attributeIds) {
+            $attributesData = $this->loadAttributesRawData($storeId, $productIds, $backendTable, $attributeIds);
+            foreach ($attributesData as $row) {
+                $productId    = (int) $row['entity_id'];
+                $attribute    = $this->attributesById[$row['attribute_id']];
+                $indexValues  = $this->attributeHelper->prepareIndexValue($attribute, $storeId, $row['value']);
+                if (!isset($indexData[$productId])) {
+                    $indexData[$productId] = [];
+                }
+
+                $indexData[$productId] += $indexValues;
+
+                $this->addIndexedAttribute($indexData[$productId], $attribute);
+            }
+        }
+
+        return $indexData;
+    }
+
+    /**
+     * Append data of child products to the parent.
+     *
+     * @param array $parentData      Parent product data.
+     * @param array $childAttributes Child product attributes data.
+     *
+     * @return void
+     */
+    private function addChildData(&$parentData, $childAttributes)
+    {
+        $authorizedChildAttributes = $parentData['children_attributes'];
+        $addedChildAttributesData  = array_filter(
+            $childAttributes,
+            function ($attributeCode) use ($authorizedChildAttributes) {
+                return in_array($attributeCode, $authorizedChildAttributes);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
+
+        foreach ($addedChildAttributesData as $attributeCode => $value) {
+            if (!isset($parentData[$attributeCode])) {
+                $parentData[$attributeCode] = [];
+            }
+
+            $parentData[$attributeCode] = array_values(array_unique(array_merge($parentData[$attributeCode], $value)));
+        }
+    }
+
+    /**
+     * Append relation information to the index for composite products.
+     *
+     * @param array $parentData      Parent product data.
+     * @param array $childAttributes Child product attributes data.
+     * @param array $relation        Relation data between the child and the parent.
+     *
+     * @return void
+     */
+    private function addRelationData(&$parentData, $childAttributes, $relation)
+    {
+        $childAttributeCodes  = array_keys($childAttributes);
+        $parentAttributeCodes = array_keys($parentData);
+        $forbiddenChildrenAttributeCode = $this->getForbiddenChildrenAttributesCode($childAttributeCodes);
+
+        if (!isset($parentData['children_attributes'])) {
+            $parentData['children_attributes'] = ['indexed_attributes'];
+        }
+
+        $childrenAttributes = array_merge(
+            $parentData['children_attributes'],
+            array_diff($childAttributeCodes, $forbiddenChildrenAttributeCode)
+        );
+
+        if (isset($relation['configurable_attributes']) && !empty($relation['configurable_attributes'])) {
+            $addedChildrenAttributes = array_diff(
+                $childAttributeCodes,
+                $forbiddenChildrenAttributeCode,
+                $parentAttributeCodes
+            );
+            $childrenAttributes = array_merge($addedChildrenAttributes, $parentData['children_attributes']);
+
+            if (!isset($parentData['configurable_attributes'])) {
+                $parentData['configurable_attributes'] = [];
+            }
+
+            $configurableAttributesCodes = array_map(
+                function ($attributeId) {
+                    if (isset($this->attributesById[(int) $attributeId])) {
+                        return $this->attributesById[(int) $attributeId]->getAttributeCode();
+                    }
+                },
+                $relation['configurable_attributes']
+            );
+
+            $parentData['configurable_attributes'] = array_values(
+                array_unique(array_merge($configurableAttributesCodes, $parentData['configurable_attributes']))
+            );
+        }
+
+        $parentData['children_attributes'] = array_values(array_unique($childrenAttributes));
+    }
+
+    /**
+     * Filter out composite product when no enabled children are attached.
+     *
+     * @param array $indexData Indexed data.
+     *
+     * @return array
+     */
+    private function filterCompositeProducts($indexData)
+    {
+        $compositeProductTypes = $this->resourceModel->getCompositeTypes();
+
+        foreach ($indexData as $productId => $productData) {
+            $isComposite = in_array($productData['type_id'], $compositeProductTypes);
+            $hasChildren = isset($productData['children_ids']) && !empty($productData['children_ids']);
+            if ($isComposite && !$hasChildren) {
+                unset($indexData[$productId]);
+            }
+        }
+
+        return $indexData;
+    }
+
+    /**
+     * Append SKU of children product to the parent product index data.
+     *
+     * @param array $parentData Parent product data.
+     * @param array $relation   Relation data between the child and the parent.
+     */
+    private function addChildSku(&$parentData, $relation)
+    {
+        if (isset($parentData['sku']) && !is_array($parentData['sku'])) {
+            $parentData['sku'] = [$parentData['sku']];
+        }
+
+        $parentData['sku'][] = $relation['sku'];
+        $parentData['sku'] = array_unique($parentData['sku']);
+    }
+
+    /**
+     * Append an indexed attributes to indexed data of a given product.
+     *
+     * @param array                                                  $productIndexData Product Index data
+     * @param \Magento\Eav\Model\Entity\Attribute\AttributeInterface $attribute        The attribute
+     */
+    private function addIndexedAttribute(&$productIndexData, $attribute)
+    {
+        if (!isset($productIndexData['indexed_attributes'])) {
+            $productIndexData['indexed_attributes'] = [];
+        }
+
+        // Data can be missing for this attribute (Eg : due to null value being escaped).
+        if (isset($productIndexData[$attribute->getAttributeCode()])) {
+            $productIndexData['indexed_attributes'][] = $attribute->getAttributeCode();
+        }
+    }
+
+    /**
+     * Create the real forbidden attributes for children relation based on the attributes config
+     * @param $attributes
+     * @return array
+     */
+    private function getForbiddenChildrenAttributesCode($attributes)
+    {
+        $ignoreAttributes = [];
+
+        foreach ($attributes as $code) {
+            try {
+                $attribute = $this->eavConfig->getAttribute('catalog_product', $code);
+                if ($attribute->getEsIgnoreIndexOnParent()) {
+                    array_push($ignoreAttributes, $code);
+                    array_push($ignoreAttributes, 'option_text_' . $code);
+                }
+            } catch (\Exception $e) {
+                $this->logger->warning(__("Error trying do get the attribute %1 config. Error: %2", $code, $e->getMessage()));
+            }
+        }
+
+        $ignoreAttributes = array_diff($ignoreAttributes, self::FORBIDDEN_CHILDREN_ATTRIBUTES);
+
+        return array_merge(self::FORBIDDEN_CHILDREN_ATTRIBUTES, $ignoreAttributes);
+    }
+}

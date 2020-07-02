@@ -1,4 +1,10 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
     <preference for="Smile\ElasticsuiteCatalog\Model\Product\Indexer\Fulltext\Datasource\PriceData\PriceGrouped" type="Itatiaia\CustomElasticSuite\Model\Product\Indexer\Fulltext\Datasource\PriceData\PriceGrouped" />
+    <preference for="Smile\ElasticsuiteCatalog\Model\Product\Indexer\Fulltext\Datasource\AttributeData" type="Itatiaia\CustomElasticSuite\Model\Product\Indexer\Fulltext\Datasource\AttributeData" />
+
+    <type name="Smile\ElasticsuiteCatalog\Block\Plugin\Adminhtml\Product\Attribute\Edit\Tab\FrontPlugin">
+        <plugin name="itatiaia_ignore_index_attribute_on_composite" type="Itatiaia\CustomElasticSuite\Plugin\Adminhtml\Product\Attribute\Edit\Tab\AddFieldPlugin" sortOrder="100" disabled="false" />
+    </type>
+
 </config>
