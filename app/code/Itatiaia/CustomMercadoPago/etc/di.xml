@@ -13,4 +13,12 @@
     <preference for="MercadoPago\Core\Block\Info" type="Itatiaia\CustomMercadoPago\Block\Info" />
     <preference for="MercadoPago\Core\Helper\Data" type="Itatiaia\CustomMercadoPago\Helper\Data" />
 	<preference for="MercadoPago\Core\Controller\Checkout\Page" type="Itatiaia\CustomMercadoPago\Controller\Checkout\Page" />
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="mercadopago_order_expired_canceller" xsi:type="object">Itatiaia\CustomMercadoPago\Console\Command\ExpiredOrderCancellerCommand</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="MercadoPago\Core\Plugin\OrderCancelPlugin" type="Itatiaia\CustomMercadoPago\Plugin\Rewrite\Core\OrderCancelPluginRewrite" />
 </config>
