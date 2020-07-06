@@ -31,6 +31,15 @@
   ?>
   <div class="post-mnu">
     <ul>
+			<?php if($this->getLayout()->createBlock('Magento\Cms\Block\Block')
+			->setBlockId('link_rastreio')->toHtml()): ?>
+				<li class="link-rastreio">
+					<?php
+					 echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')
+					 ->setBlockId('link_rastreio')->toHtml();
+					?>
+				</li>
+			<?php endif; ?>
       <li><a href="<?php echo $this->getUrl('wishlist'); ?>">Lista de Desejos</a></li>
       <li><a href="<?php echo $this->getUrl('checkout/cart'); ?>">Carrinho de compras</a></li>
     </ul>
