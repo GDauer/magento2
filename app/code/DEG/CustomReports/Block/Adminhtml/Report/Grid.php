@@ -59,12 +59,47 @@ class Grid extends \Magento\Backend\Block\Widget\Grid
             if( $key == 'created_at'){
                 $header = 'Data Pedido';
                 $type = "datetime";
+                $data = [
+                    'data' => ['header' => $header,
+                        'index' => $key,
+                        'type' => $type]
+                ];
+
+            } else if($key == "price_item" || $key == "price_order" ){
+                $key == "price_item" ? $header = 'Preco Produto' : $header = "Total Pedido";
+                $type = "price";
+                $data = [
+                    'data' => ['header' => $header,
+                        'index' => $key,
+                        'currency_code' => "BRL",
+                        'type' => $type]
+                ];
+
+            } else if($key == "frete"){
+                $type = "price";
+                $header = "Frete";
+                $data = [
+                    'data' => ['header' => $header,
+                        'index' => $key,
+                        'currency_code' => "BRL",
+                        'type' => $type]
+                ];
+            }else if($key == "statusorder"){
+                $data = [
+                    'data' => ['header' => $header,
+                        'index' => $key,
+                        'renderer' => "DEG\CustomReports\Ui\Component\Listing\Column\Renderer\Statusorder",
+                        'type' => $type]
+                ];
+
+            } else {
+                $data = [
+                    'data' => ['header' => $header,
+                        'index' => $key,
+                        'type' => $type]
+                ];
             }
-            $data = [
-                'data' => ['header' => $header,
-                    'index' => $key,
-                    'type' => $type]
-            ];
+
             $column = $this->_layout->createBlock('Magento\Backend\Block\Widget\Grid\Column', 'deg_customreports_grid.grid.column.'.$key, $data);
             $columnSet->setChild($key, $column);
         }
