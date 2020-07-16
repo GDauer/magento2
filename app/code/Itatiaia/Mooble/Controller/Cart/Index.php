@@ -79,6 +79,7 @@ class Index extends Action
     public function execute()
     {
         $skus = $this->getRequest()->getParam('sku');
+        $moobleId = $this->getRequest()->getParam('mooblebudget');
         $skus = explode(',',$skus);
         $quote = $this->cartFactory->create();
 
@@ -101,6 +102,7 @@ class Index extends Action
                 }
             }
         }
+        $quote->getQuote()->setMoobleId($moobleId);
         $quote->save();
 
         $resultRedirect = $this->resultRedirectFactory->create();
