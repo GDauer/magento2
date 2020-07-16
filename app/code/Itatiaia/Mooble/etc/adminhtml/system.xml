@@ -14,6 +14,9 @@
                 <field id="partner_name" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Nome do Parceiro</label>
                 </field>
+                <field id="iframe_url" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Url Inicial do Iframe</label>
+                </field>
             </group>
         </section>
     </system>

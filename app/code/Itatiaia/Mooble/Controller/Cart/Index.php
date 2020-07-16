@@ -83,20 +83,22 @@ class Index extends Action
         $quote = $this->cartFactory->create();
 
         foreach ($skus as $sku) {
-            try {
-                $product = $this->productRepository->get($sku);
-                if($product->getTypeId() == 'grouped'){
-                    $associatedProducts = $product->getTypeInstance(true)->getAssociatedProducts($product);
-                    foreach ($associatedProducts as $item) {
-                        $qty = $item->getQty() ? $item->getQty() : 1;
-                        $quote = $this->addProduct($quote,$item, $qty);
+            if (!empty($sku)) {
+                try {
+                    $product = $this->productRepository->get($sku);
+                    if($product->getTypeId() == 'grouped'){
+                        $associatedProducts = $product->getTypeInstance(true)->getAssociatedProducts($product);
+                        foreach ($associatedProducts as $item) {
+                            $qty = $item->getQty() ? $item->getQty() : 1;
+                            $quote = $this->addProduct($quote,$item, $qty);
+                        }
+                    } else {
+                        $qty = 1;
+                        $quote = $this->addProduct($quote, $product, $qty);
                     }
-                } else {
-                    $qty = 1;
-                    $quote = $this->addProduct($quote, $product, $qty);
+                } catch (NoSuchEntityException $e) {
+                    $this->logger->warning(__('Product with sku %1 does not exists on the Mooble Controller', $sku),[$e->getMessage()]);
                 }
-            } catch (NoSuchEntityException $e) {
-                $this->logger->warning(__('Product with sku %1 does not exists on the Mooble Controller', $sku),[$e->getMessage()]);
             }
         }
         $quote->save();

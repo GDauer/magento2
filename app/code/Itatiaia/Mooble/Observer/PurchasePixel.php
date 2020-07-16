@@ -9,7 +9,6 @@ use Magento\Framework\Event\ObserverInterface;
 use Magento\Sales\Model\Order\Invoice;
 use Magento\Store\Model\ScopeInterface;
 use Psr\Log\LoggerInterface;
-use Magento\Checkout\Model\Session;
 
 class PurchasePixel implements ObserverInterface
 {
