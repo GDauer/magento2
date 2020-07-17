@@ -24,12 +24,16 @@ class PurchasePixel implements ObserverInterface
      */
     protected $scopeConfig;
 
+    /**
+     * @var QuoteFactory
+     */
     protected $quoteFactory;
 
     /**
      * PurchasePixel constructor.
      * @param LoggerInterface $logger
      * @param ScopeConfigInterface $scopeConfig
+     * @param QuoteFactory $quoteFactory
      */
     public function __construct(
         LoggerInterface $logger,
@@ -50,12 +54,13 @@ class PurchasePixel implements ObserverInterface
         if ($invoice->getState() == Invoice::STATE_PAID
             && $invoice->getOrigData('state') != Invoice::STATE_PAID) {
             $order = $invoice->getOrder();
-            if (!empty($this->getPartnerName())) {
+            $quote = $this->quoteFactory->create()->load($order->getQuoteId());
+            if (!empty($this->getPartnerName()) && !empty($quote->getMoobleId())) {
                 try {
                     $client = new \GuzzleHttp\Client();
                     $response = $client->request(
                         'GET',
-                        $this->getUrl($order)
+                        $this->getUrl($order, $quote)
                     );
                     $this->logger->info(__('Integrated order %1 with Mooble', $order->getIncrementId()), [$response]);
                 } catch (\Exception $e) {
@@ -69,8 +74,8 @@ class PurchasePixel implements ObserverInterface
      * @param $order
      * @return string
      */
-    protected function getUrl($order) {
-        $quote = $this->quoteFactory->create()->load($order->getQuoteId());
+    protected function getUrl($order, $quote) {
+
         if ($this->scopeConfig->getValue('mooble/general/sandbox',ScopeInterface::SCOPE_STORE)) {
             $baseUrl = self::SANDBOX_URL;
         } else {
