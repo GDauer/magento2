@@ -9,9 +9,12 @@ use Magento\Framework\Event\ObserverInterface;
 use Magento\Sales\Model\Order\Invoice;
 use Magento\Store\Model\ScopeInterface;
 use Psr\Log\LoggerInterface;
+use Magento\Quote\Model\QuoteFactory;
 
 class PurchasePixel implements ObserverInterface
 {
+    const SANDBOX_URL = 'https://demo.mooble.com/';
+    const PRODUCTION_URL = 'https://www.mooble.com/';
     /**
      * @var LoggerInterface
      */
@@ -21,6 +24,8 @@ class PurchasePixel implements ObserverInterface
      */
     protected $scopeConfig;
 
+    protected $quoteFactory;
+
     /**
      * PurchasePixel constructor.
      * @param LoggerInterface $logger
@@ -28,10 +33,12 @@ class PurchasePixel implements ObserverInterface
      */
     public function __construct(
         LoggerInterface $logger,
-        ScopeConfigInterface $scopeConfig
+        ScopeConfigInterface $scopeConfig,
+        QuoteFactory $quoteFactory
     ) {
         $this->logger = $logger;
         $this->scopeConfig = $scopeConfig;
+        $this->quoteFactory = $quoteFactory;
     }
 
     /**
@@ -50,6 +57,7 @@ class PurchasePixel implements ObserverInterface
                         'GET',
                         $this->getUrl($order)
                     );
+                    $this->logger->info(__('Integrated order %1 with Mooble', $order->getIncrementId()), [$response]);
                 } catch (\Exception $e) {
                     $this->logger->critical($e->getMessage());
                 }
@@ -62,8 +70,15 @@ class PurchasePixel implements ObserverInterface
      * @return string
      */
     protected function getUrl($order) {
-        return 'https://www.mooble1.com/purchasepixel/' . $this->getPartnerName() . '?order=' . $order->getIncrementId() . '&customer='
-        . $order->getCustomerEmail() . '&total=' . $order->getGrandTotal();
+        $quote = $this->quoteFactory->create()->load($order->getQuoteId());
+        if ($this->scopeConfig->getValue('mooble/general/sandbox',ScopeInterface::SCOPE_STORE)) {
+            $baseUrl = self::SANDBOX_URL;
+        } else {
+            $baseUrl = self::PRODUCTION_URL;
+        }
+
+        return $baseUrl . 'purchasepixel/' . $this->getPartnerName() . '?order=' . $order->getIncrementId() . '&customer='
+        . $order->getCustomerEmail() . '&total=' . $order->getGrandTotal() . '&budgetId=' . $quote->getMoobleId();
     }
 
     /**
