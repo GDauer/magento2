@@ -106,8 +106,8 @@ require([
                     if (!("erro" in dados)) {
                         console.log(closestForm);
                         //Atualiza os campos com os valores da consulta.
-                        closestForm.find("input[name='street[0]']").val(dados.logradouro).trigger('change');
-                        closestForm.find("input[name='street[3]']").val(dados.bairro).trigger('change');
+                        closestForm.find("input[name='street[0]']").val(dados.logradouro.substring(0, 60)).trigger('change');
+                        closestForm.find("input[name='street[3]']").val(dados.bairro.substring(0, 40)).trigger('change');
                         closestForm.find("input[name='city']").val(dados.localidade).trigger('change');
 
                         for (var i = 0; i < 27; i++) {
