@@ -58,7 +58,8 @@
         "digitalhub/module-cookie": "dev-master",
         "konduto/magento2": "^1.0",
         "mercadopago/magento2-plugin": "^3.3",
-        "cweagans/composer-patches": "^1.6"
+        "cweagans/composer-patches": "^1.6",
+        "gocache/cdn": "1.0.2"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.2.0",
