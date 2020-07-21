@@ -46,10 +46,12 @@ class FixVariables
     {
         if (count($result['products']) > 0) {
             $currentStore = $this->storeManager->getStore();
+            $currencyCode = $currentStore->getCurrentCurrency()->getCode();
             $baseUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
             foreach ($result['products'] as $id => $product) {
                 if (isset($product['entity_id'])) {
                     $prod = $this->productRepository->getById($product['entity_id']);
+                    $result['products'][$id]['final_price_with_currency_code'] = $prod->getFinalPrice() . ' ' . $currencyCode;
                     if (!empty($prod->getImage())) {
                         $result['products'][$id]['image'] = $baseUrl . 'catalog/product' . $prod->getImage();
                     }
