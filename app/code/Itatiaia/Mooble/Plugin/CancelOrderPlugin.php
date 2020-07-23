@@ -56,7 +56,7 @@ class CancelOrderPlugin
             try {
                 $client = new \GuzzleHttp\Client();
                 $response = $client->request(
-                    'GET',
+                    'POST',
                     $this->getUrl($order)
                 );
                 $this->logger->info(__('Canceled order %1 in Mooble', $order->getIncrementId()), [$response]);
