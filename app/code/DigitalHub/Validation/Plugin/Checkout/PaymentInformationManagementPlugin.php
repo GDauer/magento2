@@ -45,7 +45,9 @@ class PaymentInformationManagementPlugin
         if (!isset($validation['isValid']) || $validation['isValid'] === false) {
             $message = 'Dados de endereço inválidos';
 
-            if (!empty($validation['message'])) {
+            if (!empty($billingAddress->getCustomerAddressId())) {
+                $message = 'Por favor altere ou adicione um novo endereço, pois o endereço selecionado possui dados inválidos';
+            } elseif (!empty($validation['message'])) {
                 $message .= ': ' . $validation['message'];
             }
 
