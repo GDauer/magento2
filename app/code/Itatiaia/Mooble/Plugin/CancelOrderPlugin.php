@@ -79,7 +79,7 @@ class CancelOrderPlugin
             $baseUrl = self::PRODUCTION_URL;
         }
 
-        return $baseUrl . 'api/ecommerce/cancelorder?partnership=' . $this->getPartnerName() . '?order=' . $order->getIncrementId();
+        return $baseUrl . 'api/ecommerce/cancelorder?partnership=' . $this->getPartnerName() . '&order=' . $order->getIncrementId();
     }
 
     /**
