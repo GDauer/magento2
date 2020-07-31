@@ -2,6 +2,6 @@
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="Magento\Sales\Model\Order">
-        <plugin name="digitalhub_mooble_order_cancel" type="Itatiaia\Mooble\Plugin\CancelOrderPlugin" sortOrder="300"/>
+        <plugin name="digitalhub_mooble_order" type="Itatiaia\Mooble\Plugin\OrderPlugin" sortOrder="300"/>
     </type>
 </config>
