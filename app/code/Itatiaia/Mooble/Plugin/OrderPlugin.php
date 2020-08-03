@@ -10,10 +10,11 @@ use Psr\Log\LoggerInterface;
 use Magento\Sales\Model\Order;
 use Magento\Quote\Model\QuoteFactory;
 
-class CancelOrderPlugin
+class OrderPlugin
 {
     const SANDBOX_URL = 'https://demo.mooble.com/';
     const PRODUCTION_URL = 'https://www.mooble.com/';
+    const INCREMENT_ID_SUFFIX = 'MO';
 
     /**
      * @var LoggerInterface
@@ -69,6 +70,20 @@ class CancelOrderPlugin
     }
 
     /**
+     * @param Order $order
+     */
+    public function beforeSave(Order $order)
+    {
+        $quote = $this->quoteFactory->create()->load($order->getQuoteId());
+        $incrementId = $order->getIncrementId();
+        if (!empty($quote->getMoobleId()) && strpos($incrementId, self::INCREMENT_ID_SUFFIX) === false) {
+            $incrementId .= self::INCREMENT_ID_SUFFIX;
+            $order->setIncrementId($incrementId);
+        }
+        return;
+    }
+
+    /**
      * @param $order
      * @return string
      */
@@ -79,7 +94,7 @@ class CancelOrderPlugin
             $baseUrl = self::PRODUCTION_URL;
         }
 
-        return $baseUrl . 'api/ecommerce/cancelorder?partnership=' . $this->getPartnerName() . '?order=' . $order->getIncrementId();
+        return $baseUrl . 'api/ecommerce/cancelorder?partnership=' . $this->getPartnerName() . '&order=' . $order->getIncrementId();
     }
 
     /**
