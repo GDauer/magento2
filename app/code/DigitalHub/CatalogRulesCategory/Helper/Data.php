@@ -5,7 +5,7 @@ namespace DigitalHub\CatalogRulesCategory\Helper;
 
 use Magento\Catalog\Api\CategoryLinkManagementInterface;
 use Magento\Catalog\Model\ResourceModel\Category\CollectionFactory as CategoryFactory;
-use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductFactory;
+use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Model\Product;
 use Magento\CatalogRule\Api\CatalogRuleRepositoryInterface;
 use Magento\CatalogRule\Model\Rule;
@@ -19,6 +19,7 @@ use Magento\Framework\Stdlib\DateTime\DateTime;
 use Magento\Store\Api\StoreRepositoryInterface;
 use Psr\Log\LoggerInterface;
 use Magento\CatalogRule\Model\ResourceModel\Rule as RuleResourceModel;
+use Magento\Framework\Exception\NoSuchEntityException;
 
 class Data extends AbstractHelper
 {
@@ -28,14 +29,17 @@ class Data extends AbstractHelper
      * @var CategoryFactory
      */
     private $categoryFactory;
+
     /**
      * @var CategoryLinkManagementInterface
      */
     private $categoryLinkManagement;
+
     /**
-     * @var ProductFactory
+     * @var ProductRepositoryInterface
      */
-    private $productFactory;
+    private $productRepository;
+
     /**
      * @var Helper
      */
@@ -75,7 +79,7 @@ class Data extends AbstractHelper
      * Data constructor.
      * @param CategoryFactory $categoryFactory
      * @param CategoryLinkManagementInterface $categoryLinkManagement
-     * @param ProductFactory $productFactory
+     * @param ProductRepositoryInterface $productRepository
      * @param Helper $helper
      * @param CategoryLinkRepositoryInterface $categoryLinkRepository
      * @param LoggerInterface $logger
@@ -87,7 +91,7 @@ class Data extends AbstractHelper
     public function __construct(
         CategoryFactory $categoryFactory,
         CategoryLinkManagementInterface $categoryLinkManagement,
-        ProductFactory $productFactory,
+        ProductRepositoryInterface $productRepository,
         Helper $helper,
         CategoryLinkRepositoryInterface $categoryLinkRepository,
         LoggerInterface $logger,
@@ -99,7 +103,7 @@ class Data extends AbstractHelper
     {
         $this->categoryFactory = $categoryFactory;
         $this->categoryLinkManagement = $categoryLinkManagement;
-        $this->productFactory = $productFactory;
+        $this->productRepository = $productRepository;
         $this->helper = $helper;
         $this->categoryLinkRepository = $categoryLinkRepository;
         $this->logger = $logger;
@@ -249,6 +253,51 @@ class Data extends AbstractHelper
                 $this->setCategory($product);
             } else {
                 $this->unsetCategory($product);
+            }
+        }
+    }
+
+    /**
+     * Validate if it is possible to add the products related with the rule to Offers Category
+     * @param Rule|null $rule
+     */
+    public function setRuleToCategory(Rule $rule = null) {
+        if (!empty($rule)) {
+            $now = $this->dateTime->gmtDate();
+            if (($rule->getFromDate() == 0 || $rule->getFromDate() < $now) && ($rule->getToDate() == 0 || $rule->getToDate() > $now) && $rule->getIsActive()) {
+                $productIds = $rule->getMatchingProductIds();
+                foreach ($productIds as $productId => $validationByWebsite) {
+                    try {
+                        $product = $this->productRepository->getById($productId);
+                        if ($this->validateRule($product, $rule) || $this->validateProduct($product)) {
+                            $this->logger->info('Set Catalog Rule Category', [$rule->getData()]);
+                            $this->setCategory($product);
+                        } else {
+                            $this->logger->info('Remove Catalog Rule Category', [$rule->getData()]);
+                            $this->unsetCategory($product);
+                        }
+                    } catch (NoSuchEntityException $e) {
+                        $this->logger->alert('Product does not exists in setRuleToCategory method', [$e->getMessage()]);
+                    }
+
+                }
+            } else {
+                $productIds = $rule->getMatchingProductIds();
+                foreach ($productIds as $productId => $validationByWebsite) {
+                    try {
+                        $product = $this->productRepository->getById($productId);
+                        if (!$this->validateProduct($product)) {
+                            $this->logger->info('Remove Catalog Rule Category', [$rule->getData()]);
+                            $this->unsetCategory($product);
+                        } else {
+                            $this->logger->info('Set Catalog Rule Category', [$rule->getData()]);
+                            $this->setCategory($product);
+                        }
+                    } catch (NoSuchEntityException $e) {
+                        $this->logger->alert('Product does not exists in setRuleToCategory method', [$e->getMessage()]);
+                    }
+
+                }
             }
         }
     }
