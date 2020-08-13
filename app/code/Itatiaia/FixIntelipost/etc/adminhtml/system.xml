@@ -19,6 +19,10 @@
         <section id="carriers">
             <group id="itatiaia_fixintelipost" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Configuração customizadas Itatiaia / Intelipost</label>
+                <field id="hide_carrier_title" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Ocultar nome da transportadora</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
                 <field id="zipcode_warehouse_aco" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>CEP origem de CD para material aço</label>
                 </field>
