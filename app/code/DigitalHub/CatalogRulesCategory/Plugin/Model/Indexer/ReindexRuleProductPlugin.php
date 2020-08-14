@@ -73,7 +73,7 @@ class ReindexRuleProductPlugin
         }
 
         $this->helper->setRuleToCategory($rule);
-        $this->logger->info('Rule', [$rule->getData()]);
+        $this->logger->info('Rule', [$rule->getRuleId()]);
         $processedList[] = $rule->getRuleId();
         if ($isRegistryExist) {
             $this->registry->unregister(self::RULE_PROCESS_LIST);

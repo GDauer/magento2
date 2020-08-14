@@ -48,7 +48,7 @@ class SaveCatalogRuleCron
         $rules->addFieldToSelect('*');
         $rules->setOrder('sort_order', 'DESC');
         foreach ($rules as $rule) {
-            $this->logger->info('RULE: ', [$rule->getData()]);
+            $this->logger->info('RULE: ', [$rule->getRuleId()]);
             $this->helper->setRuleToCategory($rule);
         }
     }

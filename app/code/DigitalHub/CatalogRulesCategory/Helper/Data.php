@@ -270,10 +270,10 @@ class Data extends AbstractHelper
                     try {
                         $product = $this->productRepository->getById($productId);
                         if ($this->validateRule($product, $rule) || $this->validateProduct($product)) {
-                            $this->logger->info('Set Catalog Rule Category', [$rule->getData()]);
+                            $this->logger->info('Set Catalog Rule Category', [$rule->getRuleId()]);
                             $this->setCategory($product);
                         } else {
-                            $this->logger->info('Remove Catalog Rule Category', [$rule->getData()]);
+                            $this->logger->info('Remove Catalog Rule Category', [$rule->getRuleId()]);
                             $this->unsetCategory($product);
                         }
                     } catch (NoSuchEntityException $e) {
@@ -287,10 +287,10 @@ class Data extends AbstractHelper
                     try {
                         $product = $this->productRepository->getById($productId);
                         if (!$this->validateProduct($product)) {
-                            $this->logger->info('Remove Catalog Rule Category', [$rule->getData()]);
+                            $this->logger->info('Remove Catalog Rule Category', [$rule->getRuleId()]);
                             $this->unsetCategory($product);
                         } else {
-                            $this->logger->info('Set Catalog Rule Category', [$rule->getData()]);
+                            $this->logger->info('Set Catalog Rule Category', [$rule->getRuleId()]);
                             $this->setCategory($product);
                         }
                     } catch (NoSuchEntityException $e) {
