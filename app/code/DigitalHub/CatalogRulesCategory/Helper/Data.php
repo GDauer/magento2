@@ -20,6 +20,7 @@ use Magento\Store\Api\StoreRepositoryInterface;
 use Psr\Log\LoggerInterface;
 use Magento\CatalogRule\Model\ResourceModel\Rule as RuleResourceModel;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\CatalogRule\Helper\Data as CatalogRuleHelper;
 
 class Data extends AbstractHelper
 {
@@ -76,6 +77,11 @@ class Data extends AbstractHelper
     private $catalogRuleRepository;
 
     /**
+     * @var CatalogRuleHelper
+     */
+    private $catalogRuleHelper;
+
+    /**
      * Data constructor.
      * @param CategoryFactory $categoryFactory
      * @param CategoryLinkManagementInterface $categoryLinkManagement
@@ -87,6 +93,7 @@ class Data extends AbstractHelper
      * @param GroupCollection $customerGroupCollection
      * @param DateTime $dateTime
      * @param CatalogRuleRepositoryInterface $catalogRuleRepository
+     * @param CatalogRuleHelper $catalogRuleHelper
      */
     public function __construct(
         CategoryFactory $categoryFactory,
@@ -98,7 +105,8 @@ class Data extends AbstractHelper
         RuleResourceModel $rule,
         GroupCollection $customerGroupCollection,
         DateTime $dateTime,
-        CatalogRuleRepositoryInterface $catalogRuleRepository
+        CatalogRuleRepositoryInterface $catalogRuleRepository,
+        CatalogRuleHelper $catalogRuleHelper
     )
     {
         $this->categoryFactory = $categoryFactory;
@@ -111,17 +119,22 @@ class Data extends AbstractHelper
         $this->customerGroupCollection = $customerGroupCollection;
         $this->dateTime = $dateTime;
         $this->catalogRuleRepository = $catalogRuleRepository;
+        $this->catalogRuleHelper = $catalogRuleHelper;
     }
 
     /**
      * @param Product|null $product
      * @return bool
      */
-    public function validateProduct(Product $product = null) {
+    public function validateProduct(Product $product = null, Rule $rule = null) {
         if (!empty($product) ) {
             if ($product->getTypeId() === 'grouped') {
                 $oldPrice = (float) $this->helper->getRegularPrice($product);
-                $finalPrice = (float) $this->helper->getFinalPrice($product);
+                if (!empty($rule)) {
+                    $finalPrice = $this->getGroupedFinalPrice($product, $rule);
+                } else {
+                    $finalPrice = (float) $this->helper->getFinalPrice($product);
+                }
             } else {
                 $oldPrice = (float) $product->getPrice();
                 $finalPrice = (float) $product->getFinalPrice();
@@ -160,7 +173,7 @@ class Data extends AbstractHelper
                     break;
                 case 'to_fixed';
                     if ($product->getTypeId() === 'grouped') {
-                        $finalPrice = (float) $this->helper->getFinalPrice($product);
+                        $finalPrice = $this->getGroupedFinalPrice($product, $rule);
                     } else {
                         $finalPrice = (float) $product->getFinalPrice();
                     }
@@ -269,7 +282,7 @@ class Data extends AbstractHelper
                 foreach ($productIds as $productId => $validationByWebsite) {
                     try {
                         $product = $this->productRepository->getById($productId);
-                        if ($this->validateRule($product, $rule) || $this->validateProduct($product)) {
+                        if ($this->validateRule($product, $rule) || $this->validateProduct($product, $rule)) {
                             $this->logger->info('Set Catalog Rule Category', [$rule->getRuleId()]);
                             $this->setCategory($product);
                         } else {
@@ -286,7 +299,7 @@ class Data extends AbstractHelper
                 foreach ($productIds as $productId => $validationByWebsite) {
                     try {
                         $product = $this->productRepository->getById($productId);
-                        if (!$this->validateProduct($product)) {
+                        if (!$this->validateProduct($product, $rule)) {
                             $this->logger->info('Remove Catalog Rule Category', [$rule->getRuleId()]);
                             $this->unsetCategory($product);
                         } else {
@@ -300,5 +313,50 @@ class Data extends AbstractHelper
                 }
             }
         }
+    }
+
+    /**
+     * @param Product $product
+     * @param Rule $rule
+     * @return float|int
+     * @throws NoSuchEntityException
+     */
+    public function getGroupedFinalPrice(Product $product, Rule $rule) {
+        $customerGroups = $this->customerGroupCollection->getItems();
+        $customerGroupId = 0;
+        foreach ($customerGroups as $customerGroup) {
+            if ($customerGroup->getCustomerGroupCode() !== self::NOT_LOGGED_IN) {
+                $customerGroupId = $customerGroup->getCustomerGroupId();
+                break;
+            }
+        }
+        $websitesId = $product->getWebsiteIds();
+
+        $websiteId = reset($websitesId);;
+        /**
+         * @var \Magento\Framework\Stdlib\DateTime\DateTime
+         */
+        $dateTs = $this->dateTime->gmtDate();
+        $rules = $this->rule->getRulesFromProduct($dateTs, $websiteId, $customerGroupId, $product->getEntityId());
+
+        $finalPrice = 0;
+        $associatedProducts = $product->getTypeInstance(true)->getAssociatedProducts($product);
+        foreach ($associatedProducts as $item) {
+            $qty = $item->getQty() ? $item->getQty() : 1;
+            $childProduct = $this->productRepository->getById($item->getId());
+            $finalPrice = $finalPrice + ((float)$childProduct->getFinalPrice() * (int)$qty);
+        }
+
+        if($rules){
+            foreach($rules as $item){
+                if ($rule->getRuleId() == $item['rule_id']) {
+                    continue;
+                }
+                $currentRule = $this->catalogRuleRepository->get($item['rule_id']);
+                $finalPrice = $this->catalogRuleHelper->calcPriceRule($currentRule->getSimpleAction(), $currentRule->getDiscountAmount(), $finalPrice);
+            }
+        }
+
+        return $finalPrice;
     }
 }
