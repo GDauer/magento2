@@ -11,9 +11,11 @@ use Magento\CatalogRule\Model\Indexer\ReindexRuleProduct;
 use Magento\CatalogRule\Model\Rule;
 use DigitalHub\CatalogRulesCategory\Helper\Data;
 use Psr\Log\LoggerInterface;
+use Magento\Framework\Registry;
 
 class ReindexRuleProductPlugin
 {
+    const RULE_PROCESS_LIST = 'rule_processed_list';
     /**
      * @var LoggerInterface
      */
@@ -24,18 +26,23 @@ class ReindexRuleProductPlugin
      */
     private $helper;
 
+    /** @var Registry  */
+    private $registry;
+
     /**
      * ReindexRuleProductPlugin constructor.
      * @param LoggerInterface $logger
      * @param Data $helper
-     * @param ProductRepositoryInterface $productRepository
+     * @param Registry $registry
      */
     public function __construct(
         LoggerInterface $logger,
-        Data $helper
+        Data $helper,
+        Registry $registry
     ) {
         $this->logger = $logger;
         $this->helper = $helper;
+        $this->registry = $registry;
     }
 
     /**
@@ -54,9 +61,24 @@ class ReindexRuleProductPlugin
         $batchCount,
         $useAdditionalTable = false
     ) {
+        $processedList = $this->registry->registry(self::RULE_PROCESS_LIST);
+        $isRegistryExist = true;
+        if (!$processedList) {
+            $processedList = [];
+            $isRegistryExist = false;
+        }
+
+        if (in_array($rule->getRuleId(), $processedList)) {
+            return $result;
+        }
+
         $this->helper->setRuleToCategory($rule);
         $this->logger->info('Rule', [$rule->getData()]);
-
+        $processedList[] = $rule->getRuleId();
+        if ($isRegistryExist) {
+            $this->registry->unregister(self::RULE_PROCESS_LIST);
+        }
+        $this->registry->register(self::RULE_PROCESS_LIST, $processedList);
         return $result;
     }
 }
