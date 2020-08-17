@@ -282,7 +282,7 @@ class Data extends AbstractHelper
                 foreach ($productIds as $productId => $validationByWebsite) {
                     try {
                         $product = $this->productRepository->getById($productId);
-                        if ($this->validateRule($product, $rule) || $this->validateProduct($product, $rule)) {
+                        if ($this->validateRule($product, $rule) || $this->validateProduct($product)) {
                             $this->logger->info('Set Catalog Rule Category', [$rule->getRuleId()]);
                             $this->setCategory($product);
                         } else {
