@@ -131,23 +131,12 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     // final price
     public function getFinalPrice($product, $parentProduct = null)
     {
-        // \Magento\Framework\App\ObjectManager::getInstance()->get('\Psr\Log\LoggerInterface')->info('GROUPED GET FINAL PRICE');
-        $registry = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Framework\Registry');
-
-        // se já está calculado, retorna
-        if($registry->registry('grouped_final_price_' . $product->getId())){
-            // \Magento\Framework\App\ObjectManager::getInstance()->get('\Psr\Log\LoggerInterface')->info('RETORNANDO JÀ EXISTENTE');
-            return $registry->registry('grouped_final_price_' . $product->getId());
-        }
-
         $finalPrice = null;
         if($product->getTypeId() == 'grouped'){
             $finalPrice = $this->calculateGroupedFinalPrice($product);
         } else {
             $finalPrice = $this->calculateSimpleFinalPrice($product, $parentProduct);
         }
-
-        $registry->register('grouped_final_price_' . $product->getId(), $finalPrice);
 
         return $finalPrice;
     }
