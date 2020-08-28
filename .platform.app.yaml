@@ -9,6 +9,7 @@ runtime:
         - redis
         - xsl
         - json
+        - mcrypt
 
 relationships:
     redis: "cache:redis"
