@@ -65,17 +65,6 @@ mounts:
     "pub/static": "shared:files/static"
 
 hooks:
-    # We run build hooks before your application has been packaged...
-    build: |
-        set -e
-        php ./vendor/bin/ece-tools build:generate
-        php ./vendor/bin/ece-tools build:transfer
-        # The following fixes the config : show fatal errors
-        sed -i 's/field \&\&/field instanceof Field \&\&/' ./vendor/magento/module-config/Console/Command/ConfigShow/ValueProcessor.php
-        php ./vendor/bin/phpcs --config-set installed_paths /app/vendor/magento-ecg/coding-standard
-        php ./vendor/bin/phpcs --config-set show_warnings 1
-        php ./vendor/bin/phpcs --config-set show_progress 1
-        cat ./vendor/squizlabs/php_codesniffer/CodeSniffer.conf
 
     # We run deploy hook after your application has been deployed and started.
     deploy: |
