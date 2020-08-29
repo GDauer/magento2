@@ -45,7 +45,7 @@ return [
     'MAGE_MODE' => 'production',
     'session' => [
         'save' => 'memcached',
-        'save_path' => 'magento-prod.qlaxos.cfg.sae1.cache.amazonaws.com:11211'
+        'save_path' => 'jeicmjjp3prhkjd5mv5sc5stji.cache.service._.us-2.platformsh.site'
     ],
     'cache_types' => [
         'config' => 1,
@@ -71,7 +71,7 @@ return [
         'default' => [
             'smile_elasticsuite_core_base_settings' => [
                 'es_client' => [
-                    'servers' => '172.30.0.198:9200',
+                    'servers' => '172.30.20.198:9200',
                     'enable_https_mode' => '0',
                     'enable_http_auth' => '0',
                     'http_auth_user' => '',
@@ -85,7 +85,7 @@ return [
             'default' => [
                 'backend' => 'Cm_Cache_Backend_Redis',
                 'backend_options' => [
-                    'server' => 'magento-ecommerce.qlaxos.ng.0001.sae1.cache.amazonaws.com',
+                    'server' => 'jeicmjjp3prhkjd5mv5sc5stji.cache.service._.us-2.platformsh.site',
                     'database' => '0',
                     'port' => '6379'
                 ]
@@ -93,7 +93,7 @@ return [
             'page_cache' => [
                 'backend' => 'Cm_Cache_Backend_Redis',
                 'backend_options' => [
-                    'server' => 'magento-ecommerce.qlaxos.ng.0001.sae1.cache.amazonaws.com',
+                    'server' => 'jeicmjjp3prhkjd5mv5sc5stji.cache.service._.us-2.platformsh.site',
                     'port' => '6379',
                     'database' => '1',
                     'compress_data' => '0'
