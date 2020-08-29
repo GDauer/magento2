@@ -59,10 +59,22 @@ disk: 5120
 
 # The mounts that will be performed when the package is deployed
 mounts:
-    "var": "shared:files/var"
     "app/etc": "shared:files/etc"
-    "pub/media": "shared:files/media"
-    "pub/static": "shared:files/static"
+    "/var":
+        source: local
+        source_path: "var"
+    "/generated":
+        source: local
+        source_path: "generated"
+    "/pub/media":
+        source: local
+        source_path: "media"
+    "/pub/static":
+        source: local
+        source_path: "static"
+    "/.config":
+        source: local
+        source_path: "config"
 
 hooks:
     build: |
