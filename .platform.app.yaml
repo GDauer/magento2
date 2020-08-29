@@ -85,6 +85,9 @@ mounts:
     "/.composer":
         source: local
         source_path: "composer"
+    "/app/etc":
+        source: local
+        source_path: "etc"
 hooks:
     build: |
         set -e  
