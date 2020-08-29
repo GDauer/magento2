@@ -66,8 +66,10 @@ mounts:
 
 hooks:
     build: |
+        set -e  
         composer update -vvv
     deploy: |
+        set -e
         php ./bin/magento cache:status
         php ./bin/magento cache:enable
 
