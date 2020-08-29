@@ -76,6 +76,9 @@ mounts:
     "/pub/static":
         source: local
         source_path: "static"
+    "/vendor":
+        source: local
+        source_path: "vendor"
 
 hooks:
     build: |
