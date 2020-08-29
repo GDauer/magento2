@@ -56,7 +56,7 @@ web:
 
 
 # The size of the persistent disk of the application (in MB).
-disk: 4096
+disk: 5120
 
 # The mounts that will be performed when the package is deployed
 mounts:
@@ -66,8 +66,9 @@ mounts:
     "pub/static": "shared:files/static"
 
 hooks:
-    deploy: |
+    build: |
         composer update -vvv
+    deploy: |
         php ./bin/magento cache:status
         php ./bin/magento cache:enable
 
