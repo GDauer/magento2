@@ -75,7 +75,7 @@ mounts:
         source_path: "media"
     "/pub/static":
         source: local
-        source_path: "static""
+        source_path: "static"
 
 hooks:
     build: |
