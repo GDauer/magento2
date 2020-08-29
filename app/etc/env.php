@@ -45,7 +45,7 @@ return [
     'MAGE_MODE' => 'production',
     'session' => [
         'save' => 'memcached',
-        'save_path' => 'jeicmjjp3prhkjd5mv5sc5stji.cache.service._.us-2.platformsh.site'
+        'save_path' => 'redis.internal'
     ],
     'cache_types' => [
         'config' => 1,
@@ -85,7 +85,7 @@ return [
             'default' => [
                 'backend' => 'Cm_Cache_Backend_Redis',
                 'backend_options' => [
-                    'server' => 'jeicmjjp3prhkjd5mv5sc5stji.cache.service._.us-2.platformsh.site',
+                    'server' => 'redis.internal',
                     'database' => '0',
                     'port' => '6379'
                 ]
@@ -93,7 +93,7 @@ return [
             'page_cache' => [
                 'backend' => 'Cm_Cache_Backend_Redis',
                 'backend_options' => [
-                    'server' => 'jeicmjjp3prhkjd5mv5sc5stji.cache.service._.us-2.platformsh.site',
+                    'server' => 'redis.internal',
                     'port' => '6379',
                     'database' => '1',
                     'compress_data' => '0'
