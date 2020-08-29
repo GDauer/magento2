@@ -45,7 +45,7 @@ return [
     'MAGE_MODE' => 'production',
     'session' => [
         'save' => 'memcached',
-        'save_path' => 'redis.internal'
+        'save_path' => 'memcached.internal'
     ],
     'cache_types' => [
         'config' => 1,

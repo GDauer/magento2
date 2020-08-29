@@ -1,2 +1,5 @@
+cachemc:
+    type: memcached:1.6
+
 cache:
     type: redis:5.0
