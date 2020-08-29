@@ -1,7 +1,8 @@
 name: app
 
 type: php:7.1
-
+build:
+    flavor: composer
 
 runtime:
     extensions:
