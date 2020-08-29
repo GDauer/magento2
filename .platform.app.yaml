@@ -81,6 +81,7 @@ hooks:
         composer update -vvv
     deploy: |
         set -e
+        php ./bin/magento setup:upgrade
         php ./bin/magento cache:status
         php ./bin/magento cache:enable
 
