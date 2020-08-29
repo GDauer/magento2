@@ -61,9 +61,9 @@ disk: 5120
 
 # The mounts that will be performed when the package is deployed
 mounts:
-    "/app":
+    "/.global":
         source: local
-        source_path: "app"
+        source_path: "global"
     "/var":
         source: local
         source_path: "var"
@@ -75,10 +75,7 @@ mounts:
         source_path: "media"
     "/pub/static":
         source: local
-        source_path: "static"
-    "/.config":
-        source: local
-        source_path: "config"
+        source_path: "static""
 
 hooks:
     build: |
