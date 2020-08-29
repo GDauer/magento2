@@ -13,7 +13,6 @@ runtime:
 
 relationships:
     redis: "cache:redis"
-    elasticsearch: "elasticsearch:elasticsearch"
 
 web:
     locations:
