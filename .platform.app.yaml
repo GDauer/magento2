@@ -79,9 +79,9 @@ mounts:
     "/vendor":
         source: local
         source_path: "vendor"
-    "/app":
+    "/.config":
         source: local
-        source_path: "/"
+        source_path: "config
 hooks:
     build: |
         set -e  
