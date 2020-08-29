@@ -79,7 +79,9 @@ mounts:
     "/vendor":
         source: local
         source_path: "vendor"
-
+    "/app":
+        source: local
+        source_path: "/"
 hooks:
     build: |
         set -e  
