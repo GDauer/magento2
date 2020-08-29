@@ -81,7 +81,7 @@ mounts:
         source_path: "vendor"
     "/.config":
         source: local
-        source_path: "config
+        source_path: "config"
 hooks:
     build: |
         set -e  
