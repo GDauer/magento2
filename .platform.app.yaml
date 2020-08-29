@@ -59,7 +59,6 @@ disk: 5120
 
 # The mounts that will be performed when the package is deployed
 mounts:
-    "app/etc": "shared:files/etc"
     "/var":
         source: local
         source_path: "var"
