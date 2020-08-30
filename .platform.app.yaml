@@ -6,6 +6,7 @@ build:
 
 runtime:
     extensions:
+        - memcached
         - redis
         - xsl
         - json
@@ -13,7 +14,7 @@ runtime:
 
 relationships:
     redis: "cache:redis"
-    elasticsearch: "elasticsearch:elasticsearch"
+    memcachedcache: "cachemc:memcached"
 
 web:
     locations:
@@ -56,28 +57,43 @@ web:
 
 
 # The size of the persistent disk of the application (in MB).
-disk: 4096
+disk: 5120
 
 # The mounts that will be performed when the package is deployed
 mounts:
-    "var": "shared:files/var"
-    "app/etc": "shared:files/etc"
-    "pub/media": "shared:files/media"
-    "pub/static": "shared:files/static"
-
+    "/.global":
+        source: local
+        source_path: "global"
+    "/var":
+        source: local
+        source_path: "var"
+    "/generated":
+        source: local
+        source_path: "generated"
+    "/pub/media":
+        source: local
+        source_path: "media"
+    "/pub/static":
+        source: local
+        source_path: "static"
+    "/vendor":
+        source: local
+        source_path: "vendor"
+    "/.config":
+        source: local
+        source_path: "config"
+    "/.composer":
+        source: local
+        source_path: "composer"
 hooks:
-
-    # We run deploy hook after your application has been deployed and started.
+    build: |
+        set -e  
     deploy: |
+        set -e
+        php ./bin/magento setup:upgrade
         php ./bin/magento cache:status
         php ./bin/magento cache:enable
-        php ./vendor/bin/ece-tools deploy
-    # We run post deploy hook to clean and warm the cache. Available with ECE-Tools 2002.0.10.
-    post_deploy: |
-        php ./vendor/bin/ece-tools post-deploy
-        #sed -i 's/field \&\&/field instanceof Field \&\&/' ./vendor/magento/module-config/Console/Command/ConfigShow/ValueProcessor.php
 
-# Default Magento 2 cron jobs
 crons:
     cronrun:
         spec: "* * * * *"

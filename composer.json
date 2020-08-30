@@ -8,6 +8,7 @@
     ],
     "require": {
         "magento/product-enterprise-edition": "2.2.6",
+        "magento/ece-tools": "^2002.0",
         "composer/composer": "@alpha",
         "magento/module-bundle-sample-data": "100.2.*",
         "magento/module-customer-sample-data": "100.2.*",
@@ -57,7 +58,7 @@
         "mundipagg/mundipagg-magento2-module": "^1.8",
         "digitalhub/module-cookie": "dev-master",
         "konduto/magento2": "^1.0",
-        "mercadopago/magento2-plugin": "^3.3",
+        "mercadopago/magento2-plugin": "^3.4",
         "cweagans/composer-patches": "^1.6",
         "flancer32/mage2_ext_minify": "^0.1.2"
     },
