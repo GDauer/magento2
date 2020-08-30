@@ -6,4 +6,4 @@ cache:
 
 elasticsearch:
     type: elasticsearch:7.2
-    disk: 1024
+    disk: 512
