@@ -1,4 +1,4 @@
-name: app
+name: cozinhas_itatiaia
 
 type: php:7.1
 build:
@@ -65,6 +65,7 @@ disk: 4608
 # The mounts that will be performed when the package is deployed
 mounts:
     "var": "shared:files/var"
+    "generated": "shared:files/generated"
     "app/etc": "shared:files/etc"
     "pub/media": "shared:files/media"
     "pub/static": "shared:files/static"
@@ -72,23 +73,11 @@ mounts:
 hooks:
     # We run build hooks before your application has been packaged...
     build: |
-        set -e
-        php ./vendor/bin/ece-tools build:generate
-        php ./vendor/bin/ece-tools build:transfer
-        # The following fixes the config : show fatal errors
-        php ./vendor/bin/phpcs --config-set installed_paths /app/vendor/magento-ecg/coding-standard
-        php ./vendor/bin/phpcs --config-set show_warnings 1
-        php ./vendor/bin/phpcs --config-set show_progress 1
-        cat ./vendor/squizlabs/php_codesniffer/CodeSniffer.conf
+        php ./vendor/platformsh/magento2-configuration/magento-build.php
 
     # We run deploy hook after your application has been deployed and started.
     deploy: |
-        php ./bin/magento cache:status
-        php ./bin/magento cache:enable
-        php ./vendor/bin/ece-tools deploy
-    # We run post deploy hook to clean and warm the cache. Available with ECE-Tools 2002.0.10.
-    post_deploy: |
-        php ./vendor/bin/ece-tools post-deploy
+        php ./vendor/platformsh/magento2-configuration/magento-deploy.php
 
 crons:
     cronrun:

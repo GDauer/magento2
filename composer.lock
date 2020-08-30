@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d07ed2dd9b5de9b995d7b961725c27b0",
+    "content-hash": "a10b318ab228529ebd5b289f461675b8",
     "packages": [
         {
             "name": "adyen/module-payment",
@@ -13356,6 +13356,40 @@
                 "x509"
             ],
             "time": "2020-07-08T09:08:33+00:00"
+        },
+        {
+            "name": "platformsh/magento2-configuration",
+            "version": "2.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/platformsh/platformsh-magento2-configuration.git",
+                "reference": "7de2cebe5426f8934b81b675088307f2eef8e2a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/platformsh/platformsh-magento2-configuration/zipball/7de2cebe5426f8934b81b675088307f2eef8e2a8",
+                "reference": "7de2cebe5426f8934b81b675088307f2eef8e2a8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Augustin Delaporte"
+                },
+                {
+                    "name": "wojtek"
+                }
+            ],
+            "description": "Provides configuration to deploy a Magento 2 project on Platform.sh",
+            "abandoned": true,
+            "time": "2018-02-20T04:05:51+00:00"
         },
         {
             "name": "pmclain/magento2-successtest",

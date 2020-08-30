@@ -1,10 +1,10 @@
 https://{default}/:
     type: upstream
-    upstream: app:http
+    upstream: cozinhas_itatiaia:http
 
 https://{default}/static/:
     type: upstream
-    upstream: app:http
+    upstream: cozinhas_itatiaia:http
     cache:
         enabled: true
         cookies: []
