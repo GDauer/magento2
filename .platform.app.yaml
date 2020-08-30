@@ -88,7 +88,7 @@ mounts:
 hooks:
     build: |
         set -e  
-        composer update -vvv
+        composer install -vvv
     deploy: |
         set -e
         php ./bin/magento setup:upgrade
