@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4891a3814bc6a86b0a6777ddf2826d7c",
+    "content-hash": "d07ed2dd9b5de9b995d7b961725c27b0",
     "packages": [
         {
             "name": "adyen/module-payment",
@@ -18771,6 +18771,40 @@
                 "security"
             ],
             "time": "2018-02-14T22:37:14+00:00"
+        },
+        {
+            "name": "magento-ecg/coding-standard",
+            "version": "3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/magento-ecg/coding-standard.git",
+                "reference": "fbeeb7ad68de02b15753d56dda9493af9c35bcaf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/magento-ecg/coding-standard/zipball/fbeeb7ad68de02b15753d56dda9493af9c35bcaf",
+                "reference": "fbeeb7ad68de02b15753d56dda9493af9c35bcaf",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "squizlabs/php_codesniffer": "^3.0"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Magento Expert Consulting Group",
+                    "homepage": "http://magentocommerce.com/consulting",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "A set of PHP_CodeSniffer rules and sniffs.",
+            "homepage": "https://github.com/magento-ecg/coding-standard",
+            "time": "2017-06-30T19:00:28+00:00"
         },
         {
             "name": "myclabs/deep-copy",
