@@ -5,5 +5,5 @@ cache:
     type: redis:5.0
 
 elasticsearch:
-    type: elasticsearch:7.2
+    type: elasticsearch:5.2
     disk: 512
