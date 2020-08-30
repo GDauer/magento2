@@ -15,7 +15,8 @@ runtime:
 relationships:
     redis: "cache:redis"
     memcachedcache: "cachemc:memcached"
-
+    elasticsearch: "elasticsearch:elasticsearch"
+    
 web:
     locations:
         "/":

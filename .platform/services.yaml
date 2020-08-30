@@ -3,3 +3,7 @@ cachemc:
 
 cache:
     type: redis:5.0
+
+
+elasticsearch:
+    type: elasticsearch:7.2
