@@ -8,6 +8,7 @@
     ],
     "require": {
         "magento/product-enterprise-edition": "2.2.6",
+        "magento/ece-tools": "^2002.0",
         "composer/composer": "@alpha",
         "magento/module-bundle-sample-data": "100.2.*",
         "magento/module-customer-sample-data": "100.2.*",
