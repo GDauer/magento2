@@ -19,7 +19,9 @@ relationships:
 web:
     locations:
         "/":
+            # The public directory of the app, relative to its root.
             root: "pub"
+            # The front-controller script to send non-static requests to.
             passthru: "/index.php"
             index:
                 - index.php
@@ -61,38 +63,21 @@ disk: 5120
 
 # The mounts that will be performed when the package is deployed
 mounts:
-    "/.global":
-        source: local
-        source_path: "global"
-    "/var":
-        source: local
-        source_path: "var"
-    "/generated":
-        source: local
-        source_path: "generated"
-    "/pub/media":
-        source: local
-        source_path: "media"
-    "/pub/static":
-        source: local
-        source_path: "static"
-    "/vendor":
-        source: local
-        source_path: "vendor"
-    "/.config":
-        source: local
-        source_path: "config"
-    "/.composer":
-        source: local
-        source_path: "composer"
+    "var": "shared:files/var"
+    "app/etc": "shared:files/etc"
+    "pub/media": "shared:files/media"
+    "pub/static": "shared:files/static"
+#    "vendor/squizlabs/php_codesniffer": "shared:files/php_codesniffer"
 hooks:
     build: |
-        set -e  
-    deploy: |
         set -e
-        php ./bin/magento setup:upgrade
+        php ./vendor/bin/ece-tools build:generate
+        php ./vendor/bin/ece-tools build:transfer
+        # The following fixes the config : show fatal errors
+    deploy: |
         php ./bin/magento cache:status
         php ./bin/magento cache:enable
+        php ./vendor/bin/ece-tools deploy
 
 crons:
     cronrun:
