@@ -85,7 +85,7 @@ return [
             'default' => [
                 'backend' => 'Cm_Cache_Backend_Redis',
                 'backend_options' => [
-                    'server' => 'redis.internal',
+                    'server' => 'redis',
                     'database' => '0',
                     'port' => '6379'
                 ]
@@ -93,7 +93,7 @@ return [
             'page_cache' => [
                 'backend' => 'Cm_Cache_Backend_Redis',
                 'backend_options' => [
-                    'server' => 'redis.internal',
+                    'server' => 'redis',
                     'port' => '6379',
                     'database' => '1',
                     'compress_data' => '0'
