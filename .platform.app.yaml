@@ -78,7 +78,6 @@ hooks:
     deploy: |
         php ./bin/magento cache:status
         php ./bin/magento cache:enable
-        php ./vendor/bin/ece-tools deploy
 
 crons:
     cronrun:
