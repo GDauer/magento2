@@ -42,7 +42,6 @@
         "digitalhub/customer-attributes": "dev-master",
         "digitalhub/language-pt_br": "dev-master",
         "magepal/magento2-gmailsmtpapp": "^2.5",
-        "smile/elasticsuite": "^2.6",
         "intelipost/magento2-basic": "^1.1",
         "intelipost/magento2-push": "^1.1",
         "intelipost/magento2-quote": "^1.3",
