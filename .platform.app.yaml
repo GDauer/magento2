@@ -94,8 +94,8 @@ hooks:
     # We run deploy hook after your application has been deployed and started.
     deploy: |
         set -e
-        php bin/magento cache:flush
         rm -rf var/generation/* var/cache/* var/report/* pub/static/frontend/* pub/static/adminhtml/* var/page_cache/* var/di/* generated/*
+        php bin/magento cache:flush
         php bin/magento setup:upgrade
         php bin/magento setup:di:compile
         php bin/magento setup:static-content:deploy
