@@ -89,11 +89,13 @@ mounts:
 hooks:
     build: |
         set -e
-        composer install
+        php ./vendor/platformsh/magento2-configuration/magento-build.php
     deploy: |
-        php ./bin/magento setup:upgrade
-        php ./bin/magento cache:status
+        set -e
+        php ./vendor/platformsh/magento2-configuration/magento-deploy.php
     post_deploy: |
+        set -e
+        php ./bin/magento cache:status
         php ./bin/magento cache:enable
 
 crons:
