@@ -20,9 +20,7 @@ relationships:
 web:
     locations:
         "/":
-            # The public directory of the app, relative to its root.
             root: "pub"
-            # The front-controller script to send non-static requests to.
             passthru: "/index.php"
             index:
                 - index.php
@@ -60,34 +58,42 @@ web:
 
 
 # The size of the persistent disk of the application (in MB).
-disk: 4608
+disk: 5120
 
 # The mounts that will be performed when the package is deployed
 mounts:
-    "var": "shared:files/var"
-    "var/view_preprocessed": "shared:files/var/view_preprocessed"
-    "app/etc": "shared:files/etc"
-    "pub/media": "shared:files/media"
-    "pub/static": "shared:files/static"
-#    "vendor/squizlabs/php_codesniffer": "shared:files/php_codesniffer"
+    "/.global":
+        source: local
+        source_path: "global"
+    "/var":
+        source: local
+        source_path: "var"
+    "/generated":
+        source: local
+        source_path: "generated"
+    "/pub/media":
+        source: local
+        source_path: "media"
+    "/pub/static":
+        source: local
+        source_path: "static"
+    "/vendor":
+        source: local
+        source_path: "vendor"
+    "/.config":
+        source: local
+        source_path: "config"
+    "/.composer":
+        source: local
+        source_path: "composer"
 hooks:
-    # We run build hooks before your application has been packaged...
     build: |
         set -e
-        php ./vendor/bin/ece-tools build:generate
-        # The following fixes the config : show fatal errors
-        php ./vendor/bin/phpcs --config-set installed_paths ./vendor/magento-ecg/coding-standard
-        php ./vendor/bin/phpcs --config-set show_progress 1
-        cat ./vendor/squizlabs/php_codesniffer/CodeSniffer.conf
-
-    # We run deploy hook after your application has been deployed and started.
     deploy: |
+        set -e
+        php ./bin/magento setup:upgrade
         php ./bin/magento cache:status
         php ./bin/magento cache:enable
-        php ./vendor/bin/ece-tools deploy
-    # We run post deploy hook to clean and warm the cache. Available with ECE-Tools 2002.0.10.
-    post_deploy: |
-        php ./vendor/bin/ece-tools post-deploy
 
 crons:
     cronrun:
