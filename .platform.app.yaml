@@ -24,6 +24,7 @@ runtime:
 # side is in the form `<service name>:<endpoint name>`.
 
 relationships:
+    database: "db:mysql"
     redis: "cache:redis"
     elasticsearch: "elasticsearch:elasticsearch"
 
