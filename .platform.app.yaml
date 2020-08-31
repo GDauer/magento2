@@ -88,7 +88,7 @@ hooks:
     build: |
         set -e
         echo 022 > magento_umask
-        rm -rf ./var/page_cache/* ./generated/* ./var/view_preprocessed/* ./pub/static/*
+        rm -rf ./var/page_cache/* ./generated/* ./pub/static/*
         php ./vendor/bin/ece-tools build:generate
         php ./vendor/bin/ece-tools build:transfer
         # The following fixes the config : show fatal errors
