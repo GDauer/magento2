@@ -6,5 +6,9 @@ cache:
     type: redis:5.0
 
 elasticsearch:
-    type: elasticsearch:6.5
+    type: elasticsearch:5.2
     disk: 512
+        configuration:
+            plugins:
+                - analysis-icu
+                - analysis-phonetic
