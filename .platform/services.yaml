@@ -8,7 +8,7 @@ cache:
 search:
     type: elasticsearch:5.2
     disk: 512
-        configuration:
-            plugins:
-                - analysis-icu
-                - analysis-phonetic
+    configuration:
+        plugins:
+            - analysis-icu
+            - analysis-phonetic
