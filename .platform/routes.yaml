@@ -8,3 +8,7 @@ https://{default}/static/:
     cache:
         enabled: true
         cookies: []
+
+https://es.{default}:
+    type: upstream
+    upstream: search:elasticsearch

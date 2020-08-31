@@ -6,8 +6,8 @@ cache:
     type: redis:5.0
 
 search:
-    type: elasticsearch:5.2
-    disk: 512
+    type: "elasticsearch:5.2"
+    disk: 1024
     configuration:
         plugins:
             - analysis-icu
