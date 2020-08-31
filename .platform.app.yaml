@@ -20,37 +20,29 @@ relationships:
 web:
     locations:
         "/":
+            # The public directory of the app, relative to its root.
             root: "pub"
+            # The front-controller script to send non-static requests to.
             passthru: "/index.php"
             index:
                 - index.php
             expires: -1
             scripts: true
             allow: false
-            headers:
-                Access-Control-Allow-Origin: "*"
             rules:
                 \.(css|js|map|hbs|gif|jpe?g|png|tiff|wbmp|ico|jng|bmp|svgz|midi?|mp?ga|mp2|mp3|m4a|ra|weba|3gpp?|mp4|mpe?g|mpe|ogv|mov|webm|flv|mng|asx|asf|wmv|avi|ogx|swf|jar|ttf|eot|woff|otf|html?)$:
+                    allow: true
+                /robots\.txt$:
                     allow: true
         "/media":
             root: "pub/media"
             allow: true
             scripts: false
-            headers:
-                Access-Control-Allow-Origin: "*"
-                Access-Control-Allow-Credentials: "true"
-                Access-Control-Allow-Headers: "X-Requested-With"
-            expires: 1y
-            passthru: "/get.php"
+            passthru: "/index.php"
         "/static":
             root: "pub/static"
             allow: true
             scripts: false
-            headers:
-                Access-Control-Allow-Origin: "*"
-                Access-Control-Allow-Credentials: "true"
-                Access-Control-Allow-Headers: "X-Requested-With"
-            expires: 1y
             passthru: "/front-static.php"
             rules:
                 ^/static/version\d+/(?<resource>.*)$:
@@ -62,42 +54,19 @@ disk: 4608
 
 # The mounts that will be performed when the package is deployed
 mounts:
-    "/.global":
-        source: local
-        source_path: "global"
-    "/var":
-        source: local
-        source_path: "var"
-    "/generated":
-        source: local
-        source_path: "generated"
-    "/pub/media":
-        source: local
-        source_path: "media"
-    "/pub/static":
-        source: local
-        source_path: "static"
-    "/vendor":
-        source: local
-        source_path: "vendor"
-    "/.config":
-        source: local
-        source_path: "config"
-    "/.composer":
-        source: local
-        source_path: "composer"
+    "var": "shared:files/var"
+    "generated": "shared:files/generated"
+    "app/etc": "shared:files/etc"
+    "pub/media": "shared:files/media"
+    "pub/static": "shared:files/static"
+
 hooks:
+    # We run build hooks before your application has been packaged.
     build: |
-        set -e
-        composer install
         php ./vendor/platformsh/magento2-configuration/magento-build.php
+    # We run deploy hook after your application has been deployed and started.
     deploy: |
-        set -e
         php ./vendor/platformsh/magento2-configuration/magento-deploy.php
-    post_deploy: |
-        set -e
-        php ./bin/magento cache:status
-        php ./bin/magento cache:enable
 
 crons:
     cronrun:
