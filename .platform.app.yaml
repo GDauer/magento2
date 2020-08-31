@@ -87,7 +87,7 @@ hooks:
     # We run build hooks before your application has been packaged...
     build: |
         set -e
-        echo 777 > magento_umask
+        echo 022 > magento_umask
         php ./vendor/bin/ece-tools build:generate
         php ./vendor/bin/ece-tools build:transfer
         # The following fixes the config : show fatal errors
