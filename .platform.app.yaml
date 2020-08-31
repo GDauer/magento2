@@ -1,22 +1,35 @@
+# This file describes an application. You can have multiple applications
+# in the same project.
+
+# The name of this app. Must be unique within a project.
 name: app
 
+# The toolstack used to build the application.
 type: php:7.1
 build:
     flavor: composer
 
+# Enable extensions required by Magento 2
 runtime:
     extensions:
-        - memcached
         - redis
         - xsl
         - json
-        - mcrypt
+        - blackfire
+        - newrelic
+        - sodium
+
+# The relationships of the application with services or other applications.
+# The left-hand side is the name of the relationship as it will be exposed
+# to the application in the environment variable. The right-hand
+# side is in the form `<service name>:<endpoint name>`.
 
 relationships:
     redis: "cache:redis"
-    memcachedcache: "cachemc:memcached"
     elasticsearch: "elasticsearch:elasticsearch"
 
+
+# The configuration of app when it is exposed to the web.
 web:
     locations:
         "/":
@@ -29,20 +42,30 @@ web:
             expires: -1
             scripts: true
             allow: false
+            headers:
+                Access-Control-Allow-Origin: "*"
             rules:
                 \.(css|js|map|hbs|gif|jpe?g|png|tiff|wbmp|ico|jng|bmp|svgz|midi?|mp?ga|mp2|mp3|m4a|ra|weba|3gpp?|mp4|mpe?g|mpe|ogv|mov|webm|flv|mng|asx|asf|wmv|avi|ogx|swf|jar|ttf|eot|woff|otf|html?)$:
-                    allow: true
-                /robots\.txt$:
                     allow: true
         "/media":
             root: "pub/media"
             allow: true
             scripts: false
-            passthru: "/index.php"
+            headers:
+                Access-Control-Allow-Origin: "*"
+                Access-Control-Allow-Credentials: "true"
+                Access-Control-Allow-Headers: "X-Requested-With"
+            expires: 1y
+            passthru: "/get.php"
         "/static":
             root: "pub/static"
             allow: true
             scripts: false
+            headers:
+                Access-Control-Allow-Origin: "*"
+                Access-Control-Allow-Credentials: "true"
+                Access-Control-Allow-Headers: "X-Requested-With"
+            expires: 1y
             passthru: "/front-static.php"
             rules:
                 ^/static/version\d+/(?<resource>.*)$:
@@ -50,24 +73,38 @@ web:
 
 
 # The size of the persistent disk of the application (in MB).
-disk: 4608
+disk: 2048
 
 # The mounts that will be performed when the package is deployed
 mounts:
     "var": "shared:files/var"
-    "generated": "shared:files/generated"
     "app/etc": "shared:files/etc"
     "pub/media": "shared:files/media"
     "pub/static": "shared:files/static"
+#    "vendor/squizlabs/php_codesniffer": "shared:files/php_codesniffer"
 
 hooks:
-    # We run build hooks before your application has been packaged.
+    # We run build hooks before your application has been packaged...
     build: |
-        php ./vendor/platformsh/magento2-configuration/magento-build.php
+        set -e
+        php ./vendor/bin/ece-tools build:generate
+        php ./vendor/bin/ece-tools build:transfer
+        # The following fixes the config : show fatal errors
+        php ./vendor/bin/phpcs --config-set installed_paths /app/vendor/magento-ecg/coding-standard
+        php ./vendor/bin/phpcs --config-set show_warnings 1
+        php ./vendor/bin/phpcs --config-set show_progress 1
+        cat ./vendor/squizlabs/php_codesniffer/CodeSniffer.conf
+
     # We run deploy hook after your application has been deployed and started.
     deploy: |
-        php ./vendor/platformsh/magento2-configuration/magento-deploy.php
+        php ./bin/magento cache:status
+        php ./bin/magento cache:enable
+        php ./vendor/bin/ece-tools deploy
+    # We run post deploy hook to clean and warm the cache. Available with ECE-Tools 2002.0.10.
+    post_deploy: |
+        php ./vendor/bin/ece-tools post-deploy
 
+# Default Magento 2 cron jobs
 crons:
     cronrun:
         spec: "* * * * *"
