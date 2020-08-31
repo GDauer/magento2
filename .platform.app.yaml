@@ -89,6 +89,7 @@ mounts:
 hooks:
     build: |
         set -e
+        composer install
         php ./vendor/platformsh/magento2-configuration/magento-build.php
     deploy: |
         set -e
