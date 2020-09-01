@@ -88,7 +88,6 @@ hooks:
     build: |
         set -e
         echo 022 > magento_umask
-        rm -rf ./var/page_cache/*
         php ./vendor/bin/ece-tools build:generate
         php ./vendor/bin/ece-tools build:transfer
         # The following fixes the config : show fatal errors
@@ -96,10 +95,8 @@ hooks:
         php ./vendor/bin/phpcs --config-set show_warnings 1
         php ./vendor/bin/phpcs --config-set show_progress 1
         cat ./vendor/squizlabs/php_codesniffer/CodeSniffer.conf
-
     # We run deploy hook after your application has been deployed and started.
     deploy: |
-        set -e
         php ./vendor/bin/ece-tools deploy
     # We run post deploy hook to clean and warm the cache. Available with ECE-Tools 2002.0.10.
     post_deploy: |
