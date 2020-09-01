@@ -90,7 +90,6 @@ hooks:
     build: |
         set -e
         echo 022 > magento_umask
-        mkdir ./var/view_preprocessed/
         rm -rf ./var/page_cache/* ./generated/* ./var/view_preprocessed/* ./pub/static/*
         php ./vendor/bin/ece-tools build:generate
         php ./vendor/bin/ece-tools build:transfer
