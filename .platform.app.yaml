@@ -88,6 +88,7 @@ hooks:
     build: |
         set -e
         echo 022 > magento_umask
+        mkdir /app/var/view_preprocessed
         php ./vendor/bin/ece-tools build:generate
         php ./vendor/bin/ece-tools build:transfer
         # The following fixes the config : show fatal errors
