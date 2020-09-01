@@ -92,7 +92,7 @@ hooks:
         php ./vendor/bin/ece-tools build:generate
         php ./vendor/bin/ece-tools build:transfer
         # The following fixes the config : show fatal errors
-        php ./vendor/bin/phpcs --config-set installed_paths /app/vendor/magento-ecg/coding-standard
+        # php ./vendor/bin/phpcs --config-set installed_paths ./vendor/magento-ecg/coding-standard
         php ./vendor/bin/phpcs --config-set show_warnings 1
         php ./vendor/bin/phpcs --config-set show_progress 1
         cat ./vendor/squizlabs/php_codesniffer/CodeSniffer.conf
