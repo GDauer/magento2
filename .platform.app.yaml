@@ -78,9 +78,7 @@ disk: 2048
 # The mounts that will be performed when the package is deployed
 mounts:
     "var": "shared:files/var"
-    "var/view_preprocessed": "shared:files/var/view_preprocessed"
     "app/etc": "shared:files/etc"
-    "generated": "shared:files/generated"
     "pub/media": "shared:files/media"
     "pub/static": "shared:files/static"
 #    "vendor/squizlabs/php_codesniffer": "shared:files/php_codesniffer"
@@ -90,7 +88,6 @@ hooks:
     build: |
         set -e
         echo 022 > magento_umask
-        rm -rf ./var/page_cache/* ./generated/* ./var/view_preprocessed/* ./pub/static/*
         php ./vendor/bin/ece-tools build:generate
         php ./vendor/bin/ece-tools build:transfer
         # The following fixes the config : show fatal errors
