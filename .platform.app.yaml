@@ -68,7 +68,7 @@ web:
             expires: 1y
             passthru: "/front-static.php"
             rules:
-                ^/static/version\d+/(?<resource>.*)$:
+                ^/loja/static/version\d+/(?<resource>.*)$:
                     passthru: "/loja/static/$resource"
 
 
