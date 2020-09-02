@@ -2,7 +2,7 @@ https://{default}/loja/:
     type: upstream
     upstream: app:http
 
-https://{default}/loja/static/:
+https://{default}/static/:
     type: upstream
     upstream: app:http
     cache:

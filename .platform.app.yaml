@@ -32,7 +32,7 @@ relationships:
 # The configuration of app when it is exposed to the web.
 web:
     locations:
-        "/loja/":
+        "/":
             # The public directory of the app, relative to its root.
             root: "pub"
             # The front-controller script to send non-static requests to.
@@ -57,7 +57,7 @@ web:
                 Access-Control-Allow-Headers: "X-Requested-With"
             expires: 1y
             passthru: "/get.php"
-        "/loja/static":
+        "/static":
             root: "pub/static"
             allow: true
             scripts: false
@@ -68,8 +68,8 @@ web:
             expires: 1y
             passthru: "/front-static.php"
             rules:
-                ^/loja/static/version\d+/(?<resource>.*)$:
-                    passthru: "/loja/static/$resource"
+                ^/static/version\d+/(?<resource>.*)$:
+                    passthru: "/static/$resource"
 
 
 # The size of the persistent disk of the application (in MB).
