@@ -69,7 +69,7 @@ web:
             passthru: "/front-static.php"
             rules:
                 ^/static/version\d+/(?<resource>.*)$:
-                    passthru: "/static/$resource"
+                    passthru: "/loja/static/$resource"
 
 
 # The size of the persistent disk of the application (in MB).
