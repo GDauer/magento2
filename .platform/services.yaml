@@ -7,7 +7,7 @@ cache:
 
 search:
     type: "elasticsearch:5.2"
-    disk: 1024
+    disk: 512
     configuration:
         plugins:
             - analysis-icu
