@@ -32,7 +32,7 @@ relationships:
 # The configuration of app when it is exposed to the web.
 web:
     locations:
-        "/":
+        "/loja/":
             # The public directory of the app, relative to its root.
             root: "pub"
             # The front-controller script to send non-static requests to.
@@ -47,7 +47,7 @@ web:
             rules:
                 \.(css|js|map|hbs|gif|jpe?g|png|tiff|wbmp|ico|jng|bmp|svgz|midi?|mp?ga|mp2|mp3|m4a|ra|weba|3gpp?|mp4|mpe?g|mpe|ogv|mov|webm|flv|mng|asx|asf|wmv|avi|ogx|swf|jar|ttf|eot|woff|otf|html?)$:
                     allow: true
-        "/media":
+        "/loja/media":
             root: "pub/media"
             allow: true
             scripts: false
@@ -57,7 +57,7 @@ web:
                 Access-Control-Allow-Headers: "X-Requested-With"
             expires: 1y
             passthru: "/get.php"
-        "/static":
+        "/loja/static":
             root: "pub/static"
             allow: true
             scripts: false
