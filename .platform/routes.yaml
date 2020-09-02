@@ -1,6 +1,13 @@
-https://{default}/loja:
+https://{default}/loja/:
     type: upstream
     upstream: app:http
+
+https://{default}/loja/static/:
+    type: upstream
+    upstream: app:http
+    cache:
+        enabled: true
+        cookies: []
 
 https://es.{default}:
     type: upstream
