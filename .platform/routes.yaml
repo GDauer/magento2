@@ -1,4 +1,4 @@
-https://{default}/loja/:
+https://{default}/:
     type: upstream
     upstream: app:http
 
