@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7d0af27c63a2596615b20b3cfa092695",
+    "content-hash": "c2352060cf92752a5d34685bd4271b95",
     "packages": [
         {
             "name": "adyen/module-payment",
@@ -1383,6 +1383,47 @@
                 "maxmind"
             ],
             "time": "2019-12-12T18:48:39+00:00"
+        },
+        {
+            "name": "gocache/cdn",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gocache/magento-2.git",
+                "reference": "dff06390a627d879a672e9551a59f9b69b39d0a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gocache/magento-2/zipball/dff06390a627d879a672e9551a59f9b69b39d0a8",
+                "reference": "dff06390a627d879a672e9551a59f9b69b39d0a8",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.0.0|~7.1.0|~7.2.0|~7.3.0"
+            },
+            "type": "magento2-module",
+            "extra": {
+                "map": [
+                    [
+                        "*",
+                        "GoCache/CDN"
+                    ]
+                ]
+            },
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "GoCache\\CDN\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "GoCache CDN Magento 2 module",
+            "time": "2020-05-21T20:59:52+00:00"
         },
         {
             "name": "graylog2/gelf-php",

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <preference for="Intelipost\Push\Model\Request\ShipmentOrder\Customer" type="Itatiaia\FixIntelipost\Model\Request\ShipmentOrder\Customer" />
+    <preference for="Intelipost\Quote\Model\Carrier\Intelipost" type="Itatiaia\FixIntelipost\Model\Carrier\Intelipost" />
+    <preference for="Intelipost\Push\Model\Request\ShipmentOrder" type="Itatiaia\FixIntelipost\Model\Request\ShipmentOrder" />
+    <preference for="Intelipost\Quote\Helper\Data" type="Itatiaia\FixIntelipost\Helper\Title" />
+</config>
