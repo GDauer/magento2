@@ -111,7 +111,3 @@ crons:
 # Environment variables
 # variables:
 #    env:
-variables:
-    php:
-        date.timezone: "America/Sao_Paulo"
-        always_populate_raw_post_data: -1
