@@ -101,7 +101,6 @@ hooks:
     # We run post deploy hook to clean and warm the cache. Available with ECE-Tools 2002.0.10.
     post_deploy: |
         php ./vendor/bin/ece-tools post-deploy
-        php bin/magento deploy:mode:set developer
 
 # Default Magento 2 cron jobs
 crons:
