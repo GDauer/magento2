@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "55c767af72f80999267caf58fc7ea82c",
+    "content-hash": "c2352060cf92752a5d34685bd4271b95",
     "packages": [
         {
             "name": "adyen/module-payment",
