@@ -97,7 +97,7 @@ hooks:
         cat ./vendor/squizlabs/php_codesniffer/CodeSniffer.conf
     # We run deploy hook after your application has been deployed and started.
     deploy: |
-        php ./vendor/bin/ece-tools deploy
+        php ./vendor/bin/ece-tools deploy magento-command deploy:mode:set developer
     # We run post deploy hook to clean and warm the cache. Available with ECE-Tools 2002.0.10.
     post_deploy: |
         php ./vendor/bin/ece-tools post-deploy
