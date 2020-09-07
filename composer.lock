@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ab7df825550e9e1af4bbb7ce3f5b4c3",
+    "content-hash": "7d0af27c63a2596615b20b3cfa092695",
     "packages": [
         {
             "name": "adyen/module-payment",
@@ -16370,32 +16370,6 @@
             "description": "Vertex Tax Links for Magento 2"
         },
         {
-            "name": "webjump/gocache-cdn",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "git@bitbucket.org:webjump/magento2-module-cozinhas-itatiaia-gocache-cdn.git",
-                "reference": "0c730952005d37f84b2df4c23bec467f6538200d"
-            },
-            "require": {
-                "php": "~7.0.0|~7.1.0|~7.2.0|~7.3.0"
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "GoCache\\CDN\\": ""
-                }
-            },
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "GoCache CDN Magento 2 module",
-            "time": "2020-09-07T18:59:45+00:00"
-        },
-        {
             "name": "zendframework/zend-captcha",
             "version": "2.8.0",
             "source": {
@@ -20917,7 +20891,6 @@
         "digitalhub/customer-attributes": 20,
         "digitalhub/language-pt_br": 20,
         "digitalhub/module-cookie": 20,
-        "webjump/gocache-cdn": 20,
         "phpmd/phpmd": 0
     },
     "prefer-stable": false,
