@@ -1,26 +1,8 @@
 <?php
 namespace DigitalHub\FeedManager\Helper;
 
-use Magento\Framework\App\Helper\Context;
-use Magento\Store\Model\StoreManagerInterface;
-use Magento\Framework\Exception\LocalizedException;
-use Psr\Log\LoggerInterface;
-
 class Feed extends \Magento\Framework\App\Helper\AbstractHelper
 {
-    private $storeManager;
-    private $logger;
-
-    public function __construct(
-        Context $context,
-        StoreManagerInterface $storeManager,
-        LoggerInterface $logger
-    ) {
-        $this->storeManager = $storeManager;
-        $this->logger = $logger;
-        parent::__construct($context);
-    }
-
     public function parseMustacheTemplate($code, $variables)
     {
         $m = new \Mustache_Engine();
@@ -91,15 +73,7 @@ class Feed extends \Magento\Framework\App\Helper\AbstractHelper
 
             $xml = $this->parseMustacheTemplate($template->getCode(), $variables);
 
-            $storeCode = null;
             $feedxml_dir = $directory_list->getPath('media') . '/feedxml';
-
-            if (!empty($feed->getStoreId())) {
-                $store = $this->storeManager->getStore($feed->getStoreId());
-                $storeCode = $store->getCode();
-                $feedxml_dir = "/".$storeCode."/".$directory_list->getPath('media') . '/feedxml';
-            }
-
             $file = $feedxml_dir . '/' . $feed->getFilename();
 
             if(!file_exists($feedxml_dir)){
