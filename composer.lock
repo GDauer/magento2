@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7d0af27c63a2596615b20b3cfa092695",
+    "content-hash": "c2352060cf92752a5d34685bd4271b95",
     "packages": [
         {
             "name": "adyen/module-payment",
@@ -1383,6 +1383,47 @@
                 "maxmind"
             ],
             "time": "2019-12-12T18:48:39+00:00"
+        },
+        {
+            "name": "gocache/cdn",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gocache/magento-2.git",
+                "reference": "dff06390a627d879a672e9551a59f9b69b39d0a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gocache/magento-2/zipball/dff06390a627d879a672e9551a59f9b69b39d0a8",
+                "reference": "dff06390a627d879a672e9551a59f9b69b39d0a8",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.0.0|~7.1.0|~7.2.0|~7.3.0"
+            },
+            "type": "magento2-module",
+            "extra": {
+                "map": [
+                    [
+                        "*",
+                        "GoCache/CDN"
+                    ]
+                ]
+            },
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "GoCache\\CDN\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "GoCache CDN Magento 2 module",
+            "time": "2020-05-21T20:59:52+00:00"
         },
         {
             "name": "graylog2/gelf-php",
@@ -13267,16 +13308,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.28",
+            "version": "2.0.29",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "d1ca58cf33cb21046d702ae3a7b14fdacd9f3260"
+                "reference": "497856a8d997f640b4a516062f84228a772a48a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/d1ca58cf33cb21046d702ae3a7b14fdacd9f3260",
-                "reference": "d1ca58cf33cb21046d702ae3a7b14fdacd9f3260",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/497856a8d997f640b4a516062f84228a772a48a8",
+                "reference": "497856a8d997f640b4a516062f84228a772a48a8",
                 "shasum": ""
             },
             "require": {
@@ -13285,7 +13326,6 @@
             "require-dev": {
                 "phing/phing": "~2.7",
                 "phpunit/phpunit": "^4.8.35|^5.7|^6.0",
-                "sami/sami": "~2.0",
                 "squizlabs/php_codesniffer": "~2.0"
             },
             "suggest": {
@@ -13355,7 +13395,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2020-07-08T09:08:33+00:00"
+            "time": "2020-09-08T04:24:43+00:00"
         },
         {
             "name": "platformsh/magento2-configuration",
