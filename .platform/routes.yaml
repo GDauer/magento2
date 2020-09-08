@@ -1,0 +1,16 @@
+https://{default}/:
+    type: upstream
+    upstream: app:http
+    cache:
+        enabled: true
+
+https://{default}/static/:
+    type: upstream
+    upstream: app:http
+    cache:
+        enabled: true
+        cookies: []
+
+https://es.{default}:
+    type: upstream
+    upstream: search:elasticsearch

@@ -5,7 +5,7 @@ namespace DigitalHub\CatalogRulesCategory\Helper;
 
 use Magento\Catalog\Api\CategoryLinkManagementInterface;
 use Magento\Catalog\Model\ResourceModel\Category\CollectionFactory as CategoryFactory;
-use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductFactory;
+use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Model\Product;
 use Magento\CatalogRule\Api\CatalogRuleRepositoryInterface;
 use Magento\CatalogRule\Model\Rule;
@@ -19,6 +19,8 @@ use Magento\Framework\Stdlib\DateTime\DateTime;
 use Magento\Store\Api\StoreRepositoryInterface;
 use Psr\Log\LoggerInterface;
 use Magento\CatalogRule\Model\ResourceModel\Rule as RuleResourceModel;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\CatalogRule\Helper\Data as CatalogRuleHelper;
 
 class Data extends AbstractHelper
 {
@@ -28,14 +30,17 @@ class Data extends AbstractHelper
      * @var CategoryFactory
      */
     private $categoryFactory;
+
     /**
      * @var CategoryLinkManagementInterface
      */
     private $categoryLinkManagement;
+
     /**
-     * @var ProductFactory
+     * @var ProductRepositoryInterface
      */
-    private $productFactory;
+    private $productRepository;
+
     /**
      * @var Helper
      */
@@ -72,10 +77,15 @@ class Data extends AbstractHelper
     private $catalogRuleRepository;
 
     /**
+     * @var CatalogRuleHelper
+     */
+    private $catalogRuleHelper;
+
+    /**
      * Data constructor.
      * @param CategoryFactory $categoryFactory
      * @param CategoryLinkManagementInterface $categoryLinkManagement
-     * @param ProductFactory $productFactory
+     * @param ProductRepositoryInterface $productRepository
      * @param Helper $helper
      * @param CategoryLinkRepositoryInterface $categoryLinkRepository
      * @param LoggerInterface $logger
@@ -83,23 +93,25 @@ class Data extends AbstractHelper
      * @param GroupCollection $customerGroupCollection
      * @param DateTime $dateTime
      * @param CatalogRuleRepositoryInterface $catalogRuleRepository
+     * @param CatalogRuleHelper $catalogRuleHelper
      */
     public function __construct(
         CategoryFactory $categoryFactory,
         CategoryLinkManagementInterface $categoryLinkManagement,
-        ProductFactory $productFactory,
+        ProductRepositoryInterface $productRepository,
         Helper $helper,
         CategoryLinkRepositoryInterface $categoryLinkRepository,
         LoggerInterface $logger,
         RuleResourceModel $rule,
         GroupCollection $customerGroupCollection,
         DateTime $dateTime,
-        CatalogRuleRepositoryInterface $catalogRuleRepository
+        CatalogRuleRepositoryInterface $catalogRuleRepository,
+        CatalogRuleHelper $catalogRuleHelper
     )
     {
         $this->categoryFactory = $categoryFactory;
         $this->categoryLinkManagement = $categoryLinkManagement;
-        $this->productFactory = $productFactory;
+        $this->productRepository = $productRepository;
         $this->helper = $helper;
         $this->categoryLinkRepository = $categoryLinkRepository;
         $this->logger = $logger;
@@ -107,17 +119,22 @@ class Data extends AbstractHelper
         $this->customerGroupCollection = $customerGroupCollection;
         $this->dateTime = $dateTime;
         $this->catalogRuleRepository = $catalogRuleRepository;
+        $this->catalogRuleHelper = $catalogRuleHelper;
     }
 
     /**
      * @param Product|null $product
      * @return bool
      */
-    public function validateProduct(Product $product = null) {
+    public function validateProduct(Product $product = null, Rule $rule = null) {
         if (!empty($product) ) {
             if ($product->getTypeId() === 'grouped') {
                 $oldPrice = (float) $this->helper->getRegularPrice($product);
-                $finalPrice = (float) $this->helper->getFinalPrice($product);
+                if (!empty($rule)) {
+                    $finalPrice = $this->getGroupedFinalPrice($product, $rule);
+                } else {
+                    $finalPrice = (float) $this->helper->getFinalPrice($product);
+                }
             } else {
                 $oldPrice = (float) $product->getPrice();
                 $finalPrice = (float) $product->getFinalPrice();
@@ -156,7 +173,7 @@ class Data extends AbstractHelper
                     break;
                 case 'to_fixed';
                     if ($product->getTypeId() === 'grouped') {
-                        $finalPrice = (float) $this->helper->getFinalPrice($product);
+                        $finalPrice = $this->getGroupedFinalPrice($product, $rule);
                     } else {
                         $finalPrice = (float) $product->getFinalPrice();
                     }
@@ -251,5 +268,95 @@ class Data extends AbstractHelper
                 $this->unsetCategory($product);
             }
         }
+    }
+
+    /**
+     * Validate if it is possible to add the products related with the rule to Offers Category
+     * @param Rule|null $rule
+     */
+    public function setRuleToCategory(Rule $rule = null) {
+        if (!empty($rule)) {
+            $now = $this->dateTime->gmtDate();
+            if (($rule->getFromDate() == 0 || $rule->getFromDate() < $now) && ($rule->getToDate() == 0 || $rule->getToDate() > $now) && $rule->getIsActive()) {
+                $productIds = $rule->getMatchingProductIds();
+                foreach ($productIds as $productId => $validationByWebsite) {
+                    try {
+                        $product = $this->productRepository->getById($productId);
+                        if ($this->validateRule($product, $rule) || $this->validateProduct($product)) {
+                            $this->logger->info('Set Catalog Rule Category', [$rule->getRuleId()]);
+                            $this->setCategory($product);
+                        } else {
+                            $this->logger->info('Remove Catalog Rule Category', [$rule->getRuleId()]);
+                            $this->unsetCategory($product);
+                        }
+                    } catch (NoSuchEntityException $e) {
+                        $this->logger->alert('Product does not exists in setRuleToCategory method', [$e->getMessage()]);
+                    }
+
+                }
+            } else {
+                $productIds = $rule->getMatchingProductIds();
+                foreach ($productIds as $productId => $validationByWebsite) {
+                    try {
+                        $product = $this->productRepository->getById($productId);
+                        if (!$this->validateProduct($product, $rule)) {
+                            $this->logger->info('Remove Catalog Rule Category', [$rule->getRuleId()]);
+                            $this->unsetCategory($product);
+                        } else {
+                            $this->logger->info('Set Catalog Rule Category', [$rule->getRuleId()]);
+                            $this->setCategory($product);
+                        }
+                    } catch (NoSuchEntityException $e) {
+                        $this->logger->alert('Product does not exists in setRuleToCategory method', [$e->getMessage()]);
+                    }
+
+                }
+            }
+        }
+    }
+
+    /**
+     * @param Product $product
+     * @param Rule $rule
+     * @return float|int
+     * @throws NoSuchEntityException
+     */
+    public function getGroupedFinalPrice(Product $product, Rule $rule) {
+        $customerGroups = $this->customerGroupCollection->getItems();
+        $customerGroupId = 0;
+        foreach ($customerGroups as $customerGroup) {
+            if ($customerGroup->getCustomerGroupCode() !== self::NOT_LOGGED_IN) {
+                $customerGroupId = $customerGroup->getCustomerGroupId();
+                break;
+            }
+        }
+        $websitesId = $product->getWebsiteIds();
+
+        $websiteId = reset($websitesId);;
+        /**
+         * @var \Magento\Framework\Stdlib\DateTime\DateTime
+         */
+        $dateTs = $this->dateTime->gmtDate();
+        $rules = $this->rule->getRulesFromProduct($dateTs, $websiteId, $customerGroupId, $product->getEntityId());
+
+        $finalPrice = 0;
+        $associatedProducts = $product->getTypeInstance(true)->getAssociatedProducts($product);
+        foreach ($associatedProducts as $item) {
+            $qty = $item->getQty() ? $item->getQty() : 1;
+            $childProduct = $this->productRepository->getById($item->getId());
+            $finalPrice = $finalPrice + ((float)$childProduct->getFinalPrice() * (int)$qty);
+        }
+
+        if($rules){
+            foreach($rules as $item){
+                if ($rule->getRuleId() == $item['rule_id']) {
+                    continue;
+                }
+                $currentRule = $this->catalogRuleRepository->get($item['rule_id']);
+                $finalPrice = $this->catalogRuleHelper->calcPriceRule($currentRule->getSimpleAction(), $currentRule->getDiscountAmount(), $finalPrice);
+            }
+        }
+
+        return $finalPrice;
     }
 }

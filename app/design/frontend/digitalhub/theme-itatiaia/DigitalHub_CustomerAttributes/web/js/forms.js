@@ -138,8 +138,8 @@ require([
 
                     if (!("erro" in dados)) {
                         //Atualiza os campos com os valores da consulta.
-                        $("#street_1").val(dados.logradouro).trigger('change');
-                        $("#street_4").val(dados.bairro).trigger('change');
+                        $("#street_1").val(dados.logradouro.substring(0, 60)).trigger('change');
+                        $("#street_4").val(dados.bairro.substring(0, 40)).trigger('change');
                         $("#city").val(dados.localidade).trigger('change');
 
                         for (var i = 0; i < 27; i++) {

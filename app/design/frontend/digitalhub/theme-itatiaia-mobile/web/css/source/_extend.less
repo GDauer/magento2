@@ -1918,7 +1918,7 @@ select:not([disabled]) {
         margin: 0;
       }
     }
-    .parc-link{
+    .parc-link, .mooble{
       margin-bottom: 11px;
       a{
         color: #28a6fb;
@@ -3949,6 +3949,11 @@ body.checkout-index-index {
           ul{
             padding: 12px 0;
             li{
+							&.parent{
+								&:nth-child(2){
+									background: #1aa3ff !important;
+								}
+							}
               border: 0;
               min-height: 39px;
               a{

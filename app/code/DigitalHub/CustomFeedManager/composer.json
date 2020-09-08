@@ -1,0 +1,22 @@
+{
+    "name": "digitalhub/module-customfeedmanager",
+    "description": "",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "email": "suporte@digitalhub.com.br",
+            "name": "Digital Hub"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "DigitalHub\\CustomFeedManager\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

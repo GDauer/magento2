@@ -62,6 +62,10 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                                     [
                                         'name' => "TagMg_UF",
                                         'value' => $this->getRegionUf($order->getShippingAddress()->getRegion())
+                                    ],
+                                    [
+                                        'name' => "TagMg_Produto",
+                                        'value' => $this->getProductSkus($order)
                                     ]
                                 ]
                             ]
@@ -95,5 +99,38 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function getRegionUf($regionName){
         $region = $this->regionFactory->create()->loadByName($regionName, 'BR');
         return $region->getCode();
+    }
+
+    public function getProductSkus($order)
+    {
+        $objectManager = \Magento\Framework\App\objectManager::getInstance();
+        $productRepository = $objectManager->create('\Magento\Catalog\Model\ProductRepository');
+
+        $skus = [];
+        foreach ($order->getAllVisibleItems() as $item) {
+            $productOptions = $item->getProductOptions();
+            if ($productOptions) {
+                if (isset($productOptions['info_buyRequest'])) {
+                    $info_buyRequest = $productOptions['info_buyRequest'];
+                    if (isset($info_buyRequest['super_product_config'])) {
+                        $productId = $info_buyRequest['super_product_config']['product_id'];
+                        if ($productId) {
+                            $parentProduct = $productRepository->getById($productId);
+                            if ($parentProduct) {
+                                $sku = $parentProduct->getSku();
+                                if (!in_array($sku, $skus)) {
+                                    $skus[] = $sku;
+                                }
+                                continue;
+                            }
+                        }
+                    }
+                }
+            }
+
+            $skus[] = $item->getSku();
+        }
+
+        return implode(',', $skus);
     }
 }

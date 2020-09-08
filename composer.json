@@ -8,6 +8,7 @@
     ],
     "require": {
         "magento/product-enterprise-edition": "2.2.6",
+        "magento/ece-tools": "^2002.0",
         "composer/composer": "@alpha",
         "magento/module-bundle-sample-data": "100.2.*",
         "magento/module-customer-sample-data": "100.2.*",
@@ -42,10 +43,10 @@
         "digitalhub/language-pt_br": "dev-master",
         "magepal/magento2-gmailsmtpapp": "^2.5",
         "smile/elasticsuite": "^2.6",
-        "intelipost/magento2-basic": "^1.1",
-        "intelipost/magento2-push": "^1.1",
-        "intelipost/magento2-quote": "^1.3",
-        "intelipost/magento2-tracking": "^1.2",
+        "intelipost/magento2-basic": "1.1.*",
+        "intelipost/magento2-push": "1.1.*",
+        "intelipost/magento2-quote": "1.3.*",
+        "intelipost/magento2-tracking": "1.2.*",
         "adyen/module-payment": "4.2.0",
         "magepal/magento2-googletagmanager": "^2.2",
         "scandiweb/module-core": "~0.1.2",
@@ -57,9 +58,11 @@
         "mundipagg/mundipagg-magento2-module": "^1.8",
         "digitalhub/module-cookie": "dev-master",
         "konduto/magento2": "^1.0",
-        "mercadopago/magento2-plugin": "^3.3",
+        "mercadopago/magento2-plugin": "^3.4",
         "cweagans/composer-patches": "^1.6",
-        "flancer32/mage2_ext_minify": "^0.1.2"
+        "flancer32/mage2_ext_minify": "^0.1.2",
+        "platformsh/magento2-configuration": "2.2.*",
+        "gocache/cdn": "1.0.*"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.2.0",
@@ -69,7 +72,8 @@
         "sjparkinson/static-review": "~4.1",
         "friendsofphp/php-cs-fixer": "~2.2.1",
         "lusitanian/oauth": "~0.8.10",
-        "sebastian/phpcpd": "2.0.4"
+        "sebastian/phpcpd": "2.0.4",
+        "magento-ecg/coding-standard": "3.*"
     },
     "autoload": {
         "psr-4": {
