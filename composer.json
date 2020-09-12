@@ -48,7 +48,7 @@
         "intelipost/magento2-quote": "^1.3",
         "intelipost/magento2-tracking": "^1.2",
         "adyen/module-payment": "4.2.0",
-        "magepal/magento2-googletagmanager": "^2.2",
+        "magepal/magento2-googletagmanager": "2.2.9",
         "scandiweb/module-core": "~0.1.2",
         "scandiweb/module-magiczoom": "1.1.4",
         "mustache/mustache": "^2.12",
