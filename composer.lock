@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c2352060cf92752a5d34685bd4271b95",
+    "content-hash": "d16effa576acd9d657ad3839cf629b6b",
     "packages": [
         {
             "name": "adyen/module-payment",
@@ -1381,47 +1381,6 @@
             "time": "2019-12-12T18:48:39+00:00"
         },
         {
-            "name": "gocache/cdn",
-            "version": "1.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/gocache/magento-2.git",
-                "reference": "dff06390a627d879a672e9551a59f9b69b39d0a8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/gocache/magento-2/zipball/dff06390a627d879a672e9551a59f9b69b39d0a8",
-                "reference": "dff06390a627d879a672e9551a59f9b69b39d0a8",
-                "shasum": ""
-            },
-            "require": {
-                "php": "~7.0.0|~7.1.0|~7.2.0|~7.3.0"
-            },
-            "type": "magento2-module",
-            "extra": {
-                "map": [
-                    [
-                        "*",
-                        "GoCache/CDN"
-                    ]
-                ]
-            },
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "GoCache\\CDN\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "GoCache CDN Magento 2 module",
-            "time": "2020-05-21T20:59:52+00:00"
-        },
-        {
             "name": "graylog2/gelf-php",
             "version": "1.6.5",
             "source": {
@@ -1918,20 +1877,20 @@
         },
         {
             "name": "intelipost/magento2-basic",
-            "version": "1.1.3",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/intelipost/magento2-basic.git",
-                "reference": "e895459d471d1ad0b1007323e30a8fd34a57e599"
+                "reference": "a2ed148b4b08b4d32035c257430d6ecc40ac13d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/intelipost/magento2-basic/zipball/e895459d471d1ad0b1007323e30a8fd34a57e599",
-                "reference": "e895459d471d1ad0b1007323e30a8fd34a57e599",
+                "url": "https://api.github.com/repos/intelipost/magento2-basic/zipball/a2ed148b4b08b4d32035c257430d6ecc40ac13d8",
+                "reference": "a2ed148b4b08b4d32035c257430d6ecc40ac13d8",
                 "shasum": ""
             },
             "require": {
-                "php": "~5.5.0|~5.6.0|~7.0.0|~7.1.0"
+                "php": "~5.5.0|~5.6.0|~7.0.0|~7.1.0|~7.2"
             },
             "type": "magento2-basic",
             "autoload": {
@@ -1959,26 +1918,26 @@
                 }
             ],
             "description": "Intelipost Basic",
-            "time": "2019-01-21T19:29:13+00:00"
+            "time": "2019-02-18T21:37:32+00:00"
         },
         {
             "name": "intelipost/magento2-push",
-            "version": "1.1.2",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/intelipost/magento2-push.git",
-                "reference": "592ce70bfb982e1d623ddc48b9f08037afc0f4a1"
+                "reference": "c2add45e481a907020dcadffb27d6217b711ca2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/intelipost/magento2-push/zipball/592ce70bfb982e1d623ddc48b9f08037afc0f4a1",
-                "reference": "592ce70bfb982e1d623ddc48b9f08037afc0f4a1",
+                "url": "https://api.github.com/repos/intelipost/magento2-push/zipball/c2add45e481a907020dcadffb27d6217b711ca2c",
+                "reference": "c2add45e481a907020dcadffb27d6217b711ca2c",
                 "shasum": ""
             },
             "require": {
                 "intelipost/magento2-basic": "1.*",
                 "intelipost/magento2-quote": "1.*",
-                "php": "~5.5.0|~5.6.0|~7.0.0|~7.1.0"
+                "php": "~5.5.0|~5.6.0|~7.0.0|~7.1.0|~7.2"
             },
             "type": "magento2-module",
             "autoload": {
@@ -2001,25 +1960,25 @@
                 }
             ],
             "description": "Intelipost Push",
-            "time": "2018-12-06T14:15:14+00:00"
+            "time": "2019-02-18T21:35:10+00:00"
         },
         {
             "name": "intelipost/magento2-quote",
-            "version": "1.3.6",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/intelipost/magento2-quote.git",
-                "reference": "20eb1d9f70595802a71d7c24d19ffc8e387c5a3a"
+                "reference": "5807c0f3f0579f9fa96bcf3bd9321f4849d9f829"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/intelipost/magento2-quote/zipball/20eb1d9f70595802a71d7c24d19ffc8e387c5a3a",
-                "reference": "20eb1d9f70595802a71d7c24d19ffc8e387c5a3a",
+                "url": "https://api.github.com/repos/intelipost/magento2-quote/zipball/5807c0f3f0579f9fa96bcf3bd9321f4849d9f829",
+                "reference": "5807c0f3f0579f9fa96bcf3bd9321f4849d9f829",
                 "shasum": ""
             },
             "require": {
                 "intelipost/magento2-basic": "1.*",
-                "php": "~5.5.0|~5.6.0|~7.0.0|~7.1.0"
+                "php": "~5.5.0|~5.6.0|~7.0.0|~7.1.0|~7.2"
             },
             "type": "magento2-module",
             "autoload": {
@@ -2047,25 +2006,25 @@
                 }
             ],
             "description": "Intelipost Quote",
-            "time": "2018-11-27T19:30:16+00:00"
+            "time": "2019-02-18T21:40:38+00:00"
         },
         {
             "name": "intelipost/magento2-tracking",
-            "version": "1.2.3",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/intelipost/magento2-tracking.git",
-                "reference": "f87ce6116f79615688085f7d7ccceef9693703e3"
+                "reference": "1afb53ca5cdd26051c757cc6a31ae50224d99e9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/intelipost/magento2-tracking/zipball/f87ce6116f79615688085f7d7ccceef9693703e3",
-                "reference": "f87ce6116f79615688085f7d7ccceef9693703e3",
+                "url": "https://api.github.com/repos/intelipost/magento2-tracking/zipball/1afb53ca5cdd26051c757cc6a31ae50224d99e9e",
+                "reference": "1afb53ca5cdd26051c757cc6a31ae50224d99e9e",
                 "shasum": ""
             },
             "require": {
                 "intelipost/magento2-basic": "1.*",
-                "php": "~5.5.0|~5.6.0|~7.0.0|~7.1.0"
+                "php": "~5.5.0|~5.6.0|~7.0.0|~7.1.0|~7.2"
             },
             "type": "magento2-module",
             "autoload": {
@@ -2088,7 +2047,7 @@
                 }
             ],
             "description": "Intelipost Tracking",
-            "time": "2018-11-27T00:00:19+00:00"
+            "time": "2019-02-18T21:38:54+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -11976,23 +11935,22 @@
         },
         {
             "name": "magepal/magento2-googletagmanager",
-            "version": "2.5.1",
+            "version": "2.2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/magepal/magento2-google-tag-manager.git",
-                "reference": "61c035b4efcd21645d280353f81d1b6c558ac4fa"
+                "reference": "c8445c86d229ca7a152410ef575c130ae60df1c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/magepal/magento2-google-tag-manager/zipball/61c035b4efcd21645d280353f81d1b6c558ac4fa",
-                "reference": "61c035b4efcd21645d280353f81d1b6c558ac4fa",
+                "url": "https://api.github.com/repos/magepal/magento2-google-tag-manager/zipball/c8445c86d229ca7a152410ef575c130ae60df1c7",
+                "reference": "c8445c86d229ca7a152410ef575c130ae60df1c7",
                 "shasum": ""
             },
             "require": {
-                "magento/framework": "100.0.*|100.1.*|101.0.*|102.0.*|103.0.*",
-                "magento/module-backend": "100.0.*|100.1.*|100.2.*|101.0.*|102.0.*",
-                "magepal/magento2-core": ">1.1.0",
-                "php": "~5.6.0|7.0.2|7.0.4|~7.0.6|~7.1.0|~7.1.3|~7.2.0|~7.3.0|~7.4.0"
+                "magento/framework": "100.0.*|100.1.*|101.0.*|102.0.*",
+                "magento/module-backend": "100.0.*|100.1.*|100.2.*|101.0.*",
+                "php": "~5.6.0|7.0.2|7.0.4|~7.0.6|~7.1.0|~7.1.3|~7.2.0"
             },
             "type": "magento2-module",
             "autoload": {
@@ -12016,24 +11974,20 @@
                 }
             ],
             "description": "Google Tag Manager (GTM) for Magento 2 with Advance Data Layer",
-            "homepage": "https://www.magepal.com/google-tag-manager.html",
+            "homepage": "http://www.magepal.com/",
             "keywords": [
                 "Google Tag Manager",
                 "data layer",
                 "ga",
-                "ga tag manager",
                 "google analytics",
                 "gtm",
-                "integrate gtm magento",
                 "magento 2",
                 "magento gtm",
-                "magento tag manager",
                 "magento2",
                 "magento2 analytics",
-                "order conversion gtm magento",
                 "tag manager"
             ],
-            "time": "2020-07-30T16:32:12+00:00"
+            "time": "2019-03-27T01:40:38+00:00"
         },
         {
             "name": "matthiasmullie/minify",
@@ -12252,16 +12206,16 @@
         },
         {
             "name": "mercadopago/magento2-plugin",
-            "version": "3.4.1",
+            "version": "3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mercadopago/cart-magento2.git",
-                "reference": "d01ee31108d1a32070d0c7320328accc31ecaaba"
+                "reference": "f5208e407b648e3cb7b56ef0eda4c48139ef0582"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mercadopago/cart-magento2/zipball/d01ee31108d1a32070d0c7320328accc31ecaaba",
-                "reference": "d01ee31108d1a32070d0c7320328accc31ecaaba",
+                "url": "https://api.github.com/repos/mercadopago/cart-magento2/zipball/f5208e407b648e3cb7b56ef0eda4c48139ef0582",
+                "reference": "f5208e407b648e3cb7b56ef0eda4c48139ef0582",
                 "shasum": ""
             },
             "require": {
@@ -12298,7 +12252,7 @@
                 }
             ],
             "description": "Mercado Pago Magento 2 Plugin",
-            "time": "2020-07-07T22:02:42+00:00"
+            "time": "2019-08-26T17:40:20+00:00"
         },
         {
             "name": "monolog/monolog",
