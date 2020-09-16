@@ -17,7 +17,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $config = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Framework\App\Config\ScopeConfigInterface');
 
         if($config->getValue('sales/itatiaia_groupedcatalogrule/active')){
-            $logger = $objectManager->get('\Psr\Log\LoggerInterface');
+            //$logger = $objectManager->get('\Psr\Log\LoggerInterface');
             $customerSession = $objectManager->get('\Magento\Customer\Model\SessionFactory')->create();
 
             $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
@@ -146,8 +146,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     {
         $groupedProductType = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\GroupedProduct\Model\Product\Type\GroupedFactory')->create();
         $productFactory = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\ProductFactory');
-        $logger = \Magento\Framework\App\ObjectManager::getInstance()->get('\Psr\Log\LoggerInterface');
-        $logger->info('GROUPED STOCK STATUS', [$stockItem->getData()]);
+        //$logger = \Magento\Framework\App\ObjectManager::getInstance()->get('\Psr\Log\LoggerInterface');
+        //$logger->info('GROUPED STOCK STATUS', [$stockItem->getData()]);
 
         // busca produtos agrupados relacionados
         // para cada agrupado encontrado, busca pelos filhos
@@ -156,7 +156,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             // altera status de stock do agrupado para sem estoque
 
         $product = $productFactory->create()->load($stockItem->getProductId());
-        $logger->info('STOCK PRODUCT ID', [$product->getId(), $product->getName()]);
+        //$logger->info('STOCK PRODUCT ID', [$product->getId(), $product->getName()]);
 
         if($product->getTypeId() == 'simple'){
             // busca produtos agrupados relacionados
@@ -172,7 +172,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                     $childrenIds = $groupedProduct->getTypeInstance(true)->getChildrenIds($groupedProduct->getId());
 
                     $is_in_stock = true;
-                    $logger->info('CHILDREN IDS', [$childrenIds]);
+                    //$logger->info('CHILDREN IDS', [$childrenIds]);
 
                     // Link Type ID = 3
                     // verifica o status do estoque de cada item
@@ -180,7 +180,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                         $childProduct = $productFactory->create()->load($id);
 
                         // verifica se exite um dos itens do agrupado sem estoque
-                        $logger->info('CHILD ITEM', [$childProduct->getData()]);
+                        //$logger->info('CHILD ITEM', [$childProduct->getData()]);
 
                         $extensionAttributes = $childProduct->getExtensionAttributes();
                         if(!$extensionAttributes->getStockItem()->getIsInStock()){

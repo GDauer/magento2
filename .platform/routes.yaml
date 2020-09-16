@@ -1,6 +1,8 @@
-https://{default}/loja/:
+https://{default}/:
     type: upstream
     upstream: app:http
+    cache:
+        enabled: true
 
 https://{default}/static/:
     type: upstream

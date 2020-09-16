@@ -73,7 +73,7 @@ web:
 
 
 # The size of the persistent disk of the application (in MB).
-disk: 5048
+disk: 6144
 
 # The mounts that will be performed when the package is deployed
 mounts:
@@ -108,7 +108,6 @@ crons:
         spec: "* * * * *"
         cmd: "php bin/magento cron:run"
 
-# Environment variables
-# variables:
-#    env:
-
+variables:
+    php:
+        date.timezone: "America/Sao_Paulo"

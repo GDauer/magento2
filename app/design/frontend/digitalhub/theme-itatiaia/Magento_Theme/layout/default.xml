@@ -11,7 +11,7 @@
     <!-- HEADER -->
     <referenceContainer name="header.container">
       <block class="Magento\Framework\View\Element\Template" name="custom_header" as="custom_header" template="Magento_Theme::html/header.phtml"  before="-">
-        <block class="Magento\Framework\View\Element\Template" name="customer_data" as="customerData" template="Magento_Customer::html/header-mini.phtml" />
+        <block class="Magento\Framework\View\Element\Template" name="customer_data" as="customerData" template="Magento_Customer::html/header-mini.phtml"  cacheable="false"/>
       </block>
     </referenceContainer>
     <move element="logo" as="logo" destination="custom_header" />

@@ -48,7 +48,7 @@
         "intelipost/magento2-quote": "^1.3",
         "intelipost/magento2-tracking": "^1.2",
         "adyen/module-payment": "4.2.0",
-        "magepal/magento2-googletagmanager": "^2.2",
+        "magepal/magento2-googletagmanager": "2.2.9",
         "scandiweb/module-core": "~0.1.2",
         "scandiweb/module-magiczoom": "1.1.4",
         "mustache/mustache": "^2.12",
@@ -58,10 +58,11 @@
         "mundipagg/mundipagg-magento2-module": "^1.8",
         "digitalhub/module-cookie": "dev-master",
         "konduto/magento2": "^1.0",
-        "mercadopago/magento2-plugin": "^3.4",
+        "mercadopago/magento2-plugin": "3.3.1",
         "cweagans/composer-patches": "^1.6",
         "flancer32/mage2_ext_minify": "^0.1.2",
-        "platformsh/magento2-configuration": "2.2.*"
+        "platformsh/magento2-configuration": "2.2.*",
+        "gocache/cdn": "1.0.*"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.2.0",
