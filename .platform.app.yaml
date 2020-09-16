@@ -32,7 +32,7 @@ relationships:
 # The configuration of app when it is exposed to the web.
 web:
     locations:
-        "/loja/":
+        "/":
             # The public directory of the app, relative to its root.
             root: "pub"
             # The front-controller script to send non-static requests to.
@@ -111,3 +111,4 @@ crons:
 # Environment variables
 # variables:
 #    env:
+
