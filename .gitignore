@@ -69,3 +69,4 @@ atlassian*
 .DS_Store
 pub/var/log/intelipost.log
 /pub/media/feedxml/
+/.php71
