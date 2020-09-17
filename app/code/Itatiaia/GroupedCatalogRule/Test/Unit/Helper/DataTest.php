@@ -26,6 +26,7 @@ use Magento\Framework\Registry;
 use Magento\GroupedProduct\Model\Product\Type\GroupedFactory;
 use Psr\Log\LoggerInterface;
 use Magento\CatalogInventory\Api\StockRegistryInterface;
+use Magento\Catalog\Model\Product;
 
 class DataTest extends TestCase
 {
@@ -88,6 +89,6 @@ class DataTest extends TestCase
 
     public function calculateGroupedFinalPrice()
     {
-        
+        $product = $this->createMock(Product::class);
     }
 }

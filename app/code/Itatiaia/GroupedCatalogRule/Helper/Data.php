@@ -15,16 +15,15 @@ namespace Itatiaia\GroupedCatalogRule\Helper;
 
 use Magento\Framework\App\Helper\Context;
 use Magento\CatalogRule\Helper\Data as HelperData;
-use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\App\Helper\AbstractHelper;
-use Magento\Customer\Model\SessionFactory;
 use Magento\Catalog\Model\ProductFactory;
 use Magento\Framework\Registry;
 use Magento\GroupedProduct\Model\Product\Type\GroupedFactory;
 use Psr\Log\LoggerInterface;
 use Magento\CatalogInventory\Api\StockRegistryInterface;
 use Magento\Catalog\Model\Product;
-
+use Itatiaia\GroupedCatalogRule\Model\ResourceModel\GetActiveRulesByParentProduct;
+use Itatiaia\GroupedCatalogRule\Model\RulesValidator;
 
 class Data extends AbstractHelper
 {
@@ -32,10 +31,6 @@ class Data extends AbstractHelper
     private $context;
     /** @var HelperData */
     private $helperData;
-    /** @var ResourceConnection */
-    private $resourceConnection;
-    /** @var SessionFactory */
-    private $sessionFactory;
     /** @var ProductFactory */
     private $productfactory;
     /** @var Registry */
@@ -46,105 +41,65 @@ class Data extends AbstractHelper
     private $loggerInterface;
     /** @var StockRegistryInterface */
     private $stockRegistryInterface;
+    /** @var Product */
     private $product;
+    /** @var GetActiveRulesByParentProduct */
+    private $getRules;
+    /** @var RulesValidator */
+    private $validator;
+
     /**
      * Data constructor.
      *
      * @param Context $context
      * @param HelperData $helperData
-     * @param ResourceConnection $resourceConnection
-     * @param SessionFactory $sessionFactory
      * @param ProductFactory $productFactory
      * @param Registry $registry
      * @param GroupedFactory $groupedFactory
      * @param LoggerInterface $loggerInterface
      * @param StockRegistryInterface $stockRegistry
+     * @param Product $product
+     * @param GetActiveRulesByParentProduct $getRules
+     * @param RulesValidator $validator
      */
     public function __construct(
         Context $context,
         HelperData $helperData,
-        ResourceConnection $resourceConnection,
-        SessionFactory $sessionFactory,
         ProductFactory $productFactory,
         Registry $registry,
         GroupedFactory $groupedFactory,
         LoggerInterface $loggerInterface,
         StockRegistryInterface $stockRegistry,
-        Product $product
+        Product $product,
+        GetActiveRulesByParentProduct $getRules,
+        RulesValidator $validator
     ) {
         parent::__construct($context);
         $this->helperData = $helperData;
-        $this->resourceConnection = $resourceConnection;
-        $this->sessionFactory = $sessionFactory;
         $this->productfactory = $productFactory;
         $this->registry = $registry;
         $this->groupedFactory = $groupedFactory;
         $this->loggerInterface = $loggerInterface;
         $this->stockRegistryInterface;
         $this->product = $product;
+        $this->getRules = $getRules;
+        $this->validator = $validator;
     }
 
     /**
-     * getActiveRulesByParentProduct method to get catalog rules
+     * calculateGroupedFinalPrice method to calculate grouped final price
      *
-     * @param $product
-     *
-     * @return null
-     */
-    public function getActiveRulesByParentProduct($product)
-    {
-        if($this->scopeConfig->getValue('sales/itatiaia_groupedcatalogrule/active')){
-            $customerSession = $this->sessionFactory->create();
-
-            $connection = $this->resourceConnection->getConnection();
-
-            $catalogrule_table = $this->resourceConnection->getTableName('catalogrule');
-            $catalogrule_product_table = $this->resourceConnection->getTableName('catalogrule_product');
-
-            $customer_group_id = $customerSession->getCustomerGroupId();
-
-            $sql = "select rule_product.*, rule.is_active as is_active from " . $catalogrule_product_table . " as rule_product,
-             ".$catalogrule_table." as rule 
-             where rule.rule_id = rule_product.rule_id
-             and rule.is_active = 1
-             and customer_group_id = ".$customer_group_id."
-             and product_id = " . $product->getId() . "
-             and from_time <= " . time() . "
-             and (to_time = 0 OR to_time >= " . time() . ")
-             group by rule_id
-             order by sort_order ASC";
-
-            $result = $connection->fetchAll($sql);
-
-            if(count($result)){
-                return $result;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * calculatedGroupedFinalPrice method
-     *
-     * @param $product
+     * @param Product $product
      *
      * @return float|int
      */
     public function calculateGroupedFinalPrice(Product $product)
     {
-        $rules = $this->getActiveRulesByParentProduct($product);
+        $rules = $this->getRules->execute($product);
+
         $finalPrice = $this->getRegularPrice($product);
 
-        if($rules){
-            foreach($rules as $rule){
-                $finalPrice = $this->helperData->calcPriceRule($rule['action_operator'], $rule['action_amount'], $finalPrice);
-                if((int)$rule['action_stop']){
-                    break;
-                }
-            }
-        }
-
-        return $finalPrice;
+        return $this->validator->validate($rules, $finalPrice);
     }
 
     /**
@@ -158,20 +113,11 @@ class Data extends AbstractHelper
      */
     public function calculateSimpleFinalPrice($product, Product $parentProduct)
     {
-        $rules = $this->getActiveRulesByParentProduct($parentProduct);
+        $rules = $this->getRules->execute($parentProduct);
 
         $finalPrice = $this->getPrice($product);
 
-        if($rules){
-            foreach($rules as $rule){
-                $finalPrice = $this->helperData->calcPriceRule($rule['action_operator'], $rule['action_amount'], $finalPrice);
-                if((int)$rule['action_stop']){
-                    break;
-                }
-            }
-        }
-
-        return $finalPrice;
+        return $this->validator->validate($rules, $finalPrice);
     }
 
     /**
@@ -183,6 +129,7 @@ class Data extends AbstractHelper
      */
     public function getPrice($product)
     {
+
         if($product->getTypeId() == 'grouped'){
             $price = 0;
             $associatedProducts = $product->getTypeInstance(true)->getAssociatedProducts($product);
