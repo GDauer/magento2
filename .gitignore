@@ -70,3 +70,8 @@ atlassian*
 pub/var/log/intelipost.log
 /pub/media/feedxml/
 /.php71
+/setup/
+/generated/.htaccess
+/pub/media/sitemap/sitemap-index.xml
+/app/etc/env.php
+/app/etc/di.xml
