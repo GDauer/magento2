@@ -1,9 +1,5 @@
 require(['jquery','owlcarousel'],function(){
       'use strict';
-			jQuery('header.page-header .nav-toggle').click(function() {
-				 jQuery('html').toggleClass('nav-before-open');
-				 jQuery('html').toggleClass('nav-open');
-			});
       jQuery('.slider-marcas.owl-carousel').owlCarousel({
         loop: true,
         nav: false,
