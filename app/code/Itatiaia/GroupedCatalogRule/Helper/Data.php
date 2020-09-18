@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Itatiaia\GroupedCatalogRule\Helper;
 
+use Itatiaia\GroupedCatalogRule\Helper\ApplyRules;
+use Magento\CatalogInventory\Api\Data\StockItemInterface;
 use Magento\Framework\App\Helper\Context;
 use Magento\CatalogRule\Helper\Data as HelperData;
 use Magento\Framework\App\Helper\AbstractHelper;
@@ -23,7 +25,6 @@ use Psr\Log\LoggerInterface;
 use Magento\CatalogInventory\Api\StockRegistryInterface;
 use Magento\Catalog\Model\Product;
 use Itatiaia\GroupedCatalogRule\Model\ResourceModel\GetActiveRulesByParentProduct;
-use Itatiaia\GroupedCatalogRule\Model\RulesValidator;
 
 class Data extends AbstractHelper
 {
@@ -32,7 +33,7 @@ class Data extends AbstractHelper
     /** @var HelperData */
     private $helperData;
     /** @var ProductFactory */
-    private $productfactory;
+    private $productFactory;
     /** @var Registry */
     private $registry;
     /** @var GroupedFactory */
@@ -45,8 +46,8 @@ class Data extends AbstractHelper
     private $product;
     /** @var GetActiveRulesByParentProduct */
     private $getRules;
-    /** @var RulesValidator */
-    private $validator;
+    /** @var ApplyRules */
+    private $applyRules;
 
     /**
      * Data constructor.
@@ -60,7 +61,7 @@ class Data extends AbstractHelper
      * @param StockRegistryInterface $stockRegistry
      * @param Product $product
      * @param GetActiveRulesByParentProduct $getRules
-     * @param RulesValidator $validator
+     * @param ApplyRules $applyRules
      */
     public function __construct(
         Context $context,
@@ -72,18 +73,18 @@ class Data extends AbstractHelper
         StockRegistryInterface $stockRegistry,
         Product $product,
         GetActiveRulesByParentProduct $getRules,
-        RulesValidator $validator
+        ApplyRules $applyRules
     ) {
         parent::__construct($context);
         $this->helperData = $helperData;
-        $this->productfactory = $productFactory;
+        $this->productFactory = $productFactory;
         $this->registry = $registry;
         $this->groupedFactory = $groupedFactory;
         $this->loggerInterface = $loggerInterface;
         $this->stockRegistryInterface;
         $this->product = $product;
         $this->getRules = $getRules;
-        $this->validator = $validator;
+        $this->applyRules = $applyRules;
     }
 
     /**
@@ -97,9 +98,9 @@ class Data extends AbstractHelper
     {
         $rules = $this->getRules->execute($product);
 
-        $finalPrice = $this->getRegularPrice($product);
-
-        return $this->validator->validate($rules, $finalPrice);
+//        $finalPrice = $this->getRegularPrice($product);
+//
+//        return $this->applyRules->apply($rules, $finalPrice);
     }
 
     /**
@@ -117,7 +118,7 @@ class Data extends AbstractHelper
 
         $finalPrice = $this->getPrice($product);
 
-        return $this->validator->validate($rules, $finalPrice);
+        return $this->applyRules->apply($rules, $finalPrice);
     }
 
     /**
@@ -135,7 +136,7 @@ class Data extends AbstractHelper
             $associatedProducts = $product->getTypeInstance(true)->getAssociatedProducts($product);
             foreach ($associatedProducts as $item) {
                 $qty = $item->getQty() ? $item->getQty() : 1;
-                $childProduct = $this->productfactory->create()->load($item->getId());
+                $childProduct = $this->productFactory->create()->load($item->getId());
                 $price = $price + ((float)$childProduct->getFinalPrice() * (int)$qty);
             }
             return $price;
@@ -153,21 +154,22 @@ class Data extends AbstractHelper
      */
     public function getRegularPrice($product)
     {
-        if($this->registry->registry('grouped_regular_price_' . $product->getId())){
+        $groupedRegularPriceRegistry = $this->registry->registry('grouped_regular_price_' . $product->getId());
 
-            return $this->registry->registry('grouped_regular_price_' . $product->getId());
+        if($groupedRegularPriceRegistry){
+
+            return $groupedRegularPriceRegistry;
         }
 
-        $price = 0;
-        if($product->getTypeId() == 'grouped'){
+        $price = $product->getPrice();
+        if($product->getTypeId() == 'grouped') {
+            $price = 0;
             $associatedProducts = $product->getTypeInstance(true)->getAssociatedProducts($product);
             foreach ($associatedProducts as $item) {
                 $qty = $item->getQty() ? $item->getQty() : 1;
-                $childProduct = $this->productfactory->create()->load($item->getId());
+                $childProduct = $this->productFactory->create()->load($item->getId());
                 $price = $price + ((float)$childProduct->getPrice() * (int)$qty);
             }
-        } else {
-            $price = $product->getPrice();
         }
 
         $this->registry->register('grouped_regular_price_' . $product->getId(), $price);
@@ -186,60 +188,36 @@ class Data extends AbstractHelper
      */
     public function getFinalPrice($product, $parentProduct = null)
     {
-        $finalPrice = null;
 
         if($product->getTypeId() == 'grouped'){
-            $finalPrice = $this->calculateGroupedFinalPrice($product);
-        } else {
-            $finalPrice = $this->calculateSimpleFinalPrice($product, $parentProduct);
+            return  $this->calculateGroupedFinalPrice($product);
         }
 
-        return $finalPrice;
+        return $this->calculateSimpleFinalPrice($product, $parentProduct);
     }
 
     /**
-     * updateGroupedStockStatusByStockItem method to update stock status based on item status
+     *  updateGroupedStockStatusByStockItem method
      *
-     * @param $stockItem
+     * @param StockItemInterface $stockItem
      *
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function updateGroupedStockStatusByStockItem($stockItem)
+    public function updateGroupedStockStatusByStockItem(StockItemInterface $stockItem)
     {
         $groupedProductType =$this->groupedFactory->create();
         $this->loggerInterface->info('GROUPED STOCK STATUS', [$stockItem->getData()]);
 
-        $product = $this->productfactory->create()->load($stockItem->getProductId());
-        $this->loggerInterface->info('STOCK PRODUCT ID', [$product->getId(), $product->getName()]);
+        $product = $this->productFactory->create()->load($stockItem->getProductId());
+        $productId = $product->getId();
+        $this->loggerInterface->info('STOCK PRODUCT ID', [$productId, $product->getName()]);
 
         if($product->getTypeId() == 'simple'){
 
-            $parentProductsIds = $groupedProductType->getParentIdsByChild($product->getId());
+            $parentProductsIds = $groupedProductType->getParentIdsByChild($productId);
 
             if(count($parentProductsIds)){
-                $groupedCollection = $this->productfactory->create()->getCollection();
-                $groupedCollection->addFieldToFilter('row_id', ['in' => $parentProductsIds]);
-                $groupedCollection->load();
-
-                foreach($groupedCollection as $groupedProduct){
-                    $childrenIds = $groupedProduct->getTypeInstance(true)->getChildrenIds($groupedProduct->getId());
-
-                    $is_in_stock = true;
-                    $this->loggerInterface->info('CHILDREN IDS', [$childrenIds]);
-
-                    foreach($childrenIds['3'] as $k => $id){
-                        $childProduct = $this->productfactory->create()->load($id);
-
-                        $this->loggerInterface->info('CHILD ITEM', [$childProduct->getData()]);
-
-                        $extensionAttributes = $childProduct->getExtensionAttributes();
-                        if(!$extensionAttributes->getStockItem()->getIsInStock()){
-                            $is_in_stock = false;
-                        }
-                    }
-
-                    $this->updateProductIsInStock($groupedProduct, $is_in_stock);
-                }
+                $this->updateChildrenProductByParentId($parentProductsIds);
             }
         }
     }
@@ -251,17 +229,17 @@ class Data extends AbstractHelper
      *
      * @return bool
      */
-    public function isGroupedProductInStock($groupedProduct): bool
+    public function isGroupedProductInStock(Product $groupedProduct): bool
     {
         $childrenIds = $groupedProduct->getTypeInstance(true)->getChildrenIds($groupedProduct->getId());
         $is_in_stock = true;
 
         foreach($childrenIds['3'] as $k => $id){
-            $childProduct = $this->productfactory->create()->load($id);
+            $childProduct = $this->productFactory->create()->load($id);
 
             if(!$childProduct->isAvailable()){
                 $is_in_stock = false;
-            }
+           }
         }
 
         return $is_in_stock;
@@ -277,9 +255,43 @@ class Data extends AbstractHelper
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function updateProductIsInStock($product, $is_in_stock) {
-
-        $stockItem = $this->stockRegistryInterface->getStockItemBySku($product->getSku());
+        $productSku = $product->getSku();
+        $stockItem = $this->stockRegistryInterface->getStockItemBySku($productSku);
         $stockItem->setIsInStock((bool)$is_in_stock);
-        $this->stockRegistryInterface->updateStockItemBySku($product->getSku(), $stockItem);
+        $this->stockRegistryInterface->updateStockItemBySku($productSku, $stockItem);
+    }
+
+    /**
+     * updateChildrenProductByParentId method
+     *
+     * @param $parentProductsIds
+     *
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function updateChildrenProductByParentId($parentProductsIds)
+    {
+        $groupedCollection = $this->productFactory->create()->getCollection();
+        $groupedCollection->addFieldToFilter('row_id', ['in' => $parentProductsIds]);
+        $groupedCollection->load();
+
+        foreach($groupedCollection as $groupedProduct){
+            $childrenIds = $groupedProduct->getTypeInstance(true)->getChildrenIds($groupedProduct->getId());
+
+            $is_in_stock = true;
+            $this->loggerInterface->info('CHILDREN IDS', [$childrenIds]);
+
+            foreach($childrenIds['3'] as $k => $id){
+                $childProduct = $this->productFactory->create()->load($id);
+
+                $this->loggerInterface->info('CHILD ITEM', [$childProduct->getData()]);
+
+                $extensionAttributes = $childProduct->getExtensionAttributes();
+                if(!$extensionAttributes->getStockItem()->getIsInStock()){
+                    $is_in_stock = false;
+                }
+            }
+
+            $this->updateProductIsInStock($groupedProduct, $is_in_stock);
+        }
     }
 }

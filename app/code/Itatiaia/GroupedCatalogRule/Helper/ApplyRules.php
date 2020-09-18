@@ -11,17 +11,17 @@
 
 declare(strict_types=1);
 
-namespace Itatiaia\GroupedCatalogRule\Model;
+namespace Itatiaia\GroupedCatalogRule\Helper;
 
 use Magento\CatalogRule\Helper\Data;
 
-class RulesValidator
+class ApplyRules
 {
     /** @var Data */
     private $data;
 
     /**
-     * RulesValidator constructor.
+     * ApplyRules constructor.
      *
      * @param Data $data
      */
@@ -39,7 +39,7 @@ class RulesValidator
      *
      * @return float|int
      */
-    public function validate($rules, $finalPrice)
+    public function apply($rules, $finalPrice)
     {
         if($rules){
             foreach($rules as $rule){
@@ -49,6 +49,7 @@ class RulesValidator
                 }
             }
         }
+
         return $finalPrice;
     }
 }
