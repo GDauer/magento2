@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Itatiaia\GroupedCatalogRule\Test\Unit\Helper;
 
 use ArrayIterator;
+use Itatiaia\GroupedCatalogRule\Helper\ApplyRules;
 use Itatiaia\GroupedCatalogRule\Helper\Data;
 use Itatiaia\GroupedCatalogRule\Model\ResourceModel\GetActiveRulesByParentProduct;
 use Magento\Catalog\Api\Data\ProductExtensionInterface;
@@ -70,6 +71,8 @@ class DataTest extends TestCase
     private $getRules;
     /** @var AbstractType */
     private $abstractType;
+    /** @var ApplyRules */
+    private $applyRules;
 
     /**
      * @inheritdoc
@@ -105,7 +108,7 @@ class DataTest extends TestCase
         $this->product = $this->getMockBuilder(Product::class)
             ->disableOriginalConstructor()
             ->setMethods(['getData', 'load', 'getId', 'getName', 'getTypeId', 'getCollection', 'getTypeInstance',
-                'getExtensionAttributes', 'getSku', 'isAvailable'])
+                'getExtensionAttributes', 'getSku', 'isAvailable', 'getQty', 'getFinalPrice', 'getPrice'])
             ->getMock();
 
         $this->stockItemInterface = $this->getMockBuilder(StockItemInterface::class)
@@ -124,6 +127,11 @@ class DataTest extends TestCase
 
         $this->abstractType = $this->createMock(AbstractType::class);
 
+        $this->applyRules = $this->getMockBuilder(ApplyRules::class)
+            ->setMethods(['execute'])
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $this->objectManager = new ObjectManager($this);
 
         $this->testClass = $this->objectManager->getObject(Data::class,
@@ -139,6 +147,272 @@ class DataTest extends TestCase
                 'stockRegistryInterface' => $this->stockRegistryInterface
             ]);
     }
+
+    public function testCalculateGroupedFinalPrice(): void
+    {
+        $rules = [
+                'rules' => null,
+                'finalPrice' => 1000,
+                'calcPriceRuleCalls' => 0,
+                'expectedResult' => 1000
+        ];
+
+        $this->getRules
+            ->expects($this->once())
+            ->method('execute')
+            ->with($this->product)
+            ->willReturn($rules);
+
+        $this->testGetRegularPriceIfRegistryExists();
+
+//        $this->applyRules
+//            ->expects($this->once())
+//            ->method('apply')
+//            ->with($rules, 100.0)
+//            ->willReturn(100.0);
+
+        // Act
+        $actualResult = $this->testClass->calculateGroupedFinalPrice($this->product);
+        // Assert
+        $this->assertNull($actualResult);
+    }
+
+    /**
+     * Test getRegularPrice method if registry exists
+     *
+     * @return void
+     */
+    public function testGetRegularPriceIfRegistryExists(): void
+    {
+        // Arrange
+        $productId = 10;
+
+        $this->product
+            ->expects($this->atLeastOnce())
+            ->method('getId')
+            ->willReturn($productId);
+
+        $key = 'grouped_regular_price_' . $productId;
+
+        $this->registry
+            ->expects($this->atLeastOnce())
+            ->method('registry')
+            ->with($key)
+            ->willReturn('abc');
+
+        // Act
+        $actualResult = $this->testClass->getRegularPrice($this->product);
+        // Assert
+        $this->assertEquals('abc', $actualResult);
+    }
+
+    /**
+     * Test getRegularPrice method if registry not exists
+     *
+     * @return void
+     */
+    public function testGetRegularPriceIfRegistryNotExistsAndProductIsGrouped(): void
+    {
+        // Arrange
+        $productId = 1;
+
+        $key = 'grouped_regular_price_' . $productId;
+
+        $this->registry
+            ->expects($this->once())
+            ->method('registry')
+            ->with($key)
+            ->willReturn(null);
+
+        $this->product
+            ->expects($this->atLeastOnce())
+            ->method('getId')
+            ->willReturn($productId);
+
+        $this->product
+            ->expects($this->once())
+            ->method('getTypeId')
+            ->willreturn('grouped');
+
+        $this->product
+            ->expects($this->once())
+            ->method('getTypeInstance')
+            ->willReturn($this->abstractType);
+
+        $this->abstractType
+            ->expects($this->once())
+            ->method('getAssociatedProducts')
+            ->with($this->product)
+            ->willReturn(["1" => $this->product]);
+
+        $this->product
+            ->expects($this->atLeastOnce())
+            ->method('getQty')
+            ->willReturn(5);
+
+        $this->product
+            ->expects($this->atLeastOnce())
+            ->method('getId')
+            ->willReturn($productId);
+
+        $this->productFactory
+            ->expects($this->atLeastOnce())
+            ->method('create')
+            ->willReturn($this->product);
+
+        $childProduct = $this->getMockBuilder(Product::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['getPrice'])
+            ->getMock();
+
+        $this->product
+            ->expects($this->once())
+            ->method('load')
+            ->willReturn($childProduct);
+
+        $price = 10;
+
+        $this->registry
+            ->expects($this->once())
+            ->method('register')
+            ->with($key);
+
+        $childProduct
+            ->expects($this->once())
+            ->method('getPrice')
+            ->willReturn($price);
+
+        // Act
+        $actualResult = $this->testClass->getRegularPrice($this->product);
+        // Assert
+        $this->assertEquals(50, $actualResult);
+    }
+
+    /**
+     * Test getRegularPrice method if registry not exists and product is not grouped
+     *
+     * @return void
+     */
+    public function testGetRegularPriceIfRegistryNotExistsAndProductIsNotGrouped(): void
+    {
+        // Arrange
+        $key = 'grouped_regular_price_';
+
+        $this->registry
+            ->expects($this->once())
+            ->method('registry')
+            ->with($key)
+            ->willReturn(null);
+
+        $this->product
+            ->expects($this->once())
+            ->method('getTypeId')
+            ->willreturn('simple');
+
+        $price = 10;
+
+        $this->product
+            ->expects($this->once())
+            ->method('getPrice')
+            ->willReturn($price);
+
+        $this->registry
+            ->expects($this->once())
+            ->method('register')
+            ->with($key);
+
+        // Act
+        $actualResult = $this->testClass->getRegularPrice($this->product);
+        // Assert
+        $this->assertEquals(10, $actualResult);
+    }
+
+    /**
+     * Test getPrice method if product type is grouped
+     *
+     * @return void
+     */
+    public function testGetPriceIfProductTypeIsGrouped(): void
+    {
+        // Arrange
+        $this->product
+            ->expects($this->once())
+            ->method('getTypeId')
+            ->willreturn('grouped');
+
+        $this->product
+            ->expects($this->once())
+            ->method('getTypeInstance')
+            ->willReturn($this->abstractType);
+
+        $this->abstractType
+            ->expects($this->once())
+            ->method('getAssociatedProducts')
+            ->with($this->product)
+            ->willReturn(["1" => $this->product]);
+
+        $this->product
+            ->expects($this->atLeastOnce())
+            ->method('getQty')
+            ->willReturn(5);
+
+        $productId = rand();
+
+        $this->product
+            ->expects($this->once())
+            ->method('getId')
+            ->willReturn($productId);
+
+        $this->productFactory
+            ->expects($this->atLeastOnce())
+            ->method('create')
+            ->willReturn($this->product);
+
+        $childProduct = $this->getMockBuilder(Product::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['getFinalPrice'])
+            ->getMock();
+
+        $this->product
+            ->expects($this->once())
+            ->method('load')
+            ->willReturn($childProduct);
+
+        $childProduct
+            ->expects($this->once())
+            ->method('getFinalPrice')
+            ->willReturn(10);
+
+        // Act
+        $actualResult = $this->testClass->getPrice($this->product);
+        // Assert
+        $this->assertEquals(50, $actualResult);
+    }
+
+    /**
+     * Test getPrice method if product type is not grouped
+     *
+     * @return void
+     */
+    public function testGetPriceIfProductTypeIsNotGrouped(): void
+    {
+        // Arrange
+        $this->product
+            ->expects($this->once())
+            ->method('getTypeId')
+            ->willreturn('simple');
+
+        $this->product
+            ->expects($this->once())
+            ->method('getPrice')
+            ->willReturn(10);
+
+        // Act
+        $actualResult = $this->testClass->getPrice($this->product);
+        // Assert
+        $this->assertEquals(10, $actualResult);
+    }
+
 
     /**
      * Data Provider updateGroupedStockStatusByStockItem

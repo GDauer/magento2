@@ -36,7 +36,7 @@ class ApplyRulesTest extends TestCase
             ]);
     }
 
-    public function ValidateDataProvider(): array
+    public function ApplyDataProvider(): array
     {
         return [
             'HasRules' => [
@@ -80,14 +80,16 @@ class ApplyRulesTest extends TestCase
     }
 
     /**
+     * teste apply method
+     *
      * @param $rules
      * @param $finalPrice
      * @param $calcPriceRuleCalls
      * @param $expectedResult
      *
-     * @dataProvider ValidateDataProvider
+     * @dataProvider ApplyDataProvider
      */
-    public function testValidate(
+    public function testApply(
         $rules,
         $finalPrice,
         $calcPriceRuleCalls,
@@ -101,7 +103,7 @@ class ApplyRulesTest extends TestCase
             ->willReturn($expectedResult);
 
         // Act
-        $actualResult = $this->testClass->validate($rules,$finalPrice);
+        $actualResult = $this->testClass->apply($rules,$finalPrice);
 
         // Assert
         $this->assertEquals($actualResult,$expectedResult);

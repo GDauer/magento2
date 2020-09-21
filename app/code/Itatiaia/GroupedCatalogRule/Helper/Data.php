@@ -98,9 +98,9 @@ class Data extends AbstractHelper
     {
         $rules = $this->getRules->execute($product);
 
-//        $finalPrice = $this->getRegularPrice($product);
-//
-//        return $this->applyRules->apply($rules, $finalPrice);
+        $finalPrice = $this->getRegularPrice($product);
+
+        return $this->applyRules->apply($rules, $finalPrice);
     }
 
     /**
@@ -134,6 +134,7 @@ class Data extends AbstractHelper
         if($product->getTypeId() == 'grouped'){
             $price = 0;
             $associatedProducts = $product->getTypeInstance(true)->getAssociatedProducts($product);
+
             foreach ($associatedProducts as $item) {
                 $qty = $item->getQty() ? $item->getQty() : 1;
                 $childProduct = $this->productFactory->create()->load($item->getId());
@@ -160,18 +161,19 @@ class Data extends AbstractHelper
 
             return $groupedRegularPriceRegistry;
         }
-
-        $price = $product->getPrice();
+        $price = 0;
         if($product->getTypeId() == 'grouped') {
-            $price = 0;
             $associatedProducts = $product->getTypeInstance(true)->getAssociatedProducts($product);
             foreach ($associatedProducts as $item) {
                 $qty = $item->getQty() ? $item->getQty() : 1;
                 $childProduct = $this->productFactory->create()->load($item->getId());
                 $price = $price + ((float)$childProduct->getPrice() * (int)$qty);
             }
+            $this->registry->register('grouped_regular_price_' . $product->getId(), $price);
+            return $price;
         }
 
+        $price = $product->getPrice();
         $this->registry->register('grouped_regular_price_' . $product->getId(), $price);
 
         return $price;
@@ -188,12 +190,12 @@ class Data extends AbstractHelper
      */
     public function getFinalPrice($product, $parentProduct = null)
     {
-
+        $finalPrice = null;
         if($product->getTypeId() == 'grouped'){
-            return  $this->calculateGroupedFinalPrice($product);
+           return $finalPrice = $this->calculateGroupedFinalPrice($product);
         }
 
-        return $this->calculateSimpleFinalPrice($product, $parentProduct);
+        return $finalPrice = $this->calculateSimpleFinalPrice($product, $parentProduct);
     }
 
     /**
