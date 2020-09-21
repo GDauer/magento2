@@ -87,6 +87,6 @@ class GetActiveRulesByParentProduct
                 return $result;
             }
         }
-        return null;
+        return [];
     }
 }
