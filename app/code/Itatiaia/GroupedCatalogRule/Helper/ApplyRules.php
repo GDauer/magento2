@@ -49,7 +49,6 @@ class ApplyRules
                 }
             }
         }
-
         return $finalPrice;
     }
 }

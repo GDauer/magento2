@@ -292,7 +292,6 @@ class Data extends AbstractHelper
                     $is_in_stock = false;
                 }
             }
-
             $this->updateProductIsInStock($groupedProduct, $is_in_stock);
         }
     }

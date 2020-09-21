@@ -60,6 +60,7 @@ class GetActiveRulesByParentProduct
     public function execute(Product $product): array
     {
         if($this->scopeConfig->getValue('sales/itatiaia_groupedcatalogrule/active')){
+
             $customerSession = $this->sessionFactory->create();
 
             $connection = $this->resourceConnection->getConnection();
