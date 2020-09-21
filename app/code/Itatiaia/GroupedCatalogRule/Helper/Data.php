@@ -203,9 +203,11 @@ class Data extends AbstractHelper
      *
      * @param StockItemInterface $stockItem
      *
+     * @return void
+     *
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function updateGroupedStockStatusByStockItem(StockItemInterface $stockItem)
+    public function updateGroupedStockStatusByStockItem(StockItemInterface $stockItem): void
     {
         $groupedProductType =$this->groupedFactory->create();
         $this->loggerInterface->info('GROUPED STOCK STATUS', [$stockItem->getData()]);
@@ -254,9 +256,11 @@ class Data extends AbstractHelper
      *
      * @param $is_in_stock
      *
+     * @return void
+     *
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function updateProductIsInStock($product, $is_in_stock) {
+    public function updateProductIsInStock($product, $is_in_stock): void {
         $productSku = $product->getSku();
         $stockItem = $this->stockRegistryInterface->getStockItemBySku($productSku);
         $stockItem->setIsInStock((bool)$is_in_stock);
@@ -268,9 +272,11 @@ class Data extends AbstractHelper
      *
      * @param $parentProductsIds
      *
+     * @return void
+     *
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function updateChildrenProductByParentId($parentProductsIds)
+    public function updateChildrenProductByParentId($parentProductsIds): void
     {
         $groupedCollection = $this->productFactory->create()->getCollection();
         $groupedCollection->addFieldToFilter('row_id', ['in' => $parentProductsIds]);

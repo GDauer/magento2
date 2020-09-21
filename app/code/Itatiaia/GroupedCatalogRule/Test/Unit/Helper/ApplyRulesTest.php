@@ -20,10 +20,14 @@ use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 
 class ApplyRulesTest extends TestCase
 {
+    /** @var Data */
     private $data;
     /** @var Data */
     private $testClass;
 
+    /**
+     * @inheritdoc
+     */
     public function setup():void
     {
         $this->data = $this->createMock(Data::class);
@@ -36,6 +40,11 @@ class ApplyRulesTest extends TestCase
             ]);
     }
 
+    /**
+     * Data provider apply
+     *
+     * @return array
+     */
     public function ApplyDataProvider(): array
     {
         return [
@@ -80,7 +89,7 @@ class ApplyRulesTest extends TestCase
     }
 
     /**
-     * teste apply method
+     * Test apply method
      *
      * @param $rules
      * @param $finalPrice

@@ -148,35 +148,6 @@ class DataTest extends TestCase
             ]);
     }
 
-    public function testCalculateGroupedFinalPrice(): void
-    {
-        $rules = [
-                'rules' => null,
-                'finalPrice' => 1000,
-                'calcPriceRuleCalls' => 0,
-                'expectedResult' => 1000
-        ];
-
-        $this->getRules
-            ->expects($this->once())
-            ->method('execute')
-            ->with($this->product)
-            ->willReturn($rules);
-
-        $this->testGetRegularPriceIfRegistryExists();
-
-//        $this->applyRules
-//            ->expects($this->once())
-//            ->method('apply')
-//            ->with($rules, 100.0)
-//            ->willReturn(100.0);
-
-        // Act
-        $actualResult = $this->testClass->calculateGroupedFinalPrice($this->product);
-        // Assert
-        $this->assertNull($actualResult);
-    }
-
     /**
      * Test getRegularPrice method if registry exists
      *
