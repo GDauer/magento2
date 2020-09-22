@@ -1,96 +1,143 @@
 <?php
+/**
+ * @author      Webjump Core Team <dev@webjump.com.br>
+ *
+ * @copyright   2020 Webjump (http://www.webjump.com.br)
+ *
+ * @license     http://www.webjump.com.br  Copyright
+ *
+ * @link        http://www.webjump.com.br
+ */
+
+declare(strict_types=1);
+
 namespace Itatiaia\GroupedCatalogRule\Helper;
 
-class Data extends \Magento\Framework\App\Helper\AbstractHelper
+use Itatiaia\GroupedCatalogRule\Helper\ApplyRules;
+use Magento\CatalogInventory\Api\Data\StockItemInterface;
+use Magento\Framework\App\Helper\Context;
+use Magento\CatalogRule\Helper\Data as HelperData;
+use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Catalog\Model\ProductFactory;
+use Magento\Framework\Registry;
+use Magento\GroupedProduct\Model\Product\Type\GroupedFactory;
+use Psr\Log\LoggerInterface;
+use Magento\CatalogInventory\Api\StockRegistryInterface;
+use Magento\Catalog\Model\Product;
+use Itatiaia\GroupedCatalogRule\Model\ResourceModel\GetActiveRulesByParentProduct;
+
+class Data extends AbstractHelper
 {
-    public function getActiveRulesByParentProduct($product)
-    {
-        // buscar pelo ID do produto agrupado
-        // comparar se está ativa (consulta regra pai em catalogrule)
-        // comparar data para filtragem
-        // comparar customer group
-        // comparar sobreposição de regras (!!)
-    /*    if (!$product) {
-            return null;
-        }*/
-        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-        $config = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Framework\App\Config\ScopeConfigInterface');
+    /** @var Context */
+    private $context;
+    /** @var HelperData */
+    private $helperData;
+    /** @var ProductFactory */
+    private $productFactory;
+    /** @var Registry */
+    private $registry;
+    /** @var GroupedFactory */
+    private $groupedFactory;
+    /** @var LoggerInterface */
+    private $loggerInterface;
+    /** @var StockRegistryInterface */
+    private $stockRegistryInterface;
+    /** @var Product */
+    private $product;
+    /** @var GetActiveRulesByParentProduct */
+    private $getRules;
+    /** @var ApplyRules */
+    private $applyRules;
 
-        if($config->getValue('sales/itatiaia_groupedcatalogrule/active')){
-            //$logger = $objectManager->get('\Psr\Log\LoggerInterface');
-            $customerSession = $objectManager->get('\Magento\Customer\Model\SessionFactory')->create();
-
-            $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
-            $connection = $resource->getConnection();
-
-            $catalogrule_table = $resource->getTableName('catalogrule');
-            $catalogrule_product_table = $resource->getTableName('catalogrule_product');
-
-            $customer_group_id = $customerSession->getCustomerGroupId();
-
-            //Select Data from table
-            $sql = "select rule_product.*, rule.is_active as is_active from " . $catalogrule_product_table . " as rule_product, ".$catalogrule_table." as rule where rule.rule_id = rule_product.rule_id and rule.is_active = 1 and customer_group_id = ".$customer_group_id." and product_id = " . $product->getId() . " and from_time <= " . time() . " and (to_time = 0 OR to_time >= " . time() . ") group by rule_id order by sort_order ASC";
-            // $logger->info('SQL Rules', [$sql]);
-
-            $result = $connection->fetchAll($sql); // gives associated array, table fields as key in array.
-            // $logger->info('SQL Rules Result', $result);
-            if(count($result)){
-                return $result;
-            }
-        }
-        return null;
+    /**
+     * Data constructor.
+     *
+     * @param Context $context
+     * @param HelperData $helperData
+     * @param ProductFactory $productFactory
+     * @param Registry $registry
+     * @param GroupedFactory $groupedFactory
+     * @param LoggerInterface $loggerInterface
+     * @param StockRegistryInterface $stockRegistry
+     * @param Product $product
+     * @param GetActiveRulesByParentProduct $getRules
+     * @param ApplyRules $applyRules
+     */
+    public function __construct(
+        Context $context,
+        HelperData $helperData,
+        ProductFactory $productFactory,
+        Registry $registry,
+        GroupedFactory $groupedFactory,
+        LoggerInterface $loggerInterface,
+        StockRegistryInterface $stockRegistry,
+        Product $product,
+        GetActiveRulesByParentProduct $getRules,
+        ApplyRules $applyRules
+    ) {
+        parent::__construct($context);
+        $this->helperData = $helperData;
+        $this->productFactory = $productFactory;
+        $this->registry = $registry;
+        $this->groupedFactory = $groupedFactory;
+        $this->loggerInterface = $loggerInterface;
+        $this->stockRegistryInterface;
+        $this->product = $product;
+        $this->getRules = $getRules;
+        $this->applyRules = $applyRules;
     }
 
-    //
-    public function calculateGroupedFinalPrice($product)
+    /**
+     * calculateGroupedFinalPrice method to calculate grouped final price
+     *
+     * @param Product $product
+     *
+     * @return float|int
+     */
+    public function calculateGroupedFinalPrice(Product $product)
     {
-        // calcular final price para simples baseado em regra existentes (getActiveRulesByParentProduct)
-        $rules = $this->getActiveRulesByParentProduct($product);
+        $rules = $this->getRules->execute($product);
+
+        $finalPrice = $this->getRegularPrice($product);
+
+        return $this->applyRules->apply($rules, $finalPrice);
+    }
+
+    /**
+     * calculateSimpleFinalPrice method to calculate simple final price based on parent product rule
+     *
+     * @param $product
+     *
+     * @param $parentProduct
+     *
+     * @return float|int
+     */
+    public function calculateSimpleFinalPrice($product, Product $parentProduct)
+    {
+        $rules = $this->getRules->execute($parentProduct);
 
         $finalPrice = $this->getPrice($product);
 
-        if($rules){
-            $catalogRuleHelper = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\CatalogRule\Helper\Data');
-            foreach($rules as $rule){
-                $finalPrice = $catalogRuleHelper->calcPriceRule($rule['action_operator'], $rule['action_amount'], $finalPrice);
-                if((int)$rule['action_stop']){
-                    break;
-                }
-            }
-        }
-
-        return $finalPrice;
+        return $this->applyRules->apply($rules, $finalPrice);
     }
 
-    public function calculateSimpleFinalPrice($product, $parentProduct)
-    {
-        // calcular final price para simples baseado em regra existentes do produto pai (getActiveRulesByParentProduct)
-        $rules = $this->getActiveRulesByParentProduct($parentProduct);
-
-        $finalPrice = $this->getPrice($product);
-
-        if($rules){
-            $catalogRuleHelper = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\CatalogRule\Helper\Data');
-            foreach($rules as $rule){
-                $finalPrice = $catalogRuleHelper->calcPriceRule($rule['action_operator'], $rule['action_amount'], $finalPrice);
-                if((int)$rule['action_stop']){
-                    break;
-                }
-            }
-        }
-
-        return $finalPrice;
-    }
-
-    // old price
+    /**
+     * getPrice method to get old price
+     *
+     * @param $product
+     *
+     * @return float|int
+     */
     public function getPrice($product)
     {
+
         if($product->getTypeId() == 'grouped'){
             $price = 0;
             $associatedProducts = $product->getTypeInstance(true)->getAssociatedProducts($product);
+
             foreach ($associatedProducts as $item) {
                 $qty = $item->getQty() ? $item->getQty() : 1;
-                $childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\ProductFactory')->create()->load($item->getId());
+                $childProduct = $this->productFactory->create()->load($item->getId());
                 $price = $price + ((float)$childProduct->getFinalPrice() * (int)$qty);
             }
             return $price;
@@ -99,130 +146,159 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return $product->getPrice();
     }
 
-    // regular price
+    /**
+     * getRegularPrice method to get regular price
+     *
+     * @param $product
+     *
+     * @return float|int
+     */
     public function getRegularPrice($product)
     {
-        // \Magento\Framework\App\ObjectManager::getInstance()->get('\Psr\Log\LoggerInterface')->info('GROUPED GET REGULAR PRICE');
-        $registry = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Framework\Registry');
+        $groupedRegularPriceRegistry = $this->registry->registry('grouped_regular_price_' . $product->getId());
 
-        // se já está calculado, retorna
-        if($registry->registry('grouped_regular_price_' . $product->getId())){
-            // \Magento\Framework\App\ObjectManager::getInstance()->get('\Psr\Log\LoggerInterface')->info('RETORNANDO JÀ EXISTENTE');
-            return $registry->registry('grouped_regular_price_' . $product->getId());
+        if($groupedRegularPriceRegistry){
+
+            return $groupedRegularPriceRegistry;
         }
-
         $price = 0;
-        if($product->getTypeId() == 'grouped'){
+        if($product->getTypeId() == 'grouped') {
             $associatedProducts = $product->getTypeInstance(true)->getAssociatedProducts($product);
             foreach ($associatedProducts as $item) {
                 $qty = $item->getQty() ? $item->getQty() : 1;
-                $childProduct = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\ProductFactory')->create()->load($item->getId());
+                $childProduct = $this->productFactory->create()->load($item->getId());
                 $price = $price + ((float)$childProduct->getPrice() * (int)$qty);
             }
-        } else {
-            $price = $product->getPrice();
+            $this->registry->register('grouped_regular_price_' . $product->getId(), $price);
+            return $price;
         }
 
-        $registry->register('grouped_regular_price_' . $product->getId(), $price);
+        $price = $product->getPrice();
+        $this->registry->register('grouped_regular_price_' . $product->getId(), $price);
 
         return $price;
     }
 
-    // final price
+    /**
+     * getFinalPrice method to get final price
+     *
+     * @param $product
+     *
+     * @param null $parentProduct
+     *
+     * @return float|int|null
+     */
     public function getFinalPrice($product, $parentProduct = null)
     {
         $finalPrice = null;
         if($product->getTypeId() == 'grouped'){
-            $finalPrice = $this->calculateGroupedFinalPrice($product);
-        } else {
-            $finalPrice = $this->calculateSimpleFinalPrice($product, $parentProduct);
+           return $finalPrice = $this->calculateGroupedFinalPrice($product);
         }
 
-        return $finalPrice;
+        return $finalPrice = $this->calculateSimpleFinalPrice($product, $parentProduct);
     }
 
-
-    public function updateGroupedStockStatusByStockItem($stockItem)
+    /**
+     *  updateGroupedStockStatusByStockItem method
+     *
+     * @param StockItemInterface $stockItem
+     *
+     * @return void
+     *
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function updateGroupedStockStatusByStockItem(StockItemInterface $stockItem): void
     {
-        $groupedProductType = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\GroupedProduct\Model\Product\Type\GroupedFactory')->create();
-        $productFactory = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\ProductFactory');
-        //$logger = \Magento\Framework\App\ObjectManager::getInstance()->get('\Psr\Log\LoggerInterface');
-        //$logger->info('GROUPED STOCK STATUS', [$stockItem->getData()]);
+        $groupedProductType =$this->groupedFactory->create();
+        $this->loggerInterface->info('GROUPED STOCK STATUS', [$stockItem->getData()]);
 
-        // busca produtos agrupados relacionados
-        // para cada agrupado encontrado, busca pelos filhos
-            // verifica o status do estoque de cada item
-            // verifica se exite um dos itens do agrupado sem estoque
-            // altera status de stock do agrupado para sem estoque
-
-        $product = $productFactory->create()->load($stockItem->getProductId());
-        //$logger->info('STOCK PRODUCT ID', [$product->getId(), $product->getName()]);
+        $product = $this->productFactory->create()->load($stockItem->getProductId());
+        $productId = $product->getId();
+        $this->loggerInterface->info('STOCK PRODUCT ID', [$productId, $product->getName()]);
 
         if($product->getTypeId() == 'simple'){
-            // busca produtos agrupados relacionados
-            $parentProductsIds = $groupedProductType->getParentIdsByChild($product->getId());
+
+            $parentProductsIds = $groupedProductType->getParentIdsByChild($productId);
 
             if(count($parentProductsIds)){
-                $groupedCollection = $productFactory->create()->getCollection();
-                $groupedCollection->addFieldToFilter('row_id', ['in' => $parentProductsIds]);
-                $groupedCollection->load();
-
-                // para cada agrupado encontrado, busca pelos filhos
-                foreach($groupedCollection as $groupedProduct){
-                    $childrenIds = $groupedProduct->getTypeInstance(true)->getChildrenIds($groupedProduct->getId());
-
-                    $is_in_stock = true;
-                    //$logger->info('CHILDREN IDS', [$childrenIds]);
-
-                    // Link Type ID = 3
-                    // verifica o status do estoque de cada item
-                    foreach($childrenIds['3'] as $k => $id){
-                        $childProduct = $productFactory->create()->load($id);
-
-                        // verifica se exite um dos itens do agrupado sem estoque
-                        //$logger->info('CHILD ITEM', [$childProduct->getData()]);
-
-                        $extensionAttributes = $childProduct->getExtensionAttributes();
-                        if(!$extensionAttributes->getStockItem()->getIsInStock()){
-                            $is_in_stock = false;
-                        }
-                    }
-
-                    // update stock item do produto agrupado
-                    $this->updateProductIsInStock($groupedProduct, $is_in_stock);
-                }
+                $this->updateChildrenProductByParentId($parentProductsIds);
             }
         }
     }
 
-    public function isGroupedProductInStock($groupedProduct)
+    /**
+     * isGroupedProductInStock method
+     *
+     * @param $groupedProduct
+     *
+     * @return bool
+     */
+    public function isGroupedProductInStock(Product $groupedProduct): bool
     {
-        $productFactory = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Catalog\Model\ProductFactory');
         $childrenIds = $groupedProduct->getTypeInstance(true)->getChildrenIds($groupedProduct->getId());
         $is_in_stock = true;
 
-        // Link Type ID = 3
-        // verifica o status do estoque de cada item
         foreach($childrenIds['3'] as $k => $id){
-            $childProduct = $productFactory->create()->load($id);
+            $childProduct = $this->productFactory->create()->load($id);
 
-            // // verifica se exite um dos itens do agrupado sem estoque
-            // $extensionAttributes = $childProduct->getExtensionAttributes();
-            // if(!$extensionAttributes->getStockItem()->getIsInStock()){
-            //     $is_in_stock = false;
-            // }
             if(!$childProduct->isAvailable()){
                 $is_in_stock = false;
-            }
+           }
         }
 
         return $is_in_stock;
     }
 
-    public function updateProductIsInStock($product, $is_in_stock) {
-        $stockRegistry = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\CatalogInventory\Api\StockRegistryInterface');
-        $stockItem = $stockRegistry->getStockItemBySku($product->getSku());
+    /**
+     * updateProductIsInStock method
+     *
+     * @param $product
+     *
+     * @param $is_in_stock
+     *
+     * @return void
+     *
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function updateProductIsInStock($product, $is_in_stock): void {
+        $productSku = $product->getSku();
+        $stockItem = $this->stockRegistryInterface->getStockItemBySku($productSku);
         $stockItem->setIsInStock((bool)$is_in_stock);
-        $stockRegistry->updateStockItemBySku($product->getSku(), $stockItem);
+        $this->stockRegistryInterface->updateStockItemBySku($productSku, $stockItem);
+    }
+
+    /**
+     * updateChildrenProductByParentId method
+     *
+     * @param $parentProductsIds
+     *
+     * @return void
+     *
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function updateChildrenProductByParentId($parentProductsIds): void
+    {
+        $groupedCollection = $this->productFactory->create()->getCollection();
+        $groupedCollection->addFieldToFilter('row_id', ['in' => $parentProductsIds]);
+        $groupedCollection->load();
+
+        foreach($groupedCollection as $groupedProduct){
+            $childrenIds = $groupedProduct->getTypeInstance(true)->getChildrenIds($groupedProduct->getId());
+
+            $is_in_stock = true;
+            $this->loggerInterface->info('CHILDREN IDS', [$childrenIds]);
+
+            foreach($childrenIds['3'] as $k => $id){
+                $childProduct = $this->productFactory->create()->load($id);
+
+                $this->loggerInterface->info('CHILD ITEM', [$childProduct->getData()]);
+
+                $extensionAttributes = $childProduct->getExtensionAttributes();
+                if(!$extensionAttributes->getStockItem()->getIsInStock()){
+                    $is_in_stock = false;
+                }
+            }
+            $this->updateProductIsInStock($groupedProduct, $is_in_stock);
+        }
     }
 }
