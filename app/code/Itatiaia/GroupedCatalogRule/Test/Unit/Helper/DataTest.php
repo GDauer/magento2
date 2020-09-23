@@ -19,6 +19,8 @@ use Itatiaia\GroupedCatalogRule\Helper\Data;
 use Itatiaia\GroupedCatalogRule\Model\ResourceModel\GetActiveRulesByParentProduct;
 use Magento\Catalog\Api\Data\ProductExtensionInterface;
 use Magento\Catalog\Model\Product\Type\AbstractType;
+use Magento\Framework\Model\AbstractModel;
+use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 use PHPUnit\Framework\TestCase;
 use Magento\Framework\App\Helper\Context;
@@ -128,7 +130,7 @@ class DataTest extends TestCase
         $this->abstractType = $this->createMock(AbstractType::class);
 
         $this->applyRules = $this->getMockBuilder(ApplyRules::class)
-            ->setMethods(['execute'])
+            ->setMethods(['apply'])
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -144,10 +146,33 @@ class DataTest extends TestCase
                 'registry' => $this->registry,
                 'groupedFactory' => $this->groupedFactory,
                 'loggerInterface' => $this->loggerInterface,
-                'stockRegistryInterface' => $this->stockRegistryInterface
+                'stockRegistryInterface' => $this->stockRegistryInterface,
+                'getActiveRulesByParentProduct' => $this->getRules
             ]);
     }
 
+    public function testCalculateGroupedFinalPrice(): void
+    {
+        //Arrange
+        $this->getRules
+            ->expects($this->once())
+            ->method('execute')
+            ->with($this->product)
+            ->willReturn([1]);
+
+        $this->testGetRegularPriceIfRegistryExists();
+
+        $this->applyRules
+            ->expects($this->once())
+            ->method('apply')
+            ->with($this->getRules, 10);
+
+        // Act
+        $actualResult = $this->testClass->calculateGroupedFinalPrice($this->product);
+        // Assert
+        $this->assertNull($actualResult);
+    }
+    
     /**
      * Test getRegularPrice method if registry exists
      *
@@ -169,12 +194,12 @@ class DataTest extends TestCase
             ->expects($this->atLeastOnce())
             ->method('registry')
             ->with($key)
-            ->willReturn('abc');
+            ->willReturn(10);
 
         // Act
         $actualResult = $this->testClass->getRegularPrice($this->product);
         // Assert
-        $this->assertEquals('abc', $actualResult);
+        $this->assertEquals(10, $actualResult);
     }
 
     /**
@@ -530,7 +555,7 @@ class DataTest extends TestCase
             ->method('getIsInStock')
             ->willReturn(1);
 
-        $this->testUpdateStockProduct();
+        $this->updateStockProduct();
 
         // Act
         $actualResult = $this->testClass->updateGroupedStockStatusByStockItem($this->stockItemInterface);
@@ -617,7 +642,7 @@ class DataTest extends TestCase
     public function testUpdateProductIsInStock(): void
     {
         // Arrange
-        $this->testUpdateStockProduct();
+        $this->updateStockProduct();
 
         // Act
         $actualResult = $this->testClass->updateProductIsInStock($this->product, true);
@@ -630,7 +655,7 @@ class DataTest extends TestCase
      *
      * @return void
      */
-    private function testUpdateStockProduct(): void
+    private function updateStockProduct(): void
     {
         $is_in_stock = true;
 
@@ -658,5 +683,33 @@ class DataTest extends TestCase
             ->method('updateStockItemBySku')
             ->with($productSku, $this->stockItemInterface)
             ->willReturnSelf();
+    }
+
+    public function testUpdateChildrenProductByParentId(): void
+    {
+        $this->productFactory
+            ->expects($this->once())
+            ->method('create')
+            ->willReturn($this->product);
+
+        $abstractCollection = $this->createMock(AbstractCollection::class);
+
+        $this->product
+            ->expects($this->once())
+            ->method('getCollection')
+            ->willReturn($abstractCollection);
+
+        $productId = rand();
+
+        $abstractCollection
+            ->expects($this->once())
+            ->method('addFieldToFilter')
+            ->with('row_id', ['in' => $productId])
+            ->willReturnSelf();
+
+        // Act
+        $actualResult = $this->testClass->updateChildrenProductByParentId($productId);
+        // Assert
+        $this->assertNull($actualResult);
     }
 }

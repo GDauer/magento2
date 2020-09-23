@@ -260,7 +260,8 @@ class Data extends AbstractHelper
      *
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function updateProductIsInStock($product, $is_in_stock): void {
+    public function updateProductIsInStock($product, $is_in_stock): void
+    {
         $productSku = $product->getSku();
         $stockItem = $this->stockRegistryInterface->getStockItemBySku($productSku);
         $stockItem->setIsInStock((bool)$is_in_stock);
