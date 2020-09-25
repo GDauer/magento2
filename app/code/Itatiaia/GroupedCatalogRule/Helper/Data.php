@@ -58,7 +58,7 @@ class Data extends AbstractHelper
      * @param Registry $registry
      * @param GroupedFactory $groupedFactory
      * @param LoggerInterface $loggerInterface
-     * @param StockRegistryInterface $stockRegistry
+     * @param StockRegistryInterface $stockRegistryInterface
      * @param Product $product
      * @param GetActiveRulesByParentProduct $getRules
      * @param ApplyRules $applyRules
@@ -70,7 +70,7 @@ class Data extends AbstractHelper
         Registry $registry,
         GroupedFactory $groupedFactory,
         LoggerInterface $loggerInterface,
-        StockRegistryInterface $stockRegistry,
+        StockRegistryInterface $stockRegistryInterface,
         Product $product,
         GetActiveRulesByParentProduct $getRules,
         ApplyRules $applyRules
@@ -81,7 +81,7 @@ class Data extends AbstractHelper
         $this->registry = $registry;
         $this->groupedFactory = $groupedFactory;
         $this->loggerInterface = $loggerInterface;
-        $this->stockRegistryInterface;
+        $this->stockRegistryInterface = $stockRegistryInterface;
         $this->product = $product;
         $this->getRules = $getRules;
         $this->applyRules = $applyRules;
@@ -192,7 +192,7 @@ class Data extends AbstractHelper
     {
         $finalPrice = null;
         if($product->getTypeId() == 'grouped'){
-           return $finalPrice = $this->calculateGroupedFinalPrice($product);
+            return $finalPrice = $this->calculateGroupedFinalPrice($product);
         }
 
         return $finalPrice = $this->calculateSimpleFinalPrice($product, $parentProduct);
@@ -299,7 +299,7 @@ class Data extends AbstractHelper
                     $is_in_stock = false;
                 }
             }
-            $this->updateProductIsInStock($groupedProduct, $is_in_stock);
+           $this->updateProductIsInStock($groupedProduct, $is_in_stock);
         }
     }
 }
