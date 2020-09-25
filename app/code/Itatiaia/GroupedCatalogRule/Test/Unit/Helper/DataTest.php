@@ -19,8 +19,6 @@ use Itatiaia\GroupedCatalogRule\Helper\Data;
 use Itatiaia\GroupedCatalogRule\Model\ResourceModel\GetActiveRulesByParentProduct;
 use Magento\Catalog\Api\Data\ProductExtensionInterface;
 use Magento\Catalog\Model\Product\Type\AbstractType;
-use Magento\Framework\Model\AbstractModel;
-use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 use PHPUnit\Framework\TestCase;
 use Magento\Framework\App\Helper\Context;
@@ -511,7 +509,10 @@ class DataTest extends TestCase
      *
      * @param $productTypeID
      * @param $getParentIdsByChildCalls
+     *
      * @throws \Magento\Framework\Exception\NoSuchEntityException
+     *
+     * @return void
      *
      * @dataProvider updateGroupedStockStatusByStockItemDataProvider
      */
@@ -666,6 +667,7 @@ class DataTest extends TestCase
      * Test isGroupedProductInStock method
      *
      * @param $is_in_stock
+     *
      * @return void
      *
      * @dataProvider isGroupedProductInStockDataProvider
@@ -712,34 +714,53 @@ class DataTest extends TestCase
         // Assert
         $this->assertEquals($actualResult, $is_in_stock);
     }
-    
+
+    /**
+     * Data provider updateProductIsInStockDataProvider
+     *
+     * @return array
+     */
+    public function updateProductIsInStockDataProvider(): array
+    {
+        return [
+            'Product in Stock' => [
+                'is_in_stock' => true
+            ],
+            'Product out of Stock' => [
+                'is_in_stock' => false
+            ]
+        ];
+    }
+
     /**
      * Test updateProductIsInStock method
+     *
+     * @param $is_in_stock
      *
      * @return void
      *
      * @throws \Magento\Framework\Exception\NoSuchEntityException
+     *
+     * @dataProvider updateProductIsInStockDataProvider
      */
-    public function testUpdateProductIsInStock(): void
+    public function testUpdateProductIsInStock($is_in_stock): void
     {
         // Arrange
         $this->updateStockProduct();
 
         // Act
-        $actualResult = $this->testClass->updateProductIsInStock($this->product, true);
+        $actualResult = $this->testClass->updateProductIsInStock($this->product, $is_in_stock);
         // Assert
         $this->assertNull($actualResult);
     }
 
     /**
-     * Test updateStockProduct method
+     * updateStockProduct method
      *
      * @return void
      */
     private function updateStockProduct(): void
     {
-        $is_in_stock = true;
-
         $productSku = rand();
 
         $this->product
@@ -756,7 +777,7 @@ class DataTest extends TestCase
         $this->stockItemInterface
             ->expects($this->atLeastOnce())
             ->method('setIsInStock')
-            ->with($is_in_stock)
+            //->with($is_in_stock)
             ->willReturnSelf();
 
         $this->stockRegistryInterface
@@ -766,7 +787,35 @@ class DataTest extends TestCase
             ->willReturnSelf();
     }
 
-    public function testUpdateChildrenProductByParentId(): void
+    /**
+     * Data provider updateChildrenProductByParentId
+     *
+     * @return array
+     */
+    public function updateChildrenProductByParentIdDataProvider(): array
+    {
+        return [
+            'Product in Stock' => [
+                'is_in_stock' => true
+            ],
+            'Product out of Stock' => [
+                'is_in_stock' => false
+            ]
+        ];
+    }
+
+    /**
+     * Test updateChildrenProductByParentId method
+     *
+     * @param $is_in_stock
+     *
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     *
+     * @return void
+     *
+     * @dataProvider updateChildrenProductByParentIdDataProvider
+     */
+    public function testUpdateChildrenProductByParentId($is_in_stock): void
     {
         $this->productFactory
             ->expects($this->atLeastOnce())
@@ -857,9 +906,9 @@ class DataTest extends TestCase
         $this->stockItemInterface
             ->expects($this->once())
             ->method('getIsInStock')
-            ->willReturn(true);
+            ->willReturn(false);
 
-        $this->testUpdateProductIsInStock();
+        $this->testUpdateProductIsInStock($is_in_stock);
 
 
         // Act
