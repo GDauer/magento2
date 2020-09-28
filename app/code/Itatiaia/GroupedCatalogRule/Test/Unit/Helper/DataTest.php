@@ -777,7 +777,6 @@ class DataTest extends TestCase
         $this->stockItemInterface
             ->expects($this->atLeastOnce())
             ->method('setIsInStock')
-            //->with($is_in_stock)
             ->willReturnSelf();
 
         $this->stockRegistryInterface
