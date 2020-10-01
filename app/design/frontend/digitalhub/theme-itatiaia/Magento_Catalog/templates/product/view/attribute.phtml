@@ -36,6 +36,12 @@ if ($_attributeType && $_attributeType == 'text') {
 } else {
     $_attributeValue = $_helper->productAttribute($_product, $_product->$_call(), $_code);
 }
+
+if(strtolower($_code) == 'sku' && is_numeric($_attributeValue))
+{
+    $_attributeValue = ltrim($_attributeValue, "0");
+}
+
 ?>
 <?php if ($_attributeValue): ?>
 <div class="product attribute <?= /* @escapeNotVerified */ $_className ?>">

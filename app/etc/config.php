@@ -8,6 +8,7 @@ return [
         'Magento_Customer' => 1,
         'Criteo_OneTag' => 1,
         'Magento_AdminNotification' => 1,
+        'Custom_ElasticSuite' => 1,
         'DEG_CustomReports' => 1,
         'DigitalHub_AdditionalPrices' => 1,
         'DigitalHub_Banners' => 1,
