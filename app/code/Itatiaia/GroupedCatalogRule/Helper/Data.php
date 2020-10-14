@@ -106,13 +106,13 @@ class Data extends AbstractHelper
     /**
      * calculateSimpleFinalPrice method to calculate simple final price based on parent product rule
      *
-     * @param $product
+     * @param Product $product
      *
      * @param $parentProduct
      *
      * @return float|int
      */
-    public function calculateSimpleFinalPrice($product, Product $parentProduct)
+    public function calculateSimpleFinalPrice(Product $product, $parentProduct)
     {
         $rules = $this->getRules->execute($parentProduct);
 
@@ -192,10 +192,12 @@ class Data extends AbstractHelper
     {
         $finalPrice = null;
         if($product->getTypeId() == 'grouped'){
-            return $finalPrice = $this->calculateGroupedFinalPrice($product);
+            $finalPrice = $this->calculateGroupedFinalPrice($product);
+        } else {
+            $finalPrice = $this->calculateSimpleFinalPrice($product, $parentProduct);
         }
 
-        return $finalPrice = $this->calculateSimpleFinalPrice($product, $parentProduct);
+        return $finalPrice;
     }
 
     /**
