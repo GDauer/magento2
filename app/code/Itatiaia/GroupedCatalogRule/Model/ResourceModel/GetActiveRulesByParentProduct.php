@@ -63,7 +63,9 @@ class GetActiveRulesByParentProduct
             return [];
         }
 
-        if($this->scopeConfig->getValue('sales/itatiaia_groupedcatalogrule/active')){
+        $isActive = (bool) $this->scopeConfig->getValue('sales/itatiaia_groupedcatalogrule/active');
+
+        if($isActive){
 
             $customerSession = $this->sessionFactory->create();
 
