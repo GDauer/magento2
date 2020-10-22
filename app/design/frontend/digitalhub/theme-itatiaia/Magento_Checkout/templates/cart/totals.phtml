@@ -1,0 +1,101 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+/**
+ * Shopping cart totals template
+ * @var $block \Magento\Checkout\Block\Cart\Totals
+ */
+?>
+<?php
+$grand_total = null;
+$shipping_amount = null;
+$subtotal = null;
+$discount = null;
+foreach($block->getTotals() as $total){
+    if($total->getCode() == 'grand_total'){
+        $grand_total = (float)$total->getValue();
+    }
+    if($total->getCode() == 'shipping'){
+        $shipping_amount = (float)$total->getValue();
+    }
+    if($total->getCode() == 'subtotal'){
+        $subtotal = (float)$total->getValue();
+    }
+}
+?>
+
+<div id="cart-totals" class="cart-totals" data-bind="scope:'block-totals'">
+  <div class="title">
+    <strong role="heading">Resumo da compra</strong>
+  </div>
+    <?php
+    echo $this->getLayout()
+        ->createBlock('\Itatiaia\GarantiaEstendida\Block\Garantia')
+        ->setTemplate('Itatiaia_GarantiaEstendida::checkout/garantia.phtml')
+        ->setQuote($block->getQuote())
+        ->toHtml();
+    ?>
+
+  <!-- totais estáticos, para uso até que o componente seja renderizado -->
+  <!-- ko if: !getTemplate() -->
+  <div class="table-wrapper static">
+    <table class="data table totals">
+        <caption class="table-caption">Total</caption>
+        <tbody>
+                <tr class="totals sub">
+                    <th class="mark" scope="row">Subtotal</th>
+                    <td class="amount">
+                        <span class="price">R$ <?php echo number_format($subtotal,2,'.',','); ?></span>
+                    </td>
+                </tr>
+
+                <?php if($shipping_amount): ?>
+                <tr class="totals shipping excl">
+                    <th class="mark" scope="row">
+                        <span class="label">Frete</span>
+                        <span class="value"></span>
+                    </th>
+                    <td class="amount">
+                        <span class="price">R$ <?php echo number_format($shipping_amount,2,',','.'); ?></span>
+                    </td>
+                </tr>
+                <?php endif; ?>
+                <tr class="grand totals">
+                    <th class="mark" scope="row">
+                        <strong>Total</strong>
+                    </th>
+                    <td class="amount">
+                        <strong><span class="price">R$ <?php echo number_format($grand_total,2,',','.'); ?></span></strong>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- /ko -->
+
+    <!-- ko template: getTemplate() --><!-- /ko -->
+
+    <script type="text/x-magento-init">
+      {
+          "#cart-totals": {
+              "Magento_Ui/js/core/app": <?= /* @escapeNotVerified */ $block->getJsLayout() ?>
+          }
+      }
+    </script>
+</div>
+<script>
+    require(['jquery'], function($){
+        var intervalElSearch = setInterval(function(){
+            if($('.checkout-methods-items').length && $('.cart-totals .table-wrapper').length && !$('.cart-totals .table-wrapper').hasClass('static')){
+                clearInterval(intervalElSearch);
+                var checkoutMethods = $('.checkout-methods-items')
+                $('.cart-totals .table-wrapper').after(checkoutMethods)
+                checkoutMethods.css({display: 'block'})
+            }
+        })
+    })
+</script>

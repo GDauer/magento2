@@ -1,0 +1,7 @@
+<?php
+echo $this->getLayout()
+    ->createBlock('DigitalHub\MenuManager\Block\Menu')
+    ->setTemplate('DigitalHub_MenuManager::menu/render.phtml')
+    ->setIdentifier('topmenu')
+    ->toHtml();
+?>

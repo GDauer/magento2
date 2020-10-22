@@ -1,0 +1,35 @@
+<?php
+$product = $block->getSaleableItem();
+$oldPrice = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Data')->getRegularPrice($product);
+$finalPrice = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Data')->getFinalPrice($product);
+$discount = 0;
+if($oldPrice && $finalPrice){
+    $discount = 100 - (($finalPrice * 100) / $oldPrice);
+}
+?>
+<div class="price-box price-final_price">
+    <?php if($oldPrice > $finalPrice): ?>
+        <div class="wrp-oldprice">
+            <span class="old-price old-grouped">
+                <span class="price-container price-final_price tax weee">
+                    <span id="old-price-<?= $product->getId() ?>" class="price-wrapper">
+                        <span class="price old-price-grouped"><?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($oldPrice,true,false); ?></span>
+                    </span>
+                </span>
+            </span>
+            <div class="wrp-desc">
+                <?php if($discount >= 10): ?>
+                    <span class="tag-desc discount-grouped">-<?= (int)$discount ?>%</span>
+                <?php endif; ?>
+            </div>
+        </div>
+    <?php endif; ?>
+    <div class="clear"></div>
+    <span class="special-price">
+        <span class="price-container price-final_price tax weee">
+            <span id="product-price-<?= $product->getId() ?>" class="price-wrapper">
+                <span class="price final-price-grouped"><?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($finalPrice,true,false); ?></span>
+            </span>
+        </span>
+    </span>
+</div>

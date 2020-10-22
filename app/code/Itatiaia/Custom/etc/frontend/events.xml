@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_quote_remove_item">
+        <observer name="sales_quote_remove_item_custom_locked_items" instance="Itatiaia\Custom\Observer\RemoveGroupLockedItems" />
+    </event>
+    <!--
+    <event name="sales_quote_item_save_after">
+        <observer name="sales_quote_item_save_after_custom_locked_items" instance="Itatiaia\Custom\Observer\UpdateGroupLockedItems" />
+    </event>
+    -->
+    <event name="controller_front_send_response_before">
+        <observer name="controller_front_send_response_before_restricted_acccess" instance="Itatiaia\Custom\Observer\RestrictedAccess" />
+    </event>
+    <event name="customer_register_success">
+        <observer name="customer_register_success_associated_guest_orders" instance="Itatiaia\Custom\Observer\AssociateGuestOrders" />
+    </event>
+</config>

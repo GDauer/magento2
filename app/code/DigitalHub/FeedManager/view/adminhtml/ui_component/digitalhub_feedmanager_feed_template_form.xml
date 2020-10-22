@@ -1,0 +1,81 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">digitalhub_feedmanager_feed_template_form.digitalhub_feedmanager_feed_template_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Informações gerais</item>
+    </argument>
+    <settings>
+        <buttons>
+			<button name="back" class="Magento\Customer\Block\Adminhtml\Edit\BackButton"/>
+			<button name="save" class="DigitalHub\FeedManager\Block\Adminhtml\Feed\Edit\SaveButton" />
+			<button name="delete" class="DigitalHub\FeedManager\Block\Adminhtml\Feed\Edit\DeleteButton" />
+        </buttons>
+        <layout>
+            <navContainerName>left</navContainerName>
+            <type>tabs</type>
+        </layout>
+		<namespace>digitalhub_feedmanager_feed_template_form</namespace>
+        <dataScope>feed_template</dataScope>
+        <deps>
+            <dep>digitalhub_feedmanager_feed_template_form.digitalhub_feedmanager_feed_template_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="digitalhub_feedmanager_feed_template_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <dataProvider class="DigitalHub\FeedManager\Model\Feed\Template\DataProvider" name="digitalhub_feedmanager_feed_template_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+	<fieldset name="feed_template"> <!-- usar mesmo nome do source do DataProvider -->
+		<argument name="data" xsi:type="array">
+			<item name="config" xsi:type="array">
+				<item name="label" xsi:type="string">Informações gerais</item>
+			</item>
+		</argument>
+
+		<field name="name">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">Nome do template</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">feed_template</item>
+					<item name="sortOrder" xsi:type="number">10</item>
+					<item name="dataScope" xsi:type="string">name</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+
+		<field name="code">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">Código do template</item>
+					<item name="formElement" xsi:type="string">textarea</item>
+					<item name="source" xsi:type="string">feed_template</item>
+					<item name="sortOrder" xsi:type="number">20</item>
+					<item name="dataScope" xsi:type="string">code</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+	</fieldset>
+</form>

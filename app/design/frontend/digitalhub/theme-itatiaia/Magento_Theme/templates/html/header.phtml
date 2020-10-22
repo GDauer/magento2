@@ -1,0 +1,21 @@
+<div class="wrp-header-content">
+  <div class="header content">
+    <?php echo $block->getChildHtml('logo') ?>
+
+    <div class="header-content-right">
+      <?php echo $block->getChildHtml('topSearch') ?>
+      <div class="customer-service">
+        <div class="atend-box">
+          <div class="min-cust-serv">
+            <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('atendimento')->toHtml();?>
+          </div>
+        </div>
+        
+
+        <?php echo $block->getChildHtml('customerData') ?>
+        <?php echo $block->getChildHtml('minicart') ?>
+      </div>
+    </div>
+  </div>
+  <?php echo $block->getChildHtml('topMenu') ?>
+</div>

@@ -1,0 +1,22 @@
+{
+    "name": "digitalhub/menu-manager",
+    "description": "Módulo para gerenciamento de menus para o storefront",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "require": {
+        "magento/framework": "*",
+        "php": "~7.0.0|~7.1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*",
+        "mockery/mockery": "dev-master"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "DigitalHub\\MenuManager\\": ""
+        }
+    }
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+	<!-- Sitemap Grid Collection -->
+	<virtualType name="Itatiaia\SitemapXml\Model\ResourceModel\Sitemap\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">itatiaia_sitemapxml_sitemap</argument>
+			<argument name="resourceModel" xsi:type="string">Itatiaia\SitemapXml\Model\ResourceModel\Sitemap\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="itatiaia_sitemapxml_sitemap_listing_data_source" xsi:type="string">Itatiaia\SitemapXml\Model\ResourceModel\Sitemap\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+</config>
