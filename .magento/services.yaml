@@ -2,13 +2,17 @@
 #
 # Each service listed will be deployed to power your project.
 
-mysql2:
+db:
     type: mysql:10.2
     disk: 2048
 
-redis2:
+cache:
     type: redis:5.0
 
-elasticsearch2:
+search:
     type: elasticsearch:5.2
+    disk: 1024
+
+queue:
+    type: rabbitmq:3.8
     disk: 1024

@@ -12,6 +12,7 @@ build:
 # Enable extensions required by Magento 2
 runtime:
     extensions:
+        - memcached
         - redis
         - xsl
         - json
@@ -22,9 +23,10 @@ runtime:
 # to the application in the environment variable. The right-hand
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
-    database: "mysql2:mysql"
-    redis: "redis2:redis"
-    elasticsearch: "elasticsearch2:elasticsearch"
+    database: "db:mysql"
+    redis: "cache:redis"
+    elasticsearch: "search:elasticsearch"
+    rabbitmq: "queue:rabbitmq"
 
 # The configuration of app when it is exposed to the web.
 web:
@@ -39,6 +41,8 @@ web:
             expires: -1
             scripts: true
             allow: false
+            headers:
+                Access-Control-Allow-Origin: "*"
             rules:
                 \.(css|js|map|hbs|gif|jpe?g|png|tiff|wbmp|ico|jng|bmp|svgz|midi?|mp?ga|mp2|mp3|m4a|ra|weba|3gpp?|mp4|mpe?g|mpe|ogv|mov|webm|flv|mng|asx|asf|wmv|avi|ogx|swf|jar|ttf|eot|woff|otf|html?)$:
                     allow: true
@@ -48,12 +52,20 @@ web:
             root: "pub/media"
             allow: true
             scripts: false
+            headers:
+                Access-Control-Allow-Origin: "*"
+                Access-Control-Allow-Credentials: "true"
+                Access-Control-Allow-Headers: "X-Requested-With"
             expires: 1y
             passthru: "/get.php"
         "/static":
             root: "pub/static"
             allow: true
             scripts: false
+            headers:
+                Access-Control-Allow-Origin: "*"
+                Access-Control-Allow-Credentials: "true"
+                Access-Control-Allow-Headers: "X-Requested-With"
             expires: 1y
             passthru: "/front-static.php"
             rules:
@@ -61,7 +73,7 @@ web:
                     passthru: "/static/$resource"
 
 # The size of the persistent disk of the application (in MB).
-disk: 2048
+disk: 6144
 
 # The mounts that will be performed when the package is deployed.
 mounts:
@@ -71,17 +83,19 @@ mounts:
     "pub/static": "shared:files/static"
 
 hooks:
-    # We run build hooks before your application has been packaged.
+    # We run build hooks before your application has been packaged...
     build: |
         set -e
-        php ./vendor/bin/ece-tools run scenario/build/generate.xml
-        php ./vendor/bin/ece-tools run scenario/build/transfer.xml
+        echo 022 > magento_umask
+        php ./vendor/bin/ece-tools build:generate
+        php ./vendor/bin/ece-tools build:transfer
+
     # We run deploy hook after your application has been deployed and started.
     deploy: |
-        php ./vendor/bin/ece-tools run scenario/deploy.xml
+        php ./vendor/bin/ece-tools deploy
     # We run post deploy hook to clean and warm the cache. Available with ECE-Tools 2002.0.10.
     post_deploy: |
-        php ./vendor/bin/ece-tools run scenario/post-deploy.xml
+        php ./vendor/bin/ece-tools post-deploy
 
 # Default Magento 2 cron jobs
 crons:
@@ -91,6 +105,8 @@ crons:
 
 # Environment variables
 variables:
+    php:
+        date.timezone: "America/Sao_Paulo"
     env:
         CONFIG__DEFAULT__PAYPAL_ONBOARDING__MIDDLEMAN_DOMAIN: 'payment-broker.magento.com'
         CONFIG__STORES__DEFAULT__PAYPAL__NOTATION_CODE: 'Magento_Enterprise_Cloud'
