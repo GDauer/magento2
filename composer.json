@@ -3,19 +3,132 @@
     "description": "eCommerce Platform for Growth (Enterprise Edition)",
     "type": "project",
     "version": "2.2.6",
-    "license": "OSL-3.0",
+    "license": [
+        "proprietary"
+    ],
     "config": {
         "preferred-install": "dist",
         "sort-packages": true
     },
     "repositories": {
+        "0": {
+            "type": "composer",
+            "url": "https://repo.magento.com/"
+        },
+        "1": {
+            "type": "vcs",
+            "url": "https://gitlab.com/digitalhub/m2/themes/base.git"
+        },
+        "2": {
+            "type": "vcs",
+            "url": "https://gitlab.com/digitalhub/m2/themes/base-mobile.git"
+        },
+        "3": {
+            "type": "vcs",
+            "url": "https://gitlab.com/digitalhub/m2/modules/additional-prices.git"
+        },
+        "4": {
+            "type": "vcs",
+            "url": "https://gitlab.com/digitalhub/m2/modules/menu-manager.git"
+        },
+        "5": {
+            "type": "vcs",
+            "url": "https://gitlab.com/digitalhub/m2/modules/estimate-shipping.git"
+        },
+        "6": {
+            "type": "vcs",
+            "url": "https://gitlab.com/digitalhub/m2/modules/customer-attributes.git"
+        },
+        "7": {
+            "type": "vcs",
+            "url": "https://gitlab.com/digitalhub/m2/modules/language-pt_br.git"
+        },
+        "8": {
+            "type": "vcs",
+            "url": "https://gitlab.com/digitalhub/m2/modules/banners.git"
+        },
+        "9": {
+            "type": "vcs",
+            "url": "https://gitlab.com/digitalhub/m2/modules/feed-manager.git"
+        },
+        "10": {
+            "type": "vcs",
+            "url": "https://gitlab.com/digitalhub/m2/modules/module-cookie.git"
+        },
+        "scandiweb-module-core": {
+            "type": "git",
+            "url": "https://github.com/scandiwebcom/Scandiweb-Assets-Core.git"
+        },
+        "module-magiczoom": {
+            "type": "git",
+            "url": "git@github.com:scandiwebcom/Magic-Zoom-for-Magento-2-by-Scandiweb.git"
+        },
+        "swissuplabs": {
+            "type": "composer",
+            "url": "https://ci.swissuplabs.com/api/packages.json"
+        },
         "repo": {
             "type": "composer",
             "url": "https://repo.magento.com"
         }
     },
     "require": {
-        "magento/magento-cloud-metapackage": "2.2.6"
+        "magento/magento-cloud-metapackage": "2.2.6",
+        "magento/product-enterprise-edition": "2.2.6",
+        "magento/ece-tools": "^2002.0",
+        "composer/composer": "@alpha",
+        "magento/module-bundle-sample-data": "100.2.*",
+        "magento/module-customer-sample-data": "100.2.*",
+        "magento/module-sales-sample-data": "100.2.*",
+        "magento/module-catalog-sample-data": "100.2.*",
+        "magento/module-cms-sample-data": "100.2.*",
+        "magento/module-theme-sample-data": "100.2.*",
+        "magento/module-widget-sample-data": "100.2.*",
+        "magento/module-catalog-rule-sample-data": "100.2.*",
+        "magento/module-sales-rule-sample-data": "100.2.*",
+        "magento/module-downloadable-sample-data": "100.2.*",
+        "magento/module-wishlist-sample-data": "100.2.*",
+        "magento/module-review-sample-data": "100.2.*",
+        "magento/module-tax-sample-data": "100.2.*",
+        "magento/module-msrp-sample-data": "100.2.*",
+        "magento/module-gift-card-sample-data": "100.2.*",
+        "magento/module-product-links-sample-data": "100.2.*",
+        "magento/module-configurable-sample-data": "100.2.*",
+        "magento/module-grouped-product-sample-data": "100.2.*",
+        "magento/module-customer-balance-sample-data": "100.2.*",
+        "magento/module-offline-shipping-sample-data": "100.2.*",
+        "magento/module-gift-registry-sample-data": "100.2.*",
+        "magento/module-target-rule-sample-data": "100.2.*",
+        "magento/module-multiple-wishlist-sample-data": "100.2.*",
+        "magento/sample-data-media": "100.2.*",
+        "magento/module-swatches-sample-data": "100.2.*",
+        "digitalhub/theme-base": "dev-master",
+        "digitalhub/theme-base-mobile": "dev-fix/itatiaia",
+        "digitalhub/additional-prices": "dev-master",
+        "digitalhub/estimate-shipping": "dev-master",
+        "digitalhub/customer-attributes": "dev-master",
+        "digitalhub/language-pt_br": "dev-master",
+        "magepal/magento2-gmailsmtpapp": "^2.5",
+        "smile/elasticsuite": "^2.6",
+        "intelipost/magento2-basic": "^1.1",
+        "intelipost/magento2-push": "^1.1",
+        "intelipost/magento2-quote": "^1.3",
+        "intelipost/magento2-tracking": "^1.2",
+        "adyen/module-payment": "4.2.0",
+        "magepal/magento2-googletagmanager": "2.2.9",
+        "scandiweb/module-core": "~0.1.2",
+        "scandiweb/module-magiczoom": "1.1.4",
+        "mustache/mustache": "^2.12",
+        "swissup/firecheckout": "^1.18",
+        "swissup/rtl": "^1.3",
+        "pmclain/magento2-successtest": "^2.0",
+        "mundipagg/mundipagg-magento2-module": "^1.8",
+        "digitalhub/module-cookie": "dev-master",
+        "konduto/magento2": "^1.0",
+        "mercadopago/magento2-plugin": "3.3.1",
+        "cweagans/composer-patches": "^1.6",
+        "flancer32/mage2_ext_minify": "^0.1.2",
+        "platformsh/magento2-configuration": "2.2.*"
     },
     "suggest": {
         "ext-pcntl": "Need for run processes in parallel mode"
@@ -23,16 +136,24 @@
     "conflict": {
         "gene/bluefoot": "*"
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Magento\\Sniffs\\": "dev/tests/static/framework/Magento/Sniffs/",
+            "Magento\\Tools\\": "dev/tools/Magento/Tools/",
+            "Magento\\Tools\\Sanity\\": "dev/build/publication/sanity/Magento/Tools/Sanity/",
+            "Magento\\TestFramework\\Inspection\\": "dev/tests/static/framework/Magento/TestFramework/Inspection/",
+            "Magento\\TestFramework\\Utility\\": "dev/tests/static/framework/Magento/TestFramework/Utility/"
+        }
+    },
     "autoload": {
         "psr-4": {
+            "Magento\\Framework\\": "lib/internal/Magento/Framework/",
             "Magento\\Setup\\": "setup/src/Magento/Setup/",
-            "Magento\\": "app/code/Magento/",
-            "Zend\\Mvc\\Controller\\": "setup/src/Zend/Mvc/Controller/"
+            "Magento\\": "app/code/Magento/"
         },
         "psr-0": {
             "": [
-                "app/code/",
-                "generated/code/"
+                "app/code/"
             ]
         },
         "files": [
@@ -44,17 +165,7 @@
             "**/Test/**"
         ]
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Magento\\Sniffs\\": "dev/tests/static/framework/Magento/Sniffs/",
-            "Magento\\Tools\\": "dev/tools/Magento/Tools/",
-            "Magento\\Tools\\Sanity\\": "dev/build/publication/sanity/Magento/Tools/Sanity/",
-            "Magento\\TestFramework\\Inspection\\": "dev/tests/static/framework/Magento/TestFramework/Inspection/",
-            "Magento\\TestFramework\\Utility\\": "dev/tests/static/framework/Magento/TestFramework/Utility/"
-        }
-    },
-    "minimum-stability": "alpha",
-    "prefer-stable": true,
+    "minimum-stability": "stable",
     "extra": {
         "component_paths": {
             "trentrichardson/jquery-timepicker-addon": "lib/web/jquery/jquery-ui-timepicker-addon.js",
