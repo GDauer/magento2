@@ -66,4 +66,9 @@ class ConfigData extends \MercadoPago\Core\Helper\ConfigData
     const PATH_ADVANCED_CONSIDER_DISCOUNT = 'payment/mercadopago/consider_discount';
     const PATH_ADVANCED_EMAIL_CREATE = 'payment/mercadopago/email_order_create';
     const PATH_ADVANCED_EMAIL_UPDATE = 'payment/mercadopago/email_order_update';
+
+    //limit ticket configuration
+    const PATH_CUSTOM_TICKET_LIMIT_ACTIVE = 'payment/mercadopago_configurations/custom_checkout_ticket/limit_active';
+    const PATH_CUSTOM_TICKET_LIMIT_AMOUNT = 'payment/mercadopago_configurations/custom_checkout_ticket/limit_amount';
+    const PATH_CUSTOM_TICKET_LIMIT_PAYMENT_METHODS = 'payment/mercadopago_configurations/custom_checkout_ticket/limit_payment_methods';
 }
