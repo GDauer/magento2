@@ -4,34 +4,27 @@ namespace Itatiaia\CustomMercadoPago\Helper;
 
 class ConfigData extends \MercadoPago\Core\Helper\ConfigData
 {
-//credentials path
     const PATH_ACCESS_TOKEN = 'payment/mercadopago/access_token';
     const PATH_PUBLIC_KEY = 'payment/mercadopago/public_key';
 
-    //configuration hidden path
     const PATH_SITE_ID = 'payment/mercadopago/site_id';
     const PATH_SPONSOR_ID = 'payment/mercadopago/sponsor_id';
 
-    //custom method credit and debit card
     const PATH_CUSTOM_ACTIVE = 'payment/mercadopago_custom/active';
     const PATH_CUSTOM_BINARY_MODE = 'payment/mercadopago_custom/binary_mode';
     const PATH_CUSTOM_STATEMENT_DESCRIPTOR = 'payment/mercadopago_custom/statement_descriptor';
     const PATH_CUSTOM_BANNER = 'payment/mercadopago_custom/banner_checkout';
     const PATH_CUSTOM_COUPON = 'payment/mercadopago_custom/coupon_mercadopago';
 
-    //custom method ticket
     const PATH_CUSTOM_TICKET_ACTIVE             = 'payment/mercadopago_customticket/active';
     const PATH_CUSTOM_TICKET_COUPON             = 'payment/mercadopago_customticket/coupon_mercadopago';
     const PATH_CUSTOM_TICKET_BANNER             = 'payment/mercadopago_customticket/banner_checkout';
     const PATH_CUSTOM_EXCLUDE_PAYMENT_METHODS   = 'payment/mercadopago_customticket/excluded_payment_methods';
 
-    //custom method bank transfer
     const PATH_CUSTOM_BANK_TRANSFER_ACTIVE         = 'payment/mercadopago_custom_bank_transfer/active';
     const PATH_CUSTOM_BANK_TRANSFER_BANNER         = 'payment/mercadopago_custom_bank_transfer/banner_checkout';
     const PATH_CUSTOM_BANK_TRANSFER_REDIRECT_PAYER = 'payment/mercadopago_custom_bank_transfer/redirect_payer';
 
-
-    //basic method
     const PATH_BASIC_ACTIVE = 'payment/mercadopago_basic/active';
     const PATH_BASIC_TITLE = 'payment/mercadopago_basic/title';
     const PATH_BASIC_URL_FAILURE = 'payment/mercadopago_basic/url_failure';
@@ -42,7 +35,6 @@ class ConfigData extends \MercadoPago\Core\Helper\ConfigData
     const PATH_BASIC_EXPIRATION_TIME_PREFERENCE = 'payment/mercadopago_basic/exp_time_pref';
     const PATH_BASIC_ORDER_STATUS = 'payment/mercadopago_basic/order_status';
 
-    //order configuration
     const PATH_ORDER_AUTHORIZED = 'payment/mercadopago/order_status_authorized';
 
     const PATH_ORDER_APPROVED = 'payment/mercadopago/order_status_approved';
@@ -57,8 +49,6 @@ class ConfigData extends \MercadoPago\Core\Helper\ConfigData
     const PATH_ORDER_REFUND_AVAILABLE = 'payment/mercadopago/refund_available';
     const PATH_ORDER_CANCEL_AVAILABLE = 'payment/mercadopago/cancel_payment';
 
-
-    //advanced configuration
     const PATH_ADVANCED_LOG = 'payment/mercadopago/logs';
     const PATH_ADVANCED_COUNTRY = 'payment/mercadopago/country';
     const PATH_ADVANCED_CATEGORY = 'payment/mercadopago/category_id';
@@ -67,7 +57,6 @@ class ConfigData extends \MercadoPago\Core\Helper\ConfigData
     const PATH_ADVANCED_EMAIL_CREATE = 'payment/mercadopago/email_order_create';
     const PATH_ADVANCED_EMAIL_UPDATE = 'payment/mercadopago/email_order_update';
 
-    //limit ticket configuration
     const PATH_CUSTOM_TICKET_LIMIT_ACTIVE = 'payment/mercadopago_configurations/custom_checkout_ticket/limit_active';
     const PATH_CUSTOM_TICKET_LIMIT_AMOUNT = 'payment/mercadopago_configurations/custom_checkout_ticket/limit_amount';
     const PATH_CUSTOM_TICKET_LIMIT_PAYMENT_METHODS = 'payment/mercadopago_configurations/custom_checkout_ticket/limit_payment_methods';
