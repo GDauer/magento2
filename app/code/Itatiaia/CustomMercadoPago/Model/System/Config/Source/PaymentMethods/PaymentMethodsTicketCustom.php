@@ -50,7 +50,7 @@ class PaymentMethodsTicketCustom extends PaymentMethodsAbstract implements \Mage
     /**
      * @param array &$methods
      */
-    private function removeEmptyKey(&$methods): array
+    private function removeEmptyKey(&$methods)
     {
         foreach($methods as $key=>$value)
         {

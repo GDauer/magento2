@@ -51,7 +51,7 @@ class Payment extends \MercadoPago\Core\Model\CustomTicket\Payment
      *
      * @param array &$tickets
      */
-    public function validatePaymentMethods(&$tickets): array
+    public function validatePaymentMethods(&$tickets)
     {
         $paymentlimitActive = (bool) $this->_scopeConfig->getValue(\Itatiaia\CustomMercadoPago\Helper\ConfigData::PATH_CUSTOM_TICKET_LIMIT_ACTIVE, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 
