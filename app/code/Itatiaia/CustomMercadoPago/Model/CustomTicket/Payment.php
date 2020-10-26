@@ -26,7 +26,9 @@ class Payment extends \MercadoPago\Core\Model\CustomTicket\Payment
     public function getTicketsOptions(): array
     {
         $excludePaymentMethods = $this->_scopeConfig->getValue(\Itatiaia\CustomMercadoPago\Helper\ConfigData::PATH_CUSTOM_EXCLUDE_PAYMENT_METHODS, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $listExclude = explode(",", $excludePaymentMethods);
+        $listExclude = [];
+        if(!is_null($excludePaymentMethods))
+            $listExclude = explode(",", $excludePaymentMethods);
 
         $payment_methods = $this->_coreModel->getPaymentMethods();
         $tickets = array();
@@ -58,7 +60,10 @@ class Payment extends \MercadoPago\Core\Model\CustomTicket\Payment
         if($paymentlimitActive)
         {
             $validatePaymentMethods = $this->_scopeConfig->getValue(\Itatiaia\CustomMercadoPago\Helper\ConfigData::PATH_CUSTOM_TICKET_LIMIT_PAYMENT_METHODS, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-            $listInclude = explode(",", $validatePaymentMethods);
+            $listInclude = [];
+            if(!is_null($validatePaymentMethods))
+                $listInclude = explode(",", $validatePaymentMethods);
+
             $limitAmount = (float) $this->_scopeConfig->getValue(\Itatiaia\CustomMercadoPago\Helper\ConfigData::PATH_CUSTOM_TICKET_LIMIT_AMOUNT, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
             $quoteSubtotal = (float) $this->_getQuote()->getSubtotal();
 
