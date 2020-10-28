@@ -40,26 +40,29 @@ class ProductGrid extends ProductsList
             ->setPageSize($pageSize)
             ->setCurPage($currentPage);
 
-        $collection->getSelect()->joinLeft([
-            "repo_viewed" => new \Zend_Db_Expr("
-            (SELECT 
-                index_id, product_id, NOW()-added_at AS elapsed_time 
-                FROM report_viewed_product_index
-                WHERE
-		            index_id in (
-                        select
-                            max(index_id)
-                        from
-                            report_viewed_product_index
-                        group by
-                            product_id ) 
-                GROUP BY product_id)")
-        ],
-            "repo_viewed.product_id = e.entity_id",
-            ["index_id" => "repo_viewed.index_id", "elapsed_time" => "repo_viewed.elapsed_time"]);
+        $collection->getSelect()->joinInner(
+            ["repo_viewed" => new \Zend_Db_Expr("
+                (
+                    SELECT MAX(index_id) AS product_index_id, product_id, MIN(TIMESTAMPDIFF(SECOND, added_at, NOW())) AS elapsed_time 
+                    FROM report_viewed_product_index 
+                    GROUP BY product_id
+                )"
+            )],
+            "repo_viewed.product_id = e.entity_id AND repo_viewed.elapsed_time IS NOT NULL",
+            ["index_id" => "repo_viewed.product_index_id", "elapsed_time" => "repo_viewed.elapsed_time"]
+        );
 
         $collection->getSelect()->order('elapsed_time ASC');
 
         return $collection;
+    }
+
+    private function getSubQuery()
+    {
+        $subQuery = new Zend_Db_Expr("( 
+            SELECT DISTINCT(product_id), category_id 
+            FROM `catalog_category_product` 
+            GROUP BY product_id
+        )");
     }
 }
