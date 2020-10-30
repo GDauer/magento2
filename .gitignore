@@ -75,3 +75,5 @@ pub/var/log/intelipost.log
 /pub/media/sitemap/sitemap-index.xml
 /app/etc/env.php
 /app/etc/di.xml
+/pub/media/po_image_optimization_temp_images/
+/pub/media/
