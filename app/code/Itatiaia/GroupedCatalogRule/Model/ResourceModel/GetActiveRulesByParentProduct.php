@@ -107,8 +107,6 @@ class GetActiveRulesByParentProduct
             ->order('rule_product.sort_order ASC')
             ->group(['rule.rule_id']);
 
-        $select->setPart('disable_staging_preview', true);
-
         return $select->query()->fetchAll();
     }
 

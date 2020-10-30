@@ -56,13 +56,4 @@ class ProductGrid extends ProductsList
 
         return $collection;
     }
-
-    private function getSubQuery()
-    {
-        $subQuery = new Zend_Db_Expr("( 
-            SELECT DISTINCT(product_id), category_id 
-            FROM `catalog_category_product` 
-            GROUP BY product_id
-        )");
-    }
 }
