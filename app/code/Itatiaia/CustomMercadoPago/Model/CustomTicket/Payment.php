@@ -66,10 +66,12 @@ class Payment extends \MercadoPago\Core\Model\CustomTicket\Payment
 
             $limitAmount = (float) $this->_scopeConfig->getValue(\Itatiaia\CustomMercadoPago\Helper\ConfigData::PATH_CUSTOM_TICKET_LIMIT_AMOUNT, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
             $quoteSubtotal = (float) $this->_getQuote()->getSubtotal();
+            $shippingAmount = (float) $this->_getQuote()->getShippingAddress()->getShippingAmount();
+            $subtotalWithShipping = (float) ($quoteSubtotal + $shippingAmount);
 
             foreach ($tickets as $key => $ticket)
             {
-                if(in_array($ticket['id'], $listInclude) && $quoteSubtotal > $limitAmount) {
+                if(in_array($ticket['id'], $listInclude) && $subtotalWithShipping > $limitAmount) {
                     array_splice($tickets, $key, 1);
                 }
             }
