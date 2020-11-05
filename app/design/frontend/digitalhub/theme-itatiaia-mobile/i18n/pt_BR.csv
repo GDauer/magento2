@@ -131,3 +131,7 @@
 "Retry order","Repetir pedido"
 "Continue Shopping","Continue comprando"
 "Please enter no more than {0} characters.","Por favor digite menos de {0} caracteres."
+"The most you may purchase is %1.","A quantidade do produto excede o valor máximo de compra permitido. O máximo permitido é %1."
+"The maximum you may purchase is %1.","O máximo que você pode comprar é %1."
+"Please enter a quantity greater than 0.", "Insira uma quantidade maior que 0."
+"Attention","Atenção"
