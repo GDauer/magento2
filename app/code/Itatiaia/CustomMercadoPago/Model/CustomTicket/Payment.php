@@ -65,9 +65,8 @@ class Payment extends \MercadoPago\Core\Model\CustomTicket\Payment
                 $listInclude = explode(",", $validatePaymentMethods);
 
             $limitAmount = (float) $this->_scopeConfig->getValue(\Itatiaia\CustomMercadoPago\Helper\ConfigData::PATH_CUSTOM_TICKET_LIMIT_AMOUNT, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-            $quoteSubtotal = (float) $this->_getQuote()->getSubtotal();
-            $shippingAmount = (float) $this->_getQuote()->getShippingAddress()->getShippingAmount();
-            $subtotalWithShipping = (float) ($quoteSubtotal + $shippingAmount);
+            $subtotalWithShipping = $this->getTotalWithShipping();
+
 
             foreach ($tickets as $key => $ticket)
             {
@@ -76,5 +75,49 @@ class Payment extends \MercadoPago\Core\Model\CustomTicket\Payment
                 }
             }
         }
+    }
+
+    /**
+     * Return total amount with shipping
+     *
+     * @return float
+     */
+    private function getTotalWithShipping(): float
+    {
+        $quoteSubtotal = (float) $this->_getQuote()->getSubtotal();
+        $shippingAmount = $this->getMaxShippingAmount();
+
+        return (float) ($quoteSubtotal + $shippingAmount);
+    }
+
+    /**
+     * Return max shipping amount value
+     *
+     * @return float
+     */
+    private function getMaxShippingAmount(): float
+    {
+        $shippingAmount = (float) $this->_getQuote()->getShippingAddress()->getShippingAmount();
+        $method = $this->_getQuote()->getShippingAddress()->getShippingMethod();
+
+        if(is_null($method) && $shippingAmount == 0)
+        {
+            $quote = $this->_getQuote();
+            $quote->getShippingAddress()->setCountryId('*');
+            $quote->collectTotals();
+            $quote->getShippingAddress()->setCollectShippingRates(1);
+            $quote->getShippingAddress()->collectShippingRates();
+            $_rates = $quote->getShippingAddress()->getShippingRatesCollection();
+
+            $shippingRates = [];
+            foreach ($_rates as $_rate)
+            {
+                $shippingRates[] =  $_rate->getPrice();
+            }
+
+            $shippingAmount = (float) max($shippingRates);
+        }
+
+        return $shippingAmount;
     }
 }
