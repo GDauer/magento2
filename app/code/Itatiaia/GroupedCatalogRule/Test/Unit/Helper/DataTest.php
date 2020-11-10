@@ -128,7 +128,7 @@ class DataTest extends TestCase
         $this->abstractType = $this->createMock(AbstractType::class);
 
         $this->applyRules = $this->getMockBuilder(ApplyRules::class)
-            ->setMethods(['execute'])
+            ->setMethods(['apply'])
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -138,16 +138,76 @@ class DataTest extends TestCase
             [
                 'context' => $this->context,
                 'helperData' => $this->helperData,
-                'resourceConnection' => $this->resourceConnection,
-                'sessionFactory' => $this->sessionFactory,
                 'productFactory' => $this->productFactory,
                 'registry' => $this->registry,
                 'groupedFactory' => $this->groupedFactory,
                 'loggerInterface' => $this->loggerInterface,
-                'stockRegistryInterface' => $this->stockRegistryInterface
+                'resourceConnection' => $this->resourceConnection,
+                'stockRegistryInterface' => $this->stockRegistryInterface,
+                'product' => $this->product,
+                'getRules' => $this->getRules,
+                'applyRules' => $this->applyRules
             ]);
     }
 
+    /**
+     * Test calculateGroupedFinalPrice method
+     *
+     * @return void
+     */
+    public function testCalculateGroupedFinalPrice(): void
+    {
+        //Arrange
+        $this->getRules
+            ->expects($this->atLeastOnce())
+            ->method('execute')
+            ->with($this->product)
+            ->willReturn([]);
+
+        $this->testGetRegularPriceIfRegistryExists();
+
+        $this->applyRules
+            ->expects($this->atLeastOnce())
+            ->method('apply')
+            ->with([], 10)
+            ->willReturn(10);
+
+        // Act
+        $actualResult = $this->testClass->calculateGroupedFinalPrice($this->product);
+        // Assert
+        $this->assertEquals($actualResult, 10);
+    }
+
+    /**
+     * Test calculateSimpleFinalPrice method
+     *
+     * @return void
+     */
+    public function testCalculateSimpleFinalPrice(): void
+    {
+        //Arrange
+        $parentProduct = $this->createMock(Product::class);
+
+        $this->getRules
+            ->expects($this->atLeastOnce())
+            ->method('execute')
+            ->with($parentProduct)
+            ->willReturn([]);
+
+        $this->testGetPriceIfProductTypeIsNotGrouped();
+
+        $this->applyRules
+            ->expects($this->atLeastOnce())
+            ->method('apply')
+            ->with([], 10)
+            ->willReturn(10);
+
+        // Act
+        $actualResult = $this->testClass->calculateSimpleFinalPrice($this->product, $parentProduct);
+        // Assert
+        $this->assertEquals($actualResult, 10);
+    }
+    
     /**
      * Test getRegularPrice method if registry exists
      *
@@ -169,12 +229,12 @@ class DataTest extends TestCase
             ->expects($this->atLeastOnce())
             ->method('registry')
             ->with($key)
-            ->willReturn('abc');
+            ->willReturn(10);
 
         // Act
         $actualResult = $this->testClass->getRegularPrice($this->product);
         // Assert
-        $this->assertEquals('abc', $actualResult);
+        $this->assertEquals(10, $actualResult);
     }
 
     /**
@@ -307,17 +367,17 @@ class DataTest extends TestCase
     {
         // Arrange
         $this->product
-            ->expects($this->once())
+            ->expects($this->atLeastOnce())
             ->method('getTypeId')
             ->willreturn('grouped');
 
         $this->product
-            ->expects($this->once())
+            ->expects($this->atLeastOnce())
             ->method('getTypeInstance')
             ->willReturn($this->abstractType);
 
         $this->abstractType
-            ->expects($this->once())
+            ->expects($this->atLeastOnce())
             ->method('getAssociatedProducts')
             ->with($this->product)
             ->willReturn(["1" => $this->product]);
@@ -330,7 +390,7 @@ class DataTest extends TestCase
         $productId = rand();
 
         $this->product
-            ->expects($this->once())
+            ->expects($this->atLeastOnce())
             ->method('getId')
             ->willReturn($productId);
 
@@ -345,12 +405,12 @@ class DataTest extends TestCase
             ->getMock();
 
         $this->product
-            ->expects($this->once())
+            ->expects($this->atLeastOnce())
             ->method('load')
             ->willReturn($childProduct);
 
         $childProduct
-            ->expects($this->once())
+            ->expects($this->atLeastOnce())
             ->method('getFinalPrice')
             ->willReturn(10);
 
@@ -369,12 +429,12 @@ class DataTest extends TestCase
     {
         // Arrange
         $this->product
-            ->expects($this->once())
+            ->expects($this->atLeastOnce())
             ->method('getTypeId')
             ->willreturn('simple');
 
         $this->product
-            ->expects($this->once())
+            ->expects($this->atLeastOnce())
             ->method('getPrice')
             ->willReturn(10);
 
@@ -384,6 +444,49 @@ class DataTest extends TestCase
         $this->assertEquals(10, $actualResult);
     }
 
+    /**
+     * Test getFinalPrice method if type is grouped
+     *
+     * @return void
+     */
+    public function testGetFinalPriceIfTypeIsGrouped(): void
+    {
+        //Arrange
+        $this->product
+            ->expects($this->once())
+            ->method('getTypeId')
+            ->willReturn('grouped');
+
+        $this->testCalculateGroupedFinalPrice();
+
+        // Act
+        $actualResult = $this->testClass->getFinalPrice($this->product, null);
+        // Assert
+        $this->assertEquals(10, $actualResult);
+    }
+
+    /**
+     * Test getFinalPrice method if type is not grouped
+     *
+     * @return void
+     */
+    public function testGetFinalPriceIfTypeIsNotGrouped(): void
+    {
+        //Arrange
+        $this->product
+            ->expects($this->atLeastOnce())
+            ->method('getTypeId')
+            ->willReturn('simple');
+
+        $this->testCalculateSimpleFinalPrice();
+
+        $parentProduct = $this->createMock(Product::class);
+
+        // Act
+        $actualResult = $this->testClass->getFinalPrice($this->product, $parentProduct);
+        // Assert
+        $this->assertEquals(10, $actualResult);
+    }
 
     /**
      * Data Provider updateGroupedStockStatusByStockItem
@@ -406,7 +509,10 @@ class DataTest extends TestCase
      *
      * @param $productTypeID
      * @param $getParentIdsByChildCalls
+     *
      * @throws \Magento\Framework\Exception\NoSuchEntityException
+     *
+     * @return void
      *
      * @dataProvider updateGroupedStockStatusByStockItemDataProvider
      */
@@ -530,7 +636,7 @@ class DataTest extends TestCase
             ->method('getIsInStock')
             ->willReturn(1);
 
-        $this->testUpdateStockProduct();
+        $this->updateStockProduct();
 
         // Act
         $actualResult = $this->testClass->updateGroupedStockStatusByStockItem($this->stockItemInterface);
@@ -561,6 +667,7 @@ class DataTest extends TestCase
      * Test isGroupedProductInStock method
      *
      * @param $is_in_stock
+     *
      * @return void
      *
      * @dataProvider isGroupedProductInStockDataProvider
@@ -607,56 +714,205 @@ class DataTest extends TestCase
         // Assert
         $this->assertEquals($actualResult, $is_in_stock);
     }
-    
+
+    /**
+     * Data provider updateProductIsInStockDataProvider
+     *
+     * @return array
+     */
+    public function updateProductIsInStockDataProvider(): array
+    {
+        return [
+            'Product in Stock' => [
+                'is_in_stock' => true
+            ],
+            'Product out of Stock' => [
+                'is_in_stock' => false
+            ]
+        ];
+    }
+
     /**
      * Test updateProductIsInStock method
      *
+     * @param $is_in_stock
+     *
      * @return void
+     *
      * @throws \Magento\Framework\Exception\NoSuchEntityException
+     *
+     * @dataProvider updateProductIsInStockDataProvider
      */
-    public function testUpdateProductIsInStock(): void
+    public function testUpdateProductIsInStock($is_in_stock): void
     {
         // Arrange
-        $this->testUpdateStockProduct();
+        $this->updateStockProduct();
 
         // Act
-        $actualResult = $this->testClass->updateProductIsInStock($this->product, true);
+        $actualResult = $this->testClass->updateProductIsInStock($this->product, $is_in_stock);
         // Assert
         $this->assertNull($actualResult);
     }
 
     /**
-     * Test updateStockProduct method
+     * updateStockProduct method
      *
      * @return void
      */
-    private function testUpdateStockProduct(): void
+    private function updateStockProduct(): void
     {
-        $is_in_stock = true;
-
         $productSku = rand();
 
         $this->product
-            ->expects($this->once())
+            ->expects($this->atLeastOnce())
             ->method('getSku')
             ->willReturn($productSku);
 
         $this->stockRegistryInterface
-            ->expects($this->once())
+            ->expects($this->atLeastOnce())
             ->method('getStockItemBySku')
             ->with($productSku)
             ->willReturn($this->stockItemInterface);
 
         $this->stockItemInterface
-            ->expects($this->once())
+            ->expects($this->atLeastOnce())
             ->method('setIsInStock')
-            ->with($is_in_stock)
             ->willReturnSelf();
 
         $this->stockRegistryInterface
-            ->expects($this->once())
+            ->expects($this->atLeastOnce())
             ->method('updateStockItemBySku')
             ->with($productSku, $this->stockItemInterface)
             ->willReturnSelf();
+    }
+
+    /**
+     * Data provider updateChildrenProductByParentId
+     *
+     * @return array
+     */
+    public function updateChildrenProductByParentIdDataProvider(): array
+    {
+        return [
+            'Product in Stock' => [
+                'is_in_stock' => true
+            ],
+            'Product out of Stock' => [
+                'is_in_stock' => false
+            ]
+        ];
+    }
+
+    /**
+     * Test updateChildrenProductByParentId method
+     *
+     * @param $is_in_stock
+     *
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     *
+     * @return void
+     *
+     * @dataProvider updateChildrenProductByParentIdDataProvider
+     */
+    public function testUpdateChildrenProductByParentId($is_in_stock): void
+    {
+        $this->productFactory
+            ->expects($this->atLeastOnce())
+            ->method('create')
+            ->willReturn($this->product);
+
+        $this->product
+            ->expects($this->once())
+            ->method('getCollection')
+            ->willReturn($this->productCollection);
+
+        $productId = rand();
+
+        $this->productCollection
+            ->expects($this->once())
+            ->method('addFieldToFilter')
+            ->with('row_id', ['in' => $productId])
+            ->willReturnSelf();
+
+        $this->productCollection
+            ->expects($this->atLeastOnce())
+            ->method('load')
+            ->willReturnSelf();
+
+        $groupProduct = [$this->product];
+
+        $iterator = new ArrayIterator($groupProduct);
+
+        $this->product
+            ->expects($this->once())
+            ->method('getId')
+            ->willReturn($productId);
+
+        $this->productCollection
+            ->method('getIterator')
+            ->willReturn($iterator);
+
+        $this->product
+            ->expects($this->once())
+            ->method('getTypeInstance')
+            ->willReturn($this->abstractType);
+
+        $childrenIds = ['3' => [$productId]];
+
+        $this->abstractType
+            ->expects($this->once())
+            ->method('getChildrenIds')
+            ->willReturn($childrenIds);
+
+        $this->loggerInterface
+            ->expects($this->atLeastOnce())
+            ->method('info');
+
+        $this->productFactory
+            ->expects($this->atLeastOnce())
+            ->method('create')
+            ->willReturn($this->product);
+
+        $this->product
+            ->expects($this->atLeastOnce())
+            ->method('load')
+            ->willReturnSelf();
+
+        $this->product
+            ->expects($this->once())
+            ->method('getData')
+            ->willReturn([]);
+
+        $this->loggerInterface
+            ->expects($this->atLeastOnce())
+            ->method('info');
+
+        $attributes = $this->getMockBuilder(ProductExtensionInterface::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['getExtensionAttributes', 'getStockItem'])
+            ->getMock();
+
+        $this->product
+            ->expects($this->once())
+            ->method('getExtensionAttributes')
+            ->willReturn($attributes);
+
+        $attributes
+            ->expects($this->once())
+            ->method('getStockItem')
+            ->willReturn($this->stockItemInterface);
+
+        $this->stockItemInterface
+            ->expects($this->once())
+            ->method('getIsInStock')
+            ->willReturn(false);
+
+        $this->testUpdateProductIsInStock($is_in_stock);
+
+
+        // Act
+        $actualResult = $this->testClass->updateChildrenProductByParentId($productId);
+        // Assert
+        $this->assertNull($actualResult);
     }
 }

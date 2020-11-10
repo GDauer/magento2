@@ -96,6 +96,8 @@ class ApplyRulesTest extends TestCase
      * @param $calcPriceRuleCalls
      * @param $expectedResult
      *
+     * @return void
+     *
      * @dataProvider ApplyDataProvider
      */
     public function testApply(

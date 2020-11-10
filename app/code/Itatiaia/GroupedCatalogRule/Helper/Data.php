@@ -58,7 +58,7 @@ class Data extends AbstractHelper
      * @param Registry $registry
      * @param GroupedFactory $groupedFactory
      * @param LoggerInterface $loggerInterface
-     * @param StockRegistryInterface $stockRegistry
+     * @param StockRegistryInterface $stockRegistryInterface
      * @param Product $product
      * @param GetActiveRulesByParentProduct $getRules
      * @param ApplyRules $applyRules
@@ -70,7 +70,7 @@ class Data extends AbstractHelper
         Registry $registry,
         GroupedFactory $groupedFactory,
         LoggerInterface $loggerInterface,
-        StockRegistryInterface $stockRegistry,
+        StockRegistryInterface $stockRegistryInterface,
         Product $product,
         GetActiveRulesByParentProduct $getRules,
         ApplyRules $applyRules
@@ -81,7 +81,7 @@ class Data extends AbstractHelper
         $this->registry = $registry;
         $this->groupedFactory = $groupedFactory;
         $this->loggerInterface = $loggerInterface;
-        $this->stockRegistryInterface;
+        $this->stockRegistryInterface = $stockRegistryInterface;
         $this->product = $product;
         $this->getRules = $getRules;
         $this->applyRules = $applyRules;
@@ -106,13 +106,13 @@ class Data extends AbstractHelper
     /**
      * calculateSimpleFinalPrice method to calculate simple final price based on parent product rule
      *
-     * @param $product
+     * @param Product $product
      *
      * @param $parentProduct
      *
      * @return float|int
      */
-    public function calculateSimpleFinalPrice($product, Product $parentProduct)
+    public function calculateSimpleFinalPrice(Product $product, $parentProduct)
     {
         $rules = $this->getRules->execute($parentProduct);
 
@@ -192,10 +192,12 @@ class Data extends AbstractHelper
     {
         $finalPrice = null;
         if($product->getTypeId() == 'grouped'){
-           return $finalPrice = $this->calculateGroupedFinalPrice($product);
+            $finalPrice = $this->calculateGroupedFinalPrice($product);
+        } else {
+            $finalPrice = $this->calculateSimpleFinalPrice($product, $parentProduct);
         }
 
-        return $finalPrice = $this->calculateSimpleFinalPrice($product, $parentProduct);
+        return $finalPrice;
     }
 
     /**
@@ -260,7 +262,8 @@ class Data extends AbstractHelper
      *
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function updateProductIsInStock($product, $is_in_stock): void {
+    public function updateProductIsInStock($product, $is_in_stock): void
+    {
         $productSku = $product->getSku();
         $stockItem = $this->stockRegistryInterface->getStockItemBySku($productSku);
         $stockItem->setIsInStock((bool)$is_in_stock);
@@ -298,7 +301,7 @@ class Data extends AbstractHelper
                     $is_in_stock = false;
                 }
             }
-            $this->updateProductIsInStock($groupedProduct, $is_in_stock);
+           $this->updateProductIsInStock($groupedProduct, $is_in_stock);
         }
     }
 }
