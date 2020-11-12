@@ -3,6 +3,8 @@
 namespace Itatiaia\CustomElasticSuite\Model\Product\Indexer\Fulltext\Datasource;
 
 use Magento\Framework\App\ObjectManager;
+use Magento\Catalog\Model\Product\Type as ProductType;
+use Magento\GroupedProduct\Model\Product\Type\Grouped as ProductTypeGrouped;
 
 /**
  * Class AttributeData
@@ -53,6 +55,8 @@ class AttributeData extends \Smile\ElasticsuiteCatalog\Model\Product\Indexer\Ful
                 }
             }
         }
+
+        $this->clearSkuData($indexData);
 
         $indexData = $this->filterCompositeProducts($indexData);
 
@@ -250,5 +254,31 @@ class AttributeData extends \Smile\ElasticsuiteCatalog\Model\Product\Indexer\Ful
         $ignoreAttributes = array_diff($ignoreAttributes, self::FORBIDDEN_CHILDREN_ATTRIBUTES);
 
         return array_merge(self::FORBIDDEN_CHILDREN_ATTRIBUTES, $ignoreAttributes);
+    }
+
+    /**
+     * Clear left zeros in the SKU numeric.
+     *
+     * @param array $productsData Products data.
+     */
+    private function clearSkuData(&$productsData)
+    {
+        foreach ($productsData as $index => $product)
+        {
+            switch ($product['type_id'] ) {
+                case ProductType::TYPE_SIMPLE && is_numeric($product['sku']):
+                    $productsData[$index]['sku'] = ltrim($product['sku'], "0");
+                    break;
+                case ProductTypeGrouped::TYPE_CODE && is_array($product['sku']):
+                    foreach ($product['sku'] as $key => $sku) {
+                        if(is_numeric($sku)) {
+                            $product['sku'][$key] = ltrim($sku, "0");
+                        }
+                    }
+
+                    $productsData[$index]['sku'] = $product['sku'];
+                    break;
+            }
+        }
     }
 }
