@@ -9,7 +9,9 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
     {
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $scopeConfig = $objectManager->get('\Magento\Framework\App\Config\ScopeConfigInterface');
-
+        $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+        $store = $storeManager->getStore();
+        $productSuffix = $scopeConfig->getValue('catalog/seo/product_url_suffix', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $imagehelper = $objectManager->get('Magento\Catalog\Helper\Image');
         $urlBuilder = $objectManager->get('Magento\Framework\UrlInterface');
         $currencyHelper = $objectManager->get('Magento\Framework\Pricing\Helper\Data');
@@ -33,6 +35,7 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
             $item['description'] = strip_tags(html_entity_decode($product->getDescription()));
             $item['short_description'] = strip_tags(html_entity_decode($product->getShortDescription()));
             $item['url'] = $product->getProductUrl();
+            $item['url_code'] = $store->getBaseUrl() . $product->getUrlKey() . $productSuffix;
 
             $item['image'] = $imagehelper->init($product, 'product_base_image')->getUrl();
             $item['small_image'] = $imagehelper->init($product, 'product_small_image')->getUrl();
@@ -70,6 +73,7 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
 
         $variables = [];
         $variables['store_url'] = $urlBuilder->getBaseUrl();
+        $variables['store_url_code'] = $store->getBaseUrl();
         $variables['store_name'] = $scopeConfig->getValue('general/store_information/name', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $variables['products'] = $newCollection;
         return $variables;
