@@ -110,13 +110,5 @@ crons:
 
 variables:
     php:
-        memory_limit: 2G
-        upload_max_filesize: 64M
-        post_max_size: 64M
-        opcache.enable: 1
-        opcache.validate_timestamps: 0
-        opcache.max_accelerated_files: 65406
-        opcache.memory_consumption: 256
-        opcache.interned_strings_buffer: 12
-        opcache.fast_shutdown: 1
-        opcache.enable_file_override: 1
+        date.timezone: "America/Sao_Paulo"
+        always_populate_raw_post_data: -1
