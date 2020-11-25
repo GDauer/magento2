@@ -9,7 +9,9 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
     {
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $scopeConfig = $objectManager->get('\Magento\Framework\App\Config\ScopeConfigInterface');
-
+        $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+        $rule = $objectManager->create('\Magento\CatalogRule\Model\RuleFactory')->create();
+        $store = $storeManager->getStore();
         $imagehelper = $objectManager->get('Magento\Catalog\Helper\Image');
         $urlBuilder = $objectManager->get('Magento\Framework\UrlInterface');
         $currencyHelper = $objectManager->get('Magento\Framework\Pricing\Helper\Data');
@@ -33,6 +35,7 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
             $item['description'] = strip_tags(html_entity_decode($product->getDescription()));
             $item['short_description'] = strip_tags(html_entity_decode($product->getShortDescription()));
             $item['url'] = $product->getProductUrl();
+            $item['url_code'] = str_replace($urlBuilder->getBaseUrl(), $store->getBaseUrl(), $product->getProductUrl());
 
             $item['image'] = $imagehelper->init($product, 'product_base_image')->getUrl();
             $item['small_image'] = $imagehelper->init($product, 'product_small_image')->getUrl();
@@ -53,8 +56,11 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
                 // prevenir envio de produtos com valor Zero
                 if(!$product->getFinalPrice()) continue;
 
-                $item['final_price'] = number_format($product->getFinalPrice(), 2);
-                $item['final_price_formatted'] = $currencyHelper->currency($product->getFinalPrice(), true, false);
+                $rulePrice = $rule->calcProductPriceRule($product,$product->getPrice());
+                $finalPrice = $rulePrice ?? $product->getFinalPrice();
+
+                $item['final_price'] = number_format($finalPrice, 2);
+                $item['final_price_formatted'] = $currencyHelper->currency($finalPrice, true, false);
             }
 
             $stockItem = $stockRegistry->getStockItem($product->getId());
@@ -70,6 +76,7 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
 
         $variables = [];
         $variables['store_url'] = $urlBuilder->getBaseUrl();
+        $variables['store_url_code'] = $store->getBaseUrl();
         $variables['store_name'] = $scopeConfig->getValue('general/store_information/name', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $variables['products'] = $newCollection;
         return $variables;
