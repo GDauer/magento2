@@ -109,11 +109,11 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
 
             if($product->getTypeId() == 'grouped'){
                 $finalPrice = $this->groupedCatalogRuleHelper->getFinalPrice($product);
-                if(!$finalPrice) continue;
             } else {
                 $finalPrice = $product->getFinalPrice();
-                if(!$finalPrice) continue;
             }
+
+            if(!$finalPrice) continue;
 
             $this->setProductDataPrice($product, $item, $finalPrice);
 
