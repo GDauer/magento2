@@ -131,10 +131,8 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
 
         $variables = [];
         $variables['store_url'] = $this->urlBuilder->getBaseUrl();
+        $variables['store_url_code'] = $this->storeManager->getStore()->getBaseUrl();
         $variables['store_name'] = $this->scopeConfigInterface->getValue('general/store_information/name', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $variables['store_url'] = $urlBuilder->getBaseUrl();
-        $variables['store_url_code'] = $store->getBaseUrl();
-        $variables['store_name'] = $scopeConfig->getValue('general/store_information/name', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $variables['products'] = $newCollection;
         return $variables;
     }
