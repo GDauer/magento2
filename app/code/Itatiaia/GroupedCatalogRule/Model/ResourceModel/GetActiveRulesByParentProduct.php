@@ -68,26 +68,9 @@ class GetActiveRulesByParentProduct
         if($isActive){
 
             $customerSession = $this->sessionFactory->create();
+            $customerGroupId = $customerSession->getCustomerGroupId();
 
-            $connection = $this->resourceConnection->getConnection();
-
-            $catalogrule_table = $this->resourceConnection->getTableName('catalogrule');
-            $catalogrule_product_table = $this->resourceConnection->getTableName('catalogrule_product');
-
-            $customer_group_id = $customerSession->getCustomerGroupId();
-
-            $sql = "select rule_product.*, rule.is_active as is_active from " . $catalogrule_product_table . " as rule_product,
-             ".$catalogrule_table." as rule 
-             where rule.rule_id = rule_product.rule_id
-             and rule.is_active = 1
-             and customer_group_id = ".$customer_group_id."
-             and product_id = " . $product->getId() . "
-             and from_time <= " . time() . "
-             and (to_time = 0 OR to_time >= " . time() . ")
-             group by rule_id
-             order by sort_order ASC";
-
-            $result = $connection->fetchAll($sql);
+            $result = $this->getCatalogRules($product, $customerGroupId);
 
             if(count($result)){
                 return $result;
@@ -95,4 +78,36 @@ class GetActiveRulesByParentProduct
         }
         return [];
     }
+
+    /**
+     * getCatalogRules method
+     *
+     * @param Product $product
+     * @param int $customerGroupId
+     *
+     * @return array
+     */
+    private function getCatalogRules(Product $product, $customerGroupId): array
+    {
+        $connection = $this->resourceConnection->getConnection();
+
+        $select = $connection->select()
+            ->from(
+                ['rule' =>  $this->resourceConnection->getTableName('catalogrule')],
+                ['is_active' => 'rule.is_active']
+            )->joinInner(
+                ['rule_product' => $this->resourceConnection->getTableName('catalogrule_product')],
+                'rule.rule_id = rule_product.rule_id'
+            )
+            ->where('rule.is_active = ?', 1)
+            ->where('rule_product.customer_group_id = ?', $customerGroupId)
+            ->where('rule_product.product_id = ?', $product->getId())
+            ->where('rule_product.from_time <= ?', time())
+            ->where('rule_product.to_time = 0 OR rule_product.to_time >= ?', time())
+            ->order('rule_product.sort_order ASC')
+            ->group(['rule.rule_id']);
+
+        return $select->query()->fetchAll();
+    }
+
 }
