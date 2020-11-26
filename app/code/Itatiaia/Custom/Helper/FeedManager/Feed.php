@@ -102,6 +102,7 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
             $item['description'] = strip_tags(html_entity_decode($product->getDescription()));
             $item['short_description'] = strip_tags(html_entity_decode($product->getShortDescription()));
             $item['url'] = $product->getProductUrl();
+            $item['url_code'] = str_replace($this->urlBuilder->getBaseUrl(), $this->storeManager->getStore()->getBaseUrl(), $product->getProductUrl());
 
             $item['image'] = $this->imageHelper->init($product, 'product_base_image')->getUrl();
             $item['small_image'] = $this->imageHelper->init($product, 'product_small_image')->getUrl();
@@ -131,6 +132,9 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
         $variables = [];
         $variables['store_url'] = $this->urlBuilder->getBaseUrl();
         $variables['store_name'] = $this->scopeConfigInterface->getValue('general/store_information/name', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+        $variables['store_url'] = $urlBuilder->getBaseUrl();
+        $variables['store_url_code'] = $store->getBaseUrl();
+        $variables['store_name'] = $scopeConfig->getValue('general/store_information/name', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $variables['products'] = $newCollection;
         return $variables;
     }
