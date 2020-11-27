@@ -178,7 +178,9 @@ require([
         }
     });
 });
+
 // Bloquear caracteres invalidos no cadastro de endereco
+
 require(['jquery'], function ($) {
     // Desabilita campos antes de carregar a pagina
     $(document).ready(function () {
