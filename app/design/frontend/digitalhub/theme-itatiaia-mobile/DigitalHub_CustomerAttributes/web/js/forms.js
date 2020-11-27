@@ -202,27 +202,27 @@ window.onload = function () {
 
     //Bloquear caracteres invalidos na rua
     document.getElementById("street_1").onkeypress = function (event) {
-        var regex = new RegExp("^[a-zA-Z0-9 ]+$");
-        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-        if (!regex.test(key)) {
-            event.preventDefault();
-            return false;
-        }
+        format(event);
     }
     //Bloquear caracteres invalidos no bairro
     document.getElementById("street_4").onkeypress = function (event) {
-        var regex = new RegExp("^[a-zA-Z0-9 ]+$");
-        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-        if (!regex.test(key)) {
-            event.preventDefault();
-            return false;
-        }
+        format(event);
     }
     //Permitir apenas numeros no campo numero da casa
     document.getElementById("street_2").onkeypress = function (event) {
-        var regex = new RegExp("^[0-9 ]+$");
-        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-        if (!regex.test(key)) {
+        format(event, 'onlyNumbers');
+    }
+
+    // Tipos de formatacao
+    const formatTypes = {
+        onlyNumbers: /[^0-9]/g,
+        default: /[^a-zA-Z0-9 ]/g
+    }
+
+    // Executa formatacao
+    function format(event, type = 'default') {
+        const regex = new RegExp(formatTypes[type] || formatTypes['default']);
+        if (regex.test(event.key)) {
             event.preventDefault();
             return false;
         }
