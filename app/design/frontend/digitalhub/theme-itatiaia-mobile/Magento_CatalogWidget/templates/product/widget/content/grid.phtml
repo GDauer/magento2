@@ -118,27 +118,34 @@
             ], function () {
                 'use strict';
                 jQuery.noConflict();
-                jQuery(".home-products-list .owl-carousel").owlCarousel({
-                    loop: true,
-                    nav: true,
-                    dots: true,
-                    lazyLoad: true,
-                    dotsEach: 1,
-                    slideBy: 2,
-                    //center: true,
-                    margin: 10,
-                    responsive:{
-                        0:{
-                            items:2
-                        },
-                        600:{
-                            items:2
-                        },
-                        1000:{
-                            items:5
+                if(jQuery('.home-products-list .product-items').length)
+                {
+                    jQuery(".home-products-list .owl-carousel").owlCarousel({
+                        loop: true,
+                        nav: true,
+                        dots: true,
+                        lazyLoad: true,
+                        dotsEach: 1,
+                        slideBy: 2,
+                        //center: true,
+                        margin: 10,
+                        responsive:{
+                            0:{
+                                items:2
+                            },
+                            600:{
+                                items:2
+                            },
+                            1000:{
+                                items:5
+                            }
                         }
-                    }
-                })
+                    })
+                } else {
+                    jQuery("img.owl-lazy").each(function(index) {
+                        jQuery(this).attr("src", jQuery(this).attr("data-src"));
+                    })
+                }
             });
         </script>
     </div>
