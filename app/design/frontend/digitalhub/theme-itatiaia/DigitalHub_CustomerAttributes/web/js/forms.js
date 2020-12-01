@@ -3,13 +3,13 @@ require([
     'DigitalHub_CustomerAttributes/js/jquery.mask.min'
 ], function ($, inputMask) {
 
-    $( document ).ready(function() {
+    $(document).ready(function () {
         if ($('input[name="postcode"]').length != 0) {
-            $('select[name="region_id"]').attr('readonly',true);
-            $('select[name="region_id"]').css("pointer-events","none");
-            $('input[name="city"]').attr('readonly',true);
-            $('select[name="country_id"]').attr('readonly',true);
-            $('select[name="country_id"]').css("pointer-events","none");
+            $('select[name="region_id"]').attr('readonly', true);
+            $('select[name="region_id"]').css("pointer-events", "none");
+            $('input[name="city"]').attr('readonly', true);
+            $('select[name="country_id"]').attr('readonly', true);
+            $('select[name="country_id"]').css("pointer-events", "none");
         }
     });
 
@@ -39,11 +39,11 @@ require([
         $("#street_1").val("");
         $("#street_4").val("");
         $("#city").val("");
-        $('select[name="region_id"]').attr('readonly',false);
-        $('select[name="region_id"]').css("pointer-events","");
-        $('input[name="city"]').attr('readonly',false);
-        $('select[name="country_id"]').attr('readonly',false);
-        $('select[name="country_id"]').css("pointer-events","");
+        $('select[name="region_id"]').attr('readonly', false);
+        $('select[name="region_id"]').css("pointer-events", "");
+        $('input[name="city"]').attr('readonly', false);
+        $('select[name="country_id"]').attr('readonly', false);
+        $('select[name="country_id"]').css("pointer-events", "");
     }
 
     // Init
@@ -111,10 +111,8 @@ require([
         ]
     };
 
-
     //Quando o campo cep perde o foco.
     $("#zip").blur(function () {
-
 
         //Nova variável "cep" somente com dígitos.
         var cep = $("#zip").val().replace(/\D/g, '');
@@ -150,11 +148,11 @@ require([
                             }
 
                         }
-                        $('select[name="region_id"]').attr('readonly',true);
-                        $('select[name="region_id"]').css("pointer-events","none");
-                        $('input[name="city"]').attr('readonly',true);
-                        $('select[name="country_id"]').attr('readonly',true);
-                        $('select[name="country_id"]').css("pointer-events","none");
+                        $('select[name="region_id"]').attr('readonly', true);
+                        $('select[name="region_id"]').css("pointer-events", "none");
+                        $('input[name="city"]').attr('readonly', true);
+                        $('select[name="country_id"]').attr('readonly', true);
+                        $('select[name="country_id"]').css("pointer-events", "none");
                     } //end if.
                     else {
                         //CEP pesquisado não foi encontrado.
@@ -180,45 +178,52 @@ require([
         }
     });
 });
+
 // Bloquear caracteres invalidos no cadastro de endereco
 require(['jquery'], function ($) {
     // Desabilita campos antes de carregar a pagina
     $(document).ready(function () {
         document.getElementById('street_1').disabled = true;
-        document.getElementById('street_4').disabled = true;
         document.getElementById('street_2').disabled = true;
+        document.getElementById('street_3').disabled = true;
+        document.getElementById('street_4').disabled = true;
     });
 });
 // Executa depois de carregar o form
 window.onload = function () {
     // Habilita campos depois de carregar a pagina
     document.getElementById('street_1').disabled = false;
-    document.getElementById('street_4').disabled = false;
     document.getElementById('street_2').disabled = false;
+    document.getElementById('street_3').disabled = false;
+    document.getElementById('street_4').disabled = false;
 
     //Bloquear caracteres invalidos na rua
     document.getElementById("street_1").onkeypress = function (event) {
-        var regex = new RegExp("^[a-zA-Z0-9 ]+$");
-        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-        if (!regex.test(key)) {
-            event.preventDefault();
-            return false;
-        }
-    }
-    //Bloquear caracteres invalidos no bairro
-    document.getElementById("street_4").onkeypress = function (event) {
-        var regex = new RegExp("^[a-zA-Z0-9 ]+$");
-        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-        if (!regex.test(key)) {
-            event.preventDefault();
-            return false;
-        }
+        format(event);
     }
     //Permitir apenas numeros no campo numero da casa
     document.getElementById("street_2").onkeypress = function (event) {
-        var regex = new RegExp("^[0-9 ]+$");
-        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-        if (!regex.test(key)) {
+        format(event, 'onlyNumbers');
+    }
+    //Bloquear caracteres invalidos no complemento
+    document.getElementById("street_3").onkeypress = function (event) {
+        format(event);
+    }
+    //Bloquear caracteres invalidos no bairro
+    document.getElementById("street_4").onkeypress = function (event) {
+        format(event);
+    }
+
+    // Tipos de formatacao
+    const formatTypes = {
+        onlyNumbers: /[^0-9]/g,
+        default: /[^a-zA-Z0-9 ]/g
+    }
+
+    // Executa formatacao
+    function format(event, type = 'default') {
+        const regex = new RegExp(formatTypes[type] || formatTypes['default']);
+        if (regex.test(event.key)) {
             event.preventDefault();
             return false;
         }
