@@ -180,33 +180,38 @@ require([
 });
 
 // Bloquear caracteres invalidos no cadastro de endereco
-
 require(['jquery'], function ($) {
     // Desabilita campos antes de carregar a pagina
     $(document).ready(function () {
         document.getElementById('street_1').disabled = true;
-        document.getElementById('street_4').disabled = true;
         document.getElementById('street_2').disabled = true;
+        document.getElementById('street_3').disabled = true;
+        document.getElementById('street_4').disabled = true;
     });
 });
 // Executa depois de carregar o form
 window.onload = function () {
     // Habilita campos depois de carregar a pagina
     document.getElementById('street_1').disabled = false;
-    document.getElementById('street_4').disabled = false;
     document.getElementById('street_2').disabled = false;
+    document.getElementById('street_3').disabled = false;
+    document.getElementById('street_4').disabled = false;
 
     //Bloquear caracteres invalidos na rua
     document.getElementById("street_1").onkeypress = function (event) {
         format(event);
     }
-    //Bloquear caracteres invalidos no bairro
-    document.getElementById("street_4").onkeypress = function (event) {
-        format(event);
-    }
     //Permitir apenas numeros no campo numero da casa
     document.getElementById("street_2").onkeypress = function (event) {
         format(event, 'onlyNumbers');
+    }
+    //Bloquear caracteres invalidos no complemento
+    document.getElementById("street_3").onkeypress = function (event) {
+        format(event);
+    }
+    //Bloquear caracteres invalidos no bairro
+    document.getElementById("street_4").onkeypress = function (event) {
+        format(event);
     }
 
     // Tipos de formatacao

@@ -144,4 +144,24 @@ require([
         }
     });
 
+    // Tipos de formatacao
+    const formatTypes = {
+        onlyNumbers: /[^0-9]/g,
+        default: /[^a-zA-Z0-9 ]/g
+    }
+
+    // Executa formatacao
+    const format = function (event, type = 'default') {
+        const regex = new RegExp(formatTypes[type] || formatTypes['default']);
+        if (regex.test(event.key)) {
+            event.preventDefault();
+            return false;
+        }
+    }
+
+    $(document).on("keypress", "input[name='street[0]']", (event) => format(event));
+    $(document).on("keypress", "input[name='street[1]']", (event) => format(event, "onlyNumbers"));
+    $(document).on("keypress", "input[name='street[2]']", (event) => format(event));
+    $(document).on("keypress", "input[name='street[3]']", (event) => format(event));
+
 });
