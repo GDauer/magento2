@@ -15,7 +15,7 @@ class ComplementValidator
             return false;
         }
 
-        if(strlen($value) > 10) {
+        if(strlen($value) > 40) {
             return false;
         }
 
