@@ -37,7 +37,7 @@ class LayoutProcessor
         if(isset($shippingAddressChildren['street']['children'][2])) {
             $shippingAddressChildren['street']['children'][2]['validation'] = [
                 "min_text_len‌gth" => 0,
-                "max_text_length" => 10
+                "max_text_length" => 40
             ];
         }
 
