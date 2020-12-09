@@ -40,7 +40,7 @@ return [
         'Magento_Wishlist' => 1,
         'Magento_Config' => 1,
         'Flancer32_Minify' => 1,
-        'GoCache_CDN' => 0,
+        'GoCache_CDN' => 1,
         'Magento_Ui' => 1,
         'Magento_User' => 1,
         'Magento_Shipping' => 1,
