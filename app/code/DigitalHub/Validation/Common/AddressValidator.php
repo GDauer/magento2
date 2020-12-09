@@ -86,7 +86,7 @@ class AddressValidator
         if (!empty($address->getStreet()[2]) && !$this->complementValidator->isValid($address->getStreet()[2])) {
             return [
                 'isValid' => false,
-                'message' => 'Por favor digite menos de 10 caracteres no campo Complemento.',
+                'message' => 'Por favor digite menos de 40 caracteres no campo Complemento.',
             ];
         }
 

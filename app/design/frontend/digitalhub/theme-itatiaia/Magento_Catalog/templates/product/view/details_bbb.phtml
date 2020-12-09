@@ -270,9 +270,7 @@ $block->setPreconfiguredValue(); ?>
                 });
 
                 discount = Math.ceil(((finalPrice * 100) / oldPrice) - 100);
-
                 $('.old-price-grouped').html(priceUtils.formatPrice(oldPrice, priceFormat));
-                $('.final-price-grouped').html(priceUtils.formatPrice(finalPrice, priceFormat));
                 $('.discount-grouped').html(discount + '%');
 
                 if (oldPrice > finalPrice) {
@@ -287,10 +285,8 @@ $block->setPreconfiguredValue(); ?>
                 }
 
                 if (checkedIds.length) {
-                    $('.final-price-grouped').show();
                     $('#product-addtocart-button, .box-tocart .action.tocart').removeAttr('disabled')
                 } else {
-                    $('.final-price-grouped').hide();
                     $('#product-addtocart-button, .box-tocart .action.tocart').attr('disabled', 'disabled')
                 }
             }

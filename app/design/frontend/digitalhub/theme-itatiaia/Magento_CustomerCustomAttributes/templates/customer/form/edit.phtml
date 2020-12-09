@@ -169,5 +169,15 @@
                 })
             }
         }, 100);
+
+        <?php if ($_dob->isEnabled()): ?>
+            <?php $validator = $_dob->isRequired() ? '"required":true, ' : ''; ?>
+            if($('input[name=dob]').length){
+                $("input[name=dob]").attr('data-validate','{<?php if ($_dob->isRequired()): echo $validator; endif; ?>"validate-date":{"dateFormat":"dd\/MM\/yyyy"}, "minlength":10, "maxlength":10}');
+                $('input[name=dob]').mask('99/99/9999', {
+                    placeholder: '__/__/____'
+                })
+            }
+        <?php endif; ?>
     })
 </script>

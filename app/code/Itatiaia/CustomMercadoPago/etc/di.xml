@@ -21,4 +21,5 @@
         </arguments>
     </type>
     <preference for="MercadoPago\Core\Plugin\OrderCancelPlugin" type="Itatiaia\CustomMercadoPago\Plugin\Rewrite\Core\OrderCancelPluginRewrite" />
+    <preference for="MercadoPago\Core\Model\CustomTicket\Payment" type="Itatiaia\CustomMercadoPago\Model\CustomTicket\Payment" />
 </config>
