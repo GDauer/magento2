@@ -176,26 +176,33 @@ $hoverimg = 'category_page_list_hover';
     'owlcarousel'
   ], function ($) {
     'use strict';
-    $(".home-products-list .product-items")
-        .addClass("owl-carousel")
-        .owlCarousel({
-      loop: true,
-      nav: true,
-      dots: true,
-      lazyLoad: true,
-      margin: 0,
-      responsive:{
-        0:{
-          items:2
-        },
-        600:{
-          items:3
-        },
-        1000:{
-          items:4
-        }
+      if($('.home-products-list .product-items').length)
+      {
+          $(".home-products-list .product-items")
+              .addClass("owl-carousel")
+              .owlCarousel({
+                  loop: true,
+                  nav: true,
+                  dots: true,
+                  lazyLoad: true,
+                  margin: 0,
+                  responsive:{
+                      0:{
+                          items:2
+                      },
+                      600:{
+                          items:3
+                      },
+                      1000:{
+                          items:4
+                      }
+                  }
+              })
+      } else {
+          $("img.owl-lazy").each(function(index) {
+              $(this).attr("src", $(this).attr("data-src"));
+          })
       }
-    })
   });
   </script>
 </div>
