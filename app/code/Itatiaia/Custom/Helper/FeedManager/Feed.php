@@ -1,21 +1,90 @@
 <?php
 namespace Itatiaia\Custom\Helper\FeedManager;
 
+use Magento\Store\Model\StoreManagerInterface;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Catalog\Model\CategoryFactory;
+use Psr\Log\LoggerInterface;
+use Itatiaia\GroupedCatalogRule\Helper\Data as groupedCatalogRuleHelper;
+use Magento\Catalog\Helper\Image;
+use Magento\Framework\UrlInterface;
+use Magento\Framework\Pricing\Helper\Data as currencyHelper;
+use Magento\CatalogInventory\Api\StockRegistryInterface;
+
 class Feed extends \DigitalHub\FeedManager\Helper\Feed
 {
     private $_loadedCategories = [];
 
+    /**
+     * @var StoreManagerInterface
+     */
+    private $storeManager;
+
+    /**
+     * @var CategoryFactory
+     */
+    private $categoryFactory;
+
+    /**
+     * @var ScopeConfigInterface
+     */
+    private $scopeConfigInterface;
+
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
+     * @var groupedCatalogRuleHelper
+     */
+    private $groupedCatalogRuleHelper;
+
+    /**
+     * @var Image
+     */
+    private $imageHelper;
+
+    /**
+     * @var UrlInterface
+     */
+    private $urlBuilder;
+
+    /**
+     * @var currencyHelper
+     */
+    private $currencyHelper;
+
+    /**
+     * @var StockRegistryInterface
+     */
+    private $stockRegistry;
+
+    public function __construct(
+        StoreManagerInterface $storeManager,
+        CategoryFactory $categoryFactory,
+        ScopeConfigInterface $scopeConfigInterface,
+        LoggerInterface $logger,
+        groupedCatalogRuleHelper $groupedCatalogRuleHelper,
+        Image $imageHelper,
+        UrlInterface $urlBuilder,
+        currencyHelper $currencyHelper,
+        StockRegistryInterface $stockRegistry
+    )
+    {
+        $this->storeManager = $storeManager;
+        $this->categoryFactory = $categoryFactory;
+        $this->scopeConfigInterface = $scopeConfigInterface;
+        $this->logger = $logger;
+        $this->groupedCatalogRuleHelper = $groupedCatalogRuleHelper;
+        $this->imageHelper = $imageHelper;
+        $this->urlBuilder = $urlBuilder;
+        $this->currencyHelper = $currencyHelper;
+        $this->stockRegistry = $stockRegistry;
+    }
+
     public function parseTemplateVariables($collection)
     {
-        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-        $scopeConfig = $objectManager->get('\Magento\Framework\App\Config\ScopeConfigInterface');
-
-        $imagehelper = $objectManager->get('Magento\Catalog\Helper\Image');
-        $urlBuilder = $objectManager->get('Magento\Framework\UrlInterface');
-        $currencyHelper = $objectManager->get('Magento\Framework\Pricing\Helper\Data');
-        // $stockItemRepository = $objectManager->get('\Magento\CatalogInventory\Model\Stock\StockItemRepository');
-        $stockRegistry = $objectManager->get('Magento\CatalogInventory\Api\StockRegistryInterface');
-
         $newCollection = [];
 
         foreach($collection as $product){
@@ -33,31 +102,23 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
             $item['description'] = strip_tags(html_entity_decode($product->getDescription()));
             $item['short_description'] = strip_tags(html_entity_decode($product->getShortDescription()));
             $item['url'] = $product->getProductUrl();
+            $item['url_code'] = str_replace($this->urlBuilder->getBaseUrl(), $this->storeManager->getStore()->getBaseUrl(), $product->getProductUrl());
 
-            $item['image'] = $imagehelper->init($product, 'product_base_image')->getUrl();
-            $item['small_image'] = $imagehelper->init($product, 'product_small_image')->getUrl();
-            $item['thumbnail'] = $imagehelper->init($product, 'product_thumbnail_image')->getUrl();
+            $item['image'] = $this->imageHelper->init($product, 'product_base_image')->getUrl();
+            $item['small_image'] = $this->imageHelper->init($product, 'product_small_image')->getUrl();
+            $item['thumbnail'] = $this->imageHelper->init($product, 'product_thumbnail_image')->getUrl();
 
             if($product->getTypeId() == 'grouped'){
-                $item['is_grouped'] = true;
-
-                $groupedCatalogRuleHelper = $objectManager->get('\Itatiaia\GroupedCatalogRule\Helper\Data');
-
-                // prevenir envio de produtos com valor Zero
-                if(!$groupedCatalogRuleHelper->getFinalPrice($product)) continue;
-
-                $item['final_price'] = number_format($groupedCatalogRuleHelper->getFinalPrice($product),2);
-                $item['final_price_formatted'] = $currencyHelper->currency($groupedCatalogRuleHelper->getFinalPrice($product), true, false);
-                // $objectManager->get('\Psr\Log\LoggerInterface')->info('GROUPED FINAL PRICE', [$product->getFinalPrice(), $item['final_price']]);
+                $finalPrice = $this->groupedCatalogRuleHelper->getFinalPrice($product);
             } else {
-                // prevenir envio de produtos com valor Zero
-                if(!$product->getFinalPrice()) continue;
-
-                $item['final_price'] = number_format($product->getFinalPrice(), 2);
-                $item['final_price_formatted'] = $currencyHelper->currency($product->getFinalPrice(), true, false);
+                $finalPrice = $product->getFinalPrice();
             }
 
-            $stockItem = $stockRegistry->getStockItem($product->getId());
+            if(!$finalPrice) continue;
+
+            $this->setProductDataPrice($product, $item, $finalPrice);
+
+            $stockItem = $this->stockRegistry->getStockItem($product->getId());
 
             $item['in_stock'] = $stockItem->getIsInStock();
             $item['stock_qty'] = $stockItem->getQty();
@@ -69,18 +130,15 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
         }
 
         $variables = [];
-        $variables['store_url'] = $urlBuilder->getBaseUrl();
-        $variables['store_name'] = $scopeConfig->getValue('general/store_information/name', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+        $variables['store_url'] = $this->urlBuilder->getBaseUrl();
+        $variables['store_url_code'] = $this->storeManager->getStore()->getBaseUrl();
+        $variables['store_name'] = $this->scopeConfigInterface->getValue('general/store_information/name', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $variables['products'] = $newCollection;
         return $variables;
     }
 
     private function _getCategoryPath($product)
     {
-        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-
-        $logger = $objectManager->get('\Psr\Log\LoggerInterface');
-
         $categories = $product->getCategoryIds();
         $last_category_id = array_pop($categories);
 
@@ -119,10 +177,59 @@ class Feed extends \DigitalHub\FeedManager\Helper\Feed
 
     private function _getCategory($category_id)
     {
-        if(!isset($this->_loadedCategories[$category_id])){
-            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-            $this->_loadedCategories[$category_id] = $objectManager->get('\Magento\Catalog\Model\CategoryFactory')->create()->load($category_id);
+        if(!isset($this->_loadedCategories[$category_id]))
+        {
+            $this->_loadedCategories[$category_id] = $this->categoryFactory->create()->load($category_id);
         }
         return $this->_loadedCategories[$category_id];
+    }
+
+    /**
+     * Add prices in product array.
+     *
+     * @param array $productData Product data.
+     */
+    protected function setProductDataPrice(\Magento\Catalog\Model\Product  $product, &$productData, $finalPrice)
+    {
+        $productData['is_promotional'] = 0;
+        if($product->getTypeId() == 'grouped'){
+            $productData['is_grouped'] = true;
+
+            $regularPrice = $this->groupedCatalogRuleHelper->getRegularPrice($product);
+
+            if($finalPrice > 0 && $regularPrice > 0 && $regularPrice > $finalPrice)
+            {
+                $productData['is_promotional'] = 1;
+                $productData['final_price'] = number_format($regularPrice,2);;
+                $productData['final_price_formatted'] = $this->currencyHelper->currency($regularPrice, true, false);
+                $productData['special_price'] = number_format($finalPrice,2);
+                $productData['special_price_formatted'] = $this->currencyHelper->currency($finalPrice, true, false);
+            } else {
+                $productData['final_price'] = number_format($finalPrice,2);
+                $productData['final_price_formatted'] = $this->currencyHelper->currency($finalPrice, true, false);
+            }
+        } else {
+            $productData['final_price'] = number_format($product->getFinalPrice(), 2);
+            $productData['final_price_formatted'] = $this->currencyHelper->currency($product->getFinalPrice(), true, false);
+
+            $regularPrice = (float) $product->getPriceInfo()->getPrice(\Magento\Catalog\Pricing\Price\RegularPrice::PRICE_CODE)->getValue();
+            $finalPriceAmt = (float) $product->getPriceInfo()->getPrice(\Magento\Catalog\Pricing\Price\FinalPrice::PRICE_CODE)->getValue();
+
+            if($finalPriceAmt > 0 && $regularPrice > 0 && $regularPrice > $finalPriceAmt)
+            {
+                $productData['is_promotional'] = 1;
+                $productData['special_price'] = number_format($finalPriceAmt, 2);
+                $productData['special_price_formatted'] = $this->currencyHelper->currency($finalPriceAmt, true, false);
+            }
+        }
+
+        if ($product->hasData('special_price'))
+        {
+            $productData['is_promotional'] = 1;
+            $productData['final_price'] = number_format($product->getPrice(), 2);
+            $productData['final_price_formatted'] = $this->currencyHelper->currency($product->getPrice(), true, false);
+            $productData['special_price'] = $product->getSpecialPrice();
+            $productData['special_price_formatted'] = $this->currencyHelper->currency($product->getSpecialPrice(), true, false);
+        }
     }
 }
