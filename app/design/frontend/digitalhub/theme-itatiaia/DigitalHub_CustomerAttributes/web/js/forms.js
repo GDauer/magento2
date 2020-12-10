@@ -192,10 +192,10 @@ require(['jquery'], function ($) {
 // Executa depois de carregar o form
 window.onload = function () {
     // Habilita campos depois de carregar a pagina
-    document.getElementById('street_1').disabled = false;
-    document.getElementById('street_2').disabled = false;
-    document.getElementById('street_3').disabled = false;
-    document.getElementById('street_4').disabled = false;
+    document.getElementById('street_1').removeAttribute('disabled');
+    document.getElementById('street_2').removeAttribute('disabled');
+    document.getElementById('street_3').removeAttribute('disabled');
+    document.getElementById('street_4').removeAttribute('disabled');
 
     //Bloquear caracteres invalidos na rua
     document.getElementById("street_1").onkeypress = function (event) {
