@@ -183,54 +183,42 @@ require([
     });
 });
 
-// Bloquear caracteres invalidos no cadastro de endereco
-require(['jquery'], function ($) {
-    // Desabilita campos antes de carregar a pagina
-    $(document).ready(function () {
-        document.getElementById('street_1').disabled = true;
-        document.getElementById('street_2').disabled = true;
-        document.getElementById('street_3').disabled = true;
-        document.getElementById('street_4').disabled = true;
-    });
+document.addEventListener("DOMContentLoaded", function (event) {
+    document.getElementById('street_1').setAttribute('disabled', true);
+    document.getElementById('street_2').setAttribute('disabled', true);
+    document.getElementById('street_3').setAttribute('disabled', true);
+    document.getElementById('street_4').setAttribute('disabled', true);
 });
 
-// Executa depois de carregar o form
 window.onload = function () {
-    // Habilita campos depois de carregar a pagina
-    document.getElementById('street_1').disabled = false;
-    document.getElementById('street_2').disabled = false;
-    document.getElementById('street_3').disabled = false;
-    document.getElementById('street_4').disabled = false;
+    document.getElementById('street_1').removeAttribute('disabled');
+    document.getElementById('street_2').removeAttribute('disabled');
+    document.getElementById('street_3').removeAttribute('disabled');
+    document.getElementById('street_4').removeAttribute('disabled');
 
-    //Bloquear caracteres invalidos na rua
-    document.getElementById("street_1").onkeypress = function (event) {
-        format(event);
-    }
-    //Permitir apenas numeros no campo numero da casa
-    document.getElementById("street_2").onkeypress = function (event) {
-        format(event, 'onlyNumbers');
-    }
-    //Bloquear caracteres invalidos no complemento
-    document.getElementById("street_3").onkeypress = function (event) {
-        format(event);
-    }
-    //Bloquear caracteres invalidos no bairro
-    document.getElementById("street_4").onkeypress = function (event) {
-        format(event);
-    }
-
-    // Tipos de formatacao
-    const formatTypes = {
+    const street_1 = document.getElementById('street_1');
+    const street_2 = document.getElementById('street_2');
+    const street_3 = document.getElementById('street_3');
+    const street_4 = document.getElementById('street_4');
+    var formatTypes = {
         onlyNumbers: /[^0-9]/g,
         default: /[^a-zA-Z0-9 ]/g
     }
 
-    // Executa formatacao
-    function format(event, type = 'default') {
-        const regex = new RegExp(formatTypes[type] || formatTypes['default']);
-        if (regex.test(event.key)) {
-            event.preventDefault();
-            return false;
-        }
+    street_1.onchange = () => {
+        replaceText(street_1);
+    };
+    street_2.onchange = () => {
+        replaceText(street_2, 'onlyNumbers');
+    };
+    street_3.onchange = () => {
+        replaceText(street_3);
+    };
+    street_4.onchange = () => {
+        replaceText(street_4);
+    };
+
+    function replaceText(el, type = 'default') {
+        el.value = el.value.replace(formatTypes[type] || formatTypes['default'], '');
     }
 }
