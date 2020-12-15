@@ -5,7 +5,7 @@
 name: mymagento
 
 # The toolstack used to build the application.
-type: php:7.1
+type: php:7.4
 build:
     flavor: composer
 
@@ -15,9 +15,7 @@ runtime:
         - xsl
         - json
         - newrelic
-        - memcached
-        - redis
-        - mcrypt
+        - sodium
 
 # The relationships of the application with services or other applications.
 # The left-hand side is the name of the relationship as it will be exposed
@@ -63,7 +61,7 @@ web:
                     passthru: "/static/$resource"
 
 # The size of the persistent disk of the application (in MB).
-disk: 10240
+disk: 2048
 
 # The mounts that will be performed when the package is deployed.
 mounts:
@@ -95,5 +93,4 @@ crons:
 variables:
     env:
         CONFIG__DEFAULT__PAYPAL_ONBOARDING__MIDDLEMAN_DOMAIN: 'payment-broker.magento.com'
-        CONFIG__STORES__DEFAULT__PAYMENT__BRAINTREE__CHANNEL: 'Magento_Enterprise_Cloud_BT'
         CONFIG__STORES__DEFAULT__PAYPAL__NOTATION_CODE: 'Magento_Enterprise_Cloud'
