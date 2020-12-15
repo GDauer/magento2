@@ -1,0 +1,13 @@
+diff --git a/Model/Dom/NodeList.php b/Model/Dom/NodeList.php
+index d6cf594..5f512dc 100644
+--- a/Model/Dom/NodeList.php
++++ b/Model/Dom/NodeList.php
+@@ -44,7 +44,7 @@ class NodeList implements NodeListInterface
+     /**
+      * @inheritDoc
+      */
+-    public function item($index): ?ElementInterface
++    public function item(int $index): ?ElementInterface
+     {
+         return $this->objectManager->create(ElementInterface::class, [ 'element' => $this->nodeList->item($index) ]);
+     }
