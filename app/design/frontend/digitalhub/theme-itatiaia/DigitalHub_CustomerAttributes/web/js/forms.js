@@ -209,7 +209,7 @@ window.onload = function () {
     const street_4 = document.getElementById('street_4');
     var formatTypes = {
         onlyNumbers: /[^0-9]/g,
-        default: /[^a-zA-Z0-9 À-ú]/g
+        default: /[^a-zA-Z0-9 ]/g
     }
 
     street_1.onchange = () => {
