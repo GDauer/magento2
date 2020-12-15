@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../vendor/magento/framework/Module/etc/module.xsd">
-    <head>
-        <css src="DigitalHub_Banners/slick/slick.css" />
-        <css src="DigitalHub_Banners/slick/slick-theme.css" />
-    </head>
-</page>

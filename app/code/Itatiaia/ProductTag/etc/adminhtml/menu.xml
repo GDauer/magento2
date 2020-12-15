@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
-    <menu>
-        <add id="Itatiaia_ProductTag::product_tag" title="Selos de Produtos" module="Itatiaia_ProductTag" sortOrder="100" action="itatiaia_tag/tag/index" resource="Itatiaia_ProductTag::itatiaia_product_tag" parent="Magento_Catalog::catalog" />
-    </menu>
-</config>

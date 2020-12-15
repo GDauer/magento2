@@ -1,4 +1,0 @@
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Email/etc/email_templates.xsd">
-    <template id="external_images_alert" label="Alerta de imagens externas" file="external_image_alert.html" type="html" module="Itatiaia_ValidateImages" area="frontend"/>
-</config>
