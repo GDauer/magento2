@@ -9,7 +9,7 @@ mysql:
 redis:
     type: redis:5.0
 
-elasticsearch:
+search:
     type: elasticsearch:7.6
     disk: 1024
     configuration:
