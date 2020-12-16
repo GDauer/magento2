@@ -13,9 +13,13 @@
             "type": "composer",
             "url": "https://repo.magento.com"
         },
-	"swissuplabs": {
+        "swissuplabs": {
             "type": "composer",
             "url": "https://ci.swissuplabs.com/api/packages.json"
+        },
+        "scandiweb-module-core": {
+            "type": "git",
+            "url": "https://github.com/scandiwebcom/Scandiweb-Assets-Core.git"
         },
         "module-magiczoom": {
             "type": "git",
