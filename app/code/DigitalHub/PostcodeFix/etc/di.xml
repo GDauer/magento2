@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="Digitalhub_PoscodeFix::correct-order-postcode" type="DigitalHub\PostcodeFix\Plugin\SaveOrder" sortOrder="10" disabled="false"/>
+    </type>
+</config>

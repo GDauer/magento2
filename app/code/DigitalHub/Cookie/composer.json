@@ -1,0 +1,18 @@
+{
+    "name": "digitalhub/module-cookie",
+    "description": "Módulo para guardar o cookie do postcode, e auto iniciar os campos de postcode no checkout",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "version": "0.1.0",
+    "require": {
+        "../../../../vendor/magento/framework": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "DigitalHub\\Cookie\\": ""
+        },
+        "files": [
+          "registration.php"
+        ]
+    }
+}

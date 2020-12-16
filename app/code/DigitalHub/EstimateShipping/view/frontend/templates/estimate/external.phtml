@@ -1,0 +1,47 @@
+<div class="header-estimate-external">
+    <h1 class="logo">
+        <img src="<?php echo $this->getLogo()->getLogoSrc() ?>" alt="<?php echo $this->getLogo()->getLogoAlt() ?>">
+    </h1>
+</div>
+
+<div class="page-estimate-external">
+    <p>Através desta função você poderá fazer o cálculo de frete do produto informado abaixo. Informe abaixo o seu CEP e quantidade que deseja comprar, depois clique no botão CALCULAR FRETE:</p>
+
+    <div class="estimate-external-container">
+        <div class="estimate-external-image">
+            <img src="<?php echo $this->getProductImage() ?>" alt="<?php echo $this->getProduct()->getName() ?>">
+        </div>
+        <div class="estimate-external-product">
+            <h2><?php echo $this->getProduct()->getName() ?></h2>
+
+            <div class="form">
+                <div id="digitalhub-estimateshipping" data-bind="scope: 'estimate_shipping_external'">
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    window.estimateShipping = {
+        base_url: '<?php echo $this->getBaseUrl() ?>',
+        productId: '<?php echo $this->getProduct()->getId() ?>',
+        isExternal: true
+
+    }
+</script>
+<script type="text/x-magento-init">
+{
+    "#digitalhub-estimateshipping": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "estimate_shipping_external": {
+                    "component": "DigitalHub_EstimateShipping/js/view/external",
+                    "template" : "DigitalHub_EstimateShipping/component"
+                }
+            }
+        }
+    }
+}
+</script>

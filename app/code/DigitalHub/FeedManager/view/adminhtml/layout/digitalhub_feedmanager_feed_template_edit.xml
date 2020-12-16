@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<update handle="styles"/>
+    <head>
+        <!-- Create a simple CodeMirror instance -->
+        <css src="DigitalHub_FeedManager::js/codemirror/lib/codemirror.css" />
+        <css src="DigitalHub_FeedManager::js/codemirror/theme/dracula.css" />
+        <css src="DigitalHub_FeedManager::css/custom.css" />
+        <script src="DigitalHub_FeedManager::js/scripts.js" />
+    </head>
+	<body>
+		<referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template" name="feedmanager_js_config" template="DigitalHub_FeedManager::feed/edit/config.phtml"></block>
+			<uiComponent name="digitalhub_feedmanager_feed_template_form"/>
+		</referenceContainer>
+	</body>
+</page>

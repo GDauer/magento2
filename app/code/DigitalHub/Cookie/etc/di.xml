@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Quote\Model\Quote\Address\Total\Shipping">
+        <plugin name="DigitalHub_Cookie_Plugin_Shipping" type="DigitalHub\Cookie\Plugin\Shipping" disabled="false" sortOrder="10" />
+    </type>
+    <type name="DigitalHub\EstimateShipping\Controller\Estimate\Post">
+        <plugin name="DigitalHub_Cookie_Plugin_Estimate_Post" type="DigitalHub\Cookie\Plugin\Estimate\Post" disabled="false" sortOrder="10" />
+    </type>
+</config>

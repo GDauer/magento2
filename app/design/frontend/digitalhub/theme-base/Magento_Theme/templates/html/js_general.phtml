@@ -1,0 +1,23 @@
+<script>
+  require(['jquery','owlcarousel'],function(){
+    'use strict';
+    jQuery('.slider-marcas.owl-carousel').owlCarousel({
+	    loop: true,
+	    nav: true,
+      dots: false,
+	    lazyLoad: true,
+	    margin: 0,
+	    responsive:{
+        0:{
+            items: 2
+        },
+        600:{
+            items: 4
+        },
+        1000:{
+            items: 7
+        }
+	    }
+		})
+  });
+</script>

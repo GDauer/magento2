@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="MageAurigaIT_Outbox::outbox" title="Outbox" module="MageAurigaIT_Outbox" sortOrder="70" action="ait_outbox/outbox" resource="MageAurigaIT_Outbox::outbox" parent="Magento_Backend::marketing_communications"/>  
+    </menu>
+</config>

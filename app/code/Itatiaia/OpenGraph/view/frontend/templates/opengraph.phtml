@@ -1,0 +1,7 @@
+<?php if ($block->isHomePage()): ?>
+    <meta property="og:title" content="<?= $block->getStoreName() ?>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<?= $block->getStoreUrl() ?>" />
+    <meta property="og:image" content="<?= $block->getLogoSrc() ?>" />
+    <meta property="og:description" content="<?= $block->getMetaDescription() ?>" />
+<?php endif; ?>

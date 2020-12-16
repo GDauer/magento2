@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      Digital Hub Dev Team <contato@digitalhub.com.br>
+ * @copyright   2018 Digital Hub (http://www.digitalhub.com.br)
+ *
+ * @link        http://www.digitalhub.com.br
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="sales">
+
+            <group id="digitalhub_additionalprices_payment_discount" translate="label" type="text" sortOrder="1000" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Configurações de exibição de preço à vista com desconto</label>
+                <comment>Importante: Estas configurações não irão fazer efeito sobre suas regras de promoção ou meios de pagamento. São apenas para exibição das informações no catálogo.</comment>
+
+                <field id="active" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Ativar visualização de preço à vista</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="discount" translate="label" type="text" sortOrder="430" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Percentual do desconto (%)</label>
+                    <comment>Utilizar somente números e "." (ponto) para separador decimal (quando necessário). Exemplo: 10; 15.5</comment>
+                </field>
+
+                <field id="text" translate="label" type="text" sortOrder="460" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Texto para exibição</label>
+                    <comment>Valor calculado = {valor}</comment>
+                </field>
+
+            </group>
+
+            <group id="digitalhub_additionalprices_installments" translate="label" type="text" sortOrder="1000" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Configurações de exibição de parcelamento</label>
+                <comment>Importante: Estas configurações não irão fazer efeito sobre suas regras de promoção ou meios de pagamento. São apenas para exibição das informações no catálogo.</comment>
+
+                <field id="active" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Ativar visualização de parcelamento</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="max_installments" translate="label" type="text" sortOrder="430" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Número máximo de parcelas</label>
+                    <comment>Deve ser consultado junto à sua adquirente o valor máximo permitido para seu contrato.</comment>
+                </field>
+
+                <field id="min_installment_value" translate="label" type="text" sortOrder="430" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Valor mínimo por parcela</label>
+                    <comment>Deve ser consultado junto à sua adquirente o valor mínimo por parcelo permitido para seu contrato.</comment>
+                </field>
+
+                <field id="enable_interest_rate" translate="label" type="select" sortOrder="440" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Habilitar taxa de juros</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="interest_rates" translate="label" sortOrder="450" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Taxa de juros</label>
+                    <frontend_model>DigitalHub\AdditionalPrices\Block\Adminhtml\Form\InterestRates</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                    <depends>
+                        <field id="enable_interest_rate">1</field>
+                    </depends>
+                </field>
+
+                <field id="installments_text" translate="label" type="text" sortOrder="460" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Texto para exibição</label>
+                    <comment>Número de parcelas = {num_parcelas}, Valor das parcelas = {valor_parcelas}, Valor dos juros = {taxa_juros}</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

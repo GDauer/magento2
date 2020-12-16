@@ -1,0 +1,54 @@
+<div class="wrp-login-wishlist">
+    <span data-bind="scope: 'customerData'">
+        <span data-bind="template: {name: 'customer-data-template'}"></span>
+    </span>
+    <span data-bind="scope: 'wishlistData'">
+        <span data-bind="template: {name: 'wishlist-data-template'}"></span>
+    </span>
+</div>
+
+<script type="text/html" id="customer-data-template">
+    <div class="wrp-login">
+        <div class="top-login">
+            <!-- ko if: customer().firstname  -->
+            <p>
+                Olá, <span data-bind="text: customer().firstname"></span>.
+                <a href="<?php echo $this->getUrl('customer/account/logout') ?>">Sair</a>
+            </p>
+            <p><a href="<?php echo $this->getUrl('customer/account') ?>">Mi cuenta</a></p>
+            <!-- /ko -->
+            <!-- ko ifnot: customer().firstname -->
+            <p>¡Hola, <a href="<?php echo $this->getUrl('customer/account/login') ?>">Iniciar sesión</a></p>
+            <p>o <a href="<?php echo $this->getUrl('customer/account/create') ?>">Crear una cuenta</a></p>
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="wishlist-data-template">
+    <div class="wrp-wishlist">
+        <a href="<?php echo $this->getUrl('wishlist') ?>">
+            Lista de deseos
+            <!-- ko if: wishlist().counter -->
+            <span class="counter" data-bind="text: wishlist().items.length"></span>
+            <!-- /ko -->
+        </a>
+    </div>
+</script>
+
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "customerData": {
+                    "component": "Magento_Customer/js/view/customer"
+                },
+                "wishlistData": {
+                    "component": "Magento_Wishlist/js/view/wishlist"
+                }
+            }
+        }
+    }
+}
+</script>

@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<update handle="styles"/>
+    <head>
+        <remove src="jquery/jstree/themes/default/style.css" />
+        <css src="DigitalHub_MenuManager/js/jstree/dist/themes/default/style.css" />
+    </head>
+	<body>
+		<referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template" name="menumanager_js_config" template="DigitalHub_MenuManager::menu/edit/config.phtml"></block>
+			<uiComponent name="digitalhub_menumanager_menu_form"/>
+		</referenceContainer>
+	</body>
+</page>

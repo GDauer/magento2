@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <head>
+    <link src="js/product-page-scripts.js"/>
+  </head>
+  <body>
+    <!-- add this code -->
+    <!--<move element="reviews.tab" destination="content" after="product.info.details" />-->
+    <!-- end -->
+  </body>
+</page>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="sales">
+            <group id="itatiaia_garantiaestendida" translate="label" type="text" sortOrder="0" showInDefault="1"
+                   showInWebsite="1" showInStore="1">
+                <label>Garantia Estendida</label>
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Ativar Garantia</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="message" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Mensagem a ser exibida</label>
+                </field>
+                <field id="categorias" translate="label" type="multiselect" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Categorias Contempladas</label>
+                    <source_model>Itatiaia\GarantiaEstendida\Model\Config\Source\Categories</source_model>
+                </field>
+
+                <field id="atributo_produto_garantia_estendida" translate="label" type="select" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Atributo do Produto para Garantia Estendida</label>
+                    <source_model>Itatiaia\GarantiaEstendida\Model\Config\Source\SelectedProductAttribute</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

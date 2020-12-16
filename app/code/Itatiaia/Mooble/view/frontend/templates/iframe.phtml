@@ -1,0 +1,11 @@
+<?php
+/**
+ * \Itatiaia\Mooble\Block\Iframe $block
+ */
+?>
+
+<?php if(!empty($block->getIframeUrl())): ?>
+    <div id="content">
+        <iframe width="100%" height="100%" frameborder="0" src="<?= $block->getIframeUrl(); ?>" />
+    </div>
+<?php endif; ?>

@@ -1,0 +1,112 @@
+Type,Type
+"A total of %1 record(s) were updated.","A total of %1 record(s) were updated."
+Sent,Sent
+"Not Sent","Not Sent"
+Sending,Sending
+Paused,Paused
+Newsletter,Newsletter
+Updated,Updated
+"Newsletter Subscription","Inscrição na Newsletter"
+"Sender Name","Nome do Remetente"
+"Sender Email","Email do Remetente"
+Message,Mensagem
+Recipients,Recipients
+"Please enter a valid email address.","Please enter a valid email address."
+"Delete Selected Problems","Delete Selected Problems"
+"Unsubscribe Selected","Unsubscribe Selected"
+"Save Newsletter","Save Newsletter"
+"Save and Resume","Save and Resume"
+"View Newsletter","View Newsletter"
+"Edit Newsletter","Edit Newsletter"
+"Queue Information","Queue Information"
+"Queue Date Start","Queue Date Start"
+"Subscribers From","Subscribers From"
+"Newsletter Styles","Newsletter Styles"
+Start,Começo
+Pause,Pause
+"Do you really want to cancel the queue?","Do you really want to cancel the queue?"
+Resume,Resume
+"Return HTML Version","Return HTML Version"
+"Save As","Save As"
+"Edit Newsletter Template","Edit Newsletter Template"
+"New Newsletter Template","New Newsletter Template"
+Added,Added
+Sender,Sender
+"Template Type","Template Type"
+"Queue Newsletter...","Queue Newsletter..."
+"Newsletter Problem Reports","Problemas em Newsletter"
+"We unsubscribed the people you identified.","We unsubscribed the people you identified."
+"Newsletter Queue","Fila de Envio"
+"Edit Queue","Edit Queue"
+"Please correct the newsletter template and try again.","Please correct the newsletter template and try again."
+"The newsletter queue has been saved.","The newsletter queue has been saved."
+"Newsletter Subscribers","Emails Inscritos"
+Subscribers,Subscribers
+"Please select one or more subscribers.","Please select one or more subscribers."
+"Create Newsletter Template","Create Newsletter Template"
+"The newsletter template has been saved.","The newsletter template has been saved."
+"An error occurred while saving this template.","An error occurred while saving this template."
+"The newsletter template has been deleted.","The newsletter template has been deleted."
+"An error occurred while deleting this template.","An error occurred while deleting this template."
+"Something went wrong while saving your subscription.","Something went wrong while saving your subscription."
+"We saved the subscription.","Informações salvas."
+"We removed the subscription.","We removed the subscription."
+"The confirmation request has been sent.","The confirmation request has been sent."
+"Thank you for your subscription.","Obrigado por se inscrever."
+"There was a problem with the subscription: %1","Houve um problema ao se inscrever: %1"
+"Something went wrong with the subscription.","Houve um problema ao se inscrever."
+"Your subscription has been confirmed.","Sua inscrição foi confirmada."
+"This is an invalid subscription confirmation code.","Código de confirmação inválido."
+"This is an invalid subscription ID.","ID de inscrição inválido."
+"You have been unsubscribed.","Sua inscrição foi removida."
+"Something went wrong with the un-subscription.","Something went wrong with the un-subscription."
+"This email address is already assigned to another user.","O email já está associado a outro usuário."
+"Sorry, but the administrator denied subscription for guests. ' 'Please <a href=""%1"">register</a>.","Sorry, but the administrator denied subscription for guests. ' 'Please <a href=""%1"">register</a>."
+Cancelled,Cancelled
+"There are no subscribers selected.","There are no subscribers selected."
+"You selected an invalid queue.","You selected an invalid queue."
+"We cannot mark as received subscriber.","We cannot mark as received subscriber."
+"Duplicate template code","Duplicate template code"
+"Follow this link to unsubscribe <!-- This tag is for unsubscribe link  -->' '<a href=""{{var subscriber.getUnsubscriptionLink()}}"">{{var subscriber.getUnsubscriptionLink()}}' '</a>","Follow this link to unsubscribe <!-- This tag is for unsubscribe link  -->' '<a href=""{{var subscriber.getUnsubscriptionLink()}}"">{{var subscriber.getUnsubscriptionLink()}}' '</a>"
+"Choose Store View:","Choose Store View:"
+"Newsletter Message Preview","Newsletter Message Preview"
+"Add to Queue","Add to Queue"
+"Are you sure that you want to strip all tags?","Are you sure that you want to strip all tags?"
+"Please enter new template name.","Please enter new template name."
+" Copy"," Copy"
+"Sign Up for Our Newsletter:","Sign Up for Our Newsletter:"
+"Enter your email address","Informe seu email"
+Subscribe,Inscrever
+CSV,CSV
+"Excel XML","Excel XML"
+"Subscription Options","Opções de Inscrição"
+"Allow Guest Subscription","Allow Guest Subscription"
+"Need to Confirm","Need to Confirm"
+"Confirmation Email Sender","Confirmation Email Sender"
+"Confirmation Email Template","Confirmation Email Template"
+"Success Email Sender","Success Email Sender"
+"Success Email Template","Success Email Template"
+"Unsubscription Email Sender","Unsubscription Email Sender"
+"Unsubscription Email Template","Unsubscription Email Template"
+"We found no problems.","We found no problems."
+Subscriber,Subscriber
+"Queue Start Date","Queue Start Date"
+"Queue Subject","Queue Subject"
+"Error Code","Error Code"
+"Error Text","Error Text"
+"Queue Start","Queue Start"
+"Queue End","Queue End"
+Processed,Processed
+Unsubscribe,Unsubscribe
+"Customer First Name","Nome"
+"Customer Last Name","Sobrenome"
+"Not Activated","Não Ativo"
+Subscribed,Inscrito
+"Unsubscribed","Não Inscrito"
+Unconfirmed,Unconfirmed
+"Newsletter Template","Modelo de Newsletter"
+"Newsletter Templates","Modelos de Newsletter"
+"Newsletter Subscriptions","Inscrições de Newsletter"
+"You have been successfully subscribed to our newsletter.","Você se cadastrou com sucesso na nossa newsletter."
+"Newsletter subscription success","Inscrição em newsletter com sucesso"
+"Currently Used For","Usado Para"
