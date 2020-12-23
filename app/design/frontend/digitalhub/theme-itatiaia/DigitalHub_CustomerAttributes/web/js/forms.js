@@ -177,55 +177,25 @@ require([
             limpaFormularioCep();
         }
     });
-});
 
-// Bloquear caracteres invalidos no cadastro de endereco
-require(['jquery'], function ($) {
-    // Desabilita campos antes de carregar a pagina
-    $(document).ready(function () {
-        document.getElementById('street_1').disabled = true;
-        document.getElementById('street_2').disabled = true;
-        document.getElementById('street_3').disabled = true;
-        document.getElementById('street_4').disabled = true;
-    });
-});
-// Executa depois de carregar o form
-window.onload = function () {
-    // Habilita campos depois de carregar a pagina
-    document.getElementById('street_1').disabled = false;
-    document.getElementById('street_2').disabled = false;
-    document.getElementById('street_3').disabled = false;
-    document.getElementById('street_4').disabled = false;
-
-    //Bloquear caracteres invalidos na rua
-    document.getElementById("street_1").onkeypress = function (event) {
-        format(event);
-    }
-    //Permitir apenas numeros no campo numero da casa
-    document.getElementById("street_2").onkeypress = function (event) {
-        format(event, 'onlyNumbers');
-    }
-    //Bloquear caracteres invalidos no complemento
-    document.getElementById("street_3").onkeypress = function (event) {
-        format(event);
-    }
-    //Bloquear caracteres invalidos no bairro
-    document.getElementById("street_4").onkeypress = function (event) {
-        format(event);
-    }
-
-    // Tipos de formatacao
     const formatTypes = {
-        onlyNumbers: /[^0-9]/g,
-        default: /[^a-zA-Z0-9 ]/g
+        onlyNumbers: /[^\d]/g,
+        default: /[^a-zA-Z0-9\sâÂêÊôÔáÁéÉíÍóÓúÚãÃõÕçÇ]/g
     }
 
-    // Executa formatacao
-    function format(event, type = 'default') {
-        const regex = new RegExp(formatTypes[type] || formatTypes['default']);
-        if (regex.test(event.key)) {
-            event.preventDefault();
-            return false;
-        }
-    }
-}
+    const streetFormats = [
+        { field: 'street_1', format: formatTypes.default },
+        { field: 'street_2', format: formatTypes.onlyNumbers },
+        { field: 'street_3', format: formatTypes.default },
+        { field: 'street_4', format: formatTypes.default }
+    ]
+
+    streetFormats.forEach((item) =>
+    {
+        $(document).on('change paste keyup', `input[type="text"][id="${item.field}"]`, (evt) =>
+        {
+            evt.target.value = evt.target.value.replace(item.format, '');
+        });
+    });
+
+});
