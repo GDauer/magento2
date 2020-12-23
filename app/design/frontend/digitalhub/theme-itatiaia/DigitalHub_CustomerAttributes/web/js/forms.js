@@ -177,55 +177,25 @@ require([
             limpaFormularioCep();
         }
     });
-});
 
-// Bloquear caracteres invalidos no cadastro de endereco
-require(['jquery'], function ($) {
-    // Desabilita campos antes de carregar a pagina
-    $(document).ready(function () {
-        document.getElementById('street_1').disabled = true;
-        document.getElementById('street_2').disabled = true;
-        document.getElementById('street_3').disabled = true;
-        document.getElementById('street_4').disabled = true;
+    const formatTypes = {
+        onlyNumbers: /[^\d]/g,
+        default: /[^a-zA-Z0-9\sâÂêÊôÔáÁéÉíÍóÓúÚãÃõÕçÇ]/g
+    }
+
+    const streetFormats = [
+        { field: 'street_1', format: formatTypes.default },
+        { field: 'street_2', format: formatTypes.onlyNumbers },
+        { field: 'street_3', format: formatTypes.default },
+        { field: 'street_4', format: formatTypes.default }
+    ]
+
+    streetFormats.forEach((item) =>
+    {
+        $(document).on('change paste keyup', `input[type="text"][id="${item.field}"]`, (evt) =>
+        {
+            evt.target.value = evt.target.value.replace(item.format, '');
+        });
     });
+
 });
-
-document.addEventListener("DOMContentLoaded", function (event) {
-    document.getElementById('street_1').setAttribute('disabled', true);
-    document.getElementById('street_2').setAttribute('disabled', true);
-    document.getElementById('street_3').setAttribute('disabled', true);
-    document.getElementById('street_4').setAttribute('disabled', true);
-});
-
-window.onload = function () {
-    document.getElementById('street_1').removeAttribute('disabled');
-    document.getElementById('street_2').removeAttribute('disabled');
-    document.getElementById('street_3').removeAttribute('disabled');
-    document.getElementById('street_4').removeAttribute('disabled');
-
-    const street_1 = document.getElementById('street_1');
-    const street_2 = document.getElementById('street_2');
-    const street_3 = document.getElementById('street_3');
-    const street_4 = document.getElementById('street_4');
-    var formatTypes = {
-        onlyNumbers: /[^0-9]/g,
-        default: /[^a-zA-Z0-9 ]/g
-    }
-
-    street_1.onchange = () => {
-        replaceText(street_1);
-    };
-    street_2.onchange = () => {
-        replaceText(street_2, 'onlyNumbers');
-    };
-    street_3.onchange = () => {
-        replaceText(street_3);
-    };
-    street_4.onchange = () => {
-        replaceText(street_4);
-    };
-
-    function replaceText(el, type = 'default') {
-        el.value = el.value.replace(formatTypes[type] || formatTypes['default'], '');
-    }
-}
