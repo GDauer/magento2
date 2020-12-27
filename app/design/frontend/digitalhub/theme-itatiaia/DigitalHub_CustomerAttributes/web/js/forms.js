@@ -3,13 +3,13 @@ require([
     'DigitalHub_CustomerAttributes/js/jquery.mask.min'
 ], function ($, inputMask) {
 
-    $( document ).ready(function() {
+    $(document).ready(function () {
         if ($('input[name="postcode"]').length != 0) {
-            $('select[name="region_id"]').attr('readonly',true);
-            $('select[name="region_id"]').css("pointer-events","none");
-            $('input[name="city"]').attr('readonly',true);
-            $('select[name="country_id"]').attr('readonly',true);
-            $('select[name="country_id"]').css("pointer-events","none");
+            $('select[name="region_id"]').attr('readonly', true);
+            $('select[name="region_id"]').css("pointer-events", "none");
+            $('input[name="city"]').attr('readonly', true);
+            $('select[name="country_id"]').attr('readonly', true);
+            $('select[name="country_id"]').css("pointer-events", "none");
         }
     });
 
@@ -39,11 +39,11 @@ require([
         $("#street_1").val("");
         $("#street_4").val("");
         $("#city").val("");
-        $('select[name="region_id"]').attr('readonly',false);
-        $('select[name="region_id"]').css("pointer-events","");
-        $('input[name="city"]').attr('readonly',false);
-        $('select[name="country_id"]').attr('readonly',false);
-        $('select[name="country_id"]').css("pointer-events","");
+        $('select[name="region_id"]').attr('readonly', false);
+        $('select[name="region_id"]').css("pointer-events", "");
+        $('input[name="city"]').attr('readonly', false);
+        $('select[name="country_id"]').attr('readonly', false);
+        $('select[name="country_id"]').css("pointer-events", "");
     }
 
     // Init
@@ -111,10 +111,8 @@ require([
         ]
     };
 
-
     //Quando o campo cep perde o foco.
     $("#zip").blur(function () {
-
 
         //Nova variável "cep" somente com dígitos.
         var cep = $("#zip").val().replace(/\D/g, '');
@@ -150,11 +148,11 @@ require([
                             }
 
                         }
-                        $('select[name="region_id"]').attr('readonly',true);
-                        $('select[name="region_id"]').css("pointer-events","none");
-                        $('input[name="city"]').attr('readonly',true);
-                        $('select[name="country_id"]').attr('readonly',true);
-                        $('select[name="country_id"]').css("pointer-events","none");
+                        $('select[name="region_id"]').attr('readonly', true);
+                        $('select[name="region_id"]').css("pointer-events", "none");
+                        $('input[name="city"]').attr('readonly', true);
+                        $('select[name="country_id"]').attr('readonly', true);
+                        $('select[name="country_id"]').css("pointer-events", "none");
                     } //end if.
                     else {
                         //CEP pesquisado não foi encontrado.
@@ -179,4 +177,25 @@ require([
             limpaFormularioCep();
         }
     });
+
+    const formatTypes = {
+        onlyNumbers: /[^\d]/g,
+        default: /[^a-zA-Z0-9\sâÂêÊôÔáÁéÉíÍóÓúÚãÃõÕçÇ]/g
+    }
+
+    const streetFormats = [
+        { field: 'street_1', format: formatTypes.default },
+        { field: 'street_2', format: formatTypes.onlyNumbers },
+        { field: 'street_3', format: formatTypes.default },
+        { field: 'street_4', format: formatTypes.default }
+    ]
+
+    streetFormats.forEach((item) =>
+    {
+        $(document).on('change paste keyup', `input[type="text"][id="${item.field}"]`, (evt) =>
+        {
+            evt.target.value = evt.target.value.replace(item.format, '');
+        });
+    });
+
 });

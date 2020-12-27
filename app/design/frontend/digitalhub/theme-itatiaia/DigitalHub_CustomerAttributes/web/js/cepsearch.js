@@ -145,4 +145,25 @@ require([
             limpaFormularioCep();
         }
     });
+
+    const formatTypes = {
+        onlyNumbers: /[^\d]/g,
+        default: /[^a-zA-Z0-9\sâÂêÊôÔáÁéÉíÍóÓúÚãÃõÕçÇ]/g
+    }
+
+    const streetFormats = [
+        { field: 'street[0]', format: formatTypes.default },
+        { field: 'street[1]', format: formatTypes.onlyNumbers },
+        { field: 'street[2]', format: formatTypes.default },
+        { field: 'street[3]', format: formatTypes.default }
+    ]
+
+    streetFormats.forEach((item) =>
+    {
+        $(document).on('change paste keyup', `input[type="text"][name="${item.field}"]`, (evt) =>
+        {
+            evt.target.value = evt.target.value.replace(item.format, '');
+        });
+    });
+
 })
