@@ -20,7 +20,7 @@
     <move element="minicart" destination="custom_header" />
     <!-- END HEADER -->
 
-    <referenceContainer name="content">
+    <!-- <referenceContainer name="content">
       <block name="customer.section.config" class="Magento\Customer\Block\SectionConfig"
              template="Magento_Customer::js/section-config.phtml"/>
       <block name="customer.customer.data"
@@ -30,7 +30,7 @@
 
     <referenceContainer name="footer">
       <block class="Magento\Newsletter\Block\Subscribe" name="form.subscribe" as="subscribe" before="-" template="Magento_Newsletter::subscribe.phtml"/>
-    </referenceContainer>
+    </referenceContainer> -->
 
     <!-- <referenceBlock name="catalog.compare.sidebar" remove="true"/>
     <referenceBlock name="view.addto.compare" remove="true" />
