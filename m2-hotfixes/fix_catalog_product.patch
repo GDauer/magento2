@@ -1,0 +1,13 @@
+diff --git a/vendor/magento/module-catalog/Block/Product/View/Details.php b/Block/Product/View/Details.php
+index 67303d1..fc6f482 100644
+--- a/vendor/magento/module-catalog/Block/Product/View/Details.php
++++ b/vendor/magento/module-catalog/Block/Product/View/Details.php
+@@ -16,7 +16,7 @@ namespace Magento\Catalog\Block\Product\View;
+  * @api
+  * @since 103.0.1
+  */
+-class Details extends \Magento\Framework\View\Element\Template
++class Details extends Description
+ {
+     /**
+      * Get sorted child block names.
