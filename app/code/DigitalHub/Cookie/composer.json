@@ -5,14 +5,14 @@
     "license": "proprietary",
     "version": "0.1.0",
     "require": {
-        "../../../../vendor/magento/framework": "*"
+        "magento/framework": "*"
     },
     "autoload": {
         "psr-4": {
             "DigitalHub\\Cookie\\": ""
         },
         "files": [
-          "registration.php"
+            "registration.php"
         ]
     }
 }

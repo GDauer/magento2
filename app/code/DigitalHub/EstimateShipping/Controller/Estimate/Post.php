@@ -35,43 +35,32 @@ class Post extends \Magento\Framework\App\Action\Action
         $productId = (int)$this->getRequest()->getPostValue('productId');
         $superGroupItems = $this->getRequest()->getPostValue('superGroupItems');
 
-        $this->logger->info("EstimateShipping: PRODUCT [qty => $qty, productId => $productId, postcode => $postcode]"); 
-
         try {
             // create empty quote
             $quote = $this->_initQuote();
 
-            $productModel = $this->productFactory->create();
-            $product = $productModel->load($productId);
-
-            $this->logger->info("EstimateShipping: PRODUCT " .$product->getId());
-            
-            // if grouped
-            if ($superGroupItems)
-            {
-                $super_group = [];
-                array_walk(
-                    $superGroupItems, 
-                    function($v) use (&$super_group)
-                    {
-                        $super_group[$v['id']] = (int) $v['qty'];
-                    }
-                );
-                $params = [ 
-                    'product' => $productId,
-                    'super_group' => $super_group
-                ];
-            }
-            else 
-            {
-                $params = [
-                    'qty' => $qty ? $qty : 1
-                ];
+            // simple and configurable items
+            if(!$superGroupItems){
+                // add product to quote
+                $productModel = $this->productFactory->create();
+                $product = $productModel->load($productId);
+                $params = ['qty' => $qty ? $qty : 1];
+                $dataObject = new \Magento\Framework\DataObject();
+                $dataObject->setData($params);
+                $quote->addProduct($product, $dataObject);
+            } else {
+                // grouped products
+                $productModel = $this->productFactory->create();
+                $product = $productModel->load($productId);
+                $params = ['product' => $productId, 'super_group' => []];
+                foreach($superGroupItems as $item){
+                    $params['super_group'][$item['id']] = (int)$item['qty'];
+                }
+                $dataObject = new \Magento\Framework\DataObject();
+                $dataObject->setData($params);
+                $quote->addProduct($product, $dataObject);
             }
 
-            $dataObject = new \Magento\Framework\DataObject();
-            $dataObject->setData($params);
-            $quote->addProduct($product, $dataObject);
             $quote->collectTotals();
 
             // collect rates
