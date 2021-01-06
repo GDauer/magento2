@@ -44,6 +44,9 @@ class Post extends \Magento\Framework\App\Action\Action
                 // add product to quote
                 $productModel = $this->productFactory->create();
                 $product = $productModel->load($productId);
+
+                $this->logger->info("ESTIMATE_SHIPPING: ID: " .$product->getId() ." IS_SALABLE: " .$product->isSalable());
+
                 $params = ['qty' => $qty ? $qty : 1];
                 $dataObject = new \Magento\Framework\DataObject();
                 $dataObject->setData($params);
