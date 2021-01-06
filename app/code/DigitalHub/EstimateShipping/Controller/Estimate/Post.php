@@ -39,25 +39,20 @@ class Post extends \Magento\Framework\App\Action\Action
             // create empty quote
             $quote = $this->_initQuote();
 
-            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-            $scopeConfig = $objectManager->create('Intelipost\Quote\Model\Carrier\Intelipost');
-
-            $productModel = $this->productFactory->create();
-            $product = $productModel->load($productId);
-
-            $this->logger->info("ESTIMATE_SHIPPING: ID: " .$product->getId() ." IS_SALABLE: " .$product->isSalable());
-            $this->logger->info("active " .$scopeConfig->getConfigFlag ('active'));
-            $this->logger->info("marketplace_enable " .$scopeConfig->getConfigFlag ('marketplace_enable'));
-            $this->logger->info("marketplace_module_name " .$scopeConfig->getConfigData ('marketplace_module_name'));
-
             // simple and configurable items
             if(!$superGroupItems){
+                // add product to quote
+                $productModel = $this->productFactory->create();
+                $product = $productModel->load($productId);
+
                 $params = ['qty' => $qty ? $qty : 1];
                 $dataObject = new \Magento\Framework\DataObject();
                 $dataObject->setData($params);
                 $quote->addProduct($product, $dataObject);
             } else {
                 // grouped products
+                $productModel = $this->productFactory->create();
+                $product = $productModel->load($productId);
                 $params = ['product' => $productId, 'super_group' => []];
                 foreach($superGroupItems as $item){
                     $params['super_group'][$item['id']] = (int)$item['qty'];
