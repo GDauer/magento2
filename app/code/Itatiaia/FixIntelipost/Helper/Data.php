@@ -1,13 +1,26 @@
 <?php
 namespace Itatiaia\FixIntelipost\Helper;
 
+use \Psr\Log\LoggerInterface;
+
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
+
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+    
+    public function __construct(
+        LoggerInterface $logger
+    )
+    {
+        $this->logger = $logger;
+    }
 
     public function getCustomOriginZipcodeByItems(Array $items, $destPostcode){
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $config = $objectManager->get('\Magento\Framework\App\Config\ScopeConfigInterface');
-        $logger = $objectManager->get('\Psr\Log\LoggerInterface');
         $defaultZipcode = $config->getValue('carriers/intelipost/source_zip');
         $zipcodeWarehouseAco = $config->getValue('carriers/itatiaia_fixintelipost/zipcode_warehouse_aco');
         $zipcodeRangeEletro = $config->getValue('carriers/itatiaia_fixintelipost/zipcode_range_cd_eletro');
@@ -25,7 +38,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             if($material && ($material == 'Aço' || $material == 'aço')){
                 $has_material_aco = true;
             }
-            // $logger->info('ATTRIBUTE_SET', [$product->getAttributeSetId()]);
+            // $this->logger->info('ATTRIBUTE_SET', [$product->getAttributeSetId()]);
 
             if($product->getAttributeSetId() == $attributeSetIdEletro){
                 $has_eletro = true;
@@ -41,15 +54,15 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
         if($has_eletro && !$has_not_eletro){
             // se somente houver eletro no carrinho, usar o CD de origem custom
-            // $logger->info('SOMENTE ELETRO', [$destPostcode, $zipcodeRangeEletro]);
+            // $this->logger->info('SOMENTE ELETRO', [$destPostcode, $zipcodeRangeEletro]);
 
             if($this->isZipcodeInRange($destPostcode, $zipcodeRangeEletro)){
-                // $logger->info('IN RANGE');
+                // $this->logger->info('IN RANGE');
                 $zipcode = $zipcodeCdEletro;
             }
         }
 
-        // $logger->info('ORIGEM', [$zipcode]);
+        // $this->logger->info('ORIGEM', [$zipcode]);
 
         return $zipcode;
     }
@@ -90,13 +103,12 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
         $order = $objectManager->get('\Magento\Sales\Model\OrderFactory')->create()->load($order_id);
 
-        $logger = $objectManager->get('\Psr\Log\LoggerInterface');
-        $logger->info('HELPER UPDATE INVOICE');
+        $this->logger->info('HELPER UPDATE INVOICE');
 
         // somente na troca de um status para outro será disparado
         if(($order->getState() == 'processing' || $order->getState() == 'complete') && $order->getStatus() == 'faturado_sap'){
 
-            $logger->info('ORDER DATA POST', [
+            $this->logger->info('ORDER DATA POST', [
                 'id' => $order->getId(),
                 'state' => $order->getState(),
                 'status' => $order->getStatus()
@@ -114,7 +126,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
             if(strpos($nf_data, 'invoice_number') !== false){
                 $nf_data = $this->parseNfData($nf_data);
-                $logger->info('ORDER NF DATA', $nf_data);
+                $this->logger->info('ORDER NF DATA', $nf_data);
 
                 if(isset($nf_data['invoice_number'])){
                     $invoices = $order->getInvoiceCollection();
@@ -122,7 +134,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                     foreach($invoices as $invoice){
                         if($invoice->getState() == \Magento\Sales\Model\Order\Invoice::STATE_PAID){
                             $last_paid_invoice = $invoice;
-                            $logger->info('ORDER INVOICE PAID DATA', [$last_paid_invoice->getData()]);
+                            $this->logger->info('ORDER INVOICE PAID DATA', [$last_paid_invoice->getData()]);
                         }
                     }
 
@@ -140,7 +152,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                         $intelipostInvoice->setInvoiceCfop($nf_data['invoice_cfop']);
                         $intelipostInvoice->save();
 
-                        $logger->info('INTELIPOST_INVOICE CREATED', $intelipostInvoice->getData());
+                        $this->logger->info('INTELIPOST_INVOICE CREATED', $intelipostInvoice->getData());
 
                         $this->createMagentoShipment($order);
                     }
@@ -167,7 +179,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function intelipostInvoiceExists($invoice_number, $order_number)
     {
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-        $logger = $objectManager->get('\Psr\Log\LoggerInterface');
 
         $intelipostInvoiceCollection = $objectManager->get('\Intelipost\Push\Model\Resource\Invoice\CollectionFactory')->create();
         $intelipostInvoiceCollection->addFieldToFilter('invoice_number', $invoice_number);
@@ -180,7 +191,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function createMagentoShipment($order)
     {
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-        $logger = $objectManager->get('\Psr\Log\LoggerInterface');
 
         if($order->canShip()){
             $convertOrder = $objectManager->create('Magento\Sales\Model\Convert\Order');
@@ -214,7 +224,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                 );
             }
         } else {
-            $logger->critical('Pedido não pode gerar entrega', [
+            $this->logger->critical('Pedido não pode gerar entrega', [
                 'id' => $order->getId(),
                 'increment_id' => $order->getIncrementId()
             ]);
