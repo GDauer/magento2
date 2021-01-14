@@ -1381,10 +1381,9 @@ a, a:hover, .alink, a:visited, .alink:visited {
   width: 100%;
 }
 .page-footer {
-  background: url('@{baseDir}images/bg-cut-g.png') repeat;
+  background: @_ita_main-blue_color;
   padding: 26px 0 94px;
   font-family: 'GTWalsheimProRegular', 'Open Sans';
-  border-bottom: 7px solid #1aa3ff;
   color:#fff;
   .footer.content {
     padding: 0 10px;
@@ -1444,7 +1443,11 @@ a, a:hover, .alink, a:visited, .alink:visited {
                   background-position: 0 -90px;
                 }
                 &.address:before {
+                  display: none;
                   background-position: -104px -131px;
+                }
+                &.phone:before {
+                  display: none;
                 }
                 p {
                   display: inline-block;
@@ -1480,6 +1483,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
             }
           }
           .wrp-social-links {
+            display: none;
             position: absolute;
             right: 0;
             bottom: 0;
