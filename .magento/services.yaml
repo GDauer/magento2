@@ -12,3 +12,7 @@ redis:
 elasticsearch2:
     type: elasticsearch:7.7
     disk: 1024
+    configuration:
+        plugins:
+            - analysis-icu
+            - analysis-phonetic
