@@ -2,26 +2,14 @@
 
 namespace Itatiaia\CustomMercadoPago\Controller\Checkout;
 
-use Exception;
-use Psr\Log\LoggerInterface;
-use Magento\Framework\App\Action\Context;
-use Magento\Checkout\Model\Session;
-use Magento\Sales\Model\OrderFactory;
-use Magento\Sales\Model\Order\Email\Sender\OrderSender;
-use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Catalog\Model\Session as CatalogSession;
-use MercadoPago\Core\Model\Core;
-use MercadoPago\Core\Helper\ConfigData;
-use MercadoPago\Core\Helper\Data;
-use Magento\Store\Model\ScopeInterface;
 
 /**
  * Class Page
  * @package MercadoPago\Core\Controller\Checkout
  */
-class Page
-    extends \MercadoPago\Core\Controller\Checkout\Page
+class Page extends \MercadoPago\Core\Controller\Checkout\Page
 {
+
     /**
      * @return mixed
      */
@@ -29,10 +17,10 @@ class Page
     {
         $order = $this->_checkoutSession->getLastRealOrder();
 
-        if(!$this->_checkoutSession->getLastRealOrder()){
-            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-            $orderModel = $objectManager->get('Magento\Sales\Model\OrderFactory')->create();
-            $order = $orderModel->load($this->_checkoutSession->getCustomLastOrderId());
+        if(!$order)
+        {
+            $this->_logger->info('Order not found - getCustomLastOrderId');
+            $order = $this->_orderFactory->create()->load($this->_checkoutSession->getCustomLastOrderId());
         }
 
         return $order;
