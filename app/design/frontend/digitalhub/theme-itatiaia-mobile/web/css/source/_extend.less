@@ -1,28 +1,12 @@
-@font-face {font-family: 'MullerMedium'; src: url('@{baseDir}fonts/MullerMedium.woff2') format('woff2'), url('@{baseDir}fonts/MullerMedium.woff') format('woff'); font-weight: 500; font-style: normal;font-display: swap;}
-@font-face {font-family: 'MullerBlack'; src: url('@{baseDir}fonts/MullerBlack.woff2') format('woff2'), url('@{baseDir}fonts/MullerBlack.woff') format('woff'); font-weight: 900; font-style: normal;font-display: swap;}
-@font-face {font-family: 'MullerRegularItalic'; src: url('@{baseDir}fonts/MullerRegularItalic.woff2') format('woff2'), url('@{baseDir}fonts/MullerRegularItalic.woff') format('woff'); font-weight: normal; font-style: italic;font-display: swap;}
-@font-face {font-family: 'MullerMedium'; src: url('@{baseDir}fonts/MullerMedium.woff2') format('woff2'), url('@{baseDir}fonts/MullerMedium.woff') format('woff'); font-weight: 500; font-style: normal;font-display: swap;}
-@font-face {font-family: 'MullerExtraBold'; src: url('@{baseDir}fonts/MullerExtraBold.woff2') format('woff2'), url('@{baseDir}fonts/MullerExtraBold.woff') format('woff'); font-weight: 800; font-style: normal;font-display: swap;}
-@font-face {font-family: 'MullerMediumItalic'; src: url('@{baseDir}fonts/MullerMediumItalic.woff2') format('woff2'), url('@{baseDir}fonts/MullerMediumItalic.woff') format('woff'); font-weight: 500; font-style: italic;font-display: swap;}
-@font-face {font-family: 'MullerBold'; src: url('@{baseDir}fonts/MullerBold.woff2') format('woff2'), url('@{baseDir}fonts/MullerBold.woff') format('woff'); font-weight: bold; font-style: normal;font-display: swap;}
-@font-face {font-family: 'MullerBoldItalic'; src: url('@{baseDir}fonts/MullerBoldItalic.woff2') format('woff2'), url('@{baseDir}fonts/MullerBoldItalic.woff') format('woff'); font-weight: bold; font-style: italic;font-display: swap;}
-@font-face {font-family: 'MullerRegular'; src: url('@{baseDir}fonts/MullerRegular.woff2') format('woff2'), url('@{baseDir}fonts/MullerRegular.woff') format('woff'); font-weight: normal; font-style: normal;font-display: swap;}
-@font-face {font-family: 'MullerBlack'; src: url('@{baseDir}fonts/MullerBlack.woff2') format('woff2'), url('@{baseDir}fonts/MullerBlack.woff') format('woff'); font-weight: 900; font-style: normal;font-display: swap;}
-@font-face {font-family: 'MullerMediumItalic'; src: url('@{baseDir}fonts/MullerMediumItalic.woff2') format('woff2'), url('@{baseDir}fonts/MullerMediumItalic.woff') format('woff'); font-weight: 500; font-style: italic;font-display: swap;}
-@font-face {font-family: 'MullerRegular'; src: url('@{baseDir}fonts/MullerRegular.woff2') format('woff2'), url('@{baseDir}fonts/MullerRegular.woff') format('woff'); font-weight: normal; font-style: normal;font-display: swap;}
-@font-face {font-family: 'MullerBoldItalic'; src: url('@{baseDir}fonts/MullerBoldItalic.woff2') format('woff2'), url('@{baseDir}fonts/MullerBoldItalic.woff') format('woff'); font-weight: bold; font-style: italic;font-display: swap;}
-@font-face {font-family: 'MullerExtraBold'; src: url('@{baseDir}fonts/MullerExtraBold.woff2') format('woff2'), url('@{baseDir}fonts/MullerExtraBold.woff') format('woff'); font-weight: 800; font-style: normal;font-display: swap;}
-@font-face {font-family: 'MullerRegularItalic'; src: url('@{baseDir}fonts/MullerRegularItalic.woff2') format('woff2'), url('@{baseDir}fonts/MullerRegularItalic.woff') format('woff'); font-weight: normal; font-style: italic;font-display: swap;}
-@font-face {font-family: 'MullerBlack'; src: url('@{baseDir}fonts/MullerBlack.woff2') format('woff2'), url('@{baseDir}fonts/MullerBlack.woff') format('woff'); font-weight: 900; font-style: normal;font-display: swap;}
-@font-face {font-family: 'MullerMedium'; src: url('@{baseDir}fonts/MullerMedium.woff2') format('woff2'), url('@{baseDir}fonts/MullerMedium.woff') format('woff'); font-weight: 500; font-style: normal;font-display: swap;}
-@font-face {font-family: 'MullerBold'; src: url('@{baseDir}fonts/MullerBold.woff2') format('woff2'), url('@{baseDir}fonts/MullerBold.woff') format('woff'); font-weight: bold; font-style: normal;font-display: swap;}
+@import '_colors.less';
+@import '_fonts.less';
 
 @screen__s: 1280px;
 @screen__m: 1280px;
 
 body {
   overflow-x: hidden;
-  font-family: 'MullerRegular', sans-serif;
+  font-family: 'GTWalsheimProRegular', sans-serif;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
 }
@@ -38,7 +22,7 @@ body {
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
-  font-family: 'MullerBlack', sans-serif;
+  font-family: 'GTWalsheimProBold', sans-serif;
   border: 0;
   background: #1aa3ff;
   &:hover, &:focus {
@@ -65,7 +49,7 @@ body {
 a.action.primary {
   display: inline-block;
   line-height: 44px;
-  font-family: 'MullerBlack', sans-serif;
+  font-family: 'GTWalsheimProBold', sans-serif;
 }
 a, a:hover, .alink, a:visited, .alink:visited {
   color: #e5102a;
@@ -102,20 +86,20 @@ a, a:hover, .alink, a:visited, .alink:visited {
 
 
 .header.content {
-  background: #454444;
+  background: @_ita_main-blue_color;
   padding: 0;
   height: 56px;
   &:before {
     content:'';
     width: 12px;
     height: 56px;
-    background: url('@{baseDir}images/bg-line.png') 3px 2px repeat #1aa3ff;
+    background: url('@{baseDir}images/bg-line.png') 3px 2px repeat @_ita_main-green_color;
     display: block;
     float: left;
   }
   .nav-toggle {
     top: 0;
-    background-color: #1aa3ff;
+    background-color: @_ita_main-green_color;
     height: 56px;
     width: 60px;
     margin: 0;
@@ -132,7 +116,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
   .logo {
     margin: 0px 0 0px 58px;
     display: inline-block;
-    max-width: 161px;
+    max-width: 176px;
   }
   .block.block-search {
     margin-top: 0;
@@ -460,7 +444,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           margin-bottom: 8px;
           padding: 0 0 0 14px;
           .title {
-            font-family: 'MullerBlack';
+            font-family: 'GTWalsheimProBold';
             color: #000;
             font-size: 18px;
             font-weight: 700;
@@ -622,7 +606,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
 .page-footer {
   background: url('@{baseDir}images/bg-cut-g.png') repeat;
   padding: 26px 0 94px;
-  font-family: 'MullerRegular', 'Open Sans';
+  font-family: 'GTWalsheimProRegular', 'Open Sans';
   border-bottom: 7px solid #1aa3ff;
   color:#fff;
   .footer.content {
@@ -789,7 +773,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
 
 /*-- Products-grid --*/
 .column.main {
-  font-family: 'MullerRegular';
+  font-family: 'GTWalsheimProRegular';
   .product {
     &-items {
       margin-left: 0;
@@ -859,7 +843,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
             font-weight: 400;
             color: #242424;
             text-transform: none;
-            font-family: 'MullerBold';
+            font-family: 'GTWalsheimProBold';
             display: block;
             line-height: 130%;
           }
@@ -867,7 +851,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
         .price-box {
           margin-bottom: 8px;
           position: relative;
-          font-family: 'MullerRegular';
+          font-family: 'GTWalsheimProRegular';
           padding-top: 14px;
           .old-price, .special-price{
             display: inline-block;
@@ -903,7 +887,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
             margin-bottom: 4px;
             font-weight: 500;
             height: auto;
-            font-family: 'MullerRegular';
+            font-family: 'GTWalsheimProRegular';
             span {
               display: inline-block;
 
@@ -949,7 +933,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
             height: 28px;
             text-transform: none;
             margin: 0;
-            font-family: 'MullerRegular';
+            font-family: 'GTWalsheimProRegular';
           }
         }
         .product-reviews-summary {
@@ -964,7 +948,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
             margin: 7px auto 0;
             text-align: center;
             .action.primary {
-              font-family: 'MullerBlack';
+              font-family: 'GTWalsheimProBold';
               border-radius: 2px;
               height: 42px;
               color: #fff;
@@ -1011,7 +995,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           max-height:0;
           margin: 0px 0 0 0;
           overflow: hidden;
-          font-family: 'MullerRegularItalic';
+          font-family: 'GTWalsheimProRegularItalic';
           font-size: 13px;
           color:#707070;
           p{
@@ -1030,7 +1014,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
   height: 25px;
   padding: 6px 6px;
   color: #fff;
-  font-family: 'MullerRegularItalic';
+  font-family: 'GTWalsheimProRegularItalic';
   font-size: 11px;
   border-radius: 2px;
   position: relative;
@@ -1246,7 +1230,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
       padding: 0 14px 0 0;
       margin-bottom: 0;
       color: #242424;
-      font-family: 'MullerBold';
+      font-family: 'GTWalsheimProBold';
       font-size: 13px;
       font-weight: 700;
     }
@@ -1264,7 +1248,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           width: 100%;
           text-align: left;
           color: #ffffff;
-          font-family: 'MullerBold';
+          font-family: 'GTWalsheimProBold';
           font-size: 13px;
           font-weight: 700;
           &.filter-label{
@@ -1305,7 +1289,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
     margin: 15px auto;
     .filter-clear {
       color: #1aa3ff;
-      font-family: 'MullerBold';
+      font-family: 'GTWalsheimProBold';
       font-size: 12px;
       font-weight: 700;
       text-decoration: underline;
@@ -1387,7 +1371,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
 .catalog-category-view, .catalogsearch-result-index{
   .search.results{
     text-align: center;
-    font-family: 'MullerBlack';
+    font-family: 'GTWalsheimProBold';
     font-size: 18px;
     font-weight: 900;
     line-height: 27px;
@@ -1441,7 +1425,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
       margin-bottom: 0;
       strong{
         color: #ffffff;
-        font-family: 'MullerBlack';
+        font-family: 'GTWalsheimProBold';
         font-size: 18px;
         font-weight: 900;
         line-height: 27px;
@@ -1489,7 +1473,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           width: 100%;
           strong{
             color: #ffffff;
-            font-family: 'MullerBlack';
+            font-family: 'GTWalsheimProBold';
             font-size: 18px;
             font-weight: 900;
             line-height: 27px;
@@ -1523,7 +1507,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
               border: 2px solid #f2f5f7;
               background-color: #f2f5f7;
               color: #3c3c3c;
-              font-family: 'MullerRegular';
+              font-family: 'GTWalsheimProRegular';
               font-size: 14px;
               font-weight: 400;
               line-height: 18px;
@@ -1551,7 +1535,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
                 .item{
                   a{
                     color: #000000;
-                    font-family: 'MullerRegular';
+                    font-family: 'GTWalsheimProRegular';
                     font-size: 14px;
                     cursor: pointer;
                   }
@@ -1561,7 +1545,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           }
           .label-fltr{
             color: #242424;
-            font-family: 'MullerBold';
+            font-family: 'GTWalsheimProBold';
             font-size: 13px;
             font-weight: 700;
             display: inline-block;
@@ -1581,7 +1565,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           background-color: #1aa3ff;
           padding: 11px 0;
           color: #ffffff;
-          font-family: 'MullerBlack';
+          font-family: 'GTWalsheimProBold';
           font-size: 13px;
           font-weight: 900;
           text-transform: uppercase;
@@ -1635,7 +1619,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           .product-item-name{
             text-align: left;
             color: #242424;
-            font-family: "Muller Bold";
+            font-family: "GTWalsheimProBold";
             font-size: 14px;
             font-weight: 700;
             line-height: 130%;
@@ -1661,7 +1645,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
               .price-final_price{
                 .price{
                   color: #c0c3c4;
-                  font-family: 'MullerMedium';
+                  font-family: 'GTWalsheimProMedium';
                   font-size: 14px;
                   font-weight: 500;
                   line-height: 14px;
@@ -1673,7 +1657,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
             .price-final_price{
               .price{
                 color: #242424;
-                font-family: 'MullerBold';
+                font-family: 'GTWalsheimProBold';
                 font-size: 18px;
                 font-weight: 700;
                 line-height: 21px;
@@ -1683,7 +1667,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           }
           .preco-a-vista{
             color: #707070;
-            font-family: 'MullerRegular';
+            font-family: 'GTWalsheimProRegular';
             font-size: 12px;
             font-weight: 400;
             line-height: 11px;
@@ -1693,7 +1677,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           }
           .preco-parcelado{
             color: #707070;
-            font-family: 'MullerRegular';
+            font-family: 'GTWalsheimProRegular';
             font-size: 12px;
             text-transform: none;
             font-weight: 400;
@@ -1797,7 +1781,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           span {
             font-size: 16px;
             color: #3c3c3c;
-            font-family: 'MullerMedium';
+            font-family: 'GTWalsheimProMedium';
             &:hover {
               color: #3c3c3c;
             }
@@ -1889,7 +1873,7 @@ select:not([disabled]) {
 
       .stock.unavailable{
         background: #ff6600;
-        font-family: 'MullerBold';
+        font-family: 'GTWalsheimProBold';
         padding: 0 7px;
         color: #fff;
         font-size: 18px;
@@ -1906,7 +1890,7 @@ select:not([disabled]) {
         border-radius: 2px;
         background: #fff;
         font-size: 13px;
-        font-family: 'Mullerbold';
+        font-family: 'GTWalsheimProBold';
         color: #242424;
         text-transform: uppercase;
         text-align: center;
@@ -1922,7 +1906,7 @@ select:not([disabled]) {
       margin-bottom: 11px;
       a{
         color: #28a6fb;
-        font-family: 'MullerMedium';
+        font-family: 'GTWalsheimProMedium';
         font-size: 14px;
         font-weight: 500;
         line-height: 21px;
@@ -1977,7 +1961,7 @@ select:not([disabled]) {
   #tab-grouped-items{
     p.ttl{
       color: #242424;
-      font-family: 'MullerBlack';
+      font-family: 'GTWalsheimProBold';
       font-size: 14px;
       font-weight: 900;
       text-transform: uppercase;
@@ -2077,7 +2061,7 @@ select:not([disabled]) {
             }
             .in-infos{
               h2.product-name{
-                font-family: 'MullerBlack';
+                font-family: 'GTWalsheimProBold';
                 font-size: 16px;
                 font-weight: 700;
                 text-transform: none;
@@ -2094,7 +2078,7 @@ select:not([disabled]) {
                   text-align: center;
                   width: 33%;
                   float: left;
-                  font-family: 'Ubuntu';
+                  font-family: 'GTWalsheimProRegular', 'Ubuntu';
                   font-size: 17px;
                   color: #c2d1d9;
                   font-weight: 500;
@@ -2106,7 +2090,7 @@ select:not([disabled]) {
                   float: left;
                   border:0;
                   color: #505d68;
-                  font-family: 'Ubuntu';
+                  font-family: 'GTWalsheimProRegular', 'Ubuntu';
                   font-size: 12px;
                   font-weight: 700;
                 }
@@ -2116,14 +2100,14 @@ select:not([disabled]) {
                 display: block;
                 margin: 8px auto 0;
                 p{
-                  font-family: 'MullerBold';
+                  font-family: 'GTWalsheimProBold';
                   font-size: 16px;
                   color: #242424;
                 }
                 .price-box{
                   .price{
                     color:#707070;
-                    font-family: 'MullerRegular';
+                    font-family: 'GTWalsheimProRegular';
                     font-size: 14px;
                   }
                   .wrp-oldprice{
@@ -2134,14 +2118,14 @@ select:not([disabled]) {
                   .special-price, .regular-price{
                     .price{
                       color: #242424;
-                      font-family: 'MullerBold';
+                      font-family: 'GTWalsheimProBold';
                       font-size: 21px;
                     }
                   }
                 }
                 p.price-with-discount, p.installments-price{
                   color:#707070;
-                  font-family: 'MullerRegular';
+                  font-family: 'GTWalsheimProRegular';
                   font-size: 14px;
                   margin: 0 0 0;
                 }
@@ -2150,7 +2134,7 @@ select:not([disabled]) {
                   height: 21px;
                   padding: 3px 3px;
                   color: #fff;
-                  font-family: 'MullerRegularItalic';
+                  font-family: 'GTWalsheimProRegularItalic';
                   font-size: 11px;
                   border-radius: 2px;
                   position: relative;
@@ -2229,7 +2213,7 @@ select:not([disabled]) {
       display: block;
       a{
         color: #3c3c3c;
-        font-family: 'MullerRegular';
+        font-family: 'GTWalsheimProRegular';
         font-size: 14px;
         font-weight: 400;
         line-height: 21px;
@@ -2279,7 +2263,7 @@ select:not([disabled]) {
         height: auto;
         .price {
           color: #242424;
-          font-family: 'MullerBold';
+          font-family: 'GTWalsheimProBold';
           font-size: 28px;
           font-weight: 700;
           line-height: 48px;
@@ -2297,7 +2281,7 @@ select:not([disabled]) {
       .normal-price {
         .price {
           color: #242424;
-          font-family: 'MullerBold';
+          font-family: 'GTWalsheimProBold';
           font-size: 28px;
           font-weight: 700;
           line-height: 48px;
@@ -2345,7 +2329,7 @@ select:not([disabled]) {
       bottom: 0;
       left: 0;
       z-index: 9999;
-      font-family: 'MullerBlack';
+      font-family: 'GTWalsheimProBold';
       font-size: 16px;
       font-weight: 900;
       text-transform: uppercase;
@@ -2487,7 +2471,7 @@ select:not([disabled]) {
               color: #3c3c3c;
               font-weight: 400;
               line-height: 30px;
-              font-family: 'MullerBold';
+              font-family: 'GTWalsheimProBold';
             }
             span {
               display: none;
@@ -2497,7 +2481,7 @@ select:not([disabled]) {
         }
         a.busca-cep{
           color: #3c3c3c;
-          font-family: 'MullerMedium';
+          font-family: 'GTWalsheimProMedium';
           font-size: 14px;
           margin: 10px 0 0 0;
           text-decoration: underline;
@@ -2511,7 +2495,7 @@ select:not([disabled]) {
        border-radius: 2px;
        background: #fff;
        font-size: 13px;
-       font-family: 'Mullerbold';
+       font-family: 'GTWalsheimProBold';
        color: #242424;
        text-transform: uppercase;
        text-align: center;
@@ -2531,7 +2515,7 @@ select:not([disabled]) {
       margin-bottom: 16px;
       .title {
         color: #242424;
-        font-family: 'MullerBlack';
+        font-family: 'GTWalsheimProBold';
         font-size: 18px;
         font-weight: 900;
         text-transform: uppercase;
@@ -2661,7 +2645,7 @@ select:not([disabled]) {
           position: relative;
           text-align: left;
           color: #242424;
-          font-family: 'MullerBlack';
+          font-family: 'GTWalsheimProBold';
           font-size: 18px;
           font-weight: 900;
           text-transform: uppercase;
@@ -2693,7 +2677,7 @@ select:not([disabled]) {
 		    position: relative;
 		    text-align: left;
 		    color: #242424;
-		    font-family: 'MullerBlack';
+		    font-family: 'GTWalsheimProBold';
 		    font-size: 18px;
 		    font-weight: 900;
 		    text-transform: uppercase;
@@ -2759,7 +2743,7 @@ select:not([disabled]) {
       .review-title{
         font-size: 18px;
         color: #242424;
-        font-family: 'MullerBold';
+        font-family: 'GTWalsheimProBold';
       }
       .review-details{
         margin-bottom: 18px;
@@ -2826,7 +2810,7 @@ select:not([disabled]) {
             border-bottom: 2px solid #f7f7f7;
             font-size: 18px;
             font-weight: 700;
-            font-family: 'MullerBlack';
+            font-family: 'GTWalsheimProBold';
             color: #242424;
             text-transform: uppercase;
           }
@@ -2948,11 +2932,11 @@ select:not([disabled]) {
       }
       .grand.totals{
         th.mark{
-          font-family: 'MullerBold';
+          font-family: 'GTWalsheimProBold';
           font-size: 16px;
         }
         span.price{
-          font-family: 'MullerMedium';
+          font-family: 'GTWalsheimProMedium';
           font-size: 18px;
           color: #3eaffc;
         }
@@ -2967,7 +2951,7 @@ select:not([disabled]) {
   }
   .cart.main.actions{
     a, button{
-      font-family: 'MullerBold';
+      font-family: 'GTWalsheimProBold';
       font-size: 14px;
       font-size: 14px;
       font-weight: 700;
@@ -2993,7 +2977,7 @@ select:not([disabled]) {
     &.table-wrapper,
     &.msrp:before{
         color: #898c91;
-        font-family: 'MullerBold';
+        font-family: 'GTWalsheimProBold';
     }
   }
 }
@@ -3334,7 +3318,7 @@ body.checkout-index-index {
   .page-header{
     .wrp-header {
       #header-checkout{
-        background-color: #454444;
+        background-color: @_ita_main-blue_color;
         padding-bottom: 0;
         .content-header{
           padding: 0;
@@ -3391,7 +3375,7 @@ body.checkout-index-index {
         .action-apply, .action.primary{
           background-color: #28a6fb;
           font-size: 14px;
-          font-family: 'MullerBlack';
+          font-family: 'GTWalsheimProBold';
           text-transform: uppercase;
           color: #fff;
           border:0;
@@ -3673,7 +3657,7 @@ body.checkout-index-index {
     font-weight: 600;
     text-decoration: none;
     font-size: 14px;
-    font-family: 'MullerMedium';
+    font-family: 'GTWalsheimProMedium';
   }
 
 
@@ -3690,7 +3674,7 @@ body.checkout-index-index {
     cursor: default;
     background-color: transparent;
     border-bottom: 2px solid #1aa3ff;
-    font-family: 'MullerBold';
+    font-family: 'GTWalsheimProBold';
 
   }
 
@@ -3806,7 +3790,7 @@ body.checkout-index-index {
           font-size: 18px;
           text-transform: uppercase;
           font-weight: 600;
-          font-family: 'MullerBlack';
+          font-family: 'GTWalsheimProBold';
           margin-bottom: 0;
           line-height: 160%;
           margin-top: 36px;
@@ -3862,7 +3846,7 @@ body.checkout-index-index {
           height: 40px;
           background: #1aa3ff;
           border: 0;
-          font-family: 'MullerBlack';
+          font-family: 'GTWalsheimProBold';
           border-radius: 0;
           padding: 0;
           border-radius:2px;
@@ -3886,7 +3870,7 @@ body.checkout-index-index {
       margin: 0 auto 0;
       text-align: center;
       color:#fff;
-      font-family: 'MullerRegular';
+      font-family: 'GTWalsheimProRegular';
       width: 90%;
     }
   }
@@ -3899,7 +3883,7 @@ body.checkout-index-index {
 }
 
 .sections.nav-sections{
-  background-color: #5e5d5d;
+  background-color: @_ita_main-green_color;
   .section-item-title.nav-sections-item-title{
     display: none !important;
   }
@@ -3909,7 +3893,7 @@ body.checkout-index-index {
     // background-color: #2b2b2b;
     .wrp-login{
       min-height: 89px;
-      background-color: #1aa3ff;
+      background-color: @_ita_main-blue_color;
       width: 100%;
       margin: 0 auto;
       text-align: center;
@@ -3931,14 +3915,14 @@ body.checkout-index-index {
           color: #fff;
           font-size: 14px;
           margin: 0;
-          font-family: 'Ubuntu', sans-serif;
+          font-family: 'GTWalsheimProRegular', 'Ubuntu', sans-serif;
         }
         a{
           color: #fff;
           font-size: 14px;
           font-weight: 700;
           text-decoration: underline;
-          font-family: 'Ubuntu', sans-serif;
+          font-family: 'GTWalsheimProRegular', 'Ubuntu', sans-serif;
         }
       }
     }
@@ -3951,21 +3935,21 @@ body.checkout-index-index {
             li{
 							&.parent{
 								&:nth-child(2){
-									background: #1aa3ff !important;
+									background: @_ita_main-orange_color !important;
 								}
 							}
               border: 0;
               min-height: 39px;
               a{
                 color: #fff;
-                font-family: 'Ubuntu', sans-serif;
+                font-family: 'GTWalsheimProRegular', 'Ubuntu', sans-serif;
                 font-size: 14px;
                 font-weight: 500;
                 text-transform: uppercase;
                 border: 0;
                 &.ui-state-active{
                   background-color: #454444;
-                  border-right: 2px solid #1aa3ff;
+                  border-right: 2px solid @_ita_main-orange_color;
                   border-bottom: 0;
                 }
                 &:after{
@@ -4005,7 +3989,7 @@ body.checkout-index-index {
             margin: 0;
             a{
               color: #fff;
-              font-family: 'Ubuntu', sans-serif;
+              font-family: 'GTWalsheimProRegular', 'Ubuntu', sans-serif;
               font-size: 12px;
               font-weight: 500;
               text-transform: uppercase;
@@ -4093,13 +4077,13 @@ body.checkout-index-index {
             font-weight: 400;
             color: #242424;
             text-transform: none;
-            font-family: 'MullerBold';
+            font-family: 'GTWalsheimProBold';
           }
         }
         .price-box{
           .price{
             color:#707070;
-            font-family: 'MullerRegular';
+            font-family: 'GTWalsheimProRegular';
             font-size: 14px;
           }
           .wrp-oldprice{
@@ -4110,7 +4094,7 @@ body.checkout-index-index {
           .special-price, .regular-price{
             .price{
               color: #242424;
-              font-family: 'MullerBold';
+              font-family: 'GTWalsheimProBold';
               font-size: 21px;
             }
           }
@@ -4127,7 +4111,7 @@ body.checkout-index-index {
           font-size: 16px;
           text-transform: uppercase;
           border-radius: 3px;
-          font-family: 'MullerBold';
+          font-family: 'GTWalsheimProBold';
           display: inline-block;
         }
       }
@@ -4144,7 +4128,7 @@ body.checkout-index-index {
     margin: 0 auto;
     display: block;
     p {
-      font-family: 'MullerMedium';
+      font-family: 'GTWalsheimProMedium';
       font-size: 14px;
       color: #3c3c3c;
       span{
@@ -4365,7 +4349,7 @@ body.catalogsearch-result-index {
 				position: relative;
 				text-align: left;
 				color: #242424;
-				font-family: 'MullerBlack';
+				font-family: 'GTWalsheimProBold';
 				font-size: 18px;
 				font-weight: 900;
 				text-transform: uppercase;
