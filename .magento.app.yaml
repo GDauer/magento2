@@ -5,7 +5,7 @@
 name: mymagento
 
 # The toolstack used to build the application.
-type: php:7.4
+type: php:7.1
 build:
     flavor: composer
 
@@ -15,7 +15,9 @@ runtime:
         - xsl
         - json
         - newrelic
-        - sodium
+        - memcached
+        - redis
+        - mcrypt
 
 # The relationships of the application with services or other applications.
 # The left-hand side is the name of the relationship as it will be exposed
