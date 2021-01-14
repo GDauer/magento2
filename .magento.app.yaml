@@ -22,7 +22,7 @@ runtime:
 # to the application in the environment variable. The right-hand
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
-    database: "mysql:mysql"
+    database: "mysql2:mysql"
     redis: "redis:redis"
     elasticsearch: "elasticsearch:elasticsearch"
 

@@ -2,8 +2,8 @@
 #
 # Each service listed will be deployed to power your project.
 
-mysql:
-    type: mysql:10.3
+mysql2:
+    type: mysql:10.2
     disk: 2048
 
 redis:
