@@ -1,0 +1,2 @@
+- v1.1.0 - Adição de interface no frontend para cálculo de frete externo, para uso em Marketplaces
+- v1.0.0 - Módulo estável inicial

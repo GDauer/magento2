@@ -1,0 +1,22 @@
+{
+    "name": "digitalhub/module-groupedproduct",
+    "description": "",
+    "type": "magento2-module",
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "name": "DigitalHub",
+            "email": "contato@digitalhub.com.br"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "DigitalHub\\GroupedProduct\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

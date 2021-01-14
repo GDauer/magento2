@@ -1,0 +1,21 @@
+{
+    "name": "digitalhub/estimate-shipping",
+    "description": "Módulo para consulta do valor do frete diretamente na página do produto",
+    "type": "magento2-module",
+    "version": "1.1.1",
+    "require": {
+        "magento/framework": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*",
+        "mockery/mockery": "dev-master"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "DigitalHub\\EstimateShipping\\": ""
+        }
+    }
+}

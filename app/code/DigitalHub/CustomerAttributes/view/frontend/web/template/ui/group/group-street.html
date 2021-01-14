@@ -1,0 +1,22 @@
+<!-- ko foreach: { data: elems, as: 'element' } -->
+
+    <fieldset class="field" data-bind="css: additionalClasses">
+        <legend class="label">
+            <span translate="element.label"></span>
+        </legend>
+        <div class="control">
+            <!-- ko if: element.visible() -->
+                    <!-- ko template: element.elementTmpl --><!-- /ko -->
+            <!-- /ko -->
+        </div>
+    </fieldset>
+
+<!-- /ko -->
+
+<!-- ko if: validateWholeGroup -->
+<!-- ko  foreach: { data: elems, as: 'element' } -->
+    <!-- ko if: element.error() && element.visible() -->
+        <label class="error" data-bind="attr: { for: uid }, text: element.error"></label>
+    <!-- /ko -->
+<!-- /ko -->
+<!-- /ko -->

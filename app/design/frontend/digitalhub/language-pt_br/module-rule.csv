@@ -1,0 +1,28 @@
+"Conditions Combination","Combinação de condições"
+contains,contém
+"Open Chooser","Open Chooser"
+"is one of","está entre"
+"is not one of","não está entre"
+"equals or greater than","maior ou igual a"
+"equals or less than","menor ou igual a"
+"greater than","maior que"
+"less than","menor que"
+is,é
+"is not","não é"
+"Invalid discount amount.","Invalid discount amount."
+"End Date must follow Start Date.","End Date must follow Start Date."
+"Websites must be specified.","Websites must be specified."
+"Customer Groups must be specified.","Customer Groups must be specified."
+to,to
+by,por
+"Please choose an action to add.","Escolha uma ação"
+"Perform following actions","Perform following actions"
+"does not contain","não contém"
+"Please choose a condition to add.","Escolha uma condição"
+ALL,TUDO
+ANY,QUALQUER
+TRUE,VERDADEIRO
+FALSE,FALSO
+"If %1 of these conditions are %2:","Se %1 dessas condições for %2:"
+"There is no information about associated entity type ""%1"".","There is no information about associated entity type ""%1""."
+'This won\'t take long . . .','Isso não levará muito tempo . . .'

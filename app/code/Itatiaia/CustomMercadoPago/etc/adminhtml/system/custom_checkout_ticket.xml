@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+  <group id="custom_checkout_ticket">
+    <field id="order_status_approved" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
+      <label>Order status when payment is approved</label>
+      <source_model>MercadoPago\Core\Model\System\Config\Source\Order\Status</source_model>
+      <config_path>payment/mercadopago_customticket/order_status_approved</config_path>
+    </field>
+    <field id="order_status_in_process" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+      <label>Order status when payment is in_process</label>
+      <source_model>MercadoPago\Core\Model\System\Config\Source\Order\Status</source_model>
+      <config_path>payment/mercadopago_customticket/order_status_in_process</config_path>
+    </field>
+    <field id="order_status_pending" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="0">
+      <label>Order status when payment is pending</label>
+      <source_model>MercadoPago\Core\Model\System\Config\Source\Order\Status</source_model>
+      <config_path>payment/mercadopago_customticket/order_status_pending</config_path>
+    </field>
+    <field id="order_status_rejected" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="0">
+      <label>Order status when payment is rejected</label>
+      <source_model>MercadoPago\Core\Model\System\Config\Source\Order\Status</source_model>
+      <config_path>payment/mercadopago_customticket/order_status_rejected</config_path>
+    </field>
+    <field id="order_status_cancelled" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="0">
+      <label>Order status when payment is canceled</label>
+      <source_model>MercadoPago\Core\Model\System\Config\Source\Order\Status</source_model>
+      <config_path>payment/mercadopago_customticket/order_status_cancelled</config_path>
+    </field>
+    <field id="order_status_chargeback" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="0">
+      <label>Order status when payment is chargeback</label>
+      <source_model>MercadoPago\Core\Model\System\Config\Source\Order\Status</source_model>
+      <config_path>payment/mercadopago_customticket/order_status_chargeback</config_path>
+    </field>
+    <field id="order_status_in_mediation" translate="label" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="0">
+      <label>Order status when payment is in_mediation</label>
+      <source_model>MercadoPago\Core\Model\System\Config\Source\Order\Status</source_model>
+      <config_path>payment/mercadopago_customticket/order_status_in_mediation</config_path>
+    </field>
+    <field id="order_status_refunded" translate="label" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="0">
+      <label>Order status when payment is refunded</label>
+      <source_model>MercadoPago\Core\Model\System\Config\Source\Order\Status</source_model>
+      <config_path>payment/mercadopago_customticket/order_status_refunded</config_path>
+    </field>
+    <field id="order_status_partially_refunded" translate="label" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="0">
+      <label>Order status when payment is partually refunded</label>
+      <source_model>MercadoPago\Core\Model\System\Config\Source\Order\Status</source_model>
+      <config_path>payment/mercadopago_customticket/order_status_partially_refunded</config_path>
+    </field>
+    <field id="order_status" translate="label" type="select" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="0">
+      <label>Status do pedido quando é criado</label>
+      <source_model>MercadoPago\Core\Model\System\Config\Source\Order\Status</source_model>
+      <config_path>payment/mercadopago_customticket/order_status</config_path>
+    </field>
+    <field id="limit_active" translate="label" type="select" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="0">
+      <label>Enable limit per payment method?</label>
+      <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+    </field>
+    <field id="limit_amount" translate="label comment" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+      <label>Total amount to disable</label>
+      <comment>Maximum amount for payment method.</comment>
+      <depends>
+        <field id="limit_active">1</field>
+      </depends>
+    </field>
+    <field id="limit_payment_methods" translate="label comment" type="multiselect" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="1">
+      <label>Limit include Payment Methods</label>
+      <source_model>Itatiaia\CustomMercadoPago\Model\System\Config\Source\PaymentMethods\PaymentMethodsTicketCustom</source_model>
+      <comment>Select the payment methods you want to add a limit amount to.</comment>
+      <depends>
+        <field id="limit_active">1</field>
+      </depends>
+    </field>
+  </group>
+</include>

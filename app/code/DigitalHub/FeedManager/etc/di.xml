@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+	<!-- Feed Grid Collection -->
+	<virtualType name="DigitalHub\FeedManager\Model\ResourceModel\Feed\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">digitalhub_feedmanager_feed</argument>
+			<argument name="resourceModel" xsi:type="string">DigitalHub\FeedManager\Model\ResourceModel\Feed\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="digitalhub_feedmanager_feed_listing_data_source" xsi:type="string">DigitalHub\FeedManager\Model\ResourceModel\Feed\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+
+	<!-- Feed Template Grid Collection -->
+	<virtualType name="DigitalHub\FeedManager\Model\ResourceModel\Feed\Template\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">digitalhub_feedmanager_feed_template</argument>
+			<argument name="resourceModel" xsi:type="string">DigitalHub\FeedManager\Model\ResourceModel\Feed\Template\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="digitalhub_feedmanager_feed_template_listing_data_source" xsi:type="string">DigitalHub\FeedManager\Model\ResourceModel\Feed\Template\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+</config>

@@ -1,0 +1,72 @@
+"Excl. Tax","Excl. Tax"
+Total,Total
+"Incl. Tax","Incl. Tax"
+"Total incl. tax","Total incl. tax"
+"Move to Wishlist","Move to Wishlist"
+File,Arquivo
+"Upload File","Subir Arquivo"
+"Edit item parameters","Edit item parameters"
+"Remove item","Remove item"
+"All Files","All Files"
+[GLOBAL],[GLOBAL]
+"[STORE VIEW]","[VISÃO]"
+Delete,Delete
+Status,Status
+"Sort Order","Sort Order"
+Title,Title
+"Browse Files...","Escolher arquivo..."
+Availability,Availability
+"Gift Message","Mensagem do Presente"
+Message:,Mensagem:
+"See price before order confirmation.","See price before order confirmation."
+"What's this?","What's this?"
+"Unit Price Excl. Tax","Unit Price Excl. Tax"
+"Unit Price Incl. Tax","Unit Price Incl. Tax"
+"Subtotal Excl. Tax","Subtotal Excl. Tax"
+"Subtotal Incl. Tax","Subtotal Incl. Tax"
+"Upload Files","Upload Files"
+"Downloadable Product","Produto Digital"
+"Downloadable Information","Produto Digital"
+Samples,Amostras
+Links,Links
+Unlimited,Ilimitado
+"Something went wrong while getting the requested content.","Something went wrong while getting the requested content."
+"My Downloadable Products","Meus Produtos Digitais"
+"Sorry, there was an error getting requested content. Please contact the store owner.","Sorry, there was an error getting requested content. Please contact the store owner."
+"We can't find the link you requested.","We can't find the link you requested."
+"Please log in to download your product or purchase <a href=""%1"">%2</a>.","Please log in to download your product or purchase <a href=""%1"">%2</a>."
+"Please log in to download your product.","Please log in to download your product."
+"The link has expired.","The link has expired."
+"The link is not available.","The link is not available."
+"Please set resource file and link type.","Please set resource file and link type."
+"Invalid download link type.","Invalid download link type."
+"Something went wrong while saving the file(s).","Something went wrong while saving the file(s)."
+"Order id cannot be null","Order id cannot be null"
+"Order item id cannot be null","Order item id cannot be null"
+"Please specify product link(s).","Please specify product link(s)."
+attachment,attachment
+inline,inline
+sample,amostra
+"Links can be purchased separately","Links podem ser comprados separadamente"
+"Max. Downloads","Max. Downloads"
+Shareable,Compartilhável
+"Add Link","Adicionar"
+Sample,Amostra
+"Alphanumeric, dash and underscore characters are recommended for filenames. Improper characters are replaced with '_'.","Recomendamos que você use apenas letras, números, - e _ nos nomes dos arquivos. Caracteres indevidos serão substituídos por _."
+U,U
+"Go to <a href=""%1"">My Downloadable Products</a>","Go to <a href=""%1"">My Downloadable Products</a>"
+"Downloadable Products","Downloadable Products"
+"Remaining Downloads","Remaining Downloads"
+"View Order","View Order"
+"Start Download","Start Download"
+"You have not purchased any downloadable products yet.","Você não comprou nenhum produto digital ainda."
+download,download
+"Downloadable Product Options","Opções de Produtos Digitais"
+"Order Item Status to Enable Downloads","Order Item Status to Enable Downloads"
+"Default Maximum Number of Downloads","Default Maximum Number of Downloads"
+"Default Sample Title","Default Sample Title"
+"Default Link Title","Default Link Title"
+"Open Links in New Window","Open Links in New Window"
+"Use Content-Disposition","Use Content-Disposition"
+"Disable Guest Checkout if Cart Contains Downloadable Items","Disable Guest Checkout if Cart Contains Downloadable Items"
+"Guest checkout will only work with shareable.","Guest checkout will only work with shareable."

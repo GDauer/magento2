@@ -1,0 +1,43 @@
+<?php $order = $block->getOrder() ?>
+<?php $billingAddress = $order->getBillingAddress() ?>
+<?php $shippingAddress = $order->getShippingAddress() ?>
+<?php $customerName = $billingAddress->getFirstname() . ' ' . $billingAddress->getLastname() ?>
+
+<?php if($block->getConfigPath('active')): ?>
+    <?php if($block->getConfigPath('type') == 1): ?>
+        <script>
+            (function(f,b,g){
+                var a={
+                    key: "<?php echo $block->getConfigPath('key') ?>",
+                    campaign:  "<?php echo $block->getConfigPath('campaign') ?>",
+                    name:  "<?php echo $customerName ?>",
+                    email: "<?php echo $order->getCustomerEmail() ?>",
+                    tags:{
+                        "TagMg_Pedido": "<?php echo $order->getIncrementId() ?>",
+                        "TagMg_DataCompra": "<?php echo $order->getCreatedAt() ?>",
+                        "TagMg_UF": "<?php echo $block->getRegionUf($shippingAddress->getRegion()) ?>"
+                    },
+                    salute:"Olá %name.first%,",
+                    thanks:"Agradecemos a sua participação."
+                };var e;var c=f.getElementsByTagName(b)[0];if(f.getElementById(g)){return}e=f.createElement(b);e.id=g;e.src="https://cdn.tracksale.co/tracksale-js/tracksale.js";e.type="text/javascript";e.async=true;e.onload=e.onreadystatechange=function(){var h=this.readyState;if(h&&h!="complete"&&h!="loaded"){return}try{var d=new Tracksale();d.init(a)}catch(i){}};c.parentNode.insertBefore(e,c)}(document,"script","tracksale-js"));
+        </script>
+    <?php else: ?>
+        <script>
+            (function(f,b,g){
+                var a={
+                    key: "<?php echo $block->getConfigPath('key') ?>",
+                    campaign:  "<?php echo $block->getConfigPath('campaign') ?>",
+                    name:  "<?php echo $customerName ?>",
+                    email: "<?php echo $order->getCustomerEmail() ?>",
+                    tags:{
+                        "TagMg_Pedido": "<?php echo $order->getIncrementId() ?>",
+                        "TagMg_DataCompra": "<?php echo $order->getCreatedAt() ?>",
+                        "TagMg_UF": "<?php echo $block->getRegionUf($shippingAddress->getRegion()) ?>"
+                    },
+                    salute:"Olá %name.first%,",
+                    thanks:"Agradecemos a sua participação.",
+                    appendTo: "<?php echo $block->getConfigPath('element') ?>"
+                };var e;var c=f.getElementsByTagName(b)[0];if(f.getElementById(g)){return}e=f.createElement(b);e.id=g;e.src="https://cdn.tracksale.co/tracksale-js/tracksale.js";e.type="text/javascript";e.async=true;e.onload=e.onreadystatechange=function(){var h=this.readyState;if(h&&h!="complete"&&h!="loaded"){return}try{var d=new Tracksale();d.init(a)}catch(i){}};c.parentNode.insertBefore(e,c)}(document,"script","tracksale-js"));
+        </script>
+    <?php endif; ?>
+<?php endif; ?>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="DigitalHub_FeedManager::feed_menu" title="Arquivos de Feed XML" translate="title" module="DigitalHub_FeedManager" parent="Magento_Backend::marketing" sortOrder="15" resource="DigitalHub_FeedManager::feed"/>
+
+        <add id="DigitalHub_FeedManager::feed" title="Arquivos" module="DigitalHub_FeedManager" sortOrder="0" action="digitalhub_feedmanager/feed" resource="DigitalHub_FeedManager::feed" parent="DigitalHub_FeedManager::feed_menu" />
+
+        <add id="DigitalHub_FeedManager::feed_template" title="Templates" module="DigitalHub_FeedManager" sortOrder="10" action="digitalhub_feedmanager/feed_template" resource="DigitalHub_FeedManager::feed" parent="DigitalHub_FeedManager::feed" />
+    </menu>
+</config>

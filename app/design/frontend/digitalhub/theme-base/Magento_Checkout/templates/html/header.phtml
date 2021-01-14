@@ -1,0 +1,27 @@
+<div class="wrp-header">
+  <header id="header-checkout">
+    <div class="content-header">
+      <?php echo $block->getChildHtml('logo') ?>
+      <h1>Fechamento do pedido</h1>
+      <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('checkout_header_infos')->toHtml();?>
+    </div>
+  </header>
+  <div class="wrp-checkout-steps">
+    <div class="checkout-steps">
+      <ul>
+        <li class="step-identification active">
+          <span class="marker">1</span>
+          Identificação
+        </li>
+        <li class="step-shipping">
+          <span class="marker">2</span>
+          Entrega
+        </li>
+        <li class="step-payment">
+          <span class="marker">3</span>
+          Pagamento
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

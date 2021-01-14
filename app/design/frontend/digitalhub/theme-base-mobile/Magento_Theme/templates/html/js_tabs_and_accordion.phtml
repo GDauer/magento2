@@ -1,0 +1,18 @@
+<script>
+  require(['jquery'],function($){
+    jQuery(document).ready(function() {
+      jQuery('.faq_tab_title').click(function(){
+        jQuery(this).toggleClass("open");
+        jQuery(this).next('.faq_tab_content').toggle();
+        jQuery(this).next('.faq_tab_content').toggleClass('faq_tab_content_open');
+      });
+    	jQuery('.tabs-compra .rd-circle').click(function(){
+    		var tab_id = $(this).attr('data-info');
+    		jQuery('.tabs-compra .rd-circle').removeClass('current');
+    		jQuery('.content').removeClass('current');
+    		jQuery(this).addClass('current');
+    		jQuery("#"+tab_id).addClass('current');
+    	})
+    });
+  });
+</script>

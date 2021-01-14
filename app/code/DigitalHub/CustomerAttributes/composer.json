@@ -1,0 +1,16 @@
+{
+    "name": "digitalhub/customer-attributes",
+    "description": "Módulo para inserção de atributos de clientes no padrão brasileiro (Tipo de cliente, CPF/CNPJ, RG/IE, Nome Fantasia, Razão Social)",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "DigitalHub\\CustomerAttributes\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

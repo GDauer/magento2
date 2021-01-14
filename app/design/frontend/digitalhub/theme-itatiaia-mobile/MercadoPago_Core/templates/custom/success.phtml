@@ -1,0 +1,72 @@
+<?php
+/**
+ * @var MercadoPago\Core\Block\Custom\Success $block
+ * @var Itatiaia\CustomMercadoPago\ViewModel\Success $viewModel
+ */
+
+$order = $this->getOrder();
+$payment = $this->getPayment();
+$viewModel = $block->getViewModel();
+
+$successMsg = 'O número do seu pedido é %1 .';
+$link_to_order = '<a href="' . $block->escapeUrl($this->getOrderUrl()) . '">' . $block->escapeHtml($order->getIncrementId()) . '</a>';
+
+$paymentResponse = $payment->getAdditionalInformation("paymentResponse");
+
+$customMessage = $viewModel->getCustomResponse($paymentResponse['status_detail']);
+
+$message_status = $this->getMessageByStatus($paymentResponse);
+?>
+<div id="box-mercadopago">
+    <?php if (!isset($paymentResponse['status'])): ?>
+        <h2 class="mercadopago-title"><?php /* @escapeNotVerified */
+            echo __('Thank you for your purchase!'); ?></h2>
+        <p><?php /* @escapeNotVerified */
+            echo __($successMsg, $link_to_order); ?></p>
+    <?php else: ?>
+        <?php if ($customMessage): ?>
+            <?php if ($paymentResponse['status'] != 'rejected'): ?>
+                <h2 class="mercadopago-title">Parabéns, o seu pedido foi realizado com sucesso!</h2>
+            <?php else: ?>
+                <h2 class="mercadopago-title">Erro ao processar pedido!</h2>
+            <?php endif; ?>
+            <p><?php echo $customMessage ?></p>
+        <?php else: ?>
+            <?php if ($paymentResponse['status'] != 'rejected') { ?>
+                <h2 class="mercadopago-title">Parabéns, o seu pedido foi realizado com sucesso!</h2>
+                <p>A partir de agora, ele passará por um processo de análise, e você receberá a confirmação do seu pedido e pagamento no seu email,em até 48 horas.</p>
+                <p>Fique atento ao telefone. Qualquer divergência de dados, entraremos em contato.</p>
+
+            <?php } else { ?>
+                <h2 class="mercadopago-title">Erro ao processar pedido!</h2>
+                <p>Seu pedido não foi aprovado.</p>
+                <p>Revise seus dados de pagamento e tente comprar novamente.</p>
+            <?php } ?>
+        <?php endif; ?>
+        <?php if ($paymentResponse['status'] != 'rejected' && (isset($message_status['title']) && isset($message_status['message']))): ?>
+            <p><?php /* @escapeNotVerified */
+                echo __($successMsg, $link_to_order); ?></p>
+        <?php endif; ?>
+    <?php endif; ?>
+</div>
+<div class="primary button-success">
+    <?php if ($paymentResponse['status'] == 'rejected'): ?>
+        <a class="action primary continue"
+           href="<?php echo $block->escapeUrl($block->getReOrderUrl()) ?>"><span><?php /* @escapeNotVerified */
+                echo __('Retry order') ?></span></a>
+    <?php else: ?>
+        <a class="action primary continue"
+           href="<?php echo $block->escapeUrl($block->getUrl()) ?>"><span><?php /* @escapeNotVerified */
+                echo __('Continue Shopping') ?></span></a>
+    <?php endif; ?>
+</div>
+
+<script type="text/javascript">
+    require(['jquery', 'Magento_Customer/js/customer-data'], function($, customerData) {
+        $(window).on('load', function () {
+            var sections = ['customer'];
+            customerData.invalidate(sections);
+            customerData.reload(sections, true);
+        });
+    });
+</script>

@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+	<extension_attributes for="Magento\Customer\Api\Data\CustomerInterface">
+		<attribute code="account_type" type="string"/>
+		<attribute code="telephone" type="string"/>
+		<attribute code="razao_social" type="string"/>
+		<attribute code="nome_fantasia" type="string"/>
+		<attribute code="ie" type="string"/>
+	</extension_attributes>
+</config>

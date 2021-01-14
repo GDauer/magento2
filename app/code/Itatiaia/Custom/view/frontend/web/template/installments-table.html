@@ -1,0 +1,37 @@
+<!-- ko if: showInstallments -->
+<div class="parc-link">
+    <a href="#">Opções de parcelamento</a>
+</div>
+<!-- /ko -->
+
+<div id="popup-modal-parcelamento" data-bind="afterRender: afterRender">
+    <!-- ko foreach: installments -->
+        <h4>Cartão de crédito <strong data-bind="text: label"></strong></h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th width="30%">N&deg; de parcelas</th>
+                    <th>Valor da parcela</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tbody>
+                    <!-- ko foreach: $data.installments -->
+                    <tr>
+                        <td>
+                            <span data-bind="text: number"></span>x
+                        </td>
+                        <td>
+                            <span data-bind="text: value"></span>
+                        </td>
+                    </tr>
+                    <!-- /ko -->
+                </tbody>
+            </tbody>
+        </table>
+    <!-- /ko -->
+    <br>
+    <p>
+        <small>Estimativa de parcelamento baseada no valor total do produto. O parcelamento poderá variar de acordo com outros itens no seu pedido e opção frete selecionada.</small>
+    </p>
+</div>

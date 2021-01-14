@@ -1,0 +1,22 @@
+{
+    "name": "digitalhub/additional-prices",
+    "description": "Módulo para exibição de preços adicionais do produto, como parcelamento e à vista no storefront",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "require": {
+        "magento/framework": "*",
+        "php": "~7.0.0|~7.1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*",
+        "mockery/mockery": "dev-master"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "DigitalHub\\AdditionalPrices\\": ""
+        }
+    }
+}
