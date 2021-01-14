@@ -9,6 +9,6 @@ mysql2:
 redis:
     type: redis:5.0
 
-elasticsearch:
-    type: elasticsearch:7.6
+elasticsearch2:
+    type: elasticsearch:7.7
     disk: 1024
