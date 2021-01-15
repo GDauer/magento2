@@ -396,7 +396,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
         }
         &.active, &:hover {
           span {
-            background-color: #28a6fb;
+            background-color: @_ita_main-blue_color;
           }
         }
       }
@@ -408,6 +408,24 @@ a, a:hover, .alink, a:visited, .alink:visited {
           img {
             width: auto;
             margin: 0 auto;
+          }
+          li {
+            &::marker{
+              content: '';
+            }
+          }
+          &.active{
+            &~ .active{
+              & li:before{
+                content: url('@{baseDir}images/icon_marker.png');
+                display: inline-block;
+                position: absolute;
+                width: 20px;
+                left: -20px;
+                top: 50%;
+                margin-top: -10px;
+              }
+            }
           }
         }
       }
@@ -604,10 +622,9 @@ a, a:hover, .alink, a:visited, .alink:visited {
 
 /*-- Footer -- */
 .page-footer {
-  background: url('@{baseDir}images/bg-cut-g.png') repeat;
+  background: @_ita_main-blue_color;
   padding: 26px 0 94px;
   font-family: 'GTWalsheimProRegular', 'Open Sans';
-  border-bottom: 7px solid #1aa3ff;
   color:#fff;
   .footer.content {
     padding: 0;
@@ -662,7 +679,11 @@ a, a:hover, .alink, a:visited, .alink:visited {
                   background-position: 0 -90px;
                 }
                 &.address:before {
+                  display: none;
                   background-position: 0 -45px;
+                }
+                &.phone:before {
+                  display: none;
                 }
                 p {
                   display: inline-block;
@@ -4171,6 +4192,13 @@ body.checkout-index-index {
 }
 
 @media screen {
+  @media (max-width: 599px) {
+    .cms-index-index {
+      .page-main .wrp-vantagens .owl-carousel .owl-item li::marker{
+        content: '';
+      }
+    }
+  }
   @media (max-width: 726px) {
     .header.content{
       .block.block-search{

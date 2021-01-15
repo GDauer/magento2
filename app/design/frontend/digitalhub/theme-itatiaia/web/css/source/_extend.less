@@ -701,7 +701,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
 
 /*-- Footer -- */
 .wrp-news {
-  background: url('@{baseDir}images/bg-cut-news.png') repeat;
+  background: @_ita_main-green_color;
   height: 254px;
   position: relative;
   z-index: 5;
@@ -716,7 +716,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
         display: inline-block;
         margin-bottom: 0;
         p, span {
-          color: #fff;
+          color: @_ita_main-blue_color;
           font-size: 28px;
           text-transform: uppercase;
           font-weight: 600;
@@ -774,7 +774,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           right: 0px;
           width: 165px;
           height: 40px;
-          background: #1aa3ff;
+          background: @_ita_main-blue_color;
           border: 0;
           font-family: 'GTWalsheimProBold';
           border-radius: 0;
@@ -928,23 +928,21 @@ a, a:hover, .alink, a:visited, .alink:visited {
     margin-right: 2px;
     line-height: 28px;
     font-size: 18px;
-    color: #b9bdc4;
-    text-transform: uppercase;
+    color: #999;
     font-weight: 600;
     text-decoration: none;
     font-size: 14px;
-    font-family: 'GTWalsheimProMedium';
+    font-family: 'GTWalsheimProRegular';
   }
   .nav-tabs > li > a {
-    padding-bottom: 8px;
     border-bottom: 1px solid transparent;
   }
   .nav-tabs > .active > a,
   .nav-tabs > .active > a:hover {
-    color: #1aa3ff;
+    color: @_ita_main-green_color;
     cursor: default;
     background-color: transparent;
-    border-bottom: 2px solid #1aa3ff;
+    border-bottom: 4px solid @_ita_main-green_color;
     font-family: 'GTWalsheimProBold';
   }
   li {
@@ -1381,10 +1379,9 @@ a, a:hover, .alink, a:visited, .alink:visited {
   width: 100%;
 }
 .page-footer {
-  background: url('@{baseDir}images/bg-cut-g.png') repeat;
+  background: @_ita_main-blue_color;
   padding: 26px 0 94px;
   font-family: 'GTWalsheimProRegular', 'Open Sans';
-  border-bottom: 7px solid #1aa3ff;
   color:#fff;
   .footer.content {
     padding: 0 10px;
@@ -1444,7 +1441,11 @@ a, a:hover, .alink, a:visited, .alink:visited {
                   background-position: 0 -90px;
                 }
                 &.address:before {
+                  display: none;
                   background-position: -104px -131px;
+                }
+                &.phone:before {
+                  display: none;
                 }
                 p {
                   display: inline-block;
@@ -1457,7 +1458,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
               }
             }
             .title {
-              color: #1aa3ff;
+              color: @_ita_main-green_color;
               display: block;
               margin-bottom: 22px;
               font-weight: 700;
@@ -1480,6 +1481,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
             }
           }
           .wrp-social-links {
+            display: none;
             position: absolute;
             right: 0;
             bottom: 0;
@@ -1814,10 +1816,9 @@ a, a:hover, .alink, a:visited, .alink:visited {
             display: none;
           }
           .price {
-            color: #242424;
+            color: @_ita_main-blue_color;
             font-weight: 600;
             font-size: 23px;
-            font-weight: 600;
           }
           .wrp-oldprice {
             display: inline-block;
@@ -1911,7 +1912,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
               margin: 0 auto;
               font-weight: 600;
               font-size: 14px;
-              background: #1aa3ff;
+              background: @_ita_main-blue_color;
               span {
                 display: inline-block;
                 line-height: 38px;
@@ -2163,6 +2164,8 @@ a, a:hover, .alink, a:visited, .alink:visited {
         margin-top: 10px;
         img {
           margin: 0 auto;
+          max-width: 90%;
+          height: auto;
         }
       }
       .home-products-list {
@@ -2176,9 +2179,10 @@ a, a:hover, .alink, a:visited, .alink:visited {
         .wrp-title {
           overflow: hidden;
           text-align: left;
-          margin-bottom: 30px;
+          margin-top: 40px;
+          margin-bottom: 5px;
           .title {
-            color: #000;
+            color: @_ita_main-blue_color;
             font-size: 28px;
             font-family: 'GTWalsheimProBold';
             text-transform: uppercase;
