@@ -103,7 +103,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
         $order = $objectManager->get('\Magento\Sales\Model\OrderFactory')->create()->load($order_id);
 
-        $this->logger->info('HELPER UPDATE INVOICE');
+        // $this->logger->info('HELPER UPDATE INVOICE');
 
         // somente na troca de um status para outro será disparado
         if(($order->getState() == 'processing' || $order->getState() == 'complete') && $order->getStatus() == 'faturado_sap'){
