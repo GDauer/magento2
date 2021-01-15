@@ -89,6 +89,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
     }
     .wrp-header-content {
       /* background: @_ita_main-blue_color; */
+      background: -webkit-linear-gradient(left, color-stop(#fff 0%), color-stop(#fff 45%), color-stop(@_ita_main-blue_color 55%), color-stop(@_ita_main-blue_color 100%)); // Safari 5.1-6, Chrome 10+
       background: linear-gradient(to right, #fff 0%,#fff 45%,@_ita_main-blue_color 55%,@_ita_main-blue_color 100%);
       height: auto;
       .header.content {
@@ -702,7 +703,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
 /*-- Footer -- */
 .wrp-news {
   background: @_ita_main-green_color;
-  height: 254px;
+  height: 215px;
   position: relative;
   z-index: 5;
   .wrp-content-news {
@@ -738,18 +739,19 @@ a, a:hover, .alink, a:visited, .alink:visited {
       display: block;
       height: 48px;
       float: none;
-      margin: 33px auto 7px;
+      margin: 10px auto 7px;
       overflow: visible;
       .field {
         height: 40px;
         background: none;
         position: relative;
-        margin: 0;
+        margin: 0 0 0 -10%;
+        width: 120%;
         .control {
           input {
-            padding: 0 0px 0 15px;
+            padding: 0 0px 0 10px;
             height: 40px;
-            width: 398px;
+            width: 69%;
             border: 0;
             background: #fff;
             border-radius:2px;
@@ -772,7 +774,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           position: absolute;
           top: 0;
           right: 0px;
-          width: 165px;
+          width: 30%;
           height: 40px;
           background: @_ita_main-blue_color;
           border: 0;
@@ -781,7 +783,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           padding: 0;
           border-radius:2px;
           &:before {
-            content: "Assinar";
+            content: "Assine";
             font-size: 13px;
             vertical-align: middle;
             color: #fff;
@@ -924,10 +926,9 @@ a, a:hover, .alink, a:visited, .alink:visited {
   }
 
   .nav-tabs > li > a {
-    padding: 0 0px 0;
+    padding: 0;
     margin-right: 2px;
-    line-height: 28px;
-    font-size: 18px;
+    line-height: 20px;
     color: #999;
     font-weight: 600;
     text-decoration: none;
@@ -2194,6 +2195,14 @@ a, a:hover, .alink, a:visited, .alink:visited {
             font-weight: 700;
             font-size: 14px;
             text-decoration: underline;
+          }
+          &:before{
+            content: url('@{baseDir}images/icon_marker.png');
+            display: inline-block;
+            position: absolute;
+            left: -20px;
+            margin-top: 9px;
+            .lib-rotate(-45deg);
           }
         }
         .product-item {
