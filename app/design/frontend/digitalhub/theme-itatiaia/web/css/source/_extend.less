@@ -5534,8 +5534,17 @@ form.form-create-account .field-ruc { display: none }
     .actions-toolbar {
         .secondary {
             float: none;
-            margin-left: 10px
+            margin-left: 10px;
         }
+    }
+    .customer-account-login.page-layout-1column &{
+      > .field:not(.choice) > .label{
+        text-align: left;
+      }
+      & .actions-toolbar, 
+      &:after{
+        margin-left:0;
+      }
     }
 }
 
