@@ -5102,11 +5102,19 @@ body.checkout-index-index {
 }
 
 /* Customer Fields */
-form.form-create-account { }
-form.form-create-account .show-empresa { margin-bottom: 5px }
-form.form-create-account .field-razon_social { display: none }
-form.form-create-account .field-empresa { display: none }
-form.form-create-account .field-ruc { display: none }
+form.form-create-account { 
+  .show-empresa { 
+    margin-bottom: 5px;
+  }
+  .field-razon_social,
+  .field-empresa,
+  .field-ruc { 
+    display: none;
+  }
+  .customer-account-create & .field.date.field-dob input#dob{
+    width: ~"calc(100% - 40px)";
+  }
+}
 .account {
   &.newsletter-manage-index {
     .column.main {
