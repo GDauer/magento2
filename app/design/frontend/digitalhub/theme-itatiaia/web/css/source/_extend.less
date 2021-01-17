@@ -1,30 +1,19 @@
-
-@font-face {font-family: 'MullerMedium'; src: url('@{baseDir}fonts/MullerMedium.woff2') format('woff2'), url('@{baseDir}fonts/MullerMedium.woff') format('woff'); font-weight: 500; font-style: normal;font-display: swap;}
-@font-face {font-family: 'MullerBlack'; src: url('@{baseDir}fonts/MullerBlack.woff2') format('woff2'), url('@{baseDir}fonts/MullerBlack.woff') format('woff'); font-weight: 900; font-style: normal;font-display: swap;}
-@font-face {font-family: 'MullerRegularItalic'; src: url('@{baseDir}fonts/MullerRegularItalic.woff2') format('woff2'), url('@{baseDir}fonts/MullerRegularItalic.woff') format('woff'); font-weight: normal; font-style: italic;font-display: swap;}
-@font-face {font-family: 'MullerMedium'; src: url('@{baseDir}fonts/MullerMedium.woff2') format('woff2'), url('@{baseDir}fonts/MullerMedium.woff') format('woff'); font-weight: 500; font-style: normal;font-display: swap;}
-@font-face {font-family: 'MullerExtraBold'; src: url('@{baseDir}fonts/MullerExtraBold.woff2') format('woff2'), url('@{baseDir}fonts/MullerExtraBold.woff') format('woff'); font-weight: 800; font-style: normal;font-display: swap;}
-@font-face {font-family: 'MullerMediumItalic'; src: url('@{baseDir}fonts/MullerMediumItalic.woff2') format('woff2'), url('@{baseDir}fonts/MullerMediumItalic.woff') format('woff'); font-weight: 500; font-style: italic;font-display: swap;}
-@font-face {font-family: 'MullerBold'; src: url('@{baseDir}fonts/MullerBold.woff2') format('woff2'), url('@{baseDir}fonts/MullerBold.woff') format('woff'); font-weight: bold; font-style: normal;font-display: swap;}
-@font-face {font-family: 'MullerBoldItalic'; src: url('@{baseDir}fonts/MullerBoldItalic.woff2') format('woff2'), url('@{baseDir}fonts/MullerBoldItalic.woff') format('woff'); font-weight: bold; font-style: italic;font-display: swap;}
-@font-face {font-family: 'MullerRegular'; src: url('@{baseDir}fonts/MullerRegular.woff2') format('woff2'), url('@{baseDir}fonts/MullerRegular.woff') format('woff'); font-weight: normal; font-style: normal;font-display: swap;}
-@font-face {font-family: 'MullerBlack'; src: url('@{baseDir}fonts/MullerBlack.woff2') format('woff2'), url('@{baseDir}fonts/MullerBlack.woff') format('woff'); font-weight: 900; font-style: normal;font-display: swap;}
-@font-face {font-family: 'MullerMediumItalic'; src: url('@{baseDir}fonts/MullerMediumItalic.woff2') format('woff2'), url('@{baseDir}fonts/MullerMediumItalic.woff') format('woff'); font-weight: 500; font-style: italic;font-display: swap;}
-@font-face {font-family: 'MullerRegular'; src: url('@{baseDir}fonts/MullerRegular.woff2') format('woff2'), url('@{baseDir}fonts/MullerRegular.woff') format('woff'); font-weight: normal; font-style: normal;font-display: swap;}
-@font-face {font-family: 'MullerBoldItalic'; src: url('@{baseDir}fonts/MullerBoldItalic.woff2') format('woff2'), url('@{baseDir}fonts/MullerBoldItalic.woff') format('woff'); font-weight: bold; font-style: italic;font-display: swap;}
-@font-face {font-family: 'MullerExtraBold'; src: url('@{baseDir}fonts/MullerExtraBold.woff2') format('woff2'), url('@{baseDir}fonts/MullerExtraBold.woff') format('woff'); font-weight: 800; font-style: normal;font-display: swap;}
-@font-face {font-family: 'MullerRegularItalic'; src: url('@{baseDir}fonts/MullerRegularItalic.woff2') format('woff2'), url('@{baseDir}fonts/MullerRegularItalic.woff') format('woff'); font-weight: normal; font-style: italic;font-display: swap;}
-@font-face {font-family: 'MullerBlack'; src: url('@{baseDir}fonts/MullerBlack.woff2') format('woff2'), url('@{baseDir}fonts/MullerBlack.woff') format('woff'); font-weight: 900; font-style: normal;font-display: swap;}
-@font-face {font-family: 'MullerMedium'; src: url('@{baseDir}fonts/MullerMedium.woff2') format('woff2'), url('@{baseDir}fonts/MullerMedium.woff') format('woff'); font-weight: 500; font-style: normal;font-display: swap;}
-@font-face {font-family: 'MullerBold'; src: url('@{baseDir}fonts/MullerBold.woff2') format('woff2'), url('@{baseDir}fonts/MullerBold.woff') format('woff'); font-weight: bold; font-style: normal;font-display: swap;}
+@import '_colors.less';
+@import '_fonts.less';
 
 .clear{
   clear: both !important;
 }
 
+.header_wrapper_background{
+  /* background: @_ita_main-blue_color; */
+  background: -webkit-linear-gradient(left, color-stop(#fff 0%), color-stop(#fff 45%), color-stop(@_ita_main-blue_color 55%), color-stop(@_ita_main-blue_color 100%)); // Safari 5.1-6, Chrome 10+
+  background: linear-gradient(to right, #fff 0%,#fff 45%,@_ita_main-blue_color 55%,@_ita_main-blue_color 100%);
+}
+
 body {
   overflow-x: hidden;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'GTWalsheimProRegular', 'Montserrat', sans-serif;
   min-width: 1250px;
   position: relative;
   width: auto;
@@ -41,11 +30,11 @@ body {
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'GTWalsheimProRegular', 'Montserrat', sans-serif;
   border: 0;
-  background: #1aa3ff;
+  background: @_ita_main-blue_color;
   &:hover, &:focus {
-    background: #1aa3ff;
+    background: @_ita_main-blue_color;
     opacity: 0.8;
     border: 0;
   }
@@ -53,7 +42,7 @@ body {
 a.action.primary {
   display: inline-block;
   line-height: 44px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'GTWalsheimProRegular', 'Montserrat', sans-serif;
 }
 a, a:hover, .alink, a:visited, .alink:visited {
   color: #e5102a;
@@ -105,18 +94,18 @@ a, a:hover, .alink, a:visited, .alink:visited {
       }
     }
     .wrp-header-content {
-      background: #454444;
+      .header_wrapper_background();
       height: auto;
       .header.content {
         max-width: 1400px;
         padding: 0;
-        background: #454444;
+        background: @_ita_main-blue_color;
         overflow: unset;
         height: 69px;
       }
     }
     .logo {
-      margin: 0px 0 0 0;
+      margin: 0;
       float: left;
       display: block;
     }
@@ -135,7 +124,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
             &:before{
               float: left;
               content: '';
-              background: url(../images/spritesheet-1.png) no-repeat;
+              background: url(../images/spritesheet-2021.png) no-repeat;
               background-position: -119px -5px;
               width: 40px;
               height: 40px;
@@ -144,9 +133,9 @@ a, a:hover, .alink, a:visited, .alink:visited {
             a{
               color:#fff;
               font-size: 14px;
-              font-family: 'Ubuntu', sans-serif;
+              font-family: 'GTWalsheimProRegular', 'Ubuntu', sans-serif;
               font-weight: 400;
-              margin: 0px 0px 0 0;
+              margin: 5px 0px 0 0;
               display: inline-block;
               line-height: 15px;
               text-decoration: none;
@@ -171,7 +160,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
             background: none;
             height: 39px;
             padding: 2px 50px 0 19px;
-            color: #242424;
+            color: #2b2b2b;
             font-size: 12px;
             &:focus {
               outline: none;
@@ -180,16 +169,16 @@ a, a:hover, .alink, a:visited, .alink:visited {
               box-shadow: none !important;
             }
             &::placeholder {
-              font-family: 'Saira Condensed', sans-serif;
+              font-family: 'GTWalsheimProRegular', 'Saira Condensed', sans-serif;
               color: #666666;
               opacity: 1;
             }
             &:-ms-input-placeholder {
-              font-family: 'Saira Condensed', sans-serif;
+              font-family: 'GTWalsheimProRegular', 'Saira Condensed', sans-serif;
               color: #666666;
             }
             &::-ms-input-placeholder {
-              font-family: 'Saira Condensed', sans-serif;
+              font-family: 'GTWalsheimProRegular', 'Saira Condensed', sans-serif;
               color: #666666;
             }
           }
@@ -224,7 +213,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           &:before {
             float: left;
             content: '';
-            background: url('@{baseDir}images/spritesheet-1.png') no-repeat;
+            background: url('@{baseDir}images/spritesheet-2021.png') no-repeat;
             background-position: -54px -55px;
             width: 40px;
             height: 40px;
@@ -236,12 +225,16 @@ a, a:hover, .alink, a:visited, .alink:visited {
               font-size: 14px;
               line-height: 15px;
               font-weight: 400;
-              margin-bottom: 6px;
+              margin-bottom: 2px;
               color: #fff;
+              &:first-child {
+                margin-top: 4px;
+              }
               a {
                 color: #fff;
                 text-decoration: underline;
                 font-weight: 600;
+                font-family: 'GTWalsheimProBold';
                 font-size: 11px;
                 text-transform: uppercase;
                 &:hover {
@@ -263,7 +256,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           content: '';
           width: 23px;
           height: 23px;
-          background: url(../images/spritesheet-1.png) no-repeat center center;
+          background: url(../images/spritesheet-2021.png) no-repeat center center;
           background-position: -104px -55px;
         }
         a {
@@ -321,7 +314,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           content: '';
           width: 26px;
           height: 23px;
-          background: url('@{baseDir}images/spritesheet-1.png') no-repeat center center;
+          background: url('@{baseDir}images/spritesheet-2021.png') no-repeat center center;
           background-position: -83px -5px;
         }
         .counter.qty {
@@ -476,7 +469,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
             line-height: 1.6rem;
             width: 270px;
             margin: 0 auto;
-            background: #1aa3ff;
+            background: @_ita_main-blue_color;
           }
           .viewcart {
             color: #3b3b3b;
@@ -494,9 +487,9 @@ a, a:hover, .alink, a:visited, .alink:visited {
     .container-menumanager-menu {
       float: none;
       max-width: 100%;
-      background: #2b2b2b;
-      border-top: 1px solid #2b2b2b;
-      font-family: 'Ubuntu', sans-serif;
+      background: @_ita_main-green_color;
+      /* border-top: 1px solid #2b2b2b; */
+      font-family: 'GTWalsheimProBold', 'Ubuntu', sans-serif;
       nav {
         margin: 0 auto;
         max-width: 1400px;
@@ -506,15 +499,16 @@ a, a:hover, .alink, a:visited, .alink:visited {
           > li {
             height: 43px;
 						&:nth-child(2){
-							background: #1aa3ff !important;
+							background: @_ita_main-orange_color !important;
 						}
             a {
               padding: 0;
-              line-height: 40px;
+              line-height: 43px;
               padding: 0 17px;
               font-size: 13px;
               height: 43px;
               font-weight: 400;
+              color: @_ita_main-blue_color;
             }
             &:first-child {
               a {
@@ -535,7 +529,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           li{
             a{
               &:hover{
-                background: #1aa3ff;
+                background: @_ita_main-orange_color;
                 color:#fff;
                 border-bottom: 3px solid #fff;
               }
@@ -544,11 +538,12 @@ a, a:hover, .alink, a:visited, .alink:visited {
 						&.link-rastreio{
 							float: right;
 							font-weight: 600;
-							background: #454444;
+              background: #fff;
 							a{
-								font-weight: 600;
+                font-weight: 600;
+                color: @_ita_main-blue_color;
 								&:hover{
-									background: #454444;
+									background: #fff;
 									border-bottom: 0;
 									opacity: 0.8;
 								}
@@ -564,14 +559,14 @@ a, a:hover, .alink, a:visited, .alink:visited {
         top: 0;
         left: 0;
         width: 100%;
-        height: 70px;
+        height: 69px;
         box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.1);
         min-width: 1250px;
         .header.content {
           position: initial;
-          height: 70px;
+          height: 69px;
           .logo {
-            margin: 0px 0 0 0;
+            margin: 0;
           }
           .block-search {
             margin-top: 15px;
@@ -636,7 +631,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           &:before{
             width: 19px;
             height: 135px;
-            background: url('@{baseDir}images/spritesheet-1.png') no-repeat;
+            background: url('@{baseDir}images/spritesheet-2021.png') no-repeat;
             background-position: -5px -55px;
             content:'';
             display: block;
@@ -711,8 +706,8 @@ a, a:hover, .alink, a:visited, .alink:visited {
 
 /*-- Footer -- */
 .wrp-news {
-  background: url('@{baseDir}images/bg-cut-news.png') repeat;
-  height: 254px;
+  background: @_ita_main-green_color;
+  height: 215px;
   position: relative;
   z-index: 5;
   .wrp-content-news {
@@ -726,11 +721,11 @@ a, a:hover, .alink, a:visited, .alink:visited {
         display: inline-block;
         margin-bottom: 0;
         p, span {
-          color: #fff;
+          color: @_ita_main-blue_color;
           font-size: 28px;
           text-transform: uppercase;
           font-weight: 600;
-          font-family: 'MullerBlack';
+          font-family: 'GTWalsheimProBold';
           margin-bottom: 0;
           line-height: 160%;
           margin-top: 36px;
@@ -748,18 +743,19 @@ a, a:hover, .alink, a:visited, .alink:visited {
       display: block;
       height: 48px;
       float: none;
-      margin: 33px auto 7px;
+      margin: 10px auto 7px;
       overflow: visible;
       .field {
         height: 40px;
         background: none;
         position: relative;
-        margin: 0;
+        margin: 0 0 0 -10%;
+        width: 120%;
         .control {
           input {
-            padding: 0 0px 0 15px;
+            padding: 0 0px 0 10px;
             height: 40px;
-            width: 398px;
+            width: 69%;
             border: 0;
             background: #fff;
             border-radius:2px;
@@ -782,16 +778,16 @@ a, a:hover, .alink, a:visited, .alink:visited {
           position: absolute;
           top: 0;
           right: 0px;
-          width: 165px;
+          width: 30%;
           height: 40px;
-          background: #1aa3ff;
+          background: @_ita_main-blue_color;
           border: 0;
-          font-family: 'MullerBlack';
+          font-family: 'GTWalsheimProBold';
           border-radius: 0;
           padding: 0;
           border-radius:2px;
           &:before {
-            content: "Assinar";
+            content: "Assine";
             font-size: 13px;
             vertical-align: middle;
             color: #fff;
@@ -810,7 +806,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
       margin: 0 auto 0;
       text-align: center;
       color:#fff;
-      font-family: 'MullerRegular';
+      font-family: 'GTWalsheimProRegular';
       width: 520px;
     }
   }
@@ -859,7 +855,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
                     span{
                       height: 34px;
                       font-size: 30px;
-                      font-family: 'Open Sans', sans-serif;
+                      font-family: 'GTWalsheimProRegular', 'Open Sans', sans-serif;
                     }
                   }
                   &.owl-next {
@@ -867,7 +863,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
                     span {
                       height: 34px;
                       font-size: 30px;
-                      font-family: 'Open Sans', sans-serif;
+                      font-family: 'GTWalsheimProRegular', 'Open Sans', sans-serif;
                     }
                   }
                   span {
@@ -934,28 +930,25 @@ a, a:hover, .alink, a:visited, .alink:visited {
   }
 
   .nav-tabs > li > a {
-    padding: 0 0px 0;
+    padding: 0;
     margin-right: 2px;
-    line-height: 28px;
-    font-size: 18px;
-    color: #b9bdc4;
-    text-transform: uppercase;
+    line-height: 20px;
+    color: #999;
     font-weight: 600;
     text-decoration: none;
     font-size: 14px;
-    font-family: 'MullerMedium';
+    font-family: 'GTWalsheimProRegular';
   }
   .nav-tabs > li > a {
-    padding-bottom: 8px;
     border-bottom: 1px solid transparent;
   }
   .nav-tabs > .active > a,
   .nav-tabs > .active > a:hover {
-    color: #1aa3ff;
+    color: @_ita_main-green_color;
     cursor: default;
     background-color: transparent;
-    border-bottom: 2px solid #1aa3ff;
-    font-family: 'MullerBold';
+    border-bottom: 4px solid @_ita_main-green_color;
+    font-family: 'GTWalsheimProBold';
   }
   li {
     line-height: 18px;
@@ -965,7 +958,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
     opacity: 1;
     display: block;
     transition: all 0.3;
-    font-family: 'MullerRegular';
+    font-family: 'GTWalsheimProRegular';
   }
   .tab-content.hide {
     transition: all 0.3;
@@ -1006,7 +999,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           float: left;
           width: 25px;
           display: inline-block;
-          background: url('@{baseDir}images/spritesheet-1.png') no-repeat;
+          background: url('@{baseDir}images/spritesheet-2021.png') no-repeat;
           background-position: -25px -55px;
           margin-right: 20px;
         }
@@ -1136,7 +1129,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           }
           .in-infos{
             h2.product-name{
-              font-family: 'MullerBold';
+              font-family: 'GTWalsheimProBold';
               font-size: 16px;
               font-weight: 700;
               text-transform: none;
@@ -1152,7 +1145,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
                 text-align: center;
                 width: 33%;
                 float: left;
-                font-family: 'Ubuntu';
+                font-family: 'GTWalsheimProRegular', 'Ubuntu';
                 font-size: 17px;
                 color: #c2d1d9;
                 font-weight: 500;
@@ -1164,7 +1157,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
                 float: left;
                 border:0;
                 color: #505d68;
-                font-family: 'Ubuntu';
+                font-family: 'GTWalsheimProRegular', 'Ubuntu';
                 font-size: 12px;
                 font-weight: 700;
               }
@@ -1174,14 +1167,14 @@ a, a:hover, .alink, a:visited, .alink:visited {
               display: block;
               margin: 28px auto 0;
               p{
-                font-family: 'MullerBold';
+                font-family: 'GTWalsheimProBold';
                 font-size: 16px;
                 color: #242424;
               }
               .price-box{
                 .price{
                   color:#707070;
-                  font-family: 'MullerRegular';
+                  font-family: 'GTWalsheimProRegular';
                   font-size: 14px;
                 }
                 .wrp-oldprice{
@@ -1192,14 +1185,14 @@ a, a:hover, .alink, a:visited, .alink:visited {
                 .special-price, .regular-price{
                   .price{
                     color: #242424;
-                    font-family: 'MullerBold';
+                    font-family: 'GTWalsheimProBold';
                     font-size: 21px;
                   }
                 }
               }
               p.price-with-discount, p.installments-price{
                 color:#707070;
-                font-family: 'MullerRegular';
+                font-family: 'GTWalsheimProRegular';
                 font-size: 14px;
                 margin: 0 0 0;
               }
@@ -1208,7 +1201,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
                 height: 21px;
                 padding: 3px 3px;
                 color: #fff;
-                font-family: 'MullerMedium';
+                font-family: 'GTWalsheimProMedium';
                 font-size: 11px;
                 border-radius: 2px;
                 position: relative;
@@ -1240,7 +1233,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
                 float: left;
                 width: 20px;
                 display: inline-block;
-                background: url('@{baseDir}images/spritesheet-1.png') no-repeat;
+                background: url('@{baseDir}images/spritesheet-2021.png') no-repeat;
                 margin-right: 20px;
               }
               &.product-height {
@@ -1278,7 +1271,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           a {
             font-size: 16px;
             font-weight: 700;
-            font-family: 'MullerBold';
+            font-family: 'GTWalsheimProBold';
             color: #3eaffc;
             margin: 79px 0 0;
             display: inline-block;
@@ -1287,7 +1280,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
               content:'';
               width: 11px;
               height: 6px;
-              background: url('@{baseDir}images/spritesheet-1.png') center center no-repeat;
+              background: url('@{baseDir}images/spritesheet-2021.png') center center no-repeat;
               background-position: -5px -5px;
               display: inline-block;
               margin: 0 9px;
@@ -1314,7 +1307,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
             display: inline-block;
             margin-right: 25px;
             a{
-              font-family: 'MullerBold';
+              font-family: 'GTWalsheimProBold';
               font-size: 14px;
               color: #a1aeb7;
               text-transform: uppercase;
@@ -1334,7 +1327,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           height: auto;
           max-height: auto;
           padding: 0;
-          font-family: 'MullerRegular';
+          font-family: 'GTWalsheimProRegular';
           font-size: 14px;
           line-height: 22px;
         }
@@ -1391,10 +1384,9 @@ a, a:hover, .alink, a:visited, .alink:visited {
   width: 100%;
 }
 .page-footer {
-  background: url('@{baseDir}images/bg-cut-g.png') repeat;
+  background: @_ita_main-blue_color;
   padding: 26px 0 94px;
-  font-family: 'MullerRegular', 'Open Sans';
-  border-bottom: 7px solid #1aa3ff;
+  font-family: 'GTWalsheimProRegular', 'Open Sans';
   color:#fff;
   .footer.content {
     padding: 0 10px;
@@ -1404,6 +1396,9 @@ a, a:hover, .alink, a:visited, .alink:visited {
     .footer-logo {
       margin-bottom: 42px;
       margin-top: 19px;
+      img{
+        width: 140px;
+      }
     }
     .links {
       padding-right: 0;
@@ -1437,7 +1432,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
                 &:before {
                   display: inline-block;
                   content: '';
-                  background: url('@{baseDir}images/spritesheet-1.png') no-repeat;
+                  background: url('@{baseDir}images/spritesheet-2021.png') no-repeat;
                   width: 30px;
                   height: 30px;
                   margin-right: 10px;
@@ -1454,7 +1449,11 @@ a, a:hover, .alink, a:visited, .alink:visited {
                   background-position: 0 -90px;
                 }
                 &.address:before {
+                  display: none;
                   background-position: -104px -131px;
+                }
+                &.phone:before {
+                  display: none;
                 }
                 p {
                   display: inline-block;
@@ -1467,7 +1466,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
               }
             }
             .title {
-              color: #1aa3ff;
+              color: @_ita_main-green_color;
               display: block;
               margin-bottom: 22px;
               font-weight: 700;
@@ -1490,6 +1489,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
             }
           }
           .wrp-social-links {
+            display: none;
             position: absolute;
             right: 0;
             bottom: 0;
@@ -1507,7 +1507,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
                   display: inline-block;
                   width: 40px;
                   height: 40px;
-                  background: url('@{baseDir}images/spritesheet-1.png') no-repeat;
+                  background: url('@{baseDir}images/spritesheet-2021.png') no-repeat;
                   &:hover {
                     opacity: 0.8;
                   }
@@ -1588,14 +1588,14 @@ a, a:hover, .alink, a:visited, .alink:visited {
     .block.filter {
        .filter-title {
          strong{
-           font-family: 'MullerBlack';
+           font-family: 'GTWalsheimProBold';
            font-size: 32px;
            color:#242424;
            text-transform: uppercase;
          }
        }
        strong.block-subtitle.filter-subtitle {
-         font-family: 'MullerBlack';
+         font-family: 'GTWalsheimProBold';
          font-size: 14px;
          color: #242424;
          text-transform: uppercase;
@@ -1605,7 +1605,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
            .filter-options-title{
              cursor: pointer;
             color: #3eaffc;
-            font-family: 'MullerBold';
+            font-family: 'GTWalsheimProBold';
             font-size: 14px;
             height: auto;
             border-top: 2px solid #f2f2f2;
@@ -1646,7 +1646,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
               margin: 10px 0 0 0px;
               a {
                 color: #000000;
-                font-family: 'MullerRegular';
+                font-family: 'GTWalsheimProRegular';
                 font-size: 14px;
                 cursor: pointer !important;
                 input, label {
@@ -1810,7 +1810,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
             font-weight: 400;
             color: #242424;
             text-transform: none;
-            font-family: 'MullerBold';
+            font-family: 'GTWalsheimProBold';
             line-height: 100%;
             display: block
           }
@@ -1818,16 +1818,15 @@ a, a:hover, .alink, a:visited, .alink:visited {
         .price-box {
           margin-bottom: 8px;
           position: relative;
-          font-family: 'MullerRegular';
+          font-family: 'GTWalsheimProRegular';
           letter-spacing: 0.6px;
           .price-label {
             display: none;
           }
           .price {
-            color: #242424;
+            color: @_ita_main-blue_color;
             font-weight: 600;
             font-size: 23px;
-            font-weight: 600;
           }
           .wrp-oldprice {
             display: inline-block;
@@ -1913,7 +1912,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
             padding-top: 10px;
             background: #fff;
             .action.primary {
-              font-family: 'MullerBlack';
+              font-family: 'GTWalsheimProBold';
               border-radius: 2px;
               height: 42px;
               color: #fff;
@@ -1921,7 +1920,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
               margin: 0 auto;
               font-weight: 600;
               font-size: 14px;
-              background: #1aa3ff;
+              background: @_ita_main-blue_color;
               span {
                 display: inline-block;
                 line-height: 38px;
@@ -1952,7 +1951,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           height: 24px;
           padding: 3px 3px;
           color: #fff;
-          font-family: 'MullerMedium';
+          font-family: 'GTWalsheimProMedium';
           font-size: 15px;
           border-radius: 2px;
           position: relative;
@@ -2004,7 +2003,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
   text-align: center;
   z-index: 9;
   border-radius: 100%;
-  font-family: 'MullerBold';
+  font-family: 'GTWalsheimProBold';
 }
 .tag-new {
   display: block;
@@ -2060,7 +2059,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
       height: 14px;
       width: 14px;
       margin: 10px 3px;
-      background: #1aa3ff;
+      background: @_ita_main-blue_color;
       border-radius: 100px;
       opacity: 0.4;
     }
@@ -2173,6 +2172,8 @@ a, a:hover, .alink, a:visited, .alink:visited {
         margin-top: 10px;
         img {
           margin: 0 auto;
+          max-width: 90%;
+          height: auto;
         }
       }
       .home-products-list {
@@ -2186,11 +2187,12 @@ a, a:hover, .alink, a:visited, .alink:visited {
         .wrp-title {
           overflow: hidden;
           text-align: left;
-          margin-bottom: 30px;
+          margin-top: 40px;
+          margin-bottom: 5px;
           .title {
-            color: #000;
+            color: @_ita_main-blue_color;
             font-size: 28px;
-            font-family: 'MullerBlack';
+            font-family: 'GTWalsheimProBold';
             text-transform: uppercase;
           }
           .more {
@@ -2200,6 +2202,14 @@ a, a:hover, .alink, a:visited, .alink:visited {
             font-weight: 700;
             font-size: 14px;
             text-decoration: underline;
+          }
+          &:before{
+            content: url('@{baseDir}images/icon_marker.png');
+            display: inline-block;
+            position: absolute;
+            left: -20px;
+            margin-top: 9px;
+            .lib-rotate(-45deg);
           }
         }
         .product-item {
@@ -2232,7 +2242,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
                   span{
                     height: 34px;
                     font-size: 30px;
-                    font-family: 'Open Sans', sans-serif;
+                    font-family: 'GTWalsheimProRegular', 'Open Sans', sans-serif;
                   }
                 }
                 &.owl-next{
@@ -2240,7 +2250,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
                   span{
                     height: 34px;
                     font-size: 30px;
-                    font-family: 'Open Sans', sans-serif;
+                    font-family: 'GTWalsheimProRegular', 'Open Sans', sans-serif;
                   }
                 }
                 span{
@@ -2629,7 +2639,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
       border: 0;
       &.active {
         &:before {
-          color: #1aa3ff;
+          color: @_ita_main-blue_color;
         }
       }
     }
@@ -2637,7 +2647,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
   .toolbar-amount {
     color: #242424;
     font-size: 12px;
-    font-family: 'MullerRegular';
+    font-family: 'GTWalsheimProRegular';
     line-height: 24px;
     padding: 0;
     font-weight: normal;
@@ -2649,14 +2659,14 @@ a, a:hover, .alink, a:visited, .alink:visited {
     .label {
       color: #242424;
       font-size: 12px;
-      font-family: 'MullerRegular';
+      font-family: 'GTWalsheimProRegular';
       font-weight: normal;
 
     }
     .limiter-text {
       color: #242424;
       font-size: 12px;
-      font-family: 'MullerRegular';
+      font-family: 'GTWalsheimProRegular';
       line-height: 24px;
       font-weight: normal;
     }
@@ -2668,7 +2678,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
     .sorter-label {
       color: #242424;
       font-size: 12px;
-      font-family: 'MullerRegular';
+      font-family: 'GTWalsheimProRegular';
       font-weight: normal;
     }
     .sorter-options {
@@ -2708,7 +2718,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
       strong.page {
         span {
           font-size: 14px;
-          color: #1aa3ff;
+          color: @_ita_main-blue_color;
         }
       }
       .action {
@@ -2756,7 +2766,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           font-weight: 700;
         }
         &:hover {
-          background: #1aa3ff;
+          background: @_ita_main-blue_color;
           &:before {
             color: #fff;
           }
@@ -2958,7 +2968,7 @@ select:not([disabled]) {
       font-size: 28px;
       text-transform: none;
       margin: 0 0 10px 0;
-      font-family: 'MullerBlack';
+      font-family: 'GTWalsheimProBold';
       font-weight: 500;
       width: calc(~'100% - 25px');
     }
@@ -2973,7 +2983,7 @@ select:not([disabled]) {
     .reviews-actions {
       display: block;
       color: #3c3c3c;
-      font-family: 'MullerRegular';
+      font-family: 'GTWalsheimProRegular';
       font-size: 14px;
       font-weight: 400;
       line-height: 21px;
@@ -3026,7 +3036,7 @@ select:not([disabled]) {
           font-size: 22px;
           text-decoration: line-through;
           font-weight: 500;
-          font-family: 'MullerMedium';
+          font-family: 'GTWalsheimProMedium';
         }
       }
       .price-final_price {
@@ -3056,7 +3066,7 @@ select:not([disabled]) {
         height: 25px;
         padding: 6px 1px 0;
         color: #fff;
-        font-family: 'MullerMedium';
+        font-family: 'GTWalsheimProMedium';
         font-size: 11px;
         border-radius: 2px;
         position: relative;
@@ -3104,11 +3114,11 @@ select:not([disabled]) {
     }
     .box-tocart .action.tocart,
     .product-options-bottom .box-tocart .action.tocart {
-      background: #28a6fb;
+      background: @_ita_main-blue_color;
       padding: 0;
       font-size: 14px;
       width: 202px;
-      font-family: 'MullerMedium';
+      font-family: 'GTWalsheimProMedium';
       border-radius: 2px;
       &.disable {
         background: #e5102a;
@@ -3159,7 +3169,7 @@ select:not([disabled]) {
               font-weight: 600;
               color: #505d68;
               height: 36px;
-              font-family: 'Ubuntu', sans-serif;
+              font-family: 'GTWalsheimProRegular', 'Ubuntu', sans-serif;
             }
             a {
               font-size: 22px;
@@ -3188,7 +3198,7 @@ select:not([disabled]) {
         border-radius: 2px;
         background: #fff;
         font-size: 13px;
-        font-family: 'Mullerbold';
+        font-family: 'GTWalsheimProBold';
         color:#242424;
         text-transform: uppercase;
         text-align: center;
@@ -3260,7 +3270,7 @@ select:not([disabled]) {
               color: #3c3c3c;
               font-weight: 400;
               line-height: 30px;
-              font-family: 'MullerBold';
+              font-family: 'GTWalsheimProBold';
             }
             span {
               display: none;
@@ -3270,7 +3280,7 @@ select:not([disabled]) {
         }
         a.busca-cep{
           color: #3c3c3c;
-          font-family: 'MullerMedium';
+          font-family: 'GTWalsheimProMedium';
           font-size: 14px;
           margin: 22px 0 0 29px;
           text-decoration: underline;
@@ -3364,8 +3374,8 @@ select:not([disabled]) {
     }
     .parc-link, .mooble{
       a{
-        color: #28a6fb;
-        font-family: 'MullerMedium';
+        color: @_ita_main-blue_color;
+        font-family: 'GTWalsheimProMedium';
         font-size: 14px;
         font-weight: 500;
         line-height: 21px;
@@ -3466,7 +3476,7 @@ select:not([disabled]) {
             width: 207px;
             background-color: #b9bdc4;
             color: #fff;
-            font-family: 'MullerBold';
+            font-family: 'GTWalsheimProBold';
             font-weight: 600;
             text-align: center;
             border-radius: 6px;
@@ -3494,14 +3504,14 @@ select:not([disabled]) {
       float: left;
       text-align: right;
       .price{
-        font-family: 'MullerBold';
+        font-family: 'GTWalsheimProBold';
         font-size: 16px;
         color: #ff7011;
       }
       .parcelamento{
         font-size: 12px;
         color: #3c3c3c;
-        font-family: 'MullerRegular';
+        font-family: 'GTWalsheimProRegular';
       }
     }
   }
@@ -3574,10 +3584,10 @@ select:not([disabled]) {
         }
         &.active {
           .switch {
-            border-bottom: 4px solid #28a6fb;
-            color:#28a6fb;
+            border-bottom: 4px solid @_ita_main-blue_color;
+            color:@_ita_main-blue_color;
             span.counter {
-              color: #28a6fb;
+              color: @_ita_main-blue_color;
             }
           }
         }
@@ -3601,7 +3611,7 @@ select:not([disabled]) {
         .description {
           color: #3c3c3c;
           font-size: 14px;
-          font-family: 'MullerRegular';
+          font-family: 'GTWalsheimProRegular';
         }
       }
     }
@@ -3735,14 +3745,14 @@ select:not([disabled]) {
                 margin-bottom: 17px;
                 font-size: 18px;
                 color: #242424;
-                font-family: 'MullerBold';
+                font-family: 'GTWalsheimProBold';
               }
             }
             .review-details{
               float: right;
               width: auto;
               p{
-                font-family: 'MullerRegularItalic';
+                font-family: 'GTWalsheimProRegularItalic';
                 font-size: 12px;
                 color: #3c3c3c;
                 display: inline-block;
@@ -3757,7 +3767,7 @@ select:not([disabled]) {
           }
           .review-content{
             font-size: 14px;
-            font-family: 'MullerRegular';
+            font-family: 'GTWalsheimProRegular';
             line-height: 21px;
           }
         }
@@ -3784,7 +3794,7 @@ select:not([disabled]) {
               display: block;
               width: 50%;
               float: left;
-              font-family: 'MullerMedium';
+              font-family: 'GTWalsheimProMedium';
             }
           }
           td{
@@ -3792,7 +3802,7 @@ select:not([disabled]) {
             display: block;
             width: 50%;
             float: left;
-            font-family: 'MullerRegular';
+            font-family: 'GTWalsheimProRegular';
           }
         }
       }
@@ -3871,7 +3881,7 @@ select:not([disabled]) {
             span{
               height: 34px;
               font-size: 30px;
-              font-family: 'Open Sans', sans-serif;
+              font-family: 'GTWalsheimProRegular', 'Open Sans', sans-serif;
             }
           }
           &.owl-next{
@@ -3879,7 +3889,7 @@ select:not([disabled]) {
             span{
               height: 34px;
               font-size: 30px;
-              font-family: 'Open Sans', sans-serif;
+              font-family: 'GTWalsheimProRegular', 'Open Sans', sans-serif;
             }
           }
           span{
@@ -3907,7 +3917,7 @@ select:not([disabled]) {
             display: none;
           }
           &.active{
-            background: #1aa3ff;
+            background: @_ita_main-blue_color;
           }
         }
       }
@@ -3952,7 +3962,7 @@ select:not([disabled]) {
     padding-bottom: 12px;
     h4.product-name {
       font-size: 14px;
-      font-family: 'MullerBold';
+      font-family: 'GTWalsheimProBold';
       color: #242424;
       width: 90%;
       margin: 14px auto;
@@ -3962,8 +3972,8 @@ select:not([disabled]) {
       .btn {
         text-align: center;
         .action.primary {
-          background: #1aa3ff;
-          font-family: 'MullerBold';
+          background: @_ita_main-blue_color;
+          font-family: 'GTWalsheimProBold';
           width: 90%;
           margin: 10px auto 0;
           font-size: 13px;
@@ -3975,7 +3985,7 @@ select:not([disabled]) {
       display: block;
       margin: 15px auto 0;
       p {
-        font-family: 'MullerBold';
+        font-family: 'GTWalsheimProBold';
         font-size: 16px;
         color: #242424;
         width: 90%;
@@ -3986,7 +3996,7 @@ select:not([disabled]) {
         margin-bottom: 6px;
         .price {
           color:#707070;
-          font-family: 'MullerRegular';
+          font-family: 'GTWalsheimProRegular';
           font-size: 14px;
         }
         .wrp-oldprice {
@@ -3997,14 +4007,14 @@ select:not([disabled]) {
         .special-price, .regular-price {
           .price {
             color: #242424;
-            font-family: 'MullerBold';
+            font-family: 'GTWalsheimProBold';
             font-size: 21px;
           }
         }
       }
       p.price-with-discount, p.installments-price {
         color:#707070;
-        font-family: 'MullerRegular';
+        font-family: 'GTWalsheimProRegular';
         font-size: 14px;
         margin: 0 0 0;
       }
@@ -4015,7 +4025,7 @@ select:not([disabled]) {
     height: 21px;
     padding: 3px 3px;
     color: #fff;
-    font-family: 'MullerMedium';
+    font-family: 'GTWalsheimProMedium';
     font-size: 11px;
     border-radius: 2px;
     position: relative;
@@ -4039,13 +4049,13 @@ select:not([disabled]) {
       margin: 0 auto;
       padding: 0;
       p{
-        font-family: 'MullerBold';
+        font-family: 'GTWalsheimProBold';
         font-size: 16px;
         color: #242424;
         margin: 7px 0;
       }
       li{
-        font-family: 'MullerMedium';
+        font-family: 'GTWalsheimProMedium';
         color: #242424;
         font-size: 14px;
         font-weight: 500;
@@ -4110,7 +4120,7 @@ select:not([disabled]) {
     .page-title {
       span {
         color: #242424;
-        font-family: 'MullerBlack';
+        font-family: 'GTWalsheimProBold';
         font-size: 32px;
         font-weight: 900;
         line-height: 38px;
@@ -4131,7 +4141,7 @@ select:not([disabled]) {
         border-radius: 3px;
         cursor: pointer;
         display: inline-block;
-        font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-family: 'GTWalsheimProRegular', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         font-weight: 700;
         margin: 0;
         padding: 7px 15px 7px 0;
@@ -4161,7 +4171,7 @@ select:not([disabled]) {
       .items {
         thead {
           th {
-            font-family: 'MullerBold';
+            font-family: 'GTWalsheimProBold';
             border-bottom: 2px solid #f7f7f7;
             font-size: 14px;
             font-weight: 700;
@@ -4254,7 +4264,7 @@ select:not([disabled]) {
       .wrp-parcl{
         width: 100%;
         font-size: 12px;
-        font-family: 'MullerRegular';
+        font-family: 'GTWalsheimProRegular';
         color: #3c3c3c;
         text-align: left;
         text-align: center;
@@ -4270,7 +4280,7 @@ select:not([disabled]) {
           float: right;
           width:50%;
           text-align: right;
-          font-family: 'MullerMedium';
+          font-family: 'GTWalsheimProMedium';
           font-size: 12px;
         }
       }
@@ -4301,7 +4311,7 @@ select:not([disabled]) {
     .cart-totals {
       .title {
         margin-bottom: 20px;
-        font-family: 'MullerBold';
+        font-family: 'GTWalsheimProBold';
         font-size: 16px;
         strong{
           border-bottom: 1px solid #ccc;
@@ -4317,22 +4327,22 @@ select:not([disabled]) {
       }
       .grand.totals{
         th.mark{
-          font-family: 'MullerBold';
+          font-family: 'GTWalsheimProBold';
           font-size: 16px;
         }
         span.price{
-          font-family: 'MullerMedium';
+          font-family: 'GTWalsheimProMedium';
           font-size: 18px;
           color: #3eaffc;
         }
       }
       th.mark{
         font-size: 12px;
-        font-family: 'MullerRegular';
+        font-family: 'GTWalsheimProRegular';
         color: #3c3c3c;
       }
       span.price{
-        font-family: 'MullerMedium';
+        font-family: 'GTWalsheimProMedium';
         font-size: 12px;
       }
     }
@@ -4381,7 +4391,7 @@ select:not([disabled]) {
       margin: 30px 0;
       strong {
         color: #242424;
-        font-family: 'MullerBlack';
+        font-family: 'GTWalsheimProBold';
         font-size: 28px;
         text-transform: uppercase;
       }
@@ -4424,7 +4434,7 @@ select:not([disabled]) {
     strong {
       color: #242424;
       font-size: 28px !important;
-      font-family: 'MullerBlack';
+      font-family: 'GTWalsheimProBold';
       text-transform: uppercase;
     }
   }
@@ -4696,7 +4706,7 @@ select:not([disabled]) {
         display: none;
         position: relative;
         border-top: 3px solid #aaa;
-        margin-top: 70px;
+        margin-top: 69px;
     		&.current {
     			display: block;
           &:before, &:after {
@@ -4761,6 +4771,7 @@ body.checkout-index-index {
       img {
         max-width: 100%;
         width: auto;
+        max-height: 69px;
       }
     }
     .actions-toolbar {
@@ -4772,10 +4783,10 @@ body.checkout-index-index {
         button {
           width: auto;
           border: 0 !important;
-          font-family: 'MullerRegular' !important;
+          font-family: 'GTWalsheimProRegular' !important;
           color: #fff !important;
           &.primary.continue {
-            background: #1aa3ff !important;
+            background: @_ita_main-blue_color !important;
             font-weight: 700;
             padding: 16px 30px;
             font-size: 26px !important;
@@ -4793,7 +4804,7 @@ body.checkout-index-index {
             font-size: 20px !important;
             font-weight: 600;
             text-transform: uppercase;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'GTWalsheimProRegular', 'Montserrat', sans-serif;
           }
           &.back {
             background-color: #f2f2f2 !important;
@@ -4814,9 +4825,10 @@ body.checkout-index-index {
     }
     .wrp-header {
       #header-checkout{
-        background-color: #454444;
+        .header_wrapper_background();
         .content-header{
           padding: 0;
+          background-color: @_ita_main-blue_color;
           .infos {
             margin-top: 10px;
             p {
@@ -4853,9 +4865,9 @@ body.checkout-index-index {
     }
     #checkout {
       .action.primary, .action-apply {
-        background-color: #28a6fb;
+        background-color: @_ita_main-blue_color;
         font-size: 14px;
-        font-family: 'MullerRegular';
+        font-family: 'GTWalsheimProRegular';
       }
       .action.primary.continue {
         font-weight: 700;
@@ -4868,7 +4880,7 @@ body.checkout-index-index {
         border: 1px solid #cdcdcd;
         font-size: 14px;
         color: #333;
-        font-family: 'MullerRegular';
+        font-family: 'GTWalsheimProRegular';
       }
       .action.checkout {
         font-size: 20px !important;
@@ -4947,13 +4959,13 @@ body.checkout-index-index {
         line-height: 1.6rem;
         font-size: 14px;
         button{
-          background: #1aa3ff;
+          background: @_ita_main-blue_color;
           border: 0;
-          font-family: 'MullerBlack';
+          font-family: 'GTWalsheimProBold';
           color:#fff;
           padding: 0 30px;
           &:hover{
-            background: #1aa3ff;
+            background: @_ita_main-blue_color;
             color:#fff;
             opacity: 0.8;
             border:0;
@@ -4962,9 +4974,9 @@ body.checkout-index-index {
       }
     }
     button.action.primary.checkout {
-      background: #1aa3ff;
+      background: @_ita_main-blue_color;
       border: 0;
-      font-family: 'MullerBlack';
+      font-family: 'GTWalsheimProBold';
       color:#fff;
     }
   }
@@ -4978,7 +4990,7 @@ body.checkout-index-index {
     margin: 0 auto;
     display: block;
     p {
-      font-family: 'MullerMedium';
+      font-family: 'GTWalsheimProMedium';
       font-size: 14px;
       color: #3c3c3c;
       span{
@@ -5057,13 +5069,13 @@ body.checkout-index-index {
             font-weight: 400;
             color: #242424;
             text-transform: none;
-            font-family: 'MullerBold';
+            font-family: 'GTWalsheimProBold';
           }
         }
         .price-box{
           .price{
             color:#707070;
-            font-family: 'MullerRegular';
+            font-family: 'GTWalsheimProRegular';
             font-size: 14px;
           }
           .wrp-oldprice{
@@ -5074,7 +5086,7 @@ body.checkout-index-index {
           .special-price, .regular-price{
             .price{
               color: #242424;
-              font-family: 'MullerBold';
+              font-family: 'GTWalsheimProBold';
               font-size: 21px;
             }
           }
@@ -5090,11 +5102,19 @@ body.checkout-index-index {
 }
 
 /* Customer Fields */
-form.form-create-account { }
-form.form-create-account .show-empresa { margin-bottom: 5px }
-form.form-create-account .field-razon_social { display: none }
-form.form-create-account .field-empresa { display: none }
-form.form-create-account .field-ruc { display: none }
+form.form-create-account { 
+  .show-empresa { 
+    margin-bottom: 5px;
+  }
+  .field-razon_social,
+  .field-empresa,
+  .field-ruc { 
+    display: none;
+  }
+  .customer-account-create & .field.date.field-dob input#dob{
+    width: ~"calc(100% - 50px)";
+  }
+}
 .account {
   &.newsletter-manage-index {
     .column.main {
@@ -5117,7 +5137,7 @@ form.form-create-account .field-ruc { display: none }
 
 .checkout-onepage-success{
   a.order-number{
-    color: #1aa3ff;
+    color: @_ita_main-blue_color;
   }
 }
 
@@ -5496,7 +5516,7 @@ form.form-create-account .field-ruc { display: none }
 
 .smile-es-range-slider{
   .ui-slider-handle{
-    background: #1aa3ff;
+    background: @_ita_main-blue_color;
   }
 }
 
@@ -5522,8 +5542,17 @@ form.form-create-account .field-ruc { display: none }
     .actions-toolbar {
         .secondary {
             float: none;
-            margin-left: 10px
+            margin-left: 10px;
         }
+    }
+    .customer-account-login.page-layout-1column &{
+      > .field:not(.choice) > .label{
+        text-align: left;
+      }
+      & .actions-toolbar, 
+      &:after{
+        margin-left:0;
+      }
     }
 }
 
