@@ -24,9 +24,9 @@ body {
   text-transform: uppercase;
   font-family: 'GTWalsheimProBold', sans-serif;
   border: 0;
-  background: #1aa3ff;
+  background: @_ita_main-blue_color;
   &:hover, &:focus {
-    background: #1aa3ff;
+    background: @_ita_main-blue_color;
     opacity: 0.8;
     border: 0;
   }
@@ -311,7 +311,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           line-height: 1.6rem;
           width: 100%;
           margin: 0 auto;
-          background: #1aa3ff;
+          background: @_ita_main-blue_color;
         }
         .viewcart {
           color: #3b3b3b;
@@ -396,7 +396,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
         }
         &.active, &:hover {
           span {
-            background-color: #28a6fb;
+            background-color: @_ita_main-blue_color;
           }
         }
       }
@@ -408,6 +408,24 @@ a, a:hover, .alink, a:visited, .alink:visited {
           img {
             width: auto;
             margin: 0 auto;
+          }
+          li {
+            &::marker{
+              content: '';
+            }
+          }
+          &.active{
+            &~ .active{
+              & li:before{
+                content: url('@{baseDir}images/icon_marker.png');
+                display: inline-block;
+                position: absolute;
+                width: 20px;
+                left: -20px;
+                top: 50%;
+                margin-top: -10px;
+              }
+            }
           }
         }
       }
@@ -445,7 +463,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           padding: 0 0 0 14px;
           .title {
             font-family: 'GTWalsheimProBold';
-            color: #000;
+            color: @_ita_main-blue_color;
             font-size: 18px;
             font-weight: 700;
             text-transform: uppercase;
@@ -460,6 +478,14 @@ a, a:hover, .alink, a:visited, .alink:visited {
             font-size: 14px;
             text-decoration: underline;
             display: inline-block;
+          }
+          &:before{
+            content: url('@{baseDir}images/icon_marker.png');
+            display: inline-block;
+            position: absolute;
+            left: -14px;
+            margin-top: 4px;
+            .lib-rotate(-45deg);
           }
         }
         // .product-item {
@@ -604,10 +630,9 @@ a, a:hover, .alink, a:visited, .alink:visited {
 
 /*-- Footer -- */
 .page-footer {
-  background: url('@{baseDir}images/bg-cut-g.png') repeat;
+  background: @_ita_main-blue_color;
   padding: 26px 0 94px;
   font-family: 'GTWalsheimProRegular', 'Open Sans';
-  border-bottom: 7px solid #1aa3ff;
   color:#fff;
   .footer.content {
     padding: 0;
@@ -617,6 +642,9 @@ a, a:hover, .alink, a:visited, .alink:visited {
     .footer-logo {
       margin-bottom: 40px;
       text-align: left;
+      img{
+        width: 140px;
+      }
     }
     .links {
       padding-right: 0;
@@ -662,7 +690,11 @@ a, a:hover, .alink, a:visited, .alink:visited {
                   background-position: 0 -90px;
                 }
                 &.address:before {
+                  display: none;
                   background-position: 0 -45px;
+                }
+                &.phone:before {
+                  display: none;
                 }
                 p {
                   display: inline-block;
@@ -956,7 +988,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
               margin: 0 auto;
               font-weight: 600;
               font-size: 14px;
-              background: #1aa3ff;
+              background: @_ita_main-blue_color;
               display: inline-block;
               position: relative;
               left: unset;
@@ -993,7 +1025,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
         }
         .wrp-short{
           max-height:0;
-          margin: 0px 0 0 0;
+          margin: 0;
           overflow: hidden;
           font-family: 'GTWalsheimProRegularItalic';
           font-size: 13px;
@@ -1237,7 +1269,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
     .items {
       display: inline-block;
       .item {
-        background-color: #1aa3ff;
+        background-color: @_ita_main-blue_color;
         display: inline-block;
         position: relative;
         padding: 0 23px 0 8px;
@@ -1270,7 +1302,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
             line-height: 16px;
             color: #fff;
             font-size: 16px;
-            background-color: #1aa3ff;
+            background-color: @_ita_main-blue_color;
             font-weight: 600;
           }
           &:hover {
@@ -1288,7 +1320,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
     width: 80%;
     margin: 15px auto;
     .filter-clear {
-      color: #1aa3ff;
+      color: @_ita_main-blue_color;
       font-family: 'GTWalsheimProBold';
       font-size: 12px;
       font-weight: 700;
@@ -1562,7 +1594,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           width: 100%;
           margin: 0 auto;
           border-radius: 2px;
-          background-color: #1aa3ff;
+          background-color: @_ita_main-blue_color;
           padding: 11px 0;
           color: #ffffff;
           font-family: 'GTWalsheimProBold';
@@ -1802,7 +1834,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           }
         }
         &.current{
-          background: #1aa3ff;
+          background: @_ita_main-blue_color;
           a.page {
             span {
               color: #fff;
@@ -1905,7 +1937,7 @@ select:not([disabled]) {
     .parc-link, .mooble{
       margin-bottom: 11px;
       a{
-        color: #28a6fb;
+        color: @_ita_main-blue_color;
         font-family: 'GTWalsheimProMedium';
         font-size: 14px;
         font-weight: 500;
@@ -2174,8 +2206,8 @@ select:not([disabled]) {
         }
         &.active{
           a{
-            border-bottom: 4px solid #28a6fb;
-            color: #28a6fb;
+            border-bottom: 4px solid @_ita_main-blue_color;
+            color: @_ita_main-blue_color;
             position: relative;
             z-index: 98;
           }
@@ -2938,7 +2970,7 @@ select:not([disabled]) {
         span.price{
           font-family: 'GTWalsheimProMedium';
           font-size: 18px;
-          color: #3eaffc;
+          color: @_ita_main-blue_color;
         }
       }
     }
@@ -3230,7 +3262,7 @@ select:not([disabled]) {
         display: none;
         position: relative;
         border-top: 3px solid #aaa;
-        margin-top: 70px;
+        margin-top: 69px;
     		&.current {
     			display: block;
           &:before, &:after {
@@ -3295,6 +3327,7 @@ body.checkout-index-index {
     img {
       max-width: 100%;
       width: auto;
+      max-height: 69px;
     }
   }
   .opc-progress-bar {
@@ -3373,7 +3406,7 @@ body.checkout-index-index {
     #maincontent{
       #checkout{
         .action-apply, .action.primary{
-          background-color: #28a6fb;
+          background-color: @_ita_main-blue_color;
           font-size: 14px;
           font-family: 'GTWalsheimProBold';
           text-transform: uppercase;
@@ -3392,7 +3425,7 @@ body.checkout-index-index {
               background: #2b2b2b;
               border:0;
               .counter.qty{
-                background: #1aa3ff;
+                background: @_ita_main-blue_color;
                 color: #fff;
               }
               &:before{
@@ -3431,7 +3464,7 @@ body.checkout-index-index {
 
 .checkout-onepage-success{
   a.order-number{
-    color: #1aa3ff;
+    color: @_ita_main-blue_color;
   }
   h1 {
       margin-top: 1em;
@@ -3444,6 +3477,11 @@ body.checkout-index-index {
 .customer-account-forgotpassword {
   .page-main {
     padding-top: 20px;
+  }
+}
+form.form-create-account { 
+  .customer-account-create & .field.date.field-dob input#dob{
+    width: ~"calc(100% - 50px)";
   }
 }
 .account-pages {
@@ -3533,12 +3571,12 @@ body.checkout-index-index {
 
           // Box hover
           &:hover + label:before {
-            background: #1aa3ff;
+            background: @_ita_main-blue_color;
           }
 
           // Box checked
           &:checked + label:before {
-            background: #1aa3ff;
+            background: @_ita_main-blue_color;
           }
 
           // Disabled state label.
@@ -3650,30 +3688,24 @@ body.checkout-index-index {
   .nav-tabs > li > a {
     padding: 0 0px 0;
     margin-right: 2px;
-    line-height: 28px;
-    font-size: 18px;
+    line-height: 20px;
     color: #b9bdc4;
-    text-transform: uppercase;
     font-weight: 600;
     text-decoration: none;
     font-size: 14px;
-    font-family: 'GTWalsheimProMedium';
+    font-family: 'GTWalsheimProRegular';
   }
 
-
-
   .nav-tabs > li > a {
-    padding-bottom: 8px;
     border-bottom: 1px solid transparent;
   }
 
-
   .nav-tabs > .active > a,
   .nav-tabs > .active > a:hover {
-    color: #1aa3ff;
+    color: @_ita_main-green_color;
     cursor: default;
     background-color: transparent;
-    border-bottom: 2px solid #1aa3ff;
+    border-bottom: 3px solid @_ita_main-green_color;
     font-family: 'GTWalsheimProBold';
 
   }
@@ -3844,7 +3876,7 @@ body.checkout-index-index {
           right: 0px;
           width: 165px;
           height: 40px;
-          background: #1aa3ff;
+          background: @_ita_main-blue_color;
           border: 0;
           font-family: 'GTWalsheimProBold';
           border-radius: 0;
@@ -3941,14 +3973,14 @@ body.checkout-index-index {
               border: 0;
               min-height: 39px;
               a{
-                color: #fff;
-                font-family: 'GTWalsheimProRegular', 'Ubuntu', sans-serif;
+                color: @_ita_main-blue_color;
+                font-family: 'GTWalsheimProBold', 'Ubuntu', sans-serif;
                 font-size: 14px;
                 font-weight: 500;
                 text-transform: uppercase;
                 border: 0;
                 &.ui-state-active{
-                  background-color: #454444;
+                  background-color: #fff;
                   border-right: 2px solid @_ita_main-orange_color;
                   border-bottom: 0;
                 }
@@ -3957,11 +3989,12 @@ body.checkout-index-index {
                 }
               }
               ul{
-                border-top:2px solid #454444;
-                background: #454444;
+                border-top: 2px solid #f2f2f2;
+                background: #fff;
                 li{
                   a{
                     font-size: 12px;
+                    color: #3c3c3c;
                   }
                   ul{
                     border-left:2px solid #454444;
@@ -3988,7 +4021,7 @@ body.checkout-index-index {
             padding: 8px 40px 8px 0px;
             margin: 0;
             a{
-              color: #fff;
+              color: @_ita_main-blue_color;
               font-family: 'GTWalsheimProRegular', 'Ubuntu', sans-serif;
               font-size: 12px;
               font-weight: 500;
@@ -4010,7 +4043,7 @@ body.checkout-index-index {
 
 .navigation .level0.active {
     background: #454545;
-    border-right: 3px solid #1aa3ff;
+    border-right: 3px solid @_ita_main-blue_color;
 }
 .navigation .level0.active > a:not(.ui-state-active) span:not(.ui-menu-icon),
 .navigation .level0.has-active > a:not(.ui-state-active) span:not(.ui-menu-icon) {
@@ -4171,6 +4204,13 @@ body.checkout-index-index {
 }
 
 @media screen {
+  @media (max-width: 599px) {
+    .cms-index-index {
+      .page-main .wrp-vantagens .owl-carousel .owl-item li::marker{
+        content: '';
+      }
+    }
+  }
   @media (max-width: 726px) {
     .header.content{
       .block.block-search{
