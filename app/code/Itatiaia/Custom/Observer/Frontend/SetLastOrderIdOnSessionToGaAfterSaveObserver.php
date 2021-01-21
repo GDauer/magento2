@@ -45,8 +45,8 @@ class SetLastOrderIdOnSessionToGaAfterSaveObserver implements ObserverInterface
         $this->_logger->info('=== START SETLASTORDER OBSERVER ===');
         $order = $observer->getEvent()->getOrder();
         $orderId = $order->getId() ? $order->getId() : $order->getEntityId();
-        $this->_logger->info('ORDER: getEntityId' .$order->getId());
-        $this->_logger->info('ORDER: getId' .$order->getEntityId());
+        $this->_logger->info('ORDER: getEntityId ' .$order->getId());
+        $this->_logger->info('ORDER: getId ' .$order->getEntityId());
         $this->_logger->info('ORDER FINAL: ' .$orderId);
         if ($order->hasError()) {
             $this->_logger->info('ORDER HAS ERROR');
