@@ -14,14 +14,17 @@ class SetCustomerName implements ObserverInterface
 
     public function __construct
     (
-        \Magento\Quote\Model\QuoteFactory $quoteFactory
+        \Magento\Quote\Model\QuoteFactory $quoteFactory,
+        \Psr\Log\LoggerInterface $logger
     )
     {
         $this->quoteFactory = $quoteFactory;
+        $this->_logger = $logger;
     }
 
     public function execute(Observer $observer)
     {
+        $this->_logger->info('=== START SETCUSTOMERNAME OBSERVER ===');
         $order = $observer->getOrder();
         $quote = $this->quoteFactory->create()->load($order->getQuoteId());
 
@@ -36,5 +39,6 @@ class SetCustomerName implements ObserverInterface
         } catch (\Exception $e) {
             $e = $e;
         }
+        $this->_logger->info('=== FINISH SETCUSTOMERNAME OBSERVER ===');
     }
 }

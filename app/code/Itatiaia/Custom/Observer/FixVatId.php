@@ -25,6 +25,7 @@ class FixVatId implements \Magento\Framework\Event\ObserverInterface
     public function execute(
         \Magento\Framework\Event\Observer $observer
     ) {
+        $this->_logger->info('=== START FIXVATID OBSERVER ===');
         $order = $observer->getOrder();
         $billingAddress = $order->getBillingAddress();
 
@@ -37,6 +38,7 @@ class FixVatId implements \Magento\Framework\Event\ObserverInterface
         if(!$this->validateCpf($cpf)){
             throw new \Magento\Framework\Exception\StateException(__('CPF inválido'));
         }
+        $this->_logger->info('=== FINISH FIXVATID OBSERVER ===');
     }
 
     public function validateCpf($cpf)
