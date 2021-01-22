@@ -2357,7 +2357,7 @@ select:not([disabled]) {
     .product-options-bottom .box-tocart .action.tocart {
       box-shadow: 0 3px 5px 2px rgba(0, 0, 0, 0.2);
       border-radius: 0;
-      background-color: #28a6fb;
+      background-color: @_ita_main-green_color;
       width: 100%;
       margin: 0 auto;
       position: fixed;
@@ -3710,7 +3710,10 @@ form.form-create-account {
     background-color: transparent;
     border-bottom: 3px solid @_ita_main-green_color;
     font-family: 'GTWalsheimProBold';
-
+    .catalog-product-view .product-info-main &{
+      color: @_ita_main-blue_color;
+      border-bottom: 4px solid @_ita_main-blue_color;
+    }
   }
 
   li {
