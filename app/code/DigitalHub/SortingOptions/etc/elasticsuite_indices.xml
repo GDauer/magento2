@@ -4,9 +4,9 @@
 
     <index identifier="catalog_product" defaultSearchType="product">
         <type name="product" idFieldName="entity_id">
-            <datasources>
+<!--            <datasources>
                 <datasource name="extra_sorting_fields">DigitalHub\SortingOptions\Model\Product\Indexer\Fulltext\Datasource\SortingData</datasource>
-            </datasources>
+            </datasources>-->
             <mapping>
                 <field name="price.discount_percentage_amount" type="double" nestedPath="price" >
                     <isUsedForSortBy>1</isUsedForSortBy>

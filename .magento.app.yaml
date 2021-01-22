@@ -5,7 +5,7 @@
 name: mymagento
 
 # The toolstack used to build the application.
-type: php:7.2
+type: php:7.1
 build:
     flavor: composer
 
@@ -17,17 +17,16 @@ runtime:
         - newrelic
         - memcached
         - redis
-        - xdebug
+        - mcrypt
 
 # The relationships of the application with services or other applications.
 # The left-hand side is the name of the relationship as it will be exposed
 # to the application in the environment variable. The right-hand
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
-    database: "mysql:mysql"
+    database: "mysql2:mysql"
     redis: "redis:redis"
-    elasticsearch: "elasticsearch6:elasticsearch"
-    rabbitmq: "rabbitmq:rabbitmq"
+    elasticsearch: "elasticsearch2:elasticsearch"
 
 # The configuration of app when it is exposed to the web.
 web:
@@ -99,3 +98,4 @@ variables:
     env:
         CONFIG__DEFAULT__PAYPAL_ONBOARDING__MIDDLEMAN_DOMAIN: 'payment-broker.magento.com'
         CONFIG__STORES__DEFAULT__PAYPAL__NOTATION_CODE: 'Magento_Enterprise_Cloud'
+
