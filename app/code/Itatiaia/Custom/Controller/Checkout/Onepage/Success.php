@@ -94,6 +94,7 @@ class Success extends \Magento\Checkout\Controller\Onepage
     public function execute()
     {
         $session = $this->getOnepage()->getCheckout();
+        error_log(print_r($session->getData()), 3, "/tmp/my-errors.log");
         if (!$this->isValid()) {
             return $this->resultRedirectFactory->create()->setPath('checkout/cart');
         }
