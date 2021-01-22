@@ -1,31 +1,8 @@
 <?php
 namespace Itatiaia\CheckoutBillingAddress\Observer;
 
-use \Psr\Log\LoggerInterface;
-use \Magento\Customer\Model\CustomerFactory;
-
 class DefaultBillingAddress implements \Magento\Framework\Event\ObserverInterface
 {
-
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
-
-    /**
-     * @var CustomerFactory
-     */
-    private $customerFactory;
-
-    function __construct(
-        LoggerInterface $logger,
-        CustomerFactory $customerFactory
-    )
-    {
-        $this->logger = $logger;
-        $this->customerFactory = $customerFactory;
-    }
-
     /**
      * Execute observer
      *
@@ -35,11 +12,14 @@ class DefaultBillingAddress implements \Magento\Framework\Event\ObserverInterfac
     public function execute(
         \Magento\Framework\Event\Observer $observer
     ) {
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $logger = $objectManager->get('\Psr\Log\LoggerInterface');
+
         $order = $observer->getOrder();
         // $logger->info('ORDER PLACE AFTER', [$order->getData()]);
 
         $customerId = $order->getCustomerId();
-        $customer = $this->customerFactory->create();
+        $customer = $objectManager->get('\Magento\Customer\Model\CustomerFactory')->create();
         $customer->load($customerId);
 
         if($customer->getId()){

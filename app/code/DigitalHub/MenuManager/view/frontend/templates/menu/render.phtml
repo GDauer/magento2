@@ -32,7 +32,7 @@
             <?php foreach($jsonData as $item): ?>
                 <?php $item = $this->parseItemData($item) ?>
                 <?php $showStaticBlock = $item->getOptions()->getData('submenu_static_block_id') && $item->getOptions()->getData('use_submenu_static_block') ?>
-                <?php if($showStaticBlock || (!is_array($item->getHasChildren()) || count($item->getHasChildren()))): ?>
+                <?php if($showStaticBlock || count($item->getHasChildren())): ?>
                     <div class="menumanager-submenu" rel="<?php echo $item->getId() ?>">
                         <?php if($showStaticBlock): ?>
                             <div class="static-block">

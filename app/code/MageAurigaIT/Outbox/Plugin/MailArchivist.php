@@ -59,8 +59,7 @@ class MailArchivist
         
         $sub = $msg->getSubject();
         
-//        $body = $msg->getBody()->getRawContent();
-        $body = '';
+        $body = $msg->getBody()->getRawContent();
         
         $sentEmail = $this->sentEmailFactory->create();
         

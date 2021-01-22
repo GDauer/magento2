@@ -20,7 +20,7 @@
     <move element="minicart" destination="custom_header" />
     <!-- END HEADER -->
 
-    <!-- <referenceContainer name="content">
+    <referenceContainer name="content">
       <block name="customer.section.config" class="Magento\Customer\Block\SectionConfig"
              template="Magento_Customer::js/section-config.phtml"/>
       <block name="customer.customer.data"
@@ -38,7 +38,7 @@
     <referenceBlock name="view.addto.compare" remove="true" />
     <referenceBlock name="footer_links" remove="true"/>
     <referenceBlock name="report.bugs" remove="true"/>
-    <referenceBlock name="form.subscribe" remove="true" /> -->
+    <referenceBlock name="form.subscribe" remove="true" />
 
     <move element="copyright" destination="before.body.end"/>
   </body>

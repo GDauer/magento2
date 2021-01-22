@@ -1,29 +1,8 @@
 <?php
 namespace Itatiaia\FixIntelipost\Observer;
 
-use Psr\Log\LoggerInterface;
-use Itatiaia\FixIntelipost\Helper\Data as intelipostHelper;
 class UpdateInvoice implements \Magento\Framework\Event\ObserverInterface
 {
-
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
-
-    /**
-     * @var intelipostHelper
-     */
-    private $helper;
-
-    public function __construct(
-        LoggerInterface $logger,
-        intelipostHelper $helper
-    )
-    {
-        $this->logger = $logger;
-        $this->helper = $helper;
-    }
     /**
      * Execute observer
      *
@@ -33,8 +12,14 @@ class UpdateInvoice implements \Magento\Framework\Event\ObserverInterface
     public function execute(
         \Magento\Framework\Event\Observer $observer
     ) {
-        // $this->logger->info('OBSERVER UPDATE INVOICE');
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+        $logger = $objectManager->get('\Psr\Log\LoggerInterface');
+        $logger->info('OBSERVER UPDATE INVOICE');
+
         $order = $observer->getOrder();
-        $this->helper->updateIntelipostInvoice($order->getId());
+
+        $helper = $objectManager->get('Itatiaia\FixIntelipost\Helper\Data');
+        $helper->updateIntelipostInvoice($order->getId());
     }
 }

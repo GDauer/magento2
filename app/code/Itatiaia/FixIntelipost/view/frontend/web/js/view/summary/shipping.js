@@ -5,11 +5,9 @@
 
 define([
     'jquery',
-    'underscore',
     'Magento_Checkout/js/view/summary/abstract-total',
-    'Magento_Checkout/js/model/quote',
-    'Magento_SalesRule/js/view/summary/discount'
-], function ($, _, Component, quote, discountView) {
+    'Magento_Checkout/js/model/quote'
+], function ($, Component, quote) {
     'use strict';
 
     return Component.extend({
@@ -23,29 +21,17 @@ define([
          * @return {*}
          */
         getShippingMethodTitle: function () {
-            var shippingMethod,
-                shippingMethodTitle = '';
+            var shippingMethod;
 
             if (!this.isCalculated()) {
                 return '';
             }
             shippingMethod = quote.shippingMethod();
 
-            if (!_.isArray(shippingMethod) && !_.isObject(shippingMethod)) {
-                return '';
-            }
-
             if (shippingMethod['carrier_code'] === 'intelipost') {
                 return shippingMethod ? shippingMethod['method_title'] : '';
             }
-
-            if (typeof shippingMethod['method_title'] !== 'undefined') {
-                shippingMethodTitle = ' - ' + shippingMethod['method_title'];
-            }
-
-            return shippingMethodTitle ?
-                shippingMethod['carrier_title'] + shippingMethodTitle :
-                shippingMethod['carrier_title'];
+            return shippingMethod ? shippingMethod['carrier_title'] + ' - ' + shippingMethod['method_title'] : '';
         },
 
         /**
@@ -67,34 +53,6 @@ define([
             price =  this.totals()['shipping_amount'];
 
             return this.getFormattedPrice(price);
-        },
-
-        /**
-         * If is set coupon code, but there wasn't displayed discount view.
-         *
-         * @return {Boolean}
-         */
-        haveToShowCoupon: function () {
-            var couponCode = this.totals()['coupon_code'];
-
-            if (typeof couponCode === 'undefined') {
-                couponCode = false;
-            }
-
-            return couponCode && !discountView().isDisplayed();
-        },
-
-        /**
-         * Returns coupon code description.
-         *
-         * @return {String}
-         */
-        getCouponDescription: function () {
-            if (!this.haveToShowCoupon()) {
-                return '';
-            }
-
-            return '(' + this.totals()['coupon_code'] + ')';
         }
     });
 });

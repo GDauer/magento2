@@ -2,46 +2,39 @@
 
 namespace Itatiaia\CustomMercadoPago\Controller\Checkout;
 
+use Exception;
+use Psr\Log\LoggerInterface;
+use Magento\Framework\App\Action\Context;
+use Magento\Checkout\Model\Session;
+use Magento\Sales\Model\OrderFactory;
+use Magento\Sales\Model\Order\Email\Sender\OrderSender;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Catalog\Model\Session as CatalogSession;
+use MercadoPago\Core\Model\Core;
+use MercadoPago\Core\Helper\ConfigData;
+use MercadoPago\Core\Helper\Data;
+use Magento\Store\Model\ScopeInterface;
+
 /**
  * Class Page
  * @package MercadoPago\Core\Controller\Checkout
  */
-class Page extends \MercadoPago\Core\Controller\Checkout\Page
+class Page
+    extends \MercadoPago\Core\Controller\Checkout\Page
 {
-
     /**
      * @return mixed
      */
     protected function _getOrder()
     {
         $order = $this->_checkoutSession->getLastRealOrder();
+
         if(!$this->_checkoutSession->getLastRealOrder()){
-            $orderId = $this->_checkoutSession->getCustomLastOrderId();
-            $this->_helperData->log('ORDER: ' .$orderId, 'mercadopago.log');
-            $order = Mage::getModel('sales/order')->loadByIncrementId($orderId);
+            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+            $orderModel = $objectManager->get('Magento\Sales\Model\OrderFactory')->create();
+            $order = $orderModel->load($this->_checkoutSession->getCustomLastOrderId());
         }
-        $this->_helperData->log('ORDER: ' .$order->getEntityId(), 'mercadopago.log');
+
         return $order;
-    }
-
-    /**
-     * Return handle name, depending on payment method used in the order placed
-     *
-     * @return string
-     */
-    public function getCheckoutHandle()
-    {
-        $handle = '';
-        $order = $this->_getOrder();
-        $this->_helperData->log('ORDER: --', 'mercadopago.log');
-        if (!empty($order->getId())) {
-            $this->_helperData->log('ORDER: ' .$order->getId() . ' | ' .$order->getEntityId(), 'mercadopago.log');
-            $this->_helperData->log('ORDER payment method: ' .$order->getPayment()->getMethod(), 'mercadopago.log');
-            $handle = $order->getPayment()->getMethod();
-        }
-        $handle .= '_success';
-        $this->_helperData->log('ORDER: handle ' .$handle, 'mercadopago.log');
-
-        return $handle;
     }
 }
