@@ -97,7 +97,7 @@ return array (
     'Magento_Contact' => 1,
     'Magento_Cookie' => 1,
     'Magento_Cron' => 1,
-    'Magento_Csp' => 1,
+    'Magento_Csp' => 0,
     'Magento_CurrencySymbol' => 1,
     'Magento_CustomAttributeManagement' => 1,
     'Magento_AdvancedRule' => 1,
