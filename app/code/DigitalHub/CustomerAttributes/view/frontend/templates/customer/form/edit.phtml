@@ -6,111 +6,60 @@
 
 // @codingStandardsIgnoreFile
 
-/** @var \Magento\Customer\Block\Form\Edit $block */
-
-$custom_attributes = $block->getCustomer()->getCustomAttributes();
+/** @var Magento\CustomerCustomAttributes\Block\Form $block */
 ?>
-<form class="form form-edit-account" action="<?= $block->escapeUrl($block->getUrl('customer/account/editPost')) ?>" method="post" id="form-validate" enctype="multipart/form-data" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>" autocomplete="off">
+<form class="form form-edit-account" action="<?= /* @escapeNotVerified */ $block->getUrl('customer/account/editPost') ?>" method="post" id="form-validate" enctype="multipart/form-data" data-hasrequired="<?= /* @escapeNotVerified */ __('* Required Fields') ?>" autocomplete="off" data-mage-init='{"validation":{}}'>
     <fieldset class="fieldset info">
         <?= $block->getBlockHtml('formkey') ?>
-        <legend class="legend"><span><?= $block->escapeHtml(__('Account Information')) ?></span></legend><br>
+        <legend class="legend"><span><?= /* @escapeNotVerified */ __('Account Information') ?></span></legend><br>
         <?= $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')->setObject($block->getCustomer())->toHtml() ?>
 
-
         <?php $_dob = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Dob') ?>
+        <?php $_taxvat = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Taxvat') ?>
+        <?php $_gender = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Gender') ?>
         <?php if ($_dob->isEnabled()): ?>
             <?= $_dob->setDate($block->getCustomer()->getDob())->toHtml() ?>
         <?php endif ?>
-
-        <?php $_gender = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Gender') ?>
-        <?php if ($_gender->isEnabled()): ?>
-            <?= $_gender->setGender($block->getCustomer()->getGender())->toHtml() ?>
-        <?php endif ?>
-
-        <div class="field required no-label">
-            <label for="account_type" class="label">
-                <span>Tipo de cadastro</span>
-            </label>
-            <div class="control">
-                <label>
-                    <input type="radio" name="account_type" value="pf" class="radio" <?php if(!isset($custom_attributes['account_type']) || (isset($custom_attributes['account_type']) && $custom_attributes['account_type']->getValue() == 'pf')) echo 'checked="checked"'; ?> /> Pessoa física
-                </label>
-
-                <label style="margin-left: 10px">
-                    <input type="radio" name="account_type" value="pj" class="radio" <?php if(isset($custom_attributes['account_type']) && $custom_attributes['account_type']->getValue() == 'pj') echo 'checked="checked"'; ?>> Pessoa jurídica
-                </label>
-            </div>
-        </div>
-
-        <?php $_taxvat = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Taxvat') ?>
         <?php if ($_taxvat->isEnabled()): ?>
             <?= $_taxvat->setTaxvat($block->getCustomer()->getTaxvat())->toHtml() ?>
         <?php endif ?>
-
-        <div class="field required account-type-pj">
-            <label for="razao_social" class="label">
-                <span>Razão Social</span>
-            </label>
-            <div class="control">
-                <input type="text" name="razao_social" value="<?= $block->escapeHtmlAttr(isset($custom_attributes['razao_social']) ? $custom_attributes['razao_social']->getValue() : '') ?>" title="<?= $block->escapeHtmlAttr(__('Razão Social')) ?>" class="input-text required-entry" id="razao_social">
-            </div>
-        </div>
-
-        <div class="field required account-type-pj">
-            <label for="nome_fantasia" class="label">
-                <span>Nome Fantasia</span>
-            </label>
-            <div class="control">
-                <input type="text" name="nome_fantasia" value="<?= $block->escapeHtmlAttr(isset($custom_attributes['nome_fantasia']) ? $custom_attributes['nome_fantasia']->getValue() : '') ?>" title="<?= $block->escapeHtmlAttr(__('Nome Fantasia')) ?>" class="input-text required-entry" id="nome_fantasia">
-            </div>
-        </div>
-
-        <div class="field account-type-pj">
-            <label for="ie" class="label">
-                <span>Inscrição Estadual</span>
-            </label>
-            <div class="control">
-                <input type="text" name="ie" value="<?= $block->escapeHtmlAttr(isset($custom_attributes['ie']) ? $custom_attributes['ie']->getValue() : '') ?>" title="<?= $block->escapeHtmlAttr(__('Inscrição Estadual')) ?>" class="input-text" id="ie">
-                <small class="help-block">Deixar em branco se isento.</small>
-            </div>
-        </div>
-
-        <div class="field required">
-            <label for="telephone" class="label">
-                <span>Telefone/Celular</span>
-            </label>
-            <div class="control">
-                <input type="text" name="telephone" value="<?= $block->escapeHtmlAttr(isset($custom_attributes['telephone']) ? $custom_attributes['telephone']->getValue() : '') ?>" title="<?= $block->escapeHtmlAttr(__('Telefone')) ?>" class="input-text required-entry" id="telephone">
-            </div>
-        </div>
-
+        <?php if ($_gender->isEnabled()): ?>
+            <?= $_gender->setGender($block->getCustomer()->getGender())->toHtml() ?>
+        <?php endif ?>
         <div class="field choice">
             <input type="checkbox" name="change_email" id="change-email" data-role="change-email" value="1" title="<?= $block->escapeHtmlAttr(__('Change Email')) ?>" class="checkbox" />
             <label class="label" for="change-email"><span><?= $block->escapeHtml(__('Change Email')) ?></span></label>
         </div>
-
         <div class="field choice">
             <input type="checkbox" name="change_password" id="change-password" data-role="change-password" value="1" title="<?= $block->escapeHtmlAttr(__('Change Password')) ?>"<?php if ($block->getChangePassword()): ?> checked="checked"<?php endif; ?> class="checkbox" />
             <label class="label" for="change-password"><span><?= $block->escapeHtml(__('Change Password')) ?></span></label>
         </div>
+        <?php $userDefinedAttributes = $block->getLayout()->getBlock('customer_form_user_attributes'); ?>
+        <?php if ($userDefinedAttributes):?>
+            <?php $userDefinedAttributes->setEntityType('customer')->setShowContainer(false);?>
+            <?php $block->restoreSessionData($userDefinedAttributes->getMetadataForm());?>
+            <?= $userDefinedAttributes->toHtml() ?>
+        <?php endif;?>
     </fieldset>
 
+    <?= /* @noEscape */ $block->getChildHtml('form_fields_before_in_form') ?>
+
     <fieldset class="fieldset password" data-container="change-email-password">
-        <legend class="legend"><span data-title="change-email-password"><?= $block->escapeHtml(__('Change Email and Password')) ?></span></legend><br>
+        <legend class="legend"><span data-title="change-email-password"><?= /* @escapeNotVerified */ __('Change Email and Password') ?></span></legend><br>
         <div class="field email required" data-container="change-email">
-            <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+            <label class="label" for="email"><span><?= /* @escapeNotVerified */ __('Email') ?></span></label>
             <div class="control">
-                <input type="email" name="email" id="email" autocomplete="email" data-input="change-email" value="<?= $block->escapeHtmlAttr($block->getCustomer()->getEmail()) ?>" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" class="input-text" data-validate="{required:true, 'validate-email':true}" />
+                <input type="email" autocomplete="email" name="email" id="email" data-input="change-email" value="<?= $block->escapeHtml($block->getCustomer()->getEmail()) ?>" title="<?= /* @escapeNotVerified */ __('Email') ?>" class="input-text" data-validate="{required:true, 'validate-email':true}" />
             </div>
         </div>
         <div class="field password current required">
-            <label class="label" for="current-password"><span><?= $block->escapeHtml(__('Current Password')) ?></span></label>
+            <label class="label" for="current-password"><span><?= /* @escapeNotVerified */ __('Current Password') ?></span></label>
             <div class="control">
                 <input type="password" class="input-text" name="current_password" id="current-password" data-input="current-password" autocomplete="off" />
             </div>
         </div>
         <div class="field new password required" data-container="new-password">
-            <label class="label" for="password"><span><?= $block->escapeHtml(__('New Password')) ?></span></label>
+            <label class="label" for="password"><span><?= /* @escapeNotVerified */ __('New Password') ?></span></label>
             <div class="control">
                 <input type="password" class="input-text" name="password" id="password"
                     data-password-min-length="<?= $block->escapeHtml($block->getMinimumPasswordLength()) ?>"
@@ -120,30 +69,30 @@ $custom_attributes = $block->getCustomer()->getCustomAttributes();
                     autocomplete="off" />
                 <div id="password-strength-meter-container" data-role="password-strength-meter" aria-live="polite">
                     <div id="password-strength-meter" class="password-strength-meter">
-                        <?= $block->escapeHtml(__('Password Strength')) ?>:
+                        <?= /* @escapeNotVerified */ __('Password Strength') ?>:
                         <span id="password-strength-meter-label" data-role="password-strength-meter-label">
-                            <?= $block->escapeHtml(__('No Password')) ?>
+                            <?= /* @escapeNotVerified */ __('No Password') ?>
                         </span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="field confirm password required" data-container="confirm-password">
-            <label class="label" for="password-confirmation"><span><?= $block->escapeHtml(__('Confirm New Password')) ?></span></label>
+            <label class="label" for="password-confirmation"><span><?= /* @escapeNotVerified */ __('Confirm New Password') ?></span></label>
             <div class="control">
                 <input type="password" class="input-text" name="password_confirmation" id="password-confirmation"
                     data-input="confirm-password"
                     autocomplete="off" />
             </div>
         </div>
+        <?= $block->getChildHtml('form_additional_info') ?>
     </fieldset>
-    <?= $block->getChildHtml('form_additional_info') ?>
     <div class="actions-toolbar">
         <div class="primary">
-            <button type="submit" class="action save primary" title="<?= $block->escapeHtmlAttr(__('Save')) ?>"><span><?= $block->escapeHtml(__('Save')) ?></span></button>
+            <button type="submit" class="action save primary" title="<?= /* @escapeNotVerified */ __('Save') ?>"><span><?= /* @escapeNotVerified */ __('Save') ?></span></button>
         </div>
         <div class="secondary">
-            <a class="action back" href="<?= $block->escapeUrl($block->getBackUrl()) ?>"><span><?= $block->escapeHtml(__('Go back')) ?></span></a>
+            <a class="action back" href="<?= $block->escapeUrl($block->getBackUrl()) ?>"><span><?= /* @escapeNotVerified */ __('Go back') ?></span></a>
         </div>
     </div>
 </form>
@@ -153,7 +102,7 @@ $custom_attributes = $block->getCustomer()->getCustomAttributes();
         "mage/mage"
     ], function($){
         var dataForm = $('#form-validate');
-        var ignore = <?= /* @noEscape */ $_dob->isEnabled() ? '\'input[id$="full"]\'' : 'null' ?>;
+        var ignore = <?= /* @escapeNotVerified */ $_dob->isEnabled() ? '\'input[id$="full"]\'' : 'null' ?>;
 
         dataForm.mage('validation', {
         <?php if ($_dob->isEnabled()): ?>
@@ -181,10 +130,23 @@ $custom_attributes = $block->getCustomer()->getCustomAttributes();
     {
         "[data-role=change-email], [data-role=change-password]": {
             "changeEmailPassword": {
-                "titleChangeEmail": "<?= $block->escapeJs($block->escapeHtml(__('Change Email'))) ?>",
-                "titleChangePassword": "<?= $block->escapeJs($block->escapeHtml(__('Change Password'))) ?>",
-                "titleChangeEmailAndPassword": "<?= $block->escapeJs($block->escapeHtml(__('Change Email and Password'))) ?>"
+                "titleChangeEmail": "<?= /* @escapeNotVerified */ __('Change Email') ?>",
+                "titleChangePassword": "<?= /* @escapeNotVerified */ __('Change Password') ?>",
+                "titleChangeEmailAndPassword": "<?= /* @escapeNotVerified */ __('Change Email and Password') ?>"
             }
+        },
+        "*": {
+            "Magento_CustomerCustomAttributes/validation": {
+                "ignore": <?= (int) ($_dob->isEnabled() || $userDefinedAttributes->hasUserDefinedAttributes()) ?>,
+                "hasUserDefinedAttributes": <?= (int) $userDefinedAttributes->hasUserDefinedAttributes() ?>,
+                "isDobEnabled": <?= (int) $_dob->isEnabled() ?>,
+                "mixins": [
+                    "Magento_CustomerCustomAttributes/error-placement",
+                    "Magento_CustomerCustomAttributes/validation-ignore"
+                ]
+            },
+            "customValidation": {},
+            "taxVatValidation": {}
         },
         "[data-container=new-password]": {
             "passwordStrengthIndicator": {
@@ -192,4 +154,30 @@ $custom_attributes = $block->getCustomer()->getCustomAttributes();
             }
         }
     }
+</script>
+
+<script>
+    require([
+        'jquery',
+        'DigitalHub_CustomerAttributes/js/jquery.mask.min'
+    ], function($, mask){
+        var searchElPostcode = setInterval(function(){
+            if($('input[name=taxvat]').length){
+                clearInterval(searchElPostcode);
+                $('input[name=taxvat]').mask('999.999.999-99', {
+                    placeholder: '___.___.___-__'
+                })
+            }
+        }, 100);
+
+        <?php if ($_dob->isEnabled()): ?>
+            <?php $validator = $_dob->isRequired() ? '"required":true, ' : ''; ?>
+            if($('input[name=dob]').length){
+                $("input[name=dob]").attr('data-validate','{<?php if ($_dob->isRequired()): echo $validator; endif; ?>"validate-date":{"dateFormat":"dd\/MM\/yyyy"}, "minlength":10, "maxlength":10}');
+                $('input[name=dob]').mask('99/99/9999', {
+                    placeholder: '__/__/____'
+                })
+            }
+        <?php endif; ?>
+    })
 </script>
