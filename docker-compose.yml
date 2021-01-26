@@ -1,0 +1,99 @@
+version: '3.5'
+services:
+    php:
+        container_name: php_magento2
+        image: php:7.1.33-fpm
+        volumes:
+            - ./:/var/www/html
+            - ./.docker/config/php/from-docker-configuration.ini:/usr/local/etc/php/conf.d/from-docker-configuration.ini
+        depends_on:
+            - redis
+            - mysql
+            - rabbitmq
+            - elasticsearch
+        ports:
+            - 9000:9000
+        networks:
+            - net_magento2
+
+    mysql:
+        container_name: mysql_magento2
+        image: mysql:5.7
+        environment:
+            MYSQL_ROOT_PASSWORD: magento
+            MYSQL_USER: magento
+            MYSQL_PASSWORD: magento
+            MYSQL_DATABASE: magento
+        ports:
+            - 3306:3306
+        networks:
+            - net_magento2
+        volumes:
+            - mysql_data:/var/lib/mysql
+
+    rabbitmq:
+        container_name: rabbitmq_magento2
+        image: rabbitmq:3.8.3-management-alpine
+        environment:
+            RABBITMQ_DEFAULT_USER: guest
+            RABBITMQ_DEFAULT_PASS: guest
+        ports:
+            - 15672:15672
+        networks:
+            - net_magento2
+
+    redis:
+        container_name: redis_magento2
+        image: redis:5.0.7-alpine
+        ports:
+            - 6379:6379
+        networks:
+            - net_magento2
+
+    nginx:
+        container_name: nginx_magento2
+        image: nginx:1.19.2-alpine
+        entrypoint: ["sh", "/etc/nginx/entrypoint.sh"]
+        volumes:
+            - ./:/var/www/html
+            - ./.docker/config/nginx/entrypoint.sh:/etc/nginx/entrypoint.sh
+            - ./.docker/config/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+            - ./.docker/config/nginx/ssl-self-signed.conf:/etc/nginx/snippets/ssl-self-signed.conf
+        ports:
+            - 80:80
+            - 443:443
+        links:
+            - php
+        networks:
+            - net_magento2
+    
+    elasticsearch:
+        container_name: elasticsearch_magento2
+        image: elasticsearch:6.8.7
+        ports:
+            - 9200:9200
+        networks:
+            - net_magento2
+
+    kibana:
+        container_name: kibana_magento2
+        image: kibana:6.8.7
+        ports:
+            - 5601:5601
+        environment:
+            ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+        depends_on:
+            - elasticsearch
+        networks:
+            - net_magento2
+networks:
+    net_magento2:
+        driver: bridge
+
+volumes:
+    mysql_data:
+        driver: local
+        driver_opts:
+            type: none
+            o: bind
+            device: ${PWD}/.docker/config/mysql/data
