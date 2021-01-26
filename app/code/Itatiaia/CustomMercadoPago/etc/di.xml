@@ -1,25 +1,25 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <type name="MercadoPago\Core\Model\Core">
-        <plugin name="Itatiaia_CustomMercadoPago_Plugin_Model_CorePlugin" type="Itatiaia\CustomMercadoPago\Plugin\Model\CorePlugin" sortOrder="100" disabled="false" />
-    </type>
-    <type name="MercadoPago\Core\Model\Notifications\Notifications">
-        <arguments>
-            <argument name="payment" xsi:type="object">Itatiaia\CustomMercadoPago\Model\Notifications\Topics\Payment</argument>
-        </arguments>
-    </type>
-    <preference for="MercadoPago\Core\Model\Notifications\Topics\Payment" type="Itatiaia\CustomMercadoPago\Model\Notifications\Topics\Payment" />
-    <preference for="MercadoPago\Core\Helper\ConfigData" type="Itatiaia\CustomMercadoPago\Helper\ConfigData" />
-    <preference for="MercadoPago\Core\Block\Info" type="Itatiaia\CustomMercadoPago\Block\Info" />
-    <preference for="MercadoPago\Core\Block\Info" type="Itatiaia\CustomMercadoPago\Block\Info" />
-    <preference for="MercadoPago\Core\Helper\Data" type="Itatiaia\CustomMercadoPago\Helper\Data" />
-	<preference for="MercadoPago\Core\Controller\Checkout\Page" type="Itatiaia\CustomMercadoPago\Controller\Checkout\Page" />
-    <type name="Magento\Framework\Console\CommandList">
-        <arguments>
-            <argument name="commands" xsi:type="array">
-                <item name="mercadopago_order_expired_canceller" xsi:type="object">Itatiaia\CustomMercadoPago\Console\Command\ExpiredOrderCancellerCommand</item>
-            </argument>
-        </arguments>
-    </type>
-    <preference for="MercadoPago\Core\Plugin\OrderCancelPlugin" type="Itatiaia\CustomMercadoPago\Plugin\Rewrite\Core\OrderCancelPluginRewrite" />
-    <preference for="MercadoPago\Core\Model\CustomTicket\Payment" type="Itatiaia\CustomMercadoPago\Model\CustomTicket\Payment" />
+    <!--<type name="MercadoPago\Core\Model\Core">-->
+        <!--<plugin name="Itatiaia_CustomMercadoPago_Plugin_Model_CorePlugin" type="Itatiaia\CustomMercadoPago\Plugin\Model\CorePlugin" sortOrder="100" disabled="false" />-->
+    <!--</type>-->
+    <!--<type name="MercadoPago\Core\Model\Notifications\Notifications">-->
+        <!--<arguments>-->
+            <!--<argument name="payment" xsi:type="object">Itatiaia\CustomMercadoPago\Model\Notifications\Topics\Payment</argument>-->
+        <!--</arguments>-->
+    <!--</type>-->
+    <!--<preference for="MercadoPago\Core\Model\Notifications\Topics\Payment" type="Itatiaia\CustomMercadoPago\Model\Notifications\Topics\Payment" />-->
+    <!--<preference for="MercadoPago\Core\Helper\ConfigData" type="Itatiaia\CustomMercadoPago\Helper\ConfigData" />-->
+    <!--<preference for="MercadoPago\Core\Block\Info" type="Itatiaia\CustomMercadoPago\Block\Info" />-->
+    <!--<preference for="MercadoPago\Core\Block\Info" type="Itatiaia\CustomMercadoPago\Block\Info" />-->
+    <!--<preference for="MercadoPago\Core\Helper\Data" type="Itatiaia\CustomMercadoPago\Helper\Data" />-->
+	<!--<preference for="MercadoPago\Core\Controller\Checkout\Page" type="Itatiaia\CustomMercadoPago\Controller\Checkout\Page" />-->
+    <!--<type name="Magento\Framework\Console\CommandList">-->
+        <!--<arguments>-->
+            <!--<argument name="commands" xsi:type="array">-->
+                <!--<item name="mercadopago_order_expired_canceller" xsi:type="object">Itatiaia\CustomMercadoPago\Console\Command\ExpiredOrderCancellerCommand</item>-->
+            <!--</argument>-->
+        <!--</arguments>-->
+    <!--</type>-->
+    <!--<preference for="MercadoPago\Core\Plugin\OrderCancelPlugin" type="Itatiaia\CustomMercadoPago\Plugin\Rewrite\Core\OrderCancelPluginRewrite" />-->
+    <!--<preference for="MercadoPago\Core\Model\CustomTicket\Payment" type="Itatiaia\CustomMercadoPago\Model\CustomTicket\Payment" />-->
 </config>
