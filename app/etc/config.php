@@ -414,7 +414,7 @@ return [
         'Mageplaza_Core' => 1,
         'Mageplaza_BetterPopup' => 1,
         'MagestyApps_FixRules' => 1,
-        'Itatiaia_CustomMercadoPago' => 0,
+        'Itatiaia_CustomMercadoPago' => 1,
         'MundiPagg_MundiPagg' => 0,
         'Pmclain_SuccessTest' => 1,
         'Potato_Compressor' => 1,
