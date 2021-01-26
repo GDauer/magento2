@@ -36,7 +36,7 @@ atlassian*
 /dev
 /.docker/config/data
 /app/etc/env.php
-/update
+/update/*
 /lib/web
 
 /pub/media/*.*
