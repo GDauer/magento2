@@ -11,7 +11,7 @@
     <!--<preference for="MercadoPago\Core\Helper\ConfigData" type="Itatiaia\CustomMercadoPago\Helper\ConfigData" />-->
     <!--<preference for="MercadoPago\Core\Block\Info" type="Itatiaia\CustomMercadoPago\Block\Info" />-->
     <!--<preference for="MercadoPago\Core\Block\Info" type="Itatiaia\CustomMercadoPago\Block\Info" />-->
-    <!--<preference for="MercadoPago\Core\Helper\Data" type="Itatiaia\CustomMercadoPago\Helper\Data" />-->
+    <preference for="MercadoPago\Core\Helper\Data" type="Itatiaia\CustomMercadoPago\Helper\Data" />
 	<!--<preference for="MercadoPago\Core\Controller\Checkout\Page" type="Itatiaia\CustomMercadoPago\Controller\Checkout\Page" />-->
     <!--<type name="Magento\Framework\Console\CommandList">-->
         <!--<arguments>-->
