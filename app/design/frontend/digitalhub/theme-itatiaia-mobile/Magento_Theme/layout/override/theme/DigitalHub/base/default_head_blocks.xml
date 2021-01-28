@@ -22,6 +22,7 @@
 
     <css src="google-fonts/stylesheet.css"/>
     <css src="fontawesome/css/all.css"/>
+    <css src="css/styles.css"/>
     <css src="css/owl.carousel.css"/>
     <link src="js/all-pages-scripts.js"/>
   </head>

@@ -21,6 +21,7 @@
     <!-- <link rel="stylesheet" type="text/css" src="https://use.fontawesome.com/releases/v5.0.10/css/all.css" src_type="url" /> -->
     <css src="google-fonts/stylesheet.css"/>
     <css src="fontawesome/css/all.css"/>
+    <css src="css/styles.css"/>
     <css src="css/owl.carousel.css"/>
     <link src="js/all-pages-scripts.js"/>
   </head>
