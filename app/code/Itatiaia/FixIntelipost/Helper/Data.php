@@ -91,16 +91,16 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $order = $objectManager->get('\Magento\Sales\Model\OrderFactory')->create()->load($order_id);
 
         $logger = $objectManager->get('\Psr\Log\LoggerInterface');
-        $logger->info('HELPER UPDATE INVOICE');
+        // $logger->info('HELPER UPDATE INVOICE');
 
         // somente na troca de um status para outro será disparado
         if(($order->getState() == 'processing' || $order->getState() == 'complete') && $order->getStatus() == 'faturado_sap'){
 
-            $logger->info('ORDER DATA POST', [
-                'id' => $order->getId(),
-                'state' => $order->getState(),
-                'status' => $order->getStatus()
-            ]);
+            // $logger->info('ORDER DATA POST', [
+            //     'id' => $order->getId(),
+            //     'state' => $order->getState(),
+            //     'status' => $order->getStatus()
+            // ]);
 
             $status_histories = $order->getStatusHistories();
             $last_status = null;
@@ -114,7 +114,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
             if(strpos($nf_data, 'invoice_number') !== false){
                 $nf_data = $this->parseNfData($nf_data);
-                $logger->info('ORDER NF DATA', $nf_data);
+                // $logger->info('ORDER NF DATA', $nf_data);
 
                 if(isset($nf_data['invoice_number'])){
                     $invoices = $order->getInvoiceCollection();
@@ -122,7 +122,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                     foreach($invoices as $invoice){
                         if($invoice->getState() == \Magento\Sales\Model\Order\Invoice::STATE_PAID){
                             $last_paid_invoice = $invoice;
-                            $logger->info('ORDER INVOICE PAID DATA', [$last_paid_invoice->getData()]);
+                            // $logger->info('ORDER INVOICE PAID DATA', [$last_paid_invoice->getData()]);
                         }
                     }
 
@@ -140,7 +140,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                         $intelipostInvoice->setInvoiceCfop($nf_data['invoice_cfop']);
                         $intelipostInvoice->save();
 
-                        $logger->info('INTELIPOST_INVOICE CREATED', $intelipostInvoice->getData());
+                        // $logger->info('INTELIPOST_INVOICE CREATED', $intelipostInvoice->getData());
 
                         $this->createMagentoShipment($order);
                     }
@@ -214,10 +214,10 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                 );
             }
         } else {
-            $logger->critical('Pedido não pode gerar entrega', [
-                'id' => $order->getId(),
-                'increment_id' => $order->getIncrementId()
-            ]);
+            // $logger->critical('Pedido não pode gerar entrega', [
+            //     'id' => $order->getId(),
+            //     'increment_id' => $order->getIncrementId()
+            // ]);
         }
     }
 
