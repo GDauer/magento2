@@ -20,7 +20,7 @@ class Resync extends \Magento\Backend\App\Action
 
         $helper = $objectManager->get('Itatiaia\FixIntelipost\Helper\Data');
         $logger = $objectManager->get('\Psr\Log\LoggerInterface');
-        $logger->info('RESYNC INTELIPOST', [$id]);
+        // $logger->info('RESYNC INTELIPOST', [$id]);
 
         try {
             $intelipostShipment = $objectManager->get('\Intelipost\Quote\Model\ShipmentFactory')->create();
@@ -36,10 +36,10 @@ class Resync extends \Magento\Backend\App\Action
             $intelipostShipment->setIntelipostStatus('pending');
             $intelipostShipment->save();
 
-            $logger->info('RESYNC INTELIPOST OK', [$order_id]);
+            // $logger->info('RESYNC INTELIPOST OK', [$order_id]);
         } catch (\Exception $e){
             $this->messageManager->addError($e->getMessage());
-            $logger->info('RESYNC INTELIPOST ERROR', [$e->getMessage()]);
+            // $logger->info('RESYNC INTELIPOST ERROR', [$e->getMessage()]);
         }
 
 		$result = $this->resultFactory->create(\Magento\Framework\Controller\ResultFactory::TYPE_REDIRECT);
