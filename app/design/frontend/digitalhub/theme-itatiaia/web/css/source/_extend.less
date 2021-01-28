@@ -1,6 +1,8 @@
 @import '_colors.less';
 @import '_fonts.less';
 
+@home_carousel_img_height: 22vw;
+
 .clear{
   clear: both !important;
 }
@@ -2273,9 +2275,18 @@ a, a:hover, .alink, a:visited, .alink:visited {
                 overflow: visible;
               }
               .owl-item{
-                img {
-                  min-height: 21.28vw;
-                  min-width: 21.28vw;
+                .product-image-wrapper{
+                  min-height: @home_carousel_img_height;
+                  max-height: @home_carousel_img_height;
+                  .lib-vendor-prefix-display(flex);
+                  .lib-vendor-box-align(center);
+                  img {
+                    max-height: 100%;
+                    min-width: 100%;
+                    max-width: 100%;
+                    width: 100%;
+                    height: auto;
+                  }
                 }
               }
             }
