@@ -1,4 +1,10 @@
 <?php
+/**
+ * @author      Webjump Core Team <dev@webjump.com.br>
+ * @copyright   2021 Webjump (http://www.webjump.com.br)
+ * @license     http://www.webjump.com.br  Copyright
+ * @link        http://www.webjump.com.br
+ */
 
 namespace Itatiaia\Custom\Block\Product\View;
 
@@ -84,25 +90,6 @@ class Gallery extends \Magento\Catalog\Block\Product\View\Gallery
                     $this->imageUrlBuilder->getUrl($image->getFile(), $imageConfig['image_id'])
                 );
             }
-
-            // $values = [
-            //     'small_image_url',
-            //     'medium_image_url',
-            //     'large_image_url'
-            // ];
-            
-            // $check = function($value) use (&$image)
-            // {
-            //     if (!$image->getData($value))
-            //     {
-            //         $image->setData(
-            //             $value,
-            //             $image->getData('url')
-            //         );
-            //     }
-            // };
-
-            // array_walk($values, $check);
         }
 
         return $images;
@@ -127,51 +114,6 @@ class Gallery extends \Magento\Catalog\Block\Product\View\Gallery
     {
         return $this->jsonEncoder->encode($this->getVar('breakpoints'));
     }
-
-    // /**
-    //  * Retrieve product images in JSON format
-    //  *
-    //  * @return string
-    //  */
-    // public function getGalleryImagesJson()
-    // {
-    //     $imagesItems = [];
-    //     /** @var DataObject $image */
-    //     foreach ($this->getGalleryImages() as $image) {
-    //         $imageItem = new DataObject(
-    //             [
-    //                 'thumb' => $image->getData('small_image_url'),
-    //                 'img' => $image->getData('medium_image_url'),
-    //                 'full' => $image->getData('large_image_url'),
-    //                 'caption' => ($image->getLabel() ?: $this->getProduct()->getName()),
-    //                 'position' => $image->getData('position'),
-    //                 'isMain'   => $this->isMainImage($image),
-    //                 'type' => str_replace('external-', '', $image->getMediaType()),
-    //                 'videoUrl' => $image->getVideoUrl(),
-    //             ]
-    //         );
-    //         foreach ($this->getGalleryImagesConfig()->getItems() as $imageConfig) {
-    //             $imageItem->setData(
-    //                 $imageConfig->getData('json_object_key'),
-    //                 $image->getData($imageConfig->getData('data_object_key'))
-    //             );
-    //         }
-    //         $imagesItems[] = $imageItem->toArray();
-    //     }
-    //     if (empty($imagesItems)) {
-    //         $imagesItems[] = [
-    //             'thumb' => $this->_imageHelper->getDefaultPlaceholderUrl('thumbnail'),
-    //             'img' => $this->_imageHelper->getDefaultPlaceholderUrl('image'),
-    //             'full' => $this->_imageHelper->getDefaultPlaceholderUrl('image'),
-    //             'caption' => '',
-    //             'position' => '0',
-    //             'isMain' => true,
-    //             'type' => 'image',
-    //             'videoUrl' => null,
-    //         ];
-    //     }
-    //     return json_encode($imagesItems);
-    // }
 
     /**
      * Retrieve product images in JSON format
