@@ -6,7 +6,7 @@
    <event name="sales_order_save_after">
        <observer name="itatiaia_custom_set_lastorderid_on_session_to_ga_after_save" instance="Itatiaia\Custom\Observer\Frontend\SetLastOrderIdOnSessionToGaAfterSaveObserver" />
    </event>
-   <event name="sales_order_place_before">
-       <observer name="itatiaia_custom_set_customer_name" instance="Itatiaia\Custom\Observer\SetCustomerName" />
-    </event>
+   <!--<event name="sales_order_place_before">-->
+       <!--<observer name="itatiaia_custom_set_customer_name" instance="Itatiaia\Custom\Observer\SetCustomerName" />-->
+    <!--</event>-->
 </config>
