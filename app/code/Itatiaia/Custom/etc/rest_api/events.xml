@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
-   <!--<event name="sales_order_save_before">-->
-       <!--<observer name="sales_order_save_before_fix_vat_id" instance="Itatiaia\Custom\Observer\FixVatId" />-->
-   <!--</event>-->
-   <!--<event name="sales_order_save_after">-->
-       <!--<observer name="itatiaia_custom_set_lastorderid_on_session_to_ga_after_save" instance="Itatiaia\Custom\Observer\Frontend\SetLastOrderIdOnSessionToGaAfterSaveObserver" />-->
-   <!--</event>-->
-   <!--<event name="sales_order_place_before">-->
-       <!--<observer name="itatiaia_custom_set_customer_name" instance="Itatiaia\Custom\Observer\SetCustomerName" />-->
-    <!--</event>-->
+    <event name="sales_order_save_before">
+       <observer name="sales_order_save_before_fix_vat_id" instance="Itatiaia\Custom\Observer\FixVatId" />
+    </event>
+    <event name="sales_order_save_after">
+       <observer name="itatiaia_custom_set_lastorderid_on_session_to_ga_after_save" instance="Itatiaia\Custom\Observer\Frontend\SetLastOrderIdOnSessionToGaAfterSaveObserver" />
+    </event>
+    <event name="sales_order_place_before">
+       <observer name="itatiaia_custom_set_customer_name" instance="Itatiaia\Custom\Observer\SetCustomerName" />
+    </event>
 </config>
