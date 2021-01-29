@@ -33,7 +33,7 @@ class UpdateInvoice implements \Magento\Framework\Event\ObserverInterface
     public function execute(
         \Magento\Framework\Event\Observer $observer
     ) {
-        $this->logger->info('OBSERVER UPDATE INVOICE');
+        // $this->logger->info('OBSERVER UPDATE INVOICE');
         $order = $observer->getOrder();
         $this->helper->updateIntelipostInvoice($order->getId());
     }
