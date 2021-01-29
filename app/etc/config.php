@@ -31,7 +31,7 @@ return [
         'Magento_Indexer' => 1,
         'Magento_Variable' => 1,
         'Magento_AuthorizenetGraphQl' => 1,
-        'Magento_Cms' => 1,
+        'Magento_Cms' => 0,
         'Magento_Backup' => 1,
         'Magento_Catalog' => 1,
         'Magento_Quote' => 1,
