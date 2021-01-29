@@ -36,7 +36,7 @@ class SendMail implements \Magento\Framework\Event\ObserverInterface
     public function execute(Observer $observer)
     {
 
-        $this->logger->info('OBSERVER INIT');
+//        $this->logger->info('OBSERVER INIT');
 
         $order = $observer->getEvent()->getOrder();
 
@@ -57,7 +57,7 @@ class SendMail implements \Magento\Framework\Event\ObserverInterface
             }
         }
 
-        $this->logger->info('OBSERVER AFTER');
+//        $this->logger->info('OBSERVER AFTER');
 
         if($hasIron && $hasWood)
         {
@@ -68,7 +68,7 @@ class SendMail implements \Magento\Framework\Event\ObserverInterface
     private function sendMail($order)
     {
 
-        $this->logger->info('SEND MAIL INIT');
+//        $this->logger->info('SEND MAIL INIT');
 
         $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
 
