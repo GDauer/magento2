@@ -386,7 +386,7 @@ return [
         'Itatiaia_Custom' => 1,
         'Itatiaia_CustomAdditionalPrices' => 1,
         'Smile_ElasticsuiteCatalog' => 1,
-        'Itatiaia_FixIntelipost' => 0,
+        'Itatiaia_FixIntelipost' => 1,
         'Itatiaia_EmailOrderProcessing' => 1,
         'MercadoPago_Core' => 1,
         'Itatiaia_FreeShippingAlert' => 1,
