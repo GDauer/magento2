@@ -54,7 +54,7 @@ class ProductGrid extends ProductsList
             $collection->getSelect()->setPart('order', $order);
         } catch (\Exception $e) {
 //            $this->_logger->error(__("Error adding best seller sort order on product collection. Error: %1",
-                $e->getMessage()));
+//                $e->getMessage()));
         }
 
         return $collection;
