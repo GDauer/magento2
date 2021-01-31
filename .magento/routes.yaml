@@ -11,7 +11,25 @@
             "^\/((?!loja|media|static|rest|painel_ita).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true }
             "^\/index.php\/((?!rest|soap).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true }
 
+"https://{default}/":
+    type: upstream
+    upstream: "mymagento:http"
+    redirects:
+        expires: 1d
+        paths:
+            "^\/((?!loja|media|static|rest|painel_ita).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true }
+            "^\/index.php\/((?!rest|soap).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true }
+
 "http://{all}/":
+    type: upstream
+    upstream: "mymagento:http"
+    redirects:
+        expires: 1d
+        paths:
+            "^\/((?!loja|media|static|rest|painel_ita).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true }
+            "^\/index.php\/((?!rest|soap).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true }
+
+"https://{all}/":
     type: upstream
     upstream: "mymagento:http"
     redirects:
