@@ -46,7 +46,7 @@ class SendMail implements ObserverInterface
         $order = $observer->getEvent()->getOrder();
         if ($this->scopeConfig->getValue('sales/itatiaia_garantiaestendida/active', \Magento\Store\Model\ScopeInterface::SCOPE_STORE)) {
             try {
-                $this->logger->info('ENABLED');
+//                $this->logger->info('ENABLED');
                 $this->sendMail($order);
             } catch (\Exception $e) {
                 $this->logger->info('ERROR', [$e->getMessage()]);
@@ -71,7 +71,7 @@ class SendMail implements ObserverInterface
             return $this;
         }
 
-        $this->logger->info('SEND MAIL INIT');
+//        $this->logger->info('SEND MAIL INIT');
 
         $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
 
@@ -81,14 +81,14 @@ class SendMail implements ObserverInterface
             'order_increment_id' => $order->getIncrementId()
         ];
 
-        $this->logger->info('VARIABLES', [$variables]);
+//        $this->logger->info('VARIABLES', [$variables]);
 
         $sender = [
             'name' => $this->scopeConfig->getValue('trans_email/ident_general/name', $storeScope),
             'email' => $this->scopeConfig->getValue('trans_email/ident_general/email', $storeScope)
         ];
 
-        $this->logger->info('SENDER', [$sender]);
+//        $this->logger->info('SENDER', [$sender]);
 
         $this->inlineTranslation->suspend();
 
@@ -104,7 +104,7 @@ class SendMail implements ObserverInterface
 
         $result = $transport->sendMessage();
 
-        $this->logger->info('RESULT', [$result]);
+//        $this->logger->info('RESULT', [$result]);
 
         $this->inlineTranslation->resume();
 
