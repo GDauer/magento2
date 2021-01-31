@@ -62,9 +62,9 @@ class PurchasePixel implements ObserverInterface
                         'GET',
                         $this->getUrl($order, $quote)
                     );
-                    $this->logger->info(__('Integrated order %1 with Mooble', $order->getIncrementId()), [$response]);
+//                    $this->logger->info(__('Integrated order %1 with Mooble', $order->getIncrementId()), [$response]);
                 } catch (\Exception $e) {
-                    $this->logger->critical($e->getMessage());
+//                    $this->logger->critical($e->getMessage());
                 }
             }
         }

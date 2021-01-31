@@ -23,7 +23,7 @@ class Subscribe extends \Magento\Framework\App\Action\Action
 
         $email = $this->getRequest()->getPostValue('email');
 
-        $this->logger->info('EMAIL', [$email]);
+//        $this->logger->info('EMAIL', [$email]);
 
         try {
             // subscribe news

@@ -61,7 +61,7 @@ class ExpiredOrderCancellerCommand extends Command
         try {
             $this->cron->execute();
         } catch (\Exception $e) {
-            $this->logger->error('Erro ao rodar job. Motivo: ' . $e->getMessage());
+//            $this->logger->error('Erro ao rodar job. Motivo: ' . $e->getMessage());
         }
     }
 }

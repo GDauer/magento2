@@ -98,7 +98,7 @@ class Index extends Action
                         $quote = $this->addProduct($quote, $product, $qty);
                     }
                 } catch (NoSuchEntityException $e) {
-                    $this->logger->warning(__('Product with sku %1 does not exists on the Mooble Controller', $sku),[$e->getMessage()]);
+//                    $this->logger->warning(__('Product with sku %1 does not exists on the Mooble Controller', $sku),[$e->getMessage()]);
                 }
             }
         }
@@ -128,7 +128,7 @@ class Index extends Action
 
                 $quote->addProduct($product, $params);
             } catch (LocalizedException $e) {
-                $this->logger->warning(__('Error adding the product with sku %1 to the cart on the Mooble Controller', $product->getSku()),[$e->getMessage()]);
+//                $this->logger->warning(__('Error adding the product with sku %1 to the cart on the Mooble Controller', $product->getSku()),[$e->getMessage()]);
                 return $quote;
             }
         }
