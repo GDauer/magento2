@@ -62,11 +62,11 @@ class ValidateExternalImages
      */
     public function validate()
     {
-        $this->logger->info('Inicializando a tarefa de validação de imagens externas.');
+//        $this->logger->info('Inicializando a tarefa de validação de imagens externas.');
         $isEnabled = $this->scopeConfig->getValue(self::IS_ENABLED);
 
         if (!$isEnabled) {
-            $this->logger->notice('A validação está desativada.');
+//            $this->logger->notice('A validação está desativada.');
             return;
         }
 
@@ -85,7 +85,7 @@ class ValidateExternalImages
             'Multiuso' => 'https://loja.cozinhasitatiaia.com.br/multiusos.html'
         ];
 
-        $this->logger->info('URL de base e URLs remotas', [$baseUrl, $remoteUrls]);
+//        $this->logger->info('URL de base e URLs remotas', [$baseUrl, $remoteUrls]);
 
         // Initialize the array that'll hold all the remote images
         $remoteImages = [];
@@ -94,14 +94,14 @@ class ValidateExternalImages
             $pageContents = $this->getPageContents($url);
 
             if (!$pageContents) {
-                $this->logger->error('Não foi possível obter os dados da página.', [$url]);
+//                $this->logger->error('Não foi possível obter os dados da página.', [$url]);
                 continue;
             }
 
             $images = $this->getPageImages($pageContents);
 
             if (empty($images)) {
-                $this->logger->notice('Nenhuma imagem encontrada na página.', [$url]);
+//                $this->logger->notice('Nenhuma imagem encontrada na página.', [$url]);
                 continue;
             }
 
@@ -112,17 +112,17 @@ class ValidateExternalImages
             }
         }
         if (!empty($remoteImages)) {
-            $this->logger->info('Imagens em servidores remotos', $remoteImages);
+//            $this->logger->info('Imagens em servidores remotos', $remoteImages);
             try {
                 $this->sendAlertMail($remoteImages);
-                $this->logger->info('Enviado e-mail com notificação de imagens externas.');
+//                $this->logger->info('Enviado e-mail com notificação de imagens externas.');
 
             } catch (MailException $e) {
                 $this->logger->error('Não foi possível enviar o email.', [$e->getMessage()]);
             }
         }
 
-        $this->logger->info('Finalizada a execução de validação de imagens externas.');
+//        $this->logger->info('Finalizada a execução de validação de imagens externas.');
     }
 
     /**
@@ -185,7 +185,7 @@ class ValidateExternalImages
         $recipients = $this->scopeConfig->getValue(self::EMAIL_LIST);
 
         if(is_null($recipients) || empty($recipients)) {
-            $this->logger->notice('Nenhum destinatário definido.');
+//            $this->logger->notice('Nenhum destinatário definido.');
             return;
         }
 

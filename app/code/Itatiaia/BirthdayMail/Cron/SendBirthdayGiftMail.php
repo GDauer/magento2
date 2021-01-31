@@ -78,14 +78,14 @@ class SendBirthdayGiftMail
      */
     public function execute()
     {
-        $this->logger->notice('Iniciando o cron de envio de email para aniversariantes');
+//        $this->logger->notice('Iniciando o cron de envio de email para aniversariantes');
 
         $collection = $this->collectionFactory->create()
             ->addFieldToFilter('dob', [
                 ['like' => date('%-m-d')],
             ]);
 
-        $this->logger->notice('Aniversariantes encontrados', [$collection->getData()]);
+//        $this->logger->notice('Aniversariantes encontrados', [$collection->getData()]);
 
         /*
          * We iterate through the filtered collection
@@ -94,11 +94,11 @@ class SendBirthdayGiftMail
             // Get the customer information
             $customer = $this->customerRepository->getById($item['entity_id']);
 
-            $this->logger->notice('Cliente atual', [$customer->getFirstname()]);
+//            $this->logger->notice('Cliente atual', [$customer->getFirstname()]);
 
             $lastSentGiftMail = $customer->getCustomAttribute('dob_last_mail');
 
-            $this->logger->notice('Valor salvo do ultimo envio (caso exista)', [$lastSentGiftMail]);
+//            $this->logger->notice('Valor salvo do ultimo envio (caso exista)', [$lastSentGiftMail]);
 
             /*
              * If the result is null, this means that the email has never been sent.
@@ -106,7 +106,7 @@ class SendBirthdayGiftMail
              * We can safely call sendMail here.
              */
             if (is_null($lastSentGiftMail)) {
-                $this->logger->notice('Nunca houve envio de email, enviando...');
+//                $this->logger->notice('Nunca houve envio de email, enviando...');
                 if ($this->sendMail($customer)) {
                     $customer->setCustomAttribute('dob_last_mail', date('Y-m-d H:i:s'));
                     $this->customerRepository->save($customer);
@@ -119,10 +119,10 @@ class SendBirthdayGiftMail
                  */
                 $lastSentDate = $customer->getCustomAttribute('dob_last_mail')->getValue();
 
-                $this->logger->notice('Data do ultimo envio', [$lastSentDate]);
+//                $this->logger->notice('Data do ultimo envio', [$lastSentDate]);
 
                 if (date('Y', strtotime($lastSentDate)) != date('Y')) {
-                    $this->logger->notice('Envio anterior a um ano, enviando...');
+//                    $this->logger->notice('Envio anterior a um ano, enviando...');
                     if ($this->sendMail($customer)) {
                         $customer->setCustomAttribute('dob_last_mail', date('Y-m-d H:i:s'));
                         $this->customerRepository->save($customer);
@@ -141,7 +141,7 @@ class SendBirthdayGiftMail
 
         $codes = $this->codeGeneratorService->generateCodes();
 
-        $this->logger->notice('Codigo de desconto', $codes);
+//        $this->logger->notice('Codigo de desconto', $codes);
 
         if ($codes) {
             $variables = [
@@ -150,7 +150,7 @@ class SendBirthdayGiftMail
                 'coupon_code' => $codes[0]
             ];
 
-            $this->logger->notice('Variaveis do email', $variables);
+//            $this->logger->notice('Variaveis do email', $variables);
 
             $sender = [
                 'name' => $this->scopeConfig->getValue('trans_email/ident_general/name', ScopeInterface::SCOPE_STORE),

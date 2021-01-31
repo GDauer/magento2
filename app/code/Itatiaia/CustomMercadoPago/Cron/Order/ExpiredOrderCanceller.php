@@ -83,21 +83,21 @@ class ExpiredOrderCanceller
         }
 
         $orders = $this->getOrders();
-        $this->logger->info(__("MercadoPago - Starting expired ticket orders cancellation routine..."));
+//        $this->logger->info(__("MercadoPago - Starting expired ticket orders cancellation routine..."));
         foreach ($orders as $order) {
             try {
                 $expirationDate = $this->getCompensationExpirationDate($order);
                 $today = new DateTime();
 
                 if ($today > $expirationDate) {
-                    $this->logger->info(__("Trying to cancel order %1. Today: %2 Expiration Date: %3", $order["increment_id"], $today->format('d/m/Y'), $expirationDate->format('d/m/Y')));
+//                    $this->logger->info(__("Trying to cancel order %1. Today: %2 Expiration Date: %3", $order["increment_id"], $today->format('d/m/Y'), $expirationDate->format('d/m/Y')));
                     $this->cancelOrder($order["increment_id"]);
                 }
             } catch (\Exception $e) {
                 $this->logger->error($e->getMessage());
             }
         }
-        $this->logger->info(__("MercadoPago - Finished expired ticket orders cancellation routine."));
+//        $this->logger->info(__("MercadoPago - Finished expired ticket orders cancellation routine."));
     }
 
     /**
@@ -114,7 +114,7 @@ class ExpiredOrderCanceller
             $message = __("Order canceled due to payment expiration date.");
             $order->addStatusToHistory("canceled", $message, true);
             $this->orderRepository->save($order);
-            $this->logger->info(__("Order %1 cancelled successfully.", $incrementId));
+//            $this->logger->info(__("Order %1 cancelled successfully.", $incrementId));
             return;
         } catch (\Exception $e) {
             throw new LocalizedException(__("Error trying to cancel Order %1. Reason %2", $incrementId,

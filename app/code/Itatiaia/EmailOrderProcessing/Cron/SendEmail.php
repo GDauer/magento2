@@ -31,7 +31,7 @@ class SendEmail
 
     public function execute()
     {
-        $this->logger->info('ORDERS EMAIL INIT');
+//        $this->logger->info('ORDERS EMAIL INIT');
 
         try {
             $last_day_before = date('Y-m-d H:i:s', strtotime('now - 48 hours'));
