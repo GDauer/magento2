@@ -174,7 +174,7 @@ class Scanner
             $image->save();
             $this->callbackCount++;
         } catch (\Exception $e) {
-            $this->logger->error($e->getMessage());
+//            $this->logger->error($e->getMessage());
         }
         if (null !== $this->callback) {
             call_user_func($this->callback, $this->callbackCount);
@@ -218,7 +218,7 @@ class Scanner
                 $item->setStatus(StatusSource::STATUS_OUTDATED);
                 $item->save();
             } catch (\Exception $e) {
-                $this->logger->error($e->getMessage());
+//                $this->logger->error($e->getMessage());
             }
         }
         if (null !== $this->callback) {
