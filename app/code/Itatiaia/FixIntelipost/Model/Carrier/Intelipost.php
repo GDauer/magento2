@@ -3,6 +3,14 @@ namespace Itatiaia\FixIntelipost\Model\Carrier;
 
 class Intelipost extends \Intelipost\Quote\Model\Carrier\Intelipost
 {
+
+    /**
+     * @param \Magento\Quote\Model\Quote\Address\RateRequest $request
+     * @param bool $pickup
+     * @return bool|\Magento\Framework\DataObject|\Magento\Shipping\Model\Rate\Result|null
+     *
+     * @todo refactor
+     */
     public function collectRates(\Magento\Quote\Model\Quote\Address\RateRequest  $request, $pickup = false)
     {
         $this->logIntelipost('intelipost collectrates');
@@ -324,21 +332,32 @@ class Intelipost extends \Intelipost\Quote\Model\Carrier\Intelipost
 
             $method->setMethod($child ['delivery_method_id']);
 
-            $deliveryEstimateBusinessDays = @ $child ['delivery_estimate_business_days'];
-            $deliveryEstimateDateExactISO = @ $child ['delivery_estimate_date_exact_iso'];
-            if ($estimateDeliveryDate && false /* Disabled */)
-            {
+            $deliveryEstimateBusinessDays = null;
+            $deliveryEstimateDateExactISO = null;
+
+            if (isset($child ['delivery_estimate_business_days'])) {
+                $deliveryEstimateBusinessDays = $child ['delivery_estimate_business_days'];
+            }
+
+            if (isset($child ['delivery_estimate_date_exact_iso'])) {
+                $deliveryEstimateDateExactISO = $child ['delivery_estimate_date_exact_iso'];
+            }
+
+            if ($estimateDeliveryDate && false /* Disabled */) {
+
                 $response = $this->_api->getEstimateDeliveryDate(
                     $originZipcode, $destPostcode, $child ['delivery_estimate_business_days']
                 );
 
-                $child ['delivery_estimate_business_days'] = date ('d/m/Y', strtotime ($response ['content']['result_iso']));
-            }
-            else
-            {
-                if ($deliveryEstimateDateExactISO)
-                {
-                    $child ['delivery_estimate_business_days'] = date ('d/m/Y', strtotime ($deliveryEstimateDateExactISO));
+                $child ['delivery_estimate_business_days'] = date ('d/m/Y',
+                    strtotime ($response ['content']['result_iso'])
+                );
+
+            } else {
+                if ($deliveryEstimateDateExactISO) {
+                    $child ['delivery_estimate_business_days'] = date ('d/m/Y',
+                        strtotime ($deliveryEstimateDateExactISO)
+                    );
 
                     $method->setDeliveryEstimateDateExactIso($deliveryEstimateDateExactISO);
                 }
