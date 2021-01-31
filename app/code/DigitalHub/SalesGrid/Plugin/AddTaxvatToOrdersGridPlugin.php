@@ -59,7 +59,7 @@ class AddTaxvatToOrdersGridPlugin
                     ['so.customer_taxvat']
                 );
             } catch (\Zend_Db_Select_Exception $selectException) {
-                $this->logger->log(100, $selectException);
+//                $this->logger->log(100, $selectException);
             }
         }
 

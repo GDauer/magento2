@@ -48,7 +48,7 @@ class SaveProductCron
      * @return void
      */
     public function execute() {
-        $this->logger->info('CRON TO SAVE PRODUCT TO SALES CATEGORY', []);
+//        $this->logger->info('CRON TO SAVE PRODUCT TO SALES CATEGORY', []);
         $products = $this->productFactory->create();
         $products->addFieldToSelect('*')
             ->addAttributeToFilter(
@@ -57,7 +57,7 @@ class SaveProductCron
         $this->stockFilter->addInStockFilterToCollection($products);
         foreach ($products as $product) {
             if($product->getSpecialPrice() > 0 || count($product->getTierPrice()) > 0) {
-                $this->logger->info('PRODUCT: ', [$product->getData()]);
+//                $this->logger->info('PRODUCT: ', [$product->getData()]);
                 $this->helper->setProductToCategory($product);
             }
         }

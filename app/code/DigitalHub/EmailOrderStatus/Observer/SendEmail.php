@@ -45,7 +45,7 @@ class SendEmail implements ObserverInterface
                 $this->sendMail($order);
             } catch (\Exception $e)
             {
-                $this->logger->info('ERROR', [$e->getMessage()]);
+//                $this->logger->info('ERROR', [$e->getMessage()]);
             }
         }
     }
