@@ -8,8 +8,8 @@
     redirects:
         expires: 1d
         paths:
-            "^\/((?!loja|media|static|rest|painel_ita).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true }
-            "^\/index.php\/((?!rest|soap).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true }
+            "^/((?!loja|media|static|rest|painel_ita).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true , code: 301 }
+            "^/index.php\/((?!rest|soap).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true , code: 301 }
 
 "https://{default}/":
     type: upstream
@@ -17,8 +17,8 @@
     redirects:
         expires: 1d
         paths:
-            "^\/((?!loja|media|static|rest|painel_ita).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true }
-            "^\/index.php\/((?!rest|soap).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true }
+            "^/((?!loja|media|static|rest|painel_ita).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true , code: 301 }
+            "^/index.php\/((?!rest|soap).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true , code: 301 }
 
 "http://{all}/":
     type: upstream
@@ -26,8 +26,8 @@
     redirects:
         expires: 1d
         paths:
-            "^\/((?!loja|media|static|rest|painel_ita).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true }
-            "^\/index.php\/((?!rest|soap).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true }
+            "^/((?!loja|media|static|rest|painel_ita).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true , code: 301 }
+            "^/index.php\/((?!rest|soap).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true , code: 301 }
 
 "https://{all}/":
     type: upstream
@@ -35,7 +35,7 @@
     redirects:
         expires: 1d
         paths:
-            "^\/((?!loja|media|static|rest|painel_ita).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true }
-            "^\/index.php\/((?!rest|soap).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true }
+            "^/((?!loja|media|static|rest|painel_ita).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true , code: 301 }
+            "^/index.php\/((?!rest|soap).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true , code: 301 }
 
 
