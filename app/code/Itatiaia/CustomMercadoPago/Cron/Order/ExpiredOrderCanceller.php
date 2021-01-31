@@ -79,7 +79,7 @@ class ExpiredOrderCanceller
         try {
             $this->state->setAreaCode(Area::AREA_CRONTAB);
         } catch (\Exception $e) {
-            $this->logger->info(__("Area code already set. Executing routine..."));
+//            $this->logger->info(__("Area code already set. Executing routine..."));
         }
 
         $orders = $this->getOrders();
@@ -94,7 +94,7 @@ class ExpiredOrderCanceller
                     $this->cancelOrder($order["increment_id"]);
                 }
             } catch (\Exception $e) {
-                $this->logger->error($e->getMessage());
+//                $this->logger->error($e->getMessage());
             }
         }
 //        $this->logger->info(__("MercadoPago - Finished expired ticket orders cancellation routine."));

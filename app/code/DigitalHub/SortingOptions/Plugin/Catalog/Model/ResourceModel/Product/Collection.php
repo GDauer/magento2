@@ -52,8 +52,8 @@ class Collection
                 array_unshift($order, array_pop($order));
                 $subject->getSelect()->setPart('order', $order);
             } catch (\Exception $e) {
-                $this->logger->error(__("Error adding stock sort order on product collection. Error: %1",
-                    $e->getMessage()));
+//                $this->logger->error(__("Error adding stock sort order on product collection. Error: %1",
+//                    $e->getMessage()));
             }
         }
 

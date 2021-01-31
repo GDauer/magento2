@@ -100,7 +100,7 @@ class Media extends AbstractData
                 try {
                     $this->removeImage($oldImage, $type);
                 } catch (Exception $e) {
-                    $this->_logger->critical($e->getMessage());
+//                    $this->_logger->critical($e->getMessage());
                 }
             }
             $data['image'] = '';
@@ -216,7 +216,7 @@ class Media extends AbstractData
 
                 $image = $resizeImage;
             } catch (Exception $e) {
-                $this->_logger->critical($e->getMessage());
+//                $this->_logger->critical($e->getMessage());
             }
         }
 

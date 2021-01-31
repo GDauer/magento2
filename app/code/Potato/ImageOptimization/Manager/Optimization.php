@@ -114,7 +114,7 @@ class Optimization
                 ->setErrorType($code)
                 ->setResult($e->getMessage())
                 ->save();
-            $this->logger->error($e->getMessage());
+//            $this->logger->error($e->getMessage());
         }
         return $this;
     }

@@ -44,7 +44,7 @@ class RestrictedAccess implements \Magento\Framework\Event\ObserverInterface
 
             // verifica se possui QueryString para liberação via URL
             if(strpos($_SERVER['REQUEST_URI'], $allowedQuerystring) !== false){
-                $this->_logger->info('ACESSO CONCEDIDO VIA LINK', [$_SERVER['REQUEST_URI']]);
+//                $this->_logger->info('ACESSO CONCEDIDO VIA LINK', [$_SERVER['REQUEST_URI']]);
                 $this->_cookieManager->setPublicCookie(
                      'custom_restricted_access_allow',
                      '1',
@@ -79,7 +79,7 @@ class RestrictedAccess implements \Magento\Framework\Event\ObserverInterface
             if(!$allow){
                 header('WWW-Authenticate: Basic realm="Acesso restrito"');
                 header('HTTP/1.0 401 Unauthorized');
-                $this->_logger->info('RESTRICTED', []);
+//                $this->_logger->info('RESTRICTED', []);
                 exit;
             }
         }

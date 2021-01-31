@@ -32,7 +32,7 @@ class AssociateGuestOrders implements \Magento\Framework\Event\ObserverInterface
             $orderCollection->addFieldToFilter('customer_email', $customer->getEmail());
             $orderCollection->load();
 
-            $this->_logger->info('GUEST ORDERS TO ASSIGN', [$orderCollection->getSize()]);
+//            $this->_logger->info('GUEST ORDERS TO ASSIGN', [$orderCollection->getSize()]);
 
             foreach($orderCollection as $order){
                 $order->setCustomerId($customer->getId());
@@ -40,7 +40,7 @@ class AssociateGuestOrders implements \Magento\Framework\Event\ObserverInterface
                 $order->save();
             }
         } catch (\Exception $e){
-            $this->_logger->error('ASSIGN ORDER ERROR', [$order->getId(), $e->getMessage()]);
+//            $this->_logger->error('ASSIGN ORDER ERROR', [$order->getId(), $e->getMessage()]);
         }
     }
 }

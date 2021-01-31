@@ -118,7 +118,7 @@ class ValidateExternalImages
 //                $this->logger->info('Enviado e-mail com notificação de imagens externas.');
 
             } catch (MailException $e) {
-                $this->logger->error('Não foi possível enviar o email.', [$e->getMessage()]);
+//                $this->logger->error('Não foi possível enviar o email.', [$e->getMessage()]);
             }
         }
 
