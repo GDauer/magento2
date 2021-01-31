@@ -121,7 +121,7 @@ class SubtractQuoteInventoryObserverPlugin
                     $transport->sendMessage();
                 }
             } catch (\Exception $e) {
-                $this->logger->critical($e);
+//                $this->logger->critical($e);
             }
         }
     }
