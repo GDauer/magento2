@@ -42,7 +42,7 @@ class SendEmail
 
     public function execute(){
 
-        $this->logger->info('CRON DE RECUPERAÇÃO', []);
+//        $this->logger->info('CRON DE RECUPERAÇÃO', []);
 
         $last_day = date('Y-m-d H:i:s', strtotime('now - 24 hours'));
         $final_day = date('Y-m-d H:i:s', strtotime($last_day .  ' - 48 hours'));

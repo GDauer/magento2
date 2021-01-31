@@ -56,7 +56,7 @@ class CodeGeneratorService
             $this->generator->setSuffix('');
             $this->generator->setQuantity(1);
         } else {
-            $this->logger->notice('Cupom não configurado no admin');
+//            $this->logger->notice('Cupom não configurado no admin');
             return false;
         }
         try {

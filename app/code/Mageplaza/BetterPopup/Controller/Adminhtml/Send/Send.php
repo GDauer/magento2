@@ -105,7 +105,7 @@ class Send extends Action
                 $result['content'] = __('Sent successfully! Please check your email box.');
             } catch (\Exception $e) {
                 $result['content'] = __('There is an error occurred while sending email. Please try again later.');
-                $this->logger->critical($e);
+//                $this->logger->critical($e);
             }
         } else {
             $result['status']  = false;
@@ -153,7 +153,7 @@ class Send extends Action
         try {
             $transport->sendMessage();
         } catch (\Exception $e) {
-            $this->logger->error($e->getMessage());
+//            $this->logger->error($e->getMessage());
         }
     }
 }

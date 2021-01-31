@@ -30,9 +30,9 @@ class Generate {
             try {
                 $template = $this->feedTemplateFactory->create()->load($feed->getTemplateId());
                 $this->feedHelper->generateFeed($feed, $template);
-                $this->logger->info('CRON FEED GENERATION', [$feed->getName()]);
+//                $this->logger->info('CRON FEED GENERATION', [$feed->getName()]);
             } catch (\Exception $e){
-                $this->logger->info('CRON FEED ERROR', [$e->getMessage()]);
+//                $this->logger->info('CRON FEED ERROR', [$e->getMessage()]);
             }
         }
     }

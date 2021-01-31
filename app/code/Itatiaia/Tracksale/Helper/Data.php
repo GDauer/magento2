@@ -33,7 +33,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $isActive = (int)$this->_scopeConfig->getValue('sales/itatiaia_tracksale/active', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $token = $this->_scopeConfig->getValue('sales/itatiaia_tracksale/token', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $campaignId = $this->_scopeConfig->getValue('sales/itatiaia_tracksale/campaign_id', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $this->logger->info('TOKEN: ', [$token]);
+//        $this->logger->info('TOKEN: ', [$token]);
 
 
         if($isActive){
@@ -73,7 +73,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                         "schedule_time" => 0
                     ];
 
-                    $this->logger->info('post: ', $post);
+//                    $this->logger->info('post: ', $post);
 
                     $uri = 'https://api.tracksale.co/v2/campaign/'.$campaignId.'/dispatch';
                     $this->httpClient->reset();
@@ -88,9 +88,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                     $this->httpClient->setRawBody(json_encode($post));
                     $response = $this->httpClient->send();
 
-                    $this->logger->info('Resposta Tracksale', [$response->getBody()]);
+//                    $this->logger->info('Resposta Tracksale', [$response->getBody()]);
                 } catch (\Exception $e){
-                    $this->logger->info('Erro ao enviar cliente para Tracksale', [$e->getMessage()]);
+//                    $this->logger->info('Erro ao enviar cliente para Tracksale', [$e->getMessage()]);
                 }
             }
         }

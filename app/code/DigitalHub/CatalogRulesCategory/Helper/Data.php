@@ -225,7 +225,7 @@ class Data extends AbstractHelper
                     try {
                         $this->categoryLinkRepository->deleteByIds($category->getEntityId(), $product->getSku());
                     } catch (CouldNotSaveException | StateException $e) {
-                        $this->logger->error('Error in deleting product from category Ofertas', [$e->getMessage()]);
+//                        $this->logger->error('Error in deleting product from category Ofertas', [$e->getMessage()]);
                     }
                 }
             }
@@ -283,14 +283,14 @@ class Data extends AbstractHelper
                     try {
                         $product = $this->productRepository->getById($productId);
                         if ($this->validateRule($product, $rule) || $this->validateProduct($product)) {
-                            $this->logger->info('Set Catalog Rule Category', [$rule->getRuleId()]);
+//                            $this->logger->info('Set Catalog Rule Category', [$rule->getRuleId()]);
                             $this->setCategory($product);
                         } else {
-                            $this->logger->info('Remove Catalog Rule Category', [$rule->getRuleId()]);
+//                            $this->logger->info('Remove Catalog Rule Category', [$rule->getRuleId()]);
                             $this->unsetCategory($product);
                         }
                     } catch (NoSuchEntityException $e) {
-                        $this->logger->alert('Product does not exists in setRuleToCategory method', [$e->getMessage()]);
+//                        $this->logger->alert('Product does not exists in setRuleToCategory method', [$e->getMessage()]);
                     }
 
                 }
@@ -300,14 +300,14 @@ class Data extends AbstractHelper
                     try {
                         $product = $this->productRepository->getById($productId);
                         if (!$this->validateProduct($product, $rule)) {
-                            $this->logger->info('Remove Catalog Rule Category', [$rule->getRuleId()]);
+//                            $this->logger->info('Remove Catalog Rule Category', [$rule->getRuleId()]);
                             $this->unsetCategory($product);
                         } else {
-                            $this->logger->info('Set Catalog Rule Category', [$rule->getRuleId()]);
+//                            $this->logger->info('Set Catalog Rule Category', [$rule->getRuleId()]);
                             $this->setCategory($product);
                         }
                     } catch (NoSuchEntityException $e) {
-                        $this->logger->alert('Product does not exists in setRuleToCategory method', [$e->getMessage()]);
+//                        $this->logger->alert('Product does not exists in setRuleToCategory method', [$e->getMessage()]);
                     }
 
                 }

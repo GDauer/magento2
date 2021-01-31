@@ -110,7 +110,7 @@ class CreateCustomer implements ObserverInterface
 
             $customer->sendPasswordResetConfirmationEmail();
         } catch (Exception $e) {
-            $this->logger->critical('Erro no modulo CreateCustomer', ['exception' => $e]);
+//            $this->logger->critical('Erro no modulo CreateCustomer', ['exception' => $e]);
         }
     }
 }

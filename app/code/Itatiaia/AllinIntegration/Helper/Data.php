@@ -34,7 +34,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             $result = json_decode($response->getBody());
             $token = $result->token;
         } catch (\Exception $e){
-            $this->logger->error('Não foi possível resgatar token Allin.', [$e->getMessage()]);
+//            $this->logger->error('Não foi possível resgatar token Allin.', [$e->getMessage()]);
         }
 
         return $token;
@@ -62,9 +62,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                     $response = $this->httpClient->send();
                     // $this->logger->info('Token', [$token]);
                     // $this->logger->info('POST', [$post]);
-                    $this->logger->info('Resposta Allin', [$response->getBody()]);
+//                    $this->logger->info('Resposta Allin', [$response->getBody()]);
                 } catch (\Exception $e){
-                    $this->logger->info('Erro ao enviar cliente para AllIn', [$e->getMessage()]);
+//                    $this->logger->info('Erro ao enviar cliente para AllIn', [$e->getMessage()]);
                 }
             }
         }

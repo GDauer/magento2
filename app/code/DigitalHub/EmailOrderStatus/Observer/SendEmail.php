@@ -45,7 +45,7 @@ class SendEmail implements ObserverInterface
                 $this->sendMail($order);
             } catch (\Exception $e)
             {
-                $this->logger->info('ERROR', [$e->getMessage()]);
+//                $this->logger->info('ERROR', [$e->getMessage()]);
             }
         }
     }
@@ -53,7 +53,7 @@ class SendEmail implements ObserverInterface
     private function sendMail($order)
     {
 
-        $this->logger->info('SEND MAIL INIT');
+//        $this->logger->info('SEND MAIL INIT');
 
         $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
 

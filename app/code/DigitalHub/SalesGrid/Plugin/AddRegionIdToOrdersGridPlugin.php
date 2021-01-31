@@ -57,7 +57,7 @@ class AddRegionIdToOrdersGridPlugin
                 $collection->addFilterToMap('entity_id', 'main_table.entity_id');
                 $collection->addFilterToMap('customer_id', 'main_table.customer_id');
             } catch (\Zend_Db_Select_Exception $selectException) {
-                $this->logger->log(100, $selectException);
+//                $this->logger->log(100, $selectException);
             }
         }
 

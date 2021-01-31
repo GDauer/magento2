@@ -52,8 +52,8 @@ class CombinePlugin
                 }
                 $conditions[$key]['value'] = preg_replace('/\s+/', '', $condition['value']);
             } catch (\Exception $e) {
-                $this->logger->error(__('Error trying to remove white space from string on Combined Plugin. Error: %1',
-                    $e->getMessage()));
+//                $this->logger->error(__('Error trying to remove white space from string on Combined Plugin. Error: %1',
+//                    $e->getMessage()));
             }
         }
 
