@@ -212,11 +212,11 @@ class Data extends AbstractHelper
     public function updateGroupedStockStatusByStockItem(StockItemInterface $stockItem): void
     {
         $groupedProductType =$this->groupedFactory->create();
-        $this->loggerInterface->info('GROUPED STOCK STATUS', [$stockItem->getData()]);
+//        $this->loggerInterface->info('GROUPED STOCK STATUS', [$stockItem->getData()]);
 
         $product = $this->productFactory->create()->load($stockItem->getProductId());
         $productId = $product->getId();
-        $this->loggerInterface->info('STOCK PRODUCT ID', [$productId, $product->getName()]);
+//        $this->loggerInterface->info('STOCK PRODUCT ID', [$productId, $product->getName()]);
 
         if($product->getTypeId() == 'simple'){
 
@@ -289,12 +289,12 @@ class Data extends AbstractHelper
             $childrenIds = $groupedProduct->getTypeInstance(true)->getChildrenIds($groupedProduct->getId());
 
             $is_in_stock = true;
-            $this->loggerInterface->info('CHILDREN IDS', [$childrenIds]);
+//            $this->loggerInterface->info('CHILDREN IDS', [$childrenIds]);
 
             foreach($childrenIds['3'] as $k => $id){
                 $childProduct = $this->productFactory->create()->load($id);
 
-                $this->loggerInterface->info('CHILD ITEM', [$childProduct->getData()]);
+//                $this->loggerInterface->info('CHILD ITEM', [$childProduct->getData()]);
 
                 $extensionAttributes = $childProduct->getExtensionAttributes();
                 if(!$extensionAttributes->getStockItem()->getIsInStock()){

@@ -60,9 +60,9 @@ class OrderPlugin
                     'POST',
                     $this->getUrl($order)
                 );
-                $this->logger->info(__('Canceled order %1 in Mooble', $order->getIncrementId()), [$response]);
+//                $this->logger->info(__('Canceled order %1 in Mooble', $order->getIncrementId()), [$response]);
             } catch (\Exception $e) {
-                $this->logger->critical($e->getMessage());
+//                $this->logger->critical($e->getMessage());
             }
         }
 

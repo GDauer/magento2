@@ -42,7 +42,7 @@ class Track
 
     public function execute()
     {
-        $this->logger->info('ENTROU CRON: ', []);
+//        $this->logger->info('ENTROU CRON: ', []);
 
         $orderCollection = $this->orderFactory->create()->getCollection()
             ->addFieldToFilter('state', 'complete')
@@ -81,7 +81,7 @@ class Track
                 $err = curl_error($curl);
 
                 if ($err) {
-                    $this->logger->info('erro: ' , [$err]);
+//                    $this->logger->info('erro: ' , [$err]);
                 } else if($response) {
                     if(isset($response->content)) {
                         if (strtoupper($response->content->shipment_order_volume_array[0]->shipment_order_volume_state) == 'DELIVERED') {

@@ -1,0 +1,25 @@
+stages:
+- deploy
+
+variables:
+  ENV_ANSIBLE_SSH_KEY: $ANSIBLE_SSH_KEY
+  ENV_STORE_HOST: itatiaia_qa
+  ENV_MAGENTO_DIR: "/var/www/itatiaia.com.br/www"
+  ENV_GIT_BRANCH: staging
+  ENV_PHP_VERSION: php7.1
+
+.ansible-template: &ansible-template
+  image: registry.gitlab.com/digitalhub/devops/ansible:latest
+  services:
+    - docker:dind
+  script:
+    - cd /ansible
+    - echo "$ENV_ANSIBLE_SSH_KEY" > ansible.pem
+    - chmod 400 ansible.pem
+    - ansible-playbook -i inventory/hosts roles/magento2/tasks/deploy/main.yml -v
+
+deploy:
+  stage: deploy
+  <<: *ansible-template
+  only:
+    - staging

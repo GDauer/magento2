@@ -47,7 +47,7 @@ class Widget
                         $mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
                         $imageUrl = $mediaUrl . $imagePath;
 
-                        $logger->info($imageUrl);
+//                        $logger->info($imageUrl);
 
                         $params[$paramKey] = $imageUrl;
                     }

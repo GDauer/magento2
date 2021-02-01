@@ -94,6 +94,7 @@ class Success extends \Magento\Checkout\Controller\Onepage
     public function execute()
     {
         $session = $this->getOnepage()->getCheckout();
+        error_log(print_r($session->getData()), 3, "/tmp/my-errors.log");
         if (!$this->isValid()) {
             return $this->resultRedirectFactory->create()->setPath('checkout/cart');
         }
@@ -113,17 +114,17 @@ class Success extends \Magento\Checkout\Controller\Onepage
         $lastQuoteId = (string)$this->checkoutSession->getLastQuoteId();
 
         $this->lastOrderId = $this->checkoutSession->getLastOrderId();
-        $this->logger->info('GETTING NATIVE ORDER ID', ['lastOrderId' => $this->lastOrderId]);
+//        $this->logger->info('GETTING NATIVE ORDER ID', ['lastOrderId' => $this->lastOrderId]);
         if (!$this->lastOrderId) {
             $this->lastOrderId = $this->checkoutSession->getCustomLastOrderId();
-            $this->logger->info('GETTING CUSTOM ORDER ID', ['lastOrderId' => $this->lastOrderId]);
+//            $this->logger->info('GETTING CUSTOM ORDER ID', ['lastOrderId' => $this->lastOrderId]);
         }
 
         try {
             $order = $this->orderFactory->create()->load($this->lastOrderId);
-            $this->logger->info('ORDER SUCCESS', ['increment_id' => $order->getIncrementId(), 'quoteId' => $quoteId, 'lastOrderId' => $this->lastOrderId, 'lastQuoteId' => $lastQuoteId]);
+//            $this->logger->info('ORDER SUCCESS', ['increment_id' => $order->getIncrementId(), 'quoteId' => $quoteId, 'lastOrderId' => $this->lastOrderId, 'lastQuoteId' => $lastQuoteId]);
         } catch (\Exception $e){
-            $this->logger->error('Pedido gerado com erro.', [$e->getMessage()]);
+//            $this->logger->error('Pedido gerado com erro.', [$e->getMessage()]);
         }
 
         if((!$this->lastOrderId))

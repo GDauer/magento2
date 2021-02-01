@@ -43,7 +43,7 @@ class IgnoreCanceled
      */
     public function aroundAnalysis(\Konduto\Antifraud\Model\KondutoService $subject, callable $proceed, $orderId)
     {
-        $this->logger->info("PLUGIN - Checking order status before send to Konduto");
+//        $this->logger->info("PLUGIN - Checking order status before send to Konduto");
         $order = $this->kondutoDataHelper->loadOrder($orderId);
         $payment = $order->getPayment();
         $additional = $payment->getAdditionalInformation();
@@ -60,7 +60,7 @@ class IgnoreCanceled
         }
         if($order->getStatus() == 'canceled') {
             $orderIncrementId = $order->getIncrementId();
-            $this->logger->info("Cancelled Order not sended to Konduto. [Order Id = $orderId] [Increment Id = $orderIncrementId]");
+//            $this->logger->info("Cancelled Order not sended to Konduto. [Order Id = $orderId] [Increment Id = $orderIncrementId]");
             $this->queueRepository->deleteById($orderId);
             return;
         }

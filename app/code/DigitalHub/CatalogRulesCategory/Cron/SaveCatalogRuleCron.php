@@ -43,12 +43,12 @@ class SaveCatalogRuleCron
      * @return void
      */
     public function execute() {
-        $this->logger->info('CRON TO SAVE CATALOG RULE TO SALES CATEGORY', []);
+//        $this->logger->info('CRON TO SAVE CATALOG RULE TO SALES CATEGORY', []);
         $rules = $this->ruleFactory->create();
         $rules->addFieldToSelect('*');
         $rules->setOrder('sort_order', 'DESC');
         foreach ($rules as $rule) {
-            $this->logger->info('RULE: ', [$rule->getRuleId()]);
+//            $this->logger->info('RULE: ', [$rule->getRuleId()]);
             $this->helper->setRuleToCategory($rule);
         }
     }

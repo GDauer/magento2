@@ -24,7 +24,7 @@ class SendTracksaleNpsAfterInvoice implements \Magento\Framework\Event\ObserverI
         $customerName = $invoice->getOrder()->getBillingAddress()->getFirstname() . ' ' . $invoice->getOrder()->getBillingAddress()->getLastname();
         $customerPhone = $invoice->getOrder()->getBillingAddress()->getTelephone();
 
-        $this->logger->info('SEND NPS', [$customerEmail, $customerName, $customerPhone]);
+//        $this->logger->info('SEND NPS', [$customerEmail, $customerName, $customerPhone]);
         $this->helper->sendCustomer($customerName, $customerEmail, $customerPhone);
     }
 }

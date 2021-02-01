@@ -19,7 +19,7 @@ class Status extends Filter
         try {
             $this->bookmarkRepository->save($currentBookmark);
         } catch (\Exception $e) {
-            $this->logger->error($e->getMessage());
+//            $this->logger->error($e->getMessage());
         }
         return $this->resultRedirectFactory->create()->setPath('po_image/image/index');
     }
