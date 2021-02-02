@@ -24,7 +24,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
     <div class="product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
 
 
-			<?php if($block->getProduct()->getTypeId() == 'grouped'): ?>
+			<?php if(isset($product) && $block->getProduct()->getTypeId() == 'grouped'): ?>
 					<?php $html = $layout->renderElement('product.info.description'); ?>
 					<div class="data item title"
 							aria-labeledby="tab-label-description-title"
@@ -43,7 +43,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
 			<?php endif; ?>
 
 
-				<?php if($block->getProduct()->getTypeId() == 'grouped' && $product->isAvailable()): ?>
+				<?php if(isset($product) && $block->getProduct()->getTypeId() == 'grouped' && $product->isAvailable()): ?>
 						<?php $html = $layout->renderElement('grouped.items'); ?>
 						<div class="data item title"
 								aria-labeledby="tab-label-grouped_items-title"
@@ -66,7 +66,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
 
 						<?php // if($block->getProduct()->getTypeId() == 'grouped' && $name == 'product.attributes') continue; ?>
             <?php if($name == 'grouped.items') continue; ?>
-            <?php if($block->getProduct()->getTypeId() == 'grouped' && $name == 'product.info.description') continue; ?>
+            <?php if(isset($product) && $block->getProduct()->getTypeId() == 'grouped' && $name == 'product.info.description') continue; ?>
 
             <?php
             $html = $layout->renderElement($name);
@@ -95,7 +95,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
     </div>
 <?php endif; ?>
 
-<?php if($product->getTypeId() == 'simple'): ?>
+<?php if(isset($product) && $product->getTypeId() == 'simple'): ?>
 <!-- Início - Min Demais Produto -->
 <div class="float-min">
     <div class="min-in">
@@ -148,7 +148,7 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
 </div>
 <?php endif; ?>
 
-<?php if($product->getTypeId() == 'grouped' && $product->isAvailable()): ?>
+<?php if(isset($product) && $product->getTypeId() == 'grouped' && $product->isAvailable()): ?>
     <div class="float-min">
         <div class="min-in">
             <h4 class="product-name"><?= $product->getName(); ?></h4>
