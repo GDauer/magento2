@@ -27,7 +27,6 @@
         }
     },
     "require": {
-        "adyen/module-payment": "4.2.0",
         "cweagans/composer-patches": "^1.6",
         "flancer32/mage2_ext_minify": "^0.1.2",
         "intelipost/magento2-basic": "~1.2.0",
@@ -39,7 +38,6 @@
         "magepal/magento2-gmailsmtpapp": "^2.5",
         "magepal/magento2-googletagmanager": "2.2.9",
         "mercadopago/magento2-plugin": "3.6.0",
-        "mundipagg/mundipagg-magento2-module": "^1.8",
         "mustache/mustache": "^2.12",
         "pmclain/magento2-successtest": "^2.0",
         "scandiweb/module-core": "~0.1.2",
