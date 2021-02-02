@@ -26,7 +26,7 @@ class KondutoService extends OriginalKondutoService
     /**
      * @var \Adyen\Payment\Gateway\Http\TransferFactory
      */
-    private $transferFactory;
+//    private $transferFactory;
 
     /**
      * @var \Adyen\Payment\Helper\Requests
@@ -36,12 +36,12 @@ class KondutoService extends OriginalKondutoService
     /**
      * @var \Adyen\Payment\Gateway\Http\Client\TransactionCapture
      */
-    private $transactionCapture;
+//    private $transactionCapture;
 
     /**
      * @var \Adyen\Payment\Gateway\Http\Client\TransactionCancel
      */
-    private $transactionCancel;
+//    private $transactionCancel;
 
     /**
      * @var \Adyen\Payment\Helper\Data
@@ -75,10 +75,10 @@ class KondutoService extends OriginalKondutoService
         \Magento\Sales\Model\Order\Email\Sender\InvoiceSender $invoiceSender,
         \Magento\Sales\Model\Order\Status\HistoryFactory $orderHistoryFactory,
         \Magento\Sales\Model\OrderFactory $orderFactory,
-        \Adyen\Payment\Gateway\Http\TransferFactory $transferFactory,
+//        \Adyen\Payment\Gateway\Http\TransferFactory $transferFactory,
 //        \Adyen\Payment\Helper\Requests $adyenRequestHelper,
-        \Adyen\Payment\Gateway\Http\Client\TransactionCapture $transactionCapture,
-        \Adyen\Payment\Gateway\Http\Client\TransactionCancel $transactionCancel,
+//        \Adyen\Payment\Gateway\Http\Client\TransactionCapture $transactionCapture,
+//        \Adyen\Payment\Gateway\Http\Client\TransactionCancel $transactionCancel,
 //        \Adyen\Payment\Helper\Data $adyenHelper,
         \Magento\Sales\Model\ResourceModel\Order\Status\CollectionFactory $orderStatusCollection,
         \Itatiaia\CustomMercadoPago\Http\Order\Payment $mercadoPagoHttpPayment
@@ -86,10 +86,10 @@ class KondutoService extends OriginalKondutoService
     {
         $this->orderHistoryFactory = $orderHistoryFactory;
         $this->orderFactory = $orderFactory;
-        $this->transferFactory = $transferFactory;
+//        $this->transferFactory = $transferFactory;
 //        $this->adyenRequestHelper = $adyenRequestHelper;
-        $this->transactionCapture = $transactionCapture;
-        $this->transactionCancel = $transactionCancel;
+//        $this->transactionCapture = $transactionCapture;
+//        $this->transactionCancel = $transactionCancel;
 //        $this->adyenHelper = $adyenHelper;
         $this->orderStatusCollection = $orderStatusCollection;
         $this->mercadoPagoHttpPayment = $mercadoPagoHttpPayment;

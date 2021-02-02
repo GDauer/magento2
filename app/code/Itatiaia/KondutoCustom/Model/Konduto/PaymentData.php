@@ -5,7 +5,7 @@ namespace Itatiaia\KondutoCustom\Model\Konduto;
 use Konduto\Antifraud\Helper\Data;
 use Magento\Quote\Api\CartRepositoryInterface as QuoteRepositoryInterface;
 use Konduto\Antifraud\Model\Konduto\PaymentData as OriginalPaymentData;
-use Adyen\Payment\Model\NotificationFactory;
+//use Adyen\Payment\Model\NotificationFactory;
 
 class PaymentData extends OriginalPaymentData
 {
@@ -18,22 +18,22 @@ class PaymentData extends OriginalPaymentData
 
     /** @var QuoteRepositoryInterface */
     public $quoteRepository;
-    public $notificationFactory;
+//    public $notificationFactory;
 
     /**
      * PaymentData constructor.
      * @param Data $helper
      * @param QuoteRepositoryInterface $quoteRepository
-     * @param NotificationFactory $notification
+//     * @param NotificationFactory $notification
      */
     public function __construct(
         Data $helper,
-        QuoteRepositoryInterface $quoteRepository,
-        NotificationFactory $notification
+        QuoteRepositoryInterface $quoteRepository
+//        NotificationFactory $notification
     ) {
         $this->helper = $helper;
         $this->quoteRepository = $quoteRepository;
-        $this->notificationFactory = $notification;
+//        $this->notificationFactory = $notification;
     }
 
     /**
@@ -253,54 +253,54 @@ class PaymentData extends OriginalPaymentData
      * @param $payment
      * @return bool
      */
-    private function getCcBin($payment)
-    {
-        $pResp = $payment->getAdditionalInformation('paymentsResponse');
-        if (isset($pResp['additionalData']) && isset($pResp['additionalData']['cardBin'])) {
-            return $pResp['additionalData']['cardBin'];
-        }
-
-        $pResp = $this->payment->getAdditionalInformation('paymentsResponseBkp');
-        if (isset($pResp['additionalData']) && isset($pResp['additionalData']['cardBin'])) {
-            return $pResp['additionalData']['cardBin'];
-        }
-
-        $pspRef = $this->payment->getCcTransId();
-        $this->helper->log('REAL CCTRANSID: ' . $pspRef, 'info');
-        $notification = $this->notificationFactory->create()->load($pspRef, 'pspreference');
-        $additionalData = unserialize($notification->getAdditionalData());
-        if (isset($additionalData['cardBin'])) {
-            return $additionalData['cardBin']; // mm/yyyy
-        }
-
-        return false;
-    }
+//    private function getCcBin($payment)
+//    {
+//        $pResp = $payment->getAdditionalInformation('paymentsResponse');
+//        if (isset($pResp['additionalData']) && isset($pResp['additionalData']['cardBin'])) {
+//            return $pResp['additionalData']['cardBin'];
+//        }
+//
+//        $pResp = $this->payment->getAdditionalInformation('paymentsResponseBkp');
+//        if (isset($pResp['additionalData']) && isset($pResp['additionalData']['cardBin'])) {
+//            return $pResp['additionalData']['cardBin'];
+//        }
+//
+//        $pspRef = $this->payment->getCcTransId();
+//        $this->helper->log('REAL CCTRANSID: ' . $pspRef, 'info');
+//        $notification = $this->notificationFactory->create()->load($pspRef, 'pspreference');
+//        $additionalData = unserialize($notification->getAdditionalData());
+//        if (isset($additionalData['cardBin'])) {
+//            return $additionalData['cardBin']; // mm/yyyy
+//        }
+//
+//        return false;
+//    }
 
     /**
      * @param $payment
      * @return bool
      */
-    private function getCcLast4($payment)
-    {
-        if ($this->payment->getCcLast4()) {
-            return $this->payment->getCcLast4();
-        } else {
-            $pResp = $this->payment->getAdditionalInformation('paymentsResponseBkp');
-            if (isset($pResp['additionalData']) && isset($pResp['additionalData']['cardSummary'])) {
-                return $pResp['additionalData']['cardSummary'];
-            }
-
-            $pspRef = $this->payment->getCcTransId();
-            $this->helper->log('getCcLast4 REAL CCTRANSID: ' . $pspRef, 'info');
-            $notification = $this->notificationFactory->create()->load($pspRef, 'pspreference');
-            $additionalData = unserialize($notification->getAdditionalData());
-            if (isset($additionalData['cardSummary'])) {
-                return $additionalData['cardSummary']; // mm/yyyy
-            }
-        }
-
-        return false;
-    }
+//    private function getCcLast4($payment)
+//    {
+//        if ($this->payment->getCcLast4()) {
+//            return $this->payment->getCcLast4();
+//        } else {
+//            $pResp = $this->payment->getAdditionalInformation('paymentsResponseBkp');
+//            if (isset($pResp['additionalData']) && isset($pResp['additionalData']['cardSummary'])) {
+//                return $pResp['additionalData']['cardSummary'];
+//            }
+//
+//            $pspRef = $this->payment->getCcTransId();
+//            $this->helper->log('getCcLast4 REAL CCTRANSID: ' . $pspRef, 'info');
+//            $notification = $this->notificationFactory->create()->load($pspRef, 'pspreference');
+//            $additionalData = unserialize($notification->getAdditionalData());
+//            if (isset($additionalData['cardSummary'])) {
+//                return $additionalData['cardSummary']; // mm/yyyy
+//            }
+//        }
+//
+//        return false;
+//    }
 
     /**
      * @param $payment
