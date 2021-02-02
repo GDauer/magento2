@@ -3,13 +3,21 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 namespace Magento\UrlRewrite\Controller;
 
-class UrlRewriteTest extends \Magento\TestFramework\TestCase\AbstractController
+use Magento\TestFramework\TestCase\AbstractController;
+use Magento\Framework\App\Response\Http as HttpResponse;
+
+/**
+ * Class to test Match corresponding URL Rewrite
+ */
+class UrlRewriteTest extends AbstractController
 {
     /**
      * @magentoDataFixture Magento/UrlRewrite/_files/url_rewrite.php
-     * @magentoAppIsolation enabled
+     * @magentoDbIsolation disabled
      *
      * @covers \Magento\UrlRewrite\Controller\Router::match
      * @covers \Magento\UrlRewrite\Model\Storage\DbStorage::doFindOneByData
@@ -17,23 +25,35 @@ class UrlRewriteTest extends \Magento\TestFramework\TestCase\AbstractController
      * @param string $request
      * @param string $redirect
      * @param int $expectedCode
+     * @return void
      *
      * @dataProvider requestDataProvider
      */
     public function testMatchUrlRewrite(
-        $request,
-        $redirect,
-        $expectedCode = 301
-    ) {
+        string $request,
+        string $redirect,
+        int $expectedCode = HttpResponse::STATUS_CODE_301
+    ): void {
         $this->dispatch($request);
-        $code = $this->getResponse()->getHttpResponseCode();
-        $location = $this->getResponse()->getHeader('Location')->getFieldValue();
-
+        /** @var HttpResponse $response */
+        $response = $this->getResponse();
+        $code = $response->getHttpResponseCode();
         $this->assertEquals($expectedCode, $code, 'Invalid response code');
-        $this->assertStringEndsWith($redirect, $location, 'Invalid location header');
+
+        if ($expectedCode !== HttpResponse::STATUS_CODE_200) {
+            $location = $response->getHeader('Location')->getFieldValue();
+            $this->assertStringEndsWith(
+                $redirect,
+                $location,
+                'Invalid location header'
+            );
+        }
     }
 
-    public function requestDataProvider()
+    /**
+     * @return array
+     */
+    public function requestDataProvider(): array
     {
         return [
             'Use Case #1: Rewrite: page-one/ --(301)--> page-a/; Request: page-one/ --(301)--> page-a/' => [
@@ -59,7 +79,7 @@ class UrlRewriteTest extends \Magento\TestFramework\TestCase\AbstractController
             'Use Case #6: Rewrite: page-similar/ --(301)--> page-b; Request: page-similar/ --(301)--> page-b' => [
                 'request' => '/page-similar/',
                 'redirect' => '/page-b',
-            ]
+            ],
         ];
     }
 }

@@ -13,10 +13,13 @@ use Magento\CatalogSearch\Model\Indexer\Fulltext as CatalogSearchFulltextIndexer
 use Magento\TestFramework\Helper\Bootstrap;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Elasticsearch\SearchAdapter\ConnectionManager;
-use Magento\Elasticsearch\Model\Client\Elasticsearch as ElasticsearchClient;
+use Magento\Elasticsearch6\Model\Client\Elasticsearch as ElasticsearchClient;
 use Magento\Elasticsearch\Model\Config;
 use Magento\Elasticsearch\SearchAdapter\SearchIndexNameResolver;
 use Magento\Indexer\Model\Indexer;
+use Magento\Framework\Search\EngineResolverInterface;
+use Magento\TestModuleCatalogSearch\Model\ElasticsearchVersionChecker;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Important: Please make sure that each integration test file works with unique elastic search index. In order to
@@ -25,9 +28,15 @@ use Magento\Indexer\Model\Indexer;
  *
  * @magentoDbIsolation disabled
  * @magentoDataFixture Magento/Elasticsearch/_files/indexer.php
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-class IndexHandlerTest extends \PHPUnit\Framework\TestCase
+class IndexHandlerTest extends TestCase
 {
+    /**
+     * @var string
+     */
+    private $searchEngine;
+
     /**
      * @var ProductRepositoryInterface
      */
@@ -63,6 +72,9 @@ class IndexHandlerTest extends \PHPUnit\Framework\TestCase
      */
     private $searchIndexNameResolver;
 
+    /**
+     * {@inheritdoc}
+     */
     protected function setUp()
     {
         $connectionManager = Bootstrap::getObjectManager()->create(ConnectionManager::class);
@@ -83,10 +95,19 @@ class IndexHandlerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @magentoConfigFixture current_store catalog/search/engine elasticsearch
-     * @magentoConfigFixture current_store catalog/search/elasticsearch_index_prefix indexerhandlertest
+     * Make sure that correct engine is set
      */
-    public function testReindexAll()
+    protected function assertPreConditions()
+    {
+        $currentEngine = Bootstrap::getObjectManager()->get(EngineResolverInterface::class)->getCurrentSearchEngine();
+        $this->assertEquals($this->getInstalledSearchEngine(), $currentEngine);
+    }
+
+    /**
+     * @magentoConfigFixture current_store catalog/search/elasticsearch_index_prefix indexerhandlertest
+     * @return void
+     */
+    public function testReindexAll(): void
     {
         $productApple = $this->productRepository->get('fulltext-1');
         foreach ($this->storeIds as $storeId) {
@@ -96,15 +117,18 @@ class IndexHandlerTest extends \PHPUnit\Framework\TestCase
 
             $products = $this->searchByName('Simple Product', $storeId);
             $this->assertCount(5, $products);
+
+            $this->assertCount(2, $this->searchByBoolAttribute(0, $storeId));
+            $this->assertCount(3, $this->searchByBoolAttribute(1, $storeId));
         }
     }
 
     /**
      * @magentoAppIsolation enabled
-     * @magentoConfigFixture current_store catalog/search/engine elasticsearch
      * @magentoConfigFixture current_store catalog/search/elasticsearch_index_prefix indexerhandlertest
+     * @return void
      */
-    public function testReindexRowAfterEdit()
+    public function testReindexRowAfterEdit(): void
     {
         $this->storeManager->setCurrentStore('admin');
         $productApple = $this->productRepository->get('fulltext-1');
@@ -125,10 +149,10 @@ class IndexHandlerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @magentoConfigFixture current_store catalog/search/engine elasticsearch
      * @magentoConfigFixture current_store catalog/search/elasticsearch_index_prefix indexerhandlertest
+     * @return void
      */
-    public function testReindexRowAfterMassAction()
+    public function testReindexRowAfterMassAction(): void
     {
         $productApple = $this->productRepository->get('fulltext-1');
         $productBanana = $this->productRepository->get('fulltext-2');
@@ -139,9 +163,9 @@ class IndexHandlerTest extends \PHPUnit\Framework\TestCase
         $attrData = [
             'name' => 'Simple Product Common',
         ];
-
         /** @var ProductAction $action */
         $action = Bootstrap::getObjectManager()->get(ProductAction::class);
+
         foreach ($this->storeIds as $storeId) {
             $action->updateAttributes($productIds, $attrData, $storeId);
 
@@ -163,18 +187,18 @@ class IndexHandlerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @magentoConfigFixture current_store catalog/search/engine elasticsearch
      * @magentoConfigFixture current_store catalog/search/elasticsearch_index_prefix indexerhandlertest
      * @magentoAppArea adminhtml
+     * @return void
      */
-    public function testReindexRowAfterDelete()
+    public function testReindexRowAfterDelete(): void
     {
         $productBanana = $this->productRepository->get('fulltext-2');
         $this->productRepository->delete($productBanana);
 
         foreach ($this->storeIds as $storeId) {
             $products = $this->searchByName('Banana', $storeId);
-            $this->assertCount(0, $products);
+            $this->assertEmpty($products);
 
             $products = $this->searchByName('Simple Product', $storeId);
             $this->assertCount(4, $products);
@@ -182,18 +206,18 @@ class IndexHandlerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
+     * @magentoDbIsolation enabled
      * @magentoAppArea adminhtml
-     * @magentoConfigFixture current_store catalog/search/engine elasticsearch
      * @magentoConfigFixture current_store catalog/search/elasticsearch_index_prefix indexerhandlertest
      * @magentoDataFixture Magento/Elasticsearch/_files/configurable_products.php
+     * @return void
      */
-    public function testReindexRowAfterUpdateStockStatus()
+    public function testReindexRowAfterUpdateStockStatus(): void
     {
         foreach ($this->storeIds as $storeId) {
             $products = $this->searchByName('ProductOption1', $storeId);
             $this->assertNotEmpty($products);
         }
-
         $product = $this->productRepository->get('simple_10');
         /** @var StockRegistryInterface $stockRegistry */
         $stockRegistry = Bootstrap::getObjectManager()->create(StockRegistryInterface::class);
@@ -213,13 +237,13 @@ class IndexHandlerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Search docs in Elasticsearch by name
+     * Search docs in Elasticsearch by name.
      *
      * @param string $text
      * @param int $storeId
      * @return array
      */
-    private function searchByName($text, $storeId)
+    private function searchByName(string $text, int $storeId): array
     {
         $index = $this->searchIndexNameResolver->getIndexName($storeId, $this->indexer->getId());
         $searchQuery = [
@@ -244,5 +268,46 @@ class IndexHandlerTest extends \PHPUnit\Framework\TestCase
         $products = isset($queryResult['hits']['hits']) ? $queryResult['hits']['hits'] : [];
 
         return $products;
+    }
+
+    /**
+     * Search docs in Elasticsearch by boolean attribute.
+     *
+     * @param int $value
+     * @param int $storeId
+     * @return array
+     */
+    private function searchByBoolAttribute(int $value, int $storeId): array
+    {
+        $index = $this->searchIndexNameResolver->getIndexName($storeId, $this->indexer->getId());
+        $searchQuery = [
+            'index' => $index,
+            'type' => $this->entityType,
+            'body' => [
+                'query' => [
+                    'query_string' => [
+                        'query' => $value,
+                        'default_field' => 'boolean_attribute',
+                    ],
+                ],
+            ],
+        ];
+        $queryResult = $this->client->query($searchQuery);
+        return isset($queryResult['hits']['hits']) ? $queryResult['hits']['hits'] : [];
+    }
+
+    /**
+     * Returns installed on server search service
+     *
+     * @return string
+     */
+    private function getInstalledSearchEngine()
+    {
+        if (!$this->searchEngine) {
+            // phpstan:ignore "Class Magento\TestModuleCatalogSearch\Model\ElasticsearchVersionChecker not found."
+            $version = Bootstrap::getObjectManager()->get(ElasticsearchVersionChecker::class)->getVersion();
+            $this->searchEngine = 'elasticsearch' . $version;
+        }
+        return $this->searchEngine;
     }
 }

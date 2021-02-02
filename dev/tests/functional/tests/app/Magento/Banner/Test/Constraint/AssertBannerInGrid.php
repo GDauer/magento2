@@ -35,21 +35,15 @@ class AssertBannerInGrid extends AbstractConstraint
             'active' => $banner->getIsEnabled(),
         ];
 
-        $storeContent = $banner->getStoreContentsNotUse();
-        if (isset($storeContent['value_1']) && $storeContent['value_1'] === 'No') {
-            $filter['visibility'] = 'Main Website/Main Website Store/Default Store View';
-        }
-
         $bannerIndex->getGrid()->search($filter);
         if ($banner->hasData('types')) {
             $types = implode(', ', $banner->getTypes());
             $filter['types'] = $types;
         }
-        unset($filter['visibility']);
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $bannerIndex->getGrid()->isRowVisible($filter, false),
-            'Banner is absent in banner grid.'
+            'Dynamic Block is absent in dynamic block grid.'
         );
     }
 
@@ -60,6 +54,6 @@ class AssertBannerInGrid extends AbstractConstraint
      */
     public function toString()
     {
-        return 'Banner in grid.';
+        return 'Dynamic Block in grid.';
     }
 }

@@ -3,6 +3,8 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 namespace Magento\CatalogRule\Model\ResourceModel\Product;
 
 use Magento\TestFramework\Helper\Bootstrap;
@@ -73,8 +75,8 @@ class ConditionsToCollectionApplierTest extends \PHPUnit\Framework\TestCase
                 array_values($resultCollection->getItems())
             );
 
-            sort($expectedSkuList);
-            sort($resultSkuList);
+            asort($expectedSkuList);
+            asort($resultSkuList);
 
             $this->assertEquals($expectedSkuList, $resultSkuList, sprintf('%s failed', $variationName));
         }
@@ -410,6 +412,19 @@ class ConditionsToCollectionApplierTest extends \PHPUnit\Framework\TestCase
                     'simple-product-10',
                     'simple-product-11',
                     'simple-product-12'
+                ]
+            ],
+
+            // test filter for case "If ALL/ANY of these conditions are FALSE" with multiple levels
+            'variation 22' => [
+                'condition' => $this->getConditionsForVariation22(),
+                'expected-sku' => [
+                    'simple-product-1',
+                    'simple-product-2',
+                    'simple-product-3',
+                    'simple-product-4',
+                    'simple-product-7',
+                    'simple-product-8'
                 ]
             ],
         ];
@@ -997,6 +1012,39 @@ class ConditionsToCollectionApplierTest extends \PHPUnit\Framework\TestCase
                     'operator' => '==',
                     'value' => $attributeSetGuardians->getId(),
                     'attribute' => 'attribute_set_id'
+                ]
+            ]
+        ];
+
+        return $this->getCombineConditionFromArray($conditions);
+    }
+
+    private function getConditionsForVariation22()
+    {
+        $category1Name = 'Category 1';
+
+        $category1Id = $this->categoryCollectionFactory
+            ->create()
+            ->addAttributeToFilter('name', $category1Name)
+            ->getAllIds();
+
+        $conditions = [
+            'type' => \Magento\CatalogRule\Model\Rule\Condition\Combine::class,
+            'aggregator' => 'all',
+            'value' => 0,
+            'conditions' => [
+                [
+                    'type' => \Magento\CatalogRule\Model\Rule\Condition\Combine::class,
+                    'aggregator' => 'all',
+                    'value' => 1,
+                    'conditions' => [
+                        [
+                            'type' => \Magento\CatalogRule\Model\Rule\Condition\Product::class,
+                            'operator' => '==',
+                            'value' => implode(',', $category1Id),
+                            'attribute' => 'category_ids'
+                        ]
+                    ]
                 ]
             ]
         ];

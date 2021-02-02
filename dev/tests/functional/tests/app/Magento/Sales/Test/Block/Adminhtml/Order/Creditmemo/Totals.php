@@ -4,6 +4,8 @@
  * See COPYING.txt for license details.
  */
 
+declare(strict_types=1);
+
 namespace Magento\Sales\Test\Block\Adminhtml\Order\Creditmemo;
 
 use Magento\Mtf\Client\Locator;
@@ -32,24 +34,24 @@ class Totals extends \Magento\Sales\Test\Block\Adminhtml\Order\Totals
      *
      * @var string
      */
-    private $refundShippingSelector = '//input[@id=\'shipping_amount\']';
+    private $refundShippingSelector = '#shipping_amount';
 
     /**
      * Adjustment Refund css selector.
      *
      * @var string
      */
-    private $adjustmentRefundSelector = '//input[@id=\'adjustment_positive\']';
+    private $adjustmentRefundSelector = '#adjustment_positive';
 
     /**
      * Adjustment Fee css selector.
      *
      * @var string
      */
-    private $adjustmentFeeSelector = '//input[@id=\'adjustment_negative\']';
+    private $adjustmentFeeSelector = '#adjustment_negative';
 
     /**
-     * 'Update Totals button css selector.
+     * Update Totals button css selector.
      *
      * @var string
      */
@@ -93,7 +95,7 @@ class Totals extends \Magento\Sales\Test\Block\Adminhtml\Order\Totals
      */
     public function getRefundShippingElement()
     {
-        return $this->_rootElement->find($this->refundShippingSelector, Locator::SELECTOR_XPATH);
+        return $this->_rootElement->find($this->refundShippingSelector, Locator::SELECTOR_CSS);
     }
 
     /**
@@ -103,7 +105,7 @@ class Totals extends \Magento\Sales\Test\Block\Adminhtml\Order\Totals
      */
     public function getAdjustmentRefundElement()
     {
-        return $this->_rootElement->find($this->adjustmentRefundSelector, Locator::SELECTOR_XPATH);
+        return $this->_rootElement->find($this->adjustmentRefundSelector, Locator::SELECTOR_CSS);
     }
 
     /**
@@ -113,7 +115,7 @@ class Totals extends \Magento\Sales\Test\Block\Adminhtml\Order\Totals
      */
     public function getAdjustmentFeeElement()
     {
-        return $this->_rootElement->find($this->adjustmentFeeSelector, Locator::SELECTOR_XPATH);
+        return $this->_rootElement->find($this->adjustmentFeeSelector, Locator::SELECTOR_CSS);
     }
 
     /**
@@ -123,9 +125,6 @@ class Totals extends \Magento\Sales\Test\Block\Adminhtml\Order\Totals
      */
     public function clickUpdateTotals()
     {
-        $button = $this->_rootElement->find($this->updateTotalsSelector);
-        if (!$button->isDisabled()) {
-            $button->click();
-        }
+        $this->_rootElement->find($this->updateTotalsSelector)->click();
     }
 }
