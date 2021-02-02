@@ -31,7 +31,7 @@ class KondutoService extends OriginalKondutoService
     /**
      * @var \Adyen\Payment\Helper\Requests
      */
-    private $adyenRequestHelper;
+//    private $adyenRequestHelper;
 
     /**
      * @var \Adyen\Payment\Gateway\Http\Client\TransactionCapture
@@ -46,7 +46,7 @@ class KondutoService extends OriginalKondutoService
     /**
      * @var \Adyen\Payment\Helper\Data
      */
-    private $adyenHelper;
+//    private $adyenHelper;
 
     /**
      * @var \Magento\Sales\Model\ResourceModel\Order\Status\CollectionFactory
@@ -76,10 +76,10 @@ class KondutoService extends OriginalKondutoService
         \Magento\Sales\Model\Order\Status\HistoryFactory $orderHistoryFactory,
         \Magento\Sales\Model\OrderFactory $orderFactory,
         \Adyen\Payment\Gateway\Http\TransferFactory $transferFactory,
-        \Adyen\Payment\Helper\Requests $adyenRequestHelper,
+//        \Adyen\Payment\Helper\Requests $adyenRequestHelper,
         \Adyen\Payment\Gateway\Http\Client\TransactionCapture $transactionCapture,
         \Adyen\Payment\Gateway\Http\Client\TransactionCancel $transactionCancel,
-        \Adyen\Payment\Helper\Data $adyenHelper,
+//        \Adyen\Payment\Helper\Data $adyenHelper,
         \Magento\Sales\Model\ResourceModel\Order\Status\CollectionFactory $orderStatusCollection,
         \Itatiaia\CustomMercadoPago\Http\Order\Payment $mercadoPagoHttpPayment
     )
@@ -87,10 +87,10 @@ class KondutoService extends OriginalKondutoService
         $this->orderHistoryFactory = $orderHistoryFactory;
         $this->orderFactory = $orderFactory;
         $this->transferFactory = $transferFactory;
-        $this->adyenRequestHelper = $adyenRequestHelper;
+//        $this->adyenRequestHelper = $adyenRequestHelper;
         $this->transactionCapture = $transactionCapture;
         $this->transactionCancel = $transactionCancel;
-        $this->adyenHelper = $adyenHelper;
+//        $this->adyenHelper = $adyenHelper;
         $this->orderStatusCollection = $orderStatusCollection;
         $this->mercadoPagoHttpPayment = $mercadoPagoHttpPayment;
         parent::__construct(
@@ -213,24 +213,24 @@ class KondutoService extends OriginalKondutoService
         return true;
     }
 
-    public function sendToAdyen($order)
-    {
-        $this->helper->log('WEBHOOK APPROVING', 'info');
-        // TODO -> refactor to change status and implement adyen request on Observer
-
-        // Merchant account data builder
-        $request = $this->createRequest($order);
-        $transferObject = $this->transferFactory->create($request);
-        $paymentsResponse = $this->transactionCapture->placeRequest($transferObject);
-
-        $this->helper->log('WEBHOOK PAYMENT RESPONSE' . json_encode($paymentsResponse), 'info');
-        if (!isset($paymentsResponse['response']) || !$paymentsResponse['response'] == '[capture-received]'
-            || !isset($paymentsResponse['pspReference']) || !$paymentsResponse['pspReference'] == $order->getPayment()->getCcTransId()
-        ) {
-            $this->helper->log('ERROR SENDING CAPTURE DATA TO ADYEN - REQUEST WAS ' . json_encode($request), 'warning');
-            // TODO -> return error to Konduto
-        }
-    }
+//    public function sendToAdyen($order)
+//    {
+//        $this->helper->log('WEBHOOK APPROVING', 'info');
+//        // TODO -> refactor to change status and implement adyen request on Observer
+//
+//        // Merchant account data builder
+//        $request = $this->createRequest($order);
+//        $transferObject = $this->transferFactory->create($request);
+//        $paymentsResponse = $this->transactionCapture->placeRequest($transferObject);
+//
+//        $this->helper->log('WEBHOOK PAYMENT RESPONSE' . json_encode($paymentsResponse), 'info');
+//        if (!isset($paymentsResponse['response']) || !$paymentsResponse['response'] == '[capture-received]'
+//            || !isset($paymentsResponse['pspReference']) || !$paymentsResponse['pspReference'] == $order->getPayment()->getCcTransId()
+//        ) {
+//            $this->helper->log('ERROR SENDING CAPTURE DATA TO ADYEN - REQUEST WAS ' . json_encode($request), 'warning');
+//            // TODO -> return error to Konduto
+//        }
+//    }
 
     /**
      * @param $order
@@ -258,7 +258,7 @@ class KondutoService extends OriginalKondutoService
             return $this->sendToMercadoPago($order);
         }
         $this->helper->log('SEND ADYEN BEFORE ', 'info');
-        return $this->sendToAdyen($order);
+//        return $this->sendToAdyen($order);
     }
 
     public function sendCancel($order)
@@ -267,7 +267,7 @@ class KondutoService extends OriginalKondutoService
             return $this->sendToMercadoPagoCancel($order);
         }
 
-        return $this->sendToAdyenCancel($order);
+//        return $this->sendToAdyenCancel($order);
     }
 
     public function sendToMercadoPagoCancel($order)
@@ -279,63 +279,63 @@ class KondutoService extends OriginalKondutoService
         return $resp;
     }
 
-    public function sendToAdyenCancel($order)
-    {
-        $this->helper->log('WEBHOOK APPROVING', 'info');
-
-        // Merchant account data builder
-        $request = $this->createCancelRequest($order);
-        $transferObject = $this->transferFactory->create($request);
-        $paymentsResponse = $this->transactionCancel->placeRequest($transferObject);
-
-        $this->helper->log('WEBHOOK PAYMENT CANCEL RESPONSE' . json_encode($paymentsResponse), 'info');
-        if (!isset($paymentsResponse['response']) || !$paymentsResponse['response'] == '[cancel-received]'
-            || !isset($paymentsResponse['pspReference']) || !$paymentsResponse['pspReference'] == $order->getPayment()->getCcTransId()
-        ) {
-            $this->helper->log('ERROR SENDING CAPTURE DATA TO ADYEN - REQUEST WAS ' . json_encode($request), 'warning');
-        }
-    }
-
-    /**
-     * @param $order
-     * @return mixed
-     */
-    public function createRequest($order)
-    {
-        $payment = $order->getPayment();
-        $paymentMethod = $payment->getMethod();
-        $storeId = $order->getStoreId();
-
-        $currency = $order->getOrderCurrencyCode();
-        $amount = $this->adyenHelper->formatAmount($order->getGrandTotal(), $currency);
-        $modificationAmount = ['currency' => $currency, 'value' => $amount];
-
-        $request = [
-            "modificationAmount" => $modificationAmount,
-            "reference" => $order->getIncrementId(),
-            "originalReference" => $payment->getCcTransId()
-        ];
-
-        return $this->adyenRequestHelper->buildMerchantAccountData($request, $paymentMethod, $storeId);
-    }
+//    public function sendToAdyenCancel($order)
+//    {
+//        $this->helper->log('WEBHOOK APPROVING', 'info');
+//
+//        // Merchant account data builder
+//        $request = $this->createCancelRequest($order);
+//        $transferObject = $this->transferFactory->create($request);
+//        $paymentsResponse = $this->transactionCancel->placeRequest($transferObject);
+//
+//        $this->helper->log('WEBHOOK PAYMENT CANCEL RESPONSE' . json_encode($paymentsResponse), 'info');
+//        if (!isset($paymentsResponse['response']) || !$paymentsResponse['response'] == '[cancel-received]'
+//            || !isset($paymentsResponse['pspReference']) || !$paymentsResponse['pspReference'] == $order->getPayment()->getCcTransId()
+//        ) {
+//            $this->helper->log('ERROR SENDING CAPTURE DATA TO ADYEN - REQUEST WAS ' . json_encode($request), 'warning');
+//        }
+//    }
 
     /**
      * @param $order
      * @return mixed
      */
-    public function createCancelRequest($order)
-    {
-        $payment = $order->getPayment();
-        $paymentMethod = $payment->getMethod();
-        $storeId = $order->getStoreId();
+//    public function createRequest($order)
+//    {
+//        $payment = $order->getPayment();
+//        $paymentMethod = $payment->getMethod();
+//        $storeId = $order->getStoreId();
+//
+//        $currency = $order->getOrderCurrencyCode();
+//        $amount = $this->adyenHelper->formatAmount($order->getGrandTotal(), $currency);
+//        $modificationAmount = ['currency' => $currency, 'value' => $amount];
+//
+//        $request = [
+//            "modificationAmount" => $modificationAmount,
+//            "reference" => $order->getIncrementId(),
+//            "originalReference" => $payment->getCcTransId()
+//        ];
+//
+//        return $this->adyenRequestHelper->buildMerchantAccountData($request, $paymentMethod, $storeId);
+//    }
 
-        $request = [
-            "reference" => $order->getIncrementId(),
-            "originalReference" => $payment->getCcTransId()
-        ];
-
-        return $this->adyenRequestHelper->buildMerchantAccountData($request, $paymentMethod, $storeId);
-    }
+    /**
+     * @param $order
+     * @return mixed
+     */
+//    public function createCancelRequest($order)
+//    {
+//        $payment = $order->getPayment();
+//        $paymentMethod = $payment->getMethod();
+//        $storeId = $order->getStoreId();
+//
+//        $request = [
+//            "reference" => $order->getIncrementId(),
+//            "originalReference" => $payment->getCcTransId()
+//        ];
+//
+//        return $this->adyenRequestHelper->buildMerchantAccountData($request, $paymentMethod, $storeId);
+//    }
 
     public function getOrderState($status)
     {

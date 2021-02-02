@@ -77,12 +77,12 @@ class PaymentData extends OriginalPaymentData
             $this->helper->log('ELSEIF - MERCADOPAGO', 'info');
             $data[0] = $this->getMercadoPagoData();
             $data[0]['type'] = $this->getMethod($this->payment);
-        } elseif ($this->method === "credit") {
-            $this->helper->log('IF - CREDIT', 'info');
-            $this->helper->log('', 'info');
-            $quote = $this->loadQuote($this->order->getQuoteId());
-            $data[0] = $this->getAdyenData($quote);
-            $data[0]['type'] = $this->getMethod($this->payment);
+//        } elseif ($this->method === "credit") {
+//            $this->helper->log('IF - CREDIT', 'info');
+//            $this->helper->log('', 'info');
+//            $quote = $this->loadQuote($this->order->getQuoteId());
+//            $data[0] = $this->getAdyenData($quote);
+//            $data[0]['type'] = $this->getMethod($this->payment);
         } else {
             $this->helper->log('ELSE', 'info');
             $quote = $this->loadQuote($this->order->getQuoteId());
@@ -139,27 +139,27 @@ class PaymentData extends OriginalPaymentData
      * @param $quote
      * @return array
      */
-    private function getAdyenData($quote)
-    {
-        $data = [];
-        $this->helper->log('ADYEN QUOTE: ' . json_encode($quote->getId()), 'info');
-        $data['expiration_date'] = $this->getCcExpDate($quote->getPayment());
-        $this->helper->log('GETTING CCSTATUS', 'info');
-        $data['status'] = $this->getCcStatus($this->order);
-
-        $this->helper->log('GETTING CCLAST4', 'info');
-        $last4 = $this->getCcLast4($quote->getPayment());
-        if (false !== $last4) {
-            $data['last4'] = $last4;
-        }
-
-        $this->helper->log('GETTING CCBIN', 'info');
-        $bin = $this->getCcBin($quote->getPayment());
-        if (false !== $bin) {
-            $data['bin'] = $bin;
-        }
-        return $data;
-    }
+//    private function getAdyenData($quote)
+//    {
+//        $data = [];
+//        $this->helper->log('ADYEN QUOTE: ' . json_encode($quote->getId()), 'info');
+//        $data['expiration_date'] = $this->getCcExpDate($quote->getPayment());
+//        $this->helper->log('GETTING CCSTATUS', 'info');
+//        $data['status'] = $this->getCcStatus($this->order);
+//
+//        $this->helper->log('GETTING CCLAST4', 'info');
+//        $last4 = $this->getCcLast4($quote->getPayment());
+//        if (false !== $last4) {
+//            $data['last4'] = $last4;
+//        }
+//
+//        $this->helper->log('GETTING CCBIN', 'info');
+//        $bin = $this->getCcBin($quote->getPayment());
+//        if (false !== $bin) {
+//            $data['bin'] = $bin;
+//        }
+//        return $data;
+//    }
 
     /**
      * @param $order
@@ -183,35 +183,35 @@ class PaymentData extends OriginalPaymentData
      * @param $payment
      * @return mixed|string
      */
-    private function getCcExpDate($payment)
-    {
-        $expiryDate = $this->payment->getAdditionalInformation('adyen_expiry_date');
-        $this->helper->log('EXPIRY DATE 1: ' . json_encode($expiryDate), 'info');
-        if (null === $expiryDate) {
-            $pResp = $payment->getAdditionalInformation('paymentsResponse');
-            $this->helper->log('PRESP 2: ' . json_encode($pResp), 'info');
-            if (isset($pResp['additionalData']) && isset($pResp['additionalData']['adyen_expiry_date'])) {
-                $expiryDate = $pResp['additionalData']['adyen_expiry_date']; // mm/yyyy
-                $this->helper->log('EXPIRY DATE 2: ' . json_encode($expiryDate), 'info');
-            }
-        }
-
-        if (null === $expiryDate) {
-            $this->helper->log('REAL CCTRANSID: ' . $this->payment->getCcTransId(), 'info');
-            $pspRef = $this->payment->getCcTransId();
-
-            $notification = $this->notificationFactory->create()->load($pspRef, 'pspreference');
-            $additionalData = unserialize($notification->getAdditionalData());
-            $this->helper->log('NOTIFICATION ID: ' . json_encode($notification->getId()), 'info');
-            $this->helper->log('PRESP 3: ' . json_encode($additionalData), 'info');
-            if (isset($additionalData['expiryDate'])) {
-                $expiryDate = $additionalData['expiryDate']; // mm/yyyy
-                $this->helper->log('EXPIRY DATE 3: ' . json_encode($expiryDate), 'info');
-            }
-        }
-
-        return str_replace('/', '', $expiryDate);
-    }
+//    private function getCcExpDate($payment)
+//    {
+//        $expiryDate = $this->payment->getAdditionalInformation('adyen_expiry_date');
+//        $this->helper->log('EXPIRY DATE 1: ' . json_encode($expiryDate), 'info');
+//        if (null === $expiryDate) {
+//            $pResp = $payment->getAdditionalInformation('paymentsResponse');
+//            $this->helper->log('PRESP 2: ' . json_encode($pResp), 'info');
+//            if (isset($pResp['additionalData']) && isset($pResp['additionalData']['adyen_expiry_date'])) {
+//                $expiryDate = $pResp['additionalData']['adyen_expiry_date']; // mm/yyyy
+//                $this->helper->log('EXPIRY DATE 2: ' . json_encode($expiryDate), 'info');
+//            }
+//        }
+//
+//        if (null === $expiryDate) {
+//            $this->helper->log('REAL CCTRANSID: ' . $this->payment->getCcTransId(), 'info');
+//            $pspRef = $this->payment->getCcTransId();
+//
+//            $notification = $this->notificationFactory->create()->load($pspRef, 'pspreference');
+//            $additionalData = unserialize($notification->getAdditionalData());
+//            $this->helper->log('NOTIFICATION ID: ' . json_encode($notification->getId()), 'info');
+//            $this->helper->log('PRESP 3: ' . json_encode($additionalData), 'info');
+//            if (isset($additionalData['expiryDate'])) {
+//                $expiryDate = $additionalData['expiryDate']; // mm/yyyy
+//                $this->helper->log('EXPIRY DATE 3: ' . json_encode($expiryDate), 'info');
+//            }
+//        }
+//
+//        return str_replace('/', '', $expiryDate);
+//    }
 
     /**
      * @return string
