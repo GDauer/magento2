@@ -18,6 +18,7 @@ use Magento\TestFramework\Helper\Bootstrap;
 use PHPUnit\Framework\TestCase;
 
 /**
+ * @magentoDataFixture Magento/Reward/_files/rate.php
  * @magentoDataFixture  Magento/CustomerBalance/_files/creditmemo_with_customer_balance.php
  */
 class CreditmemoSaveAfterObserverTest extends TestCase
@@ -32,6 +33,9 @@ class CreditmemoSaveAfterObserverTest extends TestCase
      */
     private $observer;
 
+    /**
+     * @inheritdoc
+     */
     protected function setUp()
     {
         $this->objectManager = Bootstrap::getObjectManager();
@@ -44,11 +48,14 @@ class CreditmemoSaveAfterObserverTest extends TestCase
      * @param float $maxAllowedBalance
      * @param float $customerBalance
      * @param int $rewardPoints
+     * @return void
      * @throws \Magento\Framework\Exception\LocalizedException
-     * @dataProvider totalsDataProvider
      */
-    public function testExecute(float $maxAllowedBalance, float $customerBalance, int $rewardPoints)
+    public function testExecute(): void
     {
+        $maxAllowedBalance = 66.48;
+        $customerBalance = 28.53;
+        $rewardPoints = 0;
         $creditMemo = $this->getCreditMemo('100000001');
         $creditMemo->setBaseCustomerBalanceReturnMax($maxAllowedBalance)
             ->setBsCustomerBalTotalRefunded($customerBalance)
@@ -64,41 +71,21 @@ class CreditmemoSaveAfterObserverTest extends TestCase
     /**
      * Checks a case when the entered Customer Balance or Reward Points greater then allowed Balance.
      *
+     * @return void
      * @expectedException \Magento\Framework\Exception\LocalizedException
      * @expectedExceptionMessage You can't use more store credit than the order amount.
      */
-    public function testExecuteWithNotAllowedBalance()
+    public function testExecuteWithNotAllowedBalance(): void
     {
         $maxAllowedBalance = 66.48;
         $customerBalance = 28.53;
-        $rewardPoints = 39;
+        $rewardPoints = 10000;
         $creditMemo = $this->getCreditMemo('100000001');
         $creditMemo->setBaseCustomerBalanceReturnMax($maxAllowedBalance)
             ->setBsCustomerBalTotalRefunded($customerBalance)
             ->setRewardPointsBalanceRefund($rewardPoints);
         $observer = $this->getObserver($creditMemo);
         $this->observer->execute($observer);
-    }
-
-    /**
-     * Gets list of totals variations.
-     *
-     * @return array
-     */
-    public function totalsDataProvider(): array
-    {
-        return [
-            [
-                'maxAllowedBalance' => 66.48,
-                'customerBalance' => 28.53,
-                'rewardPoints' => 38
-            ],
-            [
-                'maxAllowedBalance' => 66.02,
-                'customerBalance' => 28.53,
-                'rewardPoints' => 37
-            ]
-        ];
     }
 
     /**
@@ -154,6 +141,7 @@ class CreditmemoSaveAfterObserverTest extends TestCase
         $customerBalance = $this->objectManager->create(Balance::class);
         $customerBalance->setCustomerId($customerId);
         $customerBalance->loadByCustomer();
+
         return $customerBalance;
     }
 }

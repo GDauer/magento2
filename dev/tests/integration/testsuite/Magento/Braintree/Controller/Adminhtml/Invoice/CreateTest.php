@@ -61,20 +61,24 @@ class CreateTest extends AbstractBackendController
      * Checks a case when non default Merchant Account ID should be send to Braintree
      * during creation second partial invoice.
      *
-     * @magentoConfigFixture default_store payment/braintree/merchant_account_id Magneto
+     * @return void
+     * @magentoConfigFixture default_store payment/braintree/merchant_account_id Magento
      * @magentoConfigFixture current_store payment/braintree/merchant_account_id USA_Merchant
      * @magentoDataFixture Magento/Braintree/Fixtures/partial_invoice.php
      */
-    public function testCreatePartialInvoiceWithNonDefaultMerchantAccount()
+    public function testCreatePartialInvoiceWithNonDefaultMerchantAccount(): void
     {
         $order = $this->getOrder('100000002');
 
         $this->adapter->method('sale')
-            ->with(self::callback(function ($request) {
-                self::assertEquals('USA_Merchant', $request['merchantAccountId']);
-                return true;
-            }))
-            ->willReturn($this->getTransactionStub());
+            ->with(
+                self::callback(
+                    function ($request) {
+                        self::assertEquals('USA_Merchant', $request['merchantAccountId']);
+                        return true;
+                    }
+                )
+            )->willReturn($this->getTransactionStub());
 
         $uri = 'backend/sales/order_invoice/save/order_id/' . $order->getEntityId();
         $this->prepareRequest($uri);
@@ -129,8 +133,9 @@ class CreateTest extends AbstractBackendController
      * Prepares POST request for invoice creation.
      *
      * @param string $uri
+     * @return void
      */
-    private function prepareRequest(string $uri)
+    private function prepareRequest(string $uri): void
     {
         /** @var FormKey $formKey */
         $formKey = $this->_objectManager->get(FormKey::class);
