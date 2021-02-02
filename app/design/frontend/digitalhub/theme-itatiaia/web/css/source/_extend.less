@@ -13,6 +13,14 @@
   background: linear-gradient(to right, #fff 0%,#fff 45%,@_ita_main-blue_color 55%,@_ita_main-blue_color 100%);
 }
 
+.lib-vendor-prefix-justify-content (
+    @_value: space-between
+) {
+  -webkit-box-pack: @_value;
+     -ms-flex-pack: @_value;
+   justify-content: @_value;
+}
+
 body {
   overflow-x: hidden;
   font-family: 'GTWalsheimProRegular', 'Montserrat', sans-serif;
@@ -5122,6 +5130,19 @@ body.checkout-index-index {
             display: none;
           }
         }
+      }
+    }
+  }
+  .products-grid {
+    .product-item {
+      .lib-vendor-prefix-display(flex);
+      .lib-vendor-box-align (stretch);
+
+      .product-item-info{
+        height: 100%;
+        .lib-vendor-prefix-display(flex);
+        .lib-vendor-prefix-flex-direction (column);
+        .lib-vendor-prefix-justify-content(space-between);
       }
     }
   }

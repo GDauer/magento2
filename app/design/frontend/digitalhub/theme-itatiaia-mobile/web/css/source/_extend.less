@@ -4,14 +4,6 @@
 @screen__s: 1280px;
 @screen__m: 1280px;
 
-.lib-vendor-prefix-justify-content (
-    @_value: space-between
-) {
-  -webkit-box-pack: @_value;
-     -ms-flex-pack: @_value;
-   justify-content: @_value;
-}
-
 body {
   overflow-x: hidden;
   font-family: 'GTWalsheimProRegular', sans-serif;
@@ -4162,19 +4154,6 @@ form.form-create-account {
           font-family: 'GTWalsheimProBold';
           display: inline-block;
         }
-      }
-    }
-  }
-  .products-grid {
-    .product-item {
-      .lib-vendor-prefix-display(flex);
-      .lib-vendor-box-align (stretch);
-
-      .product-item-info{
-        height: 100%;
-        .lib-vendor-prefix-display(flex);
-        .lib-vendor-prefix-flex-direction (column);
-        .lib-vendor-prefix-justify-content(space-between);
       }
     }
   }
