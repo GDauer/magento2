@@ -37,7 +37,7 @@
         "magento/magento-cloud-metapackage": ">=2.3.6 <2.3.7",
         "magepal/magento2-gmailsmtpapp": "^2.5",
         "magepal/magento2-googletagmanager": "2.2.9",
-        "mercadopago/magento2-plugin": "3.6.0",
+        "mercadopago/magento2-plugin": "3.3.1",
         "mustache/mustache": "^2.12",
         "pmclain/magento2-successtest": "^2.0",
         "scandiweb/module-core": "~0.1.2",
