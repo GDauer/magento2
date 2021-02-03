@@ -115,6 +115,9 @@ class Sidebar extends Block
         if (!$this->browser->find($this->cartContent)->isVisible()) {
             $this->browser->find($this->cartLink)->click();
         }
+        // Need this because there are a lot of JS processes that update shopping cart items
+        // and we cant control them all
+        sleep(5);
     }
 
     /**
@@ -125,15 +128,17 @@ class Sidebar extends Block
     public function clickBraintreePaypalButton()
     {
         // Button can be enabled/disabled few times.
-        sleep(2);
+        sleep(3);
 
         $windowsCount = count($this->browser->getWindowHandles());
         $this->_rootElement->find($this->braintreePaypalCheckoutButton)
             ->click();
         $browser = $this->browser;
-        $this->browser->waitUntil(function () use ($browser, $windowsCount) {
-            return count($browser->getWindowHandles()) === ($windowsCount + 1) ? true: null;
-        });
+        $this->browser->waitUntil(
+            function () use ($browser, $windowsCount) {
+                return count($browser->getWindowHandles()) === ($windowsCount + 1) ? true: null;
+            }
+        );
     }
 
     /**

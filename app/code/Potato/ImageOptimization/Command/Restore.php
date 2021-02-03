@@ -132,7 +132,7 @@ class Restore extends Command
 
                 $successCount++;
             } catch (\Exception $e) {
-                $this->logger->error($e->getMessage() . __(" File path: %1", $restoreImage->getPath()));
+//                $this->logger->error($e->getMessage() . __(" File path: %1", $restoreImage->getPath()));
                 $errorCount++;
             }
             $processedCount++;

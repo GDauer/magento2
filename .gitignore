@@ -33,14 +33,7 @@ atlassian*
 /.php_cs.cache
 /grunt-config.json
 /dev/tools/grunt/configs/local-themes.js
-/dev
-/dev/*
-/.docker/config/data
-/app/etc/env.php
-/update
-/update/*
-/lib/web
-/lib/web/*
+/.docker
 
 /pub/media/*.*
 !/pub/media/.htaccess

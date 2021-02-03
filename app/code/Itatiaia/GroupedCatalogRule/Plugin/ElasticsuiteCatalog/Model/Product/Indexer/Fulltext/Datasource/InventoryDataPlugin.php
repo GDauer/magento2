@@ -23,7 +23,7 @@ class InventoryDataPlugin
             }
         }
 
-        $logger->info('TOTAL SEM ESTOQUE', [$total]);
+//        $logger->info('TOTAL SEM ESTOQUE', [$total]);
 
         return $indexData;
     }

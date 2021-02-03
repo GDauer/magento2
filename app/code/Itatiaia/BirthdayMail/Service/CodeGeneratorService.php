@@ -62,10 +62,10 @@ class CodeGeneratorService
         try {
             return $this->service->generate($this->generator);
         } catch (InputException $e) {
-            $this->logger->notice($e->getMessage());
+//            $this->logger->notice($e->getMessage());
             return false;
         } catch (LocalizedException $e) {
-            $this->logger->notice($e->getMessage());
+//            $this->logger->notice($e->getMessage());
             return false;
         }
     }
