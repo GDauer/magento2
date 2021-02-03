@@ -36,4 +36,21 @@ class Data
         return $analyticsData;
     }
 
+    public function log($message, $name = "mercadopago", $array = null)
+    {
+        //load admin configuration value, default is true
+        $actionLog = $this->scopeConfig->getValue(\MercadoPago\Core\Helper\ConfigData::PATH_ADVANCED_LOG, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+        if (!$actionLog) {
+            return;
+        }
+        //if extra data is provided, it's encoded for better visualization
+        if (!is_null($array)) {
+            $message .= " - " . json_encode($array);
+        }
+
+        //set log
+//        $this->_mpLogger->setName($name);
+//        $this->_mpLogger->debug($message);
+    }
+
 }
