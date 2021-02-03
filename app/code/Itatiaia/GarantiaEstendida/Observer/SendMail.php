@@ -49,7 +49,7 @@ class SendMail implements ObserverInterface
 //                $this->logger->info('ENABLED');
                 $this->sendMail($order);
             } catch (\Exception $e) {
-                $this->logger->info('ERROR', [$e->getMessage()]);
+//                $this->logger->info('ERROR', [$e->getMessage()]);
             }
         }
 

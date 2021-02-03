@@ -58,7 +58,7 @@ class UpdateGroupLockedItems implements \Magento\Framework\Event\ObserverInterfa
                 if($parentQuoteItem->getId() == $parentProduct->getId()){
                     $item->setQty($quoteItem->getQty());
                     $item->save();
-                    $this->_logger->info('SAVE QTY', []);
+//                    $this->_logger->info('SAVE QTY', []);
                 }
             }
         }
