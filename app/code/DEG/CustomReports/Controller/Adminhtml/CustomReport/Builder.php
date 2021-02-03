@@ -59,7 +59,7 @@ class Builder
             try {
                 $customReport->load($customReportId);
             } catch (\Exception $e) {
-                $this->logger->critical($e);
+//                $this->logger->critical($e);
             }
         }
 
