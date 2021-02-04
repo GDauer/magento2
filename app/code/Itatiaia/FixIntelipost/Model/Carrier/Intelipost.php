@@ -412,4 +412,23 @@ class Intelipost extends \Intelipost\Quote\Model\Carrier\Intelipost
         return $block;
     }
 
+    /**
+     * @param $logFile
+     * @return \Zend\Log\Logger|null
+     */
+    private function getLoggerObject($logFile)
+    {
+        if(!strlen($logFile)){
+            return null;
+        }
+
+        $filename = preg_replace("#pub\/#is", "", BP . '/var/log/'. $logFile );
+
+        $writer = new \Zend\Log\Writer\Stream($filename);
+        $logger = new \Zend\Log\Logger();
+        $logger->addWriter($writer);
+
+        return $logger;
+    }
+
 }
