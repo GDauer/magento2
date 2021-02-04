@@ -1077,7 +1077,7 @@ define([
                     return true;
                 }
 
-                var dateFormat = utils.convertToMomentFormat(params.dateFormat) | '';
+                var dateFormat = params.dateFormat ? params.dateFormat : '';
 
                 return moment(value, dateFormat).isBefore(moment());
             },
