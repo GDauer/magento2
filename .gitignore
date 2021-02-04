@@ -26,8 +26,6 @@ atlassian*
 /grunt-config.json
 /dev/tools/grunt/configs/local-themes.js
 /.docker
-/dev
-/lib
 
 /pub/media/*.*
 !/pub/media/.htaccess
