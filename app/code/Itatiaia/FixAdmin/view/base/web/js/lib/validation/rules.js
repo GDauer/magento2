@@ -1,6 +1,9 @@
 /**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * @author      Webjump Core Team <dev@webjump.com.br>
+ * @copyright   2021 Webjump (http://www.webjump.com.br)
+ * @license     http://www.webjump.com.br  Copyright
+ *
+ * @link        http://www.webjump.com.br
  */
 
 /**
@@ -1069,12 +1072,14 @@ define([
             $.mage.__('This link is not allowed.')
         ],
         'validate-dob': [
-            function (value) {
+            function (value, element, params) {
                 if (value === '') {
                     return true;
                 }
 
-                return moment(value).isBefore(moment());
+                var dateFormat = utils.convertToMomentFormat(params.dateFormat) | '';
+
+                return moment(value, dateFormat).isBefore(moment());
             },
             $.mage.__('The Date of Birth should not be greater than today.')
         ]
