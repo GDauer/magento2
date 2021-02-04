@@ -387,7 +387,6 @@ return [
         'Itatiaia_FixIntelipost' => 1,
         'Itatiaia_EmailOrderProcessing' => 1,
         'MercadoPago_Core' => 1,
-        'Itatiaia_FixLogHandler' => 1,
         'Itatiaia_FreeShippingAlert' => 1,
         'Itatiaia_GarantiaEstendida' => 1,
         'DigitalHub_CatalogRulesCategory' => 1,
