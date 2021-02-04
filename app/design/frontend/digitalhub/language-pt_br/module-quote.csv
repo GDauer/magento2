@@ -1,8 +1,8 @@
 Subtotal,Subtotal
-Discount,Discount
+Discount,Desconto
 "Store Credit","Store Credit"
-"An item option with code %1 already exists.","An item option with code %1 already exists."
-"Discount (%1)","Discount (%1)"
+"An item option with code %1 already exists.","Uma opção com o código %1 já existe."
+"Discount (%1)","Desconto (%1)"
 "Shipping & Handling","Frete"
 "Sorry, but items with payment agreements must be ordered one at a time To continue, please remove or buy the other items in your cart, then order this item by itself.","Sorry, but items with payment agreements must be ordered one at a time To continue, please remove or buy the other items in your cart, then order this item by itself."
 "We found an invalid request for adding product to quote.","We found an invalid request for adding product to quote."
@@ -21,7 +21,9 @@ Discount,Discount
 "Some of the selected options are not currently available.","Some of the selected options are not currently available."
 "Selected option(s) or their combination is not currently available.","Selected option(s) or their combination is not currently available."
 "Some item options or their combination are not currently available.","Some item options or their combination are not currently available."
-"The requested Payment Method is not available.","The requested Payment Method is not available."
-"Please check the shipping address information. %1","Please check the shipping address information. %1"
-"Please check the billing address information. %1","Please check the billing address information. %1"
-"Please select a valid payment method.","Please select a valid payment method."
+"The requested Payment Method is not available.","O método de pagamento solicitado não está disponível."
+"Please check the shipping address information. %1","Por favor, verifique as informações do endereço de entrega. %1"
+"Please check the billing address information. %1","Por favor, verifique as informações do endereço de cobrança. %1"
+"Please select a valid payment method.","Por favor, selecione um método de pagamento válido."
+"The coupon code isn't valid. Verify the code and try again.","O código do cupom não é válido. Verifique o código e tente novamente."
+"No such entity.","Essa entidade não existe."

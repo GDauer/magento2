@@ -22,7 +22,7 @@ class Log
      */
     public function processorLog($message)
     {
-        $this->logger->error($message);
+//        $this->logger->error($message);
     }
 
     /**
@@ -30,6 +30,6 @@ class Log
      */
     public function log($message)
     {
-        $this->logger->error($message);
+//        $this->logger->error($message);
     }
 }

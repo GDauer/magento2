@@ -3,6 +3,8 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 use Magento\Quote\Model\Quote;
 
 require __DIR__ . '/quote.php';
@@ -24,7 +26,7 @@ foreach ($addressList as $key => $address) {
 
 // assign virtual product to the billing address
 $billingAddress = $quote->getBillingAddress();
-$virtualItem = $items[sizeof($items) - 1];
+$virtualItem = $items[count($items) - 1];
 $billingAddress->setTotalQty(1);
 $billingAddress->addItem($virtualItem);
 

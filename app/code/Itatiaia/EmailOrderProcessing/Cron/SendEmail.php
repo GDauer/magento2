@@ -70,7 +70,7 @@ class SendEmail
 
             // $this->logger->info('ORDERS SENT SUCCESS');
         } catch (\Exception $e){
-            $this->logger->info('ORDERS ERROR SENT', [$e->getMessage()]);
+//            $this->logger->info('ORDERS ERROR SENT', [$e->getMessage()]);
         }
     }
 

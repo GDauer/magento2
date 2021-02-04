@@ -43,13 +43,6 @@ class View extends AbstractConfigureBlock
     protected $addToCart = '.tocart';
 
     /**
-     * Locator for "Update Cart" button.
-     *
-     * @var string
-     */
-    protected $updateCart = '#product-updatecart-button';
-
-    /**
      * Quantity input id.
      *
      * @var string
@@ -96,7 +89,7 @@ class View extends AbstractConfigureBlock
      *
      * @var string
      */
-    protected $productDescription = '.product.attribute.description';
+    protected $productDescription = '.product.attribute.description .value';
 
     /**
      * Product short-description element.
@@ -228,6 +221,13 @@ class View extends AbstractConfigureBlock
     private $thresholdMessage = '.availability.only';
 
     /**
+     * Qty field error message selector.
+     *
+     * @var string
+     */
+    private $qtyErrorMessage = '#qty-error';
+
+    /**
      * Checks if threshold message is displayed.
      *
      * @return bool
@@ -256,7 +256,7 @@ class View extends AbstractConfigureBlock
      */
     public function getPriceBlock(FixtureInterface $product = null)
     {
-        $typeId = null;
+        $typeId = '';
 
         if ($product) {
             $dataConfig = $product->getDataConfig();
@@ -322,23 +322,13 @@ class View extends AbstractConfigureBlock
     }
 
     /**
-     * Click "Add to Cart" button.
+     * Click link.
      *
      * @return void
      */
     public function clickAddToCart()
     {
-        $this->_rootElement->find($this->addToCart)->click();
-    }
-
-    /**
-     * Click "Update Cart" button.
-     *
-     * @return void
-     */
-    public function clickUpdateCart()
-    {
-        $this->_rootElement->find($this->updateCart)->click();
+        $this->_rootElement->find($this->addToCart, Locator::SELECTOR_CSS)->click();
     }
 
     /**
@@ -405,10 +395,8 @@ class View extends AbstractConfigureBlock
     public function braintreePaypalCheckout()
     {
         $currentWindow = $this->browser->getCurrentWindow();
-        $this->getMiniCartBlock()->waitInit();
         $this->getMiniCartBlock()->openMiniCart();
         $this->getMiniCartBlock()->clickBraintreePaypalButton();
-
         return $currentWindow;
     }
 
@@ -682,7 +670,6 @@ class View extends AbstractConfigureBlock
      */
     public function isVideoVisible()
     {
-        $this->waitForElementNotVisible($this->galleryLoader);
         return $this->_rootElement->find($this->videoContainer)->isVisible();
     }
 
@@ -696,5 +683,17 @@ class View extends AbstractConfigureBlock
     {
         $dataVideoSelector = $this->productVideo . '[data-code="' . $videoData. '"]';
         return $this->_rootElement->find($dataVideoSelector)->isPresent();
+    }
+
+    /**
+     * Resolve qty field error message.
+     *
+     * @return string
+     */
+    public function getQtyErrorMessage()
+    {
+        $this->waitForElementVisible($this->qtyErrorMessage);
+
+        return $this->_rootElement->find($this->qtyErrorMessage)->getText();
     }
 }

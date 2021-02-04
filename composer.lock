@@ -4,91 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "da93820d72e6d328accc04f6f4f7ffc1",
+    "content-hash": "ae22864063a92e49d95a73362afbf08a",
     "packages": [
-        {
-            "name": "adyen/module-payment",
-            "version": "4.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Adyen/adyen-magento2.git",
-                "reference": "6f6a2efee60f34be33c6735e789726d9562cb03e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Adyen/adyen-magento2/zipball/6f6a2efee60f34be33c6735e789726d9562cb03e",
-                "reference": "6f6a2efee60f34be33c6735e789726d9562cb03e",
-                "shasum": ""
-            },
-            "require": {
-                "adyen/php-api-library": ">=2.0.0",
-                "magento/framework": ">=101.0.0",
-                "magento/module-vault": "101.*"
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "Adyen\\Payment\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "OSL-3.0",
-                "AFL-3.0"
-            ],
-            "description": "Official Magento2 Plugin to connect to Payment Service Provider Adyen.",
-            "time": "2019-05-29T08:52:35+00:00"
-        },
-        {
-            "name": "adyen/php-api-library",
-            "version": "9.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Adyen/adyen-php-api-library.git",
-                "reference": "8698184c33fb914b9b381cfcd3c704c40ab6b583"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Adyen/adyen-php-api-library/zipball/8698184c33fb914b9b381cfcd3c704c40ab6b583",
-                "reference": "8698184c33fb914b9b381cfcd3c704c40ab6b583",
-                "shasum": ""
-            },
-            "require": {
-                "ext-ctype": "*",
-                "ext-curl": "*",
-                "ext-json": "*",
-                "ext-mbstring": "*",
-                "ext-openssl": "*",
-                "monolog/monolog": ">=1.16",
-                "php": ">=5.6"
-            },
-            "require-dev": {
-                "dms/phpunit-arraysubset-asserts": "0.2.1",
-                "friendsofphp/php-cs-fixer": "*",
-                "php-coveralls/php-coveralls": "2.4.2",
-                "phpunit/phpunit": "9.5.1",
-                "squizlabs/php_codesniffer": "3.5.8"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Adyen\\": "src/Adyen/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "description": "A PHP client library for accessing Adyen APIs",
-            "homepage": "https://github.com/Adyen/adyen-php-api-library",
-            "keywords": [
-                "adyen"
-            ],
-            "time": "2021-01-26T10:15:55+00:00"
-        },
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
             "version": "3.4.1-p3",
@@ -275,110 +192,6 @@
                 "Apache-2.0"
             ],
             "description": "Login with Amazon module"
-        },
-        {
-            "name": "apimatic/jsonmapper",
-            "version": "v1.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/apimatic/jsonmapper.git",
-                "reference": "0883d385653ebd2a194ec79e66facb7d69441404"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/apimatic/jsonmapper/zipball/0883d385653ebd2a194ec79e66facb7d69441404",
-                "reference": "0883d385653ebd2a194ec79e66facb7d69441404",
-                "shasum": ""
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^5 || ^6 || ^7",
-                "squizlabs/php_codesniffer": "^3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "apimatic\\jsonmapper\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "OSL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "Christian Weiske",
-                    "email": "christian.weiske@netresearch.de",
-                    "homepage": "http://www.netresearch.de/",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Mehdi Jaffery",
-                    "email": "mehdi.jaffery@apimatic.io",
-                    "homepage": "http://apimatic.io/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Map nested JSON structures onto PHP classes",
-            "time": "2020-04-06T20:47:48+00:00"
-        },
-        {
-            "name": "apimatic/unirest-php",
-            "version": "2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/apimatic/unirest-php.git",
-                "reference": "b4e399a8970c3a5c611f734282f306381f9d1eee"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/apimatic/unirest-php/zipball/b4e399a8970c3a5c611f734282f306381f9d1eee",
-                "reference": "b4e399a8970c3a5c611f734282f306381f9d1eee",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "php": ">=5.6.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^5 || ^6 || ^7"
-            },
-            "suggest": {
-                "ext-json": "Allows using JSON Bodies for sending and parsing requests"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Unirest\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mashape",
-                    "email": "opensource@mashape.com",
-                    "homepage": "https://www.mashape.com",
-                    "role": "Developer"
-                },
-                {
-                    "name": "APIMATIC",
-                    "email": "opensource@apimatic.io",
-                    "homepage": "https://www.apimatic.io",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Unirest PHP",
-            "homepage": "https://github.com/apimatic/unirest-php",
-            "keywords": [
-                "client",
-                "curl",
-                "http",
-                "https",
-                "rest"
-            ],
-            "time": "2020-04-07T17:16:29+00:00"
         },
         {
             "name": "astock/stock-api-libphp",
@@ -1901,29 +1714,29 @@
         },
         {
             "name": "graylog2/gelf-php",
-            "version": "1.6.5",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bzikarsky/gelf-php.git",
-                "reference": "14b87aa31880b9f2da6de053674ea1e12d4a174b"
+                "reference": "16cab667fa01e6e298af1ec3279fe08d43e40a96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bzikarsky/gelf-php/zipball/14b87aa31880b9f2da6de053674ea1e12d4a174b",
-                "reference": "14b87aa31880b9f2da6de053674ea1e12d4a174b",
+                "url": "https://api.github.com/repos/bzikarsky/gelf-php/zipball/16cab667fa01e6e298af1ec3279fe08d43e40a96",
+                "reference": "16cab667fa01e6e298af1ec3279fe08d43e40a96",
                 "shasum": ""
             },
             "require": {
                 "paragonie/constant_time_encoding": "^1|^2",
-                "php": ">=5.3.9",
+                "php": ">=5.6",
                 "psr/log": "~1.0"
             },
             "provide": {
                 "psr/log-implementation": "~1.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.8.36",
-                "squizlabs/php_codesniffer": "~2.0"
+                "phpunit/phpunit": "^5.7|^6.5|^7.5",
+                "squizlabs/php_codesniffer": "^3.3"
             },
             "type": "library",
             "extra": {
@@ -1951,7 +1764,7 @@
                 }
             ],
             "description": "A php implementation to send log-messages to a GELF compatible backend like Graylog2.",
-            "time": "2020-04-24T05:38:21+00:00"
+            "time": "2021-02-04T09:05:55+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -5363,11 +5176,11 @@
         },
         {
             "name": "magento/ece-tools",
-            "version": "2002.1.4",
+            "version": "2002.1.5",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.1.4.0.zip",
-                "shasum": "eab434cc31f6f914bf631f7acf8df90049fc0147"
+                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.1.5.0.zip",
+                "shasum": "57bb17f107812548bed224aaf50a5b18eadff04e"
             },
             "require": {
                 "colinmollenhour/credis": "^1.6.0",
@@ -5408,7 +5221,7 @@
                 "funkjedi/composer-include-files": "^1.0",
                 "php-mock/php-mock-phpunit": "^2.0",
                 "phpmd/phpmd": "@stable",
-                "phpstan/phpstan": "^0.11",
+                "phpstan/phpstan": "^0.12",
                 "phpunit/php-code-coverage": "^6.0",
                 "phpunit/phpunit": "^7.2",
                 "squizlabs/php_codesniffer": "^3.0"
@@ -6040,11 +5853,11 @@
         },
         {
             "name": "magento/magento-cloud-patches",
-            "version": "1.0.8",
+            "version": "1.0.9",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/magento-cloud-patches/magento-magento-cloud-patches-1.0.8.0.zip",
-                "shasum": "16b1d026dc273c01aad76fe9e01c777f208f967f"
+                "url": "https://repo.magento.com/archives/magento/magento-cloud-patches/magento-magento-cloud-patches-1.0.9.0.zip",
+                "shasum": "2aaca01e1f142f1963c260d916833e0d6b3a3e56"
             },
             "require": {
                 "composer/composer": "@stable",
@@ -18450,11 +18263,11 @@
         },
         {
             "name": "magento/quality-patches",
-            "version": "1.0.14",
+            "version": "1.0.15",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/quality-patches/magento-quality-patches-1.0.14.0.zip",
-                "shasum": "ea95daa9af45c268165993afdd194ba3d8464a76"
+                "url": "https://repo.magento.com/archives/magento/quality-patches/magento-quality-patches-1.0.15.0.zip",
+                "shasum": "0e3e009a7b3ad8ef8f002e3d8f2508be006033f9"
             },
             "require": {
                 "ext-json": "*",
@@ -18980,16 +18793,16 @@
         },
         {
             "name": "mercadopago/magento2-plugin",
-            "version": "3.6.0",
+            "version": "3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mercadopago/cart-magento2.git",
-                "reference": "a7f70c6fcfa305bca2edf8fbed879a2e932a2165"
+                "reference": "f5208e407b648e3cb7b56ef0eda4c48139ef0582"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mercadopago/cart-magento2/zipball/a7f70c6fcfa305bca2edf8fbed879a2e932a2165",
-                "reference": "a7f70c6fcfa305bca2edf8fbed879a2e932a2165",
+                "url": "https://api.github.com/repos/mercadopago/cart-magento2/zipball/f5208e407b648e3cb7b56ef0eda4c48139ef0582",
+                "reference": "f5208e407b648e3cb7b56ef0eda4c48139ef0582",
                 "shasum": ""
             },
             "require": {
@@ -19022,11 +18835,11 @@
             "authors": [
                 {
                     "name": "Mercado Pago",
-                    "email": "plugins.dev@mercadopago.com"
+                    "email": "info@mercadopago.com"
                 }
             ],
             "description": "Mercado Pago Magento 2 Plugin",
-            "time": "2020-12-03T18:45:10+00:00"
+            "time": "2019-08-26T17:40:20+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -19166,161 +18979,6 @@
                 "OSL-3.0"
             ],
             "description": "Two Factor Authentication module for Magento2"
-        },
-        {
-            "name": "mundipagg/ecommerce-module-core",
-            "version": "1.12.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mundipagg/ecommerce-module-core.git",
-                "reference": "33e00a5292dccf8e20f9a91cf3114c0a4dff3e6e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mundipagg/ecommerce-module-core/zipball/33e00a5292dccf8e20f9a91cf3114c0a4dff3e6e",
-                "reference": "33e00a5292dccf8e20f9a91cf3114c0a4dff3e6e",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "monolog/monolog": "~1.6",
-                "mundipagg/mundiapi": "^3.0",
-                "php": ">=5.6"
-            },
-            "require-dev": {
-                "mockery/mockery": "1.2.4",
-                "nesbot/carbon": "1.39.0",
-                "phpunit/phpunit": "5.7.27"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Mundipagg\\Core\\": "src",
-                    "Mundipagg\\Core\\Test\\": "tests",
-                    "Mundipagg\\Core\\Test\\Mock\\": "tests\\mock"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "MundiPagg Embeddables Team",
-                    "email": "embeddables@mundipagg.com"
-                }
-            ],
-            "description": "Core component for Mundipagg e-commerce platforms modules.",
-            "time": "2020-02-18T17:17:43+00:00"
-        },
-        {
-            "name": "mundipagg/mundiapi",
-            "version": "3.1.18",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mundipagg/MundiAPI-PHP.git",
-                "reference": "1c6767bc682abf07f85653530af574ebeca0543a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mundipagg/MundiAPI-PHP/zipball/1c6767bc682abf07f85653530af574ebeca0543a",
-                "reference": "1c6767bc682abf07f85653530af574ebeca0543a",
-                "shasum": ""
-            },
-            "require": {
-                "apimatic/jsonmapper": "^1.3.1",
-                "apimatic/unirest-php": "^2.0.0",
-                "ext-curl": "*",
-                "ext-json": "*",
-                "ext-mbstring": "*",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "squizlabs/php_codesniffer": "^2.7"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "MundiAPILib\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "APIMatic SDK Generator",
-                    "email": "support@apimatic.io",
-                    "homepage": "https://apimatic.io",
-                    "role": "API Tool"
-                }
-            ],
-            "description": "Mundipagg API",
-            "homepage": "https://apimatic.io",
-            "keywords": [
-                "MundiAPI",
-                "api",
-                "sdk"
-            ],
-            "time": "2021-01-18T17:45:56+00:00"
-        },
-        {
-            "name": "mundipagg/mundipagg-magento2-module",
-            "version": "1.8.19",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mundipagg/magento2.git",
-                "reference": "9869afe6f3b6ab50502073cc4fd40957c91ee089"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mundipagg/magento2/zipball/9869afe6f3b6ab50502073cc4fd40957c91ee089",
-                "reference": "9869afe6f3b6ab50502073cc4fd40957c91ee089",
-                "shasum": ""
-            },
-            "require": {
-                "mundipagg/ecommerce-module-core": "1.12.2",
-                "mundipagg/mundiapi": "^3.0",
-                "php": ">=5.6.0"
-            },
-            "require-dev": {
-                "fabpot/php-cs-fixer": "~1.2",
-                "lusitanian/oauth": "~0.3 <=0.7.0",
-                "magento-ecg/coding-standard": "dev-master",
-                "mundipagg/mundiapi": "^3.0",
-                "pdepend/pdepend": "2.2.2",
-                "phpdocumentor/phpdocumentor": "^2.8",
-                "phpmd/phpmd": "@stable",
-                "phpunit/phpunit": "4.1.0",
-                "phpunit/phpunit-selenium": ">=1.2",
-                "rregeer/phpunit-coverage-check": "^0.1.3",
-                "satooshi/php-coveralls": "^1.0",
-                "sebastian/phpcpd": "^2.0",
-                "sjparkinson/static-review": "~4.1",
-                "squizlabs/php_codesniffer": "2.7.0"
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "MundiPagg\\MundiPagg\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "MundiPagg Embeddables Team",
-                    "email": "embeddables@mundipagg.com"
-                }
-            ],
-            "description": "Magento 2 Module Mundipagg",
-            "time": "2020-03-02T14:14:36+00:00"
         },
         {
             "name": "mustache/mustache",
@@ -22085,7 +21743,7 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v5.2.2",
+            "version": "v5.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
@@ -22130,16 +21788,16 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v5.2.2",
+            "version": "v5.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "196f45723b5e618bf0e23b97e96d11652696ea9e"
+                "reference": "4adc8d172d602008c204c2e16956f99257248e03"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/196f45723b5e618bf0e23b97e96d11652696ea9e",
-                "reference": "196f45723b5e618bf0e23b97e96d11652696ea9e",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/4adc8d172d602008c204c2e16956f99257248e03",
+                "reference": "4adc8d172d602008c204c2e16956f99257248e03",
                 "shasum": ""
             },
             "require": {
@@ -22170,11 +21828,11 @@
             ],
             "description": "Finds files and directories via an intuitive fluent interface",
             "homepage": "https://symfony.com",
-            "time": "2021-01-27T10:01:46+00:00"
+            "time": "2021-01-28T22:06:19+00:00"
         },
         {
             "name": "symfony/options-resolver",
-            "version": "v5.2.2",
+            "version": "v5.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
@@ -22834,7 +22492,7 @@
         },
         {
             "name": "symfony/property-access",
-            "version": "v5.2.2",
+            "version": "v5.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/property-access.git",
@@ -22898,7 +22556,7 @@
         },
         {
             "name": "symfony/property-info",
-            "version": "v5.2.2",
+            "version": "v5.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/property-info.git",
@@ -23164,7 +22822,7 @@
         },
         {
             "name": "symfony/string",
-            "version": "v5.2.2",
+            "version": "v5.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
