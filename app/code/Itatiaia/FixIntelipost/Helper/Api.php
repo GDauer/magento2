@@ -53,7 +53,7 @@ class Api extends \Intelipost\Quote\Helper\Api
         \Psr\Log\LoggerInterface $loggerPsr
     )
     {
-        parent::__construct($scopeConfig, $cache, $loggerPsr);
+        // parent::__construct($scopeConfig, $cache, $loggerPsr);
         $this->_scopeConfig = $scopeConfig;
         $this->_cache = $cache;
         $this->_ipLogger = $logger;
