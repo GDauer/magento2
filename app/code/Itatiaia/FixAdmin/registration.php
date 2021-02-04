@@ -6,7 +6,6 @@
  * @link        http://www.webjump.com.br
  */
 
- <?php
 \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::MODULE,
     'Itatiaia_FixAdmin',
