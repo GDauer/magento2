@@ -14,6 +14,10 @@ class DataObjectProcessorPlugin
         {
             $this->setCustomerName($dataObject, $data);
         }
+        
+        if(isset($data['additional_information'])){
+            $data['additional_information'] = $dataObject->getAdditionalInformation();
+        }
 
         return $data;
     }
