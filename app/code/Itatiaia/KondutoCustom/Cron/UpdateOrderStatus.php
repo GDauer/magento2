@@ -31,19 +31,21 @@ class UpdateOrderStatus
     public function execute()
     {
 //        $this->logger->info('================== ENTROU CRON UPDATE STATUS ==================', []);
-        $orderCollection = $this->orderFactory->create()->getCollection()->addFieldToFilter('state', ['null' => true]);
+        $orderCollection = $this->orderFactory->create()->getCollection()->addFieldToFilter('state', 'new');
         foreach ($orderCollection as $order) {
             $status = $order->getStatus();
 //            $this->logger->info('ORDER ID', [$order->getId()]);
 //            $this->logger->info('STATUS BEFORE', [$status]);
-            if($status === 'aguardando_analise_manual' || $status === 'aguardando_pagamento') {
-                $order->setState('new');
-            } else if($status === 'faturado_sap') {
+            // if($status === 'aguardando_analise_manual' || $status === 'aguardando_pagamento') {
+            //     $order->setState('new');
+            // } else 
+            if($status === 'faturado_sap') {
                 $order->setState('processing');
+                $order->save();
             }
 //            $this->logger->info('STATUS AFTER', [$order->getState()]);
 
-            $order->save();
+            // $order->save();
         }
     }
 }
