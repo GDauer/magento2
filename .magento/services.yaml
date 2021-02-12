@@ -16,3 +16,4 @@ elasticsearch2:
         plugins:
             - analysis-icu
             - analysis-phonetic
+
