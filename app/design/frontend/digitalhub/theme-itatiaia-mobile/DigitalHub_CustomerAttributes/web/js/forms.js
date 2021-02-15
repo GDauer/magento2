@@ -112,8 +112,7 @@ require([
     };
 
     //Quando o campo cep perde o foco.
-    $("#zip").blur(function () {
-
+    $(document).on("blur", "input[name='postcode']", function () {
         //Nova variável "cep" somente com dígitos.
         var cep = $("#zip").val().replace(/\D/g, '');
 
@@ -152,7 +151,7 @@ require([
                         $('input[name="city"]').attr('readonly', true);
                         $('select[name="country_id"]').attr('readonly', true);
                         $('select[name="country_id"]').css("touch-action", "none");
-                        //$('.ceperror').css("display", "none");
+                                                //$('.ceperror').css("display", "none");
                         //$('.ceperror').css("color", "transparent");
 
                     } //end if.
