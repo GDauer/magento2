@@ -112,8 +112,7 @@ require([
     };
 
     //Quando o campo cep perde o foco.
-    $("#zip").blur(function () {
-
+    $(document).on("blur", "input[name='postcode']", function () {
         //Nova variável "cep" somente com dígitos.
         var cep = $("#zip").val().replace(/\D/g, '');
 
