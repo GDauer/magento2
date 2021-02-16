@@ -74,11 +74,6 @@ require([
             verifyAccountType(val);
         });
         verifyAccountType(val);
-    })
-
-    $(document).on('DOMNodeInserted', '.ceperror', function () {
-        $('.ceperror').css("display", "none");
-        $('.ceperror').css("font-size", "13px");
     });
 
     var estado = {
