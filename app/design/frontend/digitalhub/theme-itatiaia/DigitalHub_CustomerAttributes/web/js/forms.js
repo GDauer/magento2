@@ -76,9 +76,11 @@ require([
         verifyAccountType(val);
     })
 
-    $('.ceperror').css("display", "none");
-    $('.ceperror').css("font-size", "13px");
-
+    $(document).on('DOMNodeInserted', '.ceperror', function () {
+        $('.ceperror').css("display", "none");
+        $('.ceperror').css("font-size", "13px");
+    });
+    
     var estado = {
         UF: [
             {"nome": "Acre", "sigla": "AC", "id": 485},
