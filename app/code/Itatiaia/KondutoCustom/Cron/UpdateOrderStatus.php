@@ -18,34 +18,55 @@ class UpdateOrderStatus
      */
     private $logger;
 
-    public function __construct
-    (
+    public function __construct(
         OrderFactory $orderFactory,
         LoggerInterface $logger
-    )
-    {
+    ) {
         $this->orderFactory = $orderFactory;
         $this->logger = $logger;
     }
 
     public function execute()
     {
-//        $this->logger->info('================== ENTROU CRON UPDATE STATUS ==================', []);
-        $orderCollection = $this->orderFactory->create()->getCollection()->addFieldToFilter('state', 'new');
-        foreach ($orderCollection as $order) {
+        $this->logger->info('================== ENTROU CRON UPDATE STATUS ==================', []);
+        $orderCollection = $this->orderFactory->create()
+            ->getCollection()
+            ->addFieldToFilter(
+                'state',
+                ['or' => [
+                    ['new'],
+                    ['null' => true]
+                ]]
+            );
+        foreach ($orderCollection as $order) 
+        {
+
             $status = $order->getStatus();
-//            $this->logger->info('ORDER ID', [$order->getId()]);
-//            $this->logger->info('STATUS BEFORE', [$status]);
-            // if($status === 'aguardando_analise_manual' || $status === 'aguardando_pagamento') {
-            //     $order->setState('new');
-            // } else 
-            if($status === 'faturado_sap') {
-                $order->setState('processing');
+            $state = $order->getState() ? $order->getState() : 'default';
+
+            $this->logger->info('ORDER ID', [$order->getId()]);
+            $this->logger->info('STATUS BEFORE', [$status]);
+            $this->logger->info('STATE BEFORE', [$order->getState()]);
+
+            $mapping = [
+                "new" => [
+                    "faturado_sap" => 'processing'
+                ],
+                'default' => [
+                    "aguardando_analise_manual" => 'new',
+                    'aguardando_pagamento' => 'new',
+                    "faturado_sap" => 'processing'
+                ]
+            ];
+
+            if (isset($mapping[$state][$status]))
+            {
+                $this->logger->info('CHANGING STATE FROM ' .$order->getState() .' TO '. $mapping[$state][$status]);
+                $order->setState($mapping[$state][$status]);
                 $order->save();
             }
-//            $this->logger->info('STATUS AFTER', [$order->getState()]);
 
-            // $order->save();
+            $this->logger->info('STATE NOT CHANGE');
         }
     }
 }
