@@ -64,6 +64,7 @@ class UpdateOrderStatus
                 $this->logger->info('CHANGING STATE FROM ' .$order->getState() .' TO '. $mapping[$state][$status]);
                 $order->setState($mapping[$state][$status]);
                 $order->save();
+                return;
             }
 
             $this->logger->info('STATE NOT CHANGE');
