@@ -42,7 +42,7 @@ class Track
 
     public function execute()
     {
-//        $this->logger->info('ENTROU CRON: ', []);
+       $this->logger->info('ENTROU CRON: ', []);
 
         $orderCollection = $this->orderFactory->create()->getCollection()
             ->addFieldToFilter('state', 'complete')
@@ -81,7 +81,7 @@ class Track
                 $err = curl_error($curl);
 
                 if ($err) {
-//                    $this->logger->info('erro: ' , [$err]);
+                   $this->logger->info('erro: ' , [$err]);
                 } else if($response) {
                     if(isset($response->content)) {
                         if (strtoupper($response->content->shipment_order_volume_array[0]->shipment_order_volume_state) == 'DELIVERED') {
@@ -96,13 +96,14 @@ class Track
                                 $differenceDays = round($difference / (60 * 60 * 24));
 
                                 if ($differenceDays >= 7) {
-//                                    $this->logger->info('$order->getIncrementId()', [$order->getIncrementId()]);
+                                   $this->logger->info('$order->getIncrementId()', [$order->getIncrementId()]);
 //                                    $this->logger->info('ENTROU ENTROU ENTROU ENTROU ENTROU ENTROU ENTROU ENTROU ENTROU ENTROU : ', [$err]);
                                     $this->eventManager->dispatch('itatiaia_tracksale_order_save_before', ['order' => $order]);
                                 }
                             }
 
                             $order->save();
+                            $this->logger->info('ORDER STATUS UPDATED TO', [$order->getStatus()]);
                             $this->eventManager->dispatch('itatiaia_tracksale_order_save_after', ['order' => $order]);
 
                         }
