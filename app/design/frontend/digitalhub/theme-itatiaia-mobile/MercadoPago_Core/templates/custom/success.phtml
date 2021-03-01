@@ -51,9 +51,15 @@ $message_status = $this->getMessageByStatus($paymentResponse);
 </div>
 <div class="primary button-success">
     <?php if ($paymentResponse['status'] == 'rejected'): ?>
-        <a class="action primary continue"
-           href="<?php echo $block->escapeUrl($block->getReOrderUrl()) ?>"><span><?php /* @escapeNotVerified */
-                echo __('Retry order') ?></span></a>
+        <?php if ($this->helper('Magento\Sales\Helper\Reorder')->canReorder($order->getEntityId())) : ?>
+            <a href="#" data-post='<?php /* @escapeNotVerified */
+                echo $this->helper(\Magento\Framework\Data\Helper\PostHelper::class)
+                    ->getPostData($block->getReorderUrl($order))
+                ?>' class="action order primary continue">
+                    <span><?= /* @escapeNotVerified */
+                        __('Reorder') ?></span>
+            </a>
+        <?php endif ?>
     <?php else: ?>
         <a class="action primary continue"
            href="<?php echo $block->escapeUrl($block->getUrl()) ?>"><span><?php /* @escapeNotVerified */

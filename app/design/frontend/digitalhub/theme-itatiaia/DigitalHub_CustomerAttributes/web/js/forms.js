@@ -74,11 +74,8 @@ require([
             verifyAccountType(val);
         });
         verifyAccountType(val);
-    })
-
-    $('.ceperror').css("display", "none");
-    $('.ceperror').css("font-size", "13px");
-
+    });
+    
     var estado = {
         UF: [
             {"nome": "Acre", "sigla": "AC", "id": 485},
@@ -112,8 +109,7 @@ require([
     };
 
     //Quando o campo cep perde o foco.
-    $("#zip").blur(function () {
-
+    $(document).on("blur", "input[name='postcode']", function () {
         //Nova variável "cep" somente com dígitos.
         var cep = $("#zip").val().replace(/\D/g, '');
 
