@@ -408,7 +408,7 @@ return [
         'MagePal_Core' => 1,
         'MagePal_GmailSmtpApp' => 1,
         'MagePal_GoogleTagManager' => 1,
-        'Mageants_FreeGift' => 0,
+        'Mageants_FreeGift' => 1,
         'Mageplaza_Core' => 1,
         'Mageplaza_BetterPopup' => 1,
         'MagestyApps_FixRules' => 1,
