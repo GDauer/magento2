@@ -9,6 +9,7 @@
         expires: 1d
         paths:
             "^/((?!loja|media|static|rest|painel_ita|index.php/rest|index.php/soap|mercadopago|magestyapps_fixrules).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true , code: 301 }
+            "/robots.txt": { to: "https://{default}/loja/robots.txt", prefix: false, code: 301 }
 
 "https://{default}/":
     type: upstream
@@ -17,6 +18,7 @@
         expires: 1d
         paths:
             "^/((?!loja|media|static|rest|painel_ita|index.php/rest|index.php/soap|mercadopago|magestyapps_fixrules).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true , code: 301 }
+            "/robots.txt": { to: "https://{default}/loja/robots.txt", prefix: false, code: 301 }
 
 "http://{all}/":
     type: upstream
@@ -25,6 +27,7 @@
         expires: 1d
         paths:
             "^/((?!loja|media|static|rest|painel_ita|index.php/rest|index.php/soap|mercadopago|magestyapps_fixrules).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true , code: 301 }
+            "/robots.txt": { to: "https://{default}/loja/robots.txt", prefix: false, code: 301 }
 
 "https://{all}/":
     type: upstream
@@ -33,3 +36,4 @@
         expires: 1d
         paths:
             "^/((?!loja|media|static|rest|painel_ita|index.php/rest|index.php/soap|mercadopago|magestyapps_fixrules).*)": { to: "https://institucional.minhaitatiaia.com.br/$1", regexp: true , code: 301 }
+            "/robots.txt": { to: "https://{default}/loja/robots.txt", prefix: false, code: 301 }
