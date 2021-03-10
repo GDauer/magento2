@@ -35,8 +35,8 @@ class ProductImages extends \Itatiaia\SitemapXml\Model\Sitemap\Generator
 
             $item = $_product->getData();
             $item['url'] = $_product->getProductUrl();
-            $item['updated_at'] = date('d/m/Y H:i:s', strtotime($item['updated_at'] . ' -3 hours'));
-            $item['created_at'] = date('d/m/Y H:i:s', strtotime($item['created_at'] . ' -3 hours'));
+            $item['updated_at'] = date('Y-m-d H:i:s', strtotime($item['updated_at'] . ' -3 hours'));
+            $item['created_at'] = date('Y-m-d H:i:s', strtotime($item['created_at'] . ' -3 hours'));
 
             $item['images'] = [];
             foreach ($_product->getMediaGalleryImages() as $image) {
