@@ -32,8 +32,8 @@ class Index extends \Itatiaia\SitemapXml\Model\Sitemap\Generator
 //            $logger->info('ITEM INDEX', [$item]);
 
             $item['url'] = $urlBuilder->getBaseUrl() . 'media/sitemap/' . $item['filename'];
-            $item['updated_at'] = date('d/m/Y H:i:s', strtotime($item['updated_at'] . ' -3 hours'));
-            $item['created_at'] = date('d/m/Y H:i:s', strtotime($item['created_at'] . ' -3 hours'));
+            $item['updated_at'] = date('Y-m-d H:i:s', strtotime($item['updated_at'] . ' -3 hours'));
+            $item['created_at'] = date('Y-m-d H:i:s', strtotime($item['created_at'] . ' -3 hours'));
 
 //            $logger->info('ITEM INDEX', [$item]);
 
