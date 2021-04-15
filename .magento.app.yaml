@@ -1,6 +1,7 @@
 # This file describes an application. You can have multiple applications
 # in the same project.
 
+
 # The name of this app. Must be unique within a project.
 name: mymagento
 
@@ -99,4 +100,4 @@ variables:
         CONFIG__DEFAULT__PAYPAL_ONBOARDING__MIDDLEMAN_DOMAIN: 'payment-broker.magento.com'
         CONFIG__STORES__DEFAULT__PAYPAL__NOTATION_CODE: 'Magento_Enterprise_Cloud'
 
-
+        

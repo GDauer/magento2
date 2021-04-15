@@ -28,8 +28,8 @@ class Cms extends \Itatiaia\SitemapXml\Model\Sitemap\Generator
             $item = $page->getData();
 
             $item['url'] = $urlBuilder->getBaseUrl() . $item['identifier'];
-            $item['update_time'] = $dateFormat->date($item['update_time'])->format('d/m/Y H:i:s');
-            $item['creation_time'] = $dateFormat->date($item['creation_time'])->format('d/m/Y H:i:s');
+            $item['update_time'] = $dateFormat->date($item['update_time'])->format('Y-m-d H:i:s');
+            $item['creation_time'] = $dateFormat->date($item['creation_time'])->format('Y-m-d H:i:s');
 
             $newCollection[] = $item;
         }
