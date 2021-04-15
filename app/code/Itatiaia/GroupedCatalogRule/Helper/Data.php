@@ -157,7 +157,7 @@ class Data extends AbstractHelper
     {
         $groupedRegularPriceRegistry = $this->registry->registry('grouped_regular_price_' . $product->getId());
 
-        if($groupedRegularPriceRegistry){
+        if($groupedRegularPriceRegistry !== null){
 
             return $groupedRegularPriceRegistry;
         }
