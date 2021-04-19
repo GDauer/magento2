@@ -113,7 +113,7 @@ class Post extends \Magento\Framework\App\Action\Action
             $rates[$_rate->getCode()] = [ // for duplication cleanup
 				'title' => $_rate->getMethodTitle(),
                 'code' => $_rate->getCode(),
-                'price_formatted' => $priceHelper->currency(number_format($_rate->getPrice(),2),true,false),
+                'price_formatted' => $priceHelper->currency($_rate->getPrice(),true,false),
                 'price' => $_rate->getPrice(),
                 'error_message' => $_rate->getErrorMessage()
 			];
