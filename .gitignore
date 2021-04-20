@@ -1,3 +1,6 @@
+.swp
+*.log
+*.bak
 /.buildpath
 /.cache
 /.metadata
@@ -26,6 +29,11 @@ atlassian*
 /grunt-config.json
 /dev/tools/grunt/configs/local-themes.js
 /.docker
+docker/.env
+docker/apache2/ssl
+docker/mysql_data
+DB/local/*.sql
+logs
 
 /pub/media/*.*
 !/pub/media/.htaccess
@@ -43,6 +51,8 @@ atlassian*
 /pub/media/tmp/*
 /pub/media/captcha/*
 /pub/static/*
+dev/tests
+*.sample
 
 /var/*
 !/var/.htaccess
