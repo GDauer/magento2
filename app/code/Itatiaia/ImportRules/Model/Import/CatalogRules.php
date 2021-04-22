@@ -311,7 +311,6 @@ class CatalogRules extends \Magento\ImportExport\Model\Import\Entity\AbstractEnt
         return $this;
     }
 
-
     private function getSerializer()
     {
         if (null === $this->serializer) {
