@@ -20,8 +20,27 @@ x.x.X | Release de revisão | Correções de falhas (bugs)
 
 *Version* | *Release date*
 --------- | --------------
+[2.1.0](#markdown-header-210) | 2021-04-xx
 [2.0.0](#markdown-header-200) | 2021-04-15 ~15:00
 
+
+----------
+
+# 2.1.0
+
+*Data release:* 2021-04-xx
+
+### 📝 Notes:
+* N/A
+
+### 🏅 Improvements:
+* N/A
+
+### 👾 BugFix:
+* * N/A
+
+### 🔗  Tasks relacionadas
+* N/A
 
 ----------
 
