@@ -28,7 +28,7 @@ x.x.X | Release de revisão | Correções de falhas (bugs)
 
 # 2.1.0
 
-*Data release:* 2021-04-xx
+*Data release:* 2021-04-27
 
 ### 📝 Notes:
 * N/A
