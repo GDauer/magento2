@@ -5,17 +5,6 @@
 mysql2:
     type: mysql:10.2
     disk: 15000
-    configuration:
-        schemas:
-            - main
-        endpoints:
-            admin:
-                default_schema: main
-                privileges:
-                    main: admin
-            readonly:
-                privileges:
-                    main: ro
 
 redis:
     type: redis:5.0
