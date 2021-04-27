@@ -34,6 +34,7 @@ x.x.X | Release de revisão | Correções de falhas (bugs)
 * N/A
 
 ### 🏅 Improvements:
+
 * [PR#299](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/299/corregir-palabra-en-texto-de-popup-colocar) Adicionado novo visual pra aceite cookies padrao do magento.
 * [PR#296](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/296/corregir-estilos-en-resolucion-mas-chica) Correção de estilos e conflitos.
 * [PR#292](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/292/coz-46)Ao acessar o caminho relatórios > custom reports list > produtos agrupados >  escolha > relatório, não está sendo exibido o relatório de produtos agrupados. 
@@ -43,6 +44,7 @@ x.x.X | Release de revisão | Correções de falhas (bugs)
 
 ### 👾 BugFix:
 * [PR#17](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/17/develop)Correção de problemas no Menu versão Mobile. Update gitignore and disable module GoCache
+* [PR#306](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/306) Remove teste Everton em staging
 
 
 
