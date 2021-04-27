@@ -770,7 +770,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
             width: 69%;
             border: 0;
             background: #fff;
-            border-radius:2px;
+            border-radius:50px;
             &:focus {
               outline: none;
               text-shadow: none !important;
@@ -797,7 +797,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
           font-family: 'GTWalsheimProBold';
           border-radius: 0;
           padding: 0;
-          border-radius:2px;
+          border-radius:50px;
           &:before {
             content: "Assine";
             font-size: 13px;
@@ -956,10 +956,10 @@ a, a:hover, .alink, a:visited, .alink:visited {
   }
   .nav-tabs > .active > a,
   .nav-tabs > .active > a:hover {
-    color: @_ita_main-green_color;
+    color: @_ita_main-orange_color;
     cursor: default;
     background-color: transparent;
-    border-bottom: 4px solid @_ita_main-green_color;
+    border-bottom: 4px solid @_ita_main-orange_color;
     font-family: 'GTWalsheimProBold';
     .catalog-product-view .product-info-main &{
       color: @_ita_main-blue_color;
@@ -1628,7 +1628,6 @@ a, a:hover, .alink, a:visited, .alink:visited {
             font-size: 14px;
             height: auto;
             border-top: 2px solid #f2f2f2;
-            text-align: ;
             padding: 18px 0;
             margin: 0;
              &:before{
@@ -1932,25 +1931,25 @@ a, a:hover, .alink, a:visited, .alink:visited {
             background: #fff;
             .action.primary {
               font-family: 'GTWalsheimProBold';
-              border-radius: 2px;
+              border-radius: 50px;
               height: 42px;
-              color: #fff;
+              color: @_ita_main-green_color;
               width: 100%;
               margin: 0 auto;
               font-weight: 600;
               font-size: 14px;
               background: @_ita_main-blue_color;
+              transition: all .2s ease-in-out;
+              border: 2px solid @_ita_main-blue_color;
+              line-height: 40px;
+              text-transform: inherit;
               span {
                 display: inline-block;
                 line-height: 38px;
               }
               &:hover {
-                color: #fff;
-                -webkit-transition: all 0ms ease-in-out;
-                -moz-transition: all 0ms ease-in-out;
-                -ms-transition: all 0ms ease-in-out;
-                -o-transition: all 0ms ease-in-out;
-                transition: all 0ms ease-in-out;
+                color: #f452ad;
+                background: white;
                 opacity: 1;
                 &:before {
                   background-position: right top;
@@ -2223,12 +2222,12 @@ a, a:hover, .alink, a:visited, .alink:visited {
             text-decoration: underline;
           }
           &:before{
-            content: url('@{baseDir}images/icon_marker.png');
+            content: url('@{baseDir}images/icon-cozinha-orange.png');
             display: inline-block;
             position: absolute;
-            left: -20px;
-            margin-top: 9px;
-            .lib-rotate(-45deg);
+            left: -75px;
+            margin-top: -30px;
+            transform: scale(0.5);
           }
         }
         .product-item {
@@ -3148,14 +3147,22 @@ select:not([disabled]) {
     }
     .box-tocart .action.tocart,
     .product-options-bottom .box-tocart .action.tocart {
-      background: @_ita_main-green_color;
+      background: @_ita_main-blue_color;
+      color: @_ita_main-green_color;
       padding: 0;
       font-size: 14px;
       width: 202px;
       font-family: 'GTWalsheimProMedium';
-      border-radius: 2px;
+      border-radius: 50px;
+      transition: .2s all;
+      border: 2px solid @_ita_main-blue_color;
+      text-transform: inherit;
       &.disable {
         background: #e5102a;
+      }
+      &:hover{
+        color: @_ita_main-violet_color;
+        background: white;
       }
     }
     .swatch-opt {
@@ -3227,17 +3234,19 @@ select:not([disabled]) {
         vertical-align: middle;
       }
       .btn-rev{
-        padding: 13px 15px;
-        border:1px solid #242424;
-        border-radius: 2px;
+        padding: 13px 35px;
+        border: 2px solid @_ita_main-violet_color;
+        border-radius: 50px;
         background: #fff;
-        font-size: 13px;
+        font-size: 14px;
         font-family: 'GTWalsheimProBold';
-        color:#242424;
-        text-transform: uppercase;
+        color: @_ita_main-blue_color;
+        text-transform: inherit;
         text-align: center;
         margin-left: 20px;
         text-decoration: none;
+
+
       }
     }
     #simularFrete {
@@ -3277,6 +3286,7 @@ select:not([disabled]) {
           float: left;
           margin: 12px 0 0 0;
           position: relative;
+          border-radius: 50px;
           input[type=text] {
             margin-top: 4px;
             &:focus {
@@ -3288,18 +3298,20 @@ select:not([disabled]) {
           }
           .button {
             position: absolute;
-            top: 0;
-            right: 0;
+            top: -1px;
+            right: -1px;
             height: 40px;
-            width: 90px;
+            line-height: 35px;
+            width: 95px;
             float: none;
             padding: 0;
             background: #eee;
             text-align: center;
             padding-top: 4px;
+            border-radius: 0 25px 25px 0;
             &:before {
-              content: "CONSULTAR";
-              font-size: 11px;
+              content: "Consultar";
+              font-size: 13px;
               vertical-align: middle;
               color: #3c3c3c;
               font-weight: 400;
@@ -3408,7 +3420,7 @@ select:not([disabled]) {
     }
     .parc-link, .mooble{
       a{
-        color: @_ita_main-blue_color;
+        color: @_ita_main-gray_color;
         font-family: 'GTWalsheimProMedium';
         font-size: 14px;
         font-weight: 500;
@@ -4009,11 +4021,23 @@ select:not([disabled]) {
       .btn {
         text-align: center;
         .action.primary {
-          background: @_ita_main-green_color;
+          background: @_ita_main-blue_color;
+          color: @_ita_main-green_color;
+          border: 2px solid @_ita_main-blue_color;
           font-family: 'GTWalsheimProBold';
           width: 90%;
           margin: 10px auto 0;
-          font-size: 13px;
+          font-size: 14px;
+          border-radius: 50px;
+          transition: .2s all;
+          text-transform: lowercase;
+          &:first-letter{
+            text-transform: uppercase;
+          }
+          &:hover{
+            background: white;
+            color: @_ita_main-violet_color;
+          }
         }
       }
     }
@@ -5662,6 +5686,7 @@ form.form-create-account {
   border: 1px solid #e5102a;
   text-decoration: none;
   margin: 10px 0;
+  border-radius: 25px;
 }
 
 body.catalog-category-view,
@@ -5826,4 +5851,50 @@ body.catalogsearch-result-index {
       }
     }
   }
+}
+
+.message.global.cookie{
+  margin: 0 0 10px;
+  padding: 10px 20px;
+  display: block;
+  line-height: 1.2em;
+  font-size: 1.3rem;
+  color: #ffffff;
+  margin: 0;
+  border-radius: 15px;
+  width: 70%;
+  background: transparent;
+  max-width: 1200px;
+  margin: 0 auto;
+  bottom: 5px;
+  .content{
+    display: flex;
+    background:  @_ita_main-blue_color;
+    border-radius: 15px;
+    align-items: center;
+    padding: 15px 20px;
+    button{
+      background: @_ita_main-orange_color;
+      border-radius: 11px;
+      height: 44px;
+      padding: 0 30px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      border: 0;
+    }
+    p{
+      font-size: 16px;
+      line-height: 26px;
+      a{
+          color: #fff;
+      }
+    }
+    .actions{
+      margin-top: 0;
+      margin-left: 15px;
+    }
+  }
+
 }

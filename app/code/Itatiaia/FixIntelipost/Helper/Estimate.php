@@ -86,13 +86,19 @@ class Estimate extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function getStoreWorkingDays()
     {
-        $days = $this->json->unserialize($this->scopeConfig->getValue('intelipost_push/holidays_table/business_days', \Magento\Store\Model\ScopeInterface::SCOPE_STORE));
         $result = [];
 
-        foreach ($days as $day)
-        {
-            foreach ($day as $key => $value) {
-                $result[] = $value;
+        $days = $this->scopeConfig->getValue('intelipost_push/holidays_table/business_days', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+
+        if (is_string($days)) {
+            $days = $this->json->unserialize($days);
+        }
+        if (is_array($days)) {
+            foreach ($days as $day)
+            {
+                foreach ($day as $key => $value) {
+                    $result[] = $value;
+                }
             }
         }
         return $result;
@@ -100,13 +106,19 @@ class Estimate extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function getHolidays()
     {
-        $days = $this->json->unserialize($this->scopeConfig->getValue('intelipost_push/holidays_table/business_days_disabled', \Magento\Store\Model\ScopeInterface::SCOPE_STORE));
         $result = [];
 
-        foreach ($days as $day)
-        {
-            foreach ($day as $key => $value) {
-                $result[] = $value;
+        $days = $this->scopeConfig->getValue('intelipost_push/holidays_table/business_days_disabled', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+
+        if (is_string($days)) {
+            $days = $this->json->unserialize($days);
+        }
+        if (is_array($days)) {
+            foreach ($days as $day)
+            {
+                foreach ($day as $key => $value) {
+                    $result[] = $value;
+                }
             }
         }
         return $result;

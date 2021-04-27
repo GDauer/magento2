@@ -25,7 +25,8 @@ runtime:
 # to the application in the environment variable. The right-hand
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
-    database: "mysql2:mysql"
+    database: "mysql2:admin"
+    readonly: "mysql2:readonly"
     redis: "redis:redis"
     elasticsearch: "elasticsearch2:elasticsearch"
 
@@ -100,4 +101,3 @@ variables:
         CONFIG__DEFAULT__PAYPAL_ONBOARDING__MIDDLEMAN_DOMAIN: 'payment-broker.magento.com'
         CONFIG__STORES__DEFAULT__PAYPAL__NOTATION_CODE: 'Magento_Enterprise_Cloud'
 
-        

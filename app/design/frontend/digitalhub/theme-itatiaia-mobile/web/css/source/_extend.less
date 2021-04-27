@@ -480,12 +480,12 @@ a, a:hover, .alink, a:visited, .alink:visited {
             display: inline-block;
           }
           &:before{
-            content: url('@{baseDir}images/icon_marker.png');
+            content: url('@{baseDir}images/icon-cozinha-orange.png');
             display: inline-block;
             position: absolute;
-            left: -14px;
-            margin-top: 4px;
-            .lib-rotate(-45deg);
+            left: -75px;
+            margin-top: -30px;
+            transform: scale(0.5);
           }
         }
         // .product-item {
@@ -985,9 +985,9 @@ a, a:hover, .alink, a:visited, .alink:visited {
             text-align: center;
             .action.primary {
               font-family: 'GTWalsheimProBold';
-              border-radius: 2px;
+              border-radius: 50px;
               height: 42px;
-              color: #fff;
+              color: @_ita_main-green_color;
               width: 100%;
               margin: 0 auto;
               font-weight: 600;
@@ -996,6 +996,10 @@ a, a:hover, .alink, a:visited, .alink:visited {
               display: inline-block;
               position: relative;
               left: unset;
+              transition: all .2s ease-in-out;
+              border: 2px solid @_ita_main-blue_color;
+              line-height: 40px;
+              text-transform: inherit;
               span {
                 display: inline-block;
                 line-height: 38px;
@@ -1010,12 +1014,8 @@ a, a:hover, .alink, a:visited, .alink:visited {
               //   margin: 10px 10px 0 0;
               // }
               &:hover {
-                color: #fff;
-                -webkit-transition: all 0ms ease-in-out;
-                -moz-transition: all 0ms ease-in-out;
-                -ms-transition: all 0ms ease-in-out;
-                -o-transition: all 0ms ease-in-out;
-                transition: all 0ms ease-in-out;
+                color: #f452ad;
+                background: white;
                 opacity: 1;
                 &:before {
                   background-position: right top;
@@ -1941,7 +1941,7 @@ select:not([disabled]) {
     .parc-link, .mooble{
       margin-bottom: 11px;
       a{
-        color: @_ita_main-blue_color;
+        color: @_ita_main-gray_color;
         font-family: 'GTWalsheimProMedium';
         font-size: 14px;
         font-weight: 500;
@@ -2482,6 +2482,7 @@ select:not([disabled]) {
           float: left;
           margin: 22px 0 0 0;
           position: relative;
+          border-radius: 50px;
           input[type=text] {
             &:focus {
               outline: none;
@@ -2492,17 +2493,19 @@ select:not([disabled]) {
           }
           .button {
             position: absolute;
-            top: 0;
-            right: 0;
+            top: -1px;
+            right: -1px;
             height: 40px;
-            width: 90px;
+            line-height: 35px;
+            width: 95px;
             float: none;
             padding: 0;
             background: #f2f5f7;
             text-align: center;
+            border-radius: 0 25px 25px 0;
             &:before {
-              content: "CONSULTAR";
-              font-size: 11px;
+              content: "Consultar";
+              font-size: 12px;
               vertical-align: middle;
               color: #3c3c3c;
               font-weight: 400;
@@ -2527,13 +2530,13 @@ select:not([disabled]) {
     }
     .btn-rev{
        padding: 9px 15px;
-       border: 1px solid #242424;
+       border: 2px solid @_ita_main-blue_color;
        border-radius: 2px;
-       background: #fff;
-       font-size: 13px;
+       background: white;
+       font-size: 14px;
        font-family: 'GTWalsheimProBold';
-       color: #242424;
-       text-transform: uppercase;
+       color: @_ita_main-violet_color;
+       text-transform: inherit;
        text-align: center;
        margin: 15px 0 15px 0;
        text-decoration: none;
@@ -3706,10 +3709,10 @@ form.form-create-account {
 
   .nav-tabs > .active > a,
   .nav-tabs > .active > a:hover {
-    color: @_ita_main-green_color;
+    color: @_ita_main-orange_color;
     cursor: default;
     background-color: transparent;
-    border-bottom: 3px solid @_ita_main-green_color;
+    border-bottom: 3px solid @_ita_main-orange_color;
     font-family: 'GTWalsheimProBold';
     .catalog-product-view .product-info-main &{
       color: @_ita_main-blue_color;
@@ -3861,7 +3864,7 @@ form.form-create-account {
             width: 100%;
             border: 0;
             background: #fff;
-            border-radius:2px;
+            border-radius:50px;
             &:focus {
               outline: none;
               text-shadow: none !important;
@@ -3888,7 +3891,7 @@ form.form-create-account {
           font-family: 'GTWalsheimProBold';
           border-radius: 0;
           padding: 0;
-          border-radius:2px;
+          border-radius:50px;
           &:before {
             content: "Assinar";
             font-size: 13px;
@@ -4309,6 +4312,7 @@ form.form-create-account {
   border: 1px solid #e5102a;
   text-decoration: none;
   margin: 10px 0;
+  border-radius: 25px;
 }
 
 body.catalog-category-view,
@@ -4446,6 +4450,44 @@ body.catalogsearch-result-index {
           }
         }
       }
+    }
+  }
+}
+
+.message.global.cookie{
+  background: transparent;
+  bottom: 20px;
+  .content{
+    display: flex;
+    flex-wrap: wrap;
+    background:  @_ita_main-blue_color;
+    border-radius: 15px;
+    align-items: center;
+    padding: 15px 20px;
+    button{
+      background: @_ita_main-orange_color;
+      border-radius: 11px;
+      height: 44px;
+      padding: 0 30px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      border: 0;
+    }
+    p{
+      font-size: 12px;
+      line-height: 18px;
+      color: #fff;
+      flex: 0 0 100%;
+      max-width: 100%;
+      a{
+          color: #fff;
+      }
+    }
+    .actions{
+      display: block;
+      margin: 15px auto -30px;
     }
   }
 }
