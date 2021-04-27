@@ -20,12 +20,12 @@ x.x.X | Release de revisão | Correções de falhas (bugs)
 
 *Version* | *Release date*
 --------- | --------------
-[1.0.0](#markdown-header-100) | 2021-04-15 ~15:00
+[2.0.0](#markdown-header-200) | 2021-04-15 ~15:00
 
 
 ----------
 
-# 1.0.0
+# 2.0.0
 
 *Data release:* 2021-04-15 ~15:00
 
