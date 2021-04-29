@@ -3157,6 +3157,7 @@ select:not([disabled]) {
       transition: .2s all;
       border: 2px solid @_ita_main-blue_color;
       text-transform: inherit;
+      height: 49px;
       &.disable {
         background: #e5102a;
       }
@@ -3245,8 +3246,7 @@ select:not([disabled]) {
         text-align: center;
         margin-left: 20px;
         text-decoration: none;
-
-
+        display: inline-block;
       }
     }
     #simularFrete {
@@ -3287,6 +3287,7 @@ select:not([disabled]) {
           margin: 12px 0 0 0;
           position: relative;
           border-radius: 50px;
+          overflow: unset;
           input[type=text] {
             margin-top: 4px;
             &:focus {
@@ -3298,16 +3299,15 @@ select:not([disabled]) {
           }
           .button {
             position: absolute;
-            top: -1px;
-            right: -1px;
-            height: 40px;
+            top: 0;
+            right: 0;
+            height: 37px;
             line-height: 35px;
             width: 95px;
             float: none;
             padding: 0;
             background: #eee;
             text-align: center;
-            padding-top: 4px;
             border-radius: 0 25px 25px 0;
             &:before {
               content: "Consultar";
