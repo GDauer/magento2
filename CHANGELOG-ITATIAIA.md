@@ -20,9 +20,30 @@ x.x.X | Release de revisão | Correções de falhas (bugs)
 
 *Version* | *Release date*
 --------- | --------------
-[2.1.0](#markdown-header-210) | 2021-04-xx
+[2.1.1](#markdown-header-210) | 2021-04-29
+[2.1.0](#markdown-header-210) | 2021-04-27
 [2.0.0](#markdown-header-200) | 2021-04-15 ~15:00
 
+
+----------
+
+# 2.1.1
+
+*Data release:* 2021-04-29
+
+### 📝 Notes:
+* N/A
+
+### 🏅 Improvements:
+
+* N/A
+
+### 👾 BugFix:
+* [PR#311](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/311) Correção de Zindex para apresentação de barra de cookies
+
+
+### 🔗  Tasks relacionadas
+* N/A
 
 ----------
 
