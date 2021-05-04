@@ -5252,23 +5252,6 @@ form.form-create-account {
 
 
 /* Media Quereis */
-@media (min-width: 992px) {
-  .message.global.cookie{
-    width: 90%;
-    .actions{
-      width: 33%;
-    }
-  }
-}
-@media (min-width: 1200px) {
-  .message.global.cookie{
-    width: 97%;
-    .actions{
-      width: 40%;
-    }
-  }
-}
-
 
 @media screen {
   @media (max-width: 1500px) {
@@ -5852,22 +5835,17 @@ body.catalogsearch-result-index {
     }
   }
 }
-
 .message.global.cookie{
-  margin: 0 0 10px;
   padding: 10px 20px;
   display: block;
   line-height: 1.2em;
   font-size: 1.3rem;
   color: #ffffff;
-  margin: 0;
   border-radius: 15px;
-  width: 90%;
+  width: calc(~"100% - 138px");
   background: transparent;
   max-width: 1200px;
-  margin: 0 auto;
   bottom: 5px;
-  z-index:1000;
   .content{
     display: flex;
     background:  @_ita_main-blue_color;
@@ -5884,6 +5862,7 @@ body.catalogsearch-result-index {
       font-weight: 600;
       text-transform: uppercase;
       border: 0;
+      width: 220px;
     }
     p{
       font-size: 16px;
@@ -5897,8 +5876,14 @@ body.catalogsearch-result-index {
     .actions{
       margin-top: 0;
       margin-left: 15px;
-      width: 35%;
     }
   }
 
+}
+
+@media (min-width: 1400px) {
+  .message.global.cookie{
+    width: 100%;
+    margin: 0 auto;
+  }
 }
