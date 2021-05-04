@@ -10,9 +10,9 @@
 
 *Representação* | *Nome* | *Diferenças*
 --------------- | ------ | ---------------------------
-X.x.x | Release maior | Novas funcionalidades de grande importância ou alterações de regra de negócio
-x.X.x | Release menor | Melhorias e/ou evoluções
-x.x.X | Release de revisão | Correções de falhas (bugs)
+2021-05-03 | Release maior | Novas funcionalidades de grande importância ou alterações de regra de negócio
+2021-04-27 | Release menor | Melhorias e/ou evoluções
+2021-04-15 | Release de revisão | Correções de falhas (bugs)
 
 ----------
 
@@ -20,6 +20,7 @@ x.x.X | Release de revisão | Correções de falhas (bugs)
 
 *Version* | *Release date*
 --------- | --------------
+[2.1.1](#markdown-header-210) | 2021-05-04
 [2.1.1](#markdown-header-210) | 2021-04-29
 [2.1.0](#markdown-header-210) | 2021-04-27
 [2.0.0](#markdown-header-200) | 2021-04-15 ~15:00
@@ -27,6 +28,38 @@ x.x.X | Release de revisão | Correções de falhas (bugs)
 
 ----------
 
+---------
+# 2.1.2
+
+*Data release:* 2021-05-03
+
+### 📝 Notes:
+* N/A
+
+### 🏅 Improvements:
+
+* N/A
+
+### 👾 BugFix:
+* [PR 320](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/320) resolver fix div z-index en cookies
+*.[PR 317](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/317)  Estilos css, alineación botones comprar y consultar en ficha de producto
+*.[PR319](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/319) fix div cookies
+*.[PR 312](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/312) Correção de formatação de unidade de milhar para exibição correta do valor do frete.
+*.[PR 315](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/315) correção temporária apenas para correção de zindex para elemento de barra de cookies
+*.[PR 314](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/314) Correção de Zindex para apresentação de barra de cookies
+*.[PR 313](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/313) CrearbannerLGPDMobile/Desktop
+*.[PR 311](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/311) sobreponer popup de cookies en producto y newsletter
+*.[]
+
+
+
+
+### 🔗  Tasks relacionadas
+* N/A
+
+----------
+
+---------
 # 2.1.1
 
 *Data release:* 2021-04-29
