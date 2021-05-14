@@ -20,7 +20,7 @@
 
 *Version* | *Release date*
 --------- | --------------
-[2.1.1](#markdown-header-210) | 2021-05-04
+[2.1.2](#markdown-header-210) | 2021-05-04
 [2.1.1](#markdown-header-210) | 2021-04-29
 [2.1.0](#markdown-header-210) | 2021-04-27
 [2.0.0](#markdown-header-200) | 2021-04-15 ~15:00
@@ -34,7 +34,7 @@
 *Data release:* 2021-05-03
 
 ### 📝 Notes:
-* N/A
+Resolvemos via admin a integração com a traksale em  03/05.
 
 ### 🏅 Improvements:
 

@@ -898,7 +898,6 @@ a, a:hover, .alink, a:visited, .alink:visited {
 #tabs-list, #grouped-details, #tabs-details, .min-dtls{
   section{
     position: relative;
-    height: 618px ;
     width: 100%;
     iframe {
       position: absolute;
@@ -2198,7 +2197,6 @@ a, a:hover, .alink, a:visited, .alink:visited {
         max-width: 1390px;
         margin: 0 auto 40px auto;
         overflow: hidden;
-        min-height: 650px;
         &.negative-margin-top {
             margin-top: -80px
         }
@@ -2284,8 +2282,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
               }
               .owl-item{
                 .product-image-wrapper{
-                  min-height: @home_carousel_img_height;
-                  max-height: @home_carousel_img_height;
+                  min-height: 200px;
                   .lib-vendor-prefix-display(flex);
                   .lib-vendor-box-align(center);
                   img {
