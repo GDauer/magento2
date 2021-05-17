@@ -124,9 +124,8 @@ IMPORTANT: Avoid permission problems, DO NOT run these tasks as root.
 After installing the tools, follow the steps below to run a local deploy.
 
  1. Clone the project in local machine.
- 2. Download initial database [magento.sql](https://mega.nz/file/dd1E0QpJ) ( password: VeZFqty1pWI3A-fIv1ik7xgxGXFTM2Dc8pDBKI54vt8 ), unzip and paste in DB/local/magento.sql.
- 3. Download [media bases images](https://mega.nz/file/MBlyGLCY#_O52UvTWsz5k26ydVJ4lEplNHsV4lhwgEdQsCnj7KaA), unzip and paste in pub/media.
- 4. Launch a local deploy:
+ 2. Download [media bases images](https://mega.nz/file/MBlyGLCY#_O52UvTWsz5k26ydVJ4lEplNHsV4lhwgEdQsCnj7KaA), unzip and paste in pub/media.
+ 3. Launch a local deploy:
 
 `bash start-docker.sh local`   
 
