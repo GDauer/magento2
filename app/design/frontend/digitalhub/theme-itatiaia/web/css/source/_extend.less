@@ -5885,3 +5885,25 @@ body.catalogsearch-result-index {
     margin: 0 auto;
   }
 }
+
+.fieldset > .field{
+  &.choice.is_agree{
+    display: flex;
+    margin-left: 25.8%;
+    position: relative;
+    &:before{
+      display: none;
+    }
+    input{
+      margin-left: -0.5px;
+    }
+    label{
+      padding-left: 2px;
+    }
+    #is_agree-error{
+      position: absolute;
+      bottom: -20px;
+      left: 20px;
+    }
+  }
+}
