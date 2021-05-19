@@ -5643,14 +5643,53 @@ form.form-create-account {
 }
 
 @media (min-width: 900px){
-    #shipping-new-address-form .field { width: 45%; height: 65px; display: inline-block; margin-right: 3% !important; }
-    #shipping-new-address-form .field .field-error { position: absolute; top: 55px }
-    .modal-content #shipping-new-address-form .field {width: 50%;height: 65px;display: inline-block;margin-right: 0 !important; margin-bottom: 0;position: relative;text-align: left;}
-    .modal-content #shipping-new-address-form .field .label { float: none; display: block; width: auto; text-align: left }
-    .modal-content #shipping-new-address-form .field .control { width: 90% }
-    .modal-content #shipping-new-address-form .field.choice input[type=checkbox] { float: none; display: inline-block; }
-    .modal-content #shipping-new-address-form .field.choice .label { float: none; display: inline-block }
-    .modal-content #shipping-new-address-form .field.choice:before { display: none }
+
+  #shipping-new-address-form .field{
+    display: inline-block;
+    width: 45%; 
+    height: 65px;
+    margin-right: 3% !important;
+  }
+
+  .modal-content #shipping-new-address-form .field {
+    display: inline-block;
+    position: relative;
+    width: 50%;
+    height: auto;
+    margin-right: 0 !important; 
+    margin-bottom: 5px;
+    text-align: left;
+
+    .label { 
+      float: none; 
+      display: block; 
+      width: auto; 
+      text-align: left;
+    }
+
+    .control { 
+      width: 90%;
+    }
+
+    &.choice {
+      .label,
+      input[type='checkbox'] { 
+        float: none; 
+        display: inline-block;
+      }
+
+      &:before { 
+        display: none;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px){
+  .fieldset > .field:not(.choice) > .control{
+    float: unset;
+    width: unset;
+  }
 }
 
 .stock.unavailable {
