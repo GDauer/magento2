@@ -29,7 +29,6 @@ require([
     $(document).on("blur", "input[name='postcode']", function () {
         var me = $(this);
         var closestForm = $(this).closest('.form');
-        console.log(closestForm);
 
         var v = $(this).closest('input[name$="postcode"]');
 
@@ -37,18 +36,6 @@ require([
         $('input[name=postcode]').mask('00000-000', {
             placeholder: "00000-000",
         });
-
-        // mask phone
-        var TelephoneBehaviour = function (val) {
-            return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
-        };
-        var telOptions = {
-            onKeyPress: function (val, e, field, options) {
-                field.mask(TelephoneBehaviour.apply({}, arguments), options);
-            },
-            placeholder: "(00) 00000-0000"
-        };
-        $('input[name=telephone]').mask(TelephoneBehaviour, telOptions);
 
         //Nova variável "cep" somente com dígitos.
         var cep = v.val().replace(/\D/g, '');
