@@ -898,6 +898,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
 #tabs-list, #grouped-details, #tabs-details, .min-dtls{
   section{
     position: relative;
+    height: 618px ;
     width: 100%;
     iframe {
       position: absolute;
@@ -2197,6 +2198,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
         max-width: 1390px;
         margin: 0 auto 40px auto;
         overflow: hidden;
+        min-height: 650px;
         &.negative-margin-top {
             margin-top: -80px
         }
@@ -2282,7 +2284,8 @@ a, a:hover, .alink, a:visited, .alink:visited {
               }
               .owl-item{
                 .product-image-wrapper{
-                  min-height: 200px;
+                  min-height: @home_carousel_img_height;
+                  max-height: @home_carousel_img_height;
                   .lib-vendor-prefix-display(flex);
                   .lib-vendor-box-align(center);
                   img {
@@ -5832,60 +5835,6 @@ body.catalogsearch-result-index {
     }
   }
 }
-.message.global.cookie{
-  padding: 10px 20px;
-  display: block;
-  line-height: 1.2em;
-  font-size: 1.3rem;
-  color: #ffffff;
-  border-radius: 15px;
-  width: calc(~"100% - 138px");
-  background: transparent;
-  max-width: 1200px;
-  bottom: 5px;
-  z-index: 11000;
-  .content{
-    display: flex;
-    background:  @_ita_main-blue_color;
-    border-radius: 15px;
-    align-items: center;
-    padding: 15px 20px;
-    button{
-      background: @_ita_main-orange_color;
-      border-radius: 11px;
-      height: 44px;
-      padding: 0 30px;
-      color: #fff;
-      font-size: 14px;
-      font-weight: 600;
-      text-transform: uppercase;
-      border: 0;
-      width: 225px;
-    }
-    p{
-      font-size: 16px;
-      line-height: 26px;
-      a{
-          color: #fff;
-          font-weight: bold;
-          text-decoration: underline;
-      }
-    }
-    .actions{
-      margin-top: 0;
-      margin-left: 15px;
-    }
-  }
-
-}
-
-@media (min-width: 1400px) {
-  .message.global.cookie{
-    width: 100%;
-    margin: 0 auto;
-  }
-}
-
 .fieldset > .field{
   &.choice.is_agree{
     display: flex;
