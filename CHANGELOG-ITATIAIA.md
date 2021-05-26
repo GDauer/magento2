@@ -10,7 +10,7 @@
 
 *Representação* | *Nome* | *Diferenças*
 --------------- | ------ | ---------------------------
-2021-05-24 | Release maior | Novas funcionalidades de grande importância ou alterações de regra de negócio
+2021-05-26 | Release maior | Novas funcionalidades de grande importância ou alterações de regra de negócio
 2021-04-27 | Release menor | Melhorias e/ou evoluções
 2021-04-15 | Release de revisão | Correções de falhas (bugs)
 
@@ -20,7 +20,7 @@
 
 *Version* | *Release date*
 --------- | --------------
-[2.1.3](#markdown-header-210) | 2021-05-24
+[2.1.3](#markdown-header-210) | 2021-05-26
 [2.1.2](#markdown-header-210) | 2021-05-04
 [2.1.1](#markdown-header-210) | 2021-04-29
 [2.1.0](#markdown-header-210) | 2021-04-27
@@ -39,13 +39,17 @@ Release com novos modulos e alteração nas paginas de cadastro do usuario
 
 ### 🏅 Improvements:
 
-* [PR 331](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/331)  instalação do modulo lazing load
+* [PR 341](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/341)  Remoção do modulo lazing load
 * [PR 330](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/330)  check-box na pagina de cadastro do usuário.
+* [PR 337](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/337)  Inclusao de Script Privally
 
 
 ### 👾 BugFix:
 * [PR 329](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/329)  eliminar estilos de popup de cookies
 * [PR 327](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/327)  Ajustes de altura do produto e da imagem do recipiente que quebraram a posição dos carimbos no carrossel doméstico.
+* [PR 339](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/339)  corrigir estilos mobile
+* [PR 339](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/340)  Ajuste layout dos selos do E-commerce na home v3
+* [PR 332](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/332)  Quebra de layout no form
 
 
 ### 🔗  Tasks relacionadas
