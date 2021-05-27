@@ -898,7 +898,6 @@ a, a:hover, .alink, a:visited, .alink:visited {
 #tabs-list, #grouped-details, #tabs-details, .min-dtls{
   section{
     position: relative;
-    height: 618px ;
     width: 100%;
     iframe {
       position: absolute;
@@ -2284,8 +2283,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
               }
               .owl-item{
                 .product-image-wrapper{
-                  min-height: @home_carousel_img_height;
-                  max-height: @home_carousel_img_height;
+                  min-height: 200px;
                   .lib-vendor-prefix-display(flex);
                   .lib-vendor-box-align(center);
                   img {
@@ -3157,6 +3155,7 @@ select:not([disabled]) {
       transition: .2s all;
       border: 2px solid @_ita_main-blue_color;
       text-transform: inherit;
+      height: 49px;
       &.disable {
         background: #e5102a;
       }
@@ -3245,8 +3244,7 @@ select:not([disabled]) {
         text-align: center;
         margin-left: 20px;
         text-decoration: none;
-
-
+        display: inline-block;
       }
     }
     #simularFrete {
@@ -3287,6 +3285,7 @@ select:not([disabled]) {
           margin: 12px 0 0 0;
           position: relative;
           border-radius: 50px;
+          overflow: unset;
           input[type=text] {
             margin-top: 4px;
             &:focus {
@@ -3298,9 +3297,9 @@ select:not([disabled]) {
           }
           .button {
             position: absolute;
-            top: -1px;
-            right: -1px;
-            height: 40px;
+            top: 0;
+            right: 0;
+            height: 37px;
             line-height: 35px;
             width: 95px;
             float: none;
@@ -5252,6 +5251,7 @@ form.form-create-account {
 
 
 /* Media Quereis */
+
 @media screen {
   @media (max-width: 1500px) {
     .page-wrapper{
@@ -5645,14 +5645,53 @@ form.form-create-account {
 }
 
 @media (min-width: 900px){
-    #shipping-new-address-form .field { width: 45%; height: 65px; display: inline-block; margin-right: 3% !important; }
-    #shipping-new-address-form .field .field-error { position: absolute; top: 55px }
-    .modal-content #shipping-new-address-form .field {width: 50%;height: 65px;display: inline-block;margin-right: 0 !important; margin-bottom: 0;position: relative;text-align: left;}
-    .modal-content #shipping-new-address-form .field .label { float: none; display: block; width: auto; text-align: left }
-    .modal-content #shipping-new-address-form .field .control { width: 90% }
-    .modal-content #shipping-new-address-form .field.choice input[type=checkbox] { float: none; display: inline-block; }
-    .modal-content #shipping-new-address-form .field.choice .label { float: none; display: inline-block }
-    .modal-content #shipping-new-address-form .field.choice:before { display: none }
+
+  #shipping-new-address-form .field{
+    display: inline-block;
+    width: 45%; 
+    height: 65px;
+    margin-right: 3% !important;
+  }
+
+  .modal-content #shipping-new-address-form .field {
+    display: inline-block;
+    position: relative;
+    width: 50%;
+    height: auto;
+    margin-right: 0 !important; 
+    margin-bottom: 5px;
+    text-align: left;
+
+    .label { 
+      float: none; 
+      display: block; 
+      width: auto; 
+      text-align: left;
+    }
+
+    .control { 
+      width: 90%;
+    }
+
+    &.choice {
+      .label,
+      input[type='checkbox'] { 
+        float: none; 
+        display: inline-block;
+      }
+
+      &:before { 
+        display: none;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px){
+  #shipping-new-address-form .fieldset > .field:not(.choice) > .control{
+    float: unset;
+    width: unset;
+  }
 }
 
 .stock.unavailable {
@@ -5832,5 +5871,42 @@ body.catalogsearch-result-index {
         }
       }
     }
+  }
+}
+.fieldset > .field{
+  &.choice.is_agree{
+    display: flex;
+    margin-left: 25.8%;
+    position: relative;
+    &:before{
+      display: none;
+    }
+    input{
+      margin-left: -0.5px;
+    }
+    label{
+      padding-left: 2px;
+    }
+    #is_agree-error{
+      position: absolute;
+      bottom: -20px;
+      left: 20px;
+    }
+  }
+}
+.politics{
+  margin-left: -45px;
+  i{
+    background: white;
+    color: @_ita_main-blue_color;
+    height: 25px;
+    width: 35px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    margin-left: -44px;
+    float: left;
   }
 }

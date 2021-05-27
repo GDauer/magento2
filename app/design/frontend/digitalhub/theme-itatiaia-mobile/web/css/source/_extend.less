@@ -680,6 +680,11 @@ a, a:hover, .alink, a:visited, .alink:visited {
                   margin-right: 10px;
                   float: left;
                 }
+                &.politics{
+                  &:before{
+                    display: none;
+                  }
+                }
                 &.whatsapp:before {
                   background-position: 0 0;
                 }
@@ -2358,7 +2363,8 @@ select:not([disabled]) {
     .product-options-bottom .box-tocart .action.tocart {
       box-shadow: 0 3px 5px 2px rgba(0, 0, 0, 0.2);
       border-radius: 0;
-      background-color: @_ita_main-green_color;
+      background-color: @_ita_main-blue_color;
+      color: @_ita_main-green_color;
       width: 100%;
       margin: 0 auto;
       position: fixed;
@@ -2531,7 +2537,7 @@ select:not([disabled]) {
     .btn-rev{
        padding: 9px 15px;
        border: 2px solid @_ita_main-blue_color;
-       border-radius: 2px;
+       border-radius: 25px;
        background: white;
        font-size: 14px;
        font-family: 'GTWalsheimProBold';
@@ -3467,6 +3473,9 @@ body.checkout-index-index {
       }
     }
   }
+  .modal-popup .action.primary{
+    padding: 0px calc(4vw + 8px);
+  }
 }
 
 .checkout-onepage-success{
@@ -4382,6 +4391,11 @@ body.catalogsearch-result-index {
   border-radius: 3px;
 }
 
+.firecheckout.fc-form-hide-labels .form-shipping-address .fieldset div.field:not(.choice).fc-dirty select{
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 .wrp-formas-pagamento {
   img {
     max-width: 80%;
@@ -4451,5 +4465,39 @@ body.catalogsearch-result-index {
         }
       }
     }
+  }
+}
+.fieldset > .field{
+  &.choice.is_agree{
+    display: flex;
+    position: relative;
+    #is_agree-error{
+      position: absolute;
+      bottom: -20px;
+      left: 17px;
+    }
+  }
+}
+.politics{
+  &:before{
+    display:none;
+  }
+  display: flex;
+  align-items: center;
+  i{
+    background: white;
+    color: @_ita_main-blue_color;
+    height: 25px;
+    width: 35px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    float: left;
+  }
+  a{
+    color:white;
+    margin-right: 50px;
   }
 }
