@@ -390,7 +390,7 @@ return [
         'MercadoPago_Core' => 1,
         'Itatiaia_FreeShippingAlert' => 1,
         'Itatiaia_GarantiaEstendida' => 1,
-        'DigitalHub_CatalogRulesCategory' => 1,
+        'DigitalHub_CatalogRulesCategory' => 0,
         'Itatiaia_ImportRules' => 1,
         'Konduto_Antifraud' => 1,
         'Itatiaia_Mooble' => 1,
