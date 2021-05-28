@@ -48,21 +48,6 @@ require([
 
     // Init
     $(function () {
-        var TelephoneBehaviour = function (val) {
-            return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
-        };
-        var telOptions = {
-            onKeyPress: function (val, e, field, options) {
-                field.mask(TelephoneBehaviour.apply({}, arguments), options);
-            },
-            placeholder: "(00) 00000-0000"
-        };
-        $('input[name=telephone]').mask(TelephoneBehaviour, telOptions);
-
-        // $('input[name=taxvat]').mask('000.000.000-00', {
-        //     placeholder: "000.000.000-00",
-        // });
-
         $('input[name=postcode]').mask('00000-000', {
             placeholder: "00000-000",
         });
