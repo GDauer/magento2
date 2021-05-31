@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ae22864063a92e49d95a73362afbf08a",
+    "content-hash": "594c51076fad699dc73ea992f92b5aff",
     "packages": [
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
@@ -995,6 +995,37 @@
             "homepage": "https://github.com/container-interop/container-interop",
             "abandoned": "psr/container",
             "time": "2017-02-14T19:40:03+00:00"
+        },
+        {
+            "name": "creativestyle/magesuite-magepack",
+            "version": "v1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/magesuite/magepack-magento.git",
+                "reference": "a84002568935d46feb47331d6c6cd3b62d877079"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/magesuite/magepack-magento/zipball/a84002568935d46feb47331d6c6cd3b62d877079",
+                "reference": "a84002568935d46feb47331d6c6cd3b62d877079",
+                "shasum": ""
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "MageSuite\\Magepack\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0"
+            ],
+            "description": "Module responsible for handling advanced JavaScript bundling.",
+            "homepage": "https://creativestyle.de",
+            "time": "2020-10-19T13:11:34+00:00"
         },
         {
             "name": "cweagans/composer-patches",
@@ -3552,6 +3583,12 @@
             "keywords": [
                 "form",
                 "laminas"
+            ],
+            "funding": [
+                {
+                    "url": "https://funding.communitybridge.org/projects/laminas-project",
+                    "type": "community_bridge"
+                }
             ],
             "time": "2020-07-14T13:53:27+00:00"
         },
@@ -19739,6 +19776,20 @@
                 "twofish",
                 "x.509",
                 "x509"
+            ],
+            "funding": [
+                {
+                    "url": "https://github.com/terrafrost",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/phpseclib",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/phpseclib/phpseclib",
+                    "type": "tidelift"
+                }
             ],
             "time": "2020-12-17T05:42:04+00:00"
         },
