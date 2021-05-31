@@ -93,7 +93,7 @@
       jQuery(".qty-dec").click(function(){
         $currentQTY=$currentQTY-1;
         if ($currentQTY<1){
-          $currentQTY=0;
+          $currentQTY=1;
         }
         jQuery('#qty').val($currentQTY);
       });
