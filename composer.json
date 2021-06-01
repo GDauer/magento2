@@ -27,7 +27,6 @@
         }
     },
     "require": {
-        "creativestyle/magesuite-magepack": "^1.1",
         "cweagans/composer-patches": "^1.6",
         "flancer32/mage2_ext_minify": "^0.1.2",
         "intelipost/magento2-basic": "^1.1",
@@ -44,8 +43,8 @@
         "scandiweb/module-core": "~0.1.2",
         "scandiweb/module-magiczoom": "1.1.4",
         "smile/elasticsuite": "~2.9.0",
-        "swissup/firecheckout": "^1.18",
-        "swissup/rtl": "^1.3"
+        "swissup/rtl": "^1.3",
+        "swissup/firecheckout": "^1.18"
     },
     "suggest": {
         "ext-pcntl": "Need for run processes in parallel mode"

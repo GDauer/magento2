@@ -3306,7 +3306,6 @@ select:not([disabled]) {
             padding: 0;
             background: #eee;
             text-align: center;
-            padding-top: 4px;
             border-radius: 0 25px 25px 0;
             &:before {
               content: "Consultar";
@@ -5863,10 +5862,9 @@ body.catalogsearch-result-index {
           .control {
             .mage-error[generated] {
               position: absolute;
-              margin: -38px 0 0 100px;
-              width: 110px;
-              text-align: left;
-              line-height: 1.2;
+            }
+            .mage-error {
+              position: absolute;
             }
           }
         }
@@ -5909,10 +5907,5 @@ body.catalogsearch-result-index {
     margin-right: 10px;
     margin-left: -44px;
     float: left;
-  }
-}
-.subtitle{
-  p{
-  color: #1e3cff;
   }
 }
