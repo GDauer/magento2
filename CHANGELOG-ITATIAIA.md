@@ -46,7 +46,7 @@ N/D
 * [PR 346](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/346)  Fixed cart update qty on enter key
 * [PR 344](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/344)  COZ-25 mdai 259 quebra de layout no form
 * [PR 343](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/343)  Criação de Checkbox e Cadastro do usuário - fix ortografía
-* [PR 348](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/348)  remove Auriat and digitalhubcatalogrule MODULE
+* [PR 348](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/348)  remove Auriat 
 * [PR 349](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/349)  Product page's add to cart behaviour fixed
 * [PR 351](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/351)  grouped itens button removed
 * [PR 352](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/352)  remove_module_potato
