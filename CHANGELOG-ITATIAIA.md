@@ -10,7 +10,7 @@
 
 *Representação* | *Nome* | *Diferenças*
 --------------- | ------ | ---------------------------
-2021-05-26 | Release maior | Novas funcionalidades de grande importância ou alterações de regra de negócio
+2021-06-01 | Release maior | Novas funcionalidades de grande importância ou alterações de regra de negócio
 2021-04-27 | Release menor | Melhorias e/ou evoluções
 2021-04-15 | Release de revisão | Correções de falhas (bugs)
 
@@ -20,6 +20,7 @@
 
 *Version* | *Release date*
 --------- | --------------
+[2.1.4](#markdown-header-210) | 2021-06-01
 [2.1.3](#markdown-header-210) | 2021-05-26
 [2.1.2](#markdown-header-210) | 2021-05-04
 [2.1.1](#markdown-header-210) | 2021-04-29
@@ -30,6 +31,36 @@
 ----------
 
 ---------
+# 2.1.4
+
+*Data release:* 2021-06-01
+
+### 📝 Notes:
+Multiplas correções 
+
+### 🏅 Improvements:
+
+N/D
+
+### 👾 BugFix:
+* [PR 346](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/346)  Fixed cart update qty on enter key
+* [PR 344](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/344)  COZ-25 mdai 259 quebra de layout no form
+* [PR 343](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/343)  Criação de Checkbox e Cadastro do usuário - fix ortografía
+* [PR 348](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/348)  remove Auriat 
+* [PR 349](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/349)  Product page's add to cart behaviour fixed
+* [PR 351](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/351)  grouped itens button removed
+* [PR 352](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/352)  remove_module_potato
+* [PR 362](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/362)  COZ-26 mdai 260 quebra de layout ao mani
+* [PR 359](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/359) Fixed mobile wishlist product checkbox pos
+* [PR 360](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/360) Alteracao de Cor na Nossa Newsletter
+* [PR 362](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/362) Fixed comment rate link to comments in product view
+
+
+
+### 🔗  Tasks relacionadas
+* N/A
+
+----------
 # 2.1.3
 
 *Data release:* 2021-05-24
