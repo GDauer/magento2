@@ -5172,8 +5172,14 @@ body.checkout-index-index {
       }
     }
     &.wishlist{
-      .product-item-checkbox+.product-item-name {
-        margin-left: 0;
+      .product-item-checkbox{
+        -ms-flex-item-align: flex-start;
+        -webkit-align-self: flex-start;
+        align-self: flex-start;
+
+        &+.product-item-name {
+          margin-left: 0;
+        }
       }
     }
   }
