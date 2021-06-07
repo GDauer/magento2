@@ -373,7 +373,9 @@ $groupedCatalogRuleHelper = $this->helper('Itatiaia\GroupedCatalogRule\Helper\Da
 
 <script type="text/javascript">
     require(['jquery','jquery/ui'], function($) {
-    //Change the below class if not matching
-        $("div.product.data.items").tabs();
+        $(document).ready(function(){
+            //Change the below class if not matching
+            $("div.product.data.items").tabs();
+        });
     });
 </script>
