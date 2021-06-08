@@ -898,7 +898,6 @@ a, a:hover, .alink, a:visited, .alink:visited {
 #tabs-list, #grouped-details, #tabs-details, .min-dtls{
   section{
     position: relative;
-    height: 618px ;
     width: 100%;
     iframe {
       position: absolute;
@@ -2284,8 +2283,7 @@ a, a:hover, .alink, a:visited, .alink:visited {
               }
               .owl-item{
                 .product-image-wrapper{
-                  min-height: @home_carousel_img_height;
-                  max-height: @home_carousel_img_height;
+                  min-height: 200px;
                   .lib-vendor-prefix-display(flex);
                   .lib-vendor-box-align(center);
                   img {
@@ -5647,14 +5645,53 @@ form.form-create-account {
 }
 
 @media (min-width: 900px){
-    #shipping-new-address-form .field { width: 45%; height: 65px; display: inline-block; margin-right: 3% !important; }
-    #shipping-new-address-form .field .field-error { position: absolute; top: 55px }
-    .modal-content #shipping-new-address-form .field {width: 50%;height: 65px;display: inline-block;margin-right: 0 !important; margin-bottom: 0;position: relative;text-align: left;}
-    .modal-content #shipping-new-address-form .field .label { float: none; display: block; width: auto; text-align: left }
-    .modal-content #shipping-new-address-form .field .control { width: 90% }
-    .modal-content #shipping-new-address-form .field.choice input[type=checkbox] { float: none; display: inline-block; }
-    .modal-content #shipping-new-address-form .field.choice .label { float: none; display: inline-block }
-    .modal-content #shipping-new-address-form .field.choice:before { display: none }
+
+  #shipping-new-address-form .field{
+    display: inline-block;
+    width: 45%; 
+    height: 65px;
+    margin-right: 3% !important;
+  }
+
+  .modal-content #shipping-new-address-form .field {
+    display: inline-block;
+    position: relative;
+    width: 50%;
+    height: auto;
+    margin-right: 0 !important; 
+    margin-bottom: 5px;
+    text-align: left;
+
+    .label { 
+      float: none; 
+      display: block; 
+      width: auto; 
+      text-align: left;
+    }
+
+    .control { 
+      width: 90%;
+    }
+
+    &.choice {
+      .label,
+      input[type='checkbox'] { 
+        float: none; 
+        display: inline-block;
+      }
+
+      &:before { 
+        display: none;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px){
+  #shipping-new-address-form .fieldset > .field:not(.choice) > .control{
+    float: unset;
+    width: unset;
+  }
 }
 
 .stock.unavailable {
@@ -5837,57 +5874,41 @@ body.catalogsearch-result-index {
     }
   }
 }
-.message.global.cookie{
-  padding: 10px 20px;
-  display: block;
-  line-height: 1.2em;
-  font-size: 1.3rem;
-  color: #ffffff;
-  border-radius: 15px;
-  width: calc(~"100% - 138px");
-  background: transparent;
-  max-width: 1200px;
-  bottom: 5px;
-  z-index: 11000;
-  .content{
+.fieldset > .field{
+  &.choice.is_agree{
     display: flex;
-    background:  @_ita_main-blue_color;
-    border-radius: 15px;
-    align-items: center;
-    padding: 15px 20px;
-    button{
-      background: @_ita_main-orange_color;
-      border-radius: 11px;
-      height: 44px;
-      padding: 0 30px;
-      color: #fff;
-      font-size: 14px;
-      font-weight: 600;
-      text-transform: uppercase;
-      border: 0;
-      width: 225px;
+    margin-left: 25.8%;
+    position: relative;
+    &:before{
+      display: none;
     }
-    p{
-      font-size: 16px;
-      line-height: 26px;
-      a{
-          color: #fff;
-          font-weight: bold;
-          text-decoration: underline;
-      }
+    input{
+      margin-left: -0.5px;
     }
-    .actions{
-      margin-top: 0;
-      margin-left: 15px;
+    label{
+      padding-left: 2px;
+    }
+    #is_agree-error{
+      position: absolute;
+      bottom: -20px;
+      left: 20px;
     }
   }
-
 }
-
-@media (min-width: 1400px) {
-  .message.global.cookie{
-    width: 100%;
-    margin: 0 auto;
+.politics{
+  margin-left: -45px;
+  i{
+    background: white;
+    color: @_ita_main-blue_color;
+    height: 25px;
+    width: 35px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    margin-left: -44px;
+    float: left;
   }
 }
 .subtitle{
