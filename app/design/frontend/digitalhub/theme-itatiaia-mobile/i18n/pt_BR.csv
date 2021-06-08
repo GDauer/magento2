@@ -136,6 +136,8 @@
 "The most you may purchase is %1.","A quantidade do produto excede o valor máximo de compra permitido. O máximo permitido é %1."
 "The maximum you may purchase is %1.","O máximo que você pode comprar é %1."
 "Please enter a quantity greater than 0.", "Insira uma quantidade maior que 0."
+"You can buy this product only in quantities of %1 at a time.","Só é possível comprar este produto em quantidades de %1 por vez."
+"The fewest you may purchase is %1.","O mínimo que você pode comprar é %1."
 "Attention","Atenção"
 "Please enter the same value again.","Por favor, preencha o mesmo valor novamente."
 "Please make sure your passwords match.","Por favor, tenha certeza que as senhas são iguais."
