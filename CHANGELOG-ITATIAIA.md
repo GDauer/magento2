@@ -6,11 +6,11 @@
 🚧 Itens de atenção:
    * Sempre verifique os tópicos de *Notas* em cada release version.
 
-## Representação de versões
+## Representação de versões 
 
 *Representação* | *Nome* | *Diferenças*
 --------------- | ------ | ---------------------------
-2021-06-01 | Release maior | Novas funcionalidades de grande importância ou alterações de regra de negócio
+2021-06-08 | Release maior | Novas funcionalidades de grande importância ou alterações de regra de negócio
 2021-04-27 | Release menor | Melhorias e/ou evoluções
 2021-04-15 | Release de revisão | Correções de falhas (bugs)
 
@@ -20,6 +20,7 @@
 
 *Version* | *Release date*
 --------- | --------------
+[2.1.5](#markdown-header-210) | 2021-06-08
 [2.1.4](#markdown-header-210) | 2021-06-01
 [2.1.3](#markdown-header-210) | 2021-05-26
 [2.1.2](#markdown-header-210) | 2021-05-04
@@ -29,6 +30,33 @@
 
 
 ----------
+
+---------
+# 2.1.5
+
+*Data release:* 2021-06-08
+
+### 📝 Notes:
+Revert ultimo deploy e aplicado novas alterações 
+
+### 🏅 Improvements:
+
+N/D
+
+### 👾 BugFix:
+
+    Tarefa 25 : Correção da quebra de layout no formulário de cadastro de endereço checkout;
+	Tarefa 29: Número de itens de um produto não altera a quantidade ao apertar "enter";
+	Tarefa 26: Quebra de layout ao manipular quantidade de produto;
+	Tarefa 24: MOBILE - Quebra de layout na lista de desejos;
+	Tarefa 28: Remover o botão "itens do conjunto" na página do produto;
+
+
+### 🔗  Tasks relacionadas
+Revert "Hotfix/1.1 (https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/377)
+
+----------
+
 
 ---------
 # 2.1.4

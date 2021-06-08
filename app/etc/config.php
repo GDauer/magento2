@@ -412,7 +412,6 @@ return [
         'Mageants_FreeGift' => 0,
         'Mageplaza_Core' => 1,
         'Mageplaza_BetterPopup' => 1,
-        'Mageplaza_LazyLoading' => 1,
         'MagestyApps_FixRules' => 1,
         'Itatiaia_CustomMercadoPago' => 1,
         'Pmclain_SuccessTest' => 1,
