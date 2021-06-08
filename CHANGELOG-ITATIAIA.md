@@ -6,7 +6,7 @@
 🚧 Itens de atenção:
    * Sempre verifique os tópicos de *Notas* em cada release version.
 
-## Representação de versões
+## Representação de versões 
 
 *Representação* | *Nome* | *Diferenças*
 --------------- | ------ | ---------------------------
