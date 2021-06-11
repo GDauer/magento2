@@ -12,7 +12,6 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
     <module name="Webjump_Tax">
         <sequence>
-            <!-- <module name="Carbono_CalculatorShipping"/> -->
             <module name="Magento_Tax"/>
         </sequence>
     </module>
