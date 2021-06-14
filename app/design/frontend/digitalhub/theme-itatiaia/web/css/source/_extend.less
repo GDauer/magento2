@@ -5040,7 +5040,31 @@ body.checkout-index-index {
       color:#fff;
     }
   }
+  .cart-summary {
+    .shipping {
+      fieldset {
+        .wrp-options {
+          .item-options {
+            .label {
+              span.price {
+                color: #1E3CFF;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
+
+body.checkout-index-index.firecheckout #checkout .opc-wrapper .checkout-shipping-method .price, body.checkout-index-index.firecheckout #checkout .opc-wrapper .checkout-shipping-method .col-method span.price {
+  color: #1E3CFF;
+}
+
+td.col.col-price {
+  min-width: 85px;
+}
+
 .wrp-mdl-frete{
   display: block;
   margin-bottom: 25px;
@@ -5591,6 +5615,9 @@ form.form-create-account {
 }
 .estimate-shipping-result-container {
     margin-top: 10px;
+    strong.free_shipping {
+      color: #1E3CFF;
+    }
 }
 .gift-item-block {
     display: none
