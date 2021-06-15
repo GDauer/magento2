@@ -221,3 +221,12 @@ $block->setPreconfiguredValue();
             })
         </script>
     <?php endif; ?>
+
+    <script type="text/javascript">
+        require(['jquery','jquery/ui'], function($) {
+            $(document).ready(function(){
+                //Change the below class if not matching
+                $("div.product.data.items").tabs();
+            });
+        });
+    </script>
