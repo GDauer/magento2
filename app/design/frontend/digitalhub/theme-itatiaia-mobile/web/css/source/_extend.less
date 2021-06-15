@@ -3566,7 +3566,7 @@ form.form-create-account {
       }
     }
     .column.main {
-      background: #f2f2f2;
+      background: transparent;
       padding: 15px;
       .block {
         .block-title {
@@ -4120,6 +4120,14 @@ form.form-create-account {
 }
 
 .wishlist-index-index{
+  .page-main {
+    .column.main {
+      background: transparent;
+      a.action.view {
+        display: none;
+      }
+    }
+  } 
   .actions-primary {
     display: inline;
     .action.primary {
@@ -4469,7 +4477,6 @@ body.catalogsearch-result-index {
 			display: none;
 		}
 }
-
 
 .catalog-product-view {
   .product-info-main {
