@@ -4,6 +4,14 @@
 @screen__s: 1280px;
 @screen__m: 1280px;
 
+.lib-vendor-prefix-justify-content (
+    @_value: space-between
+) {
+  -webkit-box-pack: @_value;
+     -ms-flex-pack: @_value;
+   justify-content: @_value;
+}
+
 body {
   overflow-x: hidden;
   font-family: 'GTWalsheimProRegular', sans-serif;
@@ -4127,6 +4135,9 @@ form.form-create-account {
     .product-item {
       .product-item-info {
         padding: 10px;
+        .product-item-checkbox{
+          top: 12px;
+        }
         .product-item-actions {
           .actions-primary {
             width: 100%;
@@ -4516,5 +4527,91 @@ body.catalogsearch-result-index {
 .subtitle{
   p{
   color: #1e3cff;
+  }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+  .page-multiple-wishlist{
+    &.account .toolbar.wishlist-toolbar{
+      .pager {
+        margin-bottom: 22px;
+      }
+
+      .toolbar-amount{
+        margin-bottom: 11px;
+      }
+    }
+
+    .products-grid.wishlist{
+      .product-items {
+        .lib-vendor-prefix-display(flex);
+        .lib-vendor-prefix-flex-wrap(wrap);
+        .lib-vendor-box-align (stretch);
+      }
+
+      .product-item{
+        float: unset;
+        min-height: 100%;
+        height: auto;
+
+        .product-item-info{
+          .lib-vendor-prefix-display(flex);
+          .lib-vendor-prefix-flex-direction (column);
+          .lib-vendor-prefix-justify-content(space-between);
+          height: 100%;
+
+          .product-item-inner {
+            .lib-vendor-prefix-flex-grow(1);
+            .lib-vendor-prefix-display(flex);
+            .lib-vendor-prefix-flex-direction (column);
+            .lib-vendor-prefix-justify-content(flex-end);
+          }
+        }
+
+        .product-item-photo{
+            margin: 0
+        }
+
+        .product-item-name,
+        .product-item-description,
+        .price-box,
+        .product-item-tooltip{
+          margin-left: unset;
+        }
+
+        .product-item-actions{
+          float: unset;
+  
+          .action.delete{
+            float: left;
+          }
+        }
+
+        .tocart{
+          white-space: unset;
+          font-size: ~"calc(.9rem + 1vw)";
+          padding: .5rem 1rem;
+          margin: 0;
+          height: auto;
+        }
+
+        .box-tocart {
+          float: unset;
+          margin-right: unset;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .page-multiple-wishlist{
+    .products-grid.wishlist{
+      li.product-item{
+        width: 49%;
+        display:inline-block;
+        min-height: unset;
+      }
+    }
   }
 }
