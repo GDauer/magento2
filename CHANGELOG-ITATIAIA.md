@@ -10,7 +10,7 @@
 
 *Representação* | *Nome* | *Diferenças*
 --------------- | ------ | ---------------------------
-2021-05-26 | Release maior | Novas funcionalidades de grande importância ou alterações de regra de negócio
+2021-06-14 | Release maior | Novas funcionalidades de grande importância ou alterações de regra de negócio
 2021-04-27 | Release menor | Melhorias e/ou evoluções
 2021-04-15 | Release de revisão | Correções de falhas (bugs)
 
@@ -20,12 +20,37 @@
 
 *Version* | *Release date*
 --------- | --------------
+[2.1.4](#markdown-header-210) | 2021-06-14
 [2.1.3](#markdown-header-210) | 2021-05-26
 [2.1.2](#markdown-header-210) | 2021-05-04
 [2.1.1](#markdown-header-210) | 2021-04-29
 [2.1.0](#markdown-header-210) | 2021-04-27
 [2.0.0](#markdown-header-200) | 2021-04-15 ~15:00
 
+
+----------
+
+
+---------
+# 2.1.4
+
+*Data release:* 2021-06-14
+
+### 📝 Notes:
+Release com implantação de modulo para compactação de imagem reduzindo o tempo de carregamento de página
+
+### 🏅 Improvements:
+
+* [PR 388](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/388)  Instalação de modulo de frete grátis e customizações
+* [PR 386](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/386)  Instalação de modulo lazing load licenciado
+
+
+
+### 👾 BugFix:
+N/A
+
+### 🔗  Tasks relacionadas
+* N/A
 
 ----------
 
