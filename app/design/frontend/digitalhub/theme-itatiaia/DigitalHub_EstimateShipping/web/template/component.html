@@ -37,7 +37,7 @@
         <ul data-bind="foreach: estimateResult">
             <!-- ko if: !error_message -->
             <li>
-                <span data-bind="text: title"></span> - <strong data-bind="text: price_formatted"></strong>
+                <span data-bind="text: title"></span> <strong style="color: #1E3CFF;" class="free_shipping" data-bind="text: price === 0 ? 'Frete Grátis' : price_formatted "></strong>
             </li>
             <!-- /ko -->
             <!-- ko if: error_message -->

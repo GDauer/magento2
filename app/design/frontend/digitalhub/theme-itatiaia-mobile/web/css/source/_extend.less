@@ -2934,6 +2934,19 @@ select:not([disabled]) {
         top: -10px;
       }
     }
+    .shipping {
+      fieldset {
+        .wrp-options {
+          .item-options {
+            .label {
+              span.price {
+                color: #1E3CFF;
+              }
+            }
+          }
+        }
+      }
+    }
     .block.shipping, .block.discount, .cart-totals {
       border: 1px solid #ccc;
       border-radius: 3px;
@@ -3010,7 +3023,13 @@ select:not([disabled]) {
   }
 }
 
+body.checkout-index-index.firecheckout #checkout .opc-wrapper .checkout-shipping-method .price, body.checkout-index-index.firecheckout #checkout .opc-wrapper .checkout-shipping-method .col-method span.price {
+  color: #1E3CFF;
+}
 
+td.col.col-price {
+  min-width: 95px;
+}
 
 .cart.table-wrapper{
   .col, .cart{
@@ -4491,5 +4510,11 @@ body.catalogsearch-result-index {
   a{
     color:white;
     margin-right: 50px;
+  }
+}
+
+.subtitle{
+  p{
+  color: #1e3cff;
   }
 }
