@@ -20,7 +20,8 @@
 
 *Version* | *Release date*
 --------- | --------------
-[2.1.4](#markdown-header-210) | 2021-06-14
+[2.1.5](#markdown-header-210) | 2021-06-14
+[2.1.4](#markdown-header-210) | 2021-06-07
 [2.1.3](#markdown-header-210) | 2021-05-26
 [2.1.2](#markdown-header-210) | 2021-05-04
 [2.1.1](#markdown-header-210) | 2021-04-29
