@@ -154,3 +154,18 @@ function confirmRemoveLockItem(target){
 // layered nav com filtros aplicados após click em botão
 window._layeredFilters = {}
 function _toggleFilterOption(){}
+
+// PAGE ACTION MODAL - "Politica de Privacidade"
+
+function execTermsCookies() {
+
+  let currencyUrl = window.location.href
+  let urlValidation = window.location.protocol + '//' + window.location.hostname + "/loja/politicas-de-privacidade-e-seguranca?active=1"
+  
+  if(currencyUrl == urlValidation) {
+    oPrivallyApp.openModal('tab')
+  }
+
+}
+
+execTermsCookies()

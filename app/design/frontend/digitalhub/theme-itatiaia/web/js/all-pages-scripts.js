@@ -164,6 +164,4 @@ function execTermsCookies() {
 
 }
 
-window.onload = function() {
-  execTermsCookies()
-}
+execTermsCookies()
