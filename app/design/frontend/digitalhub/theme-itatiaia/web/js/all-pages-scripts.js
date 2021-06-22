@@ -164,4 +164,4 @@ function execTermsCookies() {
 
 }
 
-execTermsCookies()
+document.addEventListener("load", execTermsCookies());
