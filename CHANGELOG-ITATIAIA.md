@@ -10,7 +10,7 @@
 
 *Representação* | *Nome* | *Diferenças*
 --------------- | ------ | ---------------------------
-2021-06-14 | Release maior | Novas funcionalidades de grande importância ou alterações de regra de negócio
+2021-06-22 | Release maior | Alterações de front end
 2021-04-27 | Release menor | Melhorias e/ou evoluções
 2021-04-15 | Release de revisão | Correções de falhas (bugs)
 
@@ -20,6 +20,7 @@
 
 *Version* | *Release date*
 --------- | --------------
+[2.1.6](#markdown-header-210) | 2021-06-22
 [2.1.5](#markdown-header-210) | 2021-06-14
 [2.1.4](#markdown-header-210) | 2021-06-07
 [2.1.3](#markdown-header-210) | 2021-05-26
@@ -33,9 +34,37 @@
 
 
 ---------
+# 2.1.5
+
+*Data release:* 2021-06-22
+
+### 📝 Notes:
+Release com implantação de modulo para compactação de imagem reduzindo o tempo de carregamento de página e alterações em front end
+
+### 🏅 Improvements:
+
+N/A
+
+### 👾 BugFix:
+
+* [PR 394](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/394)  Correção Mozila - Wishlist
+* [PR 390](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/390)  Ação de click para comentários
+
+
+### 🔗  Tasks relacionadas
+[08:50] Diamantino Junior Santos Rodrigues
+   
+    COZ-24 
+    COZ-64
+
+----------
+
+
+
+---------
 # 2.1.4
 
-*Data release:* 2021-06-14
+*Data release:* 2021-06-22
 
 ### 📝 Notes:
 Release com implantação de modulo para compactação de imagem reduzindo o tempo de carregamento de página

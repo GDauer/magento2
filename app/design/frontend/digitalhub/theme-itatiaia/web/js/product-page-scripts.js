@@ -1,10 +1,16 @@
 require([
   'jquery',
+  'jquery/ui',
   'owlcarousel'
   ], function () {
     'use strict';
 
     jQuery.noConflict();
+
+    $(document).ready(function(){
+        //Change the below class if not matching
+        $("div.product.data.items").tabs();
+    });
 
     // jQuery(window).scroll(function () {
     //     var headerHeight = jQuery('.page-header').innerHeight();
@@ -74,10 +80,10 @@ require([
         }
     }
 
-		jQuery(function(){
-			jQuery("#tab-label-additional").prependTo(".product.data.items");
-			jQuery("#additional").prependTo(".product.data.items");
+    jQuery(function(){
+        jQuery("#tab-label-additional").prependTo(".product.data.items");
+        jQuery("#additional").prependTo(".product.data.items");
 
-		});
+    });
 
 });
