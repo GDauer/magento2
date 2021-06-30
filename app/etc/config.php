@@ -377,7 +377,7 @@ return [
         'Intelipost_Tracking' => 1,
         'Itatiaia_AdminEmail' => 1,
         'Itatiaia_AllinIntegration' => 1,
-        'Itatiaia_BirthdayMail' => 1,
+        'Itatiaia_BirthdayMail' => 0,
         'Itatiaia_CatalogWidgetFilter' => 1,
         'Itatiaia_CheckoutBillingAddress' => 1,
         'Itatiaia_CreateCustomer' => 1,

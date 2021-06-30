@@ -38,7 +38,7 @@
 ---------
 # 2.1.7
 
-*Data release:* 2021-06-22
+*Data release:* 2021-06-29
 
 ### 📝 Notes:
 Release com implantação de modulo para compactação de imagem reduzindo o tempo de carregamento de página e alterações em front end
