@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "594c51076fad699dc73ea992f92b5aff",
+    "content-hash": "3282640e597d9c19bf4da08c2686e2b2",
     "packages": [
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
@@ -633,6 +633,20 @@
                 "ssl",
                 "tls"
             ],
+            "funding": [
+                {
+                    "url": "https://packagist.com",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/composer",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+                    "type": "tidelift"
+                }
+            ],
             "time": "2021-01-12T12:10:35+00:00"
         },
         {
@@ -782,6 +796,20 @@
                 }
             ],
             "description": "Composer plugin that provides efficient querying for installed package versions (no runtime IO)",
+            "funding": [
+                {
+                    "url": "https://packagist.com",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/composer",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+                    "type": "tidelift"
+                }
+            ],
             "time": "2020-11-11T10:22:58+00:00"
         },
         {
@@ -1146,6 +1174,20 @@
                 "strings",
                 "uppercase",
                 "words"
+            ],
+            "funding": [
+                {
+                    "url": "https://www.doctrine-project.org/sponsorship.html",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.patreon.com/phpdoctrine",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Finflector",
+                    "type": "tidelift"
+                }
             ],
             "time": "2020-05-29T07:19:59+00:00"
         },
@@ -3642,6 +3684,12 @@
                 "http client",
                 "laminas"
             ],
+            "funding": [
+                {
+                    "url": "https://funding.communitybridge.org/projects/laminas-project",
+                    "type": "community_bridge"
+                }
+            ],
             "time": "2020-08-18T17:11:58+00:00"
         },
         {
@@ -4085,6 +4133,12 @@
             "keywords": [
                 "laminas",
                 "mail"
+            ],
+            "funding": [
+                {
+                    "url": "https://funding.communitybridge.org/projects/laminas-project",
+                    "type": "community_bridge"
+                }
             ],
             "time": "2020-12-31T11:41:57+00:00"
         },
@@ -4932,6 +4986,12 @@
                 "laminas",
                 "validator"
             ],
+            "funding": [
+                {
+                    "url": "https://funding.communitybridge.org/projects/laminas-project",
+                    "type": "community_bridge"
+                }
+            ],
             "time": "2021-01-06T15:05:04+00:00"
         },
         {
@@ -5064,6 +5124,12 @@
                 "autoloading",
                 "laminas",
                 "zf"
+            ],
+            "funding": [
+                {
+                    "url": "https://funding.communitybridge.org/projects/laminas-project",
+                    "type": "community_bridge"
+                }
             ],
             "time": "2020-09-14T14:23:00+00:00"
         },
@@ -18865,20 +18931,20 @@
         },
         {
             "name": "mercadopago/magento2-plugin",
-            "version": "3.3.1",
+            "version": "3.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mercadopago/cart-magento2.git",
-                "reference": "f5208e407b648e3cb7b56ef0eda4c48139ef0582"
+                "reference": "87b87267a820128c05f0c846004311778e134a6d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mercadopago/cart-magento2/zipball/f5208e407b648e3cb7b56ef0eda4c48139ef0582",
-                "reference": "f5208e407b648e3cb7b56ef0eda4c48139ef0582",
+                "url": "https://api.github.com/repos/mercadopago/cart-magento2/zipball/87b87267a820128c05f0c846004311778e134a6d",
+                "reference": "87b87267a820128c05f0c846004311778e134a6d",
                 "shasum": ""
             },
             "require": {
-                "magento/magento-composer-installer": "*"
+                "ext-json": "*"
             },
             "require-dev": {
                 "fabpot/php-cs-fixer": "~1.2",
@@ -18890,7 +18956,7 @@
                 "sjparkinson/static-review": "~4.1",
                 "squizlabs/php_codesniffer": "1.5.3"
             },
-            "type": "magento2-component",
+            "type": "magento2-module",
             "autoload": {
                 "psr-4": {
                     "MercadoPago\\Core\\": "src/MercadoPago/Core"
@@ -18907,11 +18973,11 @@
             "authors": [
                 {
                     "name": "Mercado Pago",
-                    "email": "info@mercadopago.com"
+                    "email": "plugins.dev@mercadopago.com"
                 }
             ],
             "description": "Mercado Pago Magento 2 Plugin",
-            "time": "2019-08-26T17:40:20+00:00"
+            "time": "2021-07-01T14:50:10+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -18982,6 +19048,16 @@
                 "log",
                 "logging",
                 "psr-3"
+            ],
+            "funding": [
+                {
+                    "url": "https://github.com/Seldaek",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/monolog/monolog",
+                    "type": "tidelift"
+                }
             ],
             "time": "2020-12-14T12:56:38+00:00"
         },
@@ -19141,6 +19217,16 @@
             "homepage": "http://github.com/myclabs/php-enum",
             "keywords": [
                 "enum"
+            ],
+            "funding": [
+                {
+                    "url": "https://github.com/mnapoli",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/myclabs/php-enum",
+                    "type": "tidelift"
+                }
             ],
             "time": "2020-11-14T18:14:52+00:00"
         },
@@ -20191,6 +20277,12 @@
                 "type": "git",
                 "url": "https://github.com/scandiwebcom/Scandiweb-Assets-Core.git",
                 "reference": "cbec569f0f47393458b599c1aeafb400580682e0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/scandiwebcom/Scandiweb-Assets-Core/zipball/cbec569f0f47393458b599c1aeafb400580682e0",
+                "reference": "cbec569f0f47393458b599c1aeafb400580682e0",
+                "shasum": ""
             },
             "type": "magento2-module",
             "autoload": {
@@ -23203,6 +23295,20 @@
                 "interoperability",
                 "standards"
             ],
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
             "time": "2020-09-07T11:33:47+00:00"
         },
         {
@@ -23428,6 +23534,20 @@
                 "interfaces",
                 "interoperability",
                 "standards"
+            ],
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
             ],
             "time": "2020-09-28T13:05:58+00:00"
         },
@@ -23899,6 +24019,12 @@
                 "race condition",
                 "safe writer",
                 "webimpress"
+            ],
+            "funding": [
+                {
+                    "url": "https://github.com/michalbundyra",
+                    "type": "github"
+                }
             ],
             "time": "2020-08-25T07:21:11+00:00"
         },
