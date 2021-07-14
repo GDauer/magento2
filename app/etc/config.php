@@ -402,7 +402,7 @@ return [
         'Klarna_Core' => 1,
         'Klarna_Ordermanagement' => 1,
         'Klarna_Kp' => 1,
-        'Itatiaia_KondutoCustom' => 1,
+        'Itatiaia_KondutoCustom' => 0,
         'Magento_PaypalReCaptcha' => 1,
         'MSP_TwoFactorAuth' => 1,
         'MageAurigaIT_Outbox' => 0,
@@ -456,6 +456,8 @@ return [
         'Temando_ShippingRemover' => 1,
         'Vertex_Tax' => 1,
         'Vertex_AddressValidation' => 1,
+        'Webjump_Customer' => 0,
+        'Webjump_Sales' => 0,
         'Webjump_Tax' => 0,
         'Yotpo_Yotpo' => 0
     ],
