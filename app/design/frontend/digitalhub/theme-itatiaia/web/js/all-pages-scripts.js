@@ -155,14 +155,14 @@ function emptyCartFromMinicart()
 
 function execTermsCookies() {
 
-  let currencyUrl = window.location.href
-  let urlValidation = window.location.protocol + '//' + window.location.hostname + "/loja/politicas-de-privacidade-e-seguranca?active=1"
+    let currencyUrl = window.location.href
+    let urlValidation = window.location.protocol + '//' + window.location.hostname + "/loja/politicas-de-privacidade-e-seguranca?active=1"
 
-  setTimeout(document.onload = function() {
-    if(currencyUrl == urlValidation) {
-      oPrivallyApp.openModal('tab')
-    }
-  }, 4000);
+    setTimeout(document.onload = function() {
+        if(currencyUrl == urlValidation) {
+            oPrivallyApp.openModal('tab')
+        }
+    }, 4000);
 
 }
 
