@@ -10,7 +10,8 @@
 
 *Representação* | *Nome* | *Diferenças*
 --------------- | ------ | ---------------------------
-2021-06-14 | Release maior | Novas funcionalidades de grande importância ou alterações de regra de negócio
+2021-06-29 | Release maior | Alterações de front end
+2021-06-22 | Release maior | Alterações de front end
 2021-04-27 | Release menor | Melhorias e/ou evoluções
 2021-04-15 | Release de revisão | Correções de falhas (bugs)
 
@@ -20,6 +21,8 @@
 
 *Version* | *Release date*
 --------- | --------------
+[2.1.7](#markdown-header-210) | 2021-06-29
+[2.1.6](#markdown-header-210) | 2021-06-22
 [2.1.5](#markdown-header-210) | 2021-06-14
 [2.1.4](#markdown-header-210) | 2021-06-07
 [2.1.3](#markdown-header-210) | 2021-05-26
@@ -33,9 +36,79 @@
 
 
 ---------
-# 2.1.4
+# 2.1.7
 
-*Data release:* 2021-06-14
+*Data release:* 2021-06-29
+
+### 📝 Notes:
+Release com implantação de modulo para compactação de imagem reduzindo o tempo de carregamento de página e alterações em front end
+
+### 🏅 Improvements:
+
+* [PR 447](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/447) Feature/COZ-80
+
+
+### 👾 BugFix:
+
+
+* [PR 420](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/420) troca de link atendimento mobile
+* [PR 419](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/419) add_event_listener_load
+* [PR 423](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/423) add_event_timeout
+* [PR 424](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/424) Bugix/COZ-78 forma de pagamento mp nao aparece
+* [PR 425](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/425) fixed_MP_to_production
+* [PR 426](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/426) Revert pr 425 mercado pago
+* [PR 427](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/427) revert pr almir
+* [PR 436](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/436) Feature/COZ-86 desabilitar cronjob
+* [PR 438](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/438) corrige cabeçalho pagina de sucesso boleto
+* [PR 430](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/430) view widget creation screens
+* [PR 449](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/449) teste remove erro
+* [PR 452](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/452) corrige pagina sucesso
+* [PR 450](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/450) fixed_broken_cart_menu
+* [PR 451](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/451) old version lazy loading module
+
+
+
+
+
+
+
+### 🔗  Tasks relacionadas
+[08:50] Diamantino Junior Santos Rodrigues
+   
+    COZ-24 
+    COZ-64
+
+----------
+
+
+
+---------
+# 2.1.6
+
+*Data release:* 2021-06-22
+
+### 📝 Notes:
+Release com implantação de modulo para compactação de imagem reduzindo o tempo de carregamento de página
+
+### 🏅 Improvements:
+
+* [PR 394](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/394)  Correção Mozila - Wishlist
+
+* [PR 390](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/390)  Ação de click para comentários
+
+
+
+### 👾 BugFix:
+N/A
+
+### 🔗  Tasks relacionadas
+* N/A
+
+----------
+
+# 2.1.5
+
+*Data release:* 2021-06-22
 
 ### 📝 Notes:
 Release com implantação de modulo para compactação de imagem reduzindo o tempo de carregamento de página
@@ -44,6 +117,49 @@ Release com implantação de modulo para compactação de imagem reduzindo o tem
 
 * [PR 388](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/388)  Instalação de modulo de frete grátis e customizações
 * [PR 386](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/386)  Instalação de modulo lazing load licenciado
+
+
+
+### 👾 BugFix:
+N/A
+
+### 🔗  Tasks relacionadas
+* N/A
+
+----------
+
+----------
+
+# 2.1.4
+
+*Data release:* 2021-06-22
+
+### 📝 Notes:
+Release com implantação de modulo para compactação de imagem reduzindo o tempo de carregamento de página
+
+### 🏅 Improvements:
+
+* [PR 346](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/346)  Fixed cart update qty on enter key
+
+* [PR 344](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/344)  COZ-25 mdai 259 quebra de layout no form
+
+* [PR 343](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/343)  Criação de Checkbox e Cadastro do usuário - fix ortografía
+
+* [PR 348](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/348)  remove Auriat 
+
+* [PR 349](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/349)  Product page's add to cart behaviour fixed
+
+* [PR 351](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/351)  grouped itens button removed
+
+* [PR 352](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/352)  remove_module_potato
+
+* [PR 362](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/362)  COZ-26 mdai 260 quebra de layout ao mani
+
+* [PR 359](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/359) Fixed mobile wishlist product checkbox pos
+
+* [PR 360](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/360) Alteracao de Cor na Nossa Newsletter
+
+* [PR 362](https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/362) Fixed comment rate link to comments in product view
 
 
 

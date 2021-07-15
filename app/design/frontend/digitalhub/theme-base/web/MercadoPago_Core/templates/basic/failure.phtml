@@ -1,0 +1,12 @@
+<p><?php echo __($block->escapeHtml($block->getErrorMessage())); ?></p>
+<p><?php echo __('Click <a href="%1" target="_top">here</a> to continue shopping.', $block->escapeUrl($block->getUrlHome())) ?></p>
+
+<script type="text/javascript">
+    require(['jquery', 'Magento_Customer/js/customer-data'], function($, customerData) {
+        $(window).on('load', function () {
+            var sections = ['customer'];
+            customerData.invalidate(sections);
+            customerData.reload(sections, true);
+        });
+    });
+</script>
