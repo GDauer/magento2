@@ -46,8 +46,7 @@ class Track
 
         $orderCollection = $this->orderFactory->create()->getCollection()
             ->addFieldToFilter('state', 'complete')
-//            ->addFieldToFilter('nps_sent', ['eq' => null])
-            ->addFieldToFilter('created_at', ['gt' => '2019-06-05 15:00:00']);
+            ->addFieldToFilter('created_at', ['gt' => date('Y-m-d H:i:s', strtotime('-180 days'))]);
 
             $api_key  = $this->scopeConfig->getValue('intelipost_basic/settings/api_key');
 
