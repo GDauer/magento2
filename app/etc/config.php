@@ -567,6 +567,7 @@ return [
         'Webjump_Customer' => 1,
         'Webjump_Sales' => 1,
         'Webjump_Tax' => 1,
+
         'Yotpo_Yotpo' => 0
     ],
     'admin_user' => [
