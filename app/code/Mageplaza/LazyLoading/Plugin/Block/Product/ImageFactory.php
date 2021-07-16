@@ -57,7 +57,7 @@ class ImageFactory
      */
     public function afterCreate(CoreImageFactory $subject, $result)
     {
-        if ($this->helperData->isEnabled() && $this->helperData->isLazyLoad()) {
+        if ($this->helperData->isEnabled()) {
             $result->setTemplate('Mageplaza_LazyLoading::product/image_with_borders.phtml');
         }
 
