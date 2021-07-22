@@ -10,6 +10,7 @@
 
 *Representação* | *Nome* | *Diferenças*
 --------------- | ------ | ---------------------------
+2021-07-22 | Release maior | Alterações de front end
 2021-06-29 | Release maior | Alterações de front end
 2021-06-22 | Release maior | Alterações de front end
 2021-04-27 | Release menor | Melhorias e/ou evoluções
@@ -21,6 +22,7 @@
 
 *Version* | *Release date*
 --------- | --------------
+[2.1.8](#markdown-header-210) | 2021-07-22
 [2.1.7](#markdown-header-210) | 2021-06-29
 [2.1.6](#markdown-header-210) | 2021-06-22
 [2.1.5](#markdown-header-210) | 2021-06-14
@@ -33,6 +35,42 @@
 
 
 ----------
+
+
+---------
+# 2.1.8
+
+*Data release:* 2021-07-22
+
+### 📝 Notes:
+Release com implantação de modulo para compactação de imagem reduzindo o tempo de carregamento de página e alterações em front end.
+Alteração de redimensionamento do módulo magic-zomm
+Implantação de nova versão do modulo Lazy Loading
+Alteração do campo VAT para CPF
+
+### 🏅 Improvements:
+
+https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/558
+
+
+### 👾 BugFix:PRs
+
+
+https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/573
+https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requests/571
+
+
+
+
+
+
+
+
+
+----------
+
+
+
 
 
 ---------
