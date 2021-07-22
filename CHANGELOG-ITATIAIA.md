@@ -65,11 +65,7 @@ https://bitbucket.org/minhaitatiaia/project-cozinhas-itatiaia-magento2/pull-requ
 
 
 
-### 🔗  Tasks relacionadas
-[08:50] Diamantino Junior Santos Rodrigues
-   
-    COZ-24 
-    COZ-64
+
 
 ----------
 
