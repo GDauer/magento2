@@ -402,7 +402,7 @@ return [
         'Klarna_Core' => 1,
         'Klarna_Ordermanagement' => 1,
         'Klarna_Kp' => 1,
-        'Itatiaia_KondutoCustom' => 1,
+        'Itatiaia_KondutoCustom' => 0,
         'Magento_PaypalReCaptcha' => 1,
         'MSP_TwoFactorAuth' => 1,
         'MageAurigaIT_Outbox' => 0,
