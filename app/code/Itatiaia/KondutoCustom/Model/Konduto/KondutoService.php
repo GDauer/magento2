@@ -2,10 +2,20 @@
 
 namespace Itatiaia\KondutoCustom\Model\Konduto;
 
+use Adyen\Payment\Gateway\Http\Client\TransactionCancel;
+use Adyen\Payment\Gateway\Http\Client\TransactionCapture;
+use Adyen\Payment\Gateway\Http\TransferFactory;
+use Adyen\Payment\Helper\Data;
+use Adyen\Payment\Helper\Requests;
+use Itatiaia\CustomMercadoPago\Http\Order\Payment;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Sales\Model\Order;
+use Magento\Sales\Model\Order\Status\HistoryFactory;
+use Magento\Sales\Model\OrderFactory;
 use Magento\Sales\Model\ResourceModel\Attribute as OrderAttributeResource;
 use Konduto\Antifraud\Model\KondutoService as OriginalKondutoService;
 use Magento\Sales\Model\Order\StatusFactory;
+use Magento\Sales\Model\ResourceModel\Order\Status\CollectionFactory;
 
 /**
  * Class KondutoService
@@ -14,47 +24,47 @@ use Magento\Sales\Model\Order\StatusFactory;
 class KondutoService extends OriginalKondutoService
 {
     /**
-     * @var \Magento\Sales\Model\Order\Status\HistoryFactory
+     * @var HistoryFactory
      */
     protected $orderHistoryFactory;
 
     /**
-     * @var \Magento\Sales\Model\OrderFactory
+     * @var OrderFactory
      */
     protected $orderFactory;
 
     /**
-     * @var \Adyen\Payment\Gateway\Http\TransferFactory
+     * @var TransferFactory
      */
 //    private $transferFactory;
 
     /**
-     * @var \Adyen\Payment\Helper\Requests
+     * @var Requests
      */
 //    private $adyenRequestHelper;
 
     /**
-     * @var \Adyen\Payment\Gateway\Http\Client\TransactionCapture
+     * @var TransactionCapture
      */
 //    private $transactionCapture;
 
     /**
-     * @var \Adyen\Payment\Gateway\Http\Client\TransactionCancel
+     * @var TransactionCancel
      */
 //    private $transactionCancel;
 
     /**
-     * @var \Adyen\Payment\Helper\Data
+     * @var Data
      */
 //    private $adyenHelper;
 
     /**
-     * @var \Magento\Sales\Model\ResourceModel\Order\Status\CollectionFactory
+     * @var CollectionFactory
      */
     protected $orderStatusCollection;
 
     /**
-     * @var \Itatiaia\CustomMercadoPago\Http\Order\Payment
+     * @var Payment
      */
     protected $mercadoPagoHttpPayment;
 
@@ -69,19 +79,19 @@ class KondutoService extends OriginalKondutoService
         \Konduto\Antifraud\Model\Konduto\OrderData $orderData,
         \Magento\Framework\App\State $state,
         OrderAttributeResource $orderAttribute,
-        \Magento\Sales\Model\Order $orderModel,
+        Order $orderModel,
         \Magento\Sales\Model\Service\InvoiceService $invoiceService,
         \Magento\Framework\DB\Transaction $transaction,
         \Magento\Sales\Model\Order\Email\Sender\InvoiceSender $invoiceSender,
-        \Magento\Sales\Model\Order\Status\HistoryFactory $orderHistoryFactory,
-        \Magento\Sales\Model\OrderFactory $orderFactory,
+        HistoryFactory $orderHistoryFactory,
+        OrderFactory $orderFactory,
 //        \Adyen\Payment\Gateway\Http\TransferFactory $transferFactory,
 //        \Adyen\Payment\Helper\Requests $adyenRequestHelper,
 //        \Adyen\Payment\Gateway\Http\Client\TransactionCapture $transactionCapture,
 //        \Adyen\Payment\Gateway\Http\Client\TransactionCancel $transactionCancel,
 //        \Adyen\Payment\Helper\Data $adyenHelper,
-        \Magento\Sales\Model\ResourceModel\Order\Status\CollectionFactory $orderStatusCollection,
-        \Itatiaia\CustomMercadoPago\Http\Order\Payment $mercadoPagoHttpPayment
+        CollectionFactory $orderStatusCollection,
+        Payment $mercadoPagoHttpPayment
     )
     {
         $this->orderHistoryFactory = $orderHistoryFactory;
@@ -127,7 +137,7 @@ class KondutoService extends OriginalKondutoService
         $this->historyRepository->save($history);
 
         // Setting order history
-        /** @var \Magento\Sales\Model\Order $order */
+        /** @var Order $order */
         $order = $this->orderFactory->create()->load($orderId);
         $history = $this->orderHistoryFactory->create()
             ->setStatus($this->helper->getStatusCode($newStatus))
@@ -153,7 +163,7 @@ class KondutoService extends OriginalKondutoService
             return false;
         }
 
-        /** @var \Magento\Sales\Model\Order $order */
+        /** @var Order $order */
         $order = $this->orderFactory->create()->loadByIncrementId($params['order_id']);
         if (!$order->getId()) {
             return false;
