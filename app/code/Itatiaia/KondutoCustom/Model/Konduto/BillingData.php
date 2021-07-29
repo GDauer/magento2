@@ -21,7 +21,7 @@ class BillingData extends OriginalBillingData
         $this->helper = $helper;
     }
 
-    public function getBillingData($billing): Address
+    public function getBillingData($billing)
     {
         $this->billing = $billing;
         $this->address = new Address;
