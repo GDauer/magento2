@@ -3,6 +3,7 @@
 namespace Itatiaia\KondutoCustom\Model\Konduto;
 
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Sales\Model\Order;
 use Magento\Sales\Model\ResourceModel\Attribute as OrderAttributeResource;
 use Konduto\Antifraud\Model\KondutoService as OriginalKondutoService;
 use Magento\Sales\Model\Order\StatusFactory;
@@ -69,7 +70,7 @@ class KondutoService extends OriginalKondutoService
         \Konduto\Antifraud\Model\Konduto\OrderData $orderData,
         \Magento\Framework\App\State $state,
         OrderAttributeResource $orderAttribute,
-        \Magento\Sales\Model\Order $orderModel,
+        Order $orderModel,
         \Magento\Sales\Model\Service\InvoiceService $invoiceService,
         \Magento\Framework\DB\Transaction $transaction,
         \Magento\Sales\Model\Order\Email\Sender\InvoiceSender $invoiceSender,
@@ -127,7 +128,7 @@ class KondutoService extends OriginalKondutoService
         $this->historyRepository->save($history);
 
         // Setting order history
-        /** @var \Magento\Sales\Model\Order $order */
+        /** @var Order $order */
         $order = $this->orderFactory->create()->load($orderId);
         $history = $this->orderHistoryFactory->create()
             ->setStatus($this->helper->getStatusCode($newStatus))
@@ -153,7 +154,7 @@ class KondutoService extends OriginalKondutoService
             return false;
         }
 
-        /** @var \Magento\Sales\Model\Order $order */
+        /** @var Order $order */
         $order = $this->orderFactory->create()->loadByIncrementId($params['order_id']);
         if (!$order->getId()) {
             return false;
