@@ -2,9 +2,9 @@
 
 namespace Itatiaia\CustomMercadoPago\Block\Adminhtml\Form\Field;
 
-use Magento\Framework\View\Element\Html\Select;
+use Magento\Framework\App\Config\Value;
 
-class ResponseOptions extends Select
+class Version extends Value
 {
     protected $_options = [
         "accredited" => "Pagamento Aprovado",
@@ -30,5 +30,8 @@ class ResponseOptions extends Select
     public function setInputName($value)
     {
         return $this->setName($value);
+        $this->save($value);
     }
+
+
 }
