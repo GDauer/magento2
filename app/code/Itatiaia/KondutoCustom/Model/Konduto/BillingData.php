@@ -41,7 +41,7 @@ class BillingData extends OriginalBillingData
     /**
      * @return string
      */
-    private function getAddressOne()
+    private function getAddressOne(): string
     {
         return (string) $this->getStreet($this->billing) . $this->getNumber($this->billing);
     }
@@ -49,7 +49,7 @@ class BillingData extends OriginalBillingData
     /**
      * @return string
      */
-    private function getAddressTwo()
+    private function getAddressTwo(): string
     {
         return (string) $this->getComplement($this->billing) . $this->getNeighborhood($this->billing);
     }
@@ -109,7 +109,7 @@ class BillingData extends OriginalBillingData
     /**
      * @return string
      */
-    private function getCountry()
+    private function getCountry(): string
     {
         if (!$this->billing->getCountryId()) {
             return 'BR';
