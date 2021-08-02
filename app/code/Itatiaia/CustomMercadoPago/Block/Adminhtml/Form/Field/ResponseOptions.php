@@ -27,19 +27,8 @@ class ResponseOptions extends Select
         "cc_rejected_other_reason" => "Outras Razões"
     ];
 
-    private function setName($value)
-    {
-        return $this->setName($value);
-
-    }
-
     public function setInputName($value)
     {
         return $this->setName($value);
-
-
-        $this->save($value);
     }
 }
-//remove merge
-
