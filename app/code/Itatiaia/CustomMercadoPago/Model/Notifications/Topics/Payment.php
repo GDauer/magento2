@@ -28,7 +28,7 @@ class Payment extends \MercadoPago\Core\Model\Notifications\Topics\Payment
     private $transactionBuilder;
 
     /**
-     * @var ScopeConfigInterface 
+     * @var ScopeConfigInterface
      */
     protected $_scopeConfig;
 
@@ -69,7 +69,7 @@ class Payment extends \MercadoPago\Core\Model\Notifications\Topics\Payment
 
     const STATUS = 'payment_review';
 
-    public function updateStatusOrderByPayment($payment)
+    public function updateStatusOrderByPayment($payment): array
     {
         $order = parent::getOrderByIncrementId($payment['external_reference']);
 
@@ -85,7 +85,7 @@ class Payment extends \MercadoPago\Core\Model\Notifications\Topics\Payment
         if ($statusAlreadyUpdated) {
             $orderPayment = $order->getPayment();
             $orderPayment->setAdditionalInformation("paymentResponse", $payment);
-            $order->save();
+            $order-> AbstractModel::save();
 
             $messageHttp = "Mercado Pago - Status has already been updated.";
             return [
@@ -109,7 +109,7 @@ class Payment extends \MercadoPago\Core\Model\Notifications\Topics\Payment
             $this->addCardInCustomer($payment);
         }
         $order->getPayment()->setAdditionalInformation("paymentResponse", $payment);
-        $order->save();
+        $order-> AbstractModel::save();
 
         $messageHttp = "Mercado Pago - Status successfully updated.";
         return [
@@ -125,7 +125,7 @@ class Payment extends \MercadoPago\Core\Model\Notifications\Topics\Payment
         ];
     }
 
-    public function setStatusAndComment($order, $newStatusOrder, $message)
+    public function setStatusAndComment($order, $newStatusOrder, $message): Order
     {
         if ($order->getState() !== Order::STATE_COMPLETE) {
             if ($newStatusOrder == 'canceled' && $order->getState() != 'canceled') {
@@ -148,7 +148,7 @@ class Payment extends \MercadoPago\Core\Model\Notifications\Topics\Payment
 
     }
 
-    public function createInvoice($order, $message)
+    public function createInvoice($order, $message): bool
     {
         if (!$order->hasInvoices()) {
             $invoice = $order->prepareInvoice();
@@ -185,7 +185,7 @@ class Payment extends \MercadoPago\Core\Model\Notifications\Topics\Payment
      * @param $order
      * @return bool
      */
-    public function checkStatusAlreadyUpdated($paymentResponse, $order)
+    public function checkStatusAlreadyUpdated($paymentResponse, $order): bool
     {
         $orderUpdated = false;
         $statusToUpdate = $this->getConfigStatus($paymentResponse, false);

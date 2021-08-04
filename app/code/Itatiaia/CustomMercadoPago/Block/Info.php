@@ -18,11 +18,11 @@ class Info extends \MercadoPago\Core\Block\Info
     {
       $transport = parent::_prepareSpecificInformation($transport);
       $data = [];
-      
+
       $info = $this->getInfo();
       $paymentResponse = $info->getAdditionalInformation("paymentResponse");
 
-      if(isset($paymentResponse['id'])){ 
+      if(isset($paymentResponse['id'])){
         $title = __('Payment id (Mercado Pago)');
         $data[$title->__toString()] = $paymentResponse['id'];
       }
@@ -34,32 +34,32 @@ class Info extends \MercadoPago\Core\Block\Info
 
       if(isset($paymentResponse['card']) && isset($paymentResponse['card']['expiration_month']) && isset($paymentResponse['card']['expiration_year'])){
         $title = __('Expiration Date');
-        $data[$title->__toString()] = $paymentResponse['card']['expiration_month'] . "/". $paymentResponse['card']['expiration_year'];          
+        $data[$title->__toString()] = $paymentResponse['card']['expiration_month'] . "/". $paymentResponse['card']['expiration_year'];
       }
 
-      if(isset($paymentResponse['card']) && isset($paymentResponse['card']['cardholder']) && isset($paymentResponse['card']['cardholder']['name'])){ 
+      if(isset($paymentResponse['card']) && isset($paymentResponse['card']['cardholder']) && isset($paymentResponse['card']['cardholder']['name'])){
         $title = __('Card Holder Name');
-        $data[$title->__toString()] = $paymentResponse['card']['cardholder']['name'];       
+        $data[$title->__toString()] = $paymentResponse['card']['cardholder']['name'];
       }
 
-      if(isset($paymentResponse['payment_method_id'])){ 
+      if(isset($paymentResponse['payment_method_id'])){
         $title = __('Payment Method');
-        $data[$title->__toString()] = ucfirst($paymentResponse['payment_method_id']);      
+        $data[$title->__toString()] = ucfirst($paymentResponse['payment_method_id']);
       }
 
-      if(isset($paymentResponse['installments'])){ 
+      if(isset($paymentResponse['installments'])){
         $title = __('Installments');
         $data[$title->__toString()] = $paymentResponse['installments'];
       }
 
       if(isset($paymentResponse['statement_descriptor'])){
         $title = __('Statement Descriptor');
-        $data[$title->__toString()] = $paymentResponse['statement_descriptor'];    
+        $data[$title->__toString()] = $paymentResponse['statement_descriptor'];
       }
 
-      if(isset($paymentResponse['status'])){ 
+      if(isset($paymentResponse['status'])){
         $title = __('Payment Status');
-        $data[$title->__toString()] = ucfirst($paymentResponse['status']);  
+        $data[$title->__toString()] = ucfirst($paymentResponse['status']);
       }
 
       if(isset($paymentResponse['status_detail'])){
@@ -70,7 +70,7 @@ class Info extends \MercadoPago\Core\Block\Info
           if(isset($transport[$title->__toString()])){
               unset($transport[$title->__toString()]);
           }
-          
+
       }
 
 
