@@ -456,6 +456,9 @@ return [
         'Temando_ShippingRemover' => 1,
         'Vertex_Tax' => 1,
         'Vertex_AddressValidation' => 1,
+        'Webjump_Customer' => 1,
+        'Webjump_Sales' => 1,
+        'Webjump_Tax' => 1,
         'Yotpo_Yotpo' => 0
     ],
     'scopes' => [
