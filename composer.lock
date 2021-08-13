@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "594c51076fad699dc73ea992f92b5aff",
+    "content-hash": "3282640e597d9c19bf4da08c2686e2b2",
     "packages": [
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
@@ -18865,20 +18865,20 @@
         },
         {
             "name": "mercadopago/magento2-plugin",
-            "version": "3.3.1",
+            "version": "3.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mercadopago/cart-magento2.git",
-                "reference": "f5208e407b648e3cb7b56ef0eda4c48139ef0582"
+                "reference": "c9cfddd4f6e779c26e019cbc07586e9826aa5b34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mercadopago/cart-magento2/zipball/f5208e407b648e3cb7b56ef0eda4c48139ef0582",
-                "reference": "f5208e407b648e3cb7b56ef0eda4c48139ef0582",
+                "url": "https://api.github.com/repos/mercadopago/cart-magento2/zipball/c9cfddd4f6e779c26e019cbc07586e9826aa5b34",
+                "reference": "c9cfddd4f6e779c26e019cbc07586e9826aa5b34",
                 "shasum": ""
             },
             "require": {
-                "magento/magento-composer-installer": "*"
+                "ext-json": "*"
             },
             "require-dev": {
                 "fabpot/php-cs-fixer": "~1.2",
@@ -18890,7 +18890,7 @@
                 "sjparkinson/static-review": "~4.1",
                 "squizlabs/php_codesniffer": "1.5.3"
             },
-            "type": "magento2-component",
+            "type": "magento2-module",
             "autoload": {
                 "psr-4": {
                     "MercadoPago\\Core\\": "src/MercadoPago/Core"
@@ -18907,11 +18907,11 @@
             "authors": [
                 {
                     "name": "Mercado Pago",
-                    "email": "info@mercadopago.com"
+                    "email": "plugins.dev@mercadopago.com"
                 }
             ],
             "description": "Mercado Pago Magento 2 Plugin",
-            "time": "2019-08-26T17:40:20+00:00"
+            "time": "2021-07-14T16:57:26+00:00"
         },
         {
             "name": "monolog/monolog",
