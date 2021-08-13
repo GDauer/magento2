@@ -77,21 +77,9 @@ hooks:
     # We run build hooks before your application has been packaged.
     build: |
         set -e
-        echo "Node Js Version re: MDVA-29720"
-        node --version
-        echo "Installing NVM"
-        unset NPM_CONFIG_PREFIX
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-        export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-        nvm install 10
-        nvm use 10
-        echo "Node Js Version re: MDVA-29720"
-        node --version
-        npm install -g magepack
         php ./vendor/bin/ece-tools run scenario/build/generate.xml
         # running magepack on build phase
-        magepack bundle
+        # magepack bundle
         php ./vendor/bin/ece-tools run scenario/build/transfer.xml
     # We run deploy hook after your application has been deployed and started.
     deploy: |
@@ -113,4 +101,3 @@ variables:
     env:
         CONFIG__DEFAULT__PAYPAL_ONBOARDING__MIDDLEMAN_DOMAIN: 'payment-broker.magento.com'
         CONFIG__STORES__DEFAULT__PAYPAL__NOTATION_CODE: 'Magento_Enterprise_Cloud'
-
