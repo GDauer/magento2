@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "594c51076fad699dc73ea992f92b5aff",
+    "content-hash": "3282640e597d9c19bf4da08c2686e2b2",
     "packages": [
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
@@ -633,6 +633,20 @@
                 "ssl",
                 "tls"
             ],
+            "funding": [
+                {
+                    "url": "https://packagist.com",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/composer",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+                    "type": "tidelift"
+                }
+            ],
             "time": "2021-01-12T12:10:35+00:00"
         },
         {
@@ -782,6 +796,20 @@
                 }
             ],
             "description": "Composer plugin that provides efficient querying for installed package versions (no runtime IO)",
+            "funding": [
+                {
+                    "url": "https://packagist.com",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/composer",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+                    "type": "tidelift"
+                }
+            ],
             "time": "2020-11-11T10:22:58+00:00"
         },
         {
@@ -1146,6 +1174,20 @@
                 "strings",
                 "uppercase",
                 "words"
+            ],
+            "funding": [
+                {
+                    "url": "https://www.doctrine-project.org/sponsorship.html",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.patreon.com/phpdoctrine",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Finflector",
+                    "type": "tidelift"
+                }
             ],
             "time": "2020-05-29T07:19:59+00:00"
         },
@@ -2402,7 +2444,7 @@
                     "email": "igor@wiedler.ch"
                 },
                 {
-                    "name": "Robert SchÃ¶nthal",
+                    "name": "Robert Schönthal",
                     "email": "seroscho@googlemail.com"
                 }
             ],
@@ -4851,7 +4893,7 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "description": "A component that aids in manipulating and validating Â» Uniform Resource Identifiers (URIs)",
+            "description": "A component that aids in manipulating and validating » Uniform Resource Identifiers (URIs)",
             "homepage": "https://laminas.dev",
             "keywords": [
                 "laminas",
@@ -5238,7 +5280,7 @@
                     "role": "Documentation contributor"
                 },
                 {
-                    "name": "Jaroslav TÃ½c",
+                    "name": "Jaroslav Týc",
                     "homepage": "https://www.jaroslavtyc.com/",
                     "role": "Developer"
                 }
@@ -6019,7 +6061,7 @@
                     "email": "flyingmana@googlemail.com"
                 },
                 {
-                    "name": "JÃ¶rg Weller",
+                    "name": "Jörg Weller",
                     "email": "weller@flagbit.de"
                 },
                 {
@@ -18865,20 +18907,20 @@
         },
         {
             "name": "mercadopago/magento2-plugin",
-            "version": "3.3.1",
+            "version": "3.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mercadopago/cart-magento2.git",
-                "reference": "f5208e407b648e3cb7b56ef0eda4c48139ef0582"
+                "reference": "c9cfddd4f6e779c26e019cbc07586e9826aa5b34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mercadopago/cart-magento2/zipball/f5208e407b648e3cb7b56ef0eda4c48139ef0582",
-                "reference": "f5208e407b648e3cb7b56ef0eda4c48139ef0582",
+                "url": "https://api.github.com/repos/mercadopago/cart-magento2/zipball/c9cfddd4f6e779c26e019cbc07586e9826aa5b34",
+                "reference": "c9cfddd4f6e779c26e019cbc07586e9826aa5b34",
                 "shasum": ""
             },
             "require": {
-                "magento/magento-composer-installer": "*"
+                "ext-json": "*"
             },
             "require-dev": {
                 "fabpot/php-cs-fixer": "~1.2",
@@ -18890,7 +18932,7 @@
                 "sjparkinson/static-review": "~4.1",
                 "squizlabs/php_codesniffer": "1.5.3"
             },
-            "type": "magento2-component",
+            "type": "magento2-module",
             "autoload": {
                 "psr-4": {
                     "MercadoPago\\Core\\": "src/MercadoPago/Core"
@@ -18907,11 +18949,11 @@
             "authors": [
                 {
                     "name": "Mercado Pago",
-                    "email": "info@mercadopago.com"
+                    "email": "plugins.dev@mercadopago.com"
                 }
             ],
             "description": "Mercado Pago Magento 2 Plugin",
-            "time": "2019-08-26T17:40:20+00:00"
+            "time": "2021-07-14T16:57:26+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -18982,6 +19024,16 @@
                 "log",
                 "logging",
                 "psr-3"
+            ],
+            "funding": [
+                {
+                    "url": "https://github.com/Seldaek",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/monolog/monolog",
+                    "type": "tidelift"
+                }
             ],
             "time": "2020-12-14T12:56:38+00:00"
         },
@@ -19539,7 +19591,7 @@
                     "email": "github@oliverklee.de"
                 },
                 {
-                    "name": "Zoli SzabÃ³",
+                    "name": "Zoli Szabó",
                     "email": "zoli.szabo+github@gmail.com"
                 },
                 {
@@ -19620,7 +19672,7 @@
                     "role": "Maintainer"
                 },
                 {
-                    "name": "RaÃºl Araya",
+                    "name": "Raúl Araya",
                     "email": "nubeiro@gmail.com",
                     "role": "Maintainer"
                 },
@@ -19746,7 +19798,7 @@
                     "role": "Developer"
                 },
                 {
-                    "name": "Hans-JÃ¼rgen Petrich",
+                    "name": "Hans-Jürgen Petrich",
                     "email": "petrich@tronic-media.com",
                     "role": "Developer"
                 },
@@ -20429,7 +20481,7 @@
                     "email": "richard.bayet@smile.fr"
                 },
                 {
-                    "name": "AurÃ©lien FOUCRET",
+                    "name": "Aurélien FOUCRET",
                     "email": "aurelien.foucret@smile.fr"
                 }
             ],
@@ -21602,7 +21654,7 @@
                     "email": "fabien@symfony.com"
                 },
                 {
-                    "name": "Jean-FranÃ§ois Simon",
+                    "name": "Jean-François Simon",
                     "email": "jeanfrancois.simon@sensiolabs.com"
                 },
                 {
@@ -22964,7 +23016,7 @@
             ],
             "authors": [
                 {
-                    "name": "KÃ©vin Dunglas",
+                    "name": "Kévin Dunglas",
                     "email": "dunglas@gmail.com"
                 },
                 {
@@ -23203,6 +23255,20 @@
                 "interoperability",
                 "standards"
             ],
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
             "time": "2020-09-07T11:33:47+00:00"
         },
         {
@@ -23429,6 +23495,20 @@
                 "interoperability",
                 "standards"
             ],
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
             "time": "2020-09-28T13:05:58+00:00"
         },
         {
@@ -23626,7 +23706,7 @@
             ],
             "authors": [
                 {
-                    "name": "Renan GonÃ§alves",
+                    "name": "Renan Gonçalves",
                     "email": "renan.saddam@gmail.com"
                 }
             ],
@@ -23675,7 +23755,7 @@
             ],
             "authors": [
                 {
-                    "name": "TÃºbal MartÃ­n",
+                    "name": "Túbal Martín",
                     "homepage": "http://tubalmartin.me/"
                 }
             ],
@@ -24000,7 +24080,7 @@
                     "homepage": "https://github.com/agar"
                 },
                 {
-                    "name": "Martin JantoÅ¡oviÄ",
+                    "name": "Martin Jantošovič",
                     "homepage": "https://github.com/Mordred"
                 }
             ],
