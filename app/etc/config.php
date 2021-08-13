@@ -500,7 +500,7 @@ return [
         'Itatiaia_GarantiaEstendida' => 1,
         'DigitalHub_CatalogRulesCategory' => 1,
         'Itatiaia_ImportRules' => 1,
-        'Konduto_Antifraud' => 1,
+        'Konduto_Antifraud' => 0,
         'Itatiaia_Mooble' => 1,
         'Itatiaia_OpenGraph' => 1,
         'Itatiaia_ProductTag' => 1,
@@ -510,7 +510,7 @@ return [
         'Klarna_Core' => 1,
         'Klarna_Ordermanagement' => 1,
         'Klarna_Kp' => 1,
-        'Itatiaia_KondutoCustom' => 1,
+        'Itatiaia_KondutoCustom' => 0,
         'Magento_PaypalReCaptcha' => 1,
         'MSP_TwoFactorAuth' => 1,
         'MageAurigaIT_Outbox' => 0,
@@ -567,7 +567,6 @@ return [
         'Webjump_Customer' => 1,
         'Webjump_Sales' => 1,
         'Webjump_Tax' => 1,
-
         'Yotpo_Yotpo' => 0
     ],
     'admin_user' => [

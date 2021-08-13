@@ -3684,12 +3684,6 @@
                 "http client",
                 "laminas"
             ],
-            "funding": [
-                {
-                    "url": "https://funding.communitybridge.org/projects/laminas-project",
-                    "type": "community_bridge"
-                }
-            ],
             "time": "2020-08-18T17:11:58+00:00"
         },
         {
@@ -4133,12 +4127,6 @@
             "keywords": [
                 "laminas",
                 "mail"
-            ],
-            "funding": [
-                {
-                    "url": "https://funding.communitybridge.org/projects/laminas-project",
-                    "type": "community_bridge"
-                }
             ],
             "time": "2020-12-31T11:41:57+00:00"
         },
@@ -4986,12 +4974,6 @@
                 "laminas",
                 "validator"
             ],
-            "funding": [
-                {
-                    "url": "https://funding.communitybridge.org/projects/laminas-project",
-                    "type": "community_bridge"
-                }
-            ],
             "time": "2021-01-06T15:05:04+00:00"
         },
         {
@@ -5124,12 +5106,6 @@
                 "autoloading",
                 "laminas",
                 "zf"
-            ],
-            "funding": [
-                {
-                    "url": "https://funding.communitybridge.org/projects/laminas-project",
-                    "type": "community_bridge"
-                }
             ],
             "time": "2020-09-14T14:23:00+00:00"
         },
@@ -18931,16 +18907,16 @@
         },
         {
             "name": "mercadopago/magento2-plugin",
-            "version": "3.9.1",
+            "version": "3.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mercadopago/cart-magento2.git",
-                "reference": "87b87267a820128c05f0c846004311778e134a6d"
+                "reference": "c9cfddd4f6e779c26e019cbc07586e9826aa5b34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mercadopago/cart-magento2/zipball/87b87267a820128c05f0c846004311778e134a6d",
-                "reference": "87b87267a820128c05f0c846004311778e134a6d",
+                "url": "https://api.github.com/repos/mercadopago/cart-magento2/zipball/c9cfddd4f6e779c26e019cbc07586e9826aa5b34",
+                "reference": "c9cfddd4f6e779c26e019cbc07586e9826aa5b34",
                 "shasum": ""
             },
             "require": {
@@ -18977,7 +18953,7 @@
                 }
             ],
             "description": "Mercado Pago Magento 2 Plugin",
-            "time": "2021-07-01T14:50:10+00:00"
+            "time": "2021-07-14T16:57:26+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -19217,16 +19193,6 @@
             "homepage": "http://github.com/myclabs/php-enum",
             "keywords": [
                 "enum"
-            ],
-            "funding": [
-                {
-                    "url": "https://github.com/mnapoli",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/myclabs/php-enum",
-                    "type": "tidelift"
-                }
             ],
             "time": "2020-11-14T18:14:52+00:00"
         },
@@ -20277,12 +20243,6 @@
                 "type": "git",
                 "url": "https://github.com/scandiwebcom/Scandiweb-Assets-Core.git",
                 "reference": "cbec569f0f47393458b599c1aeafb400580682e0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/scandiwebcom/Scandiweb-Assets-Core/zipball/cbec569f0f47393458b599c1aeafb400580682e0",
-                "reference": "cbec569f0f47393458b599c1aeafb400580682e0",
-                "shasum": ""
             },
             "type": "magento2-module",
             "autoload": {
@@ -24019,12 +23979,6 @@
                 "race condition",
                 "safe writer",
                 "webimpress"
-            ],
-            "funding": [
-                {
-                    "url": "https://github.com/michalbundyra",
-                    "type": "github"
-                }
             ],
             "time": "2020-08-25T07:21:11+00:00"
         },
