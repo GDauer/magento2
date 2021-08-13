@@ -2444,7 +2444,7 @@
                     "email": "igor@wiedler.ch"
                 },
                 {
-                    "name": "Robert Schönthal",
+                    "name": "Robert SchÃ¶nthal",
                     "email": "seroscho@googlemail.com"
                 }
             ],
@@ -4893,7 +4893,7 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "description": "A component that aids in manipulating and validating » Uniform Resource Identifiers (URIs)",
+            "description": "A component that aids in manipulating and validating Â» Uniform Resource Identifiers (URIs)",
             "homepage": "https://laminas.dev",
             "keywords": [
                 "laminas",
@@ -5280,7 +5280,7 @@
                     "role": "Documentation contributor"
                 },
                 {
-                    "name": "Jaroslav Týc",
+                    "name": "Jaroslav TÃ½c",
                     "homepage": "https://www.jaroslavtyc.com/",
                     "role": "Developer"
                 }
@@ -6061,7 +6061,7 @@
                     "email": "flyingmana@googlemail.com"
                 },
                 {
-                    "name": "Jörg Weller",
+                    "name": "JÃ¶rg Weller",
                     "email": "weller@flagbit.de"
                 },
                 {
@@ -19591,7 +19591,7 @@
                     "email": "github@oliverklee.de"
                 },
                 {
-                    "name": "Zoli Szabó",
+                    "name": "Zoli SzabÃ³",
                     "email": "zoli.szabo+github@gmail.com"
                 },
                 {
@@ -19672,7 +19672,7 @@
                     "role": "Maintainer"
                 },
                 {
-                    "name": "Raúl Araya",
+                    "name": "RaÃºl Araya",
                     "email": "nubeiro@gmail.com",
                     "role": "Maintainer"
                 },
@@ -19798,7 +19798,7 @@
                     "role": "Developer"
                 },
                 {
-                    "name": "Hans-Jürgen Petrich",
+                    "name": "Hans-JÃ¼rgen Petrich",
                     "email": "petrich@tronic-media.com",
                     "role": "Developer"
                 },
@@ -20481,7 +20481,7 @@
                     "email": "richard.bayet@smile.fr"
                 },
                 {
-                    "name": "Aurélien FOUCRET",
+                    "name": "AurÃ©lien FOUCRET",
                     "email": "aurelien.foucret@smile.fr"
                 }
             ],
@@ -21654,7 +21654,7 @@
                     "email": "fabien@symfony.com"
                 },
                 {
-                    "name": "Jean-François Simon",
+                    "name": "Jean-FranÃ§ois Simon",
                     "email": "jeanfrancois.simon@sensiolabs.com"
                 },
                 {
@@ -23016,7 +23016,7 @@
             ],
             "authors": [
                 {
-                    "name": "Kévin Dunglas",
+                    "name": "KÃ©vin Dunglas",
                     "email": "dunglas@gmail.com"
                 },
                 {
@@ -23706,7 +23706,7 @@
             ],
             "authors": [
                 {
-                    "name": "Renan Gonçalves",
+                    "name": "Renan GonÃ§alves",
                     "email": "renan.saddam@gmail.com"
                 }
             ],
@@ -23755,7 +23755,7 @@
             ],
             "authors": [
                 {
-                    "name": "Túbal Martín",
+                    "name": "TÃºbal MartÃ­n",
                     "homepage": "http://tubalmartin.me/"
                 }
             ],
@@ -24080,7 +24080,7 @@
                     "homepage": "https://github.com/agar"
                 },
                 {
-                    "name": "Martin Jantošovič",
+                    "name": "Martin JantoÅ¡oviÄ",
                     "homepage": "https://github.com/Mordred"
                 }
             ],
