@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a6b6f9c45d2ddceccaca70494ac81b7b",
+    "content-hash": "3282640e597d9c19bf4da08c2686e2b2",
     "packages": [
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
@@ -18842,6 +18842,56 @@
             "description": "Internal MaxMind Web Service API",
             "homepage": "https://github.com/maxmind/web-service-common-php",
             "time": "2020-11-02T17:00:53+00:00"
+        },
+        {
+            "name": "mercadopago/magento2-plugin",
+            "version": "3.9.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mercadopago/cart-magento2.git",
+                "reference": "c9cfddd4f6e779c26e019cbc07586e9826aa5b34"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mercadopago/cart-magento2/zipball/c9cfddd4f6e779c26e019cbc07586e9826aa5b34",
+                "reference": "c9cfddd4f6e779c26e019cbc07586e9826aa5b34",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "~1.2",
+                "lusitanian/oauth": "~0.3 <=0.7.0",
+                "magento/product-community-edition": "2.*",
+                "pdepend/pdepend": "2.2.2",
+                "phpmd/phpmd": "@stable",
+                "phpunit/phpunit": "4.1.0",
+                "sjparkinson/static-review": "~4.1",
+                "squizlabs/php_codesniffer": "1.5.3"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "psr-4": {
+                    "MercadoPago\\Core\\": "src/MercadoPago/Core"
+                },
+                "files": [
+                    "src/MercadoPago/Core/registration.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Mercado Pago",
+                    "email": "plugins.dev@mercadopago.com"
+                }
+            ],
+            "description": "Mercado Pago Magento 2 Plugin",
+            "time": "2021-07-14T16:57:26+00:00"
         },
         {
             "name": "monolog/monolog",
