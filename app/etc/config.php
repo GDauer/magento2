@@ -1,5 +1,113 @@
 <?php
 return [
+    'scopes' => [
+        'websites' => [
+            'admin' => [
+                'website_id' => '0',
+                'code' => 'admin',
+                'name' => 'Admin',
+                'sort_order' => '0',
+                'default_group_id' => '0',
+                'is_default' => '0'
+            ],
+            'base' => [
+                'website_id' => '1',
+                'code' => 'base',
+                'name' => 'Main Website',
+                'sort_order' => '0',
+                'default_group_id' => '1',
+                'is_default' => '1'
+            ]
+        ],
+        'groups' => [
+            [
+                'group_id' => '0',
+                'website_id' => '0',
+                'code' => 'default',
+                'name' => 'Default',
+                'root_category_id' => '0',
+                'default_store_id' => '0'
+            ],
+            [
+                'group_id' => '1',
+                'website_id' => '1',
+                'code' => 'main_website_store',
+                'name' => 'Main Website Store',
+                'root_category_id' => '2',
+                'default_store_id' => '1'
+            ]
+        ],
+        'stores' => [
+            'admin' => [
+                'store_id' => '0',
+                'code' => 'admin',
+                'website_id' => '0',
+                'group_id' => '0',
+                'name' => 'Admin',
+                'sort_order' => '0',
+                'is_active' => '1'
+            ],
+            'loja' => [
+                'store_id' => '1',
+                'code' => 'loja',
+                'website_id' => '1',
+                'group_id' => '1',
+                'name' => 'Default Store View (Loja)',
+                'sort_order' => '0',
+                'is_active' => '1'
+            ]
+        ]
+    ],
+    'system' => [
+        'default' => [
+            'general' => [
+                'locale' => [
+                    'code' => 'pt_BR'
+                ]
+            ],
+            'dev' => [
+                'front_end_development_workflow' => [
+                    'type' => 'server_side_compilation'
+                ],
+                'template' => [
+                    'minify_html' => '0'
+                ],
+                'js' => [
+                    'merge_files' => '0',
+                    'minify_files' => '1',
+                    'minify_exclude' => [
+                        'tiny_mce' => '/tiny_mce/',
+                        'cardinal_commerce' => '/v1/songbird',
+                        'authorizenet_acceptjs' => '\\.authorize\\.net/v1/Accept'
+                    ],
+                    'move_script_to_bottom' => '0',
+                    'session_storage_logging' => '0',
+                    'translate_strategy' => 'dictionary',
+                    'enable_magepack_js_bundling' => '1',
+                    'enable_js_bundling' => '0'
+                ],
+                'css' => [
+                    'minify_files' => '0',
+                    'minify_exclude' => [
+                        'tiny_mce' => '/tiny_mce/'
+                    ],
+                    'use_css_critical_path' => '0',
+                    'merge_css_files' => '1'
+                ]
+            ],
+            'advanced' => [
+                'modules_disable_output' => [
+                    'Magento_VisualMerchandiser' => '1'
+                ]
+            ]
+        ],
+        'stores' => [
+
+        ],
+        'websites' => [
+
+        ]
+    ],
     'modules' => [
         'Magento_AdminAnalytics' => 1,
         'Magento_Store' => 1,
@@ -461,91 +569,12 @@ return [
         'Webjump_Tax' => 1,
         'Yotpo_Yotpo' => 0
     ],
-    'scopes' => [
-        'websites' => [
-            'admin' => [
-                'website_id' => '0',
-                'code' => 'admin',
-                'name' => 'Admin',
-                'sort_order' => '0',
-                'default_group_id' => '0',
-                'is_default' => '0'
-            ],
-            'base' => [
-                'website_id' => '1',
-                'code' => 'base',
-                'name' => 'Main Website',
-                'sort_order' => '0',
-                'default_group_id' => '1',
-                'is_default' => '1'
+    'admin_user' => [
+        'locale' => [
+            'code' => [
+                'pt_BR',
+                'en_US'
             ]
-        ],
-        'groups' => [
-            [
-                'group_id' => '0',
-                'website_id' => '0',
-                'name' => 'Default',
-                'root_category_id' => '0',
-                'default_store_id' => '0',
-                'code' => 'default'
-            ],
-            [
-                'group_id' => '1',
-                'website_id' => '1',
-                'name' => 'Main Website Store',
-                'root_category_id' => '2',
-                'default_store_id' => '1',
-                'code' => 'main_website_store'
-            ]
-        ],
-        'stores' => [
-            'admin' => [
-                'store_id' => '0',
-                'code' => 'admin',
-                'website_id' => '0',
-                'group_id' => '0',
-                'name' => 'Admin',
-                'sort_order' => '0',
-                'is_active' => '1'
-            ],
-            'default' => [
-                'store_id' => '1',
-                'code' => 'default',
-                'website_id' => '1',
-                'group_id' => '1',
-                'name' => 'Default Store View',
-                'sort_order' => '0',
-                'is_active' => '1'
-            ]
-        ]
-    ],
-    'themes' => [
-        'frontend/Magento/blank' => [
-            'parent_id' => null,
-            'theme_path' => 'Magento/blank',
-            'theme_title' => 'Magento Blank',
-            'is_featured' => '0',
-            'area' => 'frontend',
-            'type' => '0',
-            'code' => 'Magento/blank'
-        ],
-        'adminhtml/Magento/backend' => [
-            'parent_id' => null,
-            'theme_path' => 'Magento/backend',
-            'theme_title' => 'Magento 2 backend',
-            'is_featured' => '0',
-            'area' => 'adminhtml',
-            'type' => '0',
-            'code' => 'Magento/backend'
-        ],
-        'frontend/Magento/luma' => [
-            'parent_id' => 'Magento/blank',
-            'theme_path' => 'Magento/luma',
-            'theme_title' => 'Magento Luma',
-            'is_featured' => '0',
-            'area' => 'frontend',
-            'type' => '0',
-            'code' => 'Magento/luma'
         ]
     ]
 ];
