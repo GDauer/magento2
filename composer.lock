@@ -4,7 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3282640e597d9c19bf4da08c2686e2b2",
+
+    "content-hash": "1ed1821e5da9afadf252bad9a335c9bd",
+
     "packages": [
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
@@ -110,16 +112,16 @@
         },
         {
             "name": "amzn/amazon-pay-sdk-php",
-            "version": "3.7.0",
+            "version": "3.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/amzn/amazon-pay-sdk-php.git",
-                "reference": "87229f674d203b9b11af4e3c66390c750655f10b"
+                "reference": "37882f2df12e7789d6d4d7d3df6c0cd7e62779f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/amzn/amazon-pay-sdk-php/zipball/87229f674d203b9b11af4e3c66390c750655f10b",
-                "reference": "87229f674d203b9b11af4e3c66390c750655f10b",
+                "url": "https://api.github.com/repos/amzn/amazon-pay-sdk-php/zipball/37882f2df12e7789d6d4d7d3df6c0cd7e62779f2",
+                "reference": "37882f2df12e7789d6d4d7d3df6c0cd7e62779f2",
                 "shasum": ""
             },
             "require": {
@@ -156,7 +158,7 @@
                 "payment",
                 "payments"
             ],
-            "time": "2021-01-25T08:49:24+00:00"
+            "time": "2021-03-23T06:46:08+00:00"
         },
         {
             "name": "amzn/login-with-amazon-module",
@@ -192,6 +194,110 @@
                 "Apache-2.0"
             ],
             "description": "Login with Amazon module"
+        },
+        {
+            "name": "apimatic/jsonmapper",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apimatic/jsonmapper.git",
+                "reference": "0883d385653ebd2a194ec79e66facb7d69441404"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apimatic/jsonmapper/zipball/0883d385653ebd2a194ec79e66facb7d69441404",
+                "reference": "0883d385653ebd2a194ec79e66facb7d69441404",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5 || ^6 || ^7",
+                "squizlabs/php_codesniffer": "^3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "apimatic\\jsonmapper\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Weiske",
+                    "email": "christian.weiske@netresearch.de",
+                    "homepage": "http://www.netresearch.de/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Mehdi Jaffery",
+                    "email": "mehdi.jaffery@apimatic.io",
+                    "homepage": "http://apimatic.io/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Map nested JSON structures onto PHP classes",
+            "time": "2020-04-06T20:47:48+00:00"
+        },
+        {
+            "name": "apimatic/unirest-php",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apimatic/unirest-php.git",
+                "reference": "b4e399a8970c3a5c611f734282f306381f9d1eee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apimatic/unirest-php/zipball/b4e399a8970c3a5c611f734282f306381f9d1eee",
+                "reference": "b4e399a8970c3a5c611f734282f306381f9d1eee",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5 || ^6 || ^7"
+            },
+            "suggest": {
+                "ext-json": "Allows using JSON Bodies for sending and parsing requests"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Unirest\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mashape",
+                    "email": "opensource@mashape.com",
+                    "homepage": "https://www.mashape.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "APIMATIC",
+                    "email": "opensource@apimatic.io",
+                    "homepage": "https://www.apimatic.io",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Unirest PHP",
+            "homepage": "https://github.com/apimatic/unirest-php",
+            "keywords": [
+                "client",
+                "curl",
+                "http",
+                "https",
+                "rest"
+            ],
+            "time": "2020-04-07T17:16:29+00:00"
         },
         {
             "name": "astock/stock-api-libphp",
@@ -379,16 +485,16 @@
         },
         {
             "name": "christian-riesen/base32",
-            "version": "1.5.2",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ChristianRiesen/base32.git",
-                "reference": "a1cac38d50adb5ce9337a62019a0697cc5da3ca1"
+                "reference": "2e82dab3baa008e24a505649b0d583c31d31e894"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ChristianRiesen/base32/zipball/a1cac38d50adb5ce9337a62019a0697cc5da3ca1",
-                "reference": "a1cac38d50adb5ce9337a62019a0697cc5da3ca1",
+                "url": "https://api.github.com/repos/ChristianRiesen/base32/zipball/2e82dab3baa008e24a505649b0d583c31d31e894",
+                "reference": "2e82dab3baa008e24a505649b0d583c31d31e894",
                 "shasum": ""
             },
             "require": {
@@ -430,7 +536,7 @@
                 "encode",
                 "rfc4648"
             ],
-            "time": "2021-01-11T22:44:02+00:00"
+            "time": "2021-02-26T10:19:33+00:00"
         },
         {
             "name": "colinmollenhour/cache-backend-file",
@@ -543,21 +649,24 @@
         },
         {
             "name": "colinmollenhour/php-redis-session-abstract",
-            "version": "v1.4.3",
+            "version": "v1.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/colinmollenhour/php-redis-session-abstract.git",
-                "reference": "39ca38da5e0a981bc1a7e39a86693c128784a513"
+                "reference": "8d684bbacac99450f2a9ddf6f56be296997e2959"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/colinmollenhour/php-redis-session-abstract/zipball/39ca38da5e0a981bc1a7e39a86693c128784a513",
-                "reference": "39ca38da5e0a981bc1a7e39a86693c128784a513",
+                "url": "https://api.github.com/repos/colinmollenhour/php-redis-session-abstract/zipball/8d684bbacac99450f2a9ddf6f56be296997e2959",
+                "reference": "8d684bbacac99450f2a9ddf6f56be296997e2959",
                 "shasum": ""
             },
             "require": {
                 "colinmollenhour/credis": "~1.6",
-                "php": "^5.5 || ^7.0|| ^7.1 || ^7.2"
+                "php": "^5.5 || ^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9"
             },
             "type": "library",
             "autoload": {
@@ -576,20 +685,20 @@
             ],
             "description": "A Redis-based session handler with optimistic locking",
             "homepage": "https://github.com/colinmollenhour/php-redis-session-abstract",
-            "time": "2020-10-07T09:47:22+00:00"
+            "time": "2021-04-07T21:51:17+00:00"
         },
         {
             "name": "composer/ca-bundle",
-            "version": "1.2.9",
+            "version": "1.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
-                "reference": "78a0e288fdcebf92aa2318a8d3656168da6ac1a5"
+                "reference": "9fdb22c2e97a614657716178093cd1da90a64aa8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/78a0e288fdcebf92aa2318a8d3656168da6ac1a5",
-                "reference": "78a0e288fdcebf92aa2318a8d3656168da6ac1a5",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/9fdb22c2e97a614657716178093cd1da90a64aa8",
+                "reference": "9fdb22c2e97a614657716178093cd1da90a64aa8",
                 "shasum": ""
             },
             "require": {
@@ -647,20 +756,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-12T12:10:35+00:00"
+            "time": "2021-06-07T13:58:28+00:00"
         },
         {
             "name": "composer/composer",
-            "version": "1.10.21",
+            "version": "1.10.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "04021432f4a9cbd9351dd166b8c193f42c36a39c"
+                "reference": "28c9dfbe2351635961f670773e8d7b17bc5eda25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/04021432f4a9cbd9351dd166b8c193f42c36a39c",
-                "reference": "04021432f4a9cbd9351dd166b8c193f42c36a39c",
+                "url": "https://api.github.com/repos/composer/composer/zipball/28c9dfbe2351635961f670773e8d7b17bc5eda25",
+                "reference": "28c9dfbe2351635961f670773e8d7b17bc5eda25",
                 "shasum": ""
             },
             "require": {
@@ -741,20 +850,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-04-01T07:16:35+00:00"
+            "time": "2021-04-27T11:10:45+00:00"
         },
         {
             "name": "composer/package-versions-deprecated",
-            "version": "1.11.99.1",
+            "version": "1.11.99.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/package-versions-deprecated.git",
-                "reference": "7413f0b55a051e89485c5cb9f765fe24bb02a7b6"
+                "reference": "c6522afe5540d5fc46675043d3ed5a45a740b27c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/package-versions-deprecated/zipball/7413f0b55a051e89485c5cb9f765fe24bb02a7b6",
-                "reference": "7413f0b55a051e89485c5cb9f765fe24bb02a7b6",
+                "url": "https://api.github.com/repos/composer/package-versions-deprecated/zipball/c6522afe5540d5fc46675043d3ed5a45a740b27c",
+                "reference": "c6522afe5540d5fc46675043d3ed5a45a740b27c",
                 "shasum": ""
             },
             "require": {
@@ -810,7 +919,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-11-11T10:22:58+00:00"
+            "time": "2021-05-24T07:46:03+00:00"
         },
         {
             "name": "composer/semver",
@@ -1057,16 +1166,16 @@
         },
         {
             "name": "cweagans/composer-patches",
-            "version": "1.7.0",
+            "version": "1.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cweagans/composer-patches.git",
-                "reference": "ae02121445ad75f4eaff800cc532b5e6233e2ddf"
+                "reference": "9888dcc74993c030b75f3dd548bb5e20cdbd740c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cweagans/composer-patches/zipball/ae02121445ad75f4eaff800cc532b5e6233e2ddf",
-                "reference": "ae02121445ad75f4eaff800cc532b5e6233e2ddf",
+                "url": "https://api.github.com/repos/cweagans/composer-patches/zipball/9888dcc74993c030b75f3dd548bb5e20cdbd740c",
+                "reference": "9888dcc74993c030b75f3dd548bb5e20cdbd740c",
                 "shasum": ""
             },
             "require": {
@@ -1097,30 +1206,30 @@
                 }
             ],
             "description": "Provides a way to patch Composer packages.",
-            "time": "2020-09-30T17:56:20+00:00"
+            "time": "2021-06-08T15:12:46+00:00"
         },
         {
             "name": "doctrine/inflector",
-            "version": "1.4.3",
+            "version": "1.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/inflector.git",
-                "reference": "4650c8b30c753a76bf44fb2ed00117d6f367490c"
+                "reference": "4bd5c1cdfcd00e9e2d8c484f79150f67e5d355d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/inflector/zipball/4650c8b30c753a76bf44fb2ed00117d6f367490c",
-                "reference": "4650c8b30c753a76bf44fb2ed00117d6f367490c",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/4bd5c1cdfcd00e9e2d8c484f79150f67e5d355d9",
+                "reference": "4bd5c1cdfcd00e9e2d8c484f79150f67e5d355d9",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2 || ^8.0"
+                "php": "^7.1 || ^8.0"
             },
             "require-dev": {
-                "doctrine/coding-standard": "^7.0",
-                "phpstan/phpstan": "^0.11",
-                "phpstan/phpstan-phpunit": "^0.11",
-                "phpstan/phpstan-strict-rules": "^0.11",
+                "doctrine/coding-standard": "^8.0",
+                "phpstan/phpstan": "^0.12",
+                "phpstan/phpstan-phpunit": "^0.12",
+                "phpstan/phpstan-strict-rules": "^0.12",
                 "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0"
             },
             "type": "library",
@@ -1189,27 +1298,27 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-05-29T07:19:59+00:00"
+            "time": "2021-04-16T17:34:40+00:00"
         },
         {
             "name": "donatj/phpuseragentparser",
-            "version": "v0.18.0",
+            "version": "v0.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/donatj/PhpUserAgent.git",
-                "reference": "978e66786bc392a09b24b152a8a695dadd230e60"
+                "reference": "5992d7836868b408e73d0d490c779dda7a39135e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/donatj/PhpUserAgent/zipball/978e66786bc392a09b24b152a8a695dadd230e60",
-                "reference": "978e66786bc392a09b24b152a8a695dadd230e60",
+                "url": "https://api.github.com/repos/donatj/PhpUserAgent/zipball/5992d7836868b408e73d0d490c779dda7a39135e",
+                "reference": "5992d7836868b408e73d0d490c779dda7a39135e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
             "require-dev": {
-                "camspiers/json-pretty": "~1.0",
+                "camspiers/json-pretty": "0.1.*",
                 "donatj/drop": "*",
                 "phpunit/phpunit": "~4.8|~9"
             },
@@ -1217,10 +1326,7 @@
             "autoload": {
                 "files": [
                     "src/UserAgentParser.php"
-                ],
-                "psr-4": {
-                    "donatj\\UserAgent\\": "src/UserAgent"
-                }
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1245,7 +1351,7 @@
             ],
             "funding": [
                 {
-                    "url": "https://www.paypal.me/donatj/15",
+                    "url": "https://www.paypal.me/donatj/5",
                     "type": "custom"
                 },
                 {
@@ -1253,15 +1359,15 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-12-29T05:36:08+00:00"
+            "time": "2021-03-16T16:42:25+00:00"
         },
         {
             "name": "dotmailer/dotmailer-magento2-extension",
-            "version": "4.4.1",
+            "version": "4.4.1-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/dotmailer/dotmailer-magento2-extension/dotmailer-dotmailer-magento2-extension-4.4.1.0.zip",
-                "shasum": "4eadf48f14c689567e32fd4923674dbdac3453f6"
+                "url": "https://repo.magento.com/archives/dotmailer/dotmailer-magento2-extension/dotmailer-dotmailer-magento2-extension-4.4.1.0-patch1.zip",
+                "shasum": "0be9437e38a6132483fbb76fba8f5fbd55333c3e"
             },
             "require": {
                 "magento/framework": ">=101 <103",
@@ -1315,11 +1421,11 @@
         },
         {
             "name": "dotmailer/dotmailer-magento2-extension-chat",
-            "version": "1.0.1-p1",
+            "version": "1.0.2-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/dotmailer/dotmailer-magento2-extension-chat/dotmailer-dotmailer-magento2-extension-chat-1.0.1.0-patch1.zip",
-                "shasum": "294a4e1c1fb0f17962b63e0ad8045ca5601c5096"
+                "url": "https://repo.magento.com/archives/dotmailer/dotmailer-magento2-extension-chat/dotmailer-dotmailer-magento2-extension-chat-1.0.2.0-patch1.zip",
+                "shasum": "a7d20af032e82957de6e794c7c96e1856f22cbbc"
             },
             "require": {
                 "dotmailer/dotmailer-magento2-extension": "^4.3.1",
@@ -1347,11 +1453,11 @@
         },
         {
             "name": "dotmailer/dotmailer-magento2-extension-enterprise",
-            "version": "1.0.7",
+            "version": "1.0.7-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/dotmailer/dotmailer-magento2-extension-enterprise/dotmailer-dotmailer-magento2-extension-enterprise-1.0.7.0.zip",
-                "shasum": "e60a4e91f0f708f9ec029ac505a9aab47940d401"
+                "url": "https://repo.magento.com/archives/dotmailer/dotmailer-magento2-extension-enterprise/dotmailer-dotmailer-magento2-extension-enterprise-1.0.7.0-patch1.zip",
+                "shasum": "7b6d2a62d1ecd7cfe4e26b2eda7b6d16ef68ad83"
             },
             "require": {
                 "dotmailer/dotmailer-magento2-extension": "^4.3.1",
@@ -1375,16 +1481,16 @@
         },
         {
             "name": "dotmailer/dotmailer-magento2-extension-enterprise-package",
-            "version": "4.4.1",
+            "version": "4.4.1-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/dotmailer/dotmailer-magento2-extension-enterprise-package/dotmailer-dotmailer-magento2-extension-enterprise-package-4.4.1.0.zip",
-                "shasum": "583a117d3d0853f5433c835ef96714a9f4054879"
+                "url": "https://repo.magento.com/archives/dotmailer/dotmailer-magento2-extension-enterprise-package/dotmailer-dotmailer-magento2-extension-enterprise-package-4.4.1.0-patch1.zip",
+                "shasum": "c9f662b6d42687dc4f9e4a996789a0ab78ba0225"
             },
             "require": {
-                "dotmailer/dotmailer-magento2-extension": "4.4.1",
-                "dotmailer/dotmailer-magento2-extension-chat": "1.0.1-p1",
-                "dotmailer/dotmailer-magento2-extension-enterprise": "1.0.7"
+                "dotmailer/dotmailer-magento2-extension": "4.4.1-p1",
+                "dotmailer/dotmailer-magento2-extension-chat": "1.0.2-p1",
+                "dotmailer/dotmailer-magento2-extension-enterprise": "1.0.7-p1"
             },
             "type": "metapackage",
             "license": [
@@ -1394,15 +1500,15 @@
         },
         {
             "name": "dotmailer/dotmailer-magento2-extension-package",
-            "version": "4.4.1",
+            "version": "4.4.1-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/dotmailer/dotmailer-magento2-extension-package/dotmailer-dotmailer-magento2-extension-package-4.4.1.0.zip",
-                "shasum": "9931bf660abe8579abb4013b331d8de9f13f9ac1"
+                "url": "https://repo.magento.com/archives/dotmailer/dotmailer-magento2-extension-package/dotmailer-dotmailer-magento2-extension-package-4.4.1.0-patch1.zip",
+                "shasum": "733fd30ab00eff0e08f3d77e359a8a744df8c609"
             },
             "require": {
-                "dotmailer/dotmailer-magento2-extension": "4.4.1",
-                "dotmailer/dotmailer-magento2-extension-chat": "1.0.1-p1"
+                "dotmailer/dotmailer-magento2-extension": "4.4.1-p1",
+                "dotmailer/dotmailer-magento2-extension-chat": "1.0.2-p1"
             },
             "type": "metapackage",
             "license": [
@@ -1412,32 +1518,32 @@
         },
         {
             "name": "elasticsearch/elasticsearch",
-            "version": "v7.10.0",
+            "version": "v7.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/elastic/elasticsearch-php.git",
-                "reference": "f4a5741f1d1966a4d0a3a3f68666e6d81432c343"
+                "reference": "277cd5e182827c59c23e146a836a30470c0f879d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/f4a5741f1d1966a4d0a3a3f68666e6d81432c343",
-                "reference": "f4a5741f1d1966a4d0a3a3f68666e6d81432c343",
+                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/277cd5e182827c59c23e146a836a30470c0f879d",
+                "reference": "277cd5e182827c59c23e146a836a30470c0f879d",
                 "shasum": ""
             },
             "require": {
                 "ext-json": ">=1.3.7",
                 "ezimuel/ringphp": "^1.1.2",
-                "php": "^7.1",
+                "php": "^7.1 || ^8.0",
                 "psr/log": "~1.0"
             },
             "require-dev": {
-                "cpliakas/git-wrapper": "~2.0",
+                "cpliakas/git-wrapper": "~2.0 || ~3.0",
                 "doctrine/inflector": "^1.3",
                 "ext-yaml": "*",
                 "ext-zip": "*",
                 "mockery/mockery": "^1.2",
                 "phpstan/phpstan": "^0.12",
-                "phpunit/phpunit": "^7.5",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.3",
                 "squizlabs/php_codesniffer": "^3.4",
                 "symfony/finder": "~4.0",
                 "symfony/yaml": "~4.0"
@@ -1473,7 +1579,7 @@
                 "elasticsearch",
                 "search"
             ],
-            "time": "2020-11-11T16:31:00+00:00"
+            "time": "2021-02-11T11:04:51+00:00"
         },
         {
             "name": "endroid/qr-code",
@@ -1647,16 +1753,16 @@
         },
         {
             "name": "fastly/magento2",
-            "version": "1.2.153",
+            "version": "1.2.163",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fastly/fastly-magento2.git",
-                "reference": "0833ebad7cea87c5d37a38632338b4ec37846b9b"
+                "reference": "86e0fa7c4253ffdcdba9e95765286e54ab277ddb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fastly/fastly-magento2/zipball/0833ebad7cea87c5d37a38632338b4ec37846b9b",
-                "reference": "0833ebad7cea87c5d37a38632338b4ec37846b9b",
+                "url": "https://api.github.com/repos/fastly/fastly-magento2/zipball/86e0fa7c4253ffdcdba9e95765286e54ab277ddb",
+                "reference": "86e0fa7c4253ffdcdba9e95765286e54ab277ddb",
                 "shasum": ""
             },
             "require": {
@@ -1665,7 +1771,7 @@
                 "magento/module-config": ">=100.0.0",
                 "magento/module-page-cache": ">=100.0.0",
                 "magento/module-store": ">=100.0.0",
-                "php": "~5.5.0|~5.6.0|~7.0.0|~7.1.0|~7.2.0|~7.3.0|~7.4.0",
+                "php": "~7.0.0|~7.1.0|~7.2.0|~7.3.0|~7.4.0",
                 "zordius/lightncandy": "^1.2"
             },
             "type": "magento2-module",
@@ -1682,7 +1788,7 @@
                 "BSD-3-Clause"
             ],
             "description": "Fastly CDN Module for Magento 2.x",
-            "time": "2021-01-11T20:43:59+00:00"
+            "time": "2021-08-04T15:42:41+00:00"
         },
         {
             "name": "flancer32/mage2_ext_minify",
@@ -1998,16 +2104,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.8.1",
+            "version": "1.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "35ea11d335fd638b5882ff1725228b3d35496ab1"
+                "reference": "dc960a912984efb74d0a90222870c72c87f10c91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/35ea11d335fd638b5882ff1725228b3d35496ab1",
-                "reference": "35ea11d335fd638b5882ff1725228b3d35496ab1",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/dc960a912984efb74d0a90222870c72c87f10c91",
+                "reference": "dc960a912984efb74d0a90222870c72c87f10c91",
                 "shasum": ""
             },
             "require": {
@@ -2065,7 +2171,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2021-03-21T16:25:00+00:00"
+            "time": "2021-04-26T09:17:50+00:00"
         },
         {
             "name": "illuminate/config",
@@ -2392,16 +2498,16 @@
         },
         {
             "name": "justinrainbow/json-schema",
-            "version": "5.2.10",
+            "version": "5.2.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/justinrainbow/json-schema.git",
-                "reference": "2ba9c8c862ecd5510ed16c6340aa9f6eadb4f31b"
+                "reference": "2ab6744b7296ded80f8cc4f9509abbff393399aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/2ba9c8c862ecd5510ed16c6340aa9f6eadb4f31b",
-                "reference": "2ba9c8c862ecd5510ed16c6340aa9f6eadb4f31b",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/2ab6744b7296ded80f8cc4f9509abbff393399aa",
+                "reference": "2ab6744b7296ded80f8cc4f9509abbff393399aa",
                 "shasum": ""
             },
             "require": {
@@ -2444,7 +2550,7 @@
                     "email": "igor@wiedler.ch"
                 },
                 {
-                    "name": "Robert SchÃ¶nthal",
+                    "name": "Robert Schönthal",
                     "email": "seroscho@googlemail.com"
                 }
             ],
@@ -2454,27 +2560,27 @@
                 "json",
                 "schema"
             ],
-            "time": "2020-05-27T16:41:55+00:00"
+            "time": "2021-07-22T09:24:00+00:00"
         },
         {
             "name": "khanamiryan/qrcode-detector-decoder",
-            "version": "1.0.4",
+            "version": "1.0.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/khanamiryan/php-qrcode-detector-decoder.git",
-                "reference": "07fceefb79d895e858e52921afb9c1433d2f3d5e"
+                "reference": "04fdd58d86a387065f707dc6d3cc304c719910c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/khanamiryan/php-qrcode-detector-decoder/zipball/07fceefb79d895e858e52921afb9c1433d2f3d5e",
-                "reference": "07fceefb79d895e858e52921afb9c1433d2f3d5e",
+                "url": "https://api.github.com/repos/khanamiryan/php-qrcode-detector-decoder/zipball/04fdd58d86a387065f707dc6d3cc304c719910c1",
+                "reference": "04fdd58d86a387065f707dc6d3cc304c719910c1",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.6"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.0"
+                "phpunit/phpunit": "^5.7 | ^7.5 | ^8.0 | ^9.0"
             },
             "type": "library",
             "autoload": {
@@ -2487,7 +2593,8 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT"
+                "MIT",
+                "Apache-2.0"
             ],
             "authors": [
                 {
@@ -2504,20 +2611,20 @@
                 "qr",
                 "zxing"
             ],
-            "time": "2020-11-29T18:50:26+00:00"
+            "time": "2021-07-13T18:46:38+00:00"
         },
         {
             "name": "klarna/m2-payments",
-            "version": "7.6.1",
+            "version": "7.6.2-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/klarna/m2-payments/klarna-m2-payments-7.6.1.0.zip",
-                "shasum": "f710eda4053427417ff89fec22206eae59742beb"
+                "url": "https://repo.magento.com/archives/klarna/m2-payments/klarna-m2-payments-7.6.2.0-patch1.zip",
+                "shasum": "bb9c45893e6b86d5eb2bdf678aa244c346d36703"
             },
             "require": {
-                "klarna/module-core": "5.3.1",
-                "klarna/module-kp": "6.5.2",
-                "klarna/module-ordermanagement": "5.1.1"
+                "klarna/module-core": "5.3.2-p1",
+                "klarna/module-kp": "6.5.3-p1",
+                "klarna/module-ordermanagement": "5.1.1-p1"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "~2.14.0",
@@ -2543,11 +2650,11 @@
         },
         {
             "name": "klarna/module-core",
-            "version": "5.3.1",
+            "version": "5.3.2-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/klarna/module-core/klarna-module-core-5.3.1.0.zip",
-                "shasum": "a659d1f6b73e652873711ba3c571e1b5e95c0781"
+                "url": "https://repo.magento.com/archives/klarna/module-core/klarna-module-core-5.3.2.0-patch1.zip",
+                "shasum": "47e1daa62ce0b45f88e065f678e04eb32c89e366"
             },
             "require": {
                 "guzzlehttp/guzzle": "^6.0",
@@ -2599,11 +2706,11 @@
         },
         {
             "name": "klarna/module-kp",
-            "version": "6.5.2",
+            "version": "6.5.3-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/klarna/module-kp/klarna-module-kp-6.5.2.0.zip",
-                "shasum": "ced255886156421059394612d53ee59e3e4d3d1a"
+                "url": "https://repo.magento.com/archives/klarna/module-kp/klarna-module-kp-6.5.3.0-patch1.zip",
+                "shasum": "4139820f506e88aec92c2e019d0ea984792cdd06"
             },
             "require": {
                 "klarna/module-core": "^5.2",
@@ -2654,11 +2761,11 @@
         },
         {
             "name": "klarna/module-ordermanagement",
-            "version": "5.1.1",
+            "version": "5.1.1-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/klarna/module-ordermanagement/klarna-module-ordermanagement-5.1.1.0.zip",
-                "shasum": "cc9b557916e9c3253d132f30da2709f059595c80"
+                "url": "https://repo.magento.com/archives/klarna/module-ordermanagement/klarna-module-ordermanagement-5.1.1.0-patch1.zip",
+                "shasum": "f09c0aa0201c653eb08e8092a93d785840c23e9f"
             },
             "require": {
                 "klarna/module-core": "^5.2",
@@ -3071,16 +3178,16 @@
         },
         {
             "name": "laminas/laminas-db",
-            "version": "2.11.3",
+            "version": "2.11.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-db.git",
-                "reference": "6c4238918b9204db1eb8cafae2c1940d40f4c007"
+                "reference": "5b59413b8dd5d79e3fe58c2650c60b1730989f36"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-db/zipball/6c4238918b9204db1eb8cafae2c1940d40f4c007",
-                "reference": "6c4238918b9204db1eb8cafae2c1940d40f4c007",
+                "url": "https://api.github.com/repos/laminas/laminas-db/zipball/5b59413b8dd5d79e3fe58c2650c60b1730989f36",
+                "reference": "5b59413b8dd5d79e3fe58c2650c60b1730989f36",
                 "shasum": ""
             },
             "require": {
@@ -3105,10 +3212,6 @@
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "2.11.x-dev",
-                    "dev-develop": "2.12.x-dev"
-                },
                 "laminas": {
                     "component": "Laminas\\Db",
                     "config-provider": "Laminas\\Db\\ConfigProvider"
@@ -3129,7 +3232,13 @@
                 "db",
                 "laminas"
             ],
-            "time": "2020-03-29T12:08:51+00:00"
+            "funding": [
+                {
+                    "url": "https://funding.communitybridge.org/projects/laminas-project",
+                    "type": "community_bridge"
+                }
+            ],
+            "time": "2021-02-20T18:52:15+00:00"
         },
         {
             "name": "laminas/laminas-dependency-plugin",
@@ -3548,16 +3657,16 @@
         },
         {
             "name": "laminas/laminas-form",
-            "version": "2.15.0",
+            "version": "2.15.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-form.git",
-                "reference": "359cd372c565e18a17f32ccfeacdf21bba091ce2"
+                "reference": "37c5f5ac9240159f5d93f52367d0e57fa96f9b22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-form/zipball/359cd372c565e18a17f32ccfeacdf21bba091ce2",
-                "reference": "359cd372c565e18a17f32ccfeacdf21bba091ce2",
+                "url": "https://api.github.com/repos/laminas/laminas-form/zipball/37c5f5ac9240159f5d93f52367d0e57fa96f9b22",
+                "reference": "37c5f5ac9240159f5d93f52367d0e57fa96f9b22",
                 "shasum": ""
             },
             "require": {
@@ -3599,10 +3708,6 @@
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "2.15.x-dev",
-                    "dev-develop": "2.16.x-dev"
-                },
                 "laminas": {
                     "component": "Laminas\\Form",
                     "config-provider": "Laminas\\Form\\ConfigProvider"
@@ -3632,7 +3737,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2020-07-14T13:53:27+00:00"
+            "time": "2021-03-17T13:07:46+00:00"
         },
         {
             "name": "laminas/laminas-http",
@@ -4454,16 +4559,16 @@
         },
         {
             "name": "laminas/laminas-serializer",
-            "version": "2.9.1",
+            "version": "2.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-serializer.git",
-                "reference": "c1c9361f114271b0736db74e0083a919081af5e0"
+                "reference": "1c57f1bdf05da078493b774c9e8d77ee8b46b4bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-serializer/zipball/c1c9361f114271b0736db74e0083a919081af5e0",
-                "reference": "c1c9361f114271b0736db74e0083a919081af5e0",
+                "url": "https://api.github.com/repos/laminas/laminas-serializer/zipball/1c57f1bdf05da078493b774c9e8d77ee8b46b4bb",
+                "reference": "1c57f1bdf05da078493b774c9e8d77ee8b46b4bb",
                 "shasum": ""
             },
             "require": {
@@ -4473,7 +4578,7 @@
                 "php": "^5.6 || ^7.0"
             },
             "replace": {
-                "zendframework/zend-serializer": "self.version"
+                "zendframework/zend-serializer": "^2.9.1"
             },
             "require-dev": {
                 "laminas/laminas-coding-standard": "~1.0.0",
@@ -4487,10 +4592,6 @@
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "2.9.x-dev",
-                    "dev-develop": "2.10.x-dev"
-                },
                 "laminas": {
                     "component": "Laminas\\Serializer",
                     "config-provider": "Laminas\\Serializer\\ConfigProvider"
@@ -4511,7 +4612,13 @@
                 "laminas",
                 "serializer"
             ],
-            "time": "2019-12-31T17:42:11+00:00"
+            "funding": [
+                {
+                    "url": "https://funding.communitybridge.org/projects/laminas-project",
+                    "type": "community_bridge"
+                }
+            ],
+            "time": "2021-02-17T17:05:24+00:00"
         },
         {
             "name": "laminas/laminas-server",
@@ -4893,7 +5000,7 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "description": "A component that aids in manipulating and validating Â» Uniform Resource Identifiers (URIs)",
+            "description": "A component that aids in manipulating and validating » Uniform Resource Identifiers (URIs)",
             "homepage": "https://laminas.dev",
             "keywords": [
                 "laminas",
@@ -5280,7 +5387,7 @@
                     "role": "Documentation contributor"
                 },
                 {
-                    "name": "Jaroslav TÃ½c",
+                    "name": "Jaroslav Týc",
                     "homepage": "https://www.jaroslavtyc.com/",
                     "role": "Developer"
                 }
@@ -5290,26 +5397,26 @@
         },
         {
             "name": "magento/ece-tools",
-            "version": "2002.1.5",
+            "version": "2002.1.7",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.1.5.0.zip",
-                "shasum": "57bb17f107812548bed224aaf50a5b18eadff04e"
+                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.1.7.0.zip",
+                "shasum": "7aa3b44a88e033856ea2cc9218f63084b43eb2c8"
             },
             "require": {
                 "colinmollenhour/credis": "^1.6.0",
-                "composer/composer": "^1.4",
-                "composer/semver": "^1.4",
+                "composer/composer": "^1.4||^2.0",
+                "composer/semver": "@stable",
                 "ext-json": "*",
                 "ext-pdo": "*",
                 "ext-sockets": "*",
                 "graylog2/gelf-php": "^1.4.2",
                 "guzzlehttp/guzzle": "^6.2",
                 "illuminate/config": "^5.5",
-                "magento/magento-cloud-components": "^1.0.6",
+                "magento/magento-cloud-components": "^1.0.8",
                 "magento/magento-cloud-docker": "^1.0.0",
-                "magento/magento-cloud-patches": "^1.0.6",
-                "magento/quality-patches": "^1.0.3",
+                "magento/magento-cloud-patches": "^1.0.11",
+                "magento/quality-patches": "^1.1.0",
                 "monolog/monolog": "^1.16",
                 "nesbot/carbon": "^1.0||^2.0",
                 "php": "^7.1.3",
@@ -5323,7 +5430,8 @@
                 "symfony/yaml": "^3.3||^4.0"
             },
             "conflict": {
-                "nesbot/carbon": ">=1.38 <2.0"
+                "nesbot/carbon": ">=1.38 <2.0",
+                "symfony/console": "4.4.27 || 4.4.28"
             },
             "replace": {
                 "magento/ece-patches": "*",
@@ -5345,12 +5453,6 @@
             ],
             "type": "magento2-component",
             "extra": {
-                "map": [
-                    [
-                        "dist/.magento.env.yaml",
-                        ".magento.env.yaml.dist"
-                    ]
-                ],
                 "include_files": [
                     "vendor/codeception/phpunit-wrapper/src/phpunit7-interfaces.php"
                 ]
@@ -5367,11 +5469,11 @@
         },
         {
             "name": "magento/framework",
-            "version": "102.0.6",
+            "version": "102.0.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/framework/magento-framework-102.0.6.0.zip",
-                "shasum": "5dd3ac0321de965f3d4769a894bb0a8ed27550c7"
+                "url": "https://repo.magento.com/archives/magento/framework/magento-framework-102.0.6.0-patch1.zip",
+                "shasum": "0b861c58dad6296152ccb9a24497ca7cd874014b"
             },
             "require": {
                 "colinmollenhour/php-redis-session-abstract": "~1.4.0",
@@ -5410,12 +5512,12 @@
             },
             "type": "magento2-library",
             "autoload": {
-                "psr-4": {
-                    "Magento\\Framework\\": ""
-                },
                 "files": [
                     "registration.php"
-                ]
+                ],
+                "psr-4": {
+                    "Magento\\Framework\\": ""
+                }
             },
             "license": [
                 "OSL-3.0",
@@ -5814,11 +5916,11 @@
         },
         {
             "name": "magento/magento-cloud-components",
-            "version": "1.0.7",
+            "version": "1.0.8",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/magento-cloud-components/magento-magento-cloud-components-1.0.7.0.zip",
-                "shasum": "bc663be7930e70b2ceec6172d7c6fc7407025cfd"
+                "url": "https://repo.magento.com/archives/magento/magento-cloud-components/magento-magento-cloud-components-1.0.8.0.zip",
+                "shasum": "8df1d4666f73e7f2ce1598452129e19a8f5ea064"
             },
             "require": {
                 "colinmollenhour/cache-backend-redis": "^1.9",
@@ -5853,15 +5955,15 @@
         },
         {
             "name": "magento/magento-cloud-docker",
-            "version": "1.2.1",
+            "version": "1.2.4",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/magento-cloud-docker/magento-magento-cloud-docker-1.2.1.0.zip",
-                "shasum": "32d7a30e64bf374af0be5ec035765f4da1c2761a"
+                "url": "https://repo.magento.com/archives/magento/magento-cloud-docker/magento-magento-cloud-docker-1.2.4.0.zip",
+                "shasum": "3cb9bd3a7a3aa456270f5f5f10b91eaad7e280c7"
             },
             "require": {
-                "composer/composer": "^1.0",
-                "composer/semver": "^1.0",
+                "composer/composer": "^1.0||^2.0",
+                "composer/semver": "^1.0||^2.0||^3.0",
                 "ext-json": "*",
                 "illuminate/config": "^5.5",
                 "php": "^7.2",
@@ -5878,7 +5980,7 @@
                 "codeception/module-rest": "^1.2",
                 "consolidation/robo": "^1.2",
                 "phpmd/phpmd": "@stable",
-                "phpstan/phpstan": "^0.11",
+                "phpstan/phpstan": "^0.12",
                 "phpunit/phpunit": "^8.5",
                 "squizlabs/php_codesniffer": "^3.0"
             },
@@ -5895,6 +5997,10 @@
                     [
                         "dist/mutagen.sh",
                         "mutagen.sh"
+                    ],
+                    [
+                        "dist/php.dev.ini",
+                        "php.dev.ini"
                     ],
                     [
                         "dist/mnt",
@@ -5967,17 +6073,17 @@
         },
         {
             "name": "magento/magento-cloud-patches",
-            "version": "1.0.9",
+            "version": "1.0.12",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/magento-cloud-patches/magento-magento-cloud-patches-1.0.9.0.zip",
-                "shasum": "2aaca01e1f142f1963c260d916833e0d6b3a3e56"
+                "url": "https://repo.magento.com/archives/magento/magento-cloud-patches/magento-magento-cloud-patches-1.0.12.0.zip",
+                "shasum": "71a034317f296e84d891deae6f88c6fdc89fc934"
             },
             "require": {
                 "composer/composer": "@stable",
-                "composer/semver": "^1.5",
+                "composer/semver": "^1.5||^2.0||^3.0",
                 "ext-json": "*",
-                "magento/quality-patches": "^1.0.7",
+                "magento/quality-patches": "^1.1.0",
                 "monolog/monolog": "^1.16",
                 "php": "^7.0",
                 "symfony/config": "^3.3||^4.4||^5.1",
@@ -6061,7 +6167,7 @@
                     "email": "flyingmana@googlemail.com"
                 },
                 {
-                    "name": "JÃ¶rg Weller",
+                    "name": "Jörg Weller",
                     "email": "weller@flagbit.de"
                 },
                 {
@@ -6091,14 +6197,13 @@
         },
         {
             "name": "magento/magento2-base",
-            "version": "2.3.6",
+            "version": "2.3.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/magento2-base/magento-magento2-base-2.3.6.0.zip",
-                "shasum": "5eb86a791ca2cb7362107984e5c2854f664aab9b"
+                "url": "https://repo.magento.com/archives/magento/magento2-base/magento-magento2-base-2.3.6.0-patch1.zip",
+                "shasum": "7d2f4fb91f038cbfbf874536dc58ec825a4a60c3"
             },
             "require": {
-                "braintree/braintree_php": "3.35.0",
                 "composer/composer": "^1.9",
                 "ext-intl": "*",
                 "ext-mbstring": "*",
@@ -6149,26 +6254,28 @@
             },
             "type": "magento2-component",
             "extra": {
+                "chmod": [
+                    {
+                        "mask": "0755",
+                        "path": "bin/magento"
+                    }
+                ],
                 "component_paths": {
-                    "trentrichardson/jquery-timepicker-addon": "lib/web/jquery/jquery-ui-timepicker-addon.js",
+                    "blueimp/jquery-file-upload": "lib/web/jquery/fileUploader",
                     "components/jquery": [
                         "lib/web/jquery.js",
                         "lib/web/jquery/jquery.min.js",
                         "lib/web/jquery/jquery-migrate.js"
                     ],
-                    "blueimp/jquery-file-upload": "lib/web/jquery/fileUploader",
                     "components/jqueryui": "lib/web/jquery/jquery-ui.js",
-                    "twbs/bootstrap": "lib/web/jquery/jquery.tabs.js",
-                    "tinymce/tinymce": "lib/web/tiny_mce_4"
+                    "tinymce/tinymce": "lib/web/tiny_mce_4",
+                    "trentrichardson/jquery-timepicker-addon": "lib/web/jquery/jquery-ui-timepicker-addon.js",
+                    "twbs/bootstrap": "lib/web/jquery/jquery.tabs.js"
                 },
                 "map": [
                     [
                         ".editorconfig",
                         ".editorconfig"
-                    ],
-                    [
-                        ".github",
-                        ".github"
                     ],
                     [
                         ".htaccess",
@@ -6311,48 +6418,8 @@
                         "dev/tests/error_handler.php"
                     ],
                     [
-                        "dev/tests/functional/.gitignore",
-                        "dev/tests/functional/.gitignore"
-                    ],
-                    [
-                        "dev/tests/functional/bootstrap.php",
-                        "dev/tests/functional/bootstrap.php"
-                    ],
-                    [
-                        "dev/tests/functional/composer.json",
-                        "dev/tests/functional/composer.json"
-                    ],
-                    [
-                        "dev/tests/functional/credentials.xml.dist",
-                        "dev/tests/functional/credentials.xml.dist"
-                    ],
-                    [
-                        "dev/tests/functional/etc",
-                        "dev/tests/functional/etc"
-                    ],
-                    [
-                        "dev/tests/functional/isolation.php",
-                        "dev/tests/functional/isolation.php"
-                    ],
-                    [
-                        "dev/tests/functional/lib",
-                        "dev/tests/functional/lib"
-                    ],
-                    [
-                        "dev/tests/functional/phpunit.xml.dist",
-                        "dev/tests/functional/phpunit.xml.dist"
-                    ],
-                    [
-                        "dev/tests/functional/tests",
-                        "dev/tests/functional/tests"
-                    ],
-                    [
-                        "dev/tests/functional/testsuites/Magento",
-                        "dev/tests/functional/testsuites/Magento"
-                    ],
-                    [
-                        "dev/tests/functional/utils",
-                        "dev/tests/functional/utils"
+                        "dev/tests/functional",
+                        "dev/tests/functional"
                     ],
                     [
                         "dev/tests/integration/.gitignore",
@@ -6511,12 +6578,12 @@
                         "lib/web/images"
                     ],
                     [
-                        "lib/web/jquery.js",
-                        "lib/web/jquery.js"
-                    ],
-                    [
                         "lib/web/jquery",
                         "lib/web/jquery"
+                    ],
+                    [
+                        "lib/web/jquery.js",
+                        "lib/web/jquery.js"
                     ],
                     [
                         "lib/web/knockoutjs",
@@ -6655,12 +6722,12 @@
                         "pub/opt"
                     ],
                     [
-                        "pub/static.php",
-                        "pub/static.php"
-                    ],
-                    [
                         "pub/static/.htaccess",
                         "pub/static/.htaccess"
+                    ],
+                    [
+                        "pub/static.php",
+                        "pub/static.php"
                     ],
                     [
                         "setup",
@@ -6674,12 +6741,6 @@
                         "vendor/.htaccess",
                         "vendor/.htaccess"
                     ]
-                ],
-                "chmod": [
-                    {
-                        "mask": "0755",
-                        "path": "bin/magento"
-                    }
                 ]
             },
             "license": [
@@ -6690,14 +6751,13 @@
         },
         {
             "name": "magento/magento2-ee-base",
-            "version": "2.3.6",
+            "version": "2.3.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/magento2-ee-base/magento-magento2-ee-base-2.3.6.0.zip",
-                "shasum": "f4c8a0f130930297c254e0b2fc57427eb5c5c333"
+                "url": "https://repo.magento.com/archives/magento/magento2-ee-base/magento-magento2-ee-base-2.3.6.0-patch1.zip",
+                "shasum": "9589395d39dee64420bec8dff40fa569b626c947"
             },
             "require": {
-                "braintree/braintree_php": "3.35.0",
                 "composer/composer": "^1.9",
                 "ext-intl": "*",
                 "ext-mbstring": "*",
@@ -6740,6 +6800,12 @@
             },
             "type": "magento2-component",
             "extra": {
+                "chmod": [
+                    {
+                        "mask": "0755",
+                        "path": "bin/magento"
+                    }
+                ],
                 "map": [
                     [
                         "LICENSE_EE.txt",
@@ -6754,16 +6820,8 @@
                         "dev/tests/api-functional/testsuite/Magento"
                     ],
                     [
-                        "dev/tests/functional/credentials-ee.xml.dist",
-                        "dev/tests/functional/credentials-ee.xml.dist"
-                    ],
-                    [
-                        "dev/tests/functional/etc",
-                        "dev/tests/functional/etc"
-                    ],
-                    [
-                        "dev/tests/functional/tests",
-                        "dev/tests/functional/tests"
+                        "dev/tests/functional",
+                        "dev/tests/functional"
                     ],
                     [
                         "dev/tests/integration/etc",
@@ -6801,12 +6859,6 @@
                         "setup",
                         "setup"
                     ]
-                ],
-                "chmod": [
-                    {
-                        "mask": "0755",
-                        "path": "bin/magento"
-                    }
                 ]
             },
             "license": [
@@ -7319,11 +7371,11 @@
         },
         {
             "name": "magento/module-advanced-checkout",
-            "version": "100.3.6",
+            "version": "100.3.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-advanced-checkout/magento-module-advanced-checkout-100.3.6.0.zip",
-                "shasum": "617a29d766dd317f576e87048d2e380ed857c004"
+                "url": "https://repo.magento.com/archives/magento/module-advanced-checkout/magento-module-advanced-checkout-100.3.6.0-patch1.zip",
+                "shasum": "f02073c31dd65014eeda2b17b8e4640777a10b10"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -7785,11 +7837,11 @@
         },
         {
             "name": "magento/module-backend",
-            "version": "101.0.6",
+            "version": "101.0.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-backend/magento-module-backend-101.0.6.0.zip",
-                "shasum": "0fb5bc0d9ed8ce1cb51b8f0930374cc622cd3899"
+                "url": "https://repo.magento.com/archives/magento/module-backend/magento-module-backend-101.0.6.0-patch1.zip",
+                "shasum": "c7bf16e565d1c82f5270d4ef7ddbb5924a1c54b9"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -7861,11 +7913,11 @@
         },
         {
             "name": "magento/module-banner",
-            "version": "101.1.6",
+            "version": "101.1.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-banner/magento-module-banner-101.1.6.0.zip",
-                "shasum": "9a8c30c4b2d18f2909afa5c3c9a7fb57d891416b"
+                "url": "https://repo.magento.com/archives/magento/module-banner/magento-module-banner-101.1.6.0-patch1.zip",
+                "shasum": "4dc15e30074231172dec1ac6380f168e958fea07"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -7927,18 +7979,18 @@
         },
         {
             "name": "magento/module-banner-page-builder",
-            "version": "1.3.3",
+            "version": "1.3.3-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-banner-page-builder/magento-module-banner-page-builder-1.3.3.0.zip",
-                "shasum": "afa18f7626f308e33d0518a20a9dbe7ea73f8c5c"
+                "url": "https://repo.magento.com/archives/magento/module-banner-page-builder/magento-module-banner-page-builder-1.3.3.0-patch1.zip",
+                "shasum": "3a2099cd64467e9fca6b8fded8df919820a6774b"
             },
             "require": {
-                "magento/framework": "~102.0.6",
-                "magento/module-backend": "~101.0.6",
-                "magento/module-banner": "~101.1.6",
+                "magento/framework": "~102.0.6-p1",
+                "magento/module-backend": "~101.0.6-p1",
+                "magento/module-banner": "~101.1.6-p1",
                 "magento/module-banner-customer-segment": "~100.3.5",
-                "magento/module-catalog-rule": "101.1.*",
+                "magento/module-catalog-rule": "*",
                 "magento/module-customer-segment": "~102.0.6",
                 "magento/module-page-builder": "1.3.*",
                 "magento/module-sales-rule": "~101.1.6",
@@ -7960,15 +8012,15 @@
         },
         {
             "name": "magento/module-banner-page-builder-analytics",
-            "version": "1.3.3",
+            "version": "1.3.3-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-banner-page-builder-analytics/magento-module-banner-page-builder-analytics-1.3.3.0.zip",
-                "shasum": "25b6f99856a30b3b002184c8b6f6c69aba25c2f1"
+                "url": "https://repo.magento.com/archives/magento/module-banner-page-builder-analytics/magento-module-banner-page-builder-analytics-1.3.3.0-patch1.zip",
+                "shasum": "510d1e73ca0959ff5079702a4e048307eb789081"
             },
             "require": {
-                "magento/framework": "~102.0.6",
-                "magento/module-banner": "~101.1.6",
+                "magento/framework": "~102.0.6-p1",
+                "magento/module-banner": "~101.1.6-p1",
                 "magento/module-page-builder-analytics": "1.3.*",
                 "php": "~7.1.3||~7.2.0||~7.3.0"
             },
@@ -8272,11 +8324,11 @@
         },
         {
             "name": "magento/module-captcha",
-            "version": "100.3.6",
+            "version": "100.3.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-captcha/magento-module-captcha-100.3.6.0.zip",
-                "shasum": "3d4ec22cc61a1648134b29b27d9e8faeec52031d"
+                "url": "https://repo.magento.com/archives/magento/module-captcha/magento-module-captcha-100.3.6.0-patch1.zip",
+                "shasum": "320a7500778322c9c46a003dded6961989f03e79"
             },
             "require": {
                 "laminas/laminas-captcha": "^2.7.1",
@@ -8337,11 +8389,11 @@
         },
         {
             "name": "magento/module-catalog",
-            "version": "103.0.6",
+            "version": "103.0.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-catalog/magento-module-catalog-103.0.6.0.zip",
-                "shasum": "ac0f9d194081c3ba02adc21a5fbd6c2c090051f5"
+                "url": "https://repo.magento.com/archives/magento/module-catalog/magento-module-catalog-103.0.6.0-patch1.zip",
+                "shasum": "8f54a7997d30b6d8276e7a75f607e1ae53c05c71"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -8731,15 +8783,15 @@
         },
         {
             "name": "magento/module-catalog-page-builder-analytics",
-            "version": "1.3.3",
+            "version": "1.3.3-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-catalog-page-builder-analytics/magento-module-catalog-page-builder-analytics-1.3.3.0.zip",
-                "shasum": "e27ce0bb46fcf5c27ac6e51c0a6de3a0a0d14c72"
+                "url": "https://repo.magento.com/archives/magento/module-catalog-page-builder-analytics/magento-module-catalog-page-builder-analytics-1.3.3.0-patch1.zip",
+                "shasum": "d81b834847eee9997609843798c52f4a0d221230"
             },
             "require": {
-                "magento/framework": "~102.0.6",
-                "magento/module-catalog": "~103.0.6",
+                "magento/framework": "~102.0.6-p1",
+                "magento/module-catalog": "~103.0.6-p1",
                 "magento/module-page-builder-analytics": "1.3.*",
                 "php": "~7.1.3||~7.2.0||~7.3.0"
             },
@@ -8759,15 +8811,15 @@
         },
         {
             "name": "magento/module-catalog-page-builder-analytics-staging",
-            "version": "1.3.3",
+            "version": "1.3.3-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-catalog-page-builder-analytics-staging/magento-module-catalog-page-builder-analytics-staging-1.3.3.0.zip",
-                "shasum": "b9c1f94e866ee2459d7b3ac6ad8cc0f279d32a8f"
+                "url": "https://repo.magento.com/archives/magento/module-catalog-page-builder-analytics-staging/magento-module-catalog-page-builder-analytics-staging-1.3.3.0-patch1.zip",
+                "shasum": "b498385f32d28d7fd440711a675c7a5d39064b50"
             },
             "require": {
-                "magento/framework": "~102.0.6",
-                "magento/module-catalog": "~103.0.6",
+                "magento/framework": "~102.0.6-p1",
+                "magento/module-catalog": "~103.0.6-p1",
                 "magento/module-page-builder-analytics": "1.3.*",
                 "php": "~7.1.3||~7.2.0||~7.3.0"
             },
@@ -9088,19 +9140,19 @@
         },
         {
             "name": "magento/module-catalog-staging-page-builder",
-            "version": "1.3.3",
+            "version": "1.3.3-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-catalog-staging-page-builder/magento-module-catalog-staging-page-builder-1.3.3.0.zip",
-                "shasum": "5039b73deeef94a5bd6fb8ed0cb49210bd88e93f"
+                "url": "https://repo.magento.com/archives/magento/module-catalog-staging-page-builder/magento-module-catalog-staging-page-builder-1.3.3.0-patch1.zip",
+                "shasum": "4357961c6ecd0eb07327c5eef3238d442cbcdc10"
             },
             "require": {
-                "magento/framework": "~102.0.6",
+                "magento/framework": "~102.0.6-p1",
                 "php": "~7.1.3||~7.2.0||~7.3.0"
             },
             "suggest": {
-                "magento/module-catalog-staging": "100.3.*",
-                "magento/module-page-builder": "1.3.*"
+                "magento/module-catalog-staging": "*",
+                "magento/module-page-builder": "*"
             },
             "type": "magento2-module",
             "autoload": {
@@ -9190,11 +9242,11 @@
         },
         {
             "name": "magento/module-catalog-url-rewrite-staging",
-            "version": "100.3.4",
+            "version": "100.3.5-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-catalog-url-rewrite-staging/magento-module-catalog-url-rewrite-staging-100.3.4.0.zip",
-                "shasum": "57712604cfd15a199306345450c301babb6d420b"
+                "url": "https://repo.magento.com/archives/magento/module-catalog-url-rewrite-staging/magento-module-catalog-url-rewrite-staging-100.3.5.0-patch1.zip",
+                "shasum": "e5b4687d567689feb31eb4f03cf1ecaa91ed5a21"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -9257,11 +9309,11 @@
         },
         {
             "name": "magento/module-checkout",
-            "version": "100.3.6",
+            "version": "100.3.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-checkout/magento-module-checkout-100.3.6.0.zip",
-                "shasum": "b879f2d1f98ba983e943958488116c48ce2da843"
+                "url": "https://repo.magento.com/archives/magento/module-checkout/magento-module-checkout-100.3.6.0-patch1.zip",
+                "shasum": "e0068e1ee3ceb7f96d4f6722a05cc0114929f95f"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -9279,6 +9331,7 @@
                 "magento/module-quote": "101.1.*",
                 "magento/module-sales": "102.0.*",
                 "magento/module-sales-rule": "101.1.*",
+                "magento/module-security": "100.3.*",
                 "magento/module-shipping": "100.3.*",
                 "magento/module-store": "101.0.*",
                 "magento/module-tax": "100.3.*",
@@ -9464,11 +9517,11 @@
         },
         {
             "name": "magento/module-cms",
-            "version": "103.0.6",
+            "version": "103.0.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-cms/magento-module-cms-103.0.6.0.zip",
-                "shasum": "b91cee3b50776339f8cba1decbe104c50e2e8a6e"
+                "url": "https://repo.magento.com/archives/magento/module-cms/magento-module-cms-103.0.6.0-patch1.zip",
+                "shasum": "35bdd107467253b3f9b3aede9948748b5c51ce09"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -9537,15 +9590,15 @@
         },
         {
             "name": "magento/module-cms-page-builder-analytics",
-            "version": "1.3.3",
+            "version": "1.3.3-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-cms-page-builder-analytics/magento-module-cms-page-builder-analytics-1.3.3.0.zip",
-                "shasum": "d3a5636cdc6350df0bea8dfb34bce9845d5baf94"
+                "url": "https://repo.magento.com/archives/magento/module-cms-page-builder-analytics/magento-module-cms-page-builder-analytics-1.3.3.0-patch1.zip",
+                "shasum": "4271e3c7008b416effefb21974bee2d7b4fd2f16"
             },
             "require": {
-                "magento/framework": "~102.0.6",
-                "magento/module-cms": "103.0.*",
+                "magento/framework": "~102.0.6-p1",
+                "magento/module-cms": "*",
                 "magento/module-page-builder-analytics": "1.3.*",
                 "php": "~7.1.3||~7.2.0||~7.3.0"
             },
@@ -9565,15 +9618,15 @@
         },
         {
             "name": "magento/module-cms-page-builder-analytics-staging",
-            "version": "1.3.3",
+            "version": "1.3.3-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-cms-page-builder-analytics-staging/magento-module-cms-page-builder-analytics-staging-1.3.3.0.zip",
-                "shasum": "452f474d968e2e73719228881e26763b030db2ed"
+                "url": "https://repo.magento.com/archives/magento/module-cms-page-builder-analytics-staging/magento-module-cms-page-builder-analytics-staging-1.3.3.0-patch1.zip",
+                "shasum": "f26ea3e770fb1409a3712639368b9ba219d4c04a"
             },
             "require": {
-                "magento/framework": "~102.0.6",
-                "magento/module-cms": "103.0.*",
+                "magento/framework": "~102.0.6-p1",
+                "magento/module-cms": "*",
                 "magento/module-page-builder-analytics": "1.3.*",
                 "php": "~7.1.3||~7.2.0||~7.3.0"
             },
@@ -9933,11 +9986,11 @@
         },
         {
             "name": "magento/module-cookie",
-            "version": "100.3.5",
+            "version": "100.3.5-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-cookie/magento-module-cookie-100.3.5.0.zip",
-                "shasum": "8f38582b9211edbfcf236be976e7cd4692793680"
+                "url": "https://repo.magento.com/archives/magento/module-cookie/magento-module-cookie-100.3.5.0-patch1.zip",
+                "shasum": "76dadef5b4af8cc0dd2d171ef3af210180168b72"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -9995,11 +10048,11 @@
         },
         {
             "name": "magento/module-csp",
-            "version": "100.3.0",
+            "version": "100.3.0-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-csp/magento-module-csp-100.3.0.0.zip",
-                "shasum": "f8f0ccac2d4719c8398f636d8dd6b05a8e8e29cf"
+                "url": "https://repo.magento.com/archives/magento/module-csp/magento-module-csp-100.3.0.0-patch1.zip",
+                "shasum": "6d4cd0d88c671fd3c0b303b652f2b009f6864ac5"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -10085,11 +10138,11 @@
         },
         {
             "name": "magento/module-customer",
-            "version": "102.0.6",
+            "version": "102.0.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-customer/magento-module-customer-102.0.6.0.zip",
-                "shasum": "0f6b6950a16f09e3c5cd51b8f53bd5cfa4e1e756"
+                "url": "https://repo.magento.com/archives/magento/module-customer/magento-module-customer-102.0.6.0-patch1.zip",
+                "shasum": "4e9fc376d62a017c69f45f3f293379ed0d025aef"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -10116,7 +10169,8 @@
             },
             "suggest": {
                 "magento/module-cookie": "100.3.*",
-                "magento/module-customer-sample-data": "Sample Data version: 100.3.*"
+                "magento/module-customer-sample-data": "Sample Data version: 100.3.*",
+                "magento/module-webapi": "100.3.*"
             },
             "type": "magento2-module",
             "autoload": {
@@ -10164,11 +10218,11 @@
         },
         {
             "name": "magento/module-customer-balance",
-            "version": "100.3.6",
+            "version": "100.3.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-customer-balance/magento-module-customer-balance-100.3.6.0.zip",
-                "shasum": "076588bab76bbf622375097f7dfcd32c4a090938"
+                "url": "https://repo.magento.com/archives/magento/module-customer-balance/magento-module-customer-balance-100.3.6.0-patch1.zip",
+                "shasum": "2d0cb5c26fa8615a8e4e27f97f772b50e7e0907c"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -10234,11 +10288,11 @@
         },
         {
             "name": "magento/module-customer-custom-attributes",
-            "version": "100.3.6",
+            "version": "100.3.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-customer-custom-attributes/magento-module-customer-custom-attributes-100.3.6.0.zip",
-                "shasum": "4436c008919ed3cd3522b9a076c067e717951d07"
+                "url": "https://repo.magento.com/archives/magento/module-customer-custom-attributes/magento-module-customer-custom-attributes-100.3.6.0-patch1.zip",
+                "shasum": "9d51f6ad3f094ea46d0da688c147c4d2a9d6b459"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -10339,11 +10393,11 @@
         },
         {
             "name": "magento/module-customer-graph-ql",
-            "version": "100.3.5",
+            "version": "100.3.5-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-customer-graph-ql/magento-module-customer-graph-ql-100.3.5.0.zip",
-                "shasum": "06bc57cc279bdd9c2ef198d0117b4931ec216ffb"
+                "url": "https://repo.magento.com/archives/magento/module-customer-graph-ql/magento-module-customer-graph-ql-100.3.5.0-patch1.zip",
+                "shasum": "ed4b55fc82cb30c900fdecfcc335f1dfd2ff47ef"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -11716,11 +11770,11 @@
         },
         {
             "name": "magento/module-google-tag-manager",
-            "version": "100.3.6",
+            "version": "100.3.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-google-tag-manager/magento-module-google-tag-manager-100.3.6.0.zip",
-                "shasum": "8559cb417604c0779143c82e530289efe3f2187f"
+                "url": "https://repo.magento.com/archives/magento/module-google-tag-manager/magento-module-google-tag-manager-100.3.6.0-patch1.zip",
+                "shasum": "1228f514b25ce32e050d3ce59dd1b79a8317eeb7"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -11756,11 +11810,11 @@
         },
         {
             "name": "magento/module-graph-ql",
-            "version": "100.3.5",
+            "version": "100.3.5-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-graph-ql/magento-module-graph-ql-100.3.5.0.zip",
-                "shasum": "33843ce64969965d9784136c7681ca0c07ba41b7"
+                "url": "https://repo.magento.com/archives/magento/module-graph-ql/magento-module-graph-ql-100.3.5.0-patch1.zip",
+                "shasum": "cc2a064e61e1b2f5427b1ea138a323bbc65d25c8"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -11985,11 +12039,11 @@
         },
         {
             "name": "magento/module-import-export",
-            "version": "100.3.6",
+            "version": "100.3.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-import-export/magento-module-import-export-100.3.6.0.zip",
-                "shasum": "9491cff094a4a998058b7626128fa3e4a2c62119"
+                "url": "https://repo.magento.com/archives/magento/module-import-export/magento-module-import-export-100.3.6.0-patch1.zip",
+                "shasum": "1621e9ce6881defebbb0d770ba9a732b932f85ea"
             },
             "require": {
                 "ext-ctype": "*",
@@ -13879,11 +13933,11 @@
         },
         {
             "name": "magento/module-message-queue",
-            "version": "100.3.5",
+            "version": "100.3.6",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-message-queue/magento-module-message-queue-100.3.5.0.zip",
-                "shasum": "330682b1d9eb0c8ba7d31eaaa62c0539d08820ee"
+                "url": "https://repo.magento.com/archives/magento/module-message-queue/magento-module-message-queue-100.3.6.0.zip",
+                "shasum": "cb1431d0020a4f78a536338fcdfe47e13a70695e"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -14035,11 +14089,11 @@
         },
         {
             "name": "magento/module-multiple-wishlist",
-            "version": "100.3.6",
+            "version": "100.3.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-multiple-wishlist/magento-module-multiple-wishlist-100.3.6.0.zip",
-                "shasum": "b0da382e2cff8c3e00a38edcbd53c483f49a2f1b"
+                "url": "https://repo.magento.com/archives/magento/module-multiple-wishlist/magento-module-multiple-wishlist-100.3.6.0-patch1.zip",
+                "shasum": "28a21a427eaf4bc2e92d323e8e6a3e0fc1861fba"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -14076,11 +14130,11 @@
         },
         {
             "name": "magento/module-multishipping",
-            "version": "100.3.6",
+            "version": "100.3.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-multishipping/magento-module-multishipping-100.3.6.0.zip",
-                "shasum": "f37d9a47554aecf41bb74a2463692cbf86839537"
+                "url": "https://repo.magento.com/archives/magento/module-multishipping/magento-module-multishipping-100.3.6.0-patch1.zip",
+                "shasum": "20cd817f5ca7a5f8e1c45caad3ca6ffb6fb85681"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -14283,40 +14337,40 @@
         },
         {
             "name": "magento/module-page-builder",
-            "version": "1.3.3",
+            "version": "1.3.3-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-page-builder/magento-module-page-builder-1.3.3.0.zip",
-                "shasum": "9d7c2ff62fafb382e50e59ca9f8159b6a078cc35"
+                "url": "https://repo.magento.com/archives/magento/module-page-builder/magento-module-page-builder-1.3.3.0-patch1.zip",
+                "shasum": "cbe5474bfb7e71297c6fe896e57fedc039eca57b"
             },
             "require": {
                 "magento/dom": "2.1.7",
-                "magento/framework": "~102.0.6",
-                "magento/module-backend": "~101.0.6",
-                "magento/module-catalog": "~103.0.6",
-                "magento/module-catalog-inventory": "100.3.*",
-                "magento/module-catalog-widget": "100.3.*",
-                "magento/module-cms": "103.0.*",
+                "magento/framework": "~102.0.6-p1",
+                "magento/module-backend": "~101.0.6-p1",
+                "magento/module-catalog": "~103.0.6-p1",
+                "magento/module-catalog-inventory": "*",
+                "magento/module-catalog-widget": "*",
+                "magento/module-cms": "*",
                 "magento/module-config": "~101.1.6",
                 "magento/module-directory": "~100.3.6",
-                "magento/module-eav": "102.0.*",
-                "magento/module-email": "101.0.*",
-                "magento/module-media-storage": "100.3.*",
-                "magento/module-require-js": "100.3.*",
+                "magento/module-eav": "*",
+                "magento/module-email": "*",
+                "magento/module-media-storage": "*",
+                "magento/module-require-js": "*",
                 "magento/module-rule": "~100.3.5",
-                "magento/module-store": "~101.0.6",
-                "magento/module-theme": "101.0.*",
-                "magento/module-ui": "101.1.*",
-                "magento/module-variable": "100.3.*",
-                "magento/module-widget": "101.1.*",
-                "magento/module-wishlist": "101.1.*",
+                "magento/module-store": "~101.0.6-p1",
+                "magento/module-theme": "*",
+                "magento/module-ui": "*",
+                "magento/module-variable": "*",
+                "magento/module-widget": "*",
+                "magento/module-wishlist": "*",
                 "php": "~7.1.3||~7.2.0||~7.3.0"
             },
             "conflict": {
                 "gene/bluefoot": "*"
             },
             "suggest": {
-                "magento/module-review": "100.3.*"
+                "magento/module-review": "*"
             },
             "type": "magento2-module",
             "autoload": {
@@ -14334,14 +14388,14 @@
         },
         {
             "name": "magento/module-page-builder-analytics",
-            "version": "1.3.3",
+            "version": "1.3.3-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-page-builder-analytics/magento-module-page-builder-analytics-1.3.3.0.zip",
-                "shasum": "d938fbc596ba6a533893ab495471b765370b04af"
+                "url": "https://repo.magento.com/archives/magento/module-page-builder-analytics/magento-module-page-builder-analytics-1.3.3.0-patch1.zip",
+                "shasum": "725bcaf656b1c578f95febe286a491a85ddf7d45"
             },
             "require": {
-                "magento/framework": "~102.0.6",
+                "magento/framework": "~102.0.6-p1",
                 "magento/module-analytics": "~100.3.6",
                 "magento/module-page-builder": "1.3.*",
                 "php": "~7.1.3||~7.2.0||~7.3.0"
@@ -14362,11 +14416,11 @@
         },
         {
             "name": "magento/module-page-cache",
-            "version": "100.3.6",
+            "version": "100.3.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-page-cache/magento-module-page-cache-100.3.6.0.zip",
-                "shasum": "b1ea6cda1108f7742176fcd42494466ae3660367"
+                "url": "https://repo.magento.com/archives/magento/module-page-cache/magento-module-page-cache-100.3.6.0-patch1.zip",
+                "shasum": "8f72d009b151a15c2a96726ca0f36349ee7abc1a"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -14457,15 +14511,16 @@
         },
         {
             "name": "magento/module-paypal",
-            "version": "100.3.6",
+            "version": "100.3.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-paypal/magento-module-paypal-100.3.6.0.zip",
-                "shasum": "5aa34096fe4c435aabbb83b4ab6ee9a46aca2c9c"
+                "url": "https://repo.magento.com/archives/magento/module-paypal/magento-module-paypal-100.3.6.0-patch1.zip",
+                "shasum": "86f82fe696720ef3943254f5c1c32fbc2150a65b"
             },
             "require": {
                 "lib-libxml": "*",
                 "magento/framework": "102.0.*",
+                "magento/module-authorization": "100.3.*",
                 "magento/module-backend": "101.0.*",
                 "magento/module-catalog": "103.0.*",
                 "magento/module-checkout": "100.3.*",
@@ -14631,11 +14686,11 @@
         },
         {
             "name": "magento/module-persistent",
-            "version": "100.3.6",
+            "version": "100.3.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-persistent/magento-module-persistent-100.3.6.0.zip",
-                "shasum": "79f96718b546a9ccd22418258205360585bcf080"
+                "url": "https://repo.magento.com/archives/magento/module-persistent/magento-module-persistent-100.3.6.0-patch1.zip",
+                "shasum": "36bdb47cb4f3293e5dceb10129d678a0c5e74f21"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -14951,11 +15006,11 @@
         },
         {
             "name": "magento/module-quote-graph-ql",
-            "version": "100.3.6",
+            "version": "100.3.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-quote-graph-ql/magento-module-quote-graph-ql-100.3.6.0.zip",
-                "shasum": "198f8952f988947c9f2f0de7bdea5b2252743406"
+                "url": "https://repo.magento.com/archives/magento/module-quote-graph-ql/magento-module-quote-graph-ql-100.3.6.0-patch1.zip",
+                "shasum": "8b5924cc4182d7e030794d5f05a3c6eeed0305eb"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -15289,11 +15344,11 @@
         },
         {
             "name": "magento/module-reward",
-            "version": "101.1.5",
+            "version": "101.1.5-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-reward/magento-module-reward-101.1.5.0.zip",
-                "shasum": "6492b78d61ec1e3ff6afac79f39e11ff986edfac"
+                "url": "https://repo.magento.com/archives/magento/module-reward/magento-module-reward-101.1.5.0-patch1.zip",
+                "shasum": "e8657629f47bf7220db36116cccad00ae46099e3"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -15605,11 +15660,11 @@
         },
         {
             "name": "magento/module-sales",
-            "version": "102.0.6",
+            "version": "102.0.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-sales/magento-module-sales-102.0.6.0.zip",
-                "shasum": "d370bdda0693544e74b83e0ae7aa2a53488ca530"
+                "url": "https://repo.magento.com/archives/magento/module-sales/magento-module-sales-102.0.6.0-patch1.zip",
+                "shasum": "9bece048adc33e5d3297ff7ef171f47d1a3d904c"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -16019,11 +16074,11 @@
         },
         {
             "name": "magento/module-scheduled-import-export",
-            "version": "101.1.5",
+            "version": "101.1.5-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-scheduled-import-export/magento-module-scheduled-import-export-101.1.5.0.zip",
-                "shasum": "e7a6407677eee43574e2efb5cfdfcc195bac5e0b"
+                "url": "https://repo.magento.com/archives/magento/module-scheduled-import-export/magento-module-scheduled-import-export-101.1.5.0-patch1.zip",
+                "shasum": "f8c120e57dd3b536e2c8510cd51bc41bd3aefc76"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -16111,11 +16166,11 @@
         },
         {
             "name": "magento/module-security",
-            "version": "100.3.5",
+            "version": "100.3.5-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-security/magento-module-security-100.3.5.0.zip",
-                "shasum": "6a595272d5f8e90f4fd1e6201044e82b369bbc5f"
+                "url": "https://repo.magento.com/archives/magento/module-security/magento-module-security-100.3.5.0-patch1.zip",
+                "shasum": "98679ee61096164fa38600beb087285c76802e46"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -16144,11 +16199,11 @@
         },
         {
             "name": "magento/module-send-friend",
-            "version": "100.3.4",
+            "version": "100.3.5-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-send-friend/magento-module-send-friend-100.3.4.0.zip",
-                "shasum": "1c3a4a1c589b6a0a9106341d4cd8b3349a61c3e9"
+                "url": "https://repo.magento.com/archives/magento/module-send-friend/magento-module-send-friend-100.3.5.0-patch1.zip",
+                "shasum": "016f0944a5f2d80563a300503f11a967e5f81ab1"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -16207,11 +16262,11 @@
         },
         {
             "name": "magento/module-shipping",
-            "version": "100.3.5",
+            "version": "100.3.6",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-shipping/magento-module-shipping-100.3.5.0.zip",
-                "shasum": "de9a53127d4efcfb40167279c3412da81dfd907d"
+                "url": "https://repo.magento.com/archives/magento/module-shipping/magento-module-shipping-100.3.6.0.zip",
+                "shasum": "17c120e96f7891612246b1b587f38d266f6c76f7"
             },
             "require": {
                 "ext-gd": "*",
@@ -16397,19 +16452,19 @@
         },
         {
             "name": "magento/module-staging-page-builder",
-            "version": "1.3.3",
+            "version": "1.3.3-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-staging-page-builder/magento-module-staging-page-builder-1.3.3.0.zip",
-                "shasum": "4f2500586f93b7b0a4fa5403661fa4cd4acc5915"
+                "url": "https://repo.magento.com/archives/magento/module-staging-page-builder/magento-module-staging-page-builder-1.3.3.0-patch1.zip",
+                "shasum": "41ae509170536d64f2758257da859e76d2be62a6"
             },
             "require": {
-                "magento/framework": "~102.0.6",
+                "magento/framework": "~102.0.6-p1",
                 "php": "~7.1.3||~7.2.0||~7.3.0"
             },
             "suggest": {
-                "magento/module-page-builder": "1.3.*",
-                "magento/module-staging": "101.1.*"
+                "magento/module-page-builder": "*",
+                "magento/module-staging": "*"
             },
             "type": "magento2-module",
             "autoload": {
@@ -16427,11 +16482,11 @@
         },
         {
             "name": "magento/module-store",
-            "version": "101.0.6",
+            "version": "101.0.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-store/magento-module-store-101.0.6.0.zip",
-                "shasum": "9a793146e8c8d3c40f1ed447478438d217406535"
+                "url": "https://repo.magento.com/archives/magento/module-store/magento-module-store-101.0.6.0-patch1.zip",
+                "shasum": "d3f5bb1f3cbde0a8be9f8879184d7d536953969d"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -16541,11 +16596,11 @@
         },
         {
             "name": "magento/module-swagger",
-            "version": "100.3.5",
+            "version": "100.3.5-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-swagger/magento-module-swagger-100.3.5.0.zip",
-                "shasum": "f3454e157afcecd11ea78d0bd87ba7fd4749150a"
+                "url": "https://repo.magento.com/archives/magento/module-swagger/magento-module-swagger-100.3.5.0-patch1.zip",
+                "shasum": "baececd9758ca64473e5bdc4cd583d0aa4947cec"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -16627,11 +16682,11 @@
         },
         {
             "name": "magento/module-swatches",
-            "version": "100.3.6",
+            "version": "100.3.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-swatches/magento-module-swatches-100.3.6.0.zip",
-                "shasum": "077072098a6cd90f0ed970f5d6d0126b6bc25cb2"
+                "url": "https://repo.magento.com/archives/magento/module-swatches/magento-module-swatches-100.3.6.0-patch1.zip",
+                "shasum": "415863df13d83d5e0034f20edf206cba9da0baf1"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -16874,11 +16929,11 @@
         },
         {
             "name": "magento/module-theme",
-            "version": "101.0.6",
+            "version": "101.0.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-theme/magento-module-theme-101.0.6.0.zip",
-                "shasum": "d7e663c6b2ea003b0b88a8341553e67ecf274aec"
+                "url": "https://repo.magento.com/archives/magento/module-theme/magento-module-theme-101.0.6.0-patch1.zip",
+                "shasum": "ab7a18131f49089d742e0233ed7b409f08cbdd88"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -17045,11 +17100,11 @@
         },
         {
             "name": "magento/module-ui",
-            "version": "101.1.6",
+            "version": "101.1.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-ui/magento-module-ui-101.1.6.0.zip",
-                "shasum": "2517b9dcd24f279697dbdbaab8447a61ddaf69f5"
+                "url": "https://repo.magento.com/archives/magento/module-ui/magento-module-ui-101.1.6.0-patch1.zip",
+                "shasum": "a017c270dabb01c60866ea3123f7c61f5bc1c4e6"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -17182,11 +17237,11 @@
         },
         {
             "name": "magento/module-user",
-            "version": "101.1.6",
+            "version": "101.1.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-user/magento-module-user-101.1.6.0.zip",
-                "shasum": "6b73cd893c4b3ee4ff236969896262ba2c029084"
+                "url": "https://repo.magento.com/archives/magento/module-user/magento-module-user-101.1.6.0-patch1.zip",
+                "shasum": "da6afa309d7ccab970017fd983f752b7ca912aa9"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -17282,11 +17337,11 @@
         },
         {
             "name": "magento/module-vault",
-            "version": "101.1.6",
+            "version": "101.1.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-vault/magento-module-vault-101.1.6.0.zip",
-                "shasum": "263be5b1bba742578ff63273b3fa79084ef45897"
+                "url": "https://repo.magento.com/archives/magento/module-vault/magento-module-vault-101.1.6.0-patch1.zip",
+                "shasum": "18c5f4777ebaef3f410290b6486e6207ca5faf5a"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -17371,11 +17426,11 @@
         },
         {
             "name": "magento/module-versions-cms",
-            "version": "101.1.6",
+            "version": "101.1.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-versions-cms/magento-module-versions-cms-101.1.6.0.zip",
-                "shasum": "d5f3a184c6bc0a5ad52a1082d88132864fda8012"
+                "url": "https://repo.magento.com/archives/magento/module-versions-cms/magento-module-versions-cms-101.1.6.0-patch1.zip",
+                "shasum": "0549cb4fff7e3bab658bdf4eea3beb5e1a71c308"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -17432,11 +17487,11 @@
         },
         {
             "name": "magento/module-visual-merchandiser",
-            "version": "100.3.6",
+            "version": "100.3.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-visual-merchandiser/magento-module-visual-merchandiser-100.3.6.0.zip",
-                "shasum": "6c494c629ad979738a09778ea841c7e2456029da"
+                "url": "https://repo.magento.com/archives/magento/module-visual-merchandiser/magento-module-visual-merchandiser-100.3.6.0-patch1.zip",
+                "shasum": "8b9651584dc8024e01fc62751798fd121cb7700d"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -17703,11 +17758,11 @@
         },
         {
             "name": "magento/module-widget",
-            "version": "101.1.4",
+            "version": "101.1.5-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-widget/magento-module-widget-101.1.4.0.zip",
-                "shasum": "4682875f50085860f6c49a64eacc6efa1ad22c7a"
+                "url": "https://repo.magento.com/archives/magento/module-widget/magento-module-widget-101.1.5.0-patch1.zip",
+                "shasum": "878caead344c59ece318a38d824c716ec8ba3d40"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -17739,11 +17794,11 @@
         },
         {
             "name": "magento/module-wishlist",
-            "version": "101.1.6",
+            "version": "101.1.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-wishlist/magento-module-wishlist-101.1.6.0.zip",
-                "shasum": "3582146188e83f3c0df5b55a502cedc8066bf0f3"
+                "url": "https://repo.magento.com/archives/magento/module-wishlist/magento-module-wishlist-101.1.6.0-patch1.zip",
+                "shasum": "a41dc9699601916b4f27d53fc6c54a020887da0e"
             },
             "require": {
                 "magento/framework": "102.0.*",
@@ -17877,34 +17932,34 @@
         },
         {
             "name": "magento/page-builder-commerce",
-            "version": "1.3.3",
+            "version": "1.3.3-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/page-builder-commerce/magento-page-builder-commerce-1.3.3.0.zip",
-                "shasum": "4b0a538225cbec7b850519877d87611311e7bd64"
+                "url": "https://repo.magento.com/archives/magento/page-builder-commerce/magento-page-builder-commerce-1.3.3.0-patch1.zip",
+                "shasum": "69106e906c2b392d1ceb630bbdec4103697a7202"
             },
             "require": {
-                "magento/module-banner-page-builder": "1.3.3",
-                "magento/module-banner-page-builder-analytics": "1.3.3",
-                "magento/module-catalog-page-builder-analytics": "1.3.3",
-                "magento/module-catalog-page-builder-analytics-staging": "1.3.3",
-                "magento/module-catalog-staging-page-builder": "1.3.3",
-                "magento/module-cms-page-builder-analytics": "1.3.3",
-                "magento/module-cms-page-builder-analytics-staging": "1.3.3",
-                "magento/module-page-builder": "1.3.3",
-                "magento/module-page-builder-analytics": "1.3.3",
-                "magento/module-staging-page-builder": "1.3.3"
+                "magento/module-banner-page-builder": "1.3.3-p1",
+                "magento/module-banner-page-builder-analytics": "1.3.3-p1",
+                "magento/module-catalog-page-builder-analytics": "1.3.3-p1",
+                "magento/module-catalog-page-builder-analytics-staging": "1.3.3-p1",
+                "magento/module-catalog-staging-page-builder": "1.3.3-p1",
+                "magento/module-cms-page-builder-analytics": "1.3.3-p1",
+                "magento/module-cms-page-builder-analytics-staging": "1.3.3-p1",
+                "magento/module-page-builder": "1.3.3-p1",
+                "magento/module-page-builder-analytics": "1.3.3-p1",
+                "magento/module-staging-page-builder": "1.3.3-p1"
             },
             "type": "metapackage",
             "description": "Page Builder Commerce metapackage"
         },
         {
             "name": "magento/product-community-edition",
-            "version": "2.3.6",
+            "version": "2.3.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/product-community-edition/magento-product-community-edition-2.3.6.0.zip",
-                "shasum": "464614b41bc8eaf2520327cad579904cdf9d1b72"
+                "url": "https://repo.magento.com/archives/magento/product-community-edition/magento-product-community-edition-2.3.6.0-patch1.zip",
+                "shasum": "45f53dd839e9043d415eefa2a7913f6686d86b3f"
             },
             "require": {
                 "amzn/amazon-pay-and-login-magento-2-module": "3.4.1-p3",
@@ -17914,7 +17969,7 @@
                 "colinmollenhour/credis": "1.10.0",
                 "colinmollenhour/php-redis-session-abstract": "~1.4.0",
                 "composer/composer": "^1.9",
-                "dotmailer/dotmailer-magento2-extension-package": "4.4.1",
+                "dotmailer/dotmailer-magento2-extension-package": "4.4.1-p1",
                 "elasticsearch/elasticsearch": "~2.0||~5.1||~6.1||~7.6",
                 "ext-bcmath": "*",
                 "ext-ctype": "*",
@@ -17932,7 +17987,7 @@
                 "ext-xsl": "*",
                 "ext-zip": "*",
                 "guzzlehttp/guzzle": "^6.3.3",
-                "klarna/m2-payments": "7.6.1",
+                "klarna/m2-payments": "7.6.2-p1",
                 "laminas/laminas-captcha": "^2.7.1",
                 "laminas/laminas-code": "~3.3.0",
                 "laminas/laminas-config": "^2.6.0",
@@ -17965,7 +18020,7 @@
                 "lib-libxml": "*",
                 "magento/adobe-stock-integration": "1.0.2",
                 "magento/composer": "~1.5.0",
-                "magento/framework": "102.0.6",
+                "magento/framework": "102.0.6-p1",
                 "magento/framework-amqp": "100.3.5",
                 "magento/framework-bulk": "100.3.5",
                 "magento/framework-message-queue": "100.3.6",
@@ -17979,7 +18034,7 @@
                 "magento/language-pt_br": "100.3.4",
                 "magento/language-zh_hans_cn": "100.3.4",
                 "magento/magento-composer-installer": ">=0.1.11",
-                "magento/magento2-base": "2.3.6",
+                "magento/magento2-base": "2.3.6-p1",
                 "magento/module-admin-analytics": "100.3.2",
                 "magento/module-admin-notification": "100.3.5",
                 "magento/module-advanced-pricing-import-export": "100.3.4",
@@ -17993,7 +18048,7 @@
                 "magento/module-authorizenet-acceptjs": "100.3.4",
                 "magento/module-authorizenet-cardinal": "100.3.1",
                 "magento/module-authorizenet-graph-ql": "100.3.2",
-                "magento/module-backend": "101.0.6",
+                "magento/module-backend": "101.0.6-p1",
                 "magento/module-backup": "100.3.5",
                 "magento/module-braintree": "100.3.6",
                 "magento/module-braintree-graph-ql": "100.3.3",
@@ -18001,9 +18056,9 @@
                 "magento/module-bundle-graph-ql": "100.3.4",
                 "magento/module-bundle-import-export": "100.3.5",
                 "magento/module-cache-invalidate": "100.3.4",
-                "magento/module-captcha": "100.3.6",
+                "magento/module-captcha": "100.3.6-p1",
                 "magento/module-cardinal-commerce": "100.3.2",
-                "magento/module-catalog": "103.0.6",
+                "magento/module-catalog": "103.0.6-p1",
                 "magento/module-catalog-analytics": "100.3.4",
                 "magento/module-catalog-cms-graph-ql": "100.3.0",
                 "magento/module-catalog-customer-graph-ql": "100.3.0",
@@ -18018,10 +18073,10 @@
                 "magento/module-catalog-url-rewrite": "100.3.6",
                 "magento/module-catalog-url-rewrite-graph-ql": "100.3.5",
                 "magento/module-catalog-widget": "100.3.6",
-                "magento/module-checkout": "100.3.6",
+                "magento/module-checkout": "100.3.6-p1",
                 "magento/module-checkout-agreements": "100.3.5",
                 "magento/module-checkout-agreements-graph-ql": "100.3.1",
-                "magento/module-cms": "103.0.6",
+                "magento/module-cms": "103.0.6-p1",
                 "magento/module-cms-graph-ql": "100.3.4",
                 "magento/module-cms-url-rewrite": "100.3.5",
                 "magento/module-cms-url-rewrite-graph-ql": "100.3.4",
@@ -18031,14 +18086,14 @@
                 "magento/module-configurable-product-graph-ql": "100.3.5",
                 "magento/module-configurable-product-sales": "100.3.4",
                 "magento/module-contact": "100.3.6",
-                "magento/module-cookie": "100.3.5",
+                "magento/module-cookie": "100.3.5-p1",
                 "magento/module-cron": "100.3.5",
-                "magento/module-csp": "100.3.0",
+                "magento/module-csp": "100.3.0-p1",
                 "magento/module-currency-symbol": "100.3.5",
-                "magento/module-customer": "102.0.6",
+                "magento/module-customer": "102.0.6-p1",
                 "magento/module-customer-analytics": "100.3.4",
                 "magento/module-customer-downloadable-graph-ql": "100.3.0",
-                "magento/module-customer-graph-ql": "100.3.5",
+                "magento/module-customer-graph-ql": "100.3.5-p1",
                 "magento/module-customer-import-export": "100.3.6",
                 "magento/module-deploy": "100.3.5",
                 "magento/module-developer": "100.3.5",
@@ -18060,13 +18115,13 @@
                 "magento/module-google-adwords": "100.3.5",
                 "magento/module-google-analytics": "100.3.4",
                 "magento/module-google-optimizer": "100.3.5",
-                "magento/module-graph-ql": "100.3.5",
+                "magento/module-graph-ql": "100.3.5-p1",
                 "magento/module-graph-ql-cache": "100.3.2",
                 "magento/module-grouped-catalog-inventory": "100.3.3",
                 "magento/module-grouped-import-export": "100.3.4",
                 "magento/module-grouped-product": "100.3.6",
                 "magento/module-grouped-product-graph-ql": "100.3.5",
-                "magento/module-import-export": "100.3.6",
+                "magento/module-import-export": "100.3.6-p1",
                 "magento/module-indexer": "100.3.6",
                 "magento/module-instant-purchase": "100.3.6",
                 "magento/module-integration": "100.3.5",
@@ -18075,28 +18130,28 @@
                 "magento/module-media-gallery": "100.3.1",
                 "magento/module-media-gallery-api": "100.3.0",
                 "magento/module-media-storage": "100.3.6",
-                "magento/module-message-queue": "100.3.5",
+                "magento/module-message-queue": "100.3.6",
                 "magento/module-msrp": "100.3.5",
                 "magento/module-msrp-configurable-product": "100.3.3",
                 "magento/module-msrp-grouped-product": "100.3.4",
-                "magento/module-multishipping": "100.3.6",
+                "magento/module-multishipping": "100.3.6-p1",
                 "magento/module-mysql-mq": "100.3.4",
                 "magento/module-new-relic-reporting": "100.3.4",
                 "magento/module-newsletter": "100.3.6",
                 "magento/module-offline-payments": "100.3.4",
                 "magento/module-offline-shipping": "100.3.5",
-                "magento/module-page-cache": "100.3.6",
+                "magento/module-page-cache": "100.3.6-p1",
                 "magento/module-payment": "100.3.6",
-                "magento/module-paypal": "100.3.6",
+                "magento/module-paypal": "100.3.6-p1",
                 "magento/module-paypal-captcha": "100.3.2",
                 "magento/module-paypal-graph-ql": "100.3.1",
                 "magento/module-paypal-recaptcha": "1.0.1",
-                "magento/module-persistent": "100.3.6",
+                "magento/module-persistent": "100.3.6-p1",
                 "magento/module-product-alert": "100.3.6",
                 "magento/module-product-video": "100.3.6",
                 "magento/module-quote": "101.1.6",
                 "magento/module-quote-analytics": "100.3.5",
-                "magento/module-quote-graph-ql": "100.3.6",
+                "magento/module-quote-graph-ql": "100.3.6-p1",
                 "magento/module-related-product-graph-ql": "100.3.1",
                 "magento/module-release-notification": "100.3.4",
                 "magento/module-reports": "100.3.6",
@@ -18106,7 +18161,7 @@
                 "magento/module-robots": "101.0.4",
                 "magento/module-rss": "100.3.4",
                 "magento/module-rule": "100.3.5",
-                "magento/module-sales": "102.0.6",
+                "magento/module-sales": "102.0.6-p1",
                 "magento/module-sales-analytics": "100.3.4",
                 "magento/module-sales-graph-ql": "100.3.3",
                 "magento/module-sales-inventory": "100.3.4",
@@ -18114,35 +18169,35 @@
                 "magento/module-sales-sequence": "100.3.4",
                 "magento/module-sample-data": "100.3.4",
                 "magento/module-search": "101.0.6",
-                "magento/module-security": "100.3.5",
-                "magento/module-send-friend": "100.3.4",
+                "magento/module-security": "100.3.5-p1",
+                "magento/module-send-friend": "100.3.5-p1",
                 "magento/module-send-friend-graph-ql": "100.3.3",
-                "magento/module-shipping": "100.3.5",
+                "magento/module-shipping": "100.3.6",
                 "magento/module-signifyd": "100.3.5",
                 "magento/module-sitemap": "100.3.6",
-                "magento/module-store": "101.0.6",
+                "magento/module-store": "101.0.6-p1",
                 "magento/module-store-graph-ql": "100.3.4",
-                "magento/module-swagger": "100.3.5",
+                "magento/module-swagger": "100.3.5-p1",
                 "magento/module-swagger-webapi": "100.3.4",
                 "magento/module-swagger-webapi-async": "100.3.4",
-                "magento/module-swatches": "100.3.6",
+                "magento/module-swatches": "100.3.6-p1",
                 "magento/module-swatches-graph-ql": "100.3.5",
                 "magento/module-swatches-layered-navigation": "100.3.4",
                 "magento/module-tax": "100.3.6",
                 "magento/module-tax-graph-ql": "100.3.4",
                 "magento/module-tax-import-export": "100.3.4",
-                "magento/module-theme": "101.0.6",
+                "magento/module-theme": "101.0.6-p1",
                 "magento/module-theme-graph-ql": "100.3.3",
                 "magento/module-tinymce-3": "100.3.6",
                 "magento/module-translation": "100.3.6",
-                "magento/module-ui": "101.1.6",
+                "magento/module-ui": "101.1.6-p1",
                 "magento/module-ups": "100.3.6",
                 "magento/module-url-rewrite": "101.1.5",
                 "magento/module-url-rewrite-graph-ql": "100.3.6",
-                "magento/module-user": "101.1.6",
+                "magento/module-user": "101.1.6-p1",
                 "magento/module-usps": "100.3.5",
                 "magento/module-variable": "100.3.4",
-                "magento/module-vault": "101.1.6",
+                "magento/module-vault": "101.1.6-p1",
                 "magento/module-vault-graph-ql": "100.3.2",
                 "magento/module-version": "100.3.4",
                 "magento/module-webapi": "100.3.5",
@@ -18150,8 +18205,8 @@
                 "magento/module-webapi-security": "100.3.4",
                 "magento/module-weee": "100.3.5",
                 "magento/module-weee-graph-ql": "100.3.4",
-                "magento/module-widget": "101.1.4",
-                "magento/module-wishlist": "101.1.6",
+                "magento/module-widget": "101.1.5-p1",
+                "magento/module-wishlist": "101.1.6-p1",
                 "magento/module-wishlist-analytics": "100.3.4",
                 "magento/module-wishlist-graph-ql": "100.3.3",
                 "magento/theme-adminhtml-backend": "100.3.5",
@@ -18174,7 +18229,7 @@
                 "tedivm/jshrink": "~1.3.0",
                 "temando/module-shipping": "2.0.0",
                 "tubalmartin/cssmin": "4.1.1",
-                "vertex/product-magento-module": "3.4.3",
+                "vertex/product-magento-module": "3.4.3-p1",
                 "webonyx/graphql-php": "^0.13.8",
                 "wikimedia/less.php": "~1.8.0",
                 "yotpo/magento2-module-yotpo-reviews-bundle": "3.1.0"
@@ -18188,21 +18243,20 @@
         },
         {
             "name": "magento/product-enterprise-edition",
-            "version": "2.3.6",
+            "version": "2.3.6-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/product-enterprise-edition/magento-product-enterprise-edition-2.3.6.0.zip",
-                "shasum": "bd67f0bfd624b48c3036b1dff7bbb05eafe3d174"
+                "url": "https://repo.magento.com/archives/magento/product-enterprise-edition/magento-product-enterprise-edition-2.3.6.0-patch1.zip",
+                "shasum": "af0c3990a21cfc1a9210f2cf9e6b3dbec807c0e5"
             },
             "require": {
-                "amzn/amazon-pay-and-login-magento-2-module": "3.4.1-p3",
                 "braintree/braintree_php": "3.35.0",
                 "colinmollenhour/cache-backend-file": "~1.4.1",
                 "colinmollenhour/cache-backend-redis": "1.10.6",
                 "colinmollenhour/credis": "1.10.0",
                 "colinmollenhour/php-redis-session-abstract": "~1.4.0",
                 "composer/composer": "^1.9",
-                "dotmailer/dotmailer-magento2-extension-enterprise-package": "4.4.1",
+                "dotmailer/dotmailer-magento2-extension-enterprise-package": "4.4.1-p1",
                 "elasticsearch/elasticsearch": "~2.0||~5.1||~6.1||~7.6",
                 "ext-bcmath": "*",
                 "ext-ctype": "*",
@@ -18221,7 +18275,6 @@
                 "ext-xsl": "*",
                 "ext-zip": "*",
                 "guzzlehttp/guzzle": "^6.3.3",
-                "klarna/m2-payments": "7.6.1",
                 "laminas/laminas-captcha": "^2.7.1",
                 "laminas/laminas-code": "~3.3.0",
                 "laminas/laminas-config": "^2.6.0",
@@ -18252,21 +18305,18 @@
                 "laminas/laminas-validator": "^2.6.0",
                 "laminas/laminas-view": "~2.11.2",
                 "lib-libxml": "*",
-                "magento/adobe-stock-integration": "1.0.2",
                 "magento/composer": "~1.5.0",
                 "magento/framework-foreign-key": "100.3.5",
-                "magento/google-shopping-ads": "4.0.1",
-                "magento/inventory-composer-metapackage": "1.1.6",
                 "magento/magento-composer-installer": ">=0.1.11",
-                "magento/magento2-ee-base": "2.3.6",
+                "magento/magento2-ee-base": "2.3.6-p1",
                 "magento/module-admin-gws": "100.3.6",
                 "magento/module-admin-gws-configurable-product": "100.3.0",
                 "magento/module-admin-gws-staging": "100.3.0",
                 "magento/module-advanced-catalog": "100.3.4",
-                "magento/module-advanced-checkout": "100.3.6",
+                "magento/module-advanced-checkout": "100.3.6-p1",
                 "magento/module-advanced-rule": "100.3.4",
                 "magento/module-advanced-sales-rule": "100.3.4",
-                "magento/module-banner": "101.1.6",
+                "magento/module-banner": "101.1.6-p1",
                 "magento/module-banner-customer-segment": "100.3.5",
                 "magento/module-bundle-import-export-staging": "100.3.4",
                 "magento/module-bundle-staging": "100.3.5",
@@ -18277,16 +18327,16 @@
                 "magento/module-catalog-rule-staging": "100.3.6",
                 "magento/module-catalog-staging": "100.3.6",
                 "magento/module-catalog-staging-graph-ql": "100.3.0",
-                "magento/module-catalog-url-rewrite-staging": "100.3.4",
+                "magento/module-catalog-url-rewrite-staging": "100.3.5-p1",
                 "magento/module-checkout-address-search": "100.3.4",
                 "magento/module-checkout-address-search-gift-registry": "100.3.2",
                 "magento/module-checkout-staging": "100.3.4",
                 "magento/module-cms-staging": "100.3.5",
                 "magento/module-configurable-product-staging": "100.3.5",
                 "magento/module-custom-attribute-management": "100.3.6",
-                "magento/module-customer-balance": "100.3.6",
+                "magento/module-customer-balance": "100.3.6-p1",
                 "magento/module-customer-balance-graph-ql": "100.3.1",
-                "magento/module-customer-custom-attributes": "100.3.6",
+                "magento/module-customer-custom-attributes": "100.3.6-p1",
                 "magento/module-customer-finance": "100.3.4",
                 "magento/module-customer-segment": "102.0.6",
                 "magento/module-cybersource": "100.3.5",
@@ -18305,15 +18355,14 @@
                 "magento/module-gift-wrapping": "101.1.6",
                 "magento/module-gift-wrapping-staging": "100.3.4",
                 "magento/module-google-optimizer-staging": "100.3.4",
-                "magento/module-google-tag-manager": "100.3.6",
+                "magento/module-google-tag-manager": "100.3.6-p1",
                 "magento/module-grouped-product-staging": "100.3.4",
                 "magento/module-invitation": "100.3.5",
                 "magento/module-layered-navigation-staging": "100.3.4",
                 "magento/module-logging": "101.1.5",
                 "magento/module-msrp-staging": "100.3.4",
-                "magento/module-multiple-wishlist": "100.3.6",
+                "magento/module-multiple-wishlist": "100.3.6-p1",
                 "magento/module-payment-staging": "100.3.4",
-                "magento/module-paypal-recaptcha": "1.0.1",
                 "magento/module-persistent-history": "100.3.5",
                 "magento/module-price-permissions": "100.3.4",
                 "magento/module-product-video-staging": "100.3.4",
@@ -18321,7 +18370,7 @@
                 "magento/module-reminder": "101.1.4",
                 "magento/module-resource-connections": "100.3.5",
                 "magento/module-review-staging": "100.3.4",
-                "magento/module-reward": "101.1.5",
+                "magento/module-reward": "101.1.5-p1",
                 "magento/module-reward-graph-ql": "100.3.4",
                 "magento/module-reward-staging": "100.3.4",
                 "magento/module-rma": "101.1.6",
@@ -18332,25 +18381,23 @@
                 "magento/module-scalable-checkout": "100.3.5",
                 "magento/module-scalable-inventory": "100.3.4",
                 "magento/module-scalable-oms": "100.3.4",
-                "magento/module-scheduled-import-export": "101.1.5",
+                "magento/module-scheduled-import-export": "101.1.5-p1",
                 "magento/module-search-staging": "100.3.4",
                 "magento/module-staging": "101.1.6",
                 "magento/module-staging-graph-ql": "100.3.0",
                 "magento/module-support": "101.1.4",
                 "magento/module-target-rule": "101.1.6",
                 "magento/module-tinymce-3-banner": "100.3.4",
-                "magento/module-versions-cms": "101.1.6",
+                "magento/module-versions-cms": "101.1.6-p1",
                 "magento/module-versions-cms-url-rewrite": "100.3.0",
-                "magento/module-visual-merchandiser": "100.3.6",
+                "magento/module-visual-merchandiser": "100.3.6-p1",
                 "magento/module-website-restriction": "100.3.6",
                 "magento/module-weee-staging": "100.3.4",
                 "magento/module-worldpay": "100.3.5",
-                "magento/page-builder-commerce": "1.3.3",
-                "magento/product-community-edition": "2.3.6",
+                "magento/page-builder-commerce": "1.3.3-p1",
+                "magento/product-community-edition": "2.3.6-p1",
                 "magento/zendframework1": "~1.14.2",
                 "monolog/monolog": "^1.17",
-                "msp/recaptcha": "2.2.3",
-                "msp/twofactorauth": "3.1.2",
                 "paragonie/sodium_compat": "^1.6",
                 "pelago/emogrifier": "^2.0.0",
                 "php": "~7.1.3||~7.2.0||~7.3.0",
@@ -18362,12 +18409,9 @@
                 "symfony/event-dispatcher": "~4.1.0||~4.2.0||~4.3.0||~4.4.0",
                 "symfony/process": "~4.1.0||~4.2.0||~4.3.0||~4.4.0",
                 "tedivm/jshrink": "~1.3.0",
-                "temando/module-shipping": "2.0.0",
                 "tubalmartin/cssmin": "4.1.1",
-                "vertex/product-magento-module": "3.4.3",
                 "webonyx/graphql-php": "^0.13.8",
-                "wikimedia/less.php": "~1.8.0",
-                "yotpo/magento2-module-yotpo-reviews-bundle": "3.1.0"
+                "wikimedia/less.php": "~1.8.0"
             },
             "type": "metapackage",
             "license": [
@@ -18377,15 +18421,15 @@
         },
         {
             "name": "magento/quality-patches",
-            "version": "1.0.19",
+            "version": "1.1.1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/quality-patches/magento-quality-patches-1.0.19.0.zip",
-                "shasum": "2df2196ceb91615d943824ba184f5b651b07d40f"
+                "url": "https://repo.magento.com/archives/magento/quality-patches/magento-quality-patches-1.1.1.0.zip",
+                "shasum": "df1ad2980954e746fc386f142ff8071f556850ae"
             },
             "require": {
                 "ext-json": "*",
-                "magento/magento-cloud-patches": "^1.0.6",
+                "magento/magento-cloud-patches": "^1.0.11",
                 "php": "^7.0"
             },
             "require-dev": {
@@ -18531,16 +18575,16 @@
         },
         {
             "name": "magepal/magento2-core",
-            "version": "1.1.9",
+            "version": "1.1.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/magepal/magento2-core.git",
-                "reference": "79b5efe844f962ac3d3ea4c6647e6d03cca7e6d1"
+                "reference": "83fbffc0d540f82f55e0623719e08ecacc9c7e18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/magepal/magento2-core/zipball/79b5efe844f962ac3d3ea4c6647e6d03cca7e6d1",
-                "reference": "79b5efe844f962ac3d3ea4c6647e6d03cca7e6d1",
+                "url": "https://api.github.com/repos/magepal/magento2-core/zipball/83fbffc0d540f82f55e0623719e08ecacc9c7e18",
+                "reference": "83fbffc0d540f82f55e0623719e08ecacc9c7e18",
                 "shasum": ""
             },
             "require": {
@@ -18573,7 +18617,7 @@
                 "magento 2",
                 "magepal core extension"
             ],
-            "time": "2020-12-25T14:19:07+00:00"
+            "time": "2021-05-29T19:47:51+00:00"
         },
         {
             "name": "magepal/magento2-gmailsmtpapp",
@@ -18801,27 +18845,28 @@
         },
         {
             "name": "maxmind-db/reader",
-            "version": "v1.9.0",
+            "version": "v1.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/maxmind/MaxMind-DB-Reader-php.git",
-                "reference": "9ee9ba9ee287b119e9f5a8e8dbfea0b49647cec4"
+                "reference": "569bd44d97d30a4ec12c7793a33004a76d4caf18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/maxmind/MaxMind-DB-Reader-php/zipball/9ee9ba9ee287b119e9f5a8e8dbfea0b49647cec4",
-                "reference": "9ee9ba9ee287b119e9f5a8e8dbfea0b49647cec4",
+                "url": "https://api.github.com/repos/maxmind/MaxMind-DB-Reader-php/zipball/569bd44d97d30a4ec12c7793a33004a76d4caf18",
+                "reference": "569bd44d97d30a4ec12c7793a33004a76d4caf18",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2"
             },
             "conflict": {
-                "ext-maxminddb": "<1.9.0,>=2.0.0"
+                "ext-maxminddb": "<1.10.1,>=2.0.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "*",
                 "php-coveralls/php-coveralls": "^2.1",
+                "phpstan/phpstan": "*",
                 "phpunit/phpcov": ">=6.0.0",
                 "phpunit/phpunit": ">=8.0.0,<10.0.0",
                 "squizlabs/php_codesniffer": "3.*"
@@ -18857,7 +18902,7 @@
                 "geolocation",
                 "maxmind"
             ],
-            "time": "2021-01-07T21:15:29+00:00"
+            "time": "2021-04-14T17:49:35+00:00"
         },
         {
             "name": "maxmind/web-service-common",
@@ -18906,67 +18951,17 @@
             "time": "2020-11-02T17:00:53+00:00"
         },
         {
-            "name": "mercadopago/magento2-plugin",
-            "version": "3.9.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mercadopago/cart-magento2.git",
-                "reference": "c9cfddd4f6e779c26e019cbc07586e9826aa5b34"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mercadopago/cart-magento2/zipball/c9cfddd4f6e779c26e019cbc07586e9826aa5b34",
-                "reference": "c9cfddd4f6e779c26e019cbc07586e9826aa5b34",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*"
-            },
-            "require-dev": {
-                "fabpot/php-cs-fixer": "~1.2",
-                "lusitanian/oauth": "~0.3 <=0.7.0",
-                "magento/product-community-edition": "2.*",
-                "pdepend/pdepend": "2.2.2",
-                "phpmd/phpmd": "@stable",
-                "phpunit/phpunit": "4.1.0",
-                "sjparkinson/static-review": "~4.1",
-                "squizlabs/php_codesniffer": "1.5.3"
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "psr-4": {
-                    "MercadoPago\\Core\\": "src/MercadoPago/Core"
-                },
-                "files": [
-                    "src/MercadoPago/Core/registration.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "OSL-3.0",
-                "AFL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "Mercado Pago",
-                    "email": "plugins.dev@mercadopago.com"
-                }
-            ],
-            "description": "Mercado Pago Magento 2 Plugin",
-            "time": "2021-07-14T16:57:26+00:00"
-        },
-        {
             "name": "monolog/monolog",
-            "version": "1.26.0",
+            "version": "1.26.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "2209ddd84e7ef1256b7af205d0717fb62cfc9c33"
+                "reference": "c6b00f05152ae2c9b04a448f99c7590beb6042f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/2209ddd84e7ef1256b7af205d0717fb62cfc9c33",
-                "reference": "2209ddd84e7ef1256b7af205d0717fb62cfc9c33",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c6b00f05152ae2c9b04a448f99c7590beb6042f5",
+                "reference": "c6b00f05152ae2c9b04a448f99c7590beb6042f5",
                 "shasum": ""
             },
             "require": {
@@ -19035,7 +19030,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-12-14T12:56:38+00:00"
+            "time": "2021-05-28T08:32:12+00:00"
         },
         {
             "name": "msp/recaptcha",
@@ -19103,6 +19098,162 @@
                 "OSL-3.0"
             ],
             "description": "Two Factor Authentication module for Magento2"
+        },
+        {
+            "name": "mundipagg/ecommerce-module-core",
+            "version": "2.8.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mundipagg/ecommerce-module-core.git",
+                "reference": "2cfd0bedf246fe6b1351f1e445d1ded459d1ec3c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mundipagg/ecommerce-module-core/zipball/2cfd0bedf246fe6b1351f1e445d1ded459d1ec3c",
+                "reference": "2cfd0bedf246fe6b1351f1e445d1ded459d1ec3c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "monolog/monolog": "~1.6",
+                "mundipagg/mundiapi": "^3.0",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "ext-pdo": "*",
+                "mockery/mockery": "1.2.4",
+                "nesbot/carbon": "1.39.0",
+                "phpunit/phpunit": "5.7.27"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mundipagg\\Core\\": "src",
+                    "Mundipagg\\Core\\Test\\": "tests",
+                    "Mundipagg\\Core\\Test\\Mock\\": "tests\\mock"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "MundiPagg Embeddables Team",
+                    "email": "embeddables@mundipagg.com"
+                }
+            ],
+            "description": "Core component for Mundipagg e-commerce platform modules.",
+            "time": "2021-08-02T19:32:38+00:00"
+        },
+        {
+            "name": "mundipagg/mundiapi",
+            "version": "3.1.20",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mundipagg/MundiAPI-PHP.git",
+                "reference": "56535b652071d1930b508eb57ffe88ad7647a8f5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mundipagg/MundiAPI-PHP/zipball/56535b652071d1930b508eb57ffe88ad7647a8f5",
+                "reference": "56535b652071d1930b508eb57ffe88ad7647a8f5",
+                "shasum": ""
+            },
+            "require": {
+                "apimatic/jsonmapper": "^1.3.1",
+                "apimatic/unirest-php": "^2.0.0",
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "squizlabs/php_codesniffer": "^2.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MundiAPILib\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "APIMatic SDK Generator",
+                    "email": "support@apimatic.io",
+                    "homepage": "https://apimatic.io",
+                    "role": "API Tool"
+                }
+            ],
+            "description": "Mundipagg API",
+            "homepage": "https://apimatic.io",
+            "keywords": [
+                "MundiAPI",
+                "api",
+                "sdk"
+            ],
+            "time": "2021-02-26T19:15:09+00:00"
+        },
+        {
+            "name": "mundipagg/mundipagg-magento2-module",
+            "version": "2.11.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mundipagg/magento2.git",
+                "reference": "ff84e02c1f0c2e83a6cdeb4724343c16206d291a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mundipagg/magento2/zipball/ff84e02c1f0c2e83a6cdeb4724343c16206d291a",
+                "reference": "ff84e02c1f0c2e83a6cdeb4724343c16206d291a",
+                "shasum": ""
+            },
+            "require": {
+                "mundipagg/ecommerce-module-core": "2.8.6",
+                "mundipagg/mundiapi": "^3.0",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "~1.2",
+                "lusitanian/oauth": "~0.3 <=0.7.0",
+                "magento-ecg/coding-standard": "dev-master",
+                "mundipagg/mundiapi": "^3.0",
+                "pdepend/pdepend": "2.2.2",
+                "phpdocumentor/phpdocumentor": "^2.8",
+                "phpmd/phpmd": "@stable",
+                "phpunit/phpunit": "4.1.0",
+                "phpunit/phpunit-selenium": ">=1.2",
+                "rregeer/phpunit-coverage-check": "^0.1.3",
+                "satooshi/php-coveralls": "^1.0",
+                "sebastian/phpcpd": "^2.0",
+                "sjparkinson/static-review": "~4.1",
+                "squizlabs/php_codesniffer": "2.7.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "MundiPagg\\MundiPagg\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "MundiPagg Embeddables Team",
+                    "email": "embeddables@mundipagg.com"
+                }
+            ],
+            "description": "Magento 2 Module Mundipagg",
+            "time": "2021-08-02T19:34:56+00:00"
         },
         {
             "name": "mustache/mustache",
@@ -19198,22 +19349,23 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.46.0",
+            "version": "2.51.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "2fd2c4a77d58a4e95234c8a61c5df1f157a91bf4"
+                "reference": "8619c299d1e0d4b344e1f98ca07a1ce2cfbf1922"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/2fd2c4a77d58a4e95234c8a61c5df1f157a91bf4",
-                "reference": "2fd2c4a77d58a4e95234c8a61c5df1f157a91bf4",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/8619c299d1e0d4b344e1f98ca07a1ce2cfbf1922",
+                "reference": "8619c299d1e0d4b344e1f98ca07a1ce2cfbf1922",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "php": "^7.1.8 || ^8.0",
                 "symfony/polyfill-mbstring": "^1.0",
+                "symfony/polyfill-php80": "^1.16",
                 "symfony/translation": "^3.4 || ^4.0 || ^5.0"
             },
             "require-dev": {
@@ -19232,8 +19384,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.x-dev",
-                    "dev-3.x": "3.x-dev"
+                    "dev-3.x": "3.x-dev",
+                    "dev-master": "2.x-dev"
                 },
                 "laravel": {
                     "providers": [
@@ -19259,15 +19411,15 @@
                 {
                     "name": "Brian Nesbitt",
                     "email": "brian@nesbot.com",
-                    "homepage": "http://nesbot.com"
+                    "homepage": "https://markido.com"
                 },
                 {
                     "name": "kylekatarnls",
-                    "homepage": "http://github.com/kylekatarnls"
+                    "homepage": "https://github.com/kylekatarnls"
                 }
             ],
             "description": "An API extension for DateTime that supports 281 different languages.",
-            "homepage": "http://carbon.nesbot.com",
+            "homepage": "https://carbon.nesbot.com",
             "keywords": [
                 "date",
                 "datetime",
@@ -19283,7 +19435,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-02-24T17:30:44+00:00"
+            "time": "2021-07-28T13:16:28+00:00"
         },
         {
             "name": "ocramius/proxy-manager",
@@ -19464,16 +19616,16 @@
         },
         {
             "name": "paragonie/sodium_compat",
-            "version": "v1.14.0",
+            "version": "v1.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/sodium_compat.git",
-                "reference": "a1cfe0b21faf9c0b61ac0c6188c4af7fd6fd0db3"
+                "reference": "c59cac21abbcc0df06a3dd18076450ea4797b321"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/sodium_compat/zipball/a1cfe0b21faf9c0b61ac0c6188c4af7fd6fd0db3",
-                "reference": "a1cfe0b21faf9c0b61ac0c6188c4af7fd6fd0db3",
+                "url": "https://api.github.com/repos/paragonie/sodium_compat/zipball/c59cac21abbcc0df06a3dd18076450ea4797b321",
+                "reference": "c59cac21abbcc0df06a3dd18076450ea4797b321",
                 "shasum": ""
             },
             "require": {
@@ -19542,7 +19694,7 @@
                 "secret-key cryptography",
                 "side-channel resistant"
             ],
-            "time": "2020-12-03T16:26:19+00:00"
+            "time": "2021-08-10T02:43:50+00:00"
         },
         {
             "name": "pelago/emogrifier",
@@ -19591,7 +19743,7 @@
                     "email": "github@oliverklee.de"
                 },
                 {
-                    "name": "Zoli SzabÃ³",
+                    "name": "Zoli Szabó",
                     "email": "zoli.szabo+github@gmail.com"
                 },
                 {
@@ -19672,7 +19824,7 @@
                     "role": "Maintainer"
                 },
                 {
-                    "name": "RaÃºl Araya",
+                    "name": "Raúl Araya",
                     "email": "nubeiro@gmail.com",
                     "role": "Maintainer"
                 },
@@ -19742,16 +19894,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.30",
+            "version": "2.0.33",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "136b9ca7eebef78be14abf90d65c5e57b6bc5d36"
+                "reference": "fb53b7889497ec7c1362c94e61d8127ac67ea094"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/136b9ca7eebef78be14abf90d65c5e57b6bc5d36",
-                "reference": "136b9ca7eebef78be14abf90d65c5e57b6bc5d36",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/fb53b7889497ec7c1362c94e61d8127ac67ea094",
+                "reference": "fb53b7889497ec7c1362c94e61d8127ac67ea094",
                 "shasum": ""
             },
             "require": {
@@ -19798,7 +19950,7 @@
                     "role": "Developer"
                 },
                 {
-                    "name": "Hans-JÃ¼rgen Petrich",
+                    "name": "Hans-Jürgen Petrich",
                     "email": "petrich@tronic-media.com",
                     "role": "Developer"
                 },
@@ -19843,7 +19995,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-12-17T05:42:04+00:00"
+            "time": "2021-08-16T04:20:12+00:00"
         },
         {
             "name": "pmclain/magento2-successtest",
@@ -19975,16 +20127,16 @@
         },
         {
             "name": "psr/log",
-            "version": "1.1.3",
+            "version": "1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc"
+                "reference": "d49695b909c3b7628b6289db5479a1c204601f11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/0f73288fd15629204f9d42b7055f72dacbe811fc",
-                "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/d49695b909c3b7628b6289db5479a1c204601f11",
+                "reference": "d49695b909c3b7628b6289db5479a1c204601f11",
                 "shasum": ""
             },
             "require": {
@@ -20008,7 +20160,7 @@
             "authors": [
                 {
                     "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
+                    "homepage": "https://www.php-fig.org/"
                 }
             ],
             "description": "Common interface for logging libraries",
@@ -20018,7 +20170,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2020-03-23T09:12:05+00:00"
+            "time": "2021-05-03T11:20:27+00:00"
         },
         {
             "name": "psr/simple-cache",
@@ -20383,16 +20535,16 @@
         },
         {
             "name": "smile/elasticsuite",
-            "version": "2.9.4",
+            "version": "2.9.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Smile-SA/elasticsuite.git",
-                "reference": "5aa4575a6da094740e7dc33600c544f7c96d024c"
+                "reference": "5fc3f83ffc2e558d9dd6c611f470b794e1bbb5a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Smile-SA/elasticsuite/zipball/5aa4575a6da094740e7dc33600c544f7c96d024c",
-                "reference": "5aa4575a6da094740e7dc33600c544f7c96d024c",
+                "url": "https://api.github.com/repos/Smile-SA/elasticsuite/zipball/5fc3f83ffc2e558d9dd6c611f470b794e1bbb5a2",
+                "reference": "5fc3f83ffc2e558d9dd6c611f470b794e1bbb5a2",
                 "shasum": ""
             },
             "require": {
@@ -20481,7 +20633,7 @@
                     "email": "richard.bayet@smile.fr"
                 },
                 {
-                    "name": "AurÃ©lien FOUCRET",
+                    "name": "Aurélien FOUCRET",
                     "email": "aurelien.foucret@smile.fr"
                 }
             ],
@@ -20497,7 +20649,7 @@
                 "search",
                 "setup"
             ],
-            "time": "2020-11-19T09:46:52+00:00"
+            "time": "2021-08-13T16:01:08+00:00"
         },
         {
             "name": "spomky-labs/otphp",
@@ -20865,16 +21017,16 @@
         },
         {
             "name": "swissup/module-codemirror",
-            "version": "1.1.12",
+            "version": "1.1.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swissup/module-codemirror.git",
-                "reference": "fd0d58f4df3d24aaa542bdb5a4424d0a475b5845"
+                "reference": "ec002703e711c639673c23d1aae07e901c66fb6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swissup/module-codemirror/zipball/fd0d58f4df3d24aaa542bdb5a4424d0a475b5845",
-                "reference": "fd0d58f4df3d24aaa542bdb5a4424d0a475b5845",
+                "url": "https://api.github.com/repos/swissup/module-codemirror/zipball/ec002703e711c639673c23d1aae07e901c66fb6c",
+                "reference": "ec002703e711c639673c23d1aae07e901c66fb6c",
                 "shasum": ""
             },
             "type": "magento2-module",
@@ -20891,7 +21043,7 @@
                 "MIT"
             ],
             "description": "Versatile text editor implemented in JavaScript for the browser. ",
-            "time": "2021-01-22T08:07:51+00:00"
+            "time": "2021-08-06T12:03:36+00:00"
         },
         {
             "name": "swissup/module-core",
@@ -21461,22 +21613,24 @@
         },
         {
             "name": "symfony/config",
-            "version": "v4.4.20",
+            "version": "v4.4.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "98606c6fa1a8f55ff964ccdd704275bf5b9f71b3"
+                "reference": "8132e8d645d703e9b7c9c4f25067b93638683a35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/98606c6fa1a8f55ff964ccdd704275bf5b9f71b3",
-                "reference": "98606c6fa1a8f55ff964ccdd704275bf5b9f71b3",
+                "url": "https://api.github.com/repos/symfony/config/zipball/8132e8d645d703e9b7c9c4f25067b93638683a35",
+                "reference": "8132e8d645d703e9b7c9c4f25067b93638683a35",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1.3",
                 "symfony/filesystem": "^3.4|^4.0|^5.0",
-                "symfony/polyfill-ctype": "~1.8"
+                "symfony/polyfill-ctype": "~1.8",
+                "symfony/polyfill-php80": "^1.16",
+                "symfony/polyfill-php81": "^1.22"
             },
             "conflict": {
                 "symfony/finder": "<3.4"
@@ -21530,40 +21684,41 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-02-22T15:36:50+00:00"
+            "time": "2021-07-21T12:19:41+00:00"
         },
         {
             "name": "symfony/console",
-            "version": "v4.4.21",
+            "version": "v4.4.29",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "1ba4560dbbb9fcf5ae28b61f71f49c678086cf23"
+                "reference": "8baf0bbcfddfde7d7225ae8e04705cfd1081cd7b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/1ba4560dbbb9fcf5ae28b61f71f49c678086cf23",
-                "reference": "1ba4560dbbb9fcf5ae28b61f71f49c678086cf23",
+                "url": "https://api.github.com/repos/symfony/console/zipball/8baf0bbcfddfde7d7225ae8e04705cfd1081cd7b",
+                "reference": "8baf0bbcfddfde7d7225ae8e04705cfd1081cd7b",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1.3",
                 "symfony/polyfill-mbstring": "~1.0",
                 "symfony/polyfill-php73": "^1.8",
-                "symfony/polyfill-php80": "^1.15",
+                "symfony/polyfill-php80": "^1.16",
                 "symfony/service-contracts": "^1.1|^2"
             },
             "conflict": {
+                "psr/log": ">=3",
                 "symfony/dependency-injection": "<3.4",
                 "symfony/event-dispatcher": "<4.3|>=5",
                 "symfony/lock": "<4.4",
                 "symfony/process": "<3.3"
             },
             "provide": {
-                "psr/log-implementation": "1.0"
+                "psr/log-implementation": "1.0|2.0"
             },
             "require-dev": {
-                "psr/log": "~1.0",
+                "psr/log": "^1|^2",
                 "symfony/config": "^3.4|^4.0|^5.0",
                 "symfony/dependency-injection": "^3.4|^4.0|^5.0",
                 "symfony/event-dispatcher": "^4.3",
@@ -21616,24 +21771,25 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-03-26T09:23:24+00:00"
+            "time": "2021-07-27T19:04:53+00:00"
         },
         {
             "name": "symfony/css-selector",
-            "version": "v4.4.19",
+            "version": "v4.4.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
-                "reference": "f907d3e53ecb2a5fad8609eb2f30525287a734c8"
+                "reference": "5194f18bd80d106f11efa8f7cd0fbdcc3af96ce6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/css-selector/zipball/f907d3e53ecb2a5fad8609eb2f30525287a734c8",
-                "reference": "f907d3e53ecb2a5fad8609eb2f30525287a734c8",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/5194f18bd80d106f11efa8f7cd0fbdcc3af96ce6",
+                "reference": "5194f18bd80d106f11efa8f7cd0fbdcc3af96ce6",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1.3"
+                "php": ">=7.1.3",
+                "symfony/polyfill-php80": "^1.16"
             },
             "type": "library",
             "autoload": {
@@ -21654,7 +21810,7 @@
                     "email": "fabien@symfony.com"
                 },
                 {
-                    "name": "Jean-FranÃ§ois Simon",
+                    "name": "Jean-François Simon",
                     "email": "jeanfrancois.simon@sensiolabs.com"
                 },
                 {
@@ -21678,25 +21834,26 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-27T09:09:26+00:00"
+            "time": "2021-07-21T12:19:41+00:00"
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v4.4.21",
+            "version": "v4.4.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "b5f97557faa48ead4671bc311cfca423d476e93e"
+                "reference": "52866e2cb314972ff36c5b3d405ba8f523e56f6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/b5f97557faa48ead4671bc311cfca423d476e93e",
-                "reference": "b5f97557faa48ead4671bc311cfca423d476e93e",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/52866e2cb314972ff36c5b3d405ba8f523e56f6e",
+                "reference": "52866e2cb314972ff36c5b3d405ba8f523e56f6e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1.3",
                 "psr/container": "^1.0",
+                "symfony/polyfill-php80": "^1.16",
                 "symfony/service-contracts": "^1.1.6|^2"
             },
             "conflict": {
@@ -21712,7 +21869,7 @@
             "require-dev": {
                 "symfony/config": "^4.3",
                 "symfony/expression-language": "^3.4|^4.0|^5.0",
-                "symfony/yaml": "^3.4|^4.0|^5.0"
+                "symfony/yaml": "^4.4|^5.0"
             },
             "suggest": {
                 "symfony/config": "",
@@ -21760,20 +21917,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-03-05T18:16:26+00:00"
+            "time": "2021-07-23T15:41:52+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
-            "version": "v2.2.0",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
-                "reference": "5fa56b4074d1ae755beb55617ddafe6f5d78f665"
+                "reference": "5f38c8804a9e97d23e0c8d63341088cd8a22d627"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/5fa56b4074d1ae755beb55617ddafe6f5d78f665",
-                "reference": "5fa56b4074d1ae755beb55617ddafe6f5d78f665",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/5f38c8804a9e97d23e0c8d63341088cd8a22d627",
+                "reference": "5f38c8804a9e97d23e0c8d63341088cd8a22d627",
                 "shasum": ""
             },
             "require": {
@@ -21782,7 +21939,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-main": "2.4-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -21824,25 +21981,26 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-07T11:33:47+00:00"
+            "time": "2021-03-23T23:28:01+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v4.4.19",
+            "version": "v4.4.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "c352647244bd376bf7d31efbd5401f13f50dad0c"
+                "reference": "958a128b184fcf0ba45ec90c0e88554c9327c2e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/c352647244bd376bf7d31efbd5401f13f50dad0c",
-                "reference": "c352647244bd376bf7d31efbd5401f13f50dad0c",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/958a128b184fcf0ba45ec90c0e88554c9327c2e9",
+                "reference": "958a128b184fcf0ba45ec90c0e88554c9327c2e9",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1.3",
-                "symfony/event-dispatcher-contracts": "^1.1"
+                "symfony/event-dispatcher-contracts": "^1.1",
+                "symfony/polyfill-php80": "^1.16"
             },
             "conflict": {
                 "symfony/dependency-injection": "<3.4"
@@ -21852,7 +22010,7 @@
                 "symfony/event-dispatcher-implementation": "1.1"
             },
             "require-dev": {
-                "psr/log": "~1.0",
+                "psr/log": "^1|^2|^3",
                 "symfony/config": "^3.4|^4.0|^5.0",
                 "symfony/dependency-injection": "^3.4|^4.0|^5.0",
                 "symfony/error-handler": "~3.4|~4.4",
@@ -21904,7 +22062,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-27T09:09:26+00:00"
+            "time": "2021-07-23T15:41:52+00:00"
         },
         {
             "name": "symfony/event-dispatcher-contracts",
@@ -21970,21 +22128,22 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v5.2.6",
+            "version": "v5.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "8c86a82f51658188119e62cff0a050a12d09836f"
+                "reference": "343f4fe324383ca46792cae728a3b6e2f708fb32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/8c86a82f51658188119e62cff0a050a12d09836f",
-                "reference": "8c86a82f51658188119e62cff0a050a12d09836f",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/343f4fe324383ca46792cae728a3b6e2f708fb32",
+                "reference": "343f4fe324383ca46792cae728a3b6e2f708fb32",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2.5",
-                "symfony/polyfill-ctype": "~1.8"
+                "symfony/polyfill-ctype": "~1.8",
+                "symfony/polyfill-php80": "^1.16"
             },
             "type": "library",
             "autoload": {
@@ -22025,24 +22184,25 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-03-28T14:30:26+00:00"
+            "time": "2021-07-21T12:40:44+00:00"
         },
         {
             "name": "symfony/finder",
-            "version": "v5.2.4",
+            "version": "v5.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "0d639a0943822626290d169965804f79400e6a04"
+                "reference": "17f50e06018baec41551a71a15731287dbaab186"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/0d639a0943822626290d169965804f79400e6a04",
-                "reference": "0d639a0943822626290d169965804f79400e6a04",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/17f50e06018baec41551a71a15731287dbaab186",
+                "reference": "17f50e06018baec41551a71a15731287dbaab186",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.2.5"
+                "php": ">=7.2.5",
+                "symfony/polyfill-php80": "^1.16"
             },
             "type": "library",
             "autoload": {
@@ -22083,27 +22243,27 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-02-15T18:55:04+00:00"
+            "time": "2021-07-23T15:54:19+00:00"
         },
         {
             "name": "symfony/options-resolver",
-            "version": "v5.2.3",
+            "version": "v5.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
-                "reference": "5d0f633f9bbfcf7ec642a2b5037268e61b0a62ce"
+                "reference": "a603e5701bd6e305cfc777a8b50bf081ef73105e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/5d0f633f9bbfcf7ec642a2b5037268e61b0a62ce",
-                "reference": "5d0f633f9bbfcf7ec642a2b5037268e61b0a62ce",
+                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/a603e5701bd6e305cfc777a8b50bf081ef73105e",
+                "reference": "a603e5701bd6e305cfc777a8b50bf081ef73105e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2.5",
                 "symfony/deprecation-contracts": "^2.1",
                 "symfony/polyfill-php73": "~1.0",
-                "symfony/polyfill-php80": "^1.15"
+                "symfony/polyfill-php80": "^1.16"
             },
             "type": "library",
             "autoload": {
@@ -22149,20 +22309,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-27T12:56:27+00:00"
+            "time": "2021-07-23T15:55:36+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.22.1",
+            "version": "v1.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "c6c942b1ac76c82448322025e084cadc56048b4e"
+                "reference": "46cd95797e9df938fdd2b03693b5fca5e64b01ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/c6c942b1ac76c82448322025e084cadc56048b4e",
-                "reference": "c6c942b1ac76c82448322025e084cadc56048b4e",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/46cd95797e9df938fdd2b03693b5fca5e64b01ce",
+                "reference": "46cd95797e9df938fdd2b03693b5fca5e64b01ce",
                 "shasum": ""
             },
             "require": {
@@ -22174,7 +22334,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.22-dev"
+                    "dev-main": "1.23-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -22225,20 +22385,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-07T16:49:33+00:00"
+            "time": "2021-02-19T12:13:01+00:00"
         },
         {
             "name": "symfony/polyfill-intl-grapheme",
-            "version": "v1.22.0",
+            "version": "v1.23.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-grapheme.git",
-                "reference": "267a9adeb8ecb8071040a740930e077cdfb987af"
+                "reference": "16880ba9c5ebe3642d1995ab866db29270b36535"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/267a9adeb8ecb8071040a740930e077cdfb987af",
-                "reference": "267a9adeb8ecb8071040a740930e077cdfb987af",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/16880ba9c5ebe3642d1995ab866db29270b36535",
+                "reference": "16880ba9c5ebe3642d1995ab866db29270b36535",
                 "shasum": ""
             },
             "require": {
@@ -22250,7 +22410,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.22-dev"
+                    "dev-main": "1.23-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -22303,20 +22463,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-07T16:49:33+00:00"
+            "time": "2021-05-27T12:26:48+00:00"
         },
         {
             "name": "symfony/polyfill-intl-idn",
-            "version": "v1.22.1",
+            "version": "v1.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-idn.git",
-                "reference": "2d63434d922daf7da8dd863e7907e67ee3031483"
+                "reference": "65bd267525e82759e7d8c4e8ceea44f398838e65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/2d63434d922daf7da8dd863e7907e67ee3031483",
-                "reference": "2d63434d922daf7da8dd863e7907e67ee3031483",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/65bd267525e82759e7d8c4e8ceea44f398838e65",
+                "reference": "65bd267525e82759e7d8c4e8ceea44f398838e65",
                 "shasum": ""
             },
             "require": {
@@ -22330,7 +22490,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.22-dev"
+                    "dev-main": "1.23-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -22387,20 +22547,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-22T09:19:47+00:00"
+            "time": "2021-05-27T09:27:20+00:00"
         },
         {
             "name": "symfony/polyfill-intl-normalizer",
-            "version": "v1.22.1",
+            "version": "v1.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-normalizer.git",
-                "reference": "43a0283138253ed1d48d352ab6d0bdb3f809f248"
+                "reference": "8590a5f561694770bdcd3f9b5c69dde6945028e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/43a0283138253ed1d48d352ab6d0bdb3f809f248",
-                "reference": "43a0283138253ed1d48d352ab6d0bdb3f809f248",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/8590a5f561694770bdcd3f9b5c69dde6945028e8",
+                "reference": "8590a5f561694770bdcd3f9b5c69dde6945028e8",
                 "shasum": ""
             },
             "require": {
@@ -22412,7 +22572,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.22-dev"
+                    "dev-main": "1.23-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -22468,20 +22628,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-22T09:19:47+00:00"
+            "time": "2021-02-19T12:13:01+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.22.1",
+            "version": "v1.23.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "5232de97ee3b75b0360528dae24e73db49566ab1"
+                "reference": "9174a3d80210dca8daa7f31fec659150bbeabfc6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/5232de97ee3b75b0360528dae24e73db49566ab1",
-                "reference": "5232de97ee3b75b0360528dae24e73db49566ab1",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/9174a3d80210dca8daa7f31fec659150bbeabfc6",
+                "reference": "9174a3d80210dca8daa7f31fec659150bbeabfc6",
                 "shasum": ""
             },
             "require": {
@@ -22493,7 +22653,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.22-dev"
+                    "dev-main": "1.23-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -22545,7 +22705,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-22T09:19:47+00:00"
+            "time": "2021-05-27T12:26:48+00:00"
         },
         {
             "name": "symfony/polyfill-php56",
@@ -22600,16 +22760,16 @@
         },
         {
             "name": "symfony/polyfill-php72",
-            "version": "v1.22.1",
+            "version": "v1.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php72.git",
-                "reference": "cc6e6f9b39fe8075b3dabfbaf5b5f645ae1340c9"
+                "reference": "9a142215a36a3888e30d0a9eeea9766764e96976"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/cc6e6f9b39fe8075b3dabfbaf5b5f645ae1340c9",
-                "reference": "cc6e6f9b39fe8075b3dabfbaf5b5f645ae1340c9",
+                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/9a142215a36a3888e30d0a9eeea9766764e96976",
+                "reference": "9a142215a36a3888e30d0a9eeea9766764e96976",
                 "shasum": ""
             },
             "require": {
@@ -22618,7 +22778,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.22-dev"
+                    "dev-main": "1.23-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -22669,20 +22829,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-07T16:49:33+00:00"
+            "time": "2021-05-27T09:17:38+00:00"
         },
         {
             "name": "symfony/polyfill-php73",
-            "version": "v1.22.1",
+            "version": "v1.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php73.git",
-                "reference": "a678b42e92f86eca04b7fa4c0f6f19d097fb69e2"
+                "reference": "fba8933c384d6476ab14fb7b8526e5287ca7e010"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/a678b42e92f86eca04b7fa4c0f6f19d097fb69e2",
-                "reference": "a678b42e92f86eca04b7fa4c0f6f19d097fb69e2",
+                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/fba8933c384d6476ab14fb7b8526e5287ca7e010",
+                "reference": "fba8933c384d6476ab14fb7b8526e5287ca7e010",
                 "shasum": ""
             },
             "require": {
@@ -22691,7 +22851,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.22-dev"
+                    "dev-main": "1.23-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -22745,20 +22905,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-07T16:49:33+00:00"
+            "time": "2021-02-19T12:13:01+00:00"
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "v1.22.1",
+            "version": "v1.23.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
-                "reference": "dc3063ba22c2a1fd2f45ed856374d79114998f91"
+                "reference": "1100343ed1a92e3a38f9ae122fc0eb21602547be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/dc3063ba22c2a1fd2f45ed856374d79114998f91",
-                "reference": "dc3063ba22c2a1fd2f45ed856374d79114998f91",
+                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/1100343ed1a92e3a38f9ae122fc0eb21602547be",
+                "reference": "1100343ed1a92e3a38f9ae122fc0eb21602547be",
                 "shasum": ""
             },
             "require": {
@@ -22767,7 +22927,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.22-dev"
+                    "dev-main": "1.23-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -22825,24 +22985,101 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-07T16:49:33+00:00"
+            "time": "2021-07-28T13:41:28+00:00"
         },
         {
-            "name": "symfony/process",
-            "version": "v4.4.20",
+            "name": "symfony/polyfill-php81",
+            "version": "v1.23.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/process.git",
-                "reference": "7e950b6366d4da90292c2e7fa820b3c1842b965a"
+                "url": "https://github.com/symfony/polyfill-php81.git",
+                "reference": "e66119f3de95efc359483f810c4c3e6436279436"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/7e950b6366d4da90292c2e7fa820b3c1842b965a",
-                "reference": "7e950b6366d4da90292c2e7fa820b3c1842b965a",
+                "url": "https://api.github.com/repos/symfony/polyfill-php81/zipball/e66119f3de95efc359483f810c4c3e6436279436",
+                "reference": "e66119f3de95efc359483f810c4c3e6436279436",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1.3"
+                "php": ">=7.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.23-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php81\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ],
+                "classmap": [
+                    "Resources/stubs"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill backporting some PHP 8.1+ features to lower PHP versions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-05-21T13:25:03+00:00"
+        },
+        {
+            "name": "symfony/process",
+            "version": "v4.4.27",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/process.git",
+                "reference": "0b7dc5599ac4aa6d7b936c8f7d10abae64f6cf7f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/process/zipball/0b7dc5599ac4aa6d7b936c8f7d10abae64f6cf7f",
+                "reference": "0b7dc5599ac4aa6d7b936c8f7d10abae64f6cf7f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.3",
+                "symfony/polyfill-php80": "^1.16"
             },
             "type": "library",
             "autoload": {
@@ -22883,26 +23120,26 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-27T09:09:26+00:00"
+            "time": "2021-07-23T15:41:52+00:00"
         },
         {
             "name": "symfony/property-access",
-            "version": "v5.2.3",
+            "version": "v5.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/property-access.git",
-                "reference": "3af8ed262bd3217512a13b023981fe68f36ad5f3"
+                "reference": "098681253076af7070df7d9debe5f75733eea189"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/property-access/zipball/3af8ed262bd3217512a13b023981fe68f36ad5f3",
-                "reference": "3af8ed262bd3217512a13b023981fe68f36ad5f3",
+                "url": "https://api.github.com/repos/symfony/property-access/zipball/098681253076af7070df7d9debe5f75733eea189",
+                "reference": "098681253076af7070df7d9debe5f75733eea189",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2.5",
                 "symfony/deprecation-contracts": "^2.1",
-                "symfony/polyfill-php80": "^1.15",
+                "symfony/polyfill-php80": "^1.16",
                 "symfony/property-info": "^5.2"
             },
             "require-dev": {
@@ -22961,26 +23198,26 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-27T10:15:41+00:00"
+            "time": "2021-07-21T12:40:44+00:00"
         },
         {
             "name": "symfony/property-info",
-            "version": "v5.2.3",
+            "version": "v5.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/property-info.git",
-                "reference": "4e4f368c3737b1c175d66f4fc0b99a5bcd161a77"
+                "reference": "0f42009150679a7a256eb6ee106401af5d974ed2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/property-info/zipball/4e4f368c3737b1c175d66f4fc0b99a5bcd161a77",
-                "reference": "4e4f368c3737b1c175d66f4fc0b99a5bcd161a77",
+                "url": "https://api.github.com/repos/symfony/property-info/zipball/0f42009150679a7a256eb6ee106401af5d974ed2",
+                "reference": "0f42009150679a7a256eb6ee106401af5d974ed2",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2.5",
                 "symfony/deprecation-contracts": "^2.1",
-                "symfony/polyfill-php80": "^1.15",
+                "symfony/polyfill-php80": "^1.16",
                 "symfony/string": "^5.1"
             },
             "conflict": {
@@ -23016,7 +23253,7 @@
             ],
             "authors": [
                 {
-                    "name": "KÃ©vin Dunglas",
+                    "name": "Kévin Dunglas",
                     "email": "dunglas@gmail.com"
                 },
                 {
@@ -23048,7 +23285,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-27T10:15:41+00:00"
+            "time": "2021-07-21T12:40:44+00:00"
         },
         {
             "name": "symfony/proxy-manager-bridge",
@@ -23105,21 +23342,22 @@
         },
         {
             "name": "symfony/serializer",
-            "version": "v4.4.20",
+            "version": "v4.4.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/serializer.git",
-                "reference": "9fa36329a06282e1fc856b84f645472a410c3922"
+                "reference": "85b67b809a8a1c06aa67dea3d6c442380d071864"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/serializer/zipball/9fa36329a06282e1fc856b84f645472a410c3922",
-                "reference": "9fa36329a06282e1fc856b84f645472a410c3922",
+                "url": "https://api.github.com/repos/symfony/serializer/zipball/85b67b809a8a1c06aa67dea3d6c442380d071864",
+                "reference": "85b67b809a8a1c06aa67dea3d6c442380d071864",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1.3",
-                "symfony/polyfill-ctype": "~1.8"
+                "symfony/polyfill-ctype": "~1.8",
+                "symfony/polyfill-php80": "^1.16"
             },
             "conflict": {
                 "phpdocumentor/reflection-docblock": "<3.0|>=3.2.0,<3.2.2",
@@ -23131,7 +23369,6 @@
             },
             "require-dev": {
                 "doctrine/annotations": "^1.10.4",
-                "doctrine/cache": "~1.0",
                 "phpdocumentor/reflection-docblock": "^3.2|^4.0|^5.0",
                 "symfony/cache": "^3.4|^4.0|^5.0",
                 "symfony/config": "^3.4|^4.0|^5.0",
@@ -23145,8 +23382,7 @@
                 "symfony/yaml": "^3.4|^4.0|^5.0"
             },
             "suggest": {
-                "doctrine/annotations": "For using the annotation mapping. You will also need doctrine/cache.",
-                "doctrine/cache": "For using the default cached annotation reader and metadata cache.",
+                "doctrine/annotations": "For using the annotation mapping.",
                 "psr/cache-implementation": "For using the metadata cache.",
                 "symfony/config": "For using the XML mapping loader.",
                 "symfony/http-foundation": "For using a MIME type guesser within the DataUriNormalizer.",
@@ -23193,25 +23429,25 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-02-26T12:02:03+00:00"
+            "time": "2021-07-21T13:02:15+00:00"
         },
         {
             "name": "symfony/service-contracts",
-            "version": "v2.2.0",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/service-contracts.git",
-                "reference": "d15da7ba4957ffb8f1747218be9e1a121fd298a1"
+                "reference": "f040a30e04b57fbcc9c6cbcf4dbaa96bd318b9bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/d15da7ba4957ffb8f1747218be9e1a121fd298a1",
-                "reference": "d15da7ba4957ffb8f1747218be9e1a121fd298a1",
+                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/f040a30e04b57fbcc9c6cbcf4dbaa96bd318b9bb",
+                "reference": "f040a30e04b57fbcc9c6cbcf4dbaa96bd318b9bb",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2.5",
-                "psr/container": "^1.0"
+                "psr/container": "^1.1"
             },
             "suggest": {
                 "symfony/service-implementation": ""
@@ -23219,7 +23455,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-main": "2.4-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -23269,20 +23505,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-07T11:33:47+00:00"
+            "time": "2021-04-01T10:43:52+00:00"
         },
         {
             "name": "symfony/string",
-            "version": "v5.2.3",
+            "version": "v5.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "c95468897f408dd0aca2ff582074423dd0455122"
+                "reference": "bd53358e3eccec6a670b5f33ab680d8dbe1d4ae1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/c95468897f408dd0aca2ff582074423dd0455122",
-                "reference": "c95468897f408dd0aca2ff582074423dd0455122",
+                "url": "https://api.github.com/repos/symfony/string/zipball/bd53358e3eccec6a670b5f33ab680d8dbe1d4ae1",
+                "reference": "bd53358e3eccec6a670b5f33ab680d8dbe1d4ae1",
                 "shasum": ""
             },
             "require": {
@@ -23349,25 +23585,26 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-25T15:14:59+00:00"
+            "time": "2021-06-27T11:44:38+00:00"
         },
         {
             "name": "symfony/translation",
-            "version": "v4.4.21",
+            "version": "v4.4.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "eb8f5428cc3b40d6dffe303b195b084f1c5fbd14"
+                "reference": "2e3c0f2bf704d635ba862e7198d72331a62d82ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/eb8f5428cc3b40d6dffe303b195b084f1c5fbd14",
-                "reference": "eb8f5428cc3b40d6dffe303b195b084f1c5fbd14",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/2e3c0f2bf704d635ba862e7198d72331a62d82ba",
+                "reference": "2e3c0f2bf704d635ba862e7198d72331a62d82ba",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1.3",
                 "symfony/polyfill-mbstring": "~1.0",
+                "symfony/polyfill-php80": "^1.16",
                 "symfony/translation-contracts": "^1.1.6|^2"
             },
             "conflict": {
@@ -23380,7 +23617,7 @@
                 "symfony/translation-implementation": "1.0|2.0"
             },
             "require-dev": {
-                "psr/log": "~1.0",
+                "psr/log": "^1|^2|^3",
                 "symfony/config": "^3.4|^4.0|^5.0",
                 "symfony/console": "^3.4|^4.0|^5.0",
                 "symfony/dependency-injection": "^3.4|^4.0|^5.0",
@@ -23434,20 +23671,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-03-23T16:25:01+00:00"
+            "time": "2021-07-21T13:12:00+00:00"
         },
         {
             "name": "symfony/translation-contracts",
-            "version": "v2.3.0",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation-contracts.git",
-                "reference": "e2eaa60b558f26a4b0354e1bbb25636efaaad105"
+                "reference": "95c812666f3e91db75385749fe219c5e494c7f95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/e2eaa60b558f26a4b0354e1bbb25636efaaad105",
-                "reference": "e2eaa60b558f26a4b0354e1bbb25636efaaad105",
+                "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/95c812666f3e91db75385749fe219c5e494c7f95",
+                "reference": "95c812666f3e91db75385749fe219c5e494c7f95",
                 "shasum": ""
             },
             "require": {
@@ -23459,7 +23696,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3-dev"
+                    "dev-main": "2.4-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -23509,20 +23746,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-28T13:05:58+00:00"
+            "time": "2021-03-23T23:28:01+00:00"
         },
         {
             "name": "symfony/yaml",
-            "version": "v4.4.21",
+            "version": "v4.4.29",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "3871c720871029f008928244e56cf43497da7e9d"
+                "reference": "3abcc4db06d4e776825eaa3ed8ad924d5bc7432a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/3871c720871029f008928244e56cf43497da7e9d",
-                "reference": "3871c720871029f008928244e56cf43497da7e9d",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/3abcc4db06d4e776825eaa3ed8ad924d5bc7432a",
+                "reference": "3abcc4db06d4e776825eaa3ed8ad924d5bc7432a",
                 "shasum": ""
             },
             "require": {
@@ -23577,7 +23814,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-03-05T17:58:50+00:00"
+            "time": "2021-07-27T16:19:30+00:00"
         },
         {
             "name": "tedivm/jshrink",
@@ -23706,7 +23943,7 @@
             ],
             "authors": [
                 {
-                    "name": "Renan GonÃ§alves",
+                    "name": "Renan Gonçalves",
                     "email": "renan.saddam@gmail.com"
                 }
             ],
@@ -23755,7 +23992,7 @@
             ],
             "authors": [
                 {
-                    "name": "TÃºbal MartÃ­n",
+                    "name": "Túbal Martín",
                     "homepage": "http://tubalmartin.me/"
                 }
             ],
@@ -23773,11 +24010,11 @@
         },
         {
             "name": "vertex/module-address-validation",
-            "version": "1.1.2",
+            "version": "1.1.2-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/vertex/module-address-validation/vertex-module-address-validation-1.1.2.0.zip",
-                "shasum": "4a878033de8bf793e5f994aa0aaa17136010f2c3"
+                "url": "https://repo.magento.com/archives/vertex/module-address-validation/vertex-module-address-validation-1.1.2.0-patch1.zip",
+                "shasum": "c0b6b8755786af62de74d3f036f38a3229cc3af4"
             },
             "require": {
                 "ext-json": "*",
@@ -23815,11 +24052,11 @@
         },
         {
             "name": "vertex/module-tax",
-            "version": "3.4.3",
+            "version": "3.4.3-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/vertex/module-tax/vertex-module-tax-3.4.3.0.zip",
-                "shasum": "6479c6679532204f8ad29e77fe3e83c941ce52a5"
+                "url": "https://repo.magento.com/archives/vertex/module-tax/vertex-module-tax-3.4.3.0-patch1.zip",
+                "shasum": "b3776aa3002cd14fbce847ba664c1f1a62c7158a"
             },
             "require": {
                 "ext-intl": "*",
@@ -23879,15 +24116,15 @@
         },
         {
             "name": "vertex/product-magento-module",
-            "version": "3.4.3",
+            "version": "3.4.3-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/vertex/product-magento-module/vertex-product-magento-module-3.4.3.0.zip",
-                "shasum": "4b1cf3666acb71ff92827cfd5c5d4e592ecb8f9a"
+                "url": "https://repo.magento.com/archives/vertex/product-magento-module/vertex-product-magento-module-3.4.3.0-patch1.zip",
+                "shasum": "7f724df5b56e1a33e365d7316022561b6969829c"
             },
             "require": {
-                "vertex/module-address-validation": "1.1.2",
-                "vertex/module-tax": "3.4.3"
+                "vertex/module-address-validation": "1.1.2-p1",
+                "vertex/module-tax": "3.4.3-p1"
             },
             "type": "metapackage",
             "license": [
@@ -24080,7 +24317,7 @@
                     "homepage": "https://github.com/agar"
                 },
                 {
-                    "name": "Martin JantoÅ¡oviÄ",
+                    "name": "Martin Jantošovič",
                     "homepage": "https://github.com/Mordred"
                 }
             ],
@@ -24193,23 +24430,23 @@
         },
         {
             "name": "zordius/lightncandy",
-            "version": "v1.2.5",
+            "version": "v1.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zordius/lightncandy.git",
-                "reference": "37aa381e0f27d411a630062070c7a5a2174c62e7"
+                "reference": "b451f73e8b5c73e62e365997ba3c993a0376b72a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zordius/lightncandy/zipball/37aa381e0f27d411a630062070c7a5a2174c62e7",
-                "reference": "37aa381e0f27d411a630062070c7a5a2174c62e7",
+                "url": "https://api.github.com/repos/zordius/lightncandy/zipball/b451f73e8b5c73e62e365997ba3c993a0376b72a",
+                "reference": "b451f73e8b5c73e62e365997ba3c993a0376b72a",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7"
+                "phpunit/phpunit": ">=7"
             },
             "type": "library",
             "extra": {
@@ -24241,7 +24478,7 @@
                 "php",
                 "template"
             ],
-            "time": "2020-03-08T06:00:24+00:00"
+            "time": "2021-07-11T04:52:41+00:00"
         }
     ],
     "packages-dev": [],
