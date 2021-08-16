@@ -495,7 +495,7 @@ return [
         'Itatiaia_FixIntelipost' => 1,
         'Itatiaia_EmailOrderProcessing' => 1,
         'Itatiaia_FixAdmin' => 0,
-        'MercadoPago_Core' => 1,
+        'MercadoPago_Core' => 0,
         'Itatiaia_FreeShippingAlert' => 1,
         'Itatiaia_GarantiaEstendida' => 1,
         'DigitalHub_CatalogRulesCategory' => 1,
