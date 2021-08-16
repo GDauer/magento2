@@ -525,6 +525,7 @@ return [
         'MagestyApps_FixRules' => 1,
         'Itatiaia_CustomMercadoPago' => 0,
         'MundiPagg_MundiPagg' => 1,
+        'Itatiaia_CustomMercadoPago' => 1,
         'Pmclain_SuccessTest' => 1,
         'Potato_Compressor' => 0,
         'Potato_ImageOptimization' => 0,
