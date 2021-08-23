@@ -13,6 +13,7 @@ use \Magento\Framework\Message\ManagerInterface;
 use \Magento\Framework\App\RequestInterface;
 use \Magento\Framework\Exception\CouldNotSaveException;
 use \Magento\Customer\Model\Session;
+use \Magento\Customer\Model\CustomerFactory;
 
 
 class CustomerValidations implements \Magento\Framework\Event\ObserverInterface
@@ -20,14 +21,17 @@ class CustomerValidations implements \Magento\Framework\Event\ObserverInterface
     private $_request;
     private $_helper;
     private $_session;
+    private $customerFactory;
 
     public function __construct(
         ManagerInterface $messageManager,
         RequestInterface $request,
-        Session $session
+        Session $session,
+        CustomerFactory  $customerFactory
     ) {
         $this->_request = $request;
         $this->_session = $session;
+        $this->customerFactory = $customerFactory;
     }
 
     public function execute(\Magento\Framework\Event\Observer $observer)
@@ -62,6 +66,36 @@ class CustomerValidations implements \Magento\Framework\Event\ObserverInterface
              );
          }
 
+         //validate Taxvat is Unique
+         if(!$this->_hasTaxvat('taxvat', $cpf)){
+            throw new CouldNotSaveException(
+                __("%1 is invalid!", "Error")
+             ); 
+         }
+
+    }
+    
+    protected function _hasTaxvat($fieldName, $value){
+        if($this->_session->getCustomer()->getId()!="" && $this->_session->getCustomer()->getData($fieldName) == $value)
+            return true;
+                 
+       return $this->_getFilteredCustomersCollection($fieldName, $value);
+    }
+
+
+    protected function _getFilteredCustomersCollection($fieldName , $value) {
+        $customerCollection = $this->_customerFactory->create()->getCollection()
+                ->addAttributeToSelect("*")
+                ->addAttributeToFilter($fieldName, $value);
+
+                foreach ($customerCollection as $customer){
+                    if($customer->getCreatedAt())
+                        return true;
+                    
+                    return false;
+                }     
+                    
+         return true;   
     }
 
     protected function _validateTaxvat($cpf)
@@ -89,4 +123,6 @@ class CustomerValidations implements \Magento\Framework\Event\ObserverInterface
 
         return true;
     }
+
+    
 }
