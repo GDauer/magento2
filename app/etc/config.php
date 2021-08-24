@@ -80,7 +80,7 @@ return [
                         'cardinal_commerce' => '/v1/songbird',
                         'authorizenet_acceptjs' => '\\.authorize\\.net/v1/Accept'
                     ],
-                    'move_script_to_bottom' => '0',
+                    'move_script_to_bottom' => '1',
                     'session_storage_logging' => '0',
                     'translate_strategy' => 'dictionary',
                     'enable_magepack_js_bundling' => '1',
