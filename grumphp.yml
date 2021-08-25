@@ -1,0 +1,37 @@
+grumphp:
+    hide_circumvention_tip: true
+    process_timeout: 120
+    tasks:
+        phpmd:
+            whitelist_patterns: [ ]
+            exclude: [ 'vendor' ]
+            ruleset: [ 'codesize', 'unusedcode', 'design' ]
+            triggered_by: [ 'php' ]
+        composer:
+            file: ./composer.json
+            no_check_all: true
+            no_check_lock: false
+            no_check_publish: false
+            with_dependencies: false
+            strict: false
+        git_blacklist:
+            keywords:
+                - die(
+                - var_dump(
+                - exit;
+                - print_r()
+        phpcs:
+            standard: ['phpcs/ruleset.xml']
+        phpunit:
+            config_file: ./phpunit.xml
+            testsuite: Itatiaia Unit Tests
+            group: [ ]
+            always_execute: true
+        phpcpd:
+            directory: [ './app/code/Webjump', './app/code/Itatiaia', './app/code/DigitalHub' ]
+            exclude: []
+            regexps_exclude: [ '(.*Test.*\.php)', '(.*Interface\.php)', 'FixVatId.php', 'Data.php', 'DataProvider.php', 'DataProvider.php', 'Actions.php', 'MenuActions.php', 'FeedTemplateActions.php', 'DataProvider.php', 'DataProvider.php', 'DataProvider.php', 'DataProvider.php', 'Category.php', 'Category.php', 'Delete.php', 'Delete.php', 'SitemapActions.php', 'FeedActions.php', 'Filename.php', 'Filename.php' ]
+            fuzzy: false
+            min_lines: 13
+            min_tokens: 70
+            triggered_by: [ 'php' ]

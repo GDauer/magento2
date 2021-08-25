@@ -1,0 +1,26 @@
+# Format: <componentType=module|library|theme|language|*> <componentName> <globPattern> or simply <globPattern>
+app/code/Webjump/Customer/Setup/UpgradeData.php
+app/code/Webjump/Core/Helper/Utils.php
+app/code/Webjump/Linx/Model/OrderIntegration.php
+app/code/Webjump/FullStock/Model/Update.php
+app/code/Obramax/Integration/Helper/Billing.php
+app/code/Webjump/Cron/Console/Command/CronCommand.php
+app/code/Obramax/Integration/Send/AbstractRequest.php
+app/code/Obramax/PimImport/Product/Model/Factory/Import.php
+app/code/Obramax/PimImport/Observer/Product/AddPimgentoImportObserverExtended.php
+app/code/DEG/CustomReports/Block/Adminhtml/Report/Grid.php
+app/code/Webjump/Customer/Helper/Data.php
+app/code/Webjump/PriceUpdate/Model/PriceUpdate.php
+app/code/Webjump/Obramax/Transaction/Resource/Billing/Send/Request.php
+app/code/Webjump/Catalog/Helper/Data.php
+app/code/Obramax/Integration/Send/AbstractRequest.php
+app/code/Obramax/Integration/Send/CreditClient/Resource/Customer/Request.php
+app/code/Obramax/Integration/Send/StockConsult/Resource/Product/Request.php
+app/code/Webjump/SAP/Api/CustomerDANFEManagementInterface.php
+app/code/Obramax/PimImport/Product/Model/Factory/Import.php
+app/code/Wyomind/SimpleGoogleShopping/Model/Observer.php
+app/code/Webjump/Customer/Plugin/Controller/Adminhtml/Index/Save.php
+app/code/Webjump/Interest/Helper/Config.php
+app/code/Obramax/Integration/Helper/Billing.php
+app/code/Webjump/Obramax/SAP/Transaction/Resource/Order/Send/Request.php
+app/code/Webjump/Stock/Observer/ProductRender.php
