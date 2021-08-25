@@ -80,7 +80,7 @@ return [
                         'cardinal_commerce' => '/v1/songbird',
                         'authorizenet_acceptjs' => '\\.authorize\\.net/v1/Accept'
                     ],
-                    'move_script_to_bottom' => '0',
+                    'move_script_to_bottom' => '1',
                     'session_storage_logging' => '0',
                     'translate_strategy' => 'dictionary',
                     'enable_magepack_js_bundling' => '1',
@@ -523,7 +523,7 @@ return [
         'Mageplaza_BetterPopup' => 1,
         'Mageplaza_LazyLoading' => 1,
         'MagestyApps_FixRules' => 1,
-        'Itatiaia_CustomMercadoPago' => 0,
+        'Itatiaia_CustomMercadoPago' => 1,
         'Pmclain_SuccessTest' => 1,
         'Potato_Compressor' => 0,
         'Potato_ImageOptimization' => 0,
