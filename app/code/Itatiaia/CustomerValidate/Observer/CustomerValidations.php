@@ -21,18 +21,18 @@ class CustomerValidations implements \Magento\Framework\Event\ObserverInterface
     protected $_helper;
     protected $_session;
     protected $_customerCollectionFactory;
-
-
+    protected $_messageManage;
     
     public function __construct(
         ManagerInterface $messageManager,
         RequestInterface $request,
         Session $session,
-        CollectionFactory  $customerCollectionFactory
+        CollectionFactory $customerCollectionFactory
     ) {
         $this->_request = $request;
         $this->_session = $session;
         $this->_customerCollectionFactory = $customerCollectionFactory;
+        $this->_messageManage = $messageManager;
     }
 
     public function execute(\Magento\Framework\Event\Observer $observer)
@@ -73,11 +73,8 @@ class CustomerValidations implements \Magento\Framework\Event\ObserverInterface
 
          //validate Taxvat is Unique
          if($this->_hasTaxvat($customer, $cpf)){
-            throw new CouldNotSaveException(
-                __("%1 is invalid!", "CPF")
-             ); 
+            $this->_messageManage->addErrorMessage( __('CPF já cadastrado') );
          }
-
 
 
     }
