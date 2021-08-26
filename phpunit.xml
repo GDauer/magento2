@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.1/phpunit.xsd"
+         colors="true"
+         bootstrap="./app/bootstrap.php">
+    <testsuite name="Itatiaia Unit Tests">
+        <directory suffix="Test.php">./app/code/*/*/Test/Unit/*</directory>
+    </testsuite>
+    <filter>
+        <whitelist>
+            <!-- Webjump whitelist -->
+            <directory suffix=".php">./app/code/Webjump/*/*</directory>
+            <directory suffix=".php">./app/code/Webjump/*/Controller/*</directory>
+            <directory suffix=".php">./app/code/Webjump/*/Test/Unit/*</directory>
+            <directory suffix=".php">./app/code/Webjump/Tests/*</directory>
+            <directory suffix="registration.php">./app/code/Webjump/*</directory>
+
+            <!-- Itatiaia whitelist -->
+            <directory suffix=".php">./app/code/Itatiaia/*/*</directory>
+            <directory suffix=".php">./app/code/Itatiaia/*/Controller/*</directory>
+            <directory suffix=".php">./app/code/Itatiaia/*/Test/Unit/*</directory>
+            <directory suffix=".php">./app/code/Itatiaia/Tests/*</directory>
+            <directory suffix="registration.php">./app/code/Itatiaia/*</directory>
+
+            <!-- Digitalhub whitelist -->
+            <directory suffix=".php">./app/code/DigitalHub/*/*</directory>
+            <directory suffix=".php">./app/code/DigitalHub/*/Controller/*</directory>
+            <directory suffix=".php">./app/code/DigitalHub/*/Test/Unit/*</directory>
+            <directory suffix=".php">./app/code/DigitalHub/Tests/*</directory>
+            <directory suffix="registration.php">./app/code/DigitalHub/*</directory>
+        </whitelist>
+    </filter>
+    <logging>
+        <log type="coverage-html" target="tests/coverage" charset="UTF-8" yui="true" highlight="true"/>
+    </logging>
+</phpunit>

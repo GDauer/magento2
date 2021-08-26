@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.1/phpunit.xsd"
+         colors="true"
+         bootstrap="./framework/bootstrap.php"
+>
+    <testsuites>
+        <testsuite name="PHP Coding Standard Verification">
+            <file>Php/LiveCodeTest.php</file>
+        </testsuite>
+    </testsuites>
+    <php>
+        <ini name="date.timezone" value="America/Sao_Paulo"/>
+    </php>
+</phpunit>
