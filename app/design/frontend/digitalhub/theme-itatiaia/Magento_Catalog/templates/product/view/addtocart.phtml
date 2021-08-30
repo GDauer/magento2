@@ -34,12 +34,25 @@
         <?php endif; ?>
 
         <div class="actions">
-            <button type="submit"
-                    title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
-                    class="action primary tocart itatiaia-tocart"
-                    id="product-addtocart-button" disabled>
-                <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
-            </button>
+                <?php
+                    $volts = $_product->getCustomAttribute('tens_o');
+
+                    if(empty($volts) || empty($volts->getValue())):
+                ?>
+                    <button type="submit"
+                        title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+                        class="action primary tocart itatiaia-tocart"
+                        id="product-addtocart-button" disabled >
+                        <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
+                    </button>
+                <?php else: ?>
+                    <button type="submit"
+                        title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+                        class="action primary tocart trigger_modal">
+                        <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
+                    </button>
+                <?php endif; ?>
+            
             <?= $block->getChildHtml('', true) ?>
         </div>
 
@@ -71,6 +84,33 @@
     }
 </script>
 <?php endif; ?>
+
+<div id="triggerMOdalVolts" class="modal_volts d_none">
+    <div class="modal_content">
+        <img class="modal_details modal_close btn_close" src="<?php echo $this->getViewFileUrl('images/modal_volts/modal_close.svg'); ?>" alt="Fechar">
+        
+        <p>Você confirma que<br> deseja comprar um<br> produto 127V?</p>
+        <button type="submit"
+            title="Confirmar"
+            class="action primary tocart itatiaia-tocart"
+            id="product-addtocart-button" disabled>
+            <span>Confirmar</span>
+        </button>
+    
+        <img class="modal_details top_left" src="<?php echo $this->getViewFileUrl('images/modal_volts/top_left.svg'); ?>" alt="Seta topo esquerda">
+        <img class="modal_details top_right" src="<?php echo $this->getViewFileUrl('images/modal_volts/top_right.svg'); ?>" alt="Seta topo direito">
+        <img class="modal_details bottom_left" src="<?php echo $this->getViewFileUrl('images/modal_volts/bottom_left.svg'); ?>" alt="Seta base esquerda">
+        <img class="modal_details bottom_right" src="<?php echo $this->getViewFileUrl('images/modal_volts/bottom_right.svg'); ?>" alt="Seta base direita">
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "#triggerMOdalVolts": {
+            "Webjump_ModalVolts/js/modal_volts": {}
+        }
+    }
+</script>
 
 <script>
     require(['jquery'], function($) {
