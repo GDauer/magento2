@@ -5946,6 +5946,132 @@ body.catalogsearch-result-index {
 }
 .subtitle{
   p{
-  color: #1e3cff;
+  color: @_ita_main-blue_color;
   }
 }
+
+.mz-gallery-container .slick-arrow {
+  z-index: 999 !important;
+}
+
+//MODAL VOLTS START
+.d_none {
+  display: none;
+}
+
+.modal_volts {
+  background-color: transparent;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  opacity: 0;
+  visibility: hidden;
+  z-index: -1;
+
+  transition: all .3s ease;
+
+    &.opened {
+      background-color: #0000002e;
+
+      opacity: 1;
+      visibility: visible;
+      z-index: 10000;
+    }
+
+  .modal_content {
+    background-color: @_ita_main-blue_color;
+    color: #fff;
+
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    padding: 2rem;
+
+    min-width: 340px;
+    max-width: 340px;
+
+    min-height: 340px;
+
+    border-radius: 35px;
+  }
+
+  p {
+    text-align: center;
+
+    font-weight: 900;
+    font-family: 'GTWalsheimProBold';
+    font-size: 2.4rem;
+  }
+
+  button.action.primary {
+    width: 60%;
+
+    text-align: center;
+    text-decoration: none;
+    text-transform: capitalize;
+
+    font-size: 2rem;
+    font-weight: 600;
+
+    padding: 1rem 2rem;
+    margin: 1rem 0 0 0;
+
+    background-color: #fff;
+    color: @_ita_main-blue_color;
+    border-radius: 35px;
+
+    opacity: 1;
+    transition: all .2s ease-in;
+
+    :hover {
+      opacity: .9;
+    }
+    
+  }
+
+  .modal_details {
+    position: absolute;
+    width: 30px;
+  }
+
+  .modal_details.modal_close {
+      right: -7%;
+      top: -7%;
+
+      cursor: pointer;
+  }
+
+  .modal_details.top_left {
+      left: 5%;
+      top: 5%;
+  }
+
+  .modal_details.top_right {
+      right: 5%;
+      top: 5%;
+  }
+
+  .modal_details.bottom_left {
+      left: 5%;
+      bottom: 5%;
+  }
+
+  .modal_details.bottom_right {
+      right: 5%;
+      bottom: 5%;
+  }
+
+}
+//MODAL VOLTS END
