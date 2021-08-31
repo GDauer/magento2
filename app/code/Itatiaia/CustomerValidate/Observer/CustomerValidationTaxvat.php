@@ -15,7 +15,7 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Customer\Model\CustomerFactory;
 
-class CustomerValidations implements \Magento\Framework\Event\ObserverInterface
+class CustomerValidationTaxvat implements \Magento\Framework\Event\ObserverInterface
 {
 
     /**
