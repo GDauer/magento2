@@ -80,22 +80,6 @@ class CustomerValidations implements \Magento\Framework\Event\ObserverInterface
             }
         }
 
-        //  //Valid Chinese character
-        //  $name =  $this->_request->getParam('firstname');
-        //  if (preg_match("/\p{Han}+/u", $name)) {
-        //      throw new CouldNotSaveException(
-        //          __("%1 is invalid", "Error")
-        //      );
-        //  }
-
-        //  //Valid Chinese character
-        //  $lastname =  $this->_request->getParam('lastname');
-        //  if (preg_match("/\p{Han}+/u", $lastname)) {
-        //      throw new CouldNotSaveException(
-        //          __("%1 is invalid!", "Error")
-        //      );
-        //  }
-
     }
 
 
