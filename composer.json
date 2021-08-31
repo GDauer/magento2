@@ -41,7 +41,6 @@
         "magepal/magento2-gmailsmtpapp": "^2.5",
         "magepal/magento2-googletagmanager": "2.2.9",
         "mercadopago/magento2-plugin": "3.*",
-        "mundipagg/mundipagg-magento2-module": "2.*",
         "mustache/mustache": "^2.12",
         "phpmd/phpmd": "@stable",
         "phpro/grumphp-shim": "0.19.1",
