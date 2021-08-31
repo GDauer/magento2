@@ -164,9 +164,11 @@
         var searchElPostcode = setInterval(function(){
             if($('input[name=taxvat]').length){
                 clearInterval(searchElPostcode);
-                $('input[name=taxvat]').mask('999.999.999-99', {
+                $('input[name=taxvat]').mask('999.999.999-99', {bi
                     placeholder: '___.___.___-__'
                 })
+
+                $('input[name=taxvat]').attr('disabled', true);
             }
         }, 100);
 
