@@ -525,7 +525,6 @@ return [
         'Mageplaza_LazyLoading' => 1,
         'MagestyApps_FixRules' => 1,
         'Itatiaia_CustomMercadoPago' => 1,
-        'MundiPagg_MundiPagg' => 0,
         'Pmclain_SuccessTest' => 1,
         'Potato_Compressor' => 0,
         'Potato_ImageOptimization' => 0,
@@ -567,7 +566,7 @@ return [
         'Vertex_Tax' => 1,
         'Vertex_AddressValidation' => 1,
         'Webjump_Customer' => 1,
-        'Webjump_ModalVolts' => 0,
+        'Webjump_ModalVolts' => 1,
         'Webjump_Sales' => 1,
         'Webjump_Tax' => 1,
         'Yotpo_Yotpo' => 0
