@@ -36,22 +36,24 @@
         <div class="actions">
                 <?php
                     $volts = $_product->getCustomAttribute('tens_o');
+                    $voltsValue = $_product->getAttributeText('tens_o');
 
-                    if(empty($volts) || empty($volts->getValue())):
+                    if(!empty($volts) && !empty($volts->getValue()) && $voltsValue === '127V' ) :
                 ?>
+                    <button type="submit"
+                        title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+                        class="action primary tocart trigger_modal">
+                        <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
+                    </button>
+                <?php else: ?>
                     <button type="submit"
                         title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
                         class="action primary tocart itatiaia-tocart"
                         id="product-addtocart-button">
                         <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
                     </button>
-                <?php else: ?>
-                    <button type="submit"
-                        title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
-                        class="action primary tocart trigger_modal">
-                        <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
-                    </button>
                 <?php endif; ?>
+                
             
             <?= $block->getChildHtml('', true) ?>
         </div>
