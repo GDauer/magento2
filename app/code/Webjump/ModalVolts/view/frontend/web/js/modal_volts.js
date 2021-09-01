@@ -6,10 +6,7 @@ voltModal.classList.remove('d_none')
 
 modalVoltsOpen = (e) => {
     e.preventDefault()
-    voltModal.classList.add('opened')
-}
 
-modalVoltsClose = () => {
     voltModal.classList.toggle('opened')
 }
 
@@ -17,18 +14,18 @@ btnTrigger.addEventListener("click", (e) => {
     modalVoltsOpen(e)
 })
 
-btnClose.addEventListener("click", () => {
-    modalVoltsClose()
+btnClose.addEventListener("click", (e) => {
+    modalVoltsOpen(e)
 })
 
 window.onclick = function(e) {
     if (e.target == voltModal) {
-        modalVoltsClose()
+        modalVoltsOpen(e)
     }
 }
 
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        modalVoltsClose()
+        modalVoltsOpen(e)
     }
 })
