@@ -2993,7 +2993,6 @@ select:not([disabled]) {
     width: 40%;
     background: #fff;
     position: relative;
-    z-index: 98;
     .product-name {
       color:#242424;
       font-size: 28px;
@@ -3989,7 +3988,7 @@ select:not([disabled]) {
     }
   }
   .zoomContainer {
-    z-index: 999;
+    z-index: 997;
   }
 }
 .float-min {
@@ -5951,7 +5950,7 @@ body.catalogsearch-result-index {
 }
 
 .mz-gallery-container .slick-arrow {
-  z-index: 9 !important;
+  z-index: 998 !important;
 }
 
 //MODAL VOLTS START
@@ -5974,7 +5973,7 @@ body.catalogsearch-result-index {
 
   opacity: 0;
   visibility: hidden;
-  z-index: -1;
+  z-index: 999;
 
   transition: all .3s ease;
 
@@ -5983,7 +5982,7 @@ body.catalogsearch-result-index {
 
       opacity: 1;
       visibility: visible;
-      z-index: 999;
+      // z-index: 999;
     }
 
   .modal_content {
