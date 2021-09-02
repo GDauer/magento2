@@ -493,7 +493,7 @@ return [
         'Itatiaia_CustomAdditionalPrices' => 1,
         'Smile_ElasticsuiteCatalog' => 1,
         'Itatiaia_FixIntelipost' => 1,
-        'Itatiaia_CustomerValidate' => 0,
+        'Itatiaia_CustomerValidate' => 1,
         'Itatiaia_EmailOrderProcessing' => 1,
         'Itatiaia_FixAdmin' => 0,
         'MercadoPago_Core' => 1,
