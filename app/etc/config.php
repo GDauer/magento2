@@ -87,7 +87,7 @@ return [
                     'enable_js_bundling' => '0'
                 ],
                 'css' => [
-                    'minify_files' => '0',
+                    'minify_files' => '1',
                     'minify_exclude' => [
                         'tiny_mce' => '/tiny_mce/'
                     ],
