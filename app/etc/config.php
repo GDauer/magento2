@@ -73,7 +73,7 @@ return [
                     'minify_html' => '0'
                 ],
                 'js' => [
-                    'merge_files' => '0',
+                    'merge_files' => '1',
                     'minify_files' => '1',
                     'minify_exclude' => [
                         'tiny_mce' => '/tiny_mce/',
