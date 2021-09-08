@@ -72,12 +72,12 @@ class CustomerValidationTaxvat implements \Magento\Framework\Event\ObserverInter
                 );
             }
 
-            //validate Taxvat is Unique
-            if ($this->_hasTaxvat($customer, $cpf)) {
-                throw new CouldNotSaveException(
-                    __("%1 já cadastrado !", "CPF")
-                );
-            }
+            // //validate Taxvat is Unique
+            // if ($this->_hasTaxvat($customer, $cpf)) {
+            //     throw new CouldNotSaveException(
+            //         __("%1 já cadastrado !", "CPF")
+            //     );
+            // }
         }
 
     }
