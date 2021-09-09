@@ -1,0 +1,97 @@
+name: Pull Requests Validation
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main, release, develop, marketplace2]
+
+jobs:
+  valid-pull-request-base-reference:
+    runs-on: ubuntu-20.04
+    name: Validate if Pull Request to Base Branch is Valid
+    steps:
+        - name: Output Context
+          env:
+            GITHUB_CONTEXT: ${{ toJson(github) }}
+          run: echo "$GITHUB_CONTEXT"
+
+        - name: Allow merging to Main only Release and Hotfixes
+          if: github.base_ref == 'main' && github.head_ref != 'release' && !startsWith(github.head_ref, 'hotfix/')
+          run: |
+            echo "Only Release and Hotfixes branches can be merged into Main"
+            exit 1
+
+        - name: Allow merging to Release only Develop
+          if: github.base_ref == 'release' && github.head_ref != 'develop'
+          run: |
+            echo "Only Develop branch can be merged into Release"
+            exit 1
+
+  pipeline-build-n-test:
+
+    runs-on: ubuntu-20.04
+    name: Pipeline Build and Test
+    needs: valid-pull-request-base-reference
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout Code
+        with:
+          fetch-depth: 0
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.3'
+          coverage: xdebug
+          extensions: bcmath, ctype, curl, dom, gd, hash, iconv, intl, mbstring, openssl, pdo_mysql, simplexml, soap, xsl, zip
+
+      - name: Configure Magento Composer Credentials
+        env:
+          MAGENTO_USERNAME: ${{ secrets.MAGENTO_USERNAME }}
+          MAGENTO_PASSWORD: ${{ secrets.MAGENTO_PASSWORD }}
+        run: |
+          cp auth.json.sample auth.json
+          sed -i 's/<public-key>/'"$MAGENTO_USERNAME"'/g' auth.json
+          sed -i 's/<private-key>/'"$MAGENTO_PASSWORD"'/g' auth.json
+
+      - name: Restore Composer Cache
+        id: composer-cache
+        uses: actions/cache@v2
+        with:
+          path: /home/runner/.composer/cache
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Update Composer to 1.10 version
+        run: composer self-update 1.10.17
+
+      - name: Install Dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Configure Github Problem Matcher
+        run: echo "::add-matcher::.pipeline/static/problem-matcher.json"
+
+      - name: Run PhpMD
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+          BASE_REF: ${{ github.base_ref }}
+        run: bash .pipeline/static/phpmd.sh
+
+      - name: Run PhpCS
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+          BASE_REF: ${{ github.base_ref }}
+        run: bash .pipeline/static/phpcs.sh
+
+      - name: Run PhpCPD
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+          BASE_REF: ${{ github.base_ref }}
+        run: bash .pipeline/static/phpcpd.sh
+
+      - name: Run PhpUnit Tests
+        run: php .pipeline/tests/unit.php ${{ github.head_ref }} ${{ github.base_ref }}
+
+      - name: Check 80% Test Coverage
+        run: php .pipeline/tests/coverage.php

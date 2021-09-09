@@ -1,0 +1,43 @@
+name: Continuous Deployment
+
+on:
+  push:
+    branches: [develop, release, main]
+
+jobs:
+  send-sonar-scanner-report-to-sonar-qube:
+    runs-on: ubuntu-20.04
+    name: Send SonarScanner Reports to SonarQube
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout Code
+        with:
+          fetch-depth: 0
+
+      - name: Run SonarQube Scanner
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  branch-syncing:
+    runs-on: ubuntu-20.04
+    name: Branch Syncing
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout Code
+        with:
+          fetch-depth: 0
+
+      - name: Setup Deploy Key
+        run: |
+          mkdir ~/.ssh
+          echo "${{ secrets.SSH_DEPLOY_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+      - name: Sync Local Branch to Remote
+        env:
+          BRANCH_REF: ${{ github.ref }}
+          CLOUD_REMOTE_URL: ${{ secrets.CLOUD_REMOTE_URL }}
+        run: bash .pipeline/branch-sync.sh
