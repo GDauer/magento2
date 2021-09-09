@@ -2,13 +2,13 @@ name: Continuous Deployment
 
 on:
   push:
-    branches: [develop, release, main]
+    branches: [develop, release, master]
 
 jobs:
   send-sonar-scanner-report-to-sonar-qube:
     runs-on: ubuntu-20.04
     name: Send SonarScanner Reports to SonarQube
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v2
         name: Checkout Code

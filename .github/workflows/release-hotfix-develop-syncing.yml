@@ -2,12 +2,12 @@ name: Hotfix Develop Branch Syncing
 
 on:
   pull_request:
-    branches: [main]
+    branches: [master]
     types: [closed]
 
 jobs:
-  merge-main-into-develop:
-    name: Merge Main into Develop
+  merge-master-into-develop:
+    name: Merge master into Develop
     runs-on: ubuntu-20.04
     if: github.event.pull_request.merged == true
     steps:
@@ -15,15 +15,15 @@ jobs:
         name: Checkout Code
         with:
           fetch-depth: 0
-      
+
       - name: Setup Deploy Key
         run: |
           mkdir ~/.ssh
           echo "${{ secrets.SSH_DEPLOY_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-      
-      - name: Merge Main into Develop
+
+      - name: Merge master into Develop
         run: |
           git checkout develop
-          git merge main
+          git merge master
           git push origin develop

@@ -3,7 +3,7 @@ name: Pull Requests Validation
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-    branches: [main, release, develop, marketplace2]
+    branches: [master, release, develop, marketplace2]
 
 jobs:
   valid-pull-request-base-reference:
@@ -15,10 +15,10 @@ jobs:
             GITHUB_CONTEXT: ${{ toJson(github) }}
           run: echo "$GITHUB_CONTEXT"
 
-        - name: Allow merging to Main only Release and Hotfixes
-          if: github.base_ref == 'main' && github.head_ref != 'release' && !startsWith(github.head_ref, 'hotfix/')
+        - name: Allow merging to master only Release and Hotfixes
+          if: github.base_ref == 'master' && github.head_ref != 'release' && !startsWith(github.head_ref, 'hotfix/')
           run: |
-            echo "Only Release and Hotfixes branches can be merged into Main"
+            echo "Only Release and Hotfixes branches can be merged into master"
             exit 1
 
         - name: Allow merging to Release only Develop

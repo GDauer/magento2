@@ -23,7 +23,7 @@ git remote add cloud $CLOUD_REMOTE_URL
 git push cloud -f $BRANCH_REF:$CLOUD_BRANCH
 
 if [ "$CLOUD_BRANCH" == "production" ]; then
-    git push cloud -f main:master
+    git push cloud -f master:master
 fi
 
 echo "Branches synchronized.";
