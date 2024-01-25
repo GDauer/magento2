@@ -10,6 +10,9 @@ use Exception;
 use Magento\Catalog\Model\Product;
 use Magento\Catalog\Model\ProductFactory;
 use Magento\Catalog\Model\ResourceModel\Indexer\ActiveTableSwitcher;
+use Magento\Catalog\Model\Indexer\Product\Price\Processor as PriceIndexProcessor;
+use Magento\CatalogRule\Model\Indexer\Rule\RuleProductProcessor;
+use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
 use Magento\CatalogRule\Model\Indexer\IndexBuilder\ProductLoader;
 use Magento\CatalogRule\Model\Indexer\IndexerTableSwapperInterface as TableSwapper;
 use Magento\CatalogRule\Model\ResourceModel\Rule\Collection as RuleCollection;
@@ -19,6 +22,7 @@ use Magento\Eav\Model\Config;
 use Magento\Framework\App\ObjectManager;
 use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Indexer\IndexerRegistry;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
 use Magento\Framework\Stdlib\DateTime;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
@@ -43,6 +47,7 @@ class IndexBuilder
     /**
      * @var \Magento\Framework\EntityManager\MetadataPool
      * @deprecated 101.0.0
+     * @see MAGETWO-64518
      * @since 100.1.0
      */
     protected $metadataPool;
@@ -54,6 +59,7 @@ class IndexBuilder
      *
      * @var array
      * @deprecated 101.0.0
+     * @see MAGETWO-38167
      */
     protected $_catalogRuleGroupWebsiteColumnsList = ['rule_id', 'customer_group_id', 'website_id'];
 
@@ -294,8 +300,8 @@ class IndexBuilder
      * Reindex by id
      *
      * @param int $id
-     * @throws LocalizedException
      * @return void
+     * @throws LocalizedException
      */
     public function reindexById($id)
     {
@@ -359,6 +365,15 @@ class IndexBuilder
         foreach (array_chunk($ids, $this->productBatchSize) as $productIds) {
             $this->cleanProductPriceIndex($productIds);
             $this->reindexRuleProductsPrice->execute($this->batchCount, $productIds);
+        }
+
+        //the case was not handled via indexer dependency decorator or via mview configuration
+        $ruleIndexer = $this->indexerRegistry->get(RuleProductProcessor::INDEXER_ID);
+        if ($ruleIndexer->isScheduled()) {
+            $priceIndexer = $this->indexerRegistry->get(PriceIndexProcessor::INDEXER_ID);
+            if (!$priceIndexer->isScheduled()) {
+                $priceIndexer->reindexList($ids);
+            }
         }
 
         $this->reindexRuleGroupWebsite->execute();
@@ -537,13 +552,20 @@ class IndexBuilder
      */
     private function applyRules(RuleCollection $ruleCollection, Product $product): void
     {
+        /** @var \Magento\CatalogRule\Model\Rule $rule */
         foreach ($ruleCollection as $rule) {
-            if (!$rule->validate($product)) {
-                continue;
-            }
-
+            $productCollection = $this->productCollectionFactory->create();
+            $productCollection->addIdFilter($product->getId());
+            $rule->getConditions()->collectValidatedAttributes($productCollection);
+            $validationResult = [];
             $websiteIds = array_intersect($product->getWebsiteIds(), $rule->getWebsiteIds());
-            $this->assignProductToRule($rule, $product->getId(), $websiteIds);
+            foreach ($websiteIds as $websiteId) {
+                $defaultGroupId = $this->storeManager->getWebsite($websiteId)->getDefaultGroupId();
+                $defaultStoreId = $this->storeManager->getGroup($defaultGroupId)->getDefaultStoreId();
+                $product->setStoreId($defaultStoreId);
+                $validationResult[$websiteId] = $rule->validate($product);
+            }
+            $this->assignProductToRule($rule, $product->getId(), array_keys(array_filter($validationResult)));
         }
 
         $this->cleanProductPriceIndex([$product->getId()]);
