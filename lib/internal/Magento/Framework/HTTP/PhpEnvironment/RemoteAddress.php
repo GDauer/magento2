@@ -70,6 +70,12 @@ class RemoteAddress
             $remoteAddress = $this->request->getServer('REMOTE_ADDR');
         }
 
+        \Magento\Framework\App\ObjectManager::getInstance()
+            ->create(\Psr\Log\LoggerInterface::class)
+            ->debug(__METHOD__, [
+                'alternative' => $this->alternativeHeaders,
+                'addr' => $remoteAddress
+            ]);
         return $remoteAddress;
     }
 
